@@ -1,6 +1,10 @@
 # robyn
 
-A full-stack starter for building your own agent app on the [Agent37](https://www.agent37.com) Cloud API: auth, chat, files, messaging apps (Telegram, WhatsApp, Slack, Discord), integrations, and fleet management, with your choice of Hermes or OpenClaw. Fork it, rebrand it, ship it.
+A branded agent dashboard on the [Agent37](https://www.agent37.com) Cloud API: auth, Hermes agents, chat, files, messaging apps (Telegram, WhatsApp, Slack, Discord), integrations, and fleet management.
+
+Enable an optional [Inkbox](https://www.agent37.com/docs/agents-api/imessage) identity in an agent's **Messaging → Enable Inkbox** for its email inbox, iMessage and calls. Creating or viewing an agent never consumes an Inkbox identity. Add the server-only `INKBOX_ADMIN_KEY` and run `npm run setup` to apply the identity-state migration. Enabling Inkbox restarts that agent once; failed setup can be retried with the same identity.
+
+The inbox allowlist uses the agent creator's account email. Add an allowed phone number in Messaging and send the displayed connection message to activate iMessage and calls. Inkbox's hosted voice agent handles calls and delivers transcripts to Hermes. Deleting an agent also deletes its Inkbox identity and revokes its scoped keys.
 
 <p align="center">
   <img src="screenshots/demo.gif" alt="Demo of the robyn dashboard and agent workspace" width="100%" />

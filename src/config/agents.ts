@@ -30,7 +30,7 @@ export interface AgentTypeOption {
 }
 
 // The agent types offered on the create screen. This is the curated catalog —
-// branded cards, in your control. Both entries run on Agent37's stock images, so this
+// branded cards, in your control. Hermes runs on Agent37's stock image, so this
 // app needs no Docker at all. To offer your OWN image, build and register it as a
 // workspace template (https://github.com/agent37-platform/custom-agent-image), then
 // add an entry here whose `template` is that template's name.
@@ -41,12 +41,6 @@ export const AGENT_TYPES: AgentTypeOption[] = [
     label: "Hermes",
     description: "General agent: chat, browsing, code, files.",
     recommended: true,
-  },
-  {
-    id: "openclaw",
-    template: "agent37-openclaw",
-    label: "OpenClaw",
-    description: "General agent: headless browser, code, files.",
   },
 ];
 

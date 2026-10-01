@@ -87,3 +87,21 @@ backend or register your sign-in URLs. Run setup locally once first, then:
    (Branding is code-side now — edit `src/config/branding.ts`, not env.)
 4. Register your prod sign-in URL with Supabase: set `NEXT_PUBLIC_SITE_URL` to your prod URL
    in `.env.local` and re-run `npm run setup` (it adds `<prod>/auth/callback` for you).
+
+## Optional agent identities (Inkbox)
+
+Set `INKBOX_ADMIN_KEY` in the ignored `.env.local` file and as a sensitive server-only
+Vercel environment variable, using an admin-scoped key from [Inkbox Console](https://inkbox.ai/console).
+Run `npm run setup` to apply `0002_inkbox.sql`, then redeploy.
+
+An admin can enable an identity in **Messaging → Enable Inkbox** on a running Hermes
+agent. Creating and viewing agents does not allocate identities, preserving your Inkbox
+plan's capacity. Provisioning uses a distinct identity-scoped key in each agent, a signed
+webhook, and a persisted lease to prevent concurrent setup. A retry reuses the same identity.
+The agent restarts once after the plugin is installed.
+
+The creator's email is allowlisted automatically. Add an allowed phone number in the
+Messaging tab, then send its connection message from that phone. Inkbox's shared line routes
+each identity's conversation separately. Its hosted voice agent answers calls and sends
+transcripts to Hermes; Hermes does not process live call audio. Phone access stays closed
+until a number is allowed. Deleting an agent removes its identity and revokes scoped keys.

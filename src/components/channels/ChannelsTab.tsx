@@ -51,7 +51,8 @@ export function ChannelsTab({
       if (!quiet) setLoading(true);
       try {
         const { channels: list } = await apiFetch<ChannelsResponse>(`/api/agents/${agentId}/channels`);
-        setChannels(list);
+        // Inkbox is provisioned in Messaging with an identity-scoped key.
+        setChannels(list.filter((channel) => channel.id !== "inkbox"));
       } catch (e) {
         toast.error((e as Error).message);
       } finally {
@@ -168,7 +169,7 @@ export function ChannelsTab({
 function Header() {
   return (
     <header className="space-y-1">
-      <h2 className="text-lg font-semibold">Messaging apps</h2>
+      <h2 className="text-lg font-semibold">Channels</h2>
       <p className="text-sm text-muted-foreground">Message this agent from the apps you already use.</p>
     </header>
   );

@@ -137,6 +137,7 @@ export interface CreateAgentInput {
   name?: string;
   metadata?: Record<string, unknown>;
   budget?: { monthly_cap_micros?: number; credit_micros?: number };
+  public_ports?: { port: number; label: string }[];
 }
 
 export interface ResizeInput {
@@ -148,6 +149,11 @@ export interface ResizeInput {
 export const agent37 = {
   listAgents: () => call<{ data: Agent[] }>("/instances"),
   getAgent: (id: string) => call<Agent>(`/instances/${id}`),
+  getHealth: (id: string) => instanceCall<{ healthy: boolean }>(id, "/v1/health", { signal: AbortSignal.timeout(10_000) }),
+  createPublicPort: (id: string, port: number, label: string) =>
+    call<{ port: number; url: string }>(`/instances/${id}/public-ports`, {
+      method: "POST", body: JSON.stringify({ port, label }),
+    }),
   createAgent: (body: CreateAgentInput) =>
     call<Agent>("/instances", { method: "POST", body: JSON.stringify(body) }),
   deleteAgent: (id: string) =>

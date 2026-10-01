@@ -19,18 +19,6 @@ async function getTemplates(): Promise<Template[]> {
   return data;
 }
 
-async function resolveTemplate(): Promise<string | undefined> {
-  try {
-    const data = await getTemplates();
-    const preferred = data.find((t) => t.name === DEFAULT_AGENT.template);
-    if (preferred) return preferred.name;
-    const builtin = data.find((t) => t.scope === "system");
-    return (builtin ?? data[0])?.name;
-  } catch {
-    return DEFAULT_AGENT.template;
-  }
-}
-
 export async function GET(request: Request) {
   try {
     const { db, user } = await requireUser();
@@ -105,7 +93,7 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   try {
     const { db, user } = await requireUser();
-    // Shape is fixed server-side (DEFAULT_AGENT); the client picks the workspace and agent type.
+    // New agents always use Hermes; reject stale clients requesting another template.
     const body = await readJson<{ workspace_id?: string; template?: string }>(request);
 
     const workspaceId = body.workspace_id;
@@ -115,13 +103,12 @@ export async function POST(request: Request) {
     // Paywall/entitlement seam: a fork can gate agent creation here, e.g.
     // if (!(await canCreateAgent(db, workspaceId))) throw new ApiError(403, "forbidden", "Agent creation is not enabled for this workspace.");
 
-    const template =
-      body.template && AGENT_TEMPLATES.includes(body.template)
-        ? body.template
-        : await resolveTemplate();
+    if (body.template && !AGENT_TEMPLATES.includes(body.template)) {
+      throw new ApiError(400, "invalid_template", "New agents use Hermes.");
+    }
 
     const agent = await agent37.createAgent({
-      template,
+      template: DEFAULT_AGENT.template,
       resources: {
         cpu: DEFAULT_AGENT.cpu,
         memory: DEFAULT_AGENT.memory,

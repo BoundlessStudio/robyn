@@ -106,7 +106,7 @@ export function AgentSettingsTab({
         open={confirmDelete}
         onOpenChange={setConfirmDelete}
         title="Delete agent?"
-        description={`This will permanently delete ${agent.name?.trim() || "this agent"}. This cannot be undone.`}
+        description={`This will permanently delete ${agent.name?.trim() || "this agent"} and its Inkbox identity, if enabled. This cannot be undone.`}
         confirmText="Delete agent"
         destructive
         onConfirm={deleteAgent}

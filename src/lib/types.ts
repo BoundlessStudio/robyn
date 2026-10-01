@@ -56,6 +56,7 @@ export interface Agent {
   // Older API versions reported the instance's ports; current ones return null —
   // any port is reachable at a preview URL, nothing is declared.
   ports: { port: number; default: boolean; url: string }[] | null;
+  public_ports?: { port: number; url: string; label?: string | null }[];
   user: string | null;
   name: string | null;
   metadata: Record<string, unknown> | null;
