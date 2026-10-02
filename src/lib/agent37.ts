@@ -1,7 +1,11 @@
 import "server-only";
+import { validCronId } from "@/lib/cron-input";
 import type {
   Agent,
+  AgentCron,
   Budget,
+  CronInput,
+  CronRun,
   FileEntry,
   FileListResponse,
   IntegrationConnectionsResult,
@@ -146,6 +150,11 @@ export interface ResizeInput {
   disk?: number;
 }
 
+function cronPath(id: string, cronId: string): string {
+  if (!validCronId(cronId)) throw new Agent37Error(400, "invalid_cron_id", "Invalid schedule ID.");
+  return `/instances/${id}/crons/${cronId}`;
+}
+
 export const agent37 = {
   listAgents: () => call<{ data: Agent[] }>("/instances"),
   getAgent: (id: string) => call<Agent>(`/instances/${id}`),
@@ -199,6 +208,22 @@ export const agent37 = {
     call<Usage>(`/instances/${id}/usage${month ? `?month=${encodeURIComponent(month)}` : ""}`),
 
   listTemplates: () => call<{ data: Template[] }>("/templates"),
+
+  listCrons: (id: string) => call<{ data: AgentCron[] }>(`/instances/${id}/crons`),
+  createCron: (id: string, body: CronInput) => call<AgentCron>(`/instances/${id}/crons`, {
+    method: "POST", body: JSON.stringify(body),
+  }),
+  updateCron: (id: string, cronId: string, body: Partial<CronInput>) =>
+    call<AgentCron>(cronPath(id, cronId), { method: "PATCH", body: JSON.stringify(body) }),
+  deleteCron: (id: string, cronId: string) => call<{ id: string; deleted: boolean }>(
+    cronPath(id, cronId), { method: "DELETE" }
+  ),
+  runCron: (id: string, cronId: string) => call<CronRun>(
+    `${cronPath(id, cronId)}/run`, { method: "POST" }
+  ),
+  listCronRuns: (id: string, cronId: string) => call<{ data: CronRun[] }>(
+    `${cronPath(id, cronId)}/runs`
+  ),
 
   // ---- Per-instance Agents API (data plane: web chat) — served on the instance host, see
   // instanceFetch. The streaming surfaces (POST /v1/responses SSE, GET/PUT /v1/files/content,

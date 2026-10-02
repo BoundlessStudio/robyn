@@ -76,11 +76,12 @@ export function ChatProvider({
   // Done during render (React's "adjust state when a prop changes" pattern) so there's no extra
   // paint. We always track the URL, but only adopt it into the open thread while the Chat tab is
   // showing, so leaving to another tab keeps the open thread (and its in-flight stream) mounted
-  // rather than resetting it.
+  // rather than resetting it. A supplied session also selects the thread during a tab transition
+  // (e.g. Schedule's "View conversation"), even if the pathname updates a render later.
   const [syncedUrlSessionId, setSyncedUrlSessionId] = useState<string | null>(urlSessionId);
   if (urlSessionId !== syncedUrlSessionId) {
     setSyncedUrlSessionId(urlSessionId);
-    if (onChatTab) setActiveSessionId(urlSessionId);
+    if (onChatTab || urlSessionId !== null) setActiveSessionId(urlSessionId);
   }
 
   // Tab switches (handled by the shell) rewrite the path WITHOUT the ?session= query, so on the
@@ -94,8 +95,10 @@ export function ChatProvider({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onChatTab]);
 
-  // Load the rail from upstream — labels and ordering arrive ready from the sessions route.
+  // Load the rail when Chat opens, including conversations created by scheduled runs while
+  // another tab was visible. Control-plane tabs such as Schedule need not wake the instance.
   useEffect(() => {
+    if (!onChatTab) return;
     let cancelled = false;
 
     apiFetch<{ sessions: ChatSession[] }>(`/api/agents/${agentId}/chat/sessions`)
@@ -110,7 +113,7 @@ export function ChatProvider({
     return () => {
       cancelled = true;
     };
-  }, [agentId]);
+  }, [agentId, onChatTab]);
 
   const requestComposerFocus = useCallback(() => setComposerFocusToken((n) => n + 1), []);
 

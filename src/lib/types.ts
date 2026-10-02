@@ -88,6 +88,36 @@ export interface Budget {
   updated_at: number | null;
 }
 
+// Platform schedules live on Agent37, outside the agent so they can wake a sleeping instance.
+export interface AgentCron {
+  id: string;
+  name: string | null;
+  agent: string | null;
+  prompt: string;
+  schedule: string;
+  timezone: string;
+  enabled: boolean;
+  last_run: number | null;
+  next_run: number | null;
+  created: number;
+}
+
+export interface CronInput {
+  name?: string;
+  prompt: string;
+  schedule: string;
+  timezone?: string;
+  enabled?: boolean;
+}
+
+export interface CronRun {
+  id: string;
+  ran_at: number;
+  session_id: string | null;
+  status: "triggered" | "skipped";
+  reason: "instance_stopped" | "past_due" | "free_hours_exhausted" | "wake_failed" | string | null;
+}
+
 export interface Usage {
   period: string;
   total_micros: number;
