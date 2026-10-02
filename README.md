@@ -10,10 +10,6 @@ Use **Channels** and **Integrations** for agent connections. The optional **Mess
 
 The inbox allowlist uses the agent creator's account email. Add an allowed phone number in Messaging and send the displayed connection message to activate iMessage and calls. Inkbox's hosted voice agent handles calls and delivers transcripts to Hermes. Deleting an agent also deletes its Inkbox identity and revokes its scoped keys.
 
-<p align="center">
-  <img src="screenshots/demo.gif" alt="Demo of the robyn dashboard and agent workspace" width="100%" />
-</p>
-
 ## Setup
 
 **1. Get two keys** (both behind a login, so only you can fetch them):
