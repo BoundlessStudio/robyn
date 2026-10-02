@@ -18,7 +18,7 @@ public **[Agent37](https://www.agent37.com) B2B Agents API**: email + password a
 (open signup, no verification), a multi-agent fleet, and, for each agent, native
 in-dashboard **Chat**, **Identity** (name, icon and Hermes SOUL.md), a **Files** browser, **Channels** (connect the agent to
 Telegram, WhatsApp, Slack, Discord and two dozen more), **Integrations** (Composio),
-optional **Messaging** (Inkbox email, iMessage and calls), **Schedule** (Agent37 crons), and a **Settings** tab. Forkers rebrand it (`src/config/branding.ts`) and ship it; their
+**Schedule** (Agent37 crons), and a **Settings** tab. Forkers rebrand it (`src/config/branding.ts`) and ship it; their
 end users sign up, get workspaces, invite teammates, and create / manage agents.
 
 Everything this app can do is a **subset of the Agent37 `/v1` API** — control plane
@@ -70,7 +70,9 @@ reports the channel catalog, each channel's fields, and its live connection stat
 the UI renders a form it did not write and a channel a later image adds needs no change
 here. See [Messaging channels](https://www.agent37.com/docs/agents-api/messaging).
 
-The **Messaging** tab provisions optional Inkbox identities only when an admin clicks
+The retained **Messaging** page is hidden from agent navigation; **Channels** and
+**Integrations** are the visible connection tools. Its existing `/messaging` deep
+link and Inkbox BFF remain available. It provisions optional Inkbox identities only when an admin clicks
 **Enable Inkbox**. Read [iMessage, email and calls](https://www.agent37.com/docs/agents-api/imessage)
 before changing it. `INKBOX_ADMIN_KEY` stays server-side in `src/lib/inkbox.ts`; each
 agent receives only an identity-scoped key. `src/lib/inkbox-provisioning.ts` persists
@@ -152,7 +154,7 @@ Browser ─▶ Next.js (this app) ─▶ control plane  https://api.agent37.com/
 - **The UI is a fleet + a per-agent workspace.** The `(fleet)` route group is the
   multi-agent dashboard (agents, members, invitations, workspace settings). Clicking
   an agent opens `/dashboard/agents/{agentId}/{tab}` — a tabbed workspace (Chat /
-  Identity / Files / Channels / Integrations / Messaging / Schedule / Settings) where the active agent is bound to the URL and
+  Identity / Files / Channels / Integrations / Schedule / Settings) where the active agent is bound to the URL and
   switchable from a dropdown. New agents use Hermes; shape and budget are fixed
   server-side (`DEFAULT_AGENT`).
 - **Naming:** the upstream API calls these resources **instances**; this app brands
@@ -181,7 +183,7 @@ Browser ─▶ Next.js (this app) ─▶ control plane  https://api.agent37.com/
 | `src/lib/inkbox.ts`, `src/lib/inkbox-provisioning.ts` | Server-only Inkbox client and resumable provisioning |
 | `supabase/migrations/0002_inkbox.sql` | Service-role-only identity setup state; no plaintext keys |
 | `supabase/migrations/0003_agent_icon.sql` | Bounded display icons in the tenant-scoped agent mirror |
-| `src/app/dashboard/agents/[agentId]/[[...tab]]/` | The per-agent tabbed workspace route (Chat / Identity / Files / Channels / Integrations / Messaging / Schedule / Settings) |
+| `src/app/dashboard/agents/[agentId]/[[...tab]]/` | The per-agent tabbed workspace route (Chat / Identity / Files / Channels / Integrations / Schedule / Settings; Messaging is a retained hidden route) |
 | `src/config/agents.ts` | `SHAPE_PRESETS`, `DEFAULT_AGENT`, the `AGENT_TYPES` catalog, `PORT_LABELS` (labels only), and `templateAppPorts` — the per-template openable app ports (the API no longer reports per-instance ports) |
 | `src/config/branding.ts` | `appName` / `logoUrl` code constants (branding lives here, not in env) |
 | `src/lib/types.ts` | App + upstream `/v1` types |

@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowLeft, Blocks, CalendarClock, Fingerprint, FolderOpen, MessageSquare, MessagesSquare, Plug, Settings2 } from "lucide-react";
+import { ArrowLeft, Blocks, CalendarClock, Fingerprint, FolderOpen, MessageSquare, MessagesSquare, Settings2 } from "lucide-react";
 import { toast } from "sonner";
 import { apiFetch } from "@/lib/api";
 import { isTransitional } from "@/lib/format";
@@ -31,7 +31,6 @@ const TABS: { id: AgentTab; label: string; icon: typeof MessageSquare }[] = [
   { id: "files", label: "Files", icon: FolderOpen },
   { id: "channels", label: "Channels", icon: MessagesSquare },
   { id: "integrations", label: "Integrations", icon: Blocks },
-  { id: "messaging", label: "Messaging", icon: Plug },
   { id: "schedule", label: "Schedule", icon: CalendarClock },
   { id: "settings", label: "Settings", icon: Settings2 },
 ];
