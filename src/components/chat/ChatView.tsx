@@ -9,6 +9,7 @@ import { ChatMessages } from "./ChatMessages";
 import { useChatContext } from "./ChatProvider";
 import { useChat } from "./useChat";
 import { useChatAttachments } from "./useChatAttachments";
+import { AgentIcon } from "@/components/AgentIcon";
 
 // The conversation pane, rendered full-height in the chat tab's main column. Empty state = a
 // centered welcome (heading + big composer + subtitle); once there are messages it becomes a
@@ -82,9 +83,12 @@ export function ChatView() {
     <div className="relative flex h-full min-h-0 flex-col" {...att.dragHandlers}>
       {att.dragOver && <DropOverlay label="Drop files to attach" />}
       <header className="flex h-16 shrink-0 items-center justify-between border-b bg-background px-6 md:px-10">
-        <div className="min-w-0">
-          <h1 className="truncate text-base font-semibold text-foreground">{headerTitle}</h1>
-          <p className="truncate text-xs text-muted-foreground">{agentName}</p>
+        <div className="flex min-w-0 items-center gap-3">
+          <AgentIcon icon={agents.find((agent) => agent.agent37_id === agentId)?.icon} />
+          <div className="min-w-0">
+            <h1 className="truncate text-base font-semibold text-foreground">{headerTitle}</h1>
+            <p className="truncate text-xs text-muted-foreground">{agentName}</p>
+          </div>
         </div>
         <button
           type="button"

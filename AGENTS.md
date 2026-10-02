@@ -16,9 +16,9 @@ Setting this up from a fresh clone? Follow **[`SETUP.md`](SETUP.md)** — the co
 A full-stack starter for building your own agent app, built entirely on top of the
 public **[Agent37](https://www.agent37.com) B2B Agents API**: email + password auth
 (open signup, no verification), a multi-agent fleet, and, for each agent, native
-in-dashboard **Chat**, a **Files** browser, **Channels** (connect the agent to
+in-dashboard **Chat**, **Identity** (name, icon and Hermes SOUL.md), a **Files** browser, **Channels** (connect the agent to
 Telegram, WhatsApp, Slack, Discord and two dozen more), **Integrations** (Composio),
-optional **Messaging** (Inkbox email, iMessage and calls), **Schedule** (Agent37 crons), and a **Settings** tab. Forkers rebrand it (`src/config/branding.ts`) and ship it; their
+**Schedule** (Agent37 crons), and a **Settings** tab. Forkers rebrand it (`src/config/branding.ts`) and ship it; their
 end users sign up, get workspaces, invite teammates, and create / manage agents.
 
 Everything this app can do is a **subset of the Agent37 `/v1` API** — control plane
@@ -56,7 +56,7 @@ Two planes, one `sk_live_` key — and this template now drives **both**. The
 | [Templates](https://www.agent37.com/docs/agents-api/templates) | the agent images you can provision | ✅ |
 | [Managed services & budgets](https://www.agent37.com/docs/agents-api/budgets) | per-agent managed-spend cap | ✅ |
 | [Billing](https://www.agent37.com/docs/agents-api/billing) | wallet, compute prepay, usage | ✅ (usage) |
-| [Run commands](https://www.agent37.com/docs/agents-api/exec) | exec a command inside an instance | ✅ (Channels + Inkbox setup) |
+| [Run commands](https://www.agent37.com/docs/agents-api/exec) | exec a command inside an instance | ✅ (Channels + Inkbox setup + SOUL editor) |
 | [Crons](https://www.agent37.com/docs/agents-api/crons) | recurring prompts, pause / resume, run now, run history | ✅ (Schedule) |
 | [Errors](https://www.agent37.com/docs/agents-api/errors) | machine-readable error codes | ✅ (mapped in `Agent37Error`) |
 
@@ -70,7 +70,9 @@ reports the channel catalog, each channel's fields, and its live connection stat
 the UI renders a form it did not write and a channel a later image adds needs no change
 here. See [Messaging channels](https://www.agent37.com/docs/agents-api/messaging).
 
-The **Messaging** tab provisions optional Inkbox identities only when an admin clicks
+The retained **Messaging** page is hidden from agent navigation; **Channels** and
+**Integrations** are the visible connection tools. Its existing `/messaging` deep
+link and Inkbox BFF remain available. It provisions optional Inkbox identities only when an admin clicks
 **Enable Inkbox**. Read [iMessage, email and calls](https://www.agent37.com/docs/agents-api/imessage)
 before changing it. `INKBOX_ADMIN_KEY` stays server-side in `src/lib/inkbox.ts`; each
 agent receives only an identity-scoped key. `src/lib/inkbox-provisioning.ts` persists
@@ -86,6 +88,16 @@ and history; mutations require admin access. Send only changed PATCH fields:
 unchanged `schedule`, `timezone` or `enabled` would recompute `next_run`. A run's
 `triggered` status means it was requested, not that it succeeded; its linked Chat
 conversation contains the result. Explicitly stopped agents are never woken.
+
+The **Identity** tab uses SOUL.md as its single personality editor; do not add a
+second personality/preset selector. Consult the [Hermes personality guide](https://hermes-agent.nousresearch.com/docs/user-guide/features/personality)
+before changing it. The name/icon PATCH is authorized through the agent mirror:
+names also sync upstream without touching ownership metadata, and icons are bounded
+catalog IDs stored in `agents.icon`. `/api/agents/{id}/soul` reads/writes only SOUL.md
+in the running Hermes worker's profile over `exec`. Writes require admin access,
+are atomic, and require a content/profile revision so stale drafts cannot overwrite
+newer edits. Symbolic/hard links and oversized files are refused. Markdown travels
+as encoded data, never shell source. No configuration secrets are returned.
 
 **Data plane — `https://{instanceId}.agent37.app/v1/*`** (talk to one agent's
 gateway). Data-plane requests authenticate with the `X-Agent37-Key: sk_live_...`
@@ -142,7 +154,7 @@ Browser ─▶ Next.js (this app) ─▶ control plane  https://api.agent37.com/
 - **The UI is a fleet + a per-agent workspace.** The `(fleet)` route group is the
   multi-agent dashboard (agents, members, invitations, workspace settings). Clicking
   an agent opens `/dashboard/agents/{agentId}/{tab}` — a tabbed workspace (Chat /
-  Files / Channels / Integrations / Messaging / Schedule / Settings) where the active agent is bound to the URL and
+  Identity / Files / Channels / Integrations / Schedule / Settings) where the active agent is bound to the URL and
   switchable from a dropdown. New agents use Hermes; shape and budget are fixed
   server-side (`DEFAULT_AGENT`).
 - **Naming:** the upstream API calls these resources **instances**; this app brands
@@ -162,12 +174,16 @@ Browser ─▶ Next.js (this app) ─▶ control plane  https://api.agent37.com/
 | `src/lib/channels.ts` | Channel types + the featured list, shared by the BFF and the Channels tab |
 | `src/components/channels/**` | The Channels tab: channel list, Telegram flow, WhatsApp QR, generic credentials form |
 | `src/components/MessagingTab.tsx` | Optional Inkbox inbox, phone allowlist and iMessage connection instructions |
+| `src/components/IdentityTab.tsx`, `src/components/AgentIcon.tsx` | Name, icon and the single SOUL.md personality editor |
+| `src/lib/agent-profile-input.ts`, `src/lib/soul-input.ts` | Shared profile catalog and bounded input validation |
+| `src/app/api/agents/[id]/soul/`, `src/lib/hermes-soul.ts`, `src/lib/hermes-soul-command.ts` | Authorized, profile-aware SOUL reads and revision-checked atomic saves over exec |
 | `src/components/ScheduleTab.tsx`, `src/lib/cron-input.ts` | Cron editor, run history, input validation and minimal PATCH fields |
 | `src/app/api/agents/[id]/crons/**` | Per-agent cron BFF; member reads and admin-only mutations |
 | `src/app/api/agents/[id]/identity/` | Inkbox state reads and admin-only provisioning / phone updates |
 | `src/lib/inkbox.ts`, `src/lib/inkbox-provisioning.ts` | Server-only Inkbox client and resumable provisioning |
 | `supabase/migrations/0002_inkbox.sql` | Service-role-only identity setup state; no plaintext keys |
-| `src/app/dashboard/agents/[agentId]/[[...tab]]/` | The per-agent tabbed workspace route (Chat / Files / Channels / Integrations / Messaging / Schedule / Settings) |
+| `supabase/migrations/0003_agent_icon.sql` | Bounded display icons in the tenant-scoped agent mirror |
+| `src/app/dashboard/agents/[agentId]/[[...tab]]/` | The per-agent tabbed workspace route (Chat / Identity / Files / Channels / Integrations / Schedule / Settings; Messaging is a retained hidden route) |
 | `src/config/agents.ts` | `SHAPE_PRESETS`, `DEFAULT_AGENT`, the `AGENT_TYPES` catalog, `PORT_LABELS` (labels only), and `templateAppPorts` — the per-template openable app ports (the API no longer reports per-instance ports) |
 | `src/config/branding.ts` | `appName` / `logoUrl` code constants (branding lives here, not in env) |
 | `src/lib/types.ts` | App + upstream `/v1` types |

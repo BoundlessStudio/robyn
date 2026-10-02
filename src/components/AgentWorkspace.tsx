@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowLeft, Blocks, CalendarClock, FolderOpen, MessageSquare, MessagesSquare, Plug, Settings2 } from "lucide-react";
+import { ArrowLeft, Blocks, CalendarClock, Fingerprint, FolderOpen, MessageSquare, MessagesSquare, Settings2 } from "lucide-react";
 import { toast } from "sonner";
 import { apiFetch } from "@/lib/api";
 import { isTransitional } from "@/lib/format";
@@ -18,6 +18,7 @@ import { IntegrationsTab } from "@/components/IntegrationsTab";
 import { ChannelsTab } from "@/components/channels/ChannelsTab";
 import { MessagingTab } from "@/components/MessagingTab";
 import { ScheduleTab } from "@/components/ScheduleTab";
+import { IdentityTab } from "@/components/IdentityTab";
 import { ChatProvider } from "@/components/chat/ChatProvider";
 import { ChatSidebar } from "@/components/chat/ChatSidebar";
 import { ChatView } from "@/components/chat/ChatView";
@@ -26,10 +27,10 @@ import { cn } from "@/lib/utils";
 
 const TABS: { id: AgentTab; label: string; icon: typeof MessageSquare }[] = [
   { id: "chat", label: "Chat", icon: MessageSquare },
+  { id: "identity", label: "Identity", icon: Fingerprint },
   { id: "files", label: "Files", icon: FolderOpen },
   { id: "channels", label: "Channels", icon: MessagesSquare },
   { id: "integrations", label: "Integrations", icon: Blocks },
-  { id: "messaging", label: "Messaging", icon: Plug },
   { id: "schedule", label: "Schedule", icon: CalendarClock },
   { id: "settings", label: "Settings", icon: Settings2 },
 ];
@@ -243,6 +244,11 @@ export function AgentWorkspace({
               ) : currentTab === "messaging" ? (
                 <div className="mx-auto w-full max-w-3xl p-6 md:px-10 md:py-8">
                   {active ? <MessagingTab key={agentId} agentId={agentId} agent={active} role={role} />
+                    : <p className="text-sm text-muted-foreground">Loading...</p>}
+                </div>
+              ) : currentTab === "identity" ? (
+                <div className="mx-auto w-full max-w-3xl p-6 md:px-10 md:py-8">
+                  {active ? <IdentityTab key={agentId} agentId={agentId} agent={active} role={role} onChanged={load} />
                     : <p className="text-sm text-muted-foreground">Loading...</p>}
                 </div>
               ) : currentTab === "schedule" ? (

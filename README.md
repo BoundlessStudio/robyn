@@ -2,9 +2,11 @@
 
 A branded agent dashboard on the [Agent37](https://www.agent37.com) Cloud API: auth, Hermes agents, chat, files, messaging apps (Telegram, WhatsApp, Slack, Discord), integrations, schedules, and fleet management.
 
+Each agent's **Identity** tab sets its name and icon and edits [Hermes SOUL.md](https://hermes-agent.nousresearch.com/docs/user-guide/features/personality) as its single personality editor. Names sync to Agent37; icons appear in the fleet, agent switcher and Chat. SOUL edits target the running Hermes profile, preserve Markdown, and reject stale saves while keeping your draft. Start a new conversation to hear the changed personality. Run `npm run setup` to apply the agent-icon migration when upgrading an existing installation.
+
 Each agent's **Schedule** tab manages [Agent37 crons](https://www.agent37.com/docs/agents-api/crons): recurring instructions with a timezone, pause/resume, run now, and run history linked to Chat conversations. Access stays scoped to the agent's workspace. Jobs can wake sleeping agents, skip explicitly stopped agents, and use the agent's normal compute and model budget. No extra database setup or scheduler is required.
 
-Enable an optional [Inkbox](https://www.agent37.com/docs/agents-api/imessage) identity in an agent's **Messaging → Enable Inkbox** for its email inbox, iMessage and calls. Creating or viewing an agent never consumes an Inkbox identity. Add the server-only `INKBOX_ADMIN_KEY` and run `npm run setup` to apply the identity-state migration. Enabling Inkbox restarts that agent once; failed setup can be retried with the same identity.
+Use **Channels** and **Integrations** for agent connections. The optional **Messaging** page is hidden from agent navigation; its existing `/dashboard/agents/{agentId}/messaging` route remains available for managing [Inkbox](https://www.agent37.com/docs/agents-api/imessage) email, iMessage and calls. Creating or viewing an agent never consumes an Inkbox identity. Add the server-only `INKBOX_ADMIN_KEY` and run `npm run setup` to apply the identity-state migration. Enabling Inkbox restarts that agent once; failed setup can be retried with the same identity.
 
 The inbox allowlist uses the agent creator's account email. Add an allowed phone number in Messaging and send the displayed connection message to activate iMessage and calls. Inkbox's hosted voice agent handles calls and delivers transcripts to Hermes. Deleting an agent also deletes its Inkbox identity and revokes its scoped keys.
 
