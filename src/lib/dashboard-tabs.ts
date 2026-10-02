@@ -3,7 +3,7 @@
 // (src/components/AgentWorkspace.tsx) so the two can't drift. The active agent is
 // bound to the URL: /dashboard/agents/{agentId}/{tab}.
 
-export const AGENT_TAB_IDS = ["chat", "files", "channels", "integrations", "messaging", "schedule", "settings"] as const;
+export const AGENT_TAB_IDS = ["chat", "identity", "files", "channels", "integrations", "messaging", "schedule", "settings"] as const;
 
 export type AgentTab = (typeof AGENT_TAB_IDS)[number];
 

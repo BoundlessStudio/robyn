@@ -30,6 +30,7 @@ export interface AgentRow {
   agent37_id: string;
   workspace_id: string;
   name: string | null;
+  icon: string | null;
   status: string | null;
   template: string | null;
   cpu: number | null;

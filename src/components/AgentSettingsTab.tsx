@@ -200,6 +200,7 @@ function NameEditor({
       <input
         autoFocus
         value={draft}
+        maxLength={60}
         disabled={saving}
         onChange={(e) => setDraft(e.target.value)}
         onFocus={(e) => e.currentTarget.select()}

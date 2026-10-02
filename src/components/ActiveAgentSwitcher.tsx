@@ -14,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
+import { AgentIcon } from "@/components/AgentIcon";
 
 // The dot color mirrors the status badge palette (lib/format#statusVariant) so a glance at the
 // dropdown reads the same as the fleet list.
@@ -50,6 +51,7 @@ export function ActiveAgentSwitcher({
       <DropdownMenuTrigger asChild>
         <Button variant="outline" className="w-full justify-between font-normal">
           <span className="flex min-w-0 items-center gap-2">
+            <AgentIcon icon={active?.icon} className="h-5 w-5 bg-transparent" />
             <StatusDot status={active?.live_status} />
             <span className="truncate">{label}</span>
           </span>
@@ -63,6 +65,7 @@ export function ActiveAgentSwitcher({
             key={a.agent37_id}
             onClick={() => router.push(agentTabPath(a.agent37_id, currentTab))}
           >
+            <AgentIcon icon={a.icon} className="h-5 w-5 bg-transparent" />
             <StatusDot status={a.live_status} />
             <span className="flex-1 truncate">{a.name?.trim() || a.agent37_id}</span>
             {a.agent37_id === activeAgentId && <Check className="h-4 w-4" />}

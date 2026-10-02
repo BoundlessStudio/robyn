@@ -8,6 +8,7 @@ import { apiFetch } from "@/lib/api";
 import type { MergedAgent } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { AgentIcon } from "@/components/AgentIcon";
 
 export function AgentNameCell({
   agent,
@@ -77,6 +78,7 @@ export function AgentNameCell({
             aria-label="Agent name"
             placeholder="Untitled agent"
             value={name}
+            maxLength={60}
             disabled={busy}
             onChange={(e) => setName(e.target.value)}
             onKeyDown={(e) => {
@@ -108,6 +110,7 @@ export function AgentNameCell({
         </div>
       ) : (
         <div className="flex items-center gap-1.5">
+          <AgentIcon icon={agent.icon} />
           {href ? (
             <Link
               href={href}

@@ -158,6 +158,9 @@ function cronPath(id: string, cronId: string): string {
 export const agent37 = {
   listAgents: () => call<{ data: Agent[] }>("/instances"),
   getAgent: (id: string) => call<Agent>(`/instances/${id}`),
+  renameAgent: (id: string, name: string) => call<Agent>(`/instances/${id}`, {
+    method: "PATCH", body: JSON.stringify({ name }),
+  }),
   getHealth: (id: string) => instanceCall<{ healthy: boolean }>(id, "/v1/health", { signal: AbortSignal.timeout(10_000) }),
   createPublicPort: (id: string, port: number, label: string) =>
     call<{ port: number; url: string }>(`/instances/${id}/public-ports`, {
@@ -186,8 +189,8 @@ export const agent37 = {
     ),
 
   // Run a shell command inside the instance. The escape hatch for anything the API does not wrap as
-  // its own call. Here it is how the Messaging tab reaches the harness's own messaging API, which
-  // listens on a loopback port inside the sandbox. A command that exits nonzero is a normal 200 with
+  // its own call. Channels reaches the loopback messaging API, Inkbox installs its plugin, and
+  // Identity reads/writes SOUL.md in the running Hermes profile. A nonzero command is a normal 200 with
   // its exit_code, so read that rather than relying on a throw.
   exec: (id: string, command: string, user?: "root") =>
     call<{ exit_code: number; stdout: string; stderr: string; truncated: boolean }>(
