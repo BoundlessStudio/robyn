@@ -104,15 +104,15 @@ export function AgentResourcesBudget({ agentId, monthlyCap, onChanged }: {
           </div>
           {baseline && <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground"><span>CPU {usd(baseline.cpu_micros)}</span><span>RAM {usd(baseline.memory_micros)}</span><span>Disk {usd(baseline.disk_micros)}</span><span>per month</span></div>}
           <div className="space-y-3">
-            <p className="text-xs text-muted-foreground">Resources can only increase. Applying a change restarts the agent and may move it to another host. Your plan must also be permitted by your Agent37 account tier.</p>
+            <p className="text-xs text-muted-foreground">Resources can only increase. Applying a change restarts the agent and may move it to another host.</p>
             {profile.status === "updating" ? <p role="status" className="text-sm">Resizing resources… The agent may be offline while its data is moved.</p> : profile.status !== "running" && <p className="text-sm text-muted-foreground">Start the agent from <Link href={`/dashboard/agents/${agentId}/settings`} className="underline">Settings</Link> before changing resources.</p>}
             {validationError && <p role="alert" className="text-sm text-destructive">{validationError}</p>}
             {actionError && <div className="space-y-2"><p role="alert" className="text-sm text-destructive">{actionError}</p><Button variant="outline" size="sm" disabled={busy} onClick={() => setRetry((value) => value + 1)}>Reload resources</Button></div>}
-            <Button disabled={disabled || !patch} onClick={() => setProposed(patch)}>Apply resources</Button>
+            <Button disabled={disabled || !patch} onClick={() => setProposed(patch)}>Apply Upgrade</Button>
           </div>
           <ConfirmDialog open={proposed !== null} onOpenChange={(open) => { if (!open) setProposed(null); }} title="Increase agent resources?"
             description={`Change from ${profile.resources.cpu} vCPU / ${profile.resources.memory} GB RAM / ${profile.resources.disk} GB disk to ${selection?.cpu} vCPU / ${selection?.memory} GB RAM / ${selection?.disk} GB disk. The always-on baseline changes from ${usd(currentBaseline!.total_micros)} to ${usd(baseline?.total_micros ?? 0)} per month. This restarts the agent, clears in-memory state, and may take a few minutes if it moves hosts. Disk, files and URLs are kept. Resources cannot be reduced afterward.`}
-            confirmText="Apply resources" onConfirm={resize} />
+            confirmText="Apply Upgrade" onConfirm={resize} />
         </>
       )}
     </section>

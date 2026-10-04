@@ -176,7 +176,6 @@ function BudgetEditor({ agentId }: { agentId: string }) {
             <p id="extra-budget-help" className="text-xs text-muted-foreground">Spent after the monthly limit. Unused extra budget carries over and does not reset.</p>
           </form>
           {actionError && <p role="alert" className="text-sm text-destructive">{actionError}</p>}
-          <p className="border-t pt-4 text-xs text-muted-foreground">These allowances do not add funds to the workspace wallet. Resources are included in the monthly plan and actual spending, but do not reduce this managed-services allowance.</p>
         </>
       )}
     </section>
