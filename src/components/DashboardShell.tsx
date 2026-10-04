@@ -21,9 +21,10 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const { current, ready } = useWorkspace();
   const isAdmin = ready && current?.role === "admin";
+  const isProfile = pathname === "/profile";
   useEffect(() => {
-    if (ready && current?.role === "member" && pathname !== "/dashboard") router.replace("/dashboard");
-  }, [ready, current?.role, pathname, router]);
+    if (ready && current?.role === "member" && pathname !== "/dashboard" && !isProfile) router.replace("/dashboard");
+  }, [ready, current?.role, pathname, isProfile, router]);
 
   return (
     <div className="flex min-h-screen">
@@ -64,7 +65,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
 
       <main className="min-w-0 flex-1 overflow-y-auto">
         <div className="mx-auto w-full max-w-7xl p-4 md:p-6">
-          {!ready ? <p className="text-sm text-muted-foreground">Loading…</p> : isAdmin ? children : current ? (
+          {!ready ? <p className="text-sm text-muted-foreground">Loading…</p> : isAdmin || isProfile ? children : current ? (
             <MemberAgentSelection key={current.id} workspaceId={current.id} />
           ) : <p className="text-sm text-muted-foreground">No workspace selected.</p>}
         </div>

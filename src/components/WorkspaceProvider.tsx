@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
-import type { WorkspaceWithRole } from "@/lib/types";
+import type { UserProfile, WorkspaceWithRole } from "@/lib/types";
 import { apiFetch } from "@/lib/api";
 
 const STORAGE_KEY = "agent37wl_workspace";
@@ -11,7 +11,8 @@ interface WorkspaceContextValue {
   current: WorkspaceWithRole | null;
   setCurrentId: (id: string) => void;
   refresh: () => Promise<WorkspaceWithRole[]>;
-  userEmail: string;
+  profile: UserProfile;
+  setProfile: (profile: UserProfile) => void;
   ready: boolean;
 }
 
@@ -19,14 +20,15 @@ const WorkspaceContext = createContext<WorkspaceContextValue | null>(null);
 
 export function WorkspaceProvider({
   initialWorkspaces,
-  userEmail,
+  initialProfile,
   children,
 }: {
   initialWorkspaces: WorkspaceWithRole[];
-  userEmail: string;
+  initialProfile: UserProfile;
   children: React.ReactNode;
 }) {
   const [workspaces, setWorkspaces] = useState<WorkspaceWithRole[]>(initialWorkspaces);
+  const [profile, setProfile] = useState<UserProfile>(initialProfile);
   const [currentId, setCurrentIdState] = useState<string | null>(initialWorkspaces[0]?.id ?? null);
   const [ready, setReady] = useState(false);
 
@@ -57,7 +59,7 @@ export function WorkspaceProvider({
   );
 
   return (
-    <WorkspaceContext.Provider value={{ workspaces, current, setCurrentId, refresh, userEmail, ready }}>
+    <WorkspaceContext.Provider value={{ workspaces, current, setCurrentId, refresh, profile, setProfile, ready }}>
       {children}
     </WorkspaceContext.Provider>
   );

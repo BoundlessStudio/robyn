@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Check, ChevronsUpDown, LogOut, Plus } from "lucide-react";
 import { toast } from "sonner";
@@ -36,12 +37,12 @@ import {
 // immediately re-pin the old workspace.
 export function AccountMenu() {
   const router = useRouter();
-  const { workspaces, current, setCurrentId, refresh, userEmail } = useWorkspace();
+  const { workspaces, current, setCurrentId, refresh, profile } = useWorkspace();
   const [creating, setCreating] = useState(false);
   const [name, setName] = useState("");
   const [busy, setBusy] = useState(false);
 
-  const initial = (userEmail.trim()[0] ?? "?").toUpperCase();
+  const initial = (profile.display_name.trim()[0] ?? "?").toUpperCase();
 
   function switchWorkspace(id: string) {
     if (id === current?.id) return;
@@ -85,7 +86,7 @@ export function AccountMenu() {
                 {initial}
               </span>
               <span className="flex min-w-0 flex-col text-left">
-                <span className="truncate text-sm">{userEmail}</span>
+                <span className="truncate text-sm">{profile.display_name}</span>
                 <span className="truncate text-xs text-muted-foreground">
                   {current?.name ?? "Select workspace"}
                 </span>
@@ -95,12 +96,17 @@ export function AccountMenu() {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56" align="start" side="top">
-          <DropdownMenuLabel className="flex items-center gap-2 font-normal">
-            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-secondary text-xs font-medium text-secondary-foreground">
-              {initial}
-            </span>
-            <span className="min-w-0 truncate">{userEmail}</span>
-          </DropdownMenuLabel>
+          <DropdownMenuItem asChild>
+            <Link href="/profile" className="flex items-center gap-2" aria-label={`Edit profile for ${profile.display_name}`}>
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-secondary text-xs font-medium text-secondary-foreground">
+                {initial}
+              </span>
+              <span className="flex min-w-0 flex-col">
+                <span className="truncate">{profile.display_name}</span>
+                <span className="text-xs text-muted-foreground">View profile</span>
+              </span>
+            </Link>
+          </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuLabel className="text-xs font-medium text-muted-foreground">
             Workspaces
