@@ -1,8 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { CircleDollarSign, MessageSquare, MoreHorizontal, Pencil, RotateCw, Square, Trash2 } from "lucide-react";
+import { CircleDollarSign, MessageSquare, MoreHorizontal, Pencil, RotateCw, Square, Trash2, UserRound } from "lucide-react";
 import { toast } from "sonner";
 import { useWorkspace } from "@/components/WorkspaceProvider";
 import { apiFetch } from "@/lib/api";
@@ -19,6 +19,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { AgentNameCell } from "@/components/AgentNameCell";
+import { AgentAssignmentDialog } from "@/components/AgentAssignmentDialog";
 import { CreateAgentButton } from "@/components/CreateAgentButton";
 import { OpenPortButtons } from "@/components/OpenPortButtons";
 import { ConfirmDialog } from "@/components/ConfirmDialog";
@@ -136,6 +137,8 @@ export function AgentsView() {
 
 function AgentOptionsMenu({ agent, onChanged }: { agent: MergedAgent; onChanged: () => void }) {
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [assignmentOpen, setAssignmentOpen] = useState(false);
+  const optionsRef = useRef<HTMLButtonElement>(null);
   const { busy, run } = useAsyncAction();
   const running = agent.live_status === "running";
   const transitional = isTransitional(agent.live_status);
@@ -159,7 +162,7 @@ function AgentOptionsMenu({ agent, onChanged }: { agent: MergedAgent; onChanged:
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="icon" className="h-8 w-8" aria-label="Agent options">
+          <Button ref={optionsRef} variant="outline" size="icon" className="h-8 w-8" aria-label="Agent options">
             <MoreHorizontal className="h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
@@ -172,6 +175,9 @@ function AgentOptionsMenu({ agent, onChanged }: { agent: MergedAgent; onChanged:
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <Link href={agentBudgetPath(agent.agent37_id)} prefetch={false}><CircleDollarSign /> Budget</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem disabled={busy} onSelect={() => setAssignmentOpen(true)}>
+            <UserRound /> Assignment
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           {agent.ports.some((port) => !port.default) && (
@@ -195,6 +201,9 @@ function AgentOptionsMenu({ agent, onChanged }: { agent: MergedAgent; onChanged:
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+
+      {assignmentOpen && <AgentAssignmentDialog agent={agent} onClose={() => setAssignmentOpen(false)}
+        onChanged={onChanged} onReturnFocus={() => optionsRef.current?.focus()} />}
 
       <ConfirmDialog
         open={confirmDelete}

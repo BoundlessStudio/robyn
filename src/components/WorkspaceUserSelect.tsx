@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { apiFetch } from "@/lib/api";
 import type { WorkspaceMember } from "@/lib/types";
 import { Label } from "@/components/ui/label";
@@ -9,6 +9,8 @@ export function useWorkspaceMembers(workspaceId: string, enabled = true) {
   const [members, setMembers] = useState<WorkspaceMember[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [retry, setRetry] = useState(0);
+  const reload = useCallback(() => setRetry((value) => value + 1), []);
   useEffect(() => {
     if (!enabled) return;
     let cancelled = false;
@@ -20,8 +22,8 @@ export function useWorkspaceMembers(workspaceId: string, enabled = true) {
       .catch((error) => { if (!cancelled) setError((error as Error).message); })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
-  }, [workspaceId, enabled]);
-  return { members, loading, error };
+  }, [workspaceId, enabled, retry]);
+  return { members, loading, error, reload };
 }
 
 export function WorkspaceUserSelect({ id, members, value, onChange, disabled }: {

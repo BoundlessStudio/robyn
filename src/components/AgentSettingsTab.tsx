@@ -15,7 +15,6 @@ import { useAsyncAction } from "@/components/useAsyncAction";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { AgentCostSummary } from "@/components/AgentCostSummary";
-import { useWorkspaceMembers, WorkspaceUserSelect } from "@/components/WorkspaceUserSelect";
 
 // The agent's overview/manage tab: a clean header (inline-rename name, status + shape + template
 // badges, and lifecycle actions as icon buttons) over app shortcuts and a read-only budget + usage
@@ -103,7 +102,6 @@ export function AgentSettingsTab({
       </header>
 
       <AppsSection agentId={agentId} agent={agent} />
-      {role === "admin" && <AssignmentSection agent={agent} onChanged={onChanged} />}
       <BudgetSection agentId={agentId} />
 
       <ConfirmDialog
@@ -116,29 +114,6 @@ export function AgentSettingsTab({
         onConfirm={deleteAgent}
       />
     </div>
-  );
-}
-
-function AssignmentSection({ agent, onChanged }: { agent: MergedAgent; onChanged?: () => void }) {
-  const { members, loading, error } = useWorkspaceMembers(agent.workspace_id);
-  const [assignedUserId, setAssignedUserId] = useState(agent.assigned_user_id ?? "");
-  const { busy, run } = useAsyncAction();
-  useEffect(() => { setAssignedUserId(agent.assigned_user_id ?? ""); }, [agent.assigned_user_id]);
-  return (
-    <section className="space-y-4 rounded-lg border p-5">
-      <div>
-        <h2 className="text-sm font-semibold">Assignment</h2>
-        <p className="mt-0.5 text-sm text-muted-foreground">The assigned user has full access to this agent. Workspace admins can always access it.</p>
-      </div>
-      <WorkspaceUserSelect id="agent-assignee" members={members} value={assignedUserId} onChange={setAssignedUserId} disabled={busy || loading} />
-      {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
-      <Button size="sm" disabled={busy || loading || assignedUserId === agent.assigned_user_id || !members.some((member) => member.user_id === assignedUserId)}
-        onClick={() => run(async () => {
-          await apiFetch(`/api/agents/${agent.agent37_id}/assignment`, { method: "PATCH", body: JSON.stringify({ assigned_user_id: assignedUserId }) });
-          toast.success("Assignment updated");
-          onChanged?.();
-        })}>{busy ? "Saving…" : "Save assignment"}</Button>
-    </section>
   );
 }
 
