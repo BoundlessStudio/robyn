@@ -207,6 +207,8 @@ export const agent37 = {
   getBudget: (id: string) => call<Budget>(`/instances/${id}/budget`),
   setBudget: (id: string, body: { monthly_cap_micros: number }) =>
     call<Budget>(`/instances/${id}/budget`, { method: "PATCH", body: JSON.stringify(body) }),
+  topUpBudget: (id: string, body: { amount_micros: number; idempotency_key: string }) =>
+    call<Budget>(`/instances/${id}/budget/top-up`, { method: "POST", body: JSON.stringify(body) }),
   getUsage: (id: string, month?: string) =>
     call<Usage>(`/instances/${id}/usage${month ? `?month=${encodeURIComponent(month)}` : ""}`),
 

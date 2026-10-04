@@ -2,12 +2,12 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import { MessageSquare, MoreHorizontal, RotateCw, Square, Trash2 } from "lucide-react";
+import { CircleDollarSign, MessageSquare, MoreHorizontal, Pencil, RotateCw, Square, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { useWorkspace } from "@/components/WorkspaceProvider";
 import { apiFetch } from "@/lib/api";
 import { isTransitional, statusVariant } from "@/lib/format";
-import { agentTabPath } from "@/lib/dashboard-tabs";
+import { agentBudgetPath, agentTabPath } from "@/lib/dashboard-tabs";
 import type { MergedAgent, Role } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -88,7 +88,7 @@ export function AgentsView() {
                 <th className="px-4 py-2 font-medium">Status</th>
                 <th className="px-4 py-2 font-medium">Template</th>
                 <th className="px-4 py-2 font-medium">Resources</th>
-                <th className="px-4 py-2 text-right font-medium">Quick actions</th>
+                <th className="px-4 py-2 text-right font-medium">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -97,8 +97,6 @@ export function AgentsView() {
                   <td className="px-4 py-3">
                     <AgentNameCell
                       agent={a}
-                      canEdit={role === "admin"}
-                      onRenamed={load}
                       href={agentTabPath(a.agent37_id, "chat")}
                     />
                   </td>
@@ -123,20 +121,6 @@ export function AgentsView() {
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-center justify-end gap-2">
-                      <Button asChild variant="outline" size="sm">
-                        <Link href={agentTabPath(a.agent37_id, "chat")}>
-                          <MessageSquare className="h-4 w-4" />
-                          Chat
-                        </Link>
-                      </Button>
-                      <OpenPortButtons
-                        agentId={a.agent37_id}
-                        ports={a.ports}
-                        disabled={a.live_status !== "running"}
-                        template={a.template}
-                        size="sm"
-                        className="justify-end"
-                      />
                       {role === "admin" && <AgentOptionsMenu agent={a} onChanged={load} />}
                     </div>
                   </td>
@@ -180,6 +164,22 @@ function AgentOptionsMenu({ agent, onChanged }: { agent: MergedAgent; onChanged:
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
+          <DropdownMenuItem asChild>
+            <Link href={agentTabPath(agent.agent37_id, "chat")}><MessageSquare /> Chat</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href={agentTabPath(agent.agent37_id, "identity")}><Pencil /> Edit</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href={agentBudgetPath(agent.agent37_id)} prefetch={false}><CircleDollarSign /> Budget</Link>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          {agent.ports.some((port) => !port.default) && (
+            <>
+              <OpenPortButtons agentId={agent.agent37_id} ports={agent.ports} disabled={!running} template={agent.template} variant="menu" />
+              <DropdownMenuSeparator />
+            </>
+          )}
           <DropdownMenuItem disabled={!running || busy} onClick={() => action("restart", "Restarting")}>
             <RotateCw className="h-4 w-4" />
             Restart agent

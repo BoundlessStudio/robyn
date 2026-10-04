@@ -39,7 +39,9 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
 
         <nav className="mt-6 flex flex-col gap-1">
           {isAdmin && NAV.map((item) => {
-            const active = item.exact ? pathname === item.href : pathname.startsWith(item.href);
+            const active = item.exact
+              ? pathname === item.href || (item.href === "/dashboard" && pathname.startsWith("/dashboard/budgets/"))
+              : pathname.startsWith(item.href);
             const Icon = item.icon;
             return (
               <Link

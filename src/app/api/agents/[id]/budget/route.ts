@@ -1,6 +1,6 @@
 import { agent37 } from "@/lib/agent37";
 import { requireAgentAccess } from "@/lib/auth";
-import { usdToMicros } from "@/lib/format";
+import { validateMonthlyBudget } from "@/lib/budget-input";
 import { ApiError, handleError, json, readJson } from "@/lib/http";
 
 type Ctx = { params: Promise<{ id: string }> };
@@ -21,14 +21,13 @@ export async function GET(_request: Request, { params }: Ctx) {
 export async function PATCH(request: Request, { params }: Ctx) {
   try {
     const { id } = await params;
-    await requireAgentAccess(id, "manage");
+    await requireAgentAccess(id, "admin");
 
-    const { monthly_cap_usd } = await readJson<{ monthly_cap_usd?: number }>(request);
-    if (typeof monthly_cap_usd !== "number" || !Number.isFinite(monthly_cap_usd) || monthly_cap_usd < 0) {
-      throw new ApiError(400, "invalid_request", "monthly_cap_usd must be a non-negative number");
-    }
+    let input;
+    try { input = validateMonthlyBudget(await readJson<unknown>(request)); }
+    catch (error) { throw new ApiError(400, "invalid_request", (error as Error).message); }
 
-    return json(await agent37.setBudget(id, { monthly_cap_micros: usdToMicros(monthly_cap_usd) }));
+    return json(await agent37.setBudget(id, input));
   } catch (e) {
     return handleError(e);
   }
