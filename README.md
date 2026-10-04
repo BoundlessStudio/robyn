@@ -2,6 +2,8 @@
 
 A branded agent dashboard on the [Agent37](https://www.agent37.com) Cloud API: auth, Hermes agents, chat, files, messaging apps (Telegram, WhatsApp, Slack, Discord), integrations, schedules, and fleet management.
 
+Click your name in the workspace dropdown to open **Your profile** at `/profile`. Admins and members can change their display name (which defaults to their email address) and add or clear an optional phone number. The sign-in email is read-only. Profiles apply across workspaces and use existing Supabase user metadata; no database migration is needed.
+
 Each agent's **Identity** tab sets its name and icon and edits [Hermes SOUL.md](https://hermes-agent.nousresearch.com/docs/user-guide/features/personality) as its single personality editor. Names sync to Agent37; icons appear in the fleet, agent switcher and Chat. SOUL edits target the running Hermes profile, preserve Markdown, and reject stale saves while keeping your draft. Start a new conversation to hear the changed personality. Run `npm run setup` to apply the agent-icon migration when upgrading an existing installation.
 
 Each agent's **Schedule** tab manages [Agent37 crons](https://www.agent37.com/docs/agents-api/crons): recurring instructions with a timezone, pause/resume, run now, and run history linked to Chat conversations. Access stays scoped to the agent's workspace. Jobs can wake sleeping agents, skip explicitly stopped agents, and use the agent's normal compute and model budget. No extra database setup or scheduler is required.

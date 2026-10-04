@@ -1,5 +1,11 @@
 export type Role = "admin" | "member";
 
+export interface UserProfile {
+  email: string;
+  display_name: string;
+  phone_number: string | null;
+}
+
 export interface Workspace {
   id: string;
   name: string;
