@@ -145,6 +145,8 @@ Browser ─▶ Next.js (this app) ─▶ control plane  https://api.agent37.com/
   require an admin and an assignee from the same workspace. `created_by` stays an audit
   field and never grants access. Removing membership clears its assignments. The member
   dashboard opens a sole assignment directly, otherwise shows a simple agent chooser.
+  Admins reassign agents through **Assignment** in the fleet's […] menu, which opens
+  a dialog and refreshes the list after saving. Agent Settings has no assignment editor.
 - **Isolation is enforced in the server (BFF), not in the browser.** Clients have **no**
   direct table access — the schema migration (`0001_init.sql`) grants tables only to the
   service role, so the browser only uses Supabase for *auth*. Every read and write
@@ -201,6 +203,7 @@ Browser ─▶ Next.js (this app) ─▶ control plane  https://api.agent37.com/
 | `src/app/api/agents/[id]/crons/**` | Per-agent cron BFF; admins and assigned members can read and manage |
 | `src/app/api/agents/[id]/identity/` | Inkbox state and provisioning / phone updates for admins and assigned members |
 | `src/app/api/agents/[id]/assignment/` | Admin-only assignment updates, restricted to workspace users |
+| `src/components/AgentAssignmentDialog.tsx` | Admin fleet-menu assignment editor; loads workspace users only when opened |
 | `src/lib/inkbox.ts`, `src/lib/inkbox-provisioning.ts` | Server-only Inkbox client and resumable provisioning |
 | `supabase/migrations/0002_inkbox.sql` | Service-role-only identity setup state; no plaintext keys |
 | `supabase/migrations/0003_agent_icon.sql` | Bounded display icons in the tenant-scoped agent mirror |

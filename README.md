@@ -8,7 +8,7 @@ Each agent's **Identity** tab sets its name and icon and edits [Hermes SOUL.md](
 
 Each agent's **Schedule** tab manages [Agent37 crons](https://www.agent37.com/docs/agents-api/crons): recurring instructions with a timezone, pause/resume, run now, and run history linked to Chat conversations. Access stays scoped to the agent's workspace. Jobs can wake sleeping agents, skip explicitly stopped agents, and use the agent's normal compute and model budget. No extra database setup or scheduler is required.
 
-Click an agent's name in the fleet list to open Chat. Its **[…]** menu contains Edit (Identity), Budget, app links, and lifecycle actions.
+Click an agent's name in the fleet list to open Chat. Its **[…]** menu contains Edit (Identity), Budget, Assignment, app links, and lifecycle actions. Admins choose **Assignment** to change the assigned workspace user in a dialog; saving refreshes the fleet list. Assignment is managed here rather than in the agent's Settings tab.
 
 Admins can choose **Budget** from an agent's **[…]** menu in the **Agents** list to open the agent's budget page at `/dashboard/budgets/{agentId}`. It shows the monthly allowance used and remaining, edits the monthly managed-spend limit, and adds extra budget in USD. Monthly limits reset each UTC month; extra budget is used after the monthly portion and carries over until consumed. Limits cover managed services, exclude compute, and do not fund the Agent37 wallet. The agent's **Settings** tab remains a read-only budget and usage view. No database migration is required.
 
