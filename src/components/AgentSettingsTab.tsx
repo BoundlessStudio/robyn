@@ -10,14 +10,13 @@ import { AGENT_TYPES, SHAPE_PRESETS } from "@/config/agents";
 import type { Budget, MergedAgent, Role, Usage } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { ConfirmDialog } from "@/components/ConfirmDialog";
-import { OpenPortButtons } from "@/components/OpenPortButtons";
 import { useAsyncAction } from "@/components/useAsyncAction";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { AgentCostSummary } from "@/components/AgentCostSummary";
 
 // The agent's overview/manage tab: a clean header (inline-rename name, status + shape + template
-// badges, and lifecycle actions as icon buttons) over app shortcuts and a read-only budget + usage
+// badges, and lifecycle actions as icon buttons) over a read-only budget + usage
 // panel. The authorized assignee and workspace admins can manage this agent.
 export function AgentSettingsTab({
   agentId,
@@ -101,7 +100,6 @@ export function AgentSettingsTab({
         )}
       </header>
 
-      <AppsSection agentId={agentId} agent={agent} />
       <BudgetSection agentId={agentId} />
 
       <ConfirmDialog
@@ -246,30 +244,6 @@ function NameEditor({
         </button>
       )}
     </div>
-  );
-}
-
-function AppsSection({ agentId, agent }: { agentId: string; agent: MergedAgent }) {
-  const running = agent.live_status === "running";
-  const openableCount = agent.ports.filter((p) => !p.default).length;
-
-  return (
-    <section className="rounded-lg border p-5">
-      <h2 className="text-sm font-semibold">Apps</h2>
-      <p className="mt-0.5 text-sm text-muted-foreground">
-        Open this agent&apos;s own web apps, such as dashboard, terminal, or file browser, using short-lived signed links.
-      </p>
-      <div className="mt-4">
-        {openableCount > 0 ? (
-          <OpenPortButtons agentId={agentId} ports={agent.ports} disabled={!running} template={agent.template} />
-        ) : (
-          <p className="text-sm text-muted-foreground">No app ports are available for this agent yet.</p>
-        )}
-        {!running && openableCount > 0 && (
-          <p className="mt-2 text-xs text-muted-foreground">Start the agent to open its apps.</p>
-        )}
-      </div>
-    </section>
   );
 }
 
