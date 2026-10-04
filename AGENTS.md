@@ -160,6 +160,12 @@ Browser ─▶ Next.js (this app) ─▶ control plane  https://api.agent37.com/
   Internal `src/app/api/**` routes are this app's BFF: the browser calls them, they
   authenticate + check workspace ownership in TS, then call `agent37.ts` and/or the DB via the
   service-role client. The browser never calls the upstream API or the DB directly.
+- **Extra budget requests are review-only.** Assigned members submit an amount and
+  optional note from Settings → Budget & usage. Requests live in the service-role-only
+  `agent_budget_requests` table; members see only their own requests, while admins
+  see the agent's recent requests at the bottom of its Managed usage budget section.
+  Submitting a request never changes an allowance. Admins use the existing Add button
+  to grant extra budget; requests remain a history without approval/decline controls.
 - **The UI is a fleet + a per-agent workspace.** The `(fleet)` route group is the
   multi-agent dashboard (agents, members, invitations, workspace settings). Clicking
   an agent opens `/dashboard/agents/{agentId}/{tab}` — a tabbed workspace (Chat /

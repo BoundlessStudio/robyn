@@ -99,6 +99,14 @@ export interface Budget {
   updated_at: number | null;
 }
 
+export interface BudgetRequest {
+  id: string;
+  requester_name: string;
+  amount_micros: number;
+  note: string;
+  created_at: string;
+}
+
 // Platform schedules live on Agent37, outside the agent so they can wake a sleeping instance.
 export interface AgentCron {
   id: string;

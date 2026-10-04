@@ -14,6 +14,7 @@ import { useAsyncAction } from "@/components/useAsyncAction";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { AgentCostSummary } from "@/components/AgentCostSummary";
+import { AgentBudgetRequests } from "@/components/AgentBudgetRequests";
 
 // The agent's overview/manage tab: a clean header (inline-rename name, status + shape + template
 // badges, and lifecycle actions as icon buttons) over a read-only budget + usage
@@ -100,7 +101,7 @@ export function AgentSettingsTab({
         )}
       </header>
 
-      <BudgetSection agentId={agentId} />
+      <BudgetSection key={agentId} agentId={agentId} role={role} />
 
       <ConfirmDialog
         open={confirmDelete}
@@ -248,7 +249,7 @@ function NameEditor({
 }
 
 // Read-only budget + usage. The monthly cap is shown but NOT editable from the UI.
-function BudgetSection({ agentId }: { agentId: string }) {
+function BudgetSection({ agentId, role }: { agentId: string; role: Role }) {
   const [budget, setBudget] = useState<Budget | null>(null);
   const [usage, setUsage] = useState<Usage | null>(null);
   const [loading, setLoading] = useState(true);
@@ -299,6 +300,7 @@ function BudgetSection({ agentId }: { agentId: string }) {
           </div>
         )}
       </div>
+      {role === "member" && <div className="mt-5"><AgentBudgetRequests agentId={agentId} mode="member" /></div>}
       <div className="mt-6"><AgentCostSummary agentId={agentId} usage={usage} embedded refreshKey={retry} /></div>
     </section>
   );
