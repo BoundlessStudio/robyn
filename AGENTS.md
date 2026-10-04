@@ -11,6 +11,18 @@ Setting this up from a fresh clone? Follow **[`SETUP.md`](SETUP.md)** — the co
 `AGENT37_API_KEY` (plus a **funded** Agent37 wallet) and `SUPABASE_ACCESS_TOKEN`;
 `npm run setup` does the rest. Never print or commit the `sk_live_` key.
 
+Keep the canonical `.env.local` in the primary checkout, which survives managed
+worktree cleanup. `npm run env:restore` and npm's postinstall link it into a new
+worktree when missing, or copy it if file links are unavailable. Linked edits
+update the primary file immediately; existing local overrides are preserved. **After
+every change to a separate worktree `.env.local`, run `npm run env:save`** before
+ending the task or removing the worktree. The local pre-commit hook does this too,
+without staging either environment file. Install the
+shared local Git hook with `node scripts/restore-worktree-env.mjs --install-hook`
+to restore it immediately on checkout/worktree creation. The hook and all secret
+values stay outside Git. Never replace real credentials with example placeholders.
+`.env.example` contains the same variable names with empty/example values only.
+
 ## What this project is
 
 A full-stack starter for building your own agent app, built entirely on top of the
@@ -267,9 +279,13 @@ entry in `AGENT_TYPES` (`src/config/agents.ts`) whose `template` is the template
 - **Check a channel credential before writing it** where the provider lets you (Telegram's
   `getMe`). The agent's messaging gateway refuses to start on a bad token, which takes
   every other channel on that agent down with it.
-- **Payments are intentionally excluded.** Add Stripe (or anything) yourself when
-  you're ready to charge your own customers — the create route (`src/app/api/agents/route.ts`)
-  has a commented `canCreateAgent()` seam marking where an entitlement gate would go.
+- **Workspace billing uses a separate prepaid wallet.** See `BILLING.md`. Stripe payments
+  and workspace-scoped coupons credit an atomic service-role ledger; every new workspace
+  starts at zero. Only admins can manage billing. `src/lib/billing-sync.ts` reconciles
+  tenant-owned Agent37 costs and runs automatic refills via the operator-authenticated
+  `/api/billing/sync` sweep. Keep the shared upstream Agent37 wallet funded separately.
+  Billing has no usage display or tiers. Never grant credits from browser amounts or
+  checkout redirects; fulfill only verified Stripe payments or service-role coupons.
 - **Branding lives in `src/config/branding.ts`** (`appName` / `logoUrl` constants),
   not in env. The old `NEXT_PUBLIC_APP_NAME` / `NEXT_PUBLIC_LOGO_URL` vars are gone;
   keep it code-side.

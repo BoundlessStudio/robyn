@@ -147,6 +147,7 @@ function fixture(userId = MEMBER, sharedTables) {
   };
   const dependencies = {
     '@/lib/auth': auth, '@/lib/http': http, '@/lib/assignment-input': assignmentInput, '@/lib/budget-input': budgetInput,
+    '@/lib/billing': { requireWorkspaceBalance: async () => {} }, // these access tests use funded wallets
     '@/lib/resource-input': resourceInput, '@/lib/agent-costs': costHelpers,
     '@/lib/budget-request-input': budgetRequestInput, '@/lib/user-profile': userProfile,
     '@/lib/agent37': { agent37: upstream },
@@ -242,6 +243,18 @@ test('assigned members can rename and restart their agent; attempts on another a
   assert.equal((await lifecycle.POST(request({}), params({ id: 'mine', action: 'restart' }))).status, 200);
   assert.equal((await lifecycle.POST(request({}), params({ id: 'other', action: 'restart' }))).status, 404);
   assert.equal(f.calls.length, 2);
+});
+
+test('empty workspace balances prevent billed creation and lifecycle mutations after authorization', async () => {
+  const f = fixture(ADMIN);
+  f.dependencies['@/lib/billing'] = { requireWorkspaceBalance: async () => { throw new ApiError(402, 'workspace_balance_empty', 'Add funds in Billing.'); } };
+  const creation = loadSource('src/app/api/agents/route.ts', f.dependencies);
+  assert.equal((await creation.POST(request({ workspace_id: WORKSPACE, assigned_user_id: MEMBER }))).status, 402);
+  const lifecycle = loadSource('src/app/api/agents/[id]/[action]/route.ts', f.dependencies);
+  assert.equal((await lifecycle.POST(request({}), params({ id: 'mine', action: 'restart' }))).status, 402);
+  const resize = loadSource('src/app/api/agents/[id]/resize/route.ts', f.dependencies);
+  assert.equal((await resize.POST(request({ disk: 8 }), params({ id: 'mine' }))).status, 402);
+  assert.equal(f.calls.length, 0);
 });
 
 test('member profile reads and edits require an admin and a target membership in that workspace', async () => {

@@ -16,6 +16,17 @@ values. Per-variable docs live in [`.env.example`](.env.example).
 
 ## For your coding agent
 
+For an existing project, preserve secrets in the primary checkout's ignored
+`.env.local`. Run `npm run env:restore` in a new worktree before requesting keys
+again. `npm install` also restores a missing file, without overwriting one that
+already exists. File links share edits immediately; platforms without file links
+fall back to a copy. After editing a separate `.env.local`, run `npm run env:save`
+to persist it back to the primary checkout. The local pre-commit hook also syncs
+it and refuses to replace populated credentials with missing/example values.
+To restore automatically when Git creates worktrees, run
+`node scripts/restore-worktree-env.mjs --install-hook` once locally. This installs
+shared Git hooks containing only restore/sync commands, never credential values.
+
 The README tells adopters to paste a one-liner that points here. If you're that agent, follow
 these steps in order; don't skip the checks.
 
