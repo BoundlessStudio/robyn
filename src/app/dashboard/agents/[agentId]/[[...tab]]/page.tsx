@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getAgentRow, requireMember, requireUser } from "@/lib/auth";
+import { requireAgentAccess } from "@/lib/auth";
 import { parseAgentTab } from "@/lib/dashboard-tabs";
 import { AgentWorkspace } from "@/components/AgentWorkspace";
 
@@ -17,14 +17,9 @@ export default async function AgentWorkspacePage({
   const initialTab = parseAgentTab(tab);
   if (initialTab === null) notFound();
 
-  const { db, user } = await requireUser();
-
-  // The Supabase mirror is the source of truth for which app-workspace owns an agent. A missing
-  // row, or a viewer who isn't a member of its workspace, is a 404 (we don't leak existence).
-  const row = await getAgentRow(db, agentId).catch(() => null);
-  if (!row) notFound();
-  const role = await requireMember(db, row.workspace_id, user.id).catch(() => null);
-  if (!role) notFound();
+  const access = await requireAgentAccess(agentId).catch(() => null);
+  if (!access) notFound();
+  const { row, role } = access;
 
   return (
     <AgentWorkspace

@@ -52,14 +52,23 @@ export async function getAgentRow(db: DB, agent37Id: string): Promise<AgentRow> 
   return data as AgentRow;
 }
 
-// The auth + ownership preamble every per-agent BFF route repeats: require a signed-in user,
-// resolve the agent's mirror row, then gate on the workspace role — "member" for reads, "admin"
-// for mutations. Returns the privileged client, user, and row so the handler can get on with its
-// work (and run its DB writes through `db`).
-export async function requireAgentAccess(agent37Id: string, access: "member" | "admin" = "member") {
+// Admins may access any workspace agent; members may read and manage only their assignments.
+// "admin" is reserved for workspace-level changes such as reassigning an agent.
+export async function requireAgentAccess(agent37Id: string, access: "member" | "manage" | "admin" = "member") {
   const { db, user } = await requireUser();
   const row = await getAgentRow(db, agent37Id);
-  if (access === "admin") await requireAdmin(db, row.workspace_id, user.id);
-  else await requireMember(db, row.workspace_id, user.id);
-  return { db, user, row };
+  const role = await getRole(db, row.workspace_id, user.id);
+  if (!role || (role !== "admin" && row.assigned_user_id !== user.id)) {
+    throw new ApiError(404, "not_found", "Agent not found");
+  }
+  if (access === "admin" && role !== "admin") {
+    throw new ApiError(403, "forbidden", "Admin role required");
+  }
+  return { db, user, row, role };
+}
+
+export async function requireAssignee(db: DB, workspaceId: string, userId: string) {
+  if (!(await getRole(db, workspaceId, userId))) {
+    throw new ApiError(400, "invalid_assignment", "Assigned user must belong to this workspace.");
+  }
 }

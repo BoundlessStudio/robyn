@@ -1,11 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { LayoutGrid, Settings, Users } from "lucide-react";
 import { branding } from "@/config/branding";
 import { AccountMenu } from "@/components/AccountMenu";
 import { cn } from "@/lib/utils";
+import { useWorkspace } from "@/components/WorkspaceProvider";
+import { MemberAgentSelection } from "@/components/MemberAgentSelection";
 
 const NAV = [
   { href: "/dashboard", label: "Agents", icon: LayoutGrid, exact: true },
@@ -15,6 +18,12 @@ const NAV = [
 
 export function DashboardShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const router = useRouter();
+  const { current, ready } = useWorkspace();
+  const isAdmin = ready && current?.role === "admin";
+  useEffect(() => {
+    if (ready && current?.role === "member" && pathname !== "/dashboard") router.replace("/dashboard");
+  }, [ready, current?.role, pathname, router]);
 
   return (
     <div className="flex min-h-screen">
@@ -28,7 +37,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
         </div>
 
         <nav className="mt-6 flex flex-col gap-1">
-          {NAV.map((item) => {
+          {isAdmin && NAV.map((item) => {
             const active = item.exact ? pathname === item.href : pathname.startsWith(item.href);
             const Icon = item.icon;
             return (
@@ -54,7 +63,11 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
       </aside>
 
       <main className="min-w-0 flex-1 overflow-y-auto">
-        <div className="mx-auto w-full max-w-7xl p-4 md:p-6">{children}</div>
+        <div className="mx-auto w-full max-w-7xl p-4 md:p-6">
+          {!ready ? <p className="text-sm text-muted-foreground">Loading…</p> : isAdmin ? children : current ? (
+            <MemberAgentSelection key={current.id} workspaceId={current.id} />
+          ) : <p className="text-sm text-muted-foreground">No workspace selected.</p>}
+        </div>
       </main>
     </div>
   );

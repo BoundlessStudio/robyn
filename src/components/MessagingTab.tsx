@@ -50,7 +50,7 @@ export function MessagingTab({ agentId, agent, role }: {
     finally { setBusy(false); }
   }
 
-  const disabled = role !== "admin" || !reachable || busy || !!provisioning || !view?.configured;
+  const disabled = (role !== "admin" && role !== "member") || !reachable || busy || !!provisioning || !view?.configured;
   return (
     <div className="space-y-6">
       <header className="space-y-1">

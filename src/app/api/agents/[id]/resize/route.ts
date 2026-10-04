@@ -7,7 +7,7 @@ type Ctx = { params: Promise<{ id: string }> };
 export async function POST(request: Request, { params }: Ctx) {
   try {
     const { id } = await params;
-    const { db } = await requireAgentAccess(id, "admin");
+    const { db } = await requireAgentAccess(id, "manage");
 
     const body = await readJson<{ cpu?: number; memory?: number; disk?: number }>(request);
     if (!body.cpu && !body.memory && !body.disk) {

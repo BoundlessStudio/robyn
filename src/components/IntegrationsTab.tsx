@@ -43,7 +43,7 @@ function isToolkitConnected(conns: IntegrationConnection[], slug: string): boole
 
 // The Integrations surface: connect third-party apps (Gmail, GitHub, Slack…) to this agent.
 // Browse shows a popular catalog on first paint and live-searches the full 1,000+ app catalog as you
-// type; Connected manages the linked accounts. Mutations (connect / disconnect) are admin-only —
+// type; Connected manages the linked accounts. Assigned members and admins can connect / disconnect —
 // everyone can browse and see what is connected. Rendered both as the Integrations tab and inside
 // IntegrationsDialog (`embedded`, which drops the page header since the dialog supplies its own).
 //
@@ -58,7 +58,7 @@ export function IntegrationsTab({
   role: Role;
   embedded?: boolean;
 }) {
-  const isAdmin = role === "admin";
+  const canManage = role === "admin" || role === "member";
   const [tab, setTab] = useState<SubTab>("browse");
   const [search, setSearch] = useState("");
   const [toolkits, setToolkits] = useState<IntegrationToolkit[]>([]);
@@ -264,7 +264,7 @@ export function IntegrationsTab({
                             <Check className="h-3 w-3" />
                             Added
                           </Badge>
-                        ) : isAdmin ? (
+                        ) : canManage ? (
                           <Button
                             size="sm"
                             variant="outline"
@@ -335,7 +335,7 @@ export function IntegrationsTab({
                         <Badge variant="warning">{c.status || "Pending"}</Badge>
                       )}
                     </div>
-                    {isAdmin && (
+                    {canManage && (
                       <div className="flex shrink-0 items-center gap-1.5">
                         <Button
                           variant="ghost"

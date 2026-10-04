@@ -1,4 +1,4 @@
-export type Role = "admin";
+export type Role = "admin" | "member";
 
 export interface Workspace {
   id: string;
@@ -14,6 +14,7 @@ export interface WorkspaceWithRole extends Workspace {
 export interface WorkspaceMember {
   user_id: string;
   email: string;
+  name: string | null;
   role: Role;
   created_at: string;
 }
@@ -37,6 +38,7 @@ export interface AgentRow {
   memory: number | null;
   disk: number | null;
   created_by: string | null;
+  assigned_user_id: string | null;
   created_at: string;
 }
 
@@ -168,6 +170,7 @@ export interface IntegrationConnectResult {
 }
 
 export interface MergedAgent extends AgentRow {
+  assigned_user_name: string | null;
   live_status: string | null;
   status_reason: Agent["status_reason"];
   past_due: boolean;

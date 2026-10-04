@@ -13,10 +13,12 @@ import { ConfirmDialog } from "@/components/ConfirmDialog";
 import { OpenPortButtons } from "@/components/OpenPortButtons";
 import { useAsyncAction } from "@/components/useAsyncAction";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { useWorkspaceMembers, WorkspaceUserSelect } from "@/components/WorkspaceUserSelect";
 
 // The agent's overview/manage tab: a clean header (inline-rename name, status + shape + template
 // badges, and lifecycle actions as icon buttons) over app shortcuts and a read-only budget + usage
-// panel. Mutations are admin-only.
+// panel. The authorized assignee and workspace admins can manage this agent.
 export function AgentSettingsTab({
   agentId,
   agent,
@@ -29,7 +31,7 @@ export function AgentSettingsTab({
   onChanged?: () => void;
 }) {
   const router = useRouter();
-  const isAdmin = role === "admin";
+  const canManage = role === "admin" || role === "member";
   const running = agent.live_status === "running";
   const transitional = isTransitional(agent.live_status);
   const [confirmDelete, setConfirmDelete] = useState(false);
@@ -53,8 +55,8 @@ export function AgentSettingsTab({
     <div className="space-y-6">
       <header className="space-y-3">
         <div className="flex items-start justify-between gap-4">
-          <NameEditor agentId={agentId} agent={agent} isAdmin={isAdmin} onChanged={onChanged} />
-          {isAdmin && (
+          <NameEditor agentId={agentId} agent={agent} canManage={canManage} onChanged={onChanged} />
+          {canManage && (
             <div className="flex shrink-0 items-center gap-1.5">
               {running ? (
                 <IconAction label="Stop" icon={Square} disabled={busy || transitional} onClick={() => action("stop", "Stopping")} />
@@ -100,6 +102,7 @@ export function AgentSettingsTab({
       </header>
 
       <AppsSection agentId={agentId} agent={agent} />
+      {role === "admin" && <AssignmentSection agent={agent} onChanged={onChanged} />}
       <BudgetSection agentId={agentId} />
 
       <ConfirmDialog
@@ -112,6 +115,29 @@ export function AgentSettingsTab({
         onConfirm={deleteAgent}
       />
     </div>
+  );
+}
+
+function AssignmentSection({ agent, onChanged }: { agent: MergedAgent; onChanged?: () => void }) {
+  const { members, loading, error } = useWorkspaceMembers(agent.workspace_id);
+  const [assignedUserId, setAssignedUserId] = useState(agent.assigned_user_id ?? "");
+  const { busy, run } = useAsyncAction();
+  useEffect(() => { setAssignedUserId(agent.assigned_user_id ?? ""); }, [agent.assigned_user_id]);
+  return (
+    <section className="space-y-4 rounded-lg border p-5">
+      <div>
+        <h2 className="text-sm font-semibold">Assignment</h2>
+        <p className="mt-0.5 text-sm text-muted-foreground">The assigned user has full access to this agent. Workspace admins can always access it.</p>
+      </div>
+      <WorkspaceUserSelect id="agent-assignee" members={members} value={assignedUserId} onChange={setAssignedUserId} disabled={busy || loading} />
+      {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
+      <Button size="sm" disabled={busy || loading || assignedUserId === agent.assigned_user_id || !members.some((member) => member.user_id === assignedUserId)}
+        onClick={() => run(async () => {
+          await apiFetch(`/api/agents/${agent.agent37_id}/assignment`, { method: "PATCH", body: JSON.stringify({ assigned_user_id: assignedUserId }) });
+          toast.success("Assignment updated");
+          onChanged?.();
+        })}>{busy ? "Saving…" : "Save assignment"}</Button>
+    </section>
   );
 }
 
@@ -166,12 +192,12 @@ function IconAction({
 function NameEditor({
   agentId,
   agent,
-  isAdmin,
+  canManage,
   onChanged,
 }: {
   agentId: string;
   agent: MergedAgent;
-  isAdmin: boolean;
+  canManage: boolean;
   onChanged?: () => void;
 }) {
   const [editing, setEditing] = useState(false);
@@ -232,7 +258,7 @@ function NameEditor({
   return (
     <div className="flex min-w-0 items-center gap-2">
       <h1 className="truncate text-2xl font-semibold tracking-tight">{agent.name?.trim() || "Untitled agent"}</h1>
-      {isAdmin && (
+      {canManage && (
         <button
           type="button"
           onClick={() => setEditing(true)}
