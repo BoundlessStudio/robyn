@@ -62,6 +62,8 @@ export interface Agent {
   image_ref: string | null;
   template_revision: number | null;
   resources: { cpu: number; memory: number; disk: number };
+  type?: "default" | "performance";
+  auto_sleep?: boolean;
   // Older API versions reported the instance's ports; current ones return null —
   // any port is reachable at a preview URL, nothing is declared.
   ports: { port: number; default: boolean; url: string }[] | null;
@@ -134,7 +136,40 @@ export interface Usage {
     llm: { cost_micros: number; calls: number; input_tokens: number; output_tokens: number };
     brave: { cost_micros: number; calls: number };
     composio: { cost_micros: number; calls: number };
+    perflo?: { cost_micros: number; calls: number };
   };
+}
+
+export interface AgentResourceProfile {
+  id: string;
+  status: string;
+  type: "default" | "performance";
+  auto_sleep: boolean;
+  resources: Agent["resources"];
+}
+
+export interface InstanceSpend {
+  id: string;
+  total_micros: number;
+  compute_micros: number;
+  llm_micros: number;
+  brave_micros: number;
+  composio_micros: number;
+  perflo_micros: number;
+}
+
+// The upstream workspace aggregates stay server-side. BFFs return only the authorized instance.
+export interface WorkspaceUsage {
+  from: string;
+  to: string;
+  instances: InstanceSpend[];
+}
+
+export interface AgentCosts {
+  period: string;
+  from: string;
+  to: string;
+  spend: InstanceSpend;
 }
 
 export interface IntegrationToolkit {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { ArrowLeft, CircleDollarSign } from "lucide-react";
 import { toast } from "sonner";
@@ -9,6 +9,8 @@ import { budgetUsdToMicros, microsToBudgetUsd, validateBudgetTopUp } from "@/lib
 import { usd } from "@/lib/format";
 import type { Budget } from "@/lib/types";
 import { DashboardShell } from "@/components/DashboardShell";
+import { AgentCostSummary } from "@/components/AgentCostSummary";
+import { AgentResourcesBudget } from "@/components/AgentResourcesBudget";
 import { useWorkspace } from "@/components/WorkspaceProvider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -47,6 +49,8 @@ function BudgetEditor({ agentId }: { agentId: string }) {
   const [actionError, setActionError] = useState<string | null>(null);
   const [busy, setBusy] = useState<"cap" | "top-up" | null>(null);
   const [reload, setReload] = useState(0);
+  const [costsRevision, setCostsRevision] = useState(0);
+  const resourcesChanged = useCallback(() => setCostsRevision((value) => value + 1), []);
   const inFlight = useRef(false);
   const pendingTopUp = useRef<{ amount_micros: number; idempotency_key: string } | null>(null);
   const retryStorageKey = `agent37wl_budget_top_up_${agentId}`;
@@ -122,6 +126,8 @@ function BudgetEditor({ agentId }: { agentId: string }) {
     ? Math.min(100, Math.max(0, budget.monthly_consumed_micros / budget.monthly_cap_micros * 100)) : 0;
 
   return (
+    <div className="space-y-6">
+    <AgentResourcesBudget agentId={agentId} monthlyCap={budget?.monthly_cap_micros} onChanged={resourcesChanged} />
     <section className="space-y-6 rounded-lg border p-5 sm:p-6" aria-labelledby="managed-budget-heading">
       <div>
         <h2 id="managed-budget-heading" className="text-base font-semibold">Managed usage budget</h2>
@@ -170,9 +176,11 @@ function BudgetEditor({ agentId }: { agentId: string }) {
             <p id="extra-budget-help" className="text-xs text-muted-foreground">Spent after the monthly limit. Unused extra budget carries over and does not reset.</p>
           </form>
           {actionError && <p role="alert" className="text-sm text-destructive">{actionError}</p>}
-          <p className="border-t pt-4 text-xs text-muted-foreground">These allowances do not add funds to the workspace wallet. CPU, RAM and disk are billed separately and are excluded from this budget.</p>
+          <p className="border-t pt-4 text-xs text-muted-foreground">These allowances do not add funds to the workspace wallet. Resources are included in the monthly plan and actual spending, but do not reduce this managed-services allowance.</p>
         </>
       )}
     </section>
+    <AgentCostSummary agentId={agentId} refreshKey={costsRevision} />
+    </div>
   );
 }
