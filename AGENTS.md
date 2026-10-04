@@ -12,11 +12,16 @@ Setting this up from a fresh clone? Follow **[`SETUP.md`](SETUP.md)** — the co
 `npm run setup` does the rest. Never print or commit the `sk_live_` key.
 
 Keep the canonical `.env.local` in the primary checkout, which survives managed
-worktree cleanup. `npm run env:restore` and npm's postinstall copy it into a new
-worktree only when missing; existing local overrides are preserved. Install the
+worktree cleanup. `npm run env:restore` and npm's postinstall link it into a new
+worktree when missing, or copy it if file links are unavailable. Linked edits
+update the primary file immediately; existing local overrides are preserved. **After
+every change to a separate worktree `.env.local`, run `npm run env:save`** before
+ending the task or removing the worktree. The local pre-commit hook does this too,
+without staging either environment file. Install the
 shared local Git hook with `node scripts/restore-worktree-env.mjs --install-hook`
 to restore it immediately on checkout/worktree creation. The hook and all secret
 values stay outside Git. Never replace real credentials with example placeholders.
+`.env.example` contains the same variable names with empty/example values only.
 
 ## What this project is
 

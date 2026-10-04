@@ -5,6 +5,7 @@
   "scripts": {
     "setup": "node scripts/setup.mjs",
     "env:restore": "node scripts/restore-worktree-env.mjs",
+    "env:save": "node scripts/restore-worktree-env.mjs --save",
     "postinstall": "node scripts/restore-worktree-env.mjs",
     "dev": "next dev",
     "build": "next build",
