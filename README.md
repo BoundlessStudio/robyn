@@ -2,6 +2,8 @@
 
 A branded agent dashboard on the [Agent37](https://www.agent37.com) Cloud API: auth, Hermes agents, chat, files, messaging apps (Telegram, WhatsApp, Slack, Discord), integrations, schedules, and fleet management.
 
+Admins manage **Billing** at `/dashboard/billing`: a prepaid USD balance starting at $0, Stripe top-ups, saved payment methods, optional automatic top-up, and workspace-scoped coupon credits. No usage or tiers appear on Billing. [BILLING.md](BILLING.md) covers the migration, Stripe webhook, required reconciliation schedule, and `npm run billing:coupon` for issuing credits. The app's balances are separate from the operator's Agent37 wallet.
+
 Click your name in the workspace dropdown to open **Your profile** at `/profile`. Admins and members can change their display name (which defaults to their email address) and add or clear an optional phone number. The sign-in email is read-only. Profiles apply across workspaces and use existing Supabase user metadata; no database migration is needed.
 
 Each agent's **Identity** tab sets its name and icon and edits [Hermes SOUL.md](https://hermes-agent.nousresearch.com/docs/user-guide/features/personality) as its single personality editor. Names sync to Agent37; icons appear in the fleet, agent switcher and Chat. SOUL edits target the running Hermes profile, preserve Markdown, and reject stale saves while keeping your draft. Start a new conversation to hear the changed personality. Run `npm run setup` to apply the agent-icon migration when upgrading an existing installation.

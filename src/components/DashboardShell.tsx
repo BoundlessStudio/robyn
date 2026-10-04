@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutGrid, Settings, Users } from "lucide-react";
+import { CreditCard, LayoutGrid, Settings, Users } from "lucide-react";
 import { branding } from "@/config/branding";
 import { AccountMenu } from "@/components/AccountMenu";
 import { cn } from "@/lib/utils";
@@ -13,6 +13,7 @@ import { MemberAgentSelection } from "@/components/MemberAgentSelection";
 const NAV = [
   { href: "/dashboard", label: "Agents", icon: LayoutGrid, exact: true },
   { href: "/dashboard/members", label: "Members", icon: Users, exact: false },
+  { href: "/dashboard/billing", label: "Billing", icon: CreditCard, exact: false },
   { href: "/dashboard/settings", label: "Settings", icon: Settings, exact: false },
 ];
 

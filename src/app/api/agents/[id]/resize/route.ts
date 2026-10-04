@@ -1,4 +1,5 @@
 import { agent37 } from "@/lib/agent37";
+import { requireWorkspaceBalance } from "@/lib/billing";
 import { requireAgentAccess } from "@/lib/auth";
 import { ApiError, handleError, json, readJson } from "@/lib/http";
 import { readResourceChange, resourceProfile, validateResourceResize } from "@/lib/resource-input";
@@ -11,6 +12,7 @@ export async function POST(request: Request, { params }: Ctx) {
   try {
     const { id } = await params;
     const { db, row } = await requireAgentAccess(id, "admin");
+    await requireWorkspaceBalance(db, row.workspace_id);
 
     let input;
     try { input = readResourceChange(await readJson<unknown>(request)); }

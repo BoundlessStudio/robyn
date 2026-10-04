@@ -1,4 +1,5 @@
 import { instanceFetch } from "@/lib/agent37";
+import { requireWorkspaceBalance } from "@/lib/billing";
 import { requireAgentAccess } from "@/lib/auth";
 import { ApiError, handleError, readJson } from "@/lib/http";
 import { FILES_ONLY_PROMPT } from "@/lib/types";
@@ -22,7 +23,8 @@ interface ResponsesBody {
 export async function POST(request: Request, { params }: Ctx) {
   try {
     const { id } = await params;
-    await requireAgentAccess(id, "manage");
+    const { db, row } = await requireAgentAccess(id, "manage");
+    await requireWorkspaceBalance(db, row.workspace_id);
 
     const body = await readJson<ResponsesBody>(request);
     const input = (body.input ?? "").trim();

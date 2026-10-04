@@ -1,4 +1,5 @@
 import { agent37 } from "@/lib/agent37";
+import { requireWorkspaceBalance } from "@/lib/billing";
 import { requireAgentAccess } from "@/lib/auth";
 import { ApiError, handleError, json } from "@/lib/http";
 
@@ -17,7 +18,8 @@ export async function POST(_request: Request, { params }: Ctx) {
     const fn = ACTIONS[action as keyof typeof ACTIONS];
     if (!fn) throw new ApiError(404, "not_found", `Unknown action: ${action}`);
 
-    const { db } = await requireAgentAccess(id, "manage");
+    const { db, row } = await requireAgentAccess(id, "manage");
+    if (action !== "stop") await requireWorkspaceBalance(db, row.workspace_id);
 
     const result = await fn(id);
     if (result.status) {

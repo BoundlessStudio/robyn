@@ -1,4 +1,5 @@
 import { agent37 } from "@/lib/agent37";
+import { requireWorkspaceBalance } from "@/lib/billing";
 import { requireAdmin, requireAssignee, requireMember, requireUser } from "@/lib/auth";
 import { validateAssignedUserId } from "@/lib/assignment-input";
 import { AGENT_TEMPLATES, DEFAULT_AGENT, templateAppPorts } from "@/config/agents";
@@ -115,8 +116,7 @@ export async function POST(request: Request) {
     catch (error) { throw new ApiError(400, "invalid_assignment", (error as Error).message); }
     await requireAssignee(db, workspaceId, assignedUserId);
 
-    // Paywall/entitlement seam: a fork can gate agent creation here, e.g.
-    // if (!(await canCreateAgent(db, workspaceId))) throw new ApiError(403, "forbidden", "Agent creation is not enabled for this workspace.");
+    await requireWorkspaceBalance(db, workspaceId);
 
     if (body.template && !AGENT_TEMPLATES.includes(body.template)) {
       throw new ApiError(400, "invalid_template", "New agents use Hermes.");

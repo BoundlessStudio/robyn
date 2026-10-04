@@ -4,11 +4,17 @@
   "private": true,
   "scripts": {
     "setup": "node scripts/setup.mjs",
+    "env:restore": "node scripts/restore-worktree-env.mjs",
+    "postinstall": "node scripts/restore-worktree-env.mjs",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "smoke": "node scripts/smoke.mjs"
+    "smoke": "node scripts/smoke.mjs",
+    "billing:coupon": "node --experimental-strip-types scripts/issue-billing-coupon.mjs",
+    "billing:setup": "node scripts/setup-stripe.mjs",
+    "billing:sync": "node scripts/sync-billing.mjs",
+    "billing:schedule": "node scripts/setup-billing-scheduler.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.6",
@@ -27,9 +33,11 @@
     "react-dom": "^19.0.0",
     "sonner": "^1.7.4",
     "streamdown": "^2.5.0",
+    "stripe": "^23.0.0",
     "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
     "@tailwindcss/postcss": "^4.0.0",
     "@types/node": "^22.10.0",
     "@types/qrcode": "^1.5.6",
