@@ -16,6 +16,7 @@ import type {
   SessionListResponse,
   Template,
   Usage,
+  WorkspaceUsage,
 } from "@/lib/types";
 
 // The Hosting API base (control plane). A code constant, not an env var — there's no
@@ -211,6 +212,8 @@ export const agent37 = {
     call<Budget>(`/instances/${id}/budget/top-up`, { method: "POST", body: JSON.stringify(body) }),
   getUsage: (id: string, month?: string) =>
     call<Usage>(`/instances/${id}/usage${month ? `?month=${encodeURIComponent(month)}` : ""}`),
+  getWorkspaceUsage: (from: string, to: string) =>
+    call<WorkspaceUsage>(`/usage?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`),
 
   listTemplates: () => call<{ data: Template[] }>("/templates"),
 

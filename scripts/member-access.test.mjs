@@ -9,6 +9,8 @@ import * as jsxRuntime from 'react/jsx-runtime';
 import * as assignmentInput from '../src/lib/assignment-input.ts';
 import * as profileInput from '../src/lib/agent-profile-input.ts';
 import * as budgetInput from '../src/lib/budget-input.ts';
+import * as agentConfig from '../src/config/agents.ts';
+import * as costHelpers from '../src/lib/agent-costs.ts';
 
 // Execute the real handlers/helpers with fake external services, so these tests cannot
 // provision billed instances or require a live Supabase project.
@@ -28,6 +30,8 @@ function loadSource(relativePath, dependencies) {
   }, { filename: relativePath });
   return exports;
 }
+
+const resourceInput = loadSource('src/lib/resource-input.ts', { '@/config/agents': agentConfig });
 
 class ApiError extends Error {
   constructor(status, code, message) { super(message); this.status = status; this.code = code; }
@@ -94,6 +98,15 @@ function fixture(userId = MEMBER, sharedTables) {
     '@/lib/http': http,
   });
   const upstream = {
+    getAgent: async (id) => { calls.push({ resourceRead: id }); return { id, status: 'running', resources: { cpu: 2, memory: 4, disk: 6 }, type: 'default', auto_sleep: false, env: { hidden: 'server-only' }, metadata: { hidden: 'server-only' } }; },
+    resize: async (id, input) => { calls.push({ resize: id, ...input }); return { id, status: 'updating', resources: { cpu: 2, memory: 4, disk: 6, ...input } }; },
+    getWorkspaceUsage: async (from, to) => {
+      calls.push({ workspaceUsage: { from, to } });
+      return { from, to, total_micros: 99_000_000, instances: [
+        { id: 'mine', compute_micros: 2_000_000, llm_micros: 3_000_000, brave_micros: 10_000, composio_micros: 2_000, perflo_micros: 4_000, total_micros: 5_016_000, private: 'hidden' },
+        { id: 'foreign', compute_micros: 90_000_000, total_micros: 90_000_000 },
+      ] };
+    },
     getBudget: async (id) => { calls.push({ budgetRead: id }); return { monthly_cap_micros: 5_000_000 }; },
     setBudget: async (id, input) => { calls.push({ budgetWrite: id, ...input }); return { ...input }; },
     topUpBudget: async (id, input) => { calls.push({ budgetTopUp: id, ...input }); return { credit_remaining_micros: input.amount_micros }; },
@@ -106,11 +119,12 @@ function fixture(userId = MEMBER, sharedTables) {
   };
   const dependencies = {
     '@/lib/auth': auth, '@/lib/http': http, '@/lib/assignment-input': assignmentInput, '@/lib/budget-input': budgetInput,
+    '@/lib/resource-input': resourceInput, '@/lib/agent-costs': costHelpers,
     '@/lib/agent37': { agent37: upstream },
     '@/config/agents': { AGENT_TEMPLATES: ['agent37-hermes'], DEFAULT_AGENT: { template: 'agent37-hermes', cpu: 1, memory: 2, disk: 10, monthlyCapUsd: 20 }, templateAppPorts: () => [] },
     '@/lib/format': { usdToMicros: (usd) => usd * 1e6 },
   };
-  return { tables, calls, auth, dependencies };
+  return { tables, calls, auth, dependencies, upstream };
 }
 const request = (body) => new Request('https://app.example/api', { method: 'POST', body: JSON.stringify(body) });
 const params = (value) => ({ params: Promise.resolve(value) });
@@ -328,4 +342,65 @@ test('the agent switcher includes assignee names only in the admin view', () => 
     if (role === 'admin') assert.match(markup, /My agent · Jamie/);
     else assert.doesNotMatch(markup, /Jamie/);
   }
+});
+
+test('cost and resource reads are assignment-scoped and never serialize workspace-wide spend or secrets', async () => {
+  for (const [user, id, status] of [[ADMIN, 'mine', 200], [ADMIN, 'unassigned', 200], [MEMBER, 'mine', 200], [MEMBER, 'other', 404], [ADMIN, 'foreign', 404], [null, 'mine', 401]]) {
+    const f = fixture(user);
+    const costs = loadSource('src/app/api/agents/[id]/costs/route.ts', f.dependencies);
+    const resources = loadSource('src/app/api/agents/[id]/resources/route.ts', f.dependencies);
+    const costResponse = await costs.GET(request({}), params({ id }));
+    const resourceResponse = await resources.GET(request({}), params({ id }));
+    assert.equal(costResponse.status, status);
+    assert.equal(resourceResponse.status, status);
+    if (status === 200) {
+      const costData = await costResponse.json();
+      const profile = await resourceResponse.json();
+      assert.equal(costData.spend.id, id);
+      assert.equal(costData.spend.total_micros, id === 'mine' ? 5_016_000 : 0);
+      assert.equal(JSON.stringify(costData).includes('foreign'), false);
+      assert.equal(JSON.stringify(costData).includes('hidden'), false);
+      assert.deepEqual(Object.keys(profile).sort(), ['auto_sleep', 'id', 'resources', 'status', 'type']);
+      assert.equal(profile.resources.disk, 6);
+    } else assert.equal(f.calls.length, 0);
+  }
+});
+
+test('only admins can resize, with live grow-only validation before any billed mutation', async () => {
+  for (const [user, id, status] of [[MEMBER, 'mine', 403], [MEMBER, 'other', 404], [ADMIN, 'foreign', 404], [null, 'mine', 401]]) {
+    const f = fixture(user);
+    const route = loadSource('src/app/api/agents/[id]/resize/route.ts', f.dependencies);
+    assert.equal((await route.POST(request({ cpu: 4, memory: 8 }), params({ id }))).status, status);
+    assert.equal(f.calls.length, 0);
+  }
+  const f = fixture(ADMIN);
+  const route = loadSource('src/app/api/agents/[id]/resize/route.ts', f.dependencies);
+  for (const body of [null, {}, { disk: 0 }, { disk: '8' }]) {
+    assert.equal((await route.POST(request(body), params({ id: 'mine' }))).status, 400);
+  }
+  assert.equal(f.calls.length, 0);
+  f.upstream.getAgent = async (id) => ({ id, status: 'running', resources: { cpu: 4, memory: 8, disk: 10 }, type: 'performance' });
+  for (const body of [{ disk: 8 }, { cpu: 2, memory: 4 }, { disk: 21 }, { cpu: 8, memory: 8 }]) {
+    assert.equal((await route.POST(request(body), params({ id: 'mine' }))).status, 400);
+  }
+  assert.equal(f.calls.length, 0);
+  f.upstream.getAgent = async (id) => ({ id, status: 'sleeping', resources: { cpu: 2, memory: 4, disk: 6 } });
+  assert.equal((await route.POST(request({ disk: 8 }), params({ id: 'mine' }))).status, 409);
+  assert.equal(f.calls.length, 0);
+});
+
+test('resize sends only changed resources, refreshes the tenant mirror and retains asynchronous updating status', async () => {
+  const f = fixture(ADMIN);
+  const route = loadSource('src/app/api/agents/[id]/resize/route.ts', f.dependencies);
+  const response = await route.POST(request({ cpu: 4, memory: 8, disk: 6, metadata: { workspace: 'foreign' }, type: 'performance' }), params({ id: 'mine' }));
+  assert.equal(response.status, 200);
+  const profile = await response.json();
+  assert.equal(profile.status, 'updating');
+  assert.equal(profile.type, 'default');
+  assert.deepEqual(profile.resources, { cpu: 4, memory: 8, disk: 6 });
+  assert.deepEqual(f.calls[1], { resize: 'mine', cpu: 4, memory: 8 });
+  assert.equal(f.tables.agents[0].status, 'updating');
+  assert.equal(f.tables.agents[0].cpu, 4);
+  assert.equal(f.tables.agents[0].assigned_user_id, MEMBER);
+  assert.equal(f.tables.agents[1].status, 'running');
 });

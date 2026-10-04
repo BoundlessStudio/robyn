@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowDownToLine, Pencil, Play, RotateCw, Search, Sparkles, Square, Trash2, Wrench, type LucideIcon } from "lucide-react";
+import { ArrowDownToLine, Pencil, Play, RotateCw, Square, Trash2, type LucideIcon } from "lucide-react";
 import { toast } from "sonner";
 import { apiFetch } from "@/lib/api";
 import { isTransitional, statusVariant, usd } from "@/lib/format";
@@ -14,6 +14,7 @@ import { OpenPortButtons } from "@/components/OpenPortButtons";
 import { useAsyncAction } from "@/components/useAsyncAction";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { AgentCostSummary } from "@/components/AgentCostSummary";
 import { useWorkspaceMembers, WorkspaceUserSelect } from "@/components/WorkspaceUserSelect";
 
 // The agent's overview/manage tab: a clean header (inline-rename name, status + shape + template
@@ -302,10 +303,13 @@ function BudgetSection({ agentId }: { agentId: string }) {
   const [budget, setBudget] = useState<Budget | null>(null);
   const [usage, setUsage] = useState<Usage | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [retry, setRetry] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
+    setError(null);
     Promise.all([
       apiFetch<Budget>(`/api/agents/${agentId}/budget`),
       apiFetch<Usage>(`/api/agents/${agentId}/usage`),
@@ -315,40 +319,38 @@ function BudgetSection({ agentId }: { agentId: string }) {
         setBudget(b);
         setUsage(u);
       })
-      .catch((e) => toast.error((e as Error).message))
+      .catch((e) => { if (!cancelled) setError((e as Error).message); })
       .finally(() => {
         if (!cancelled) setLoading(false);
       });
     return () => {
       cancelled = true;
     };
-  }, [agentId]);
+  }, [agentId, retry]);
 
   return (
     <section className="rounded-lg border p-5">
       <h2 className="text-sm font-semibold">Budget &amp; usage</h2>
       <p className="mt-0.5 text-sm text-muted-foreground">
-        The monthly managed-spend cap (LLM, search, tools) and what&apos;s been used this period.
+        The managed-services allowance and actual spending, including CPU, RAM and disk. Resource charges do not reduce the managed allowance.
       </p>
       <div className="mt-4">
-        {loading || !budget || !usage ? (
+        {loading ? (
           <p className="py-2 text-sm text-muted-foreground">Loading...</p>
-        ) : (
+        ) : error ? (
+          <div className="space-y-2"><p role="alert" className="text-sm text-destructive">{error}</p><Button variant="outline" size="sm" onClick={() => setRetry((value) => value + 1)}>Retry budget</Button></div>
+        ) : budget && usage && (
           <div className="space-y-4">
             <div className="grid grid-cols-3 gap-3">
-              <Stat label="Monthly cap" value={usd(budget.monthly_cap_micros)} />
-              <Stat label="Spent" value={usd(budget.monthly_consumed_micros)} />
-              <Stat label="Remaining" value={usd(budget.monthly_remaining_micros)} />
+              <Stat label="Managed monthly cap" value={usd(budget.monthly_cap_micros)} />
+              <Stat label="Monthly limit used" value={usd(budget.monthly_consumed_micros)} />
+              <Stat label="Managed remaining" value={usd(budget.monthly_remaining_micros)} />
             </div>
-
-            <div className="overflow-hidden rounded-md border">
-              <UsageRow icon={<Sparkles />} label="LLM" cost={usage.by_integration.llm.cost_micros} calls={usage.by_integration.llm.calls} />
-              <UsageRow icon={<Search />} label="Search" cost={usage.by_integration.brave.cost_micros} calls={usage.by_integration.brave.calls} />
-              <UsageRow icon={<Wrench />} label="Tools" cost={usage.by_integration.composio.cost_micros} calls={usage.by_integration.composio.calls} last />
-            </div>
+            <p className="text-xs text-muted-foreground">Extra managed budget available: {usd(budget.credit_remaining_micros)}</p>
           </div>
         )}
       </div>
+      <div className="mt-6"><AgentCostSummary agentId={agentId} usage={usage} embedded refreshKey={retry} /></div>
     </section>
   );
 }
@@ -358,32 +360,6 @@ function Stat({ label, value }: { label: string; value: string }) {
     <div className="rounded-md border p-3">
       <div className="text-xs text-muted-foreground">{label}</div>
       <div className="mt-1 text-base font-semibold tabular-nums">{value}</div>
-    </div>
-  );
-}
-
-function UsageRow({
-  icon,
-  label,
-  cost,
-  calls,
-  last,
-}: {
-  icon: ReactNode;
-  label: string;
-  cost: number;
-  calls: number;
-  last?: boolean;
-}) {
-  return (
-    <div className={`flex items-center justify-between px-3 py-2.5 text-sm ${last ? "" : "border-b"}`}>
-      <span className="flex items-center gap-2 font-medium [&_svg]:size-4 [&_svg]:text-muted-foreground">
-        {icon}
-        {label}
-      </span>
-      <span className="tabular-nums text-muted-foreground">
-        {calls} calls · {usd(cost)}
-      </span>
     </div>
   );
 }
