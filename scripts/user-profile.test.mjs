@@ -121,21 +121,33 @@ test('provider failures return an actionable error without claiming a save or le
 const widget = ({ children }) => React.createElement('div', null, children);
 const link = { __esModule: true, default: ({ href, children, ...props }) => React.createElement('a', { href, ...props }, children) };
 
-test('the account name links to the profile for both admins and members', () => {
+test('the account menu opens profile editing in place for both admins and members', () => {
   for (const role of ['admin', 'member']) {
+    const selected = [], stateChanges = [], navigations = [];
     const { AccountMenu } = loadSource('src/components/AccountMenu.tsx', {
-      react: React, 'react/jsx-runtime': jsxRuntime, 'next/link': link,
-      'next/navigation': { useRouter: () => ({ push() {} }) },
+      react: { ...React, useState: (initial) => [initial, (value) => stateChanges.push(value)] }, 'react/jsx-runtime': jsxRuntime,
+      'next/navigation': { useRouter: () => ({ push: (path) => navigations.push(path) }) },
       'lucide-react': Object.fromEntries(['Check', 'ChevronsUpDown', 'LogOut', 'Plus'].map((name) => [name, widget])),
       sonner: { toast: {} }, '@/lib/api': {}, '@/lib/supabase/client': {},
+      '@/components/ProfileDialog': { ProfileDialog: () => null },
       '@/components/WorkspaceProvider': { useWorkspace: () => ({ workspaces: [], current: { role }, profile: { ...defaultProfile, display_name: 'Jamie' } }) },
       '@/components/ui/button': { Button: widget }, '@/components/ui/input': { Input: widget }, '@/components/ui/label': { Label: widget },
-      '@/components/ui/dropdown-menu': Object.fromEntries(['DropdownMenu', 'DropdownMenuContent', 'DropdownMenuItem', 'DropdownMenuLabel', 'DropdownMenuSeparator', 'DropdownMenuTrigger'].map((name) => [name, widget])),
+      '@/components/ui/dropdown-menu': {
+        ...Object.fromEntries(['DropdownMenu', 'DropdownMenuContent', 'DropdownMenuLabel', 'DropdownMenuSeparator', 'DropdownMenuTrigger'].map((name) => [name, widget])),
+        DropdownMenuItem: ({ children, onSelect, 'aria-label': label }) => {
+          if (label?.startsWith('Edit profile for')) selected.push(onSelect);
+          return React.createElement('div', { 'aria-label': label }, children);
+        },
+      },
       '@/components/ui/dialog': Object.fromEntries(['Dialog', 'DialogContent', 'DialogDescription', 'DialogFooter', 'DialogHeader', 'DialogTitle'].map((name) => [name, widget])),
     });
     const markup = renderToStaticMarkup(React.createElement(AccountMenu));
-    assert.match(markup, /href="\/profile"/);
+    assert.doesNotMatch(markup, /href="\/profile"/);
     assert.match(markup, /Edit profile for Jamie/);
+    assert.equal(selected.length, 1);
+    selected[0]();
+    assert.deepEqual(stateChanges, [true]);
+    assert.deepEqual(navigations, []);
   }
 });
 

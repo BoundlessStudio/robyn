@@ -66,7 +66,22 @@ function fixture(userId = MEMBER, sharedTables) {
     agent_budget_requests: [],
   };
   const calls = [];
+  const authUsers = new Map([ADMIN, MEMBER, OTHER].map((id) => [id, {
+    id, email: `${id}@example.com`, phone: '+14165550000',
+    user_metadata: { full_name: id === MEMBER ? 'Member name' : 'Other name', phone_number: '+14165550123', unrelated: 'keep me' },
+    app_metadata: { role: 'authenticated' },
+  }]));
   const db = {
+    auth: { admin: {
+      async getUserById(id) { calls.push({ profileRead: id }); return { data: { user: authUsers.get(id) ?? null }, error: null }; },
+      async updateUserById(id, attributes) {
+        calls.push({ profileWrite: id, attributes });
+        const target = authUsers.get(id);
+        if (!target) return { data: { user: null }, error: { message: 'private provider details' } };
+        Object.assign(target.user_metadata, attributes.user_metadata);
+        return { data: { user: target }, error: null };
+      },
+    } },
     from(table) {
       const filters = [];
       let insert, update, remove = false, selected = '*', maxRows = Infinity;
@@ -138,7 +153,7 @@ function fixture(userId = MEMBER, sharedTables) {
     '@/config/agents': { AGENT_TEMPLATES: ['agent37-hermes'], DEFAULT_AGENT: { template: 'agent37-hermes', cpu: 1, memory: 2, disk: 10, monthlyCapUsd: 20 }, templateAppPorts: () => [] },
     '@/lib/format': { usdToMicros: (usd) => usd * 1e6 },
   };
-  return { tables, calls, auth, dependencies, upstream };
+  return { tables, calls, auth, dependencies, upstream, db, authUsers };
 }
 const request = (body) => new Request('https://app.example/api', { method: 'POST', body: JSON.stringify(body) });
 const params = (value) => ({ params: Promise.resolve(value) });
@@ -227,6 +242,69 @@ test('assigned members can rename and restart their agent; attempts on another a
   assert.equal((await lifecycle.POST(request({}), params({ id: 'mine', action: 'restart' }))).status, 200);
   assert.equal((await lifecycle.POST(request({}), params({ id: 'other', action: 'restart' }))).status, 404);
   assert.equal(f.calls.length, 2);
+});
+
+test('member profile reads and edits require an admin and a target membership in that workspace', async () => {
+  for (const [actor, workspace, target, status] of [
+    [ADMIN, WORKSPACE, MEMBER, 200], [ADMIN, WORKSPACE, ADMIN, 200],
+    [MEMBER, WORKSPACE, MEMBER, 403], [MEMBER, WORKSPACE, OTHER, 403],
+    [ADMIN, 'another-workspace', MEMBER, 403],
+    [ADMIN, WORKSPACE, '00000000-0000-4000-8000-000000000099', 404], [null, WORKSPACE, MEMBER, 401],
+  ]) {
+    const f = fixture(actor);
+    const route = loadSource('src/app/api/workspaces/[id]/members/[userId]/profile/route.ts', f.dependencies);
+    const context = params({ id: workspace, userId: target });
+    assert.equal((await route.GET(request({}), context)).status, status);
+    assert.equal((await route.PATCH(request({ display_name: 'Updated member' }), context)).status, status);
+    if (status !== 200) assert.equal(f.calls.length, 0);
+    else {
+      assert.deepEqual(f.calls.map((call) => call.profileRead ?? call.profileWrite), [target, target]);
+      assert.equal(f.authUsers.get(target).user_metadata.full_name, 'Updated member');
+      assert.equal(f.tables.memberships.find((m) => m.user_id === target).role, target === ADMIN ? 'admin' : 'member');
+    }
+  }
+});
+
+test('admin profile edits whitelist contact fields, preserve other auth data, and return only the public profile', async () => {
+  const f = fixture(ADMIN);
+  const route = loadSource('src/app/api/workspaces/[id]/members/[userId]/profile/route.ts', f.dependencies);
+  const context = params({ id: WORKSPACE, userId: MEMBER });
+  const read = await (await route.GET(request({}), context)).json();
+  assert.deepEqual(Object.keys(read.profile).sort(), ['display_name', 'email', 'phone_number']);
+  for (const body of [{ display_name: 'Changed', email: 'bad@example.com' }, { role: 'admin' },
+    { display_name: 'Changed', user_id: OTHER }, { phone: '+15555555555' }, { user_metadata: { full_name: 'bad' } },
+    { app_metadata: { role: 'admin' } }, { display_name: '' }, { phone_number: 'invalid' }]) {
+    assert.equal((await route.PATCH(request(body), context)).status, 400);
+  }
+  assert.equal(f.calls.length, 1);
+  const response = await route.PATCH(request({ display_name: ' New name ' }), context);
+  assert.equal(response.status, 200);
+  assert.deepEqual(await response.json(), { profile: { email: `${MEMBER}@example.com`, display_name: 'New name', phone_number: '+14165550123' } });
+  assert.deepEqual(JSON.parse(JSON.stringify(f.calls[1].attributes)), { user_metadata: { full_name: 'New name' } });
+  assert.equal(f.authUsers.get(MEMBER).user_metadata.unrelated, 'keep me');
+  assert.equal(f.authUsers.get(MEMBER).phone, '+14165550000');
+  assert.deepEqual(f.authUsers.get(MEMBER).app_metadata, { role: 'authenticated' });
+  const cleared = await route.PATCH(request({ phone_number: '' }), context);
+  assert.equal((await cleared.json()).profile.phone_number, null);
+  assert.equal(f.authUsers.get(MEMBER).user_metadata.full_name, 'New name');
+});
+
+test('removed members and provider failures cannot expose or mutate profiles', async () => {
+  const f = fixture(ADMIN);
+  const route = loadSource('src/app/api/workspaces/[id]/members/[userId]/profile/route.ts', f.dependencies);
+  const context = params({ id: WORKSPACE, userId: MEMBER });
+  f.db.auth.admin.getUserById = async () => ({ data: { user: null }, error: { message: 'private provider details' } });
+  f.db.auth.admin.updateUserById = async () => ({ data: { user: null }, error: { message: 'private provider details' } });
+  for (const response of [await route.GET(request({}), context), await route.PATCH(request({ display_name: 'Updated' }), context)]) {
+    assert.equal(response.status, 500);
+    const body = await response.json();
+    assert.match(body.error.message, /Please try again/);
+    assert.doesNotMatch(JSON.stringify(body), /private provider details/);
+  }
+  f.tables.memberships = f.tables.memberships.filter((m) => m.user_id !== MEMBER);
+  assert.equal((await route.GET(request({}), context)).status, 404);
+  assert.equal((await route.PATCH(request({ display_name: 'Updated' }), context)).status, 404);
+  assert.equal(f.authUsers.get(MEMBER).user_metadata.full_name, 'Member name');
 });
 
 test('budgets stay readable by assigned members but writes require a workspace admin', async () => {

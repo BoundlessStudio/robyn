@@ -7,6 +7,7 @@ import { apiFetch } from "@/lib/api";
 const STORAGE_KEY = "agent37wl_workspace";
 
 interface WorkspaceContextValue {
+  userId: string;
   workspaces: WorkspaceWithRole[];
   current: WorkspaceWithRole | null;
   setCurrentId: (id: string) => void;
@@ -21,10 +22,12 @@ const WorkspaceContext = createContext<WorkspaceContextValue | null>(null);
 export function WorkspaceProvider({
   initialWorkspaces,
   initialProfile,
+  userId,
   children,
 }: {
   initialWorkspaces: WorkspaceWithRole[];
   initialProfile: UserProfile;
+  userId: string;
   children: React.ReactNode;
 }) {
   const [workspaces, setWorkspaces] = useState<WorkspaceWithRole[]>(initialWorkspaces);
@@ -59,7 +62,7 @@ export function WorkspaceProvider({
   );
 
   return (
-    <WorkspaceContext.Provider value={{ workspaces, current, setCurrentId, refresh, profile, setProfile, ready }}>
+    <WorkspaceContext.Provider value={{ userId, workspaces, current, setCurrentId, refresh, profile, setProfile, ready }}>
       {children}
     </WorkspaceContext.Provider>
   );

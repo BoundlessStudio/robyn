@@ -1,7 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import { Copy, Trash2, UserPlus } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Copy, Pencil, Trash2, UserPlus } from "lucide-react";
 import { toast } from "sonner";
 import { useWorkspace } from "@/components/WorkspaceProvider";
 import { apiFetch } from "@/lib/api";
@@ -9,6 +9,7 @@ import type { Invitation, Role, WorkspaceMember } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { ProfileDialog } from "@/components/ProfileDialog";
 import {
   Dialog,
   DialogContent,
@@ -24,7 +25,9 @@ function formatDate(iso: string) {
 }
 
 export function MembersView() {
-  const { current } = useWorkspace();
+  const { current, userId, profile, setProfile } = useWorkspace();
+  const [editing, setEditing] = useState<{ member: WorkspaceMember; workspaceId: string } | null>(null);
+  const editTrigger = useRef<HTMLButtonElement | null>(null);
   const [members, setMembers] = useState<WorkspaceMember[]>([]);
   const [invitations, setInvitations] = useState<Invitation[]>([]);
   const [role, setRole] = useState<Role>("admin");
@@ -53,6 +56,11 @@ export function MembersView() {
     setLoading(true);
     load();
   }, [load]);
+
+  useEffect(() => { setEditing(null); }, [current?.id]);
+  useEffect(() => {
+    setMembers((rows) => rows.map((member) => member.user_id === userId ? { ...member, name: profile.display_name } : member));
+  }, [userId, profile.display_name]);
 
   const isAdmin = role === "admin";
 
@@ -154,7 +162,7 @@ export function MembersView() {
             <table className="w-full text-sm">
               <thead className="bg-muted/50 text-left text-xs text-muted-foreground">
                 <tr>
-                  <th className="px-4 py-2.5 font-medium">Email</th>
+                  <th className="px-4 py-2.5 font-medium">Member</th>
                   <th className="px-4 py-2.5 font-medium">Role</th>
                   <th className="px-4 py-2.5 font-medium">Added</th>
                   <th className="px-4 py-2.5" />
@@ -163,21 +171,30 @@ export function MembersView() {
               <tbody>
                 {members.map((m) => (
                   <tr key={m.user_id} className="border-t">
-                    <td className="px-4 py-3 font-medium">{m.email}</td>
+                    <td className="px-4 py-3 [overflow-wrap:anywhere]">
+                      <p className="font-medium">{m.name || m.email}</p>
+                      {m.name && m.name !== m.email && <p className="text-xs text-muted-foreground">{m.email}</p>}
+                    </td>
                     <td className="px-4 py-3">
                       <Badge>{m.role === "admin" ? "Admin" : "Member"}</Badge>
                     </td>
                     <td className="px-4 py-3 text-muted-foreground">{formatDate(m.created_at)}</td>
                     <td className="px-4 py-3 text-right">
                       {isAdmin && (
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          aria-label="Remove member"
-                          onClick={() => removeMember(m.user_id)}
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
+                        <div className="flex justify-end gap-1">
+                          <Button variant="ghost" size="icon" title="Edit profile" aria-label={`Edit profile for ${m.name || m.email}`}
+                            onClick={(event) => { editTrigger.current = event.currentTarget; setEditing({ member: m, workspaceId: current.id }); }}>
+                            <Pencil className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            aria-label="Remove member"
+                            onClick={() => removeMember(m.user_id)}
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </div>
                       )}
                     </td>
                   </tr>
@@ -227,6 +244,15 @@ export function MembersView() {
             </div>
           )}
         </div>
+      )}
+      {isAdmin && editing?.workspaceId === current.id && (
+        <ProfileDialog key={`${editing.workspaceId}:${editing.member.user_id}`}
+          endpoint={`/api/workspaces/${editing.workspaceId}/members/${editing.member.user_id}/profile`} title="Edit member profile"
+          onClose={() => setEditing(null)} onReturnFocus={() => editTrigger.current?.focus()}
+          onSaved={(saved) => {
+            setMembers((rows) => rows.map((member) => member.user_id === editing.member.user_id ? { ...member, name: saved.display_name, email: saved.email } : member));
+            if (editing.member.user_id === userId) setProfile(saved);
+          }} />
       )}
     </div>
   );
