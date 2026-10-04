@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Check, ChevronsUpDown, LogOut, Plus } from "lucide-react";
 import { toast } from "sonner";
 import { createClient } from "@/lib/supabase/client";
 import { useWorkspace } from "@/components/WorkspaceProvider";
 import { apiFetch } from "@/lib/api";
+import { ProfileDialog } from "@/components/ProfileDialog";
 import type { WorkspaceWithRole } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -37,7 +37,9 @@ import {
 // immediately re-pin the old workspace.
 export function AccountMenu() {
   const router = useRouter();
-  const { workspaces, current, setCurrentId, refresh, profile } = useWorkspace();
+  const { workspaces, current, setCurrentId, refresh, profile, setProfile } = useWorkspace();
+  const [editingProfile, setEditingProfile] = useState(false);
+  const accountTrigger = useRef<HTMLButtonElement>(null);
   const [creating, setCreating] = useState(false);
   const [name, setName] = useState("");
   const [busy, setBusy] = useState(false);
@@ -80,7 +82,7 @@ export function AccountMenu() {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="h-auto w-full justify-between px-2 py-2 font-normal">
+          <Button ref={accountTrigger} variant="ghost" className="h-auto w-full justify-between px-2 py-2 font-normal">
             <span className="flex min-w-0 items-center gap-2">
               <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-secondary text-xs font-medium text-secondary-foreground">
                 {initial}
@@ -95,17 +97,15 @@ export function AccountMenu() {
             <ChevronsUpDown className="h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-56" align="start" side="top">
-          <DropdownMenuItem asChild>
-            <Link href="/profile" className="flex items-center gap-2" aria-label={`Edit profile for ${profile.display_name}`}>
-              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-secondary text-xs font-medium text-secondary-foreground">
-                {initial}
-              </span>
-              <span className="flex min-w-0 flex-col">
-                <span className="truncate">{profile.display_name}</span>
-                <span className="text-xs text-muted-foreground">View profile</span>
-              </span>
-            </Link>
+        <DropdownMenuContent className="w-56" align="start" side="top" onCloseAutoFocus={(event) => { if (editingProfile) event.preventDefault(); }}>
+          <DropdownMenuItem onSelect={() => setEditingProfile(true)} className="flex items-center gap-2" aria-label={`Edit profile for ${profile.display_name}`}>
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-secondary text-xs font-medium text-secondary-foreground">
+              {initial}
+            </span>
+            <span className="flex min-w-0 flex-col">
+              <span className="truncate">{profile.display_name}</span>
+              <span className="text-xs text-muted-foreground">Edit profile</span>
+            </span>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuLabel className="text-xs font-medium text-muted-foreground">
@@ -128,6 +128,9 @@ export function AccountMenu() {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+
+      {editingProfile && <ProfileDialog onClose={() => setEditingProfile(false)} onSaved={setProfile}
+        onReturnFocus={() => accountTrigger.current?.focus()} />}
 
       <Dialog open={creating} onOpenChange={setCreating}>
         <DialogContent>

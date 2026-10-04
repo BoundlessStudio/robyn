@@ -190,7 +190,7 @@ Browser ─▶ Next.js (this app) ─▶ control plane  https://api.agent37.com/
 |---|---|
 | `src/lib/agent37.ts` | The Agent37 `/v1` client — the single egress to both planes |
 | `src/app/api/**` | This app's own API routes (BFF); enforce auth + ownership |
-| `src/app/api/profile/`, `src/lib/user-profile.ts`, `src/components/ProfileView.tsx` | Self-service account profile: session-bound metadata updates (`full_name`, `phone_number`), email fallback, linked from the account menu; phone is contact metadata, not an auth credential |
+| `src/app/api/profile/`, `src/app/api/workspaces/[id]/members/[userId]/profile/`, `src/lib/user-profile.ts`, `src/components/ProfileDialog.tsx` | Shared profile dialog in the account menu and admin Members page. Self-service writes are session-bound; admin reads/writes require same-workspace membership. Only display name and contact phone are editable; email stays read-only. `/profile` bookmarks retain the dialog through `ProfileView`. |
 | `src/app/api/agents/[id]/{chat,files}/**` | Data-plane BFF: native Chat + Files proxied to the instance |
 | `src/app/api/agents/[id]/integrations/**` | Composio integrations BFF (control plane) |
 | `src/app/api/agents/[id]/channels/**` | Messaging channels BFF (list / write / disconnect, Telegram checks, WhatsApp pairing) |

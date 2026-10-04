@@ -72,7 +72,7 @@ export async function WorkspaceLayout({ children }: { children: React.ReactNode 
   // The fleet and profile layouts add DashboardShell; per-agent pages render their own shell.
   // This shared layer establishes auth + workspace/profile context for each of those routes.
   return (
-    <WorkspaceProvider initialWorkspaces={workspaces} initialProfile={userProfileFromUser(user)}>
+    <WorkspaceProvider userId={user.id} initialWorkspaces={workspaces} initialProfile={userProfileFromUser(user)}>
       {children}
     </WorkspaceProvider>
   );
