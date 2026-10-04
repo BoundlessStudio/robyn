@@ -15,6 +15,7 @@ import { apiFetch } from "@/lib/api";
 import { AGENT_TYPES, PORT_LABELS } from "@/config/agents";
 import type { Agent } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import {
   Tooltip,
   TooltipContent,
@@ -51,6 +52,7 @@ export function OpenPortButtons({
   template,
   size = "default",
   className,
+  variant = "buttons",
 }: {
   agentId: string;
   ports: NonNullable<Agent["ports"]>;
@@ -59,6 +61,7 @@ export function OpenPortButtons({
   template?: string | null;
   size?: "default" | "sm";
   className?: string;
+  variant?: "buttons" | "menu";
 }) {
   const [opening, setOpening] = useState<number | null>(null);
   const openable = ports.filter((p) => !p.default);
@@ -79,6 +82,22 @@ export function OpenPortButtons({
   }
 
   if (openable.length === 0) return null;
+
+  if (variant === "menu") return (
+    <>
+      {openable.map((p) => {
+        const base = PORT_LABELS[p.port] ?? `Port ${p.port}`;
+        const isDashboard = DASHBOARD_LABELS.has(base);
+        const label = isDashboard ? dashboardLabel(template) : base;
+        const Icon = isDashboard ? LayoutDashboard : PORT_ICON[base] ?? ExternalLink;
+        return (
+          <DropdownMenuItem key={p.port} disabled={disabled || opening !== null} onSelect={() => open(p.port)}>
+            <Icon /> Open {label}
+          </DropdownMenuItem>
+        );
+      })}
+    </>
+  );
 
   return (
     <TooltipProvider delayDuration={250}>

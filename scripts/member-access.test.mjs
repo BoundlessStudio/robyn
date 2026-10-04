@@ -8,6 +8,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import * as jsxRuntime from 'react/jsx-runtime';
 import * as assignmentInput from '../src/lib/assignment-input.ts';
 import * as profileInput from '../src/lib/agent-profile-input.ts';
+import * as budgetInput from '../src/lib/budget-input.ts';
 
 // Execute the real handlers/helpers with fake external services, so these tests cannot
 // provision billed instances or require a live Supabase project.
@@ -93,6 +94,9 @@ function fixture(userId = MEMBER, sharedTables) {
     '@/lib/http': http,
   });
   const upstream = {
+    getBudget: async (id) => { calls.push({ budgetRead: id }); return { monthly_cap_micros: 5_000_000 }; },
+    setBudget: async (id, input) => { calls.push({ budgetWrite: id, ...input }); return { ...input }; },
+    topUpBudget: async (id, input) => { calls.push({ budgetTopUp: id, ...input }); return { credit_remaining_micros: input.amount_micros }; },
     listAgents: async () => ({ data: [] }),
     listTemplates: async () => ({ data: [] }),
     createAgent: async (input) => { calls.push(input); return { id: 'new', status: 'provisioning', template: 'agent37-hermes', resources: input.resources }; },
@@ -101,7 +105,7 @@ function fixture(userId = MEMBER, sharedTables) {
     restart: async (id) => { calls.push({ restart: id }); return { status: 'restarting' }; },
   };
   const dependencies = {
-    '@/lib/auth': auth, '@/lib/http': http, '@/lib/assignment-input': assignmentInput,
+    '@/lib/auth': auth, '@/lib/http': http, '@/lib/assignment-input': assignmentInput, '@/lib/budget-input': budgetInput,
     '@/lib/agent37': { agent37: upstream },
     '@/config/agents': { AGENT_TEMPLATES: ['agent37-hermes'], DEFAULT_AGENT: { template: 'agent37-hermes', cpu: 1, memory: 2, disk: 10, monthlyCapUsd: 20 }, templateAppPorts: () => [] },
     '@/lib/format': { usdToMicros: (usd) => usd * 1e6 },
@@ -195,6 +199,68 @@ test('assigned members can rename and restart their agent; attempts on another a
   assert.equal((await lifecycle.POST(request({}), params({ id: 'mine', action: 'restart' }))).status, 200);
   assert.equal((await lifecycle.POST(request({}), params({ id: 'other', action: 'restart' }))).status, 404);
   assert.equal(f.calls.length, 2);
+});
+
+test('budgets stay readable by assigned members but writes require a workspace admin', async () => {
+  for (const [user, id, readStatus, writeStatus] of [
+    [ADMIN, 'mine', 200, 200], [ADMIN, 'unassigned', 200, 200],
+    [MEMBER, 'mine', 200, 403], [MEMBER, 'other', 404, 404],
+    [ADMIN, 'foreign', 404, 404], [MEMBER, 'foreign', 404, 404],
+    [null, 'mine', 401, 401],
+  ]) {
+    const f = fixture(user);
+    const route = loadSource('src/app/api/agents/[id]/budget/route.ts', f.dependencies);
+    const topUp = loadSource('src/app/api/agents/[id]/budget/top-up/route.ts', f.dependencies);
+    assert.equal((await route.GET(request({}), params({ id }))).status, readStatus);
+    assert.equal((await route.PATCH(request({ monthly_cap_usd: '20.123456' }), params({ id }))).status, writeStatus);
+    assert.equal((await topUp.POST(request({ amount_usd: '1.25', idempotency_key: 'burst-1' }), params({ id }))).status, writeStatus);
+    assert.equal(f.calls.length, (readStatus === 200 ? 1 : 0) + (writeStatus === 200 ? 2 : 0));
+    if (writeStatus === 200) {
+      assert.deepEqual(f.calls[1], { budgetWrite: id, monthly_cap_micros: 20_123_456 });
+      assert.deepEqual(f.calls[2], { budgetTopUp: id, amount_micros: 1_250_000, idempotency_key: 'burst-1' });
+    }
+  }
+});
+
+test('invalid budget requests never reach Agent37 and zero caps remain supported', async () => {
+  const f = fixture(ADMIN);
+  const route = loadSource('src/app/api/agents/[id]/budget/route.ts', f.dependencies);
+  const topUp = loadSource('src/app/api/agents/[id]/budget/top-up/route.ts', f.dependencies);
+  for (const body of [null, [], {}, { monthly_cap_usd: -1 }, { monthly_cap_usd: '0.0000001' }, { monthly_cap_usd: '9007199254.740992' }]) {
+    assert.equal((await route.PATCH(request(body), params({ id: 'mine' }))).status, 400);
+  }
+  assert.equal((await route.PATCH(new Request('https://app.example/api', { method: 'PATCH', body: '{' }), params({ id: 'mine' }))).status, 400);
+  for (const body of [null, [], {}, { amount_usd: 0, idempotency_key: 'burst-1' }, { amount_usd: 5 }, { amount_usd: 5, idempotency_key: '../invalid' }]) {
+    assert.equal((await topUp.POST(request(body), params({ id: 'mine' }))).status, 400);
+  }
+  assert.equal(f.calls.length, 0);
+  assert.equal((await route.PATCH(request({ monthly_cap_usd: 0 }), params({ id: 'mine' }))).status, 200);
+  assert.deepEqual(f.calls, [{ budgetWrite: 'mine', monthly_cap_micros: 0 }]);
+});
+
+test('budget page deep links require an admin and expose only the authorized agent identity', async () => {
+  for (const [user, id, allowed] of [
+    [ADMIN, 'mine', true], [ADMIN, 'unassigned', true],
+    [MEMBER, 'mine', false], [MEMBER, 'other', false],
+    [ADMIN, 'foreign', false], [ADMIN, 'missing', false], [null, 'mine', false],
+  ]) {
+    const f = fixture(user);
+    const { default: page } = loadSource('src/app/dashboard/budgets/[agentId]/page.tsx', {
+      '@/lib/auth': f.auth,
+      'react/jsx-runtime': jsxRuntime,
+      'next/navigation': { notFound: () => { throw new ApiError(404, 'not_found', 'Page not found'); } },
+      '@/components/AgentBudgetPage': { AgentBudgetPage: () => null },
+    });
+    if (!allowed) await assert.rejects(page(params({ agentId: id })), { status: 404 });
+    else {
+      const result = await page(params({ agentId: id }));
+      assert.deepEqual(Object.keys(result.props).sort(), ['agentId', 'name', 'workspaceId']);
+      assert.equal(result.props.agentId, id);
+      assert.equal(result.props.workspaceId, WORKSPACE);
+      assert.equal(result.props.name, id === 'mine' ? 'My agent' : 'Unnamed agent');
+    }
+    assert.equal(f.calls.length, 0);
+  }
 });
 
 test('member dashboard renders only the chooser and redirects restricted fleet paths', () => {

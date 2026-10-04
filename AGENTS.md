@@ -162,8 +162,11 @@ Browser ─▶ Next.js (this app) ─▶ control plane  https://api.agent37.com/
   multi-agent dashboard (agents, members, invitations, workspace settings). Clicking
   an agent opens `/dashboard/agents/{agentId}/{tab}` — a tabbed workspace (Chat /
   Identity / Files / Channels / Integrations / Schedule / Settings) where the active agent is bound to the URL and
-  switchable from a dropdown. New agents use Hermes; shape and budget are fixed
-  server-side (`DEFAULT_AGENT`).
+  switchable from a dropdown. New agents use Hermes with server-side shape and starting budget
+  (`DEFAULT_AGENT`). Admins can choose Budget from an agent's […] menu in the fleet list to open
+  `/dashboard/budgets/{agentId}` and set monthly limits or add one-time headroom;
+  the per-agent Settings budget panel stays read-only. Budget
+  writes require `requireAgentAccess(id, "admin")` and use only Agent37's control plane.
 - **Naming:** the upstream API calls these resources **instances**; this app brands
   them **agents**. Paths stay `/instances`; the client methods read `agent…`.
 
@@ -186,6 +189,8 @@ Browser ─▶ Next.js (this app) ─▶ control plane  https://api.agent37.com/
 | `src/lib/agent-profile-input.ts`, `src/lib/soul-input.ts` | Shared profile catalog and bounded input validation |
 | `src/app/api/agents/[id]/soul/`, `src/lib/hermes-soul.ts`, `src/lib/hermes-soul-command.ts` | Authorized, profile-aware SOUL reads and revision-checked atomic saves over exec |
 | `src/components/ScheduleTab.tsx`, `src/lib/cron-input.ts` | Cron editor, run history, input validation and minimal PATCH fields |
+| `src/app/dashboard/budgets/[agentId]/`, `src/components/AgentBudgetPage.tsx` | Admin-only budget page linked from the fleet list; monthly limits, extra budget, and retry-safe top-ups |
+| `src/app/api/agents/[id]/budget/**`, `src/lib/budget-input.ts` | Authorized budget reads, admin-only writes, and exact USD-to-micros validation |
 | `src/app/api/agents/[id]/crons/**` | Per-agent cron BFF; admins and assigned members can read and manage |
 | `src/app/api/agents/[id]/identity/` | Inkbox state and provisioning / phone updates for admins and assigned members |
 | `src/app/api/agents/[id]/assignment/` | Admin-only assignment updates, restricted to workspace users |

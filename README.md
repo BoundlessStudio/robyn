@@ -8,6 +8,10 @@ Each agent's **Identity** tab sets its name and icon and edits [Hermes SOUL.md](
 
 Each agent's **Schedule** tab manages [Agent37 crons](https://www.agent37.com/docs/agents-api/crons): recurring instructions with a timezone, pause/resume, run now, and run history linked to Chat conversations. Access stays scoped to the agent's workspace. Jobs can wake sleeping agents, skip explicitly stopped agents, and use the agent's normal compute and model budget. No extra database setup or scheduler is required.
 
+Click an agent's name in the fleet list to open Chat. Its **[…]** menu contains Edit (Identity), Budget, app links, and lifecycle actions.
+
+Admins can choose **Budget** from an agent's **[…]** menu in the **Agents** list to open the agent's budget page at `/dashboard/budgets/{agentId}`. It shows the monthly allowance used and remaining, edits the monthly managed-spend limit, and adds extra budget in USD. Monthly limits reset each UTC month; extra budget is used after the monthly portion and carries over until consumed. Limits cover managed services, exclude compute, and do not fund the Agent37 wallet. The agent's **Settings** tab remains a read-only budget and usage view. No database migration is required.
+
 Use **Channels** and **Integrations** for agent connections. The optional **Messaging** page is hidden from agent navigation; its existing `/dashboard/agents/{agentId}/messaging` route remains available for managing [Inkbox](https://www.agent37.com/docs/agents-api/imessage) email, iMessage and calls. Creating or viewing an agent never consumes an Inkbox identity. Add the server-only `INKBOX_ADMIN_KEY` and run `npm run setup` to apply the identity-state migration. Enabling Inkbox restarts that agent once; failed setup can be retried with the same identity.
 
 The inbox allowlist uses the agent creator's account email. Add an allowed phone number in Messaging and send the displayed connection message to activate iMessage and calls. Inkbox's hosted voice agent handles calls and delivers transcripts to Hermes. Deleting an agent also deletes its Inkbox identity and revokes its scoped keys.

@@ -17,6 +17,11 @@ export function agentTabPath(agentId: string, tab: AgentTab): string {
   return `/dashboard/agents/${agentId}/${tab}`;
 }
 
+// Budget management is an admin fleet page, separate from the assigned member's workspace tabs.
+export function agentBudgetPath(agentId: string): string {
+  return `/dashboard/budgets/${encodeURIComponent(agentId)}`;
+}
+
 // Parse the optional catch-all segments after /dashboard/agents/{agentId} into a tab,
 // or null for shapes that should 404. No segments => the default "chat" tab; exactly one
 // valid tab segment => that tab; anything else (unknown tab, extra segments) => null.
