@@ -12,6 +12,7 @@ interface WorkspaceContextValue {
   setCurrentId: (id: string) => void;
   refresh: () => Promise<WorkspaceWithRole[]>;
   userEmail: string;
+  ready: boolean;
 }
 
 const WorkspaceContext = createContext<WorkspaceContextValue | null>(null);
@@ -27,12 +28,14 @@ export function WorkspaceProvider({
 }) {
   const [workspaces, setWorkspaces] = useState<WorkspaceWithRole[]>(initialWorkspaces);
   const [currentId, setCurrentIdState] = useState<string | null>(initialWorkspaces[0]?.id ?? null);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored && workspaces.some((w) => w.id === stored)) {
-      setCurrentIdState(stored);
-    }
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored && workspaces.some((w) => w.id === stored)) setCurrentIdState(stored);
+    } catch { /* Use the first authorized workspace when browser storage is unavailable. */ }
+    setReady(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -54,7 +57,7 @@ export function WorkspaceProvider({
   );
 
   return (
-    <WorkspaceContext.Provider value={{ workspaces, current, setCurrentId, refresh, userEmail }}>
+    <WorkspaceContext.Provider value={{ workspaces, current, setCurrentId, refresh, userEmail, ready }}>
       {children}
     </WorkspaceContext.Provider>
   );

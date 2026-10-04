@@ -65,7 +65,7 @@ export function AgentsView() {
           <h1 className="text-2xl font-semibold tracking-tight">Agents</h1>
           <p className="text-sm text-muted-foreground">{current.name}</p>
         </div>
-        {role === "admin" && <CreateAgentButton workspaceId={current.id} onCreated={load} />}
+        {role === "admin" && <CreateAgentButton key={current.id} workspaceId={current.id} onCreated={load} />}
       </div>
 
       {loading ? (
@@ -84,6 +84,7 @@ export function AgentsView() {
             <thead className="bg-muted/50 text-left text-xs text-muted-foreground">
               <tr>
                 <th className="px-4 py-2 font-medium">Name</th>
+                <th className="px-4 py-2 font-medium">Assigned user</th>
                 <th className="px-4 py-2 font-medium">Status</th>
                 <th className="px-4 py-2 font-medium">Template</th>
                 <th className="px-4 py-2 font-medium">Resources</th>
@@ -101,6 +102,7 @@ export function AgentsView() {
                       href={agentTabPath(a.agent37_id, "chat")}
                     />
                   </td>
+                  <td className="px-4 py-3 text-muted-foreground">{a.assigned_user_name || "Unassigned"}</td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-1">
                       <Badge variant={statusVariant(a.live_status)}>{a.live_status ?? "unknown"}</Badge>

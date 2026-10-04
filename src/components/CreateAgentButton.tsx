@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { apiFetch } from "@/lib/api";
 import { AGENT_TYPES } from "@/config/agents";
 import { Button } from "@/components/ui/button";
+import { useWorkspaceMembers, WorkspaceUserSelect } from "@/components/WorkspaceUserSelect";
 import {
   Dialog,
   DialogContent,
@@ -26,16 +27,20 @@ export function CreateAgentButton({
 }) {
   const [open, setOpen] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [assignedUserId, setAssignedUserId] = useState("");
+  const { members, loading, error } = useWorkspaceMembers(workspaceId, open);
 
   async function create() {
+    if (!members.some((member) => member.user_id === assignedUserId)) return;
     setBusy(true);
     try {
       await apiFetch("/api/agents", {
         method: "POST",
-        body: JSON.stringify({ workspace_id: workspaceId, template: DEFAULT_TEMPLATE }),
+        body: JSON.stringify({ workspace_id: workspaceId, template: DEFAULT_TEMPLATE, assigned_user_id: assignedUserId }),
       });
       toast.success("Agent is provisioning");
       setOpen(false);
+      setAssignedUserId("");
       onCreated();
     } catch (e) {
       toast.error((e as Error).message);
@@ -65,11 +70,15 @@ export function CreateAgentButton({
             <p className="text-xs text-muted-foreground">You can optionally enable email, iMessage and calls in this agent’s Messaging tab.</p>
           </div>
 
+          <WorkspaceUserSelect id="create-agent-assignee" members={members} value={assignedUserId} onChange={setAssignedUserId} disabled={busy || loading} />
+          {loading && <p className="text-sm text-muted-foreground">Loading users…</p>}
+          {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
+
           <DialogFooter>
             <Button variant="outline" onClick={() => setOpen(false)} disabled={busy}>
               Cancel
             </Button>
-            <Button onClick={create} disabled={busy}>
+            <Button onClick={create} disabled={busy || loading || !members.some((member) => member.user_id === assignedUserId)}>
               {busy ? "Creating..." : "Create agent"}
             </Button>
           </DialogFooter>

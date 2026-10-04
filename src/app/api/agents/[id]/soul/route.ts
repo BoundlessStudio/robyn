@@ -1,5 +1,5 @@
 import { agent37 } from "@/lib/agent37";
-import { requireAdmin, requireAgentAccess } from "@/lib/auth";
+import { requireAgentAccess } from "@/lib/auth";
 import { hermesSoul } from "@/lib/hermes-soul";
 import { validateSoulWrite } from "@/lib/soul-input";
 import { ApiError, handleError, json, readJson } from "@/lib/http";
@@ -30,8 +30,7 @@ export async function GET(_request: Request, { params }: Ctx) {
 export async function PUT(request: Request, { params }: Ctx) {
   try {
     const { id } = await params;
-    const { db, row, user } = await requireHermes(id);
-    await requireAdmin(db, row.workspace_id, user.id);
+    await requireHermes(id);
     let input;
     try { input = validateSoulWrite(await readJson<unknown>(request)); }
     catch (error) { throw new ApiError(400, "invalid_soul", (error as Error).message); }

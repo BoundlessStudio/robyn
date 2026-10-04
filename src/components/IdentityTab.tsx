@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 export function IdentityTab({ agentId, agent, role, onChanged }: {
   agentId: string; agent: MergedAgent; role: Role; onChanged: () => void;
 }) {
-  const isAdmin = role === "admin";
+  const canManage = role === "admin" || role === "member";
   const [name, setName] = useState(agent.name ?? "");
   const [icon, setIcon] = useState<string | null>(agent.icon);
   const [savingProfile, setSavingProfile] = useState(false);
@@ -74,8 +74,8 @@ export function IdentityTab({ agentId, agent, role, onChanged }: {
       <section className="space-y-4 rounded-lg border bg-card p-5">
         <div className="flex items-center gap-3"><AgentIcon icon={icon} className="h-12 w-12" /><div><h2 className="font-semibold">Name &amp; icon</h2><p className="text-sm text-muted-foreground">How this agent appears across Robyn.</p></div></div>
         <form onSubmit={saveProfile} className="space-y-4">
-          <div className="space-y-1.5"><Label htmlFor="identity-name">Agent name</Label><Input id="identity-name" value={name} onChange={(event) => setName(event.target.value)} maxLength={60} placeholder="Untitled agent" disabled={!isAdmin || savingProfile} /></div>
-          <fieldset disabled={!isAdmin || savingProfile} className="space-y-2">
+          <div className="space-y-1.5"><Label htmlFor="identity-name">Agent name</Label><Input id="identity-name" value={name} onChange={(event) => setName(event.target.value)} maxLength={60} placeholder="Untitled agent" disabled={!canManage || savingProfile} /></div>
+          <fieldset disabled={!canManage || savingProfile} className="space-y-2">
             <legend className="text-sm font-medium">Icon</legend>
             <div className="flex flex-wrap gap-2">
               {AGENT_ICONS.map((option) => <button key={option.id} type="button" aria-label={`${option.label} icon`} title={option.label} aria-pressed={(icon ?? "bot") === option.id}
@@ -85,7 +85,7 @@ export function IdentityTab({ agentId, agent, role, onChanged }: {
             </div>
           </fieldset>
           {profileError && <p role="alert" className="text-sm text-destructive">{profileError}</p>}
-          <Button type="submit" size="sm" disabled={!isAdmin || savingProfile || (name.trim() === (agent.name ?? "") && icon === agent.icon)}><Save />{savingProfile ? "Saving…" : "Save name & icon"}</Button>
+          <Button type="submit" size="sm" disabled={!canManage || savingProfile || (name.trim() === (agent.name ?? "") && icon === agent.icon)}><Save />{savingProfile ? "Saving…" : "Save name & icon"}</Button>
         </form>
       </section>
       <section className="space-y-4 rounded-lg border bg-card p-5">
@@ -97,11 +97,11 @@ export function IdentityTab({ agentId, agent, role, onChanged }: {
           <>
             {loading && !document && <div className="flex items-center gap-2 text-sm text-muted-foreground"><Loader2 className="h-4 w-4 animate-spin" /> Loading SOUL.md…</div>}
             {document && <form onSubmit={saveSoul} className="space-y-3">
-              <div className="space-y-1.5"><Label htmlFor="identity-soul">SOUL.md</Label><textarea id="identity-soul" value={draft} onChange={(event) => setDraft(event.target.value)} disabled={!isAdmin || savingSoul || loading}
+              <div className="space-y-1.5"><Label htmlFor="identity-soul">SOUL.md</Label><textarea id="identity-soul" value={draft} onChange={(event) => setDraft(event.target.value)} disabled={!canManage || savingSoul || loading}
                 spellCheck={false} className="min-h-80 w-full resize-y rounded-md border border-input bg-background p-3 font-mono text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:opacity-50"
                 placeholder={"# Identity\nDescribe who this agent is, its tone, values and communication style."} /></div>
               <div className="flex flex-wrap items-start justify-between gap-2 text-xs text-muted-foreground"><p className="max-w-lg">Write in Markdown. Changes shape future conversations; start a new chat to hear the new voice. An empty SOUL uses Hermes’ default personality.</p><span className={cn("shrink-0", bytes > SOUL_MAX_BYTES && "text-destructive")}>{Math.ceil(bytes / 1024)} / 64 KB</span></div>
-              <Button type="submit" size="sm" disabled={!isAdmin || !dirty || savingSoul || loading || bytes > SOUL_MAX_BYTES}><Save />{savingSoul ? "Saving…" : "Save SOUL.md"}</Button>
+              <Button type="submit" size="sm" disabled={!canManage || !dirty || savingSoul || loading || bytes > SOUL_MAX_BYTES}><Save />{savingSoul ? "Saving…" : "Save SOUL.md"}</Button>
             </form>}
             {soulError && <p role="alert" className="whitespace-pre-wrap text-sm text-destructive">{soulError}</p>}
           </>

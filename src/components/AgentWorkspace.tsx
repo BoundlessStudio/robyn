@@ -159,16 +159,16 @@ export function AgentWorkspace({
               <span className="truncate font-semibold">{branding.appName}</span>
             </div>
 
-            <Link
+            {role === "admin" && <Link
               href="/dashboard"
               className="mt-4 flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
             >
               <ArrowLeft className="h-4 w-4" />
               Back to all agents
-            </Link>
+            </Link>}
 
             <div className="mt-3">
-              <ActiveAgentSwitcher agents={agents} activeAgentId={agentId} currentTab={currentTab} />
+              <ActiveAgentSwitcher agents={agents} activeAgentId={agentId} currentTab={currentTab} role={role} />
             </div>
 
             <nav className="mt-5 flex flex-col gap-1">

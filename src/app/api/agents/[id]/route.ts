@@ -1,5 +1,5 @@
 import { agent37, Agent37Error } from "@/lib/agent37";
-import { requireAdmin, requireAgentAccess } from "@/lib/auth";
+import { requireAgentAccess } from "@/lib/auth";
 import { validateAgentProfile } from "@/lib/agent-profile-input";
 import { ApiError, handleError, json, readJson } from "@/lib/http";
 import { deleteInkboxIdentity } from "@/lib/inkbox-provisioning";
@@ -9,8 +9,7 @@ type Ctx = { params: Promise<{ id: string }> };
 export async function PATCH(request: Request, { params }: Ctx) {
   try {
     const { id } = await params;
-    const { db, row, user } = await requireAgentAccess(id);
-    await requireAdmin(db, row.workspace_id, user.id);
+    const { db } = await requireAgentAccess(id, "manage");
 
     let patch;
     try { patch = validateAgentProfile(await readJson<unknown>(request)); }
@@ -29,7 +28,7 @@ export async function PATCH(request: Request, { params }: Ctx) {
 export async function DELETE(_request: Request, { params }: Ctx) {
   try {
     const { id } = await params;
-    const { db } = await requireAgentAccess(id, "admin");
+    const { db } = await requireAgentAccess(id, "manage");
 
     await deleteInkboxIdentity(db, id, async () => {
       try {

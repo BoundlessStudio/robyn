@@ -1,6 +1,6 @@
 import { after } from "next/server";
 import { agent37 } from "@/lib/agent37";
-import { requireAdmin, requireAgentAccess } from "@/lib/auth";
+import { requireAgentAccess } from "@/lib/auth";
 import { ApiError, handleError, json, readJson } from "@/lib/http";
 import { beginInkboxSetup, getInkboxRow, inkboxIdentityView, queueInkboxIdentity, runInkboxSetup } from "@/lib/inkbox-provisioning";
 import { normalizeInkboxPhone } from "@/lib/inkbox-setup";
@@ -20,8 +20,7 @@ export async function GET(_request: Request, { params }: Ctx) {
 export async function POST(request: Request, { params }: Ctx) {
   try {
     const { id } = await params;
-    const { db, user, row } = await requireAgentAccess(id);
-    await requireAdmin(db, row.workspace_id, user.id);
+    const { db, row } = await requireAgentAccess(id, "manage");
     if (row.template !== "agent37-hermes") throw new ApiError(400, "unsupported_agent", "Inkbox identities require Hermes.");
     if (!inkboxConfigured()) throw new ApiError(503, "inkbox_not_configured", "The operator must add INKBOX_ADMIN_KEY.");
     const live = await agent37.getAgent(id);

@@ -72,7 +72,7 @@ here. See [Messaging channels](https://www.agent37.com/docs/agents-api/messaging
 
 The retained **Messaging** page is hidden from agent navigation; **Channels** and
 **Integrations** are the visible connection tools. Its existing `/messaging` deep
-link and Inkbox BFF remain available. It provisions optional Inkbox identities only when an admin clicks
+link and Inkbox BFF remain available. It provisions optional Inkbox identities only when an admin or assigned member clicks
 **Enable Inkbox**. Read [iMessage, email and calls](https://www.agent37.com/docs/agents-api/imessage)
 before changing it. `INKBOX_ADMIN_KEY` stays server-side in `src/lib/inkbox.ts`; each
 agent receives only an identity-scoped key. `src/lib/inkbox-provisioning.ts` persists
@@ -83,8 +83,8 @@ Inkbox Voice AI handles calls and sends transcripts to Hermes.
 
 The **Schedule** tab uses control-plane `/instances/{id}/crons` endpoints through
 `agent37.ts`. Jobs live on Agent37, including jobs created by the agent itself;
-there is no local scheduler or database mirror. Workspace members can list jobs
-and history; mutations require admin access. Send only changed PATCH fields:
+there is no local scheduler or database mirror. Admins and assigned members can list jobs
+and history and manage schedules. Send only changed PATCH fields:
 unchanged `schedule`, `timezone` or `enabled` would recompute `next_run`. A run's
 `triggered` status means it was requested, not that it succeeded; its linked Chat
 conversation contains the result. Explicitly stopped agents are never woken.
@@ -94,7 +94,7 @@ second personality/preset selector. Consult the [Hermes personality guide](https
 before changing it. The name/icon PATCH is authorized through the agent mirror:
 names also sync upstream without touching ownership metadata, and icons are bounded
 catalog IDs stored in `agents.icon`. `/api/agents/{id}/soul` reads/writes only SOUL.md
-in the running Hermes worker's profile over `exec`. Writes require admin access,
+in the running Hermes worker's profile over `exec`. Writes require admin or assigned-member access,
 are atomic, and require a content/profile revision so stale drafts cannot overwrite
 newer edits. Symbolic/hard links and oversized files are refused. Markdown travels
 as encoded data, never shell source. No configuration secrets are returned.
@@ -138,6 +138,13 @@ Browser ─▶ Next.js (this app) ─▶ control plane  https://api.agent37.com/
   shared by the whole app. Every agent is created under your one Agent37 workspace
   and tagged `metadata.app_workspace`; a Supabase mirror table is the source of
   truth for which app-workspace owns which agent.
+- **Workspace roles and assignment.** Invitations select `admin` or `member`, defaulting to
+  `member`. Admins manage the fleet, members and workspace settings. Members have full
+  access only to agents whose `agents.assigned_user_id` matches their verified session.
+  Every per-agent page and BFF route uses `requireAgentAccess`; creation and reassignment
+  require an admin and an assignee from the same workspace. `created_by` stays an audit
+  field and never grants access. Removing membership clears its assignments. The member
+  dashboard opens a sole assignment directly, otherwise shows a simple agent chooser.
 - **Isolation is enforced in the server (BFF), not in the browser.** Clients have **no**
   direct table access — the schema migration (`0001_init.sql`) grants tables only to the
   service role, so the browser only uses Supabase for *auth*. Every read and write
@@ -178,11 +185,13 @@ Browser ─▶ Next.js (this app) ─▶ control plane  https://api.agent37.com/
 | `src/lib/agent-profile-input.ts`, `src/lib/soul-input.ts` | Shared profile catalog and bounded input validation |
 | `src/app/api/agents/[id]/soul/`, `src/lib/hermes-soul.ts`, `src/lib/hermes-soul-command.ts` | Authorized, profile-aware SOUL reads and revision-checked atomic saves over exec |
 | `src/components/ScheduleTab.tsx`, `src/lib/cron-input.ts` | Cron editor, run history, input validation and minimal PATCH fields |
-| `src/app/api/agents/[id]/crons/**` | Per-agent cron BFF; member reads and admin-only mutations |
-| `src/app/api/agents/[id]/identity/` | Inkbox state reads and admin-only provisioning / phone updates |
+| `src/app/api/agents/[id]/crons/**` | Per-agent cron BFF; admins and assigned members can read and manage |
+| `src/app/api/agents/[id]/identity/` | Inkbox state and provisioning / phone updates for admins and assigned members |
+| `src/app/api/agents/[id]/assignment/` | Admin-only assignment updates, restricted to workspace users |
 | `src/lib/inkbox.ts`, `src/lib/inkbox-provisioning.ts` | Server-only Inkbox client and resumable provisioning |
 | `supabase/migrations/0002_inkbox.sql` | Service-role-only identity setup state; no plaintext keys |
 | `supabase/migrations/0003_agent_icon.sql` | Bounded display icons in the tenant-scoped agent mirror |
+| `supabase/migrations/0004_member_assignments.sql` | Member roles, tenant-scoped assignment, member display names and invite acceptance |
 | `src/app/dashboard/agents/[agentId]/[[...tab]]/` | The per-agent tabbed workspace route (Chat / Identity / Files / Channels / Integrations / Schedule / Settings; Messaging is a retained hidden route) |
 | `src/config/agents.ts` | `SHAPE_PRESETS`, `DEFAULT_AGENT`, the `AGENT_TYPES` catalog, `PORT_LABELS` (labels only), and `templateAppPorts` — the per-template openable app ports (the API no longer reports per-instance ports) |
 | `src/config/branding.ts` | `appName` / `logoUrl` code constants (branding lives here, not in env) |

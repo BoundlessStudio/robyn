@@ -29,7 +29,7 @@ export function ScheduleTab({ agentId, agent, role, onOpenSession }: {
   const [editor, setEditor] = useState<{ job: AgentCron | null } | null>(null);
   const [deleting, setDeleting] = useState<AgentCron | null>(null);
   const [history, setHistory] = useState<AgentCron | null>(null);
-  const isAdmin = role === "admin";
+  const canManage = role === "admin" || role === "member";
   const base = `/api/agents/${agentId}/crons`;
 
   const load = useCallback(async (quiet = false) => {
@@ -74,7 +74,7 @@ export function ScheduleTab({ agentId, agent, role, onOpenSession }: {
         </div>
         <div className="flex gap-2">
           <Button variant="outline" size="sm" disabled={refreshing} onClick={() => load()} aria-label="Refresh schedules"><RefreshCw className={refreshing ? "animate-spin" : undefined} /></Button>
-          <Button size="sm" disabled={!isAdmin || jobs === null || jobs.length >= 50} onClick={() => setEditor({ job: null })}><Plus /> Add schedule</Button>
+          <Button size="sm" disabled={!canManage || jobs === null || jobs.length >= 50} onClick={() => setEditor({ job: null })}><Plus /> Add schedule</Button>
         </div>
       </header>
       <p className="text-xs text-muted-foreground">Schedules can wake sleeping agents. Runs use the agent’s normal compute and model budget.</p>
@@ -105,11 +105,11 @@ export function ScheduleTab({ agentId, agent, role, onOpenSession }: {
                 <div><dt className="font-medium text-foreground">Last scheduled run</dt><dd>{dateTime(job.last_run, job.timezone)}</dd></div>
               </dl>
               <div className="flex flex-wrap gap-2">
-                <Button size="sm" variant="outline" disabled={!isAdmin || !!busy} onClick={() => action(job, true)}><Play /> Run now</Button>
-                <Button size="sm" variant="outline" disabled={!isAdmin || !!busy} onClick={() => action(job)}>{job.enabled ? <Pause /> : <Play />}{job.enabled ? "Pause" : "Resume"}</Button>
-                <Button size="sm" variant="outline" disabled={!isAdmin || !!busy} onClick={() => setEditor({ job })}><Pencil /> Edit</Button>
+                <Button size="sm" variant="outline" disabled={!canManage || !!busy} onClick={() => action(job, true)}><Play /> Run now</Button>
+                <Button size="sm" variant="outline" disabled={!canManage || !!busy} onClick={() => action(job)}>{job.enabled ? <Pause /> : <Play />}{job.enabled ? "Pause" : "Resume"}</Button>
+                <Button size="sm" variant="outline" disabled={!canManage || !!busy} onClick={() => setEditor({ job })}><Pencil /> Edit</Button>
                 <Button size="sm" variant="outline" onClick={() => setHistory(job)}><History /> History</Button>
-                <Button size="sm" variant="ghost" disabled={!isAdmin || !!busy} onClick={() => setDeleting(job)} aria-label={`Delete ${job.name || "schedule"}`}><Trash2 /></Button>
+                <Button size="sm" variant="ghost" disabled={!canManage || !!busy} onClick={() => setDeleting(job)} aria-label={`Delete ${job.name || "schedule"}`}><Trash2 /></Button>
                 {busy === job.id && <Loader2 className="h-4 w-4 self-center animate-spin text-muted-foreground" />}
               </div>
             </article>

@@ -111,10 +111,10 @@ export function AccountMenu() {
               {w.id === current?.id && <Check className="h-4 w-4" />}
             </DropdownMenuItem>
           ))}
-          <DropdownMenuItem onClick={() => setCreating(true)}>
+          {current?.role === "admin" && <DropdownMenuItem onClick={() => setCreating(true)}>
             <Plus className="h-4 w-4" />
             New workspace
-          </DropdownMenuItem>
+          </DropdownMenuItem>}
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={signOut} className="text-destructive focus:text-destructive">
             <LogOut className="h-4 w-4" />

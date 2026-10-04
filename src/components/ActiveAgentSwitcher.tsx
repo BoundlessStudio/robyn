@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { agentTabPath, type AgentTab } from "@/lib/dashboard-tabs";
 import { statusVariant } from "@/lib/format";
-import type { MergedAgent } from "@/lib/types";
+import type { MergedAgent, Role } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -37,14 +37,20 @@ export function ActiveAgentSwitcher({
   agents,
   activeAgentId,
   currentTab,
+  role,
 }: {
   agents: MergedAgent[];
   activeAgentId: string;
   currentTab: AgentTab;
+  role: Role;
 }) {
   const router = useRouter();
   const active = agents.find((a) => a.agent37_id === activeAgentId);
-  const label = active?.name?.trim() || active?.agent37_id || "Select agent";
+  function agentLabel(agent: MergedAgent) {
+    const name = agent.name?.trim() || agent.agent37_id;
+    return role === "admin" ? `${name} · ${agent.assigned_user_name || "Unassigned"}` : name;
+  }
+  const label = active ? agentLabel(active) : "Select agent";
 
   return (
     <DropdownMenu>
@@ -53,12 +59,12 @@ export function ActiveAgentSwitcher({
           <span className="flex min-w-0 items-center gap-2">
             <AgentIcon icon={active?.icon} className="h-5 w-5 bg-transparent" />
             <StatusDot status={active?.live_status} />
-            <span className="truncate">{label}</span>
+            <span className="truncate" title={label}>{label}</span>
           </span>
           <ChevronsUpDown className="opacity-50" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="start">
+      <DropdownMenuContent className={role === "admin" ? "w-80" : "w-56"} align="start">
         <DropdownMenuLabel>Agents</DropdownMenuLabel>
         {agents.map((a) => (
           <DropdownMenuItem
@@ -67,7 +73,7 @@ export function ActiveAgentSwitcher({
           >
             <AgentIcon icon={a.icon} className="h-5 w-5 bg-transparent" />
             <StatusDot status={a.live_status} />
-            <span className="flex-1 truncate">{a.name?.trim() || a.agent37_id}</span>
+            <span className="flex-1 truncate" title={agentLabel(a)}>{agentLabel(a)}</span>
             {a.agent37_id === activeAgentId && <Check className="h-4 w-4" />}
           </DropdownMenuItem>
         ))}

@@ -1,5 +1,5 @@
 import { agent37 } from "@/lib/agent37";
-import { requireAdmin, requireAgentAccess } from "@/lib/auth";
+import { requireAgentAccess } from "@/lib/auth";
 import { validateCronInput } from "@/lib/cron-input";
 import { ApiError, handleError, json, readJson } from "@/lib/http";
 import type { CronInput } from "@/lib/types";
@@ -17,8 +17,7 @@ export async function GET(_request: Request, { params }: Ctx) {
 export async function POST(request: Request, { params }: Ctx) {
   try {
     const { id } = await params;
-    const { db, user, row } = await requireAgentAccess(id);
-    await requireAdmin(db, row.workspace_id, user.id);
+    await requireAgentAccess(id, "manage");
     let input;
     try { input = validateCronInput(await readJson<unknown>(request)); }
     catch (error) { throw new ApiError(400, "invalid_schedule", (error as Error).message); }

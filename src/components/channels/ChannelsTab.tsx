@@ -36,7 +36,7 @@ export function ChannelsTab({
   agent: MergedAgent;
   role: Role;
 }) {
-  const isAdmin = role === "admin";
+  const canManage = role === "admin" || role === "member";
   // Reaching the harness runs a command inside the instance, which wakes a sleeper but cannot start a
   // stopped agent.
   const reachable = agent.live_status === "running" || agent.live_status === "sleeping";
@@ -120,7 +120,7 @@ export function ChannelsTab({
               <ChannelRow
                 key={channel.id}
                 channel={channel}
-                isAdmin={isAdmin}
+                canManage={canManage}
                 onOpen={() => setOpenId(channel.id)}
               />
             ))}
@@ -128,7 +128,7 @@ export function ChannelsTab({
               <ChannelRow
                 key={channel.id}
                 channel={channel}
-                isAdmin={isAdmin}
+                canManage={canManage}
                 onOpen={() => setOpenId(channel.id)}
               />
             ))}
@@ -152,7 +152,7 @@ export function ChannelsTab({
                       <ChannelRow
                         key={channel.id}
                         channel={channel}
-                        isAdmin={isAdmin}
+                        canManage={canManage}
                         onOpen={() => setOpenId(channel.id)}
                       />
                     ))}
@@ -177,11 +177,11 @@ function Header() {
 
 function ChannelRow({
   channel,
-  isAdmin,
+  canManage,
   onOpen,
 }: {
   channel: MessagingPlatform;
-  isAdmin: boolean;
+  canManage: boolean;
   onOpen: () => void;
 }) {
   const { Icon, color } = channelBrand(channel.id);
@@ -202,7 +202,7 @@ function ChannelRow({
           {error || channel.description || channelStateLabel(channel)}
         </p>
       </div>
-      <Button variant="outline" size="sm" disabled={!isAdmin} onClick={onOpen}>
+      <Button variant="outline" size="sm" disabled={!canManage} onClick={onOpen}>
         {connected ? "Manage" : isFeaturedChannel(channel.id) ? `Connect ${channel.name}` : "Connect"}
       </Button>
     </div>

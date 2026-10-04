@@ -1,9 +1,10 @@
 import { agent37 } from "@/lib/agent37";
-import { requireAdmin, requireMember, requireUser } from "@/lib/auth";
+import { requireAdmin, requireAssignee, requireMember, requireUser } from "@/lib/auth";
+import { validateAssignedUserId } from "@/lib/assignment-input";
 import { AGENT_TEMPLATES, DEFAULT_AGENT, templateAppPorts } from "@/config/agents";
 import { usdToMicros } from "@/lib/format";
 import { ApiError, handleError, json, readJson } from "@/lib/http";
-import type { Agent, AgentRow, MergedAgent, Template } from "@/lib/types";
+import type { Agent, AgentRow, MergedAgent, Template, WorkspaceMember } from "@/lib/types";
 
 // The image catalog barely changes, but the dashboard polls this route every 5s while any agent is
 // transitioning — so cache the template list briefly rather than re-fetching /templates on every
@@ -27,12 +28,21 @@ export async function GET(request: Request) {
 
     const role = await requireMember(db, workspaceId, user.id);
 
-    const { data: rows, error } = await db
+    let query = db
       .from("agents")
       .select("*")
       .eq("workspace_id", workspaceId)
       .order("created_at", { ascending: false });
+    if (role === "member") query = query.eq("assigned_user_id", user.id);
+    const { data: rows, error } = await query;
     if (error) throw new ApiError(500, "db_error", error.message);
+
+    const names = new Map<string, string>();
+    if (role === "admin") {
+      const { data: members, error: memberError } = await db.rpc("get_workspace_members_with_names", { p_workspace: workspaceId });
+      if (memberError) throw new ApiError(500, "db_error", memberError.message);
+      for (const member of (members ?? []) as WorkspaceMember[]) names.set(member.user_id, member.name || member.email);
+    }
 
     let live = new Map<string, Agent>();
     let templates = new Map<string, Template>();
@@ -66,6 +76,7 @@ export async function GET(request: Request) {
       }
       return {
         ...row,
+        assigned_user_name: row.assigned_user_id ? names.get(row.assigned_user_id) ?? null : null,
         cpu: l?.resources.cpu ?? row.cpu,
         memory: l?.resources.memory ?? row.memory,
         disk: l?.resources.disk ?? row.disk,
@@ -94,11 +105,15 @@ export async function POST(request: Request) {
   try {
     const { db, user } = await requireUser();
     // New agents always use Hermes; reject stale clients requesting another template.
-    const body = await readJson<{ workspace_id?: string; template?: string }>(request);
+    const body = await readJson<{ workspace_id?: string; template?: string; assigned_user_id?: unknown }>(request);
 
-    const workspaceId = body.workspace_id;
-    if (!workspaceId) throw new ApiError(400, "invalid_request", "workspace_id is required");
+    const workspaceId = body?.workspace_id;
+    if (typeof workspaceId !== "string" || !workspaceId) throw new ApiError(400, "invalid_request", "workspace_id is required");
     await requireAdmin(db, workspaceId, user.id);
+    let assignedUserId: string;
+    try { assignedUserId = validateAssignedUserId(body.assigned_user_id); }
+    catch (error) { throw new ApiError(400, "invalid_assignment", (error as Error).message); }
+    await requireAssignee(db, workspaceId, assignedUserId);
 
     // Paywall/entitlement seam: a fork can gate agent creation here, e.g.
     // if (!(await canCreateAgent(db, workspaceId))) throw new ApiError(403, "forbidden", "Agent creation is not enabled for this workspace.");
@@ -114,7 +129,7 @@ export async function POST(request: Request) {
         memory: DEFAULT_AGENT.memory,
         disk: DEFAULT_AGENT.disk,
       },
-      user: user.id,
+      user: assignedUserId,
       metadata: { app_workspace: workspaceId },
       budget: { monthly_cap_micros: usdToMicros(DEFAULT_AGENT.monthlyCapUsd) },
     });
@@ -129,6 +144,7 @@ export async function POST(request: Request) {
       memory: agent.resources.memory,
       disk: agent.resources.disk,
       created_by: user.id,
+      assigned_user_id: assignedUserId,
     });
     if (error) {
       // Roll back the orphaned agent so we never bill for an untracked box.
