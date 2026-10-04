@@ -11,6 +11,7 @@ import * as profileInput from '../src/lib/agent-profile-input.ts';
 import * as budgetInput from '../src/lib/budget-input.ts';
 import * as agentConfig from '../src/config/agents.ts';
 import * as costHelpers from '../src/lib/agent-costs.ts';
+import * as userProfile from '../src/lib/user-profile.ts';
 
 // Execute the real handlers/helpers with fake external services, so these tests cannot
 // provision billed instances or require a live Supabase project.
@@ -32,6 +33,7 @@ function loadSource(relativePath, dependencies) {
 }
 
 const resourceInput = loadSource('src/lib/resource-input.ts', { '@/config/agents': agentConfig });
+const budgetRequestInput = loadSource('src/lib/budget-request-input.ts', { './budget-input': budgetInput });
 
 class ApiError extends Error {
   constructor(status, code, message) { super(message); this.status = status; this.code = code; }
@@ -61,23 +63,34 @@ function fixture(userId = MEMBER, sharedTables) {
       { agent37_id: 'foreign', workspace_id: 'another-workspace', assigned_user_id: MEMBER, status: 'running' },
     ],
     invitations: [],
+    agent_budget_requests: [],
   };
   const calls = [];
   const db = {
     from(table) {
       const filters = [];
-      let insert, update, remove = false;
+      let insert, update, remove = false, selected = '*', maxRows = Infinity;
+      const project = (row) => table !== 'agent_budget_requests' || selected === '*' ? row :
+        Object.fromEntries(selected.split(',').map((key) => [key, row[key]]));
       const evaluate = () => {
-        if (insert) { tables[table].push({ token: 'invite-token', ...insert }); return { data: tables[table].at(-1), error: null }; }
-        const data = tables[table].filter((row) => filters.every(([key, value]) => row[key] === value));
+        if (insert) {
+          if (table === 'agent_budget_requests' && tables[table].some((row) =>
+            ['agent37_id', 'requester_id', 'idempotency_key'].every((key) => row[key] === insert[key]))) {
+            return { data: null, error: { code: '23505' } };
+          }
+          tables[table].push({ token: 'invite-token', id: `request-${tables[table].length}`, created_at: new Date().toISOString(), ...insert });
+          return { data: project(tables[table].at(-1)), error: null };
+        }
+        const data = tables[table].filter((row) => filters.every(([key, value]) => row[key] === value)).slice(0, maxRows);
         if (update) data.forEach((row) => Object.assign(row, update));
         if (remove) tables[table] = tables[table].filter((row) => !data.includes(row));
-        return { data, error: null };
+        return { data: data.map(project), error: null };
       };
       const query = {
-        select: () => query,
+        select: (fields = '*') => { selected = fields; return query; },
         eq: (key, value) => { filters.push([key, value]); return query; },
         order: () => query,
+        limit: (value) => { maxRows = value; return query; },
         insert: (value) => { insert = value; return query; },
         update: (value) => { update = value; return query; },
         delete: () => { remove = true; return query; },
@@ -93,7 +106,7 @@ function fixture(userId = MEMBER, sharedTables) {
     },
   };
   const auth = loadSource('src/lib/auth.ts', {
-    '@/lib/supabase/server': { createClient: async () => ({ auth: { getUser: async () => ({ data: { user: userId ? { id: userId } : null } }) } }) },
+    '@/lib/supabase/server': { createClient: async () => ({ auth: { getUser: async () => ({ data: { user: userId ? { id: userId, email: 'verified@example.com', user_metadata: { full_name: 'Verified member' } } : null } }) } }) },
     '@/lib/supabase/admin': { createAdminClient: () => db },
     '@/lib/http': http,
   });
@@ -120,6 +133,7 @@ function fixture(userId = MEMBER, sharedTables) {
   const dependencies = {
     '@/lib/auth': auth, '@/lib/http': http, '@/lib/assignment-input': assignmentInput, '@/lib/budget-input': budgetInput,
     '@/lib/resource-input': resourceInput, '@/lib/agent-costs': costHelpers,
+    '@/lib/budget-request-input': budgetRequestInput, '@/lib/user-profile': userProfile,
     '@/lib/agent37': { agent37: upstream },
     '@/config/agents': { AGENT_TEMPLATES: ['agent37-hermes'], DEFAULT_AGENT: { template: 'agent37-hermes', cpu: 1, memory: 2, disk: 10, monthlyCapUsd: 20 }, templateAppPorts: () => [] },
     '@/lib/format': { usdToMicros: (usd) => usd * 1e6 },
@@ -250,6 +264,104 @@ test('invalid budget requests never reach Agent37 and zero caps remain supported
   assert.equal(f.calls.length, 0);
   assert.equal((await route.PATCH(request({ monthly_cap_usd: 0 }), params({ id: 'mine' }))).status, 200);
   assert.deepEqual(f.calls, [{ budgetWrite: 'mine', monthly_cap_micros: 0 }]);
+});
+
+test('extra budget requests require a verified assigned member and never change the upstream allowance', async () => {
+  for (const [user, id, status] of [[MEMBER, 'mine', 201], [ADMIN, 'mine', 403],
+    [MEMBER, 'other', 404], [MEMBER, 'unassigned', 404], [MEMBER, 'foreign', 404], [null, 'mine', 401]]) {
+    const f = fixture(user);
+    const route = loadSource('src/app/api/agents/[id]/budget/requests/route.ts', f.dependencies);
+    const response = await route.POST(request({ amount_usd: '12.345678', note: ' More research ', idempotency_key: 'request-1',
+      workspace_id: 'foreign', requester_id: ADMIN, requester_name: 'Forged admin', agent37_id: 'other', status: 'approved' }), params({ id }));
+    assert.equal(response.status, status);
+    assert.equal(f.calls.length, 0);
+    assert.equal(f.tables.agent_budget_requests.length, status === 201 ? 1 : 0);
+    if (status === 201) {
+      const row = f.tables.agent_budget_requests[0];
+      assert.equal(row.workspace_id, WORKSPACE);
+      assert.equal(row.agent37_id, 'mine');
+      assert.equal(row.requester_id, MEMBER);
+      assert.equal(row.requester_name, 'Verified member');
+      assert.equal(row.amount_micros, 12_345_678);
+      assert.equal(row.note, 'More research');
+      assert.equal(row.status, undefined);
+      assert.deepEqual(Object.keys(await response.json()).sort(), ['amount_micros', 'created_at', 'id', 'note', 'requester_name']);
+    }
+  }
+});
+
+test('request reads hide other members and agents while admins can review the agent request history', async () => {
+  const f = fixture();
+  f.tables.agent_budget_requests.push(
+    { id: 'own', agent37_id: 'mine', workspace_id: WORKSPACE, requester_id: MEMBER, requester_name: 'Member', amount_micros: 5_000_000, note: '', created_at: new Date().toISOString() },
+    { id: 'previous-assignee', agent37_id: 'mine', workspace_id: WORKSPACE, requester_id: OTHER, requester_name: 'Previous member', amount_micros: 9_000_000, note: 'Private note', created_at: new Date().toISOString() },
+    { id: 'other-agent', agent37_id: 'other', workspace_id: WORKSPACE, requester_id: MEMBER },
+    { id: 'foreign', agent37_id: 'mine', workspace_id: 'another-workspace', requester_id: MEMBER },
+  );
+  for (const [user, expected] of [[MEMBER, ['own']], [ADMIN, ['own', 'previous-assignee']]]) {
+    const route = loadSource('src/app/api/agents/[id]/budget/requests/route.ts', fixture(user, f.tables).dependencies);
+    const response = await route.GET(request({}), params({ id: 'mine' }));
+    assert.equal(response.status, 200);
+    const body = await response.json();
+    assert.deepEqual(body.requests.map((row) => row.id), expected);
+    assert.equal(JSON.stringify(body).includes('requester_id'), false);
+    assert.equal(JSON.stringify(body).includes('workspace_id'), false);
+  }
+  f.tables.agents[0].assigned_user_id = OTHER;
+  const route = loadSource('src/app/api/agents/[id]/budget/requests/route.ts', f.dependencies);
+  assert.equal((await route.GET(request({}), params({ id: 'mine' }))).status, 404);
+  assert.equal((await route.POST(request({ amount_usd: 5, idempotency_key: 'request-2' }), params({ id: 'mine' }))).status, 404);
+});
+
+test('concurrent request retries insert once, reject changed payloads, and scope retry keys to the requester', async () => {
+  const f = fixture();
+  const route = loadSource('src/app/api/agents/[id]/budget/requests/route.ts', f.dependencies);
+  const body = { amount_usd: '5', note: 'Research', idempotency_key: 'same-retry-key' };
+  const responses = await Promise.all(Array.from({ length: 3 }, () => route.POST(request(body), params({ id: 'mine' }))));
+  assert.deepEqual(responses.map((response) => response.status).sort(), [200, 200, 201]);
+  assert.equal(f.tables.agent_budget_requests.length, 1);
+  assert.equal(new Set(await Promise.all(responses.map(async (response) => (await response.json()).id))).size, 1);
+  assert.equal((await route.POST(request({ ...body, amount_usd: 6 }), params({ id: 'mine' }))).status, 409);
+  assert.equal((await route.POST(request({ ...body, note: 'Changed note' }), params({ id: 'mine' }))).status, 409);
+  f.tables.agents[0].assigned_user_id = OTHER;
+  const other = loadSource('src/app/api/agents/[id]/budget/requests/route.ts', fixture(OTHER, f.tables).dependencies);
+  assert.equal((await other.POST(request(body), params({ id: 'mine' }))).status, 201);
+  assert.equal(f.tables.agent_budget_requests.length, 2);
+  assert.equal(f.calls.length, 0);
+});
+
+test('invalid extra budget amounts and notes are rejected without storing requests', async () => {
+  const f = fixture();
+  const route = loadSource('src/app/api/agents/[id]/budget/requests/route.ts', f.dependencies);
+  const valid = { amount_usd: '5', idempotency_key: 'request-1' };
+  for (const body of [null, [], {}, { ...valid, amount_usd: 0 }, { ...valid, amount_usd: '-1' },
+    { ...valid, amount_usd: '0.0000001' }, { ...valid, amount_usd: '9007199254.740992' },
+    { ...valid, idempotency_key: '../bad' }, { ...valid, note: 3 }, { ...valid, note: 'x'.repeat(1001) }, { ...valid, note: '\u0000' }]) {
+    assert.equal((await route.POST(request(body), params({ id: 'mine' }))).status, 400);
+  }
+  assert.equal((await route.POST(new Request('https://app.example/api', { method: 'POST', body: '{' }), params({ id: 'mine' }))).status, 400);
+  assert.equal(f.tables.agent_budget_requests.length, 0);
+  assert.equal(f.calls.length, 0);
+});
+
+test('request storage failures return retryable messages without leaking database details', async () => {
+  const f = fixture();
+  const failingQuery = {
+    select: () => failingQuery, eq: () => failingQuery, order: () => failingQuery, limit: () => failingQuery, insert: () => failingQuery,
+    single: async () => ({ data: null, error: { code: 'XX000', message: 'private database details' } }),
+    then: (resolve, reject) => Promise.resolve({ data: null, error: { message: 'private database details' } }).then(resolve, reject),
+  };
+  const route = loadSource('src/app/api/agents/[id]/budget/requests/route.ts', {
+    ...f.dependencies, '@/lib/auth': { requireAgentAccess: async (id) => ({ ...await f.auth.requireAgentAccess(id), db: { from: () => failingQuery } }) },
+  });
+  for (const response of [await route.GET(request({}), params({ id: 'mine' })),
+    await route.POST(request({ amount_usd: 5, idempotency_key: 'request-1' }), params({ id: 'mine' }))]) {
+    assert.equal(response.status, 500);
+    const body = await response.json();
+    assert.match(body.error.message, /Please retry/);
+    assert.doesNotMatch(JSON.stringify(body), /private database details/);
+  }
+  assert.equal(f.calls.length, 0);
 });
 
 test('budget page deep links require an admin and expose only the authorized agent identity', async () => {

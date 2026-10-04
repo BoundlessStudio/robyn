@@ -11,6 +11,7 @@ import type { Budget } from "@/lib/types";
 import { DashboardShell } from "@/components/DashboardShell";
 import { AgentCostSummary } from "@/components/AgentCostSummary";
 import { AgentResourcesBudget } from "@/components/AgentResourcesBudget";
+import { AgentBudgetRequests } from "@/components/AgentBudgetRequests";
 import { useWorkspace } from "@/components/WorkspaceProvider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -178,6 +179,7 @@ function BudgetEditor({ agentId }: { agentId: string }) {
           {actionError && <p role="alert" className="text-sm text-destructive">{actionError}</p>}
         </>
       )}
+      <AgentBudgetRequests agentId={agentId} mode="admin" />
     </section>
     <AgentCostSummary agentId={agentId} refreshKey={costsRevision} />
     </div>
