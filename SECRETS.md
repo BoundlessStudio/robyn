@@ -57,6 +57,12 @@ the local signing secret in Doppler, and hides it from terminal output. It never
 creates a payment. Use `--port 3002` if the app runs on that port. Preview uses its
 own test webhook at the existing Robyn branch alias; update `stg` and rerun
 `billing:setup --config stg --url …` if that preview origin changes.
+Protected Vercel previews also need `VERCEL_AUTOMATION_BYPASS_SECRET` in
+`ops_stg`. `billing:setup` adds it to the private Stripe endpoint URL without
+printing it; `billing:schedule` stores it in Supabase Vault and sends it as a
+request header. Keep preview sign-in protection enabled. This credential is never
+part of the public site URL or browser bundle and is not synced through Doppler
+to Vercel. See [Vercel's automation access guide](https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection/protection-bypass-automation).
 
 The existing Robyn Vercel project has three native Doppler syncs. Use **Dynamic**
 variable type: `NEXT_PUBLIC_*` values are **Unmasked**, server secrets **Masked**.
