@@ -12,6 +12,7 @@ const commands = {
   'billing:coupon': ['--experimental-strip-types', 'scripts/issue-billing-coupon.mjs'],
   'billing:setup': ['scripts/setup-stripe.mjs'],
   'billing:sync': ['scripts/sync-billing.mjs'],
+  'billing:listen': ['scripts/listen-stripe.mjs'],
   'billing:schedule': ['scripts/setup-billing-scheduler.mjs'],
 };
 const operationCommands = new Set(['setup', 'billing:setup', 'billing:schedule']);

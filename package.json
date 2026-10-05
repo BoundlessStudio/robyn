@@ -13,6 +13,7 @@
     "billing:coupon": "node scripts/with-secrets.mjs billing:coupon",
     "billing:setup": "node scripts/with-secrets.mjs billing:setup",
     "billing:sync": "node scripts/with-secrets.mjs billing:sync",
+    "billing:listen": "node scripts/with-secrets.mjs billing:listen",
     "billing:schedule": "node scripts/with-secrets.mjs billing:schedule"
   },
   "dependencies": {

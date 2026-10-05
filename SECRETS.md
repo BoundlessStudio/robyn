@@ -50,6 +50,14 @@ Agent37 has no separate test wallet: provisioning or chatting still spends from
 the operator's Agent37 wallet. Optional Inkbox credentials can stay blank until
 that feature is needed.
 
+For local Stripe webhook forwarding, install the official CLI with
+`npm install --global @stripe/cli`, then run `npm run billing:listen` in a separate
+terminal before `npm run dev`. The command uses only the selected test key, stores
+the local signing secret in Doppler, and hides it from terminal output. It never
+creates a payment. Use `--port 3002` if the app runs on that port. Preview uses its
+own test webhook at the existing Robyn branch alias; update `stg` and rerun
+`billing:setup --config stg --url …` if that preview origin changes.
+
 The existing Robyn Vercel project has three native Doppler syncs. Use **Dynamic**
 variable type: `NEXT_PUBLIC_*` values are **Unmasked**, server secrets **Masked**.
 Vercel builds consume its synced environment directly and do not need the CLI or
