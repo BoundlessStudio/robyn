@@ -6,12 +6,11 @@ import { createHash, timingSafeEqual } from 'node:crypto';
 import { PGlite } from '@electric-sql/pglite';
 import ts from 'typescript';
 import Stripe from 'stripe';
-import { autoTopUpInput, billingRetryKey, billingUsdToCents, normalizeCoupon } from '../src/lib/billing-input.ts';
+import { autoTopUpInput, billingRetryKey, billingUsdToCents } from '../src/lib/billing-input.ts';
 
 const W1 = '00000000-0000-4000-8000-000000000001';
 const W2 = '00000000-0000-4000-8000-000000000002';
 const USER = '00000000-0000-4000-8000-000000000003';
-const hash = (value) => createHash('sha256').update(value).digest('hex');
 const day = new Date().toISOString().slice(0, 10);
 
 test('card amounts are exact cents, bounded, and reject coercion or sub-cent charges', () => {
@@ -21,8 +20,6 @@ test('card amounts are exact cents, bounded, and reject coercion or sub-cent cha
   for (const amount of ['0', '4.99', '10000.01', '1e2', '-25', 'NaN', '5.001', {}, null, 25]) assert.throws(() => billingUsdToCents(amount));
   assert.equal(billingRetryKey('pay_123'), 'pay_123');
   assert.throws(() => billingRetryKey('../key'));
-  assert.equal(normalizeCoupon('  credit-aabbccdd  '), 'CREDIT-AABBCCDD');
-  assert.throws(() => normalizeCoupon('abc'));
   assert.deepEqual(autoTopUpInput({ enabled: false, amount_usd: 'bad' }), { auto_top_up_enabled: false });
   assert.deepEqual(autoTopUpInput({ enabled: true, amount_usd: '25', threshold_usd: '12.50' }), { auto_top_up_enabled: true, auto_top_up_amount_micros: 25000000, auto_top_up_threshold_micros: 12500000 });
   for (const value of [{ enabled: 'true' }, { enabled: true, amount_usd: '5', threshold_usd: '5' }, { enabled: true, amount_usd: '10', threshold_usd: '2' }]) assert.throws(() => autoTopUpInput(value));
@@ -35,6 +32,7 @@ async function database() {
     create schema auth; create table auth.users(id uuid primary key);
     create table public.workspaces(id uuid primary key);
     create table public.agents(agent37_id text primary key, workspace_id uuid references workspaces(id));
+    create table public.host_admins(user_id uuid primary key references auth.users(id));
     insert into auth.users values ('${USER}');
     insert into workspaces values ('${W1}'), ('${W2}');
     insert into agents values ('existing', '${W1}');
@@ -42,10 +40,11 @@ async function database() {
   const migration = fs.readFileSync(new URL('../supabase/migrations/0006_workspace_billing.sql', import.meta.url), 'utf8');
   await db.exec(migration);
   await db.exec(migration); // setup can rerun all migrations
+  await db.exec(fs.readFileSync(new URL('../supabase/migrations/0009_host_workspace_credit.sql', import.meta.url), 'utf8'));
   return db;
 }
 
-test('real PostgreSQL wallet transactions start at zero and isolate credits, coupons, and replayed debits', async () => {
+test('real PostgreSQL wallet transactions start at zero and isolate credits and replayed debits', async () => {
   const db = await database();
   try {
     const balance = async (workspace = W1) => Number((await db.query('select balance_micros from workspace_billing where workspace_id = $1', [workspace])).rows[0].balance_micros);
@@ -56,15 +55,8 @@ test('real PostgreSQL wallet transactions start at zero and isolate credits, cou
     assert.equal(await balance(W2), 0);
     await assert.rejects(db.query('select billing_credit($1, $2, $3, $4)', [W2, 25000000, 'payment', 'stripe:pi_one']));
     await assert.rejects(db.query('select billing_credit($1, $2, $3, $4)', [W1, 1, 'usage', 'bad']));
-    const creditHash = hash('CREDIT-TEST1234');
-    await db.query("insert into billing_coupons(code_hash,workspace_id,amount_micros,expires_at) values($1,$2,5000000,now()+interval '1 day')", [creditHash, W1]);
-    await assert.rejects(db.query('select billing_redeem_coupon($1,$2,$3)', [W2, USER, creditHash]));
-    await db.query('select billing_redeem_coupon($1,$2,$3)', [W1, USER, creditHash]);
-    await assert.rejects(db.query('select billing_redeem_coupon($1,$2,$3)', [W1, USER, creditHash]));
+    await db.query('select billing_credit($1,$2,$3,$4)', [W1,5000000,'payment','stripe:pi_two']);
     assert.equal(await balance(), 30000000);
-    const expiredHash = hash('CREDIT-EXPIRED1');
-    await db.query("insert into billing_coupons(code_hash,workspace_id,amount_micros,expires_at) values($1,$2,5000000,now()-interval '1 day')", [expiredHash, W1]);
-    await assert.rejects(db.query('select billing_redeem_coupon($1,$2,$3)', [W1, USER, expiredHash]));
     await db.query('insert into agents values ($1,$2),($3,$4)', ['newagent', W1, 'foreign', W2]);
     const settle = (totals) => db.query('select billing_settle_usage($1,$2,$3::jsonb)', [W1, day, JSON.stringify(totals)]);
     await settle({ existing: 9999999, newagent: 1000000, foreign: 500000000, unknown: 800000000 });
@@ -122,7 +114,7 @@ test('billing BFF authenticates every method before any payment or wallet operat
     '@/lib/auth': { requireUser: async () => ({ db: {}, user: { id: USER } }), requireAdmin: async () => { if (!authorized) throw new Error('Admin role required'); } },
     '@/lib/http': { ApiError: Error, handleError: (error) => Response.json({ error: error.message }, { status: 403 }), json: Response.json, readJson: (request) => request.json() },
     '@/lib/billing-input': { autoTopUpInput },
-    '@/lib/billing': { billingSummary: async () => { called++; return summary; }, createBillingCheckout: async () => { called++; return {}; }, redeemBillingCoupon: async () => { called++; } },
+    '@/lib/billing': { billingSummary: async () => { called++; return summary; }, createBillingCheckout: async () => { called++; return {}; } },
   });
   const ctx = { params: Promise.resolve({ id: W1 }) };
   for (const method of ['GET','PATCH','POST']) {
@@ -132,6 +124,22 @@ test('billing BFF authenticates every method before any payment or wallet operat
   assert.equal(called, 0);
   authorized = true;
   assert.deepEqual(await (await route.GET(new Request('http://localhost/billing'), ctx)).json(), summary);
+});
+
+test('workspace admins cannot redeem coupons or grant credit through the billing endpoint', async () => {
+  class ApiError extends Error { constructor(status, code, message) { super(message); this.status = status; } }
+  let operations = 0;
+  const route = load('src/app/api/workspaces/[id]/billing/route.ts', {
+    '@/lib/auth': { requireUser: async () => ({ db: { rpc: () => { operations++; } }, user: { id: USER } }), requireAdmin: async () => {} },
+    '@/lib/http': { ApiError, handleError: (error) => Response.json({ error: error.message }, { status: error.status || 500 }), json: Response.json, readJson: (request) => request.json() },
+    '@/lib/billing-input': { autoTopUpInput },
+    '@/lib/billing': { billingSummary: async () => { operations++; }, createBillingCheckout: async () => { operations++; } },
+  });
+  for (const action of ['coupon','credit']) {
+    const response = await route.POST(new Request('http://localhost/billing', { method: 'POST', body: JSON.stringify({ action, amount_usd: '25', code: 'OLD-COUPON' }) }), { params: Promise.resolve({ id: W1 }) });
+    assert.equal(response.status, 400);
+  }
+  assert.equal(operations, 0);
 });
 
 function paymentFixture() {
@@ -165,10 +173,10 @@ function paymentFixture() {
     paymentMethods: { retrieve: async () => ({ customer: 'cus_mine', type: 'card', card: { brand: 'visa', last4: '4242', exp_month: 12, exp_year: 2028, private_card_field: 'never expose' } }) },
   };
   const billing = load('src/lib/billing.ts', {
-    'server-only': {}, 'node:crypto': { createHash }, 'stripe': { default: class { constructor() { return stripe; } } },
+    'server-only': {}, 'stripe': { default: class { constructor() { return stripe; } } },
     '@/lib/http': { ApiError: class extends Error { constructor(status,code,message) { super(message); this.status=status; this.code=code; } } },
     '@/lib/site-url': { normalizeOrigin: (value) => value || null },
-    '@/lib/billing-input': { billingRetryKey, billingUsdToCents, normalizeCoupon },
+    '@/lib/billing-input': { billingRetryKey, billingUsdToCents },
   }, { STRIPE_SECRET_KEY: 'test-only', STRIPE_WEBHOOK_SECRET: 'test-only', NEXT_PUBLIC_SITE_URL: 'https://app.example' });
   return { billing, db, wallet, calls, stripe, setSession: (value) => { session = value; } };
 }

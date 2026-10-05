@@ -15,11 +15,6 @@ export function billingRetryKey(value: unknown): string {
   return value;
 }
 
-export function normalizeCoupon(value: unknown): string {
-  if (typeof value !== "string" || !/^[A-Za-z0-9-]{8,64}$/.test(value.trim())) throw new Error("Enter a valid coupon code.");
-  return value.trim().toUpperCase();
-}
-
 export function autoTopUpInput(value: unknown) {
   if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("Expected automatic top-up settings.");
   const body = value as Record<string, unknown>;

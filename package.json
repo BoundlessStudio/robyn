@@ -10,7 +10,6 @@
     "start": "node scripts/with-secrets.mjs start",
     "typecheck": "tsc --noEmit",
     "smoke": "node scripts/with-secrets.mjs smoke",
-    "billing:coupon": "node scripts/with-secrets.mjs billing:coupon",
     "billing:setup": "node scripts/with-secrets.mjs billing:setup",
     "billing:sync": "node scripts/with-secrets.mjs billing:sync",
     "billing:listen": "node scripts/with-secrets.mjs billing:listen",

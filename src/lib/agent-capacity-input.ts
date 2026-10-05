@@ -8,7 +8,7 @@ export interface AgentCapacity {
 export function creationDisabledReason(capacity: AgentCapacity | null): string | null {
   if (!capacity || capacity.balance_micros === null) return "Agent capacity or wallet data is unavailable. Refresh to retry.";
   if (capacity.agent_count + capacity.pending_count >= capacity.agent_limit) return "This workspace has reached its agent limit.";
-  if (capacity.balance_micros <= 0) return "Add funds or redeem a coupon in Billing to create an agent.";
+  if (capacity.balance_micros <= 0) return "Add funds in Billing to create an agent.";
   return null;
 }
 

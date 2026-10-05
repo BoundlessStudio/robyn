@@ -1,10 +1,9 @@
 import "server-only";
-import { createHash } from "node:crypto";
 import Stripe from "stripe";
 import type { DB } from "@/lib/auth";
 import { ApiError } from "@/lib/http";
 import { normalizeOrigin } from "@/lib/site-url";
-import { billingRetryKey, billingUsdToCents, normalizeCoupon, type BillingSummary } from "@/lib/billing-input";
+import { billingRetryKey, billingUsdToCents, type BillingSummary } from "@/lib/billing-input";
 
 export interface BillingWallet {
   workspace_id: string;
@@ -55,7 +54,7 @@ export async function billingSummary(db: DB, workspaceId: string): Promise<Billi
 
 export async function requireWorkspaceBalance(db: DB, workspaceId: string) {
   if ((await getBillingWallet(db, workspaceId)).balance_micros <= 0) {
-    throw new ApiError(402, "workspace_balance_empty", "Add funds or redeem a coupon in workspace Billing to run agents.");
+    throw new ApiError(402, "workspace_balance_empty", "Add funds in workspace Billing to run agents.");
   }
 }
 
@@ -158,11 +157,4 @@ export async function confirmBillingCheckout(db: DB, workspaceId: string, sessio
   else if (typeof session.setup_intent === "string") await fulfillCardSetup(db, await stripe.setupIntents.retrieve(session.setup_intent));
   else return { complete: false };
   return { complete: true };
-}
-
-export async function redeemBillingCoupon(db: DB, workspaceId: string, userId: string, code: unknown) {
-  const codeHash = createHash("sha256").update(normalizeCoupon(code)).digest("hex");
-  const { error } = await db.rpc("billing_redeem_coupon", { p_workspace: workspaceId, p_user: userId, p_hash: codeHash });
-  if (error?.code === "P0001") throw new ApiError(400, "invalid_coupon", "This coupon is invalid, expired, already redeemed, or belongs to another workspace.");
-  billingDbError(error);
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowUpRight, CreditCard, Gift, Loader2, RefreshCw, Wallet } from "lucide-react";
+import { ArrowUpRight, CreditCard, Loader2, RefreshCw, Wallet } from "lucide-react";
 import { toast } from "sonner";
 import { useWorkspace } from "@/components/WorkspaceProvider";
 import { apiFetch } from "@/lib/api";
@@ -37,7 +37,6 @@ export function WorkspaceBilling({ workspaceId, workspaceName }: { workspaceId: 
   const [amount, setAmount] = useState("25");
   const [refill, setRefill] = useState("25");
   const [threshold, setThreshold] = useState("12.50");
-  const [coupon, setCoupon] = useState("");
   const [formError, setFormError] = useState<string | null>(null);
   const [confirming, setConfirming] = useState(false);
   const active = useRef(true);
@@ -109,15 +108,6 @@ export function WorkspaceBilling({ workspaceId, workspaceName }: { workspaceId: 
     finally { if (active.current) setBusy(false); }
   }
 
-  async function redeem() {
-    setBusy(true);
-    try {
-      const updated = await apiFetch<BillingSummary>(endpoint, { method: "POST", body: JSON.stringify({ action: "coupon", code: coupon.trim() }) });
-      if (active.current) { setBilling(updated); setCoupon(""); toast.success("Coupon credit added to your balance"); }
-    } catch (error) { if (active.current) toast.error((error as Error).message); }
-    finally { if (active.current) setBusy(false); }
-  }
-
   return (
     <div className="max-w-5xl space-y-6">
       <div>
@@ -127,14 +117,14 @@ export function WorkspaceBilling({ workspaceId, workspaceName }: { workspaceId: 
       {error && <div role="alert" className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-destructive/40 p-4 text-sm"><span>{error}</span><Button variant="outline" size="sm" onClick={refresh}>Try again</Button></div>}
       {confirming && <p role="status" className="flex items-center gap-2 text-sm text-muted-foreground"><Loader2 className="h-4 w-4 animate-spin" />Confirming your payment…</p>}
       {!billing ? !error && <p className="text-sm text-muted-foreground">Loading billing…</p> : <>
-        {!billing.payments_available && <p role="status" className="rounded-lg border bg-muted/40 p-4 text-sm text-muted-foreground">Card payments are not available yet. You can still redeem a coupon to add credit.</p>}
+        {!billing.payments_available && <p role="status" className="rounded-lg border bg-muted/40 p-4 text-sm text-muted-foreground">Card payments are not available yet. Contact support to add credit to your workspace balance.</p>}
         <section aria-label="Workspace billing" className="overflow-hidden rounded-xl border bg-card">
           <div className="flex flex-col justify-between gap-6 p-6 sm:flex-row sm:items-center">
             <div>
               <p className="flex items-center gap-2 text-sm text-muted-foreground"><Wallet className="h-4 w-4" />Balance</p>
               <p className="mt-2 text-4xl font-semibold tracking-tight tabular-nums" aria-live="polite">{usd(billing.balance_micros)}</p>
               <p className="mt-3 text-sm text-muted-foreground">Pay as you go. Your agents spend from this balance.</p>
-              {billing.balance_micros <= 0 && <p className="mt-2 text-sm text-muted-foreground">Add funds or redeem a coupon to run your agents.</p>}
+              {billing.balance_micros <= 0 && <p className="mt-2 text-sm text-muted-foreground">Add funds to run your agents.</p>}
             </div>
             <div className="flex flex-col items-start gap-2 sm:items-end">
               <Button onClick={() => openDialog("funds")} disabled={busy || confirming || !billing.payments_available}><Wallet className="mr-2 h-4 w-4" />Add funds</Button>
@@ -162,15 +152,6 @@ export function WorkspaceBilling({ workspaceId, workspaceName }: { workspaceId: 
               <button type="button" role="switch" aria-checked={billing.automatic_top_up.enabled} aria-labelledby="auto-top-up-label" disabled={busy || confirming || (!billing.automatic_top_up.enabled && (!billing.payments_available || !billing.payment_method))} onClick={() => billing.automatic_top_up.enabled ? saveAuto(false) : openDialog("auto")} className={`relative inline-flex h-6 w-11 shrink-0 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${billing.automatic_top_up.enabled ? "bg-primary" : "bg-input"}`}><span className={`mt-0.5 h-5 w-5 rounded-full bg-background shadow-sm transition-transform ${billing.automatic_top_up.enabled ? "translate-x-5" : "translate-x-0.5"}`} /></button>
             </div>
           </div>
-        </section>
-        <section aria-labelledby="coupon-title" className="rounded-xl border bg-card p-6">
-          <div className="flex items-center gap-2"><Gift className="h-4 w-4 text-muted-foreground" /><h2 id="coupon-title" className="text-sm font-medium">Redeem a coupon</h2></div>
-          <p className="mt-2 text-sm text-muted-foreground">Have a credit code? Add it directly to your workspace balance.</p>
-          <form className="mt-4 flex max-w-md flex-col gap-3 sm:flex-row" onSubmit={(event) => { event.preventDefault(); void redeem(); }}>
-            <Label htmlFor="billing-coupon" className="sr-only">Coupon code</Label>
-            <Input id="billing-coupon" placeholder="Enter coupon code" autoComplete="off" maxLength={64} value={coupon} onChange={(event) => setCoupon(event.target.value)} disabled={busy} />
-            <Button type="submit" variant="outline" disabled={busy || !coupon.trim()}>Redeem code</Button>
-          </form>
         </section>
       </>}
       <Dialog open={dialog !== null} onOpenChange={(open) => { if (!open && !busy) setDialog(null); }}>

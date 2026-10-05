@@ -1,6 +1,6 @@
 # Workspace billing
 
-Each app workspace has its own USD prepaid wallet, initialized to **$0**, separate from the operator's Agent37 wallet. No signup credit, subscription, or tier is granted. Billing is admin-only and shows the balance, a saved card, automatic top-up settings, and coupon redemption. Usage stays off this page.
+Each app workspace has its own USD prepaid wallet, initialized to **$0**, separate from the operator's Agent37 wallet. No signup credit, subscription, or tier is granted. Billing is admin-only and shows the balance, a saved card, and automatic top-up settings. Usage stays off this page.
 
 ## Enable payments
 
@@ -13,19 +13,13 @@ Checkout and card updates happen on Stripe's hosted pages. Card details and Stri
 
 Keep the **operator's Agent37 wallet funded separately**. Agent37 documents no balance or payment endpoints on `/v1`; payments collected by this app do not fund that wallet. Agent37 account limits still apply upstream, independently of these app balances.
 
-## Grant a coupon
+## Add workspace credit
 
-Host can issue a workspace coupon from **Host → Tenants → tenant details**. Choose its USD
-credit amount and copy the generated code for that workspace's admin to redeem in Billing.
-It credits the balance only on redemption, once, and expires after 30 days.
-
-Alternatively, from a trusted operator terminal with the server's Supabase credentials:
-
-```sh
-npm run billing:coupon -- --config prd --workspace <workspace-uuid> --amount 25
-```
-
-The command prints a random code for the recipient. Its hash is stored, it expires after 30 days, and it can be redeemed once by an admin of that specific workspace. `--expires <ISO-date>` and `--code <8-to-64-letter/digit/hyphen-code>` are optional. Issue amounts from $0.01 through $10,000. Workspace admins cannot issue their own credits. Coupon credits enter the same spendable balance as paid top-ups.
+Apply `0009_host_workspace_credit.sql`, then use **Host → Tenants → tenant details → Add credit**.
+Choose **$0.01–$10,000** in USD to add immediately to that workspace's spendable balance.
+Each grant records its Host creator in the ledger, and retries of the same request do not grant
+credit twice. Workspace admins cannot grant their own credits. Coupon issuance and redemption
+are removed; historical records are preserved.
 
 ## Settlement and automatic refill
 
@@ -33,6 +27,6 @@ The operator sweep reads Agent37's documented `GET /v1/usage` and attributes deb
 
 Before stopping unfunded agents, the sweep attempts an enabled automatic refill. Stripe retries reuse a persisted attempt ID; network uncertainty keeps the same attempt pending. Card failures disable automatic top-up and appear on Billing. An unresolved attempt older than 23 hours is held for operator review to avoid creating another charge after Stripe's retry-key retention expires. Resolve the payment in Stripe and reconcile its PaymentIntent before marking that attempt finished in the service-role table.
 
-Creation, starts, restarts, updates, resizes, and chat require a positive app balance. The sweep explicitly stops agents whose balance is empty. A top-up or coupon permits starting them again; it does not restart agents that were deliberately stopped. Running agents can cross zero between sweeps, and Agent37's hourly compute settlement can make the balance negative. **Stopped agents still incur disk charges upstream**, which continue to debit their wallet. This app does not delete agents for nonpayment. External channels, scheduled jobs, and already-issued URLs can operate between sweeps; this is periodic enforcement, not a per-call upstream spending reservation.
+Creation, starts, restarts, updates, resizes, and chat require a positive app balance. The sweep explicitly stops agents whose balance is empty. A top-up or Host credit permits starting them again; it does not restart agents that were deliberately stopped. Running agents can cross zero between sweeps, and Agent37's hourly compute settlement can make the balance negative. **Stopped agents still incur disk charges upstream**, which continue to debit their wallet. This app does not delete agents for nonpayment. External channels, scheduled jobs, and already-issued URLs can operate between sweeps; this is periodic enforcement, not a per-call upstream spending reservation.
 
 Refunds initiated by the operator in Stripe debit the corresponding credit through signed `charge.refunded` events; partial and repeated refund events are reconciled once. This integration does not initiate refunds or process disputes. Chargebacks require operator review and an audited wallet adjustment.

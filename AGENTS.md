@@ -142,8 +142,9 @@ operational metadata and billing records. Host reads never contact Agent37, sett
 charge cards, or return agent content or credentials. Host accounts land in `/host` without
 bootstrapping a workspace. `npm run host:bootstrap` invites the dedicated account through
 Supabase and grants the returned ID; existing non-Host accounts require explicit identity
-review. Host can change each workspace's agent limit (default 1) and issue workspace-scoped,
-single-use credit coupons. These writes recheck Host permission in both the DAL and SQL.
+review. Host can change each workspace's agent limit (default 1) and add credit directly to its
+balance. These writes recheck Host permission in both the DAL and SQL; credit grants update the
+wallet atomically, record the Host creator, and use a request ID to prevent duplicate credits.
 Creation reserves capacity atomically before calling Agent37; uncertain outcomes retain a slot
 for operator review. Tenant creation buttons require available capacity and a positive wallet.
 See [HOST.md](HOST.md). Removing a Host permission revokes access on the next request.
@@ -294,12 +295,12 @@ entry in `AGENT_TYPES` (`src/config/agents.ts`) whose `template` is the template
   `getMe`). The agent's messaging gateway refuses to start on a bad token, which takes
   every other channel on that agent down with it.
 - **Workspace billing uses a separate prepaid wallet.** See `BILLING.md`. Stripe payments
-  and workspace-scoped coupons credit an atomic service-role ledger; every new workspace
+  and Host credit grants credit an atomic service-role ledger; every new workspace
   starts at zero. Only admins can manage billing. `src/lib/billing-sync.ts` reconciles
   tenant-owned Agent37 costs and runs automatic refills via the operator-authenticated
   `/api/billing/sync` sweep. Keep the shared upstream Agent37 wallet funded separately.
-  Billing has no usage display or tiers. Never grant credits from browser amounts or
-  checkout redirects; fulfill only verified Stripe payments or service-role coupons.
+  Billing has no usage display or tiers. Credit grants require Host authorization. Payment
+  credits require verified Stripe payments; browser amounts and checkout redirects never establish payment.
 - **Branding lives in `src/config/branding.ts`** (`appName` / `logoUrl` constants),
   not in env. The old `NEXT_PUBLIC_APP_NAME` / `NEXT_PUBLIC_LOGO_URL` vars are gone;
   keep it code-side.

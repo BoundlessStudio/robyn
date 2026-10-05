@@ -1,7 +1,7 @@
 import { requireAdmin, requireUser } from "@/lib/auth";
 import { ApiError, handleError, json, readJson } from "@/lib/http";
 import { autoTopUpInput } from "@/lib/billing-input";
-import { billingDbError, billingSummary, confirmBillingCheckout, createBillingCheckout, getBillingWallet, paymentsAvailable, redeemBillingCoupon } from "@/lib/billing";
+import { billingDbError, billingSummary, confirmBillingCheckout, createBillingCheckout, getBillingWallet, paymentsAvailable } from "@/lib/billing";
 
 type Ctx = { params: Promise<{ id: string }> };
 
@@ -40,11 +40,6 @@ export async function POST(request: Request, ctx: Ctx) {
     const { id, db, user } = await authorize(ctx);
     const body = await readJson<Record<string, unknown>>(request);
     if (!body || typeof body !== "object" || Array.isArray(body)) throw new ApiError(400, "invalid_request", "Expected a billing action.");
-    if (body.action === "coupon") {
-      try { await redeemBillingCoupon(db, id, user.id, body.code); }
-      catch (error) { if (error instanceof ApiError) throw error; throw new ApiError(400, "invalid_coupon", (error as Error).message); }
-      return json(await billingSummary(db, id));
-    }
     if (body.action === "confirm") return json(await confirmBillingCheckout(db, id, body.session_id));
     if (body.action === "checkout" || body.action === "payment_method") {
       try { return json(await createBillingCheckout(db, id, user.email || "", request, body, body.action === "payment_method")); }

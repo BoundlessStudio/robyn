@@ -1,24 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { apiFetch } from "@/lib/api";
 import { hostAgentLimit } from "@/lib/agent-capacity-input";
-import type { HostCoupon, HostTenantSummary } from "@/lib/host-types";
+import { billingUsdToCents } from "@/lib/billing-input";
+import type { HostCredit, HostTenantSummary } from "@/lib/host-types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export function HostWorkspaceControls({ tenant, coupon, onCoupon, onChanged }: {
+export function HostWorkspaceControls({ tenant, onChanged }: {
   tenant: HostTenantSummary;
-  coupon: HostCoupon | null;
-  onCoupon: (coupon: HostCoupon) => void;
   onChanged: () => void;
 }) {
   const [limit, setLimit] = useState(String(tenant.agent_limit));
   const [amount, setAmount] = useState("25.00");
   const [savingLimit, setSavingLimit] = useState(false);
-  const [issuing, setIssuing] = useState(false);
+  const [crediting, setCrediting] = useState(false);
+  const retry = useRef<{ amount: number; key: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const endpoint = `/api/host/tenants/${tenant.id}`;
 
@@ -33,13 +33,16 @@ export function HostWorkspaceControls({ tenant, coupon, onCoupon, onChanged }: {
     finally { setSavingLimit(false); }
   }
 
-  async function issueCoupon(event: React.FormEvent) {
-    event.preventDefault(); setError(null); setIssuing(true);
+  async function addCredit(event: React.FormEvent) {
+    event.preventDefault(); setError(null); setCrediting(true);
     try {
-      onCoupon(await apiFetch<HostCoupon>(`${endpoint}/coupons`, { method: "POST", body: JSON.stringify({ amount_usd: amount }) }));
-      toast.success("Workspace coupon created");
+      const cents = billingUsdToCents(amount, 1);
+      if (retry.current?.amount !== cents) retry.current = { amount: cents, key: crypto.randomUUID() };
+      await apiFetch<HostCredit>(`${endpoint}/credits`, { method: "POST", body: JSON.stringify({ amount_usd: amount, idempotency_key: retry.current.key }) });
+      retry.current = null;
+      toast.success("Credit added to workspace balance"); onChanged();
     } catch (failure) { setError((failure as Error).message); }
-    finally { setIssuing(false); }
+    finally { setCrediting(false); }
   }
 
   return <section className="space-y-4 rounded-lg border bg-card p-4">
@@ -48,33 +51,21 @@ export function HostWorkspaceControls({ tenant, coupon, onCoupon, onChanged }: {
       <form onSubmit={saveLimit} className="space-y-3">
         <Label htmlFor="host-agent-limit">Agent limit</Label>
         <div className="flex gap-2">
-          <Input id="host-agent-limit" type="number" min="0" max="1000" step="1" required value={limit} onChange={(event) => setLimit(event.target.value)} disabled={savingLimit} />
-          <Button type="submit" variant="outline" disabled={savingLimit || limit === String(tenant.agent_limit)}>{savingLimit ? "Saving…" : "Save limit"}</Button>
+          <Input id="host-agent-limit" type="number" min="0" max="1000" step="1" required value={limit} onChange={(event) => setLimit(event.target.value)} disabled={savingLimit || crediting} />
+          <Button type="submit" variant="outline" disabled={savingLimit || crediting || limit === String(tenant.agent_limit)}>{savingLimit ? "Saving…" : "Save limit"}</Button>
         </div>
         <p className="text-sm text-muted-foreground">{tenant.agent_count} agents · Limit {tenant.agent_limit}{tenant.pending_agent_count > 0 ? ` · ${tenant.pending_agent_count} reserved creations` : ""}</p>
         <p className="text-xs text-muted-foreground">New workspaces start with a limit of 1. Lowering the limit keeps existing agents and creations already in progress; it blocks further creation until capacity is available.</p>
         {tenant.pending_agent_count > 0 && <p className="text-xs text-muted-foreground">An unconfirmed creation keeps its slot reserved until an operator reviews it.</p>}
       </form>
-      <div className="space-y-4">
-        <form onSubmit={issueCoupon} className="space-y-3">
-          <Label htmlFor="host-coupon-amount">Coupon credit · USD</Label>
-          <div className="flex gap-2">
-            <Input id="host-coupon-amount" inputMode="decimal" maxLength={8} required value={amount} onChange={(event) => setAmount(event.target.value)} disabled={issuing} />
-            <Button type="submit" variant="outline" disabled={issuing || !amount.trim()}>{issuing ? "Creating…" : "Create coupon"}</Button>
-          </div>
-          <p className="text-xs text-muted-foreground">$0.01–$10,000. Redeemable once by an admin of this workspace, within 30 days. Credit is added when redeemed.</p>
-        </form>
-        {coupon?.workspace_id === tenant.id && <div className="space-y-2 rounded-md border bg-muted/30 p-3" role="status">
-          <p className="text-sm font-medium">Coupon created</p>
-          <p className="break-all font-mono text-sm" data-testid="host-coupon-code">{coupon.code}</p>
-          <p className="text-xs text-muted-foreground">${(coupon.amount_micros / 1_000_000).toFixed(2)} credit · Expires {new Date(coupon.expires_at).toLocaleString()}</p>
-          <p className="text-xs text-muted-foreground">Copy this code before leaving, then share it with the workspace admin to redeem in Billing.</p>
-          <Button variant="outline" size="sm" onClick={async () => {
-            try { await navigator.clipboard.writeText(coupon.code); toast.success("Coupon copied"); }
-            catch { toast.error("Select and copy the code above."); }
-          }}>Copy code</Button>
-        </div>}
-      </div>
+      <form onSubmit={addCredit} className="space-y-3">
+        <Label htmlFor="host-credit-amount">Add credit · USD</Label>
+        <div className="flex gap-2">
+          <Input id="host-credit-amount" inputMode="decimal" maxLength={8} required value={amount} onChange={(event) => setAmount(event.target.value)} disabled={crediting || savingLimit || tenant.balance_micros === null} />
+          <Button type="submit" variant="outline" disabled={crediting || savingLimit || !amount.trim() || tenant.balance_micros === null}>{crediting ? "Adding…" : "Add credit"}</Button>
+        </div>
+        <p className="text-xs text-muted-foreground">$0.01–$10,000. Added immediately to this workspace’s balance.</p>
+      </form>
     </div>
     {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
   </section>;
