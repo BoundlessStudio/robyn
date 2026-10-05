@@ -1,118 +1,74 @@
 # Setup
 
-This app runs on two secrets you supply (both behind a login, so a human must fetch them):
+Robyn uses Doppler for secrets, Supabase for authentication/database, and the
+existing Vercel project for deployment. Every checkout gets secrets at process
+startup; do not create `.env.local`. See [SECRETS.md](SECRETS.md) for the complete
+config map and [.env.example](.env.example) for the blank key inventory.
 
-- **`AGENT37_API_KEY`** (`sk_live_…`) — Agent37 dashboard → **Cloud → API keys**. Then
-  **fund the wallet** (Cloud → Billing): creating an agent costs real money, and an empty
-  wallet returns a `402` at create time.
-- **`SUPABASE_ACCESS_TOKEN`** (`sbp_…`) — [supabase.com/dashboard/account/tokens](https://supabase.com/dashboard/account/tokens) (~30s).
+## Local development
 
-`npm run setup` does everything else: creates a free Supabase project (or configures the one
-whose URL you paste into `NEXT_PUBLIC_SUPABASE_URL`), runs the migration, enables email auth,
-and writes the Supabase URL, anon key, and **server-only service-role key** back into
-`.env.local`. (Clients never touch the DB directly — the app reads/writes every table server-side
-with the service-role key; see [`AGENTS.md`](AGENTS.md).) It's idempotent and fills only blank
-values. Per-variable docs live in [`.env.example`](.env.example).
+1. Install dependencies with `npm install` and the
+   [official Doppler CLI](https://docs.doppler.com/docs/install-cli). On Windows,
+   use `winget install --id Doppler.doppler --exact --source winget`.
+2. Run `doppler login` once. Local CLI authentication stays outside the repository.
+   Main and every worktree reuse it.
+3. In Doppler project `robyn`, set `AGENT37_API_KEY` in `dev`. Agent37 requires a
+   funded operator wallet even for development. Keep optional `INKBOX_ADMIN_KEY`
+   blank until needed. Set Stripe test credentials only in `dev`/`stg`.
+4. Set `SUPABASE_ACCESS_TOKEN` in `ops_dev`. Existing-project setup needs Project
+   Settings, Database, and Auth Config with Read-write access, plus API Keys and
+   API Key Secrets with Read access. Creating a project additionally needs
+   Organizations Read and Organization Projects Read-write. A token scoped
+   only to an existing project's database can run
+   `npm run setup -- --no-create --migrations-only` instead.
+5. Set `NEXT_PUBLIC_SITE_URL=http://localhost:3000` in `dev`. For a fresh backend,
+   leave the three Supabase runtime values blank and run `npm run setup`. It
+   creates a free project, records its URL in Doppler immediately, reads the
+   public/service keys, applies migrations, and configures email/password auth.
+   If the account has multiple organizations, set `SUPABASE_ORG` in `ops_dev`.
+   If no free project slots remain, setup stops; it never upgrades a paid plan.
+6. For an existing development backend, put its URL, anon key, and service-role
+   key into `dev`, then run `npm run setup -- --no-create`. Keep development data
+   isolated from the production database. Preview may use the same non-production
+   backend with separate Stripe/webhook settings in `stg`.
+7. Run `npm run secrets:check`, then `npm run dev` and open
+   `http://localhost:3000`. Sign up using email and password. New workspaces start
+   with zero balance. A coupon can fund a development workspace without a payment;
+   provisioning/chat still incurs real Agent37 charges.
 
-## For your coding agent
+Commands default to `dev`. Use `--config stg` or `--config prd` explicitly for
+other environments. Setup-generated credentials are saved to the selected Doppler
+configs. Never print tokens, export secret files into the repository, or put a
+server credential under a `NEXT_PUBLIC_` name.
 
-For an existing project, preserve secrets in the primary checkout's ignored
-`.env.local`. Run `npm run env:restore` in a new worktree before requesting keys
-again. `npm install` also restores a missing file, without overwriting one that
-already exists. File links share edits immediately; platforms without file links
-fall back to a copy. After editing a separate `.env.local`, run `npm run env:save`
-to persist it back to the primary checkout. The local pre-commit hook also syncs
-it and refuses to replace populated credentials with missing/example values.
-To restore automatically when Git creates worktrees, run
-`node scripts/restore-worktree-env.mjs --install-hook` once locally. This installs
-shared Git hooks containing only restore/sync commands, never credential values.
+## Existing production deployment
 
-The README tells adopters to paste a one-liner that points here. If you're that agent, follow
-these steps in order; don't skip the checks.
+The Vercel project **robyn** remains the deployment target. Its native Doppler
+integration syncs `dev` to Development, `stg` to Preview, and `prd` to Production.
+`NEXT_PUBLIC_*` values are Unmasked and server secrets Masked; the sync uses
+Dynamic variable types. Never sync operations configs to Vercel.
 
-1. **Scaffold.** Run `npm install`, then `npm run setup` once. On a fresh clone this creates
-   `.env.local` from `.env.example` and exits asking for two secrets — that exit is
-   **expected**, not an error.
-2. **Ask me for the two secrets.** You can't fetch them (both are behind a login). Print where
-   to get each, then stop and wait for my reply:
-   - `AGENT37_API_KEY` (starts with `sk_live_`): Agent37 dashboard → Cloud → API keys
-     (<https://www.agent37.com/dashboard/cloud/api-keys>). Creating agents also needs a
-     **funded** wallet (Cloud → Billing), or it later fails with a `402`.
-   - `SUPABASE_ACCESS_TOKEN` (starts with `sbp_`): <https://supabase.com/dashboard/account/tokens>.
-3. **Validate.** Confirm the prefixes (`sk_live_`, `sbp_`). If one's wrong, ask again — don't proceed.
-4. **Write the secrets into `.env.local` only** (confirm it's gitignored first). Fill only
-   those two lines; leave everything else as-is. Never print the full `sk_live_` value back
-   (mask as `sk_live_…last4`), never `cat .env.local`, never `git add`/commit it.
-5. **Complete setup.** Run `npm run setup` again. If it fails, read its message and act on it
-   instead of retrying blind:
-   - "free-project limit" → ask me for an existing project's URL in `NEXT_PUBLIC_SUPABASE_URL`
-     (or free a slot at supabase.com/dashboard), then re-run.
-   - "more than one organization" / `403` on create → my account has multiple Supabase orgs (or
-     can't create in the default one). Setup prints the orgs with a `SUPABASE_ORG=<slug>` for each;
-     re-run as `SUPABASE_ORG=<slug> npm run setup` for the one I want (usually my personal org).
-   - `401` → my Supabase token is wrong/expired; ask for a new one.
-   - `404` → `NEXT_PUBLIC_SUPABASE_URL` points at a project this token can't see.
-6. **Verify.** Run `npm run typecheck` and `npm run build` (no test suite — these two are the gate).
-7. **Start.** Run `npm run dev` and report the URL (<http://localhost:3000>): I sign up with
-   email + password (open signup, no email verification) → land in a fresh workspace. Remind me
-   that creating an agent needs a funded wallet — a `402` at create time is the wallet, not a bug.
+For a new installation, configure production Supabase values in `prd` and its
+setup token in `ops_prd`. Set `NEXT_PUBLIC_SITE_URL` to the production origin,
+then run `npm run setup -- --config prd --no-create`. This sets the production
+auth redirect allowlist while retaining localhost callbacks. A migration-only
+token can apply schema updates with `--migrations-only`; it cannot change auth
+settings or reveal project keys.
 
-Constraints: keep changes minimal; add no features; the `sk_live_` key stays server-side;
-branding stays code-side (`src/config/branding.ts`).
+Run `npm run typecheck` and `npm run build -- --config prd` before shipping.
+Pushing a branch produces a Vercel preview; merging main deploys production.
+Secret changes apply to new deployments, so redeploy after editing deployed
+Doppler configs. Vercel builds use synced variables directly; no Doppler CLI/token
+is needed on Vercel. [BILLING.md](BILLING.md) covers Stripe webhooks, workspace
+coupons, and the required reconciliation schedule.
 
-## By hand
+## Optional Inkbox
 
-```bash
-npm install
-npm run setup     # first run creates .env.local and prints the two keys to paste
-#                 → paste both into .env.local, then:
-npm run setup     # creates/configures Supabase, runs the migration, sets up auth
-npm run dev       # http://localhost:3000 → sign up with email + password
-```
+Set `INKBOX_ADMIN_KEY` in the appropriate runtime config and deploy. The existing
+identity migration must be applied. An admin or assigned member can enable Inkbox
+from an agent's retained Messaging page. New agents and reads never allocate an
+identity. Provisioning uses an identity-scoped key, email allowlist, signed Hermes
+webhook, and a persisted lease. A retry reuses the same identity.
 
-<details>
-<summary><b>Manual Supabase setup</b> — if you'd rather not use an access token</summary>
-
-Leave `SUPABASE_ACCESS_TOKEN` blank, skip `npm run setup`, create a free
-[Supabase](https://supabase.com) project, then: (1) **SQL Editor** → run
-[`supabase/migrations/0001_init.sql`](supabase/migrations/0001_init.sql) (it sets up the schema
-*and* revokes direct client table access — all DB access is server-side);
-(2) **Authentication → Providers** → enable **Email**; (3) **Authentication → URL
-Configuration** → Site URL `http://localhost:3000`, add `http://localhost:3000/auth/callback`
-to Redirect URLs. Paste the project URL, anon key, and **service-role key** (Project Settings →
-API) into `.env.local` (`SUPABASE_SERVICE_ROLE_KEY` — server-only), then `npm run dev`.
-</details>
-
-## Deploy to production (Vercel)
-
-The Vercel button alone is **not** enough — it deploys the app but can't create your Supabase
-backend or register your sign-in URLs. Run setup locally once first, then:
-
-1. Run `npm run setup` locally (creates Supabase + schema + auth config).
-2. Push your fork to GitHub, then in Vercel: **Add New → Project → Import Git Repository**.
-3. Add **only these** env vars: `AGENT37_API_KEY`, `NEXT_PUBLIC_SUPABASE_URL`,
-   `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` (server-only — the runtime needs
-   it for all DB access), `NEXT_PUBLIC_SITE_URL` (your prod URL).
-   **Never add** `SUPABASE_ACCESS_TOKEN` — it's setup-only (used to create/configure the project,
-   never at runtime).
-   (Branding is code-side now — edit `src/config/branding.ts`, not env.)
-4. Register your prod sign-in URL with Supabase: set `NEXT_PUBLIC_SITE_URL` to your prod URL
-   in `.env.local` and re-run `npm run setup` (it adds `<prod>/auth/callback` for you).
-
-## Optional agent identities (Inkbox)
-
-Set `INKBOX_ADMIN_KEY` in the ignored `.env.local` file and as a sensitive server-only
-Vercel environment variable, using an admin-scoped key from [Inkbox Console](https://inkbox.ai/console).
-Run `npm run setup` to apply `0002_inkbox.sql`, then redeploy.
-
-An admin can enable an identity in **Messaging → Enable Inkbox** on a running Hermes
-agent. Creating and viewing agents does not allocate identities, preserving your Inkbox
-plan's capacity. Provisioning uses a distinct identity-scoped key in each agent, a signed
-webhook, and a persisted lease to prevent concurrent setup. A retry reuses the same identity.
-The agent restarts once after the plugin is installed.
-
-The creator's email is allowlisted automatically. Add an allowed phone number in the
-Messaging tab, then send its connection message from that phone. Inkbox's shared line routes
-each identity's conversation separately. Its hosted voice agent answers calls and sends
-transcripts to Hermes; Hermes does not process live call audio. Phone access stays closed
-until a number is allowed. Deleting an agent removes its identity and revokes scoped keys.
+Enabling Inkbox restarts the agent once. Allow phone numbers before activating
+phone access. The operator admin key always stays server-side.

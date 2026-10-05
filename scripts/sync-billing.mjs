@@ -1,9 +1,4 @@
 #!/usr/bin/env node
-import { existsSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-
-const envFile = fileURLToPath(new URL('../.env.local', import.meta.url));
-if (existsSync(envFile)) process.loadEnvFile(envFile);
 if (!process.env.NEXT_PUBLIC_SITE_URL || !process.env.BILLING_CRON_SECRET) {
   console.error('Configure NEXT_PUBLIC_SITE_URL and BILLING_CRON_SECRET first.');
   process.exitCode = 1;

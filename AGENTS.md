@@ -8,20 +8,20 @@ truth — edit here, not there.
 
 Setting this up from a fresh clone? Follow **[`SETUP.md`](SETUP.md)** — the complete runbook
 (it's what the README tells adopters to hand you). Two login-gated secrets are human-supplied:
-`AGENT37_API_KEY` (plus a **funded** Agent37 wallet) and `SUPABASE_ACCESS_TOKEN`;
-`npm run setup` does the rest. Never print or commit the `sk_live_` key.
+`AGENT37_API_KEY` (plus a **funded** Agent37 wallet) and `SUPABASE_ACCESS_TOKEN`.
+Store them in Doppler's runtime and operations configs respectively;
+`npm run setup` does the rest. Never print or commit credentials.
 
-Keep the canonical `.env.local` in the primary checkout, which survives managed
-worktree cleanup. `npm run env:restore` and npm's postinstall link it into a new
-worktree when missing, or copy it if file links are unavailable. Linked edits
-update the primary file immediately; existing local overrides are preserved. **After
-every change to a separate worktree `.env.local`, run `npm run env:save`** before
-ending the task or removing the worktree. The local pre-commit hook does this too,
-without staging either environment file. Install the
-shared local Git hook with `node scripts/restore-worktree-env.mjs --install-hook`
-to restore it immediately on checkout/worktree creation. The hook and all secret
-values stay outside Git. Never replace real credentials with example placeholders.
-`.env.example` contains the same variable names with empty/example values only.
+Doppler's `robyn` project is the source of truth; see `SECRETS.md`. Local npm
+commands inject secrets at startup, independently of the checkout path. Default
+to `dev`; select `prd` explicitly for production work. Never copy, link, restore,
+or back-sync `.env.local` files. Update values in Doppler so every checkout gets
+the next version on startup. Keep management tokens only in `ops_*` configs and
+never sync them to Vercel. Runtime commands must strip inherited management
+credentials. Keep `.env.example` synchronized with `secrets.config.json`, with
+blank values only. Use Stripe test keys and non-production Supabase credentials
+for development/preview. The existing Robyn Vercel project receives only its
+matching runtime config through native Doppler syncs.
 
 ## What this project is
 
@@ -246,8 +246,8 @@ npm run typecheck   # tsc --noEmit
 
 Focused regressions run with `node --experimental-strip-types --test scripts/*.test.mjs`;
 the gate before shipping is a clean `npm run typecheck` and `npm run build`.
-Setup is "paste two keys + `npm run setup`" — no manual
-dashboard steps.
+Setup reads Doppler and saves generated credentials there; no local secret file
+or per-worktree environment setup is needed.
 
 ## Custom agent image (out of scope here)
 

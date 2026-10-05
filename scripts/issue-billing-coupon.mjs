@@ -1,12 +1,8 @@
 #!/usr/bin/env node
 import { createHash, randomBytes } from 'node:crypto';
-import { existsSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
 import { createClient } from '@supabase/supabase-js';
 import { billingUsdToCents, normalizeCoupon } from '../src/lib/billing-input.ts';
 
-const envFile = fileURLToPath(new URL('../.env.local', import.meta.url));
-if (existsSync(envFile)) process.loadEnvFile(envFile);
 
 async function main() {
   const args = process.argv.slice(2);

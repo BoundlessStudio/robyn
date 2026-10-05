@@ -3,10 +3,9 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
+import { saveSecrets } from './secrets.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const ENV_FILE = path.join(ROOT, ".env.local");
-const ENV_EXAMPLE = path.join(ROOT, ".env.example");
 const MIGRATIONS_DIR = path.join(ROOT, "supabase", "migrations");
 const MGMT = "https://api.supabase.com";
 
@@ -14,6 +13,7 @@ const args = process.argv.slice(2);
 const FLAGS = {
   noCreate: args.includes("--no-create"),
   help: args.includes("--help") || args.includes("-h"),
+  migrationsOnly: args.includes("--migrations-only"),
 };
 
 const PLACEHOLDERS = new Set([
@@ -47,28 +47,7 @@ function die(message, hint) {
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-function loadEnv(file) {
-  const raw = fs.existsSync(file) ? fs.readFileSync(file, "utf8") : "";
-  const lines = raw.length ? raw.split(/\r?\n/) : [];
-  const map = {};
-  for (const line of lines) {
-    const m = /^\s*([A-Z0-9_]+)\s*=(.*)$/.exec(line);
-    if (m) map[m[1]] = unquote(m[2]);
-  }
-  return { file, lines, map, dirty: false };
-}
-
-function unquote(v) {
-  const t = v.trim();
-  if ((t.startsWith('"') && t.endsWith('"')) || (t.startsWith("'") && t.endsWith("'"))) {
-    return t.slice(1, -1);
-  }
-  return t;
-}
-
 function get(env, key) {
-  const fromProc = process.env[key];
-  if (fromProc != null && fromProc !== "") return fromProc;
   return env.map[key];
 }
 
@@ -78,20 +57,12 @@ function isBlank(v) {
 
 function setEnv(env, key, value) {
   env.map[key] = value;
-  const re = new RegExp(`^\\s*${key}\\s*=`);
-  const idx = env.lines.findIndex((l) => re.test(l));
-  const line = `${key}=${value}`;
-  if (idx >= 0) env.lines[idx] = line;
-  else {
-    if (env.lines.length && env.lines[env.lines.length - 1].trim() !== "") env.lines.push("");
-    env.lines.push(line);
-  }
-  env.dirty = true;
+  env.pending[key] = value;
 }
 
 function saveEnv(env) {
-  if (!env.dirty) return;
-  fs.writeFileSync(env.file, env.lines.join("\n").replace(/\n*$/, "\n"));
+  saveSecrets(env.pending);
+  env.pending = {};
 }
 
 function api(token) {
@@ -112,10 +83,10 @@ function api(token) {
       json = text;
     }
     if (!res.ok) {
-      const msg = (json && (json.message || json.msg || json.error)) || text || res.statusText;
-      const err = new Error(`Supabase API ${res.status} (${method} ${endpoint}): ${msg}`);
+      const err = new Error(`Supabase API ${res.status} (${method} ${endpoint}). Check token permissions and project configuration.`);
       err.status = res.status;
       err.body = json;
+      err.freeLimit = /maximum limits|free project|project limit/i.test(text);
       throw err;
     }
     return json;
@@ -209,9 +180,9 @@ async function createProject(call, { name, orgSlug, region }) {
     const project = await call("POST", "/v1/projects", modern);
     return { project, dbPass };
   } catch (e) {
-    if (!e.status || e.status >= 500) throw e;
+    if (e.status !== 400 || e.freeLimit) throw e;
     const explicitRegion = { americas: "us-east-1", emea: "eu-west-2", apac: "ap-southeast-1" }[region] || "us-east-1";
-    const legacy = { name, organization_id: orgSlug, db_pass: dbPass, region: explicitRegion };
+    const legacy = { name, organization_slug: orgSlug, db_pass: dbPass, region: explicitRegion };
     const project = await call("POST", "/v1/projects", legacy);
     return { project, dbPass };
   }
@@ -281,7 +252,7 @@ function printHelp() {
 
 Usage: npm run setup [-- options]
 
-Reads .env.local and finishes the Supabase setup for you using
+Reads the selected Doppler runtime and operations configs using
 SUPABASE_ACCESS_TOKEN (a personal access token):
   - runs the database migration(s)
   - configures the Site URL + redirect allow-list and turns on
@@ -293,6 +264,7 @@ If NEXT_PUBLIC_SUPABASE_URL is blank, it creates a free project for you.
 
 Options:
   --no-create   Don't create a project; fail if none is configured.
+  --migrations-only  Apply migrations using a project-scoped database token.
   -h, --help    Show this help.
 
 Env overrides:
@@ -311,38 +283,30 @@ async function main() {
 
   log(bold("Setting up agent37-starter-kit\n"));
 
-  if (!fs.existsSync(ENV_FILE)) {
-    if (!fs.existsSync(ENV_EXAMPLE)) die("Missing .env.example — are you in the project root?");
-    fs.copyFileSync(ENV_EXAMPLE, ENV_FILE);
-    step("Created .env.local");
-    log(
-      `\nPaste your two secrets into ${bold(".env.local")}, then run ${bold("npm run setup")} again:\n` +
-        `  ${cyan("AGENT37_API_KEY")}        your sk_live_ key (Agent37 dashboard → Cloud → API keys)\n` +
-        `  ${cyan("SUPABASE_ACCESS_TOKEN")}  a token from https://supabase.com/dashboard/account/tokens`
-    );
-    return;
-  }
-
-  const env = loadEnv(ENV_FILE);
+  const env = { map: { ...process.env }, pending: {} };
 
   const token = get(env, "SUPABASE_ACCESS_TOKEN");
   if (isBlank(token)) {
     die(
-      "SUPABASE_ACCESS_TOKEN is not set in .env.local",
-      `Create one at ${bold("https://supabase.com/dashboard/account/tokens")}, paste it into\n` +
-        `.env.local as SUPABASE_ACCESS_TOKEN=sbp_…, then run ${bold("npm run setup")} again.\n\n` +
-        `${dim("Prefer not to use a token? Do the Supabase steps by hand — see the")}\n` +
-        `${dim('"Manual Supabase setup" section in SETUP.md.')}`
+      "SUPABASE_ACCESS_TOKEN is not set in the selected operations config.",
+      "Add it in Doppler, then rerun npm run setup. See SETUP.md for required permissions."
     );
   }
   if (isBlank(get(env, "AGENT37_API_KEY"))) {
-    warn("AGENT37_API_KEY is still blank — the app needs it at runtime. Fill it in .env.local.");
+    warn("AGENT37_API_KEY is still blank — add it to the runtime config in Doppler.");
   }
 
   const call = api(token);
   const siteUrl = (get(env, "NEXT_PUBLIC_SITE_URL") || "http://localhost:3000").replace(/\/$/, "");
 
   let ref = process.env.SUPABASE_PROJECT_REF || refFromUrl(get(env, "NEXT_PUBLIC_SUPABASE_URL"));
+
+  if (FLAGS.migrationsOnly) {
+    if (!ref) die('Configure a Supabase project before running --migrations-only.');
+    await runMigrations(call, ref);
+    ok('Database migrations complete; authentication configuration was not changed.');
+    return;
+  }
 
   if (ref) {
     step(`Using Supabase project ${bold(ref)}`);
@@ -360,7 +324,7 @@ async function main() {
   } else if (FLAGS.noCreate) {
     die(
       "No Supabase project configured, and --no-create was passed.",
-      "Paste an existing project's URL into NEXT_PUBLIC_SUPABASE_URL in .env.local and re-run."
+      "Set NEXT_PUBLIC_SUPABASE_URL in the runtime config in Doppler and rerun."
     );
   } else {
     step("No Supabase project configured — creating a new free one");
@@ -374,7 +338,7 @@ async function main() {
     const pickHint =
       `Re-run ${bold("npm run setup")} after choosing one:\n` +
       `  • Target a specific org — set one of these:\n${orgList}\n` +
-      `  • Or reuse an existing project — paste its URL into NEXT_PUBLIC_SUPABASE_URL in .env.local`;
+      `  • Or reuse an existing project — set NEXT_PUBLIC_SUPABASE_URL in Doppler`;
 
     const wantOrg = process.env.SUPABASE_ORG;
     if (wantOrg && !orgs.some((o) => o.id === wantOrg || o.slug === wantOrg)) {
@@ -393,9 +357,10 @@ async function main() {
     log(`  ${dim("Creating project (this takes a minute or two)…")}`);
     let project;
     try {
-      ({ project } = await createProject(call, { name: "agent37-starter-kit", orgSlug, region }));
+      const name = `${process.env.ROBYN_SECRET_PROJECT || 'agent37'}-${process.env.ROBYN_SECRET_CONFIG || 'development'}`;
+      ({ project } = await createProject(call, { name, orgSlug, region }));
     } catch (e) {
-      const atLimit = /maximum limits|free project|project limit/i.test(e.message || "");
+      const atLimit = e.freeLimit;
       if (atLimit || e.status === 403) {
         die(
           atLimit
@@ -480,4 +445,4 @@ if (invokedDirectly()) {
   });
 }
 
-export { loadEnv, setEnv, saveEnv, unquote, refFromUrl, pickPublicKey, pickServiceKey, isBlank };
+export { refFromUrl, pickPublicKey, pickServiceKey, isBlank };

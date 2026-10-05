@@ -1,9 +1,4 @@
 #!/usr/bin/env node
-import { existsSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-
-const envFile = fileURLToPath(new URL('../.env.local', import.meta.url));
-if (existsSync(envFile)) process.loadEnvFile(envFile);
 
 try {
   const { NEXT_PUBLIC_SUPABASE_URL: databaseUrl, NEXT_PUBLIC_SITE_URL: siteUrl, SUPABASE_ACCESS_TOKEN: token, BILLING_CRON_SECRET: secret } = process.env;
@@ -14,6 +9,7 @@ try {
   if (!database.hostname.endsWith('.supabase.co')) throw new Error('Expected a hosted Supabase project.');
   const ref = database.hostname.split('.')[0];
   const literal = (value) => "'" + value.replaceAll("'", "''") + "'";
+  const bypass = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
   async function query(sql) {
     const response = await fetch(`https://api.supabase.com/v1/projects/${ref}/database/query`, {
       method: 'POST', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
@@ -34,11 +30,14 @@ try {
       select id into existing from vault.secrets where name = 'robyn_billing_cron_secret';
       if existing is null then perform vault.create_secret(${literal(secret)}, 'robyn_billing_cron_secret');
       else perform vault.update_secret(existing, ${literal(secret)}); end if;
+      ${bypass ? `select id into existing from vault.secrets where name = 'robyn_preview_bypass_secret';
+      if existing is null then perform vault.create_secret(${literal(bypass)}, 'robyn_preview_bypass_secret');
+      else perform vault.update_secret(existing, ${literal(bypass)}); end if;` : ''}
     end; $secrets$;
     select cron.schedule('robyn-billing-sync', '*/5 * * * *', $job$
       select net.http_post(
         url := (select decrypted_secret from vault.decrypted_secrets where name = 'robyn_billing_site_url') || '/api/billing/sync',
-        headers := jsonb_build_object('Content-Type', 'application/json', 'Authorization', 'Bearer ' || (select decrypted_secret from vault.decrypted_secrets where name = 'robyn_billing_cron_secret')),
+        headers := jsonb_build_object('Content-Type', 'application/json', 'Authorization', 'Bearer ' || (select decrypted_secret from vault.decrypted_secrets where name = 'robyn_billing_cron_secret')${bypass ? ", 'x-vercel-protection-bypass', (select decrypted_secret from vault.decrypted_secrets where name = 'robyn_preview_bypass_secret')" : ''}),
         body := '{}'::jsonb, timeout_milliseconds := 300000
       );
     $job$);
