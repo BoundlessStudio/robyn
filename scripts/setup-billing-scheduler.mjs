@@ -1,9 +1,4 @@
 #!/usr/bin/env node
-import { existsSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-
-const envFile = fileURLToPath(new URL('../.env.local', import.meta.url));
-if (existsSync(envFile)) process.loadEnvFile(envFile);
 
 try {
   const { NEXT_PUBLIC_SUPABASE_URL: databaseUrl, NEXT_PUBLIC_SITE_URL: siteUrl, SUPABASE_ACCESS_TOKEN: token, BILLING_CRON_SECRET: secret } = process.env;

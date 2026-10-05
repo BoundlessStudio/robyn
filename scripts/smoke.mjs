@@ -4,33 +4,20 @@
 // real instance, waits for it, sends ONE chat turn over the data plane, and deletes it.
 //
 // Run it before shipping a change that touches the create/chat/delete path:
-//   AGENT37_API_KEY=sk_live_... node scripts/smoke.mjs
-// (reads AGENT37_API_KEY from the environment or .env.local). Pass --keep to skip the
+//   npm run smoke -- --config dev
+// (receives AGENT37_API_KEY from Doppler). Pass --keep to skip the
 // delete and leave the instance running for manual poking.
 //
 // This talks straight to the Agent37 API (control plane + the instance's data plane),
 // the same surfaces src/lib/agent37.ts wraps — so a green run proves the API contract
 // the app depends on still holds end to end.
 
-import { readFileSync } from "node:fs";
-
 const API = process.env.AGENT37_API || "https://api.agent37.com/v1";
 const KEEP = process.argv.includes("--keep");
 
-function readEnv(name) {
-  if (process.env[name]) return process.env[name];
-  try {
-    for (const line of readFileSync(new URL("../.env.local", import.meta.url), "utf8").split("\n")) {
-      const m = line.match(new RegExp(`^${name}=(.*)$`));
-      if (m) return m[1].trim().replace(/^['"]|['"]$/g, "");
-    }
-  } catch {}
-  return undefined;
-}
-
-const KEY = readEnv("AGENT37_API_KEY");
+const KEY = process.env.AGENT37_API_KEY;
 if (!KEY || !KEY.startsWith("sk_live_")) {
-  console.error("Set AGENT37_API_KEY (sk_live_...) in the env or .env.local first.");
+  console.error("Set AGENT37_API_KEY in the selected Doppler runtime config first.");
   process.exit(1);
 }
 

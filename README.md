@@ -22,17 +22,24 @@ The inbox allowlist uses the agent creator's account email. Add an allowed phone
 
 ## Setup
 
-**1. Get two keys** (both behind a login, so only you can fetch them):
+Use Doppler for secrets in main and every Git worktree. Follow
+**[SETUP.md](SETUP.md)** for Supabase setup and deployment, and
+**[SECRETS.md](SECRETS.md)** for config selection and secret updates.
+
+The two bootstrap credentials are:
 
 - `AGENT37_API_KEY` — Agent37 dashboard → **Cloud → API keys**, then **fund the wallet** (Cloud → Billing).
 - `SUPABASE_ACCESS_TOKEN` — [supabase.com/dashboard/account/tokens](https://supabase.com/dashboard/account/tokens).
 
-**2. Hand it to your coding agent.** Open this folder in Claude Code / Codex and paste:
+Store the Agent37 key in the runtime config and the Supabase management token in
+the matching operations config. Then:
 
 ```
-Set this repo up and run it locally, end to end — follow SETUP.md. Ask me for the two
-login-gated keys it needs, then do everything else and tell me the local URL.
+npm install
+doppler login
+npm run setup
+npm run dev
 ```
 
-It writes your keys, configures Supabase, and starts the app. Prefer to do it yourself?
-**[SETUP.md](SETUP.md)** has the four-command path and deploy steps too.
+Commands default to development. Production commands require `--config prd`.
+No `.env.local` copy or worktree hook is needed.
