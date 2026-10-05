@@ -134,6 +134,20 @@ own dashboard / terminal / files UI in a new tab.
 
 ## How this app fits together
 
+**Host represents this deployment above all tenant workspaces.** `/host` is an
+operator console for Overview, Tenants, and Configuration. `host_admins` stores Host access
+by verified Supabase user ID, independently of workspace roles. Every Host page and read
+uses `src/lib/host-auth.ts`; service-role-only SQL functions and explicit DTOs return only
+operational metadata and billing records. Host reads never contact Agent37, settle billing,
+charge cards, or return agent content or credentials. Host accounts land in `/host` without
+bootstrapping a workspace. `npm run host:bootstrap` invites the dedicated account through
+Supabase and grants the returned ID; existing non-Host accounts require explicit identity
+review. Host can change each workspace's agent limit (default 1) and issue workspace-scoped,
+single-use credit coupons. These writes recheck Host permission in both the DAL and SQL.
+Creation reserves capacity atomically before calling Agent37; uncertain outcomes retain a slot
+for operator review. Tenant creation buttons require available capacity and a positive wallet.
+See [HOST.md](HOST.md). Removing a Host permission revokes access on the next request.
+
 ```
 Browser ─▶ Next.js (this app) ─▶ control plane  https://api.agent37.com/v1   (instances, integrations)
    │            │              └▶ data plane     https://{instance}.agent37.app/v1   (chat, files)

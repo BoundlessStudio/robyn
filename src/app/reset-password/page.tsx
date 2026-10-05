@@ -55,8 +55,8 @@ export default function ResetPasswordPage() {
               <p className="font-medium">Password updated</p>
               <p className="mt-1 text-muted-foreground">You&apos;re all set.</p>
             </div>
-            <Button className="w-full" onClick={() => (window.location.href = "/dashboard")}>
-              Continue to dashboard
+            <Button className="w-full" onClick={() => (window.location.href = "/")}>
+              Continue
             </Button>
           </div>
         ) : !hasSession ? (

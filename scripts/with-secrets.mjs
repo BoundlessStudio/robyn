@@ -14,8 +14,9 @@ const commands = {
   'billing:sync': ['scripts/sync-billing.mjs'],
   'billing:listen': ['scripts/listen-stripe.mjs'],
   'billing:schedule': ['scripts/setup-billing-scheduler.mjs'],
+  'host:bootstrap': ['--experimental-strip-types', 'scripts/bootstrap-host.mjs'],
 };
-const operationCommands = new Set(['setup', 'billing:setup', 'billing:schedule']);
+const operationCommands = new Set(['setup', 'billing:setup', 'billing:schedule', 'host:bootstrap']);
 
 try {
   const [command, ...args] = process.argv.slice(2);

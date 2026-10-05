@@ -15,7 +15,11 @@ Keep the **operator's Agent37 wallet funded separately**. Agent37 documents no b
 
 ## Grant a coupon
 
-From a trusted operator terminal with the server's Supabase credentials:
+Host can issue a workspace coupon from **Host → Tenants → tenant details**. Choose its USD
+credit amount and copy the generated code for that workspace's admin to redeem in Billing.
+It credits the balance only on redemption, once, and expires after 30 days.
+
+Alternatively, from a trusted operator terminal with the server's Supabase credentials:
 
 ```sh
 npm run billing:coupon -- --config prd --workspace <workspace-uuid> --amount 25

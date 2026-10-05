@@ -14,7 +14,8 @@
     "billing:setup": "node scripts/with-secrets.mjs billing:setup",
     "billing:sync": "node scripts/with-secrets.mjs billing:sync",
     "billing:listen": "node scripts/with-secrets.mjs billing:listen",
-    "billing:schedule": "node scripts/with-secrets.mjs billing:schedule"
+    "billing:schedule": "node scripts/with-secrets.mjs billing:schedule",
+    "host:bootstrap": "node scripts/with-secrets.mjs host:bootstrap"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.6",
