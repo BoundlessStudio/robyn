@@ -3,6 +3,7 @@ import { validCronId } from "@/lib/cron-input";
 import type {
   Agent,
   AgentCron,
+  AgentGatewayVersion,
   Budget,
   CronInput,
   CronRun,
@@ -163,6 +164,7 @@ export const agent37 = {
     method: "PATCH", body: JSON.stringify({ name }),
   }),
   getHealth: (id: string) => instanceCall<{ healthy: boolean }>(id, "/v1/health", { signal: AbortSignal.timeout(10_000) }),
+  getVersion: (id: string) => instanceCall<AgentGatewayVersion>(id, "/v1/version", { signal: AbortSignal.timeout(10_000) }),
   createPublicPort: (id: string, port: number, label: string) =>
     call<{ port: number; url: string }>(`/instances/${id}/public-ports`, {
       method: "POST", body: JSON.stringify({ port, label }),
@@ -212,8 +214,8 @@ export const agent37 = {
     call<Budget>(`/instances/${id}/budget/top-up`, { method: "POST", body: JSON.stringify(body) }),
   getUsage: (id: string, month?: string) =>
     call<Usage>(`/instances/${id}/usage${month ? `?month=${encodeURIComponent(month)}` : ""}`),
-  getWorkspaceUsage: (from: string, to: string) =>
-    call<WorkspaceUsage>(`/usage?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`),
+  getWorkspaceUsage: (from: string, to: string, signal?: AbortSignal) =>
+    call<WorkspaceUsage>(`/usage?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`, { signal }),
 
   listTemplates: () => call<{ data: Template[] }>("/templates"),
 

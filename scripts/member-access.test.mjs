@@ -12,6 +12,7 @@ import * as budgetInput from '../src/lib/budget-input.ts';
 import * as agentConfig from '../src/config/agents.ts';
 import * as costHelpers from '../src/lib/agent-costs.ts';
 import * as userProfile from '../src/lib/user-profile.ts';
+import * as usageReport from '../src/lib/usage-report.ts';
 
 // Execute the real handlers/helpers with fake external services, so these tests cannot
 // provision billed instances or require a live Supabase project.
@@ -149,6 +150,9 @@ function fixture(userId = MEMBER, sharedTables) {
     deleteAgent: async (id) => calls.push({ deleted: id }),
     renameAgent: async (id, name) => calls.push({ renamed: id, name }),
     restart: async (id) => { calls.push({ restart: id }); return { status: 'restarting' }; },
+    update: async (id) => { calls.push({ update: id }); return { id, status: 'running', image_ref: 'hermes:new', image_digest: 'sha256:new', template_revision: null }; },
+    getVersion: async (id) => { calls.push({ versionRead: id }); return { name: 'agent37-gateway', version: '1.2.3', private: 'hidden' }; },
+    getHealth: async (id) => { calls.push({ healthRead: id }); return { ok: true, healthy: true, private: 'hidden' }; },
   };
   const dependencies = {
     '@/lib/auth': auth, '@/lib/http': http, '@/lib/assignment-input': assignmentInput, '@/lib/budget-input': budgetInput,
@@ -264,9 +268,93 @@ test('empty workspace balances prevent billed creation and lifecycle mutations a
   assert.equal((await creation.POST(request({ workspace_id: WORKSPACE, assigned_user_id: MEMBER }))).status, 402);
   const lifecycle = loadSource('src/app/api/agents/[id]/[action]/route.ts', f.dependencies);
   assert.equal((await lifecycle.POST(request({}), params({ id: 'mine', action: 'restart' }))).status, 402);
+  assert.equal((await lifecycle.POST(request({}), params({ id: 'mine', action: 'update' }))).status, 402);
   const resize = loadSource('src/app/api/agents/[id]/resize/route.ts', f.dependencies);
   assert.equal((await resize.POST(request({ disk: 8 }), params({ id: 'mine' }))).status, 402);
   assert.equal(f.calls.length, 0);
+});
+
+test('version and health checks are assignment-scoped and return only public version and readiness fields', async () => {
+  for (const [user, id, status] of [[ADMIN, 'mine', 200], [MEMBER, 'mine', 200], [MEMBER, 'other', 404],
+    [MEMBER, 'unassigned', 404], [MEMBER, 'foreign', 404], [ADMIN, 'foreign', 404], [null, 'mine', 401]]) {
+    const f = fixture(user);
+    const route = loadSource('src/app/api/agents/[id]/version/route.ts', f.dependencies);
+    const response = await route.GET(request({}), params({ id }));
+    assert.equal(response.status, status);
+    if (status !== 200) { assert.equal(f.calls.length, 0); continue; }
+    assert.equal(response.headers.get('cache-control'), 'private, no-store');
+    assert.deepEqual(await response.json(), {
+      status: 'running', gateway: { name: 'agent37-gateway', version: '1.2.3' },
+      healthy: true, version_error: null, health_error: null,
+    });
+    assert.deepEqual(f.calls, [{ resourceRead: id }, { versionRead: id }, { healthRead: id }]);
+  }
+});
+
+test('opening version Settings never wakes sleeping agents or probes stopped and transitioning instances', async () => {
+  for (const status of ['stopped', 'sleeping', 'updating', 'starting', 'waking', 'failed']) {
+    const f = fixture();
+    f.upstream.getAgent = async () => ({ status, env: { private: 'hidden' } });
+    const route = loadSource('src/app/api/agents/[id]/version/route.ts', f.dependencies);
+    const response = await route.GET(request({}), params({ id: 'mine' }));
+    assert.deepEqual(await response.json(), { status, gateway: null, healthy: null, version_error: null, health_error: null });
+    assert.equal(f.calls.length, 0);
+  }
+});
+
+test('version and health failures remain independent; gateway ok alone never means ready', async () => {
+  for (const failure of ['version', 'health', 'neither', 'both']) {
+    const f = fixture();
+    if (['version', 'both'].includes(failure)) f.upstream.getVersion = async () => { throw new Error('private upstream detail'); };
+    if (['health', 'both'].includes(failure)) f.upstream.getHealth = async () => { throw new Error('private upstream detail'); };
+    else f.upstream.getHealth = async () => ({ ok: true, healthy: false });
+    const route = loadSource('src/app/api/agents/[id]/version/route.ts', f.dependencies);
+    const response = await route.GET(request({}), params({ id: 'mine' }));
+    assert.equal(response.status, 200);
+    const data = await response.json();
+    assert.equal(data.gateway?.version ?? null, ['version', 'both'].includes(failure) ? null : '1.2.3');
+    assert.equal(data.healthy, ['health', 'both'].includes(failure) ? null : false);
+    assert.equal(Boolean(data.version_error), ['version', 'both'].includes(failure));
+    assert.equal(Boolean(data.health_error), ['health', 'both'].includes(failure));
+    assert.doesNotMatch(JSON.stringify(data), /private upstream detail/);
+  }
+});
+
+test('assigned members and workspace admins can upgrade; unauthorized upgrades never reach Agent37', async () => {
+  for (const [user, id, status] of [[ADMIN, 'mine', 200], [MEMBER, 'mine', 200], [MEMBER, 'other', 404],
+    [MEMBER, 'unassigned', 404], [MEMBER, 'foreign', 404], [ADMIN, 'foreign', 404], [null, 'mine', 401]]) {
+    const f = fixture(user);
+    const route = loadSource('src/app/api/agents/[id]/[action]/route.ts', f.dependencies);
+    const response = await route.POST(request({ template: 'another-template', env: { injected: 'ignored' } }), params({ id, action: 'update' }));
+    assert.equal(response.status, status);
+    if (status !== 200) { assert.equal(f.calls.length, 0); continue; }
+    assert.deepEqual(f.calls, [{ update: id }]);
+    assert.equal((await response.json()).status, 'running');
+    assert.equal(f.tables.agents.find((row) => row.agent37_id === id).assigned_user_id, MEMBER);
+  }
+});
+
+test('workspace usage requires admin access before querying ownership or the shared Agent37 account', async () => {
+  for (const [user, workspace, status] of [[ADMIN, WORKSPACE, 200], [MEMBER, WORKSPACE, 403], [OTHER, WORKSPACE, 403], [ADMIN, 'foreign-workspace', 403], [null, WORKSPACE, 401]]) {
+    const f = fixture(user);
+    const route = loadSource('src/app/api/workspaces/[id]/usage/route.ts', {
+      ...f.dependencies, '@/lib/usage-report': usageReport,
+      '@/lib/workspace-usage': { readWorkspaceUsage: async (_db, id, window) => { f.calls.push({ usage: id }); return { ...window, totals: { total_micros: 123 } }; } },
+    });
+    const response = await route.GET(new Request('https://app.example/api?from=2026-10-01&to=2026-10-05'), params({ id: workspace }));
+    assert.equal(response.status, status);
+    if (status === 200) {
+      assert.equal(response.headers.get('cache-control'), 'private, no-store');
+      assert.deepEqual(f.calls, [{ usage: WORKSPACE }]);
+      assert.equal((await response.json()).totals.total_micros, 123);
+    } else assert.equal(f.calls.length, 0);
+  }
+  const f = fixture(ADMIN);
+  const route = loadSource('src/app/api/workspaces/[id]/usage/route.ts', {
+    ...f.dependencies, '@/lib/usage-report': usageReport,
+    '@/lib/workspace-usage': { readWorkspaceUsage: async () => { throw new Error('Invalid dates reached upstream'); } },
+  });
+  assert.equal((await route.GET(new Request('https://app.example/api?from=not-a-date'), params({ id: WORKSPACE }))).status, 400);
 });
 
 test('member profile reads and edits require an admin and a target membership in that workspace', async () => {
