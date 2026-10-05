@@ -1,4 +1,5 @@
-import { agent37 } from "@/lib/agent37";
+import { agent37, Agent37Error } from "@/lib/agent37";
+import { readAgentCapacity, releaseAgentCreation, reserveAgentCreation } from "@/lib/agent-capacity";
 import { requireWorkspaceBalance } from "@/lib/billing";
 import { requireAdmin, requireAssignee, requireMember, requireUser } from "@/lib/auth";
 import { validateAssignedUserId } from "@/lib/assignment-input";
@@ -96,7 +97,10 @@ export async function GET(request: Request) {
       };
     });
 
-    return json({ agents, role });
+    const creation = role === "admin" ? await readAgentCapacity(db, workspaceId) : null;
+    const response = json({ agents, role, creation });
+    response.headers.set("Cache-Control", "private, no-store");
+    return response;
   } catch (e) {
     return handleError(e);
   }
@@ -122,7 +126,9 @@ export async function POST(request: Request) {
       throw new ApiError(400, "invalid_template", "New agents use Hermes.");
     }
 
-    const agent = await agent37.createAgent({
+    const reservation = await reserveAgentCreation(db, workspaceId, user.id, assignedUserId);
+    let agent: Agent;
+    try { agent = await agent37.createAgent({
       template: DEFAULT_AGENT.template,
       resources: {
         cpu: DEFAULT_AGENT.cpu,
@@ -130,30 +136,38 @@ export async function POST(request: Request) {
         disk: DEFAULT_AGENT.disk,
       },
       user: assignedUserId,
-      metadata: { app_workspace: workspaceId },
+      metadata: { app_workspace: workspaceId, app_creation: reservation },
       budget: { monthly_cap_micros: usdToMicros(DEFAULT_AGENT.monthlyCapUsd) },
-    });
+    }); } catch (error) {
+      if (error instanceof Agent37Error && ((error.status >= 400 && error.status < 500 && error.status !== 408)
+        || ["no_capacity", "provisioning_failed", "config_error"].includes(error.code))) {
+        await releaseAgentCreation(db, reservation);
+        throw error;
+      }
+      throw new ApiError(503, "agent_creation_unconfirmed", "Agent creation could not be confirmed. Its slot is reserved; contact the Host before retrying.");
+    }
 
-    const { error } = await db.from("agents").insert({
-      agent37_id: agent.id,
-      workspace_id: workspaceId,
-      name: agent.name || null,
-      status: agent.status,
-      template: agent.template,
-      cpu: agent.resources.cpu,
-      memory: agent.resources.memory,
-      disk: agent.resources.disk,
-      created_by: user.id,
-      assigned_user_id: assignedUserId,
-    });
+    const { error } = await db.rpc("complete_agent_creation", { p_reservation: reservation, p_agent: {
+      id: agent.id, name: agent.name || null, status: agent.status, template: agent.template, resources: agent.resources,
+    } });
     if (error) {
-      // Roll back the orphaned agent so we never bill for an untracked box.
+      // A lost database response may have committed successfully. Check before deleting the box.
+      const { data: saved, error: checkError } = await db.from("agents").select("workspace_id").eq("agent37_id", agent.id).maybeSingle();
+      if (!checkError && saved?.workspace_id === workspaceId) return json(agent, 201);
+      // A transport failure can leave the SQL transaction running. Only confirmed SQL errors
+      // (or a missing RPC) prove it rolled back; a snapshot with no row is not sufficient.
+      const rolledBack = /^(?:22|23|40|42|P0)[A-Z0-9]{3}$/.test(error.code ?? "") || error.code === "PGRST202";
+      if (checkError || !rolledBack) throw new ApiError(503, "agent_creation_unconfirmed", "Agent creation needs Host review. Its slot remains reserved.");
+      let removed = false;
       try {
         await agent37.deleteAgent(agent.id);
-      } catch {
-        /* best-effort */
+        removed = true;
+      } catch (failure) {
+        removed = failure instanceof Agent37Error && failure.status === 404;
       }
-      throw new ApiError(500, "db_error", error.message);
+      if (removed) await releaseAgentCreation(db, reservation);
+      throw new ApiError(503, "agent_creation_unconfirmed", removed
+        ? "Agent creation was rolled back. Please retry." : "Agent creation needs Host review. Its slot remains reserved.");
     }
 
     return json(agent, 201);

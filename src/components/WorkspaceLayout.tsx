@@ -3,6 +3,7 @@ import { getSession, type DB } from "@/lib/auth";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { WorkspaceProvider } from "@/components/WorkspaceProvider";
 import { userProfileFromUser } from "@/lib/user-profile";
+import { isHostAdmin } from "@/lib/host-auth";
 import type { Role, Workspace, WorkspaceWithRole } from "@/lib/types";
 
 // Read the user's workspaces with two plain table queries joined in JS, NOT a PostgREST relationship
@@ -64,6 +65,8 @@ export async function WorkspaceLayout({ children }: { children: React.ReactNode 
 
   // Table access goes through the privileged client; the user came from the verified session above.
   const db = createAdminClient();
+  // The dedicated Host account never bootstraps a tenant just by visiting a dashboard/profile URL.
+  if (await isHostAdmin(db, user.id)) redirect("/host");
   let workspaces = await loadWorkspaces(db, user.id);
   if (workspaces.length === 0) {
     workspaces = [await createFirstWorkspace(db, user.id)];

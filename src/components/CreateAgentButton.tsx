@@ -21,9 +21,11 @@ const DEFAULT_TEMPLATE =
 export function CreateAgentButton({
   workspaceId,
   onCreated,
+  disabledReason,
 }: {
   workspaceId: string;
   onCreated: () => void;
+  disabledReason: string | null;
 }) {
   const [open, setOpen] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -31,7 +33,7 @@ export function CreateAgentButton({
   const { members, loading, error } = useWorkspaceMembers(workspaceId, open);
 
   async function create() {
-    if (!members.some((member) => member.user_id === assignedUserId)) return;
+    if (disabledReason || busy || !members.some((member) => member.user_id === assignedUserId)) return;
     setBusy(true);
     try {
       await apiFetch("/api/agents", {
@@ -51,7 +53,7 @@ export function CreateAgentButton({
 
   return (
     <>
-      <Button onClick={() => setOpen(true)}>
+      <Button onClick={() => setOpen(true)} disabled={!!disabledReason || busy} aria-describedby={disabledReason ? "agent-creation-blocked" : undefined}>
         <Plus className="h-4 w-4" />
         Create agent
       </Button>
@@ -78,7 +80,7 @@ export function CreateAgentButton({
             <Button variant="outline" onClick={() => setOpen(false)} disabled={busy}>
               Cancel
             </Button>
-            <Button onClick={create} disabled={busy || loading || !members.some((member) => member.user_id === assignedUserId)}>
+            <Button onClick={create} disabled={!!disabledReason || busy || loading || !members.some((member) => member.user_id === assignedUserId)}>
               {busy ? "Creating..." : "Create agent"}
             </Button>
           </DialogFooter>

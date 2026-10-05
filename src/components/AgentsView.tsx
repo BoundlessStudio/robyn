@@ -9,6 +9,7 @@ import { apiFetch } from "@/lib/api";
 import { isTransitional, statusVariant } from "@/lib/format";
 import { agentBudgetPath, agentTabPath } from "@/lib/dashboard-tabs";
 import type { MergedAgent, Role } from "@/lib/types";
+import { creationDisabledReason, type AgentCapacity } from "@/lib/agent-capacity-input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -30,24 +31,38 @@ export function AgentsView() {
   const [agents, setAgents] = useState<MergedAgent[]>([]);
   const [role, setRole] = useState<Role>("admin");
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
+  const [capacity, setCapacity] = useState<{ workspaceId: string; value: AgentCapacity } | null>(null);
+  const activeWorkspace = useRef<string | null>(null);
+  activeWorkspace.current = current?.id ?? null;
 
   const load = useCallback(async () => {
     if (!current) return;
     try {
-      const data = await apiFetch<{ agents: MergedAgent[]; role: Role }>(
+      const data = await apiFetch<{ agents: MergedAgent[]; role: Role; creation: AgentCapacity | null }>(
         `/api/agents?workspace=${current.id}`
       );
+      if (activeWorkspace.current !== current.id) return;
       setAgents(data.agents);
       setRole(data.role);
+      setCapacity(data.creation ? { workspaceId: current.id, value: data.creation } : null);
+      setLoadError(null);
     } catch (e) {
+      if (activeWorkspace.current !== current.id) return;
+      setCapacity(null);
+      setLoadError((e as Error).message);
       toast.error((e as Error).message);
     } finally {
-      setLoading(false);
+      if (activeWorkspace.current === current.id) setLoading(false);
     }
   }, [current]);
 
   useEffect(() => {
     setLoading(true);
+    setCapacity(null);
+    setAgents([]);
+    setRole(current?.role ?? "member");
+    setLoadError(null);
     load();
   }, [load]);
 
@@ -58,23 +73,32 @@ export function AgentsView() {
   }, [agents, load]);
 
   if (!current) return <p className="text-sm text-muted-foreground">No workspace selected.</p>;
+  const creation = capacity?.workspaceId === current.id ? capacity.value : null;
+  const disabledReason = loading ? "Checking agent capacity and wallet…" : creationDisabledReason(creation);
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Agents</h1>
           <p className="text-sm text-muted-foreground">{current.name}</p>
         </div>
-        {role === "admin" && <CreateAgentButton key={current.id} workspaceId={current.id} onCreated={load} />}
+        {role === "admin" && <div className="max-w-sm space-y-2">
+          <CreateAgentButton key={current.id} workspaceId={current.id} onCreated={() => { setCapacity(null); void load(); }} disabledReason={disabledReason} />
+          {creation && <p className="text-xs text-muted-foreground">{creation.agent_count} / {creation.agent_limit} agents{creation.pending_count ? ` · ${creation.pending_count} creations reserved` : ""}</p>}
+          {disabledReason && <p id="agent-creation-blocked" className="text-xs text-muted-foreground">{disabledReason}</p>}
+        </div>}
       </div>
 
       {loading ? (
         <p className="text-sm text-muted-foreground">Loading...</p>
+      ) : loadError ? (
+        <div className="space-y-3"><p role="alert" className="text-sm text-destructive">{loadError}</p>
+          <Button variant="outline" onClick={load}>Retry</Button></div>
       ) : agents.length === 0 ? (
         <div className="rounded-lg border border-dashed p-12 text-center">
           <p className="text-sm text-muted-foreground">
-            {role === "admin"
+            {role === "admin" && !disabledReason
               ? "No agents yet. Create your first one."
               : "No agents in this workspace yet."}
           </p>

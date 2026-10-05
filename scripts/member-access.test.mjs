@@ -66,6 +66,7 @@ function fixture(userId = MEMBER, sharedTables) {
     agent_budget_requests: [],
   };
   const calls = [];
+  let reservedAssignment;
   const authUsers = new Map([ADMIN, MEMBER, OTHER].map((id) => [id, {
     id, email: `${id}@example.com`, phone: '+14165550000',
     user_metadata: { full_name: id === MEMBER ? 'Member name' : 'Other name', phone_number: '+14165550123', unrelated: 'keep me' },
@@ -115,8 +116,12 @@ function fixture(userId = MEMBER, sharedTables) {
       };
       return query;
     },
-    async rpc(name) {
+    async rpc(name, args) {
       calls.push(name);
+      if (name === 'complete_agent_creation') {
+        tables.agents.push({ agent37_id: args.p_agent.id, ...reservedAssignment });
+        return { data: null, error: null };
+      }
       return { data: tables.memberships.map((member) => ({ ...member, email: `${member.user_id}@example.com`, name: member.user_id === MEMBER ? 'Jamie' : null })), error: null };
     },
   };
@@ -148,9 +153,16 @@ function fixture(userId = MEMBER, sharedTables) {
   const dependencies = {
     '@/lib/auth': auth, '@/lib/http': http, '@/lib/assignment-input': assignmentInput, '@/lib/budget-input': budgetInput,
     '@/lib/billing': { requireWorkspaceBalance: async () => {} }, // these access tests use funded wallets
+    '@/lib/agent-capacity': {
+      readAgentCapacity: async () => ({ agent_limit: 10, agent_count: 3, pending_count: 0, balance_micros: 1000000 }),
+      reserveAgentCreation: async (_, workspace_id, created_by, assigned_user_id) => {
+        reservedAssignment = { workspace_id, created_by, assigned_user_id };
+        return '00000000-0000-4000-8000-000000000010';
+      }, releaseAgentCreation: async () => {},
+    },
     '@/lib/resource-input': resourceInput, '@/lib/agent-costs': costHelpers,
     '@/lib/budget-request-input': budgetRequestInput, '@/lib/user-profile': userProfile,
-    '@/lib/agent37': { agent37: upstream },
+    '@/lib/agent37': { agent37: upstream, Agent37Error: ApiError },
     '@/config/agents': { AGENT_TEMPLATES: ['agent37-hermes'], DEFAULT_AGENT: { template: 'agent37-hermes', cpu: 1, memory: 2, disk: 10, monthlyCapUsd: 20 }, templateAppPorts: () => [] },
     '@/lib/format': { usdToMicros: (usd) => usd * 1e6 },
   };
