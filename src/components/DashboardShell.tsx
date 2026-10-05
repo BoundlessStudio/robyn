@@ -12,9 +12,9 @@ import { MemberAgentSelection } from "@/components/MemberAgentSelection";
 
 const NAV = [
   { href: "/dashboard", label: "Agents", icon: LayoutGrid, exact: true },
-  { href: "/dashboard/usage", label: "Usage", icon: ChartNoAxesCombined, exact: false },
   { href: "/dashboard/members", label: "Members", icon: Users, exact: false },
   { href: "/dashboard/billing", label: "Billing", icon: CreditCard, exact: false },
+  { href: "/dashboard/usage", label: "Usage", icon: ChartNoAxesCombined, exact: false },
   { href: "/dashboard/settings", label: "Settings", icon: Settings, exact: false },
 ];
 
