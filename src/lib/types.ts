@@ -90,6 +90,20 @@ export interface Template {
   updated: number | null;
 }
 
+// The version endpoint reports the gateway release, not the agent harness version.
+export interface AgentGatewayVersion {
+  name: string;
+  version: string;
+}
+
+export interface AgentVersionStatus {
+  status: string;
+  gateway: AgentGatewayVersion | null;
+  healthy: boolean | null;
+  version_error: string | null;
+  health_error: string | null;
+}
+
 export interface Budget {
   monthly_cap_micros: number;
   monthly_consumed_micros: number;
@@ -164,13 +178,54 @@ export interface InstanceSpend {
   brave_micros: number;
   composio_micros: number;
   perflo_micros: number;
+  llm_calls?: number;
+  input_tokens?: number;
+  output_tokens?: number;
 }
 
 // The upstream workspace aggregates stay server-side. BFFs return only the authorized instance.
 export interface WorkspaceUsage {
   from: string;
   to: string;
+  total_micros?: number;
   instances: InstanceSpend[];
+  by_model?: ModelSpend[];
+}
+
+export interface UsageMetrics {
+  total_micros: number;
+  compute_micros: number;
+  llm_micros: number;
+  brave_micros: number;
+  composio_micros: number;
+  perflo_micros: number;
+  llm_calls: number;
+  input_tokens: number;
+  output_tokens: number;
+}
+
+export interface ModelSpend {
+  model: string;
+  cost_micros: number;
+  calls: number;
+  input_tokens: number;
+  output_tokens: number;
+}
+
+export interface UsageAgent extends UsageMetrics {
+  id: string;
+  name: string | null;
+  deleted: boolean;
+}
+
+export interface WorkspaceUsageReport {
+  from: string;
+  to: string;
+  generated_at: string;
+  totals: UsageMetrics;
+  days: (UsageMetrics & { date: string })[];
+  agents: UsageAgent[];
+  models: ModelSpend[] | null;
 }
 
 export interface AgentCosts {

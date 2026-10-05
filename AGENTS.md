@@ -125,6 +125,7 @@ too — they just complement the in-dashboard UIs now rather than replace them:
 | [Streaming](https://www.agent37.com/docs/agents-api/streaming) | stream responses (SSE) | ✅ (Chat) |
 | [Sessions & models](https://www.agent37.com/docs/agents-api/sessions) | conversation state, model selection | ✅ (Chat) |
 | [Files](https://www.agent37.com/docs/agents-api/files) | list / read / write / archive files | ✅ (Files) |
+| [Health & version](https://www.agent37.com/docs/agents-api/health) | agent readiness and gateway build | ✅ (Settings) |
 | [Build a chat app](https://www.agent37.com/docs/agents-api/chat-app) | end-to-end guide for a chat UI | reference |
 
 So: **what's possible** = the whole map above, and this template now exercises most
@@ -211,6 +212,23 @@ Browser ─▶ Next.js (this app) ─▶ control plane  https://api.agent37.com/
 - **Naming:** the upstream API calls these resources **instances**; this app brands
   them **agents**. Paths stay `/instances`; the client methods read `agent…`.
 
+Settings shows the gateway build from `/v1/version` and readiness from `/v1/health`.
+`/api/agents/{id}/version` requires agent access and probes only running instances;
+opening Settings must not wake sleepers. Admins and assigned members can upgrade
+through the existing authorized `/update` action when a newer template image is
+available. Show the restart and operating-system reset notice before upgrading,
+and confirm readiness after the update acknowledgement. Stopped instances stay stopped.
+
+The admin-only **Usage** page at `/dashboard/usage` reads
+`/api/workspaces/{id}/usage` for an inclusive window within the last 90 UTC days.
+The BFF verifies workspace admin access, reads current and retained `billing_agents`
+ownership, and reconstructs daily totals from each day's authorized instance rows.
+Shared-key totals and other tenants' instances never reach the browser. Current
+agents with zero spend and deleted agents with spend are included. Model rollups
+are shown only when all daily spenders are owned by this workspace and model totals
+reconcile; otherwise the breakdown is explicitly unavailable. Reads do not settle
+billing, refill wallets, or wake instances.
+
 ## Where things live
 
 | Path | What |
@@ -232,6 +250,8 @@ Browser ─▶ Next.js (this app) ─▶ control plane  https://api.agent37.com/
 | `src/components/ScheduleTab.tsx`, `src/lib/cron-input.ts` | Cron editor, run history, input validation and minimal PATCH fields |
 | `src/app/dashboard/budgets/[agentId]/`, `src/components/AgentBudgetPage.tsx`, `src/components/AgentResourcesBudget.tsx` | Admin-only budget page; managed limits, extra budget, resource increases, baseline preview and monthly plan |
 | `src/app/api/agents/[id]/{costs,resources,resize}/`, `src/lib/{agent-costs,resource-input}.ts`, `src/components/AgentCostSummary.tsx` | Tenant-scoped actual resource and managed costs, live resource profiles, grow-only admin resizes and always-on pricing |
+| `src/app/api/agents/[id]/version/`, `src/components/AgentVersionSection.tsx` | Authorized gateway version and readiness checks; member-accessible upgrade action in Settings |
+| `src/app/dashboard/(fleet)/usage/`, `src/app/api/workspaces/[id]/usage/`, `src/lib/{usage-report,workspace-usage}.ts`, `src/components/{UsageView,WorkspaceUsageDashboard}.tsx` | Admin Usage page with UTC date filters, tenant-scoped cards, daily charts, model and agent breakdowns |
 | `src/app/api/agents/[id]/budget/**`, `src/lib/budget-input.ts` | Authorized budget reads, admin-only writes, and exact USD-to-micros validation |
 | `src/app/api/agents/[id]/crons/**` | Per-agent cron BFF; admins and assigned members can read and manage |
 | `src/app/api/agents/[id]/identity/` | Inkbox state and provisioning / phone updates for admins and assigned members |

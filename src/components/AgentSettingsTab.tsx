@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowDownToLine, Pencil, Play, RotateCw, Square, Trash2, type LucideIcon } from "lucide-react";
+import { Pencil, Play, RotateCw, Square, Trash2, type LucideIcon } from "lucide-react";
 import { toast } from "sonner";
 import { apiFetch } from "@/lib/api";
 import { isTransitional, statusVariant, usd } from "@/lib/format";
@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { AgentCostSummary } from "@/components/AgentCostSummary";
 import { AgentBudgetRequests } from "@/components/AgentBudgetRequests";
+import { AgentVersionSection } from "@/components/AgentVersionSection";
 
 // The agent's overview/manage tab: a clean header (inline-rename name, status + shape + template
 // badges, and lifecycle actions as icon buttons) over a read-only budget + usage
@@ -35,7 +36,9 @@ export function AgentSettingsTab({
   const running = agent.live_status === "running";
   const transitional = isTransitional(agent.live_status);
   const [confirmDelete, setConfirmDelete] = useState(false);
-  const { busy, run } = useAsyncAction();
+  const [upgradeBusy, setUpgradeBusy] = useState(false);
+  const { busy: actionBusy, run } = useAsyncAction();
+  const busy = actionBusy || upgradeBusy;
 
   // POST a lifecycle action; the merged list refreshes via onChanged.
   const action = (path: string, msg: string) =>
@@ -64,15 +67,6 @@ export function AgentSettingsTab({
                 <IconAction label="Start" icon={Play} disabled={busy || transitional} onClick={() => action("start", "Starting")} />
               )}
               <IconAction label="Restart" icon={RotateCw} disabled={!running || busy} onClick={() => action("restart", "Restarting")} />
-              {agent.update_available && (
-                <IconAction
-                  label="Update to latest image"
-                  icon={ArrowDownToLine}
-                  amber
-                  disabled={transitional || busy}
-                  onClick={() => action("update", "Updating")}
-                />
-              )}
               <IconAction
                 label="Delete agent"
                 icon={Trash2}
@@ -100,6 +94,17 @@ export function AgentSettingsTab({
           </p>
         )}
       </header>
+
+      <AgentVersionSection
+        key={agentId}
+        agentId={agentId}
+        liveStatus={agent.live_status}
+        updateAvailable={agent.update_available}
+        canManage={canManage}
+        busy={busy}
+        onBusyChange={setUpgradeBusy}
+        onChanged={onChanged}
+      />
 
       <BudgetSection key={agentId} agentId={agentId} role={role} />
 
@@ -134,14 +139,12 @@ function IconAction({
   icon: Icon,
   onClick,
   disabled,
-  amber,
   destructive,
 }: {
   label: string;
   icon: LucideIcon;
   onClick: () => void;
   disabled?: boolean;
-  amber?: boolean;
   destructive?: boolean;
 }) {
   return (
@@ -153,7 +156,6 @@ function IconAction({
       title={label}
       className={cn(
         "inline-flex h-9 w-9 items-center justify-center rounded-full border bg-background text-muted-foreground transition-colors hover:bg-accent hover:text-foreground disabled:cursor-not-allowed disabled:opacity-40",
-        amber && "border-amber-400 text-amber-600 hover:bg-amber-50 hover:text-amber-700",
         destructive && "border-destructive/30 text-destructive hover:bg-destructive/10 hover:text-destructive"
       )}
     >
