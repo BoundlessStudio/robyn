@@ -215,7 +215,7 @@ export function HostConfigurationView() {
       <Panel title="Signup policy"><dl className="divide-y"><Property label="Registration" value="Open" /><Property label="Email verification" value="Disabled by application setup" /></dl>
         <p className="text-xs text-muted-foreground">{data.signup_policy.source}</p></Panel>
       <Panel title="Integrations"><dl className="divide-y">{data.integrations.map((integration) => <Property key={integration.name} label={integration.name} value={integration.configured ? "Configured" : "Missing"} />)}</dl>
-        <p className="text-xs text-muted-foreground">These indicators report configuration presence. Service connectivity and scheduler execution are managed externally. Credentials are managed in Doppler.</p></Panel>
+        <p className="text-xs text-muted-foreground">These indicators report configuration presence. Service connectivity and scheduler execution are managed externally. Credentials are managed outside the application.</p></Panel>
     </>}
   </>;
 }

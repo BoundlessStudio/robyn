@@ -9,19 +9,21 @@ truth — edit here, not there.
 Setting this up from a fresh clone? Follow **[`SETUP.md`](SETUP.md)** — the complete runbook
 (it's what the README tells adopters to hand you). Two login-gated secrets are human-supplied:
 `AGENT37_API_KEY` (plus a **funded** Agent37 wallet) and `SUPABASE_ACCESS_TOKEN`.
-Store them in Doppler's runtime and operations configs respectively;
+Store them in the selected runtime and operations environment files respectively;
 `npm run setup` does the rest. Never print or commit credentials.
 
-Doppler's `robyn` project is the source of truth; see `SECRETS.md`. Local npm
-commands inject secrets at startup, independently of the checkout path. Default
-to `dev`; select `prd` explicitly for production work. Never copy, link, restore,
-or back-sync `.env.local` files. Update values in Doppler so every checkout gets
-the next version on startup. Keep management tokens only in `ops_*` configs and
-never sync them to Vercel. Runtime commands must strip inherited management
-credentials. Keep `.env.example` synchronized with `secrets.config.json`, with
-blank values only. Use Stripe test keys and non-production Supabase credentials
-for development/preview. The existing Robyn Vercel project receives only its
-matching runtime config through native Doppler syncs.
+Secrets live in ignored local environment files; see `SECRETS.md`. Local npm
+commands select development (`dev`) by default; select `prd` explicitly for
+production. `.worktreeinclude` copies the listed files from the main repository
+when Codex creates a managed worktree. Existing worktrees require an explicit
+refresh after local secret updates; do not back-sync automatically. Keep management
+tokens and Resend setup credentials only in `.env.ops.*` files and never upload
+them to Vercel. Runtime commands strip inherited management credentials. Keep
+`.env.example` synchronized with `secrets.config.json`, with blank values only.
+Use Stripe test keys for development/preview. Prefer a separate non-production
+Supabase backend unless the user explicitly selects a shared project. The existing
+Robyn Vercel project receives only runtime values through its environment settings;
+local configuration does not automatically sync to Vercel.
 
 ## What this project is
 
@@ -141,9 +143,11 @@ by verified Supabase user ID, independently of workspace roles. Every Host page 
 uses `src/lib/host-auth.ts`; service-role-only SQL functions and explicit DTOs return only
 operational metadata and billing records. Host reads never contact Agent37, settle billing,
 charge cards, or return agent content or credentials. Host accounts land in `/host` without
-bootstrapping a workspace. `npm run host:bootstrap` invites the dedicated account through
-Supabase and grants the returned ID; existing non-Host accounts require explicit identity
-review. Host can change each workspace's agent limit (default 1) and add credit directly to its
+bootstrapping a workspace. The first normal email signup becomes Host atomically through
+`0010_first_signup_host.sql`, with no fixed email or invitation command. A service-role-only
+singleton claim prevents concurrent signups, revocation, deletion, or migration replay from
+assigning another Host. Upgrades preserve existing Host grants; if none exist, the earliest
+normal signup is assigned once. Host can change each workspace's agent limit (default 1) and add credit directly to its
 balance. These writes recheck Host permission in both the DAL and SQL; credit grants update the
 wallet atomically, record the Host creator, and use a request ID to prevent duplicate credits.
 Creation reserves capacity atomically before calling Agent37; uncertain outcomes retain a slot
@@ -281,8 +285,9 @@ npm run typecheck   # tsc --noEmit
 
 Focused regressions run with `node --experimental-strip-types --test scripts/*.test.mjs`;
 the gate before shipping is a clean `npm run typecheck` and `npm run build`.
-Setup reads Doppler and saves generated credentials there; no local secret file
-or per-worktree environment setup is needed.
+Setup reads the selected local runtime/operations files and saves generated
+credentials there. `.worktreeinclude` propagates ignored files to new managed
+worktrees; refresh existing worktrees explicitly when credentials change.
 
 ## Custom agent image (out of scope here)
 

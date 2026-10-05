@@ -10,44 +10,33 @@ Host SQL functions are service-role-only. Every Host page, read, and write check
 removing the row revokes access on the next request. Host accounts land in `/host` and do not
 automatically create a workspace. Workspace roles never grant Host access.
 
-## Set up the dedicated account
+## Assign Host automatically
 
-Apply migrations and bootstrap using Doppler `dev` by default:
+Apply the migrations before allowing signups:
 
 ```sh
 npm run setup -- --no-create --migrations-only
-npm run host:bootstrap -- --email master@rgbknights.com
-```
-
-The bootstrap command needs Supabase runtime credentials and `NEXT_PUBLIC_SITE_URL` in
-the runtime config, plus `SUPABASE_ACCESS_TOKEN` in its matching operations config.
-`--url http://localhost:3000` can select the development application origin. Run the app
-at that origin before accepting the invitation.
-
-Bootstrap configures the Supabase invitation template to send a token hash to
-`/auth/callback`. Free-tier projects with the default email provider prohibit template edits;
-there it uses Supabase's standard invitation and `/auth/invite`, which clears the URL fragment,
-establishes the browser session, and verifies the user before opening the password page.
-Bootstrap creates the account with `inviteUserByEmail` and grants the returned user
-ID Host permission. The email lets the recipient choose a password and continue to Host.
-The command never prints a password or invitation token. Supabase SMTP and its email limits
-must permit delivery to the recipient. Completed bootstrap runs send no further invitation.
-
-If an existing account has no Host permission, bootstrap stops. After reviewing its identity
-in Supabase, an operator can explicitly resume with `--reviewed-user-id <uuid>`. This also
-recovers an invitation whose permission insert failed. The UUID must match the requested
-email; the command does not reset credentials or send another email in this mode.
-
-Production requires explicit selection for both commands:
-
-```sh
+# Production must be selected explicitly:
 npm run setup -- --config prd --no-create --migrations-only
-npm run host:bootstrap -- --config prd --email master@rgbknights.com
 ```
 
-Apply the migration before deploying the application code, then bootstrap when the configured
-origin serves the new callback/password flow. Host permissions are local to each Supabase
-project. The existing signup and password-recovery flows remain available.
+On a fresh installation, the first normal email signup receives Host permission in
+that same database transaction and lands in `/host`. No particular email address,
+invitation, or separate bootstrap command is required. Later signups receive the
+usual tenant workspace. Invited and anonymous accounts do not claim this assignment.
+
+`0010_first_signup_host.sql` uses a singleton claim to choose one Host even when
+signups overlap. A failed signup rolls back its claim. The claim remains after
+permission revocation or account deletion, so later users cannot take over Host.
+Replaying migrations does not restore revoked access. The browser cannot read or
+modify the claim, and user metadata cannot grant permission.
+
+Existing installations retain their Host grants. When users exist without a Host,
+the migration assigns the earliest normal email signup, ordered by creation time
+and user ID. Automatic assignment runs once per Supabase project, so development,
+preview, and production share a Host when they use the same project. Any later
+permission recovery or transfer requires an explicit operator change in the
+database; a new signup never performs that transfer.
 
 ## Reading the console
 
@@ -89,5 +78,5 @@ total; if all tenant wallets are missing, the total is unavailable. Negative bal
 
 Configuration reports code defaults and credential presence, not service health. The signup
 policy is the application's setup policy, not a live query of Supabase auth configuration.
-Branding stays in code and credentials stay in Doppler. Other tenant writes, editable configuration,
+Branding stays in code and credentials stay in local files and Vercel environment settings. Other tenant writes, editable configuration,
 suspension, impersonation, and content access remain outside this version.

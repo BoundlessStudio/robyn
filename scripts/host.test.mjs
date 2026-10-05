@@ -7,7 +7,6 @@ import React from 'react';
 import * as jsxRuntime from 'react/jsx-runtime';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { PGlite } from '@electric-sql/pglite';
-import { bootstrapHost, configureHostInvitation, HOST_INVITE_TEMPLATE } from './host-bootstrap-lib.mjs';
 import { safeNextPath } from '../src/lib/site-url.ts';
 import { invitationTokens } from '../src/lib/invite-session.ts';
 import { branding } from '../src/config/branding.ts';
@@ -34,7 +33,7 @@ function load(file, dependencies, env = {}) {
 
 test('Host authorization uses the session ID, rejects metadata spoofing, and immediately honors revocation', async () => {
   let signedIn = true; let granted = true; let permissionError = false;
-  const user = { id: USER, email: 'master@rgbknights.com', user_metadata: { role: 'host', is_host_admin: true } };
+  const user = { id: USER, email: 'any-host@example.test', user_metadata: { role: 'host', is_host_admin: true } };
   const db = { from(table) {
     assert.equal(table, 'host_admins');
     const q = { select: () => q, eq: (key, value) => { assert.equal(key, 'user_id'); assert.equal(value, USER); return q; },
@@ -207,60 +206,13 @@ test('Host BFFs expose GET only and prevent browser caching',async()=>{
   }
 });
 
-function bootstrapFixture(users=[]){
-  const permissions=new Set();const calls=[];let failGrant=false;
-  const db={from(table){assert.equal(table,'host_admins');let target;
-    const q={select:()=>q,limit:async()=>({error:null}),eq:(_,value)=>{target=value;return q;},maybeSingle:async()=>({data:permissions.has(target)?{user_id:target}:null,error:null}),
-      upsert:async(row)=>{calls.push('grant');if(failGrant)return {error:{}};permissions.add(row.user_id);return {error:null};}};return q;
-  },auth:{admin:{listUsers:async({page,perPage})=>{calls.push(`list:${page}`);return {data:{users:users.slice((page-1)*perPage,page*perPage)},error:null};},
-    inviteUserByEmail:async(email,options)=>{calls.push({invite:email,options});const user={id:USER,email};users.push(user);return {data:{user},error:null};}}}};
-  return {db,calls,permissions,options:{email:'master@rgbknights.com',origin:'https://robyn.example.test',configureInvite:async()=>{calls.push('configure');}},setFailGrant:(v)=>{failGrant=v;}};
-}
-
-test('bootstrap invites once and grants its returned ID; partial failure requires identity review',async()=>{
-  const f=bootstrapFixture();const result=await bootstrapHost(f.db,f.options);
-  assert.equal(result.invited,true);assert.equal(result.userId,USER);assert.ok(f.permissions.has(USER));
-  const redirect=new URL(f.calls.find((c)=>c.invite).options.redirectTo);
-  assert.equal(redirect.pathname,'/auth/callback');assert.equal(redirect.searchParams.get('next'),'/reset-password');
-  assert.equal((await bootstrapHost(f.db,f.options)).alreadyGranted,true);assert.equal(f.calls.filter((c)=>c.invite).length,1);
-  const failure=bootstrapFixture();failure.setFailGrant(true);await assert.rejects(bootstrapHost(failure.db,failure.options),/grant failed/);
-  failure.setFailGrant(false);await assert.rejects(bootstrapHost(failure.db,failure.options),/Review its identity/);
-  await assert.rejects(bootstrapHost(failure.db,{...failure.options,reviewedUserId:OTHER}),/Review its identity/);
-  await bootstrapHost(failure.db,{...failure.options,reviewedUserId:USER});
-  assert.equal(failure.calls.filter((c)=>c.invite).length,1);assert.ok(failure.permissions.has(USER));
-});
-
-test('bootstrap searches beyond the first auth page and leaves existing non-Host accounts untouched',async()=>{
-  const f=bootstrapFixture([...Array.from({length:1000},(_,i)=>({id:`${i}`,email:`other${i}@example.test`})),{id:OTHER,email:'master@rgbknights.com'}]);
-  await assert.rejects(bootstrapHost(f.db,f.options),/Review its identity/);
-  assert.ok(f.calls.includes('list:2'));assert.ok(!f.calls.includes('configure'));assert.equal(f.permissions.size,0);
-});
-
-test('invitation template preserves other auth settings and follows the token-hash password flow',async()=>{
-  const calls=[];
-  await configureHostInvitation({token:'private-token',projectRef:'test-ref',origin:'https://robyn.example.test',fetcher:async(url,init)=>{calls.push({url,init});return Response.json(init.method?{}:{uri_allow_list:'https://existing.test/**',mailer_autoconfirm:true});}});
-  const allowed=JSON.parse(calls[1].init.body);assert.ok(allowed.uri_allow_list.includes('https://existing.test/**'));
-  const patch=JSON.parse(calls[2].init.body);assert.equal(patch.mailer_autoconfirm,undefined);
-  assert.equal(patch.mailer_templates_invite_content,HOST_INVITE_TEMPLATE);
-  const f=bootstrapFixture();await bootstrapHost(f.db,f.options);
-  const html=HOST_INVITE_TEMPLATE.replace('{{ .RedirectTo }}',f.calls.find((c)=>c.invite).options.redirectTo).replace('{{ .TokenHash }}','test-hash');
-  const link=new URL(html.match(/href="([^"]+)"/)[1].replaceAll('&amp;','&'));
-  assert.equal(link.searchParams.get('type'),'invite');assert.equal(link.searchParams.get('token_hash'),'test-hash');
+test('invitation callbacks verify their token before opening password setup',async()=>{
+  const link=new URL('https://robyn.example.test/auth/callback?next=/reset-password&token_hash=test-hash&type=invite');
   const callback=load('src/app/auth/callback/route.ts',{'next/server':{NextResponse:{redirect:(url)=>new Response(null,{status:307,headers:{location:url.toString()}})}},'@/lib/site-url':{safeNextPath},'@/lib/supabase/server':{createClient:async()=>({auth:{verifyOtp:async(input)=>{assert.equal(input.type,'invite');assert.equal(input.token_hash,'test-hash');return {error:null};}}})}});
   assert.equal((await callback.GET(new Request(link))).headers.get('location'),'https://robyn.example.test/reset-password');
 });
 
-test('free-tier SMTP uses the standard verified invitation and clears its fragment before establishing cookies',async()=>{
-  let requests=0;
-  const mode=await configureHostInvitation({token:'test-only',projectRef:'test',origin:'https://robyn.example.test',fetcher:async()=>{
-    requests++;
-    if(requests===1)return Response.json({uri_allow_list:''});
-    if(requests===2)return Response.json({});
-    return Response.json({message:'Email template modification is not available for free tier projects using the default email provider. Please upgrade your plan or configure a custom SMTP provider.'},{status:400});
-  }});
-  assert.equal(mode,'standard');
-  const f=bootstrapFixture();await bootstrapHost(f.db,{...f.options,configureInvite:async()=>mode});
-  assert.equal(new URL(f.calls.find((c)=>c.invite).options.redirectTo).pathname,'/auth/invite');
+test('standard invitation sessions clear the fragment before establishing verified cookies',()=>{
   assert.deepEqual(invitationTokens('#type=invite&access_token=test-access&refresh_token=test-refresh'),{access_token:'test-access',refresh_token:'test-refresh'});
   for(const hash of ['','#error=expired','#type=recovery&access_token=test&refresh_token=test','#type=invite&access_token=test'])assert.equal(invitationTokens(hash),null);
   const source=fs.readFileSync(new URL('../src/app/auth/invite/page.tsx',import.meta.url),'utf8');

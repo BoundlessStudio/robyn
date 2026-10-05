@@ -1,78 +1,62 @@
 # Secrets
 
-Doppler's **robyn** project is the source of truth. Local npm commands fetch the
-selected config at startup and inject values into the child process. No secret
-file is written inside a checkout. Main and Git worktrees use the same commands;
-their paths do not need individual Doppler setup. `.env.example` is a blank key
-inventory and `secrets.config.json` defines which keys each command receives.
+Secrets live in ignored local environment files. Local npm commands select a
+runtime file at startup; trusted setup commands also load its operations file.
+`.env.example` is a blank inventory, and `secrets.config.json` defines the files
+and supported keys. No Doppler installation or login is required.
 
-| Purpose | Doppler config | Vercel environment |
-| --- | --- | --- |
-| Local development | `dev` | Development |
-| Preview | `stg` | Preview |
-| Production | `prd` | Production |
-| Development setup credentials | `ops_dev` | Never synced |
-| Preview setup credentials | `ops_stg` | Never synced |
-| Production setup credentials | `ops_prd` | Never synced |
+| Selection | Runtime file | Operations file | Vercel environment |
+| --- | --- | --- | --- |
+| `dev` (default) | `.env.local` | `.env.ops.local` | Development |
+| `stg` | `.env.preview.local` | `.env.ops.preview.local` | Preview |
+| `prd` | `.env.production.local` | `.env.ops.production.local` | Production |
 
-Install the [official Doppler CLI](https://docs.doppler.com/docs/install-cli),
-then run `doppler login` once on your machine. On Windows:
+Use `--config stg` or `--config prd` explicitly, for example
+`npm run email:setup -- --config prd`. `ROBYN_ENVIRONMENT` selects the environment
+for a shell session. Files are resolved relative to the checkout, regardless of
+the terminal's working directory. Do not add other `.env` variants: they can mix
+values when Next.js loads its environment.
 
-```powershell
-winget install --id Doppler.doppler --exact --source winget
-doppler login
-npm install
-npm run secrets:check
-npm run dev
-```
+Keep runtime credentials in the runtime file. Keep `SUPABASE_ACCESS_TOKEN`,
+`RESEND_API_KEY`, sender settings, webhook endpoint setup metadata, and
+`VERCEL_AUTOMATION_BYPASS_SECRET` in the operations file. Normal app commands strip
+inherited operations credentials. Only `setup`, `email:setup`, `billing:setup`,
+and `billing:schedule` load operations files. Setup commands
+save generated values atomically to the matching file without printing them.
 
-The default is `dev`. Select another config explicitly, for example
-`npm run build -- --config prd`. `ROBYN_DOPPLER_CONFIG` can select a config for a
-shell session; `ROBYN_DOPPLER_PROJECT` overrides the project for a fork. Personal
-configs such as `dev_personal` use the matching environment's operations config.
-The wrapper clears inherited app/management values before injecting the selection.
-Normal app commands never receive `SUPABASE_ACCESS_TOKEN`, webhook endpoint setup
-metadata, or `DOPPLER_TOKEN`. Only `setup`, `billing:setup`, and `billing:schedule`
-fetch the matching operations config.
+Use Stripe test credentials for development/preview. Prefer a separate
+non-production Supabase backend unless a shared project is explicitly selected.
+Agent37 has no test wallet: provisioning and chat incur real operator charges.
+Optional Inkbox credentials can stay blank until needed.
 
-Edit values in the Doppler dashboard. Setup commands save generated Supabase
-credentials and Stripe webhook secrets back to the selected configs using stdin,
-without displaying their values. Keep the Supabase management token in operations
-only. A database-scoped token can run `setup --migrations-only` and
-`billing:schedule`; creating projects, revealing API keys, and configuring auth
-require the permissions listed in [SETUP.md](SETUP.md), including both Project
-Settings and Auth Config Read-write for auth updates. Replace expiring tokens in
-Doppler, not in local files.
+## Main and worktrees
 
-Use a non-production Supabase database for `dev`/`stg` and Stripe test keys in
-those configs. The launcher rejects Stripe live keys outside production.
-Agent37 has no separate test wallet: provisioning or chatting still spends from
-the operator's Agent37 wallet. Optional Inkbox credentials can stay blank until
-that feature is needed.
+The committed [`.worktreeinclude`](.worktreeinclude) lists all six ignored
+runtime/operations files. Codex copies matching files from the main repository
+when creating a managed worktree. This is a snapshot: edits in an existing
+checkout do not automatically update other checkouts. Update main, then explicitly
+refresh any worktree that needs the change. Never commit actual `.env*` values.
+Keep `.env.example` blank and retain `.env*` in `.gitignore`.
 
-For local Stripe webhook forwarding, install the official CLI with
-`npm install --global @stripe/cli`, then run `npm run billing:listen` in a separate
-terminal before `npm run dev`. The command uses only the selected test key, stores
-the local signing secret in Doppler, and hides it from terminal output. It never
-creates a payment. Use `--port 3002` if the app runs on that port. Preview uses its
-own test webhook at the existing Robyn branch alias; update `stg` and rerun
-`billing:setup --config stg --url …` if that preview origin changes.
-Protected Vercel previews also need `VERCEL_AUTOMATION_BYPASS_SECRET` in
-`ops_stg`. `billing:setup` adds it to the private Stripe endpoint URL without
-printing it; `billing:schedule` stores it in Supabase Vault and sends it as a
-request header. Keep preview sign-in protection enabled. This credential is never
-part of the public site URL or browser bundle and is not synced through Doppler
-to Vercel. See [Vercel's automation access guide](https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection/protection-bypass-automation).
+## Vercel
 
-The existing Robyn Vercel project has three native Doppler syncs. Use **Dynamic**
-variable type: `NEXT_PUBLIC_*` values are **Unmasked**, server secrets **Masked**.
-Vercel builds consume its synced environment directly and do not need the CLI or
-a Doppler token. Secret changes apply to subsequent deployments, so redeploy
-after changing a deployed config. Sync only runtime configs. Never sync `ops_*`.
-See [Doppler's Vercel guide](https://docs.doppler.com/docs/vercel).
+Manage the existing Robyn project's runtime variables directly in Vercel.
+Upload only the matching runtime file, or set the values individually; never
+upload an operations file. Vercel builds consume its provided environment
+directly and do not read local files or invoke a secrets CLI. Runtime secret
+changes apply to subsequent deployments, so redeploy after changing them.
+Local files and `.worktreeinclude` do not sync to Vercel.
 
-Local `.env` files are rejected because Next.js would otherwise load values from
-them alongside the selected config. The old restore/save npm scripts, postinstall
-step, and local Git environment-copy hooks are retired after migration verification.
-Do not reintroduce `.env.local` copies or commit exported credentials. Keep all
-`.env*` files ignored except the blank `.env.example` inventory.
+## Email and billing setup
+
+Supabase Auth sends account emails through Resend SMTP. Keep the key and sender
+settings in the operations file, then run `npm run email:setup`. The command
+verifies the sender domain and saved configuration. See
+[SETUP.md](SETUP.md#account-email-through-resend).
+
+For local Stripe webhook forwarding, install `@stripe/cli`, then run
+`npm run billing:listen` before `npm run dev`. The launcher uses only test
+credentials, saves the signing secret locally, and hides it from terminal output.
+Use `--port 3002` if needed. Protected previews keep their bypass credential only
+in `.env.ops.preview.local`; setup stores it in the private webhook URL and
+Supabase Vault, never in the public origin or browser bundle. See [BILLING.md](BILLING.md).

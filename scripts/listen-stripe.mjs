@@ -24,7 +24,7 @@ try {
     if (secret.status !== 0 || !/^whsec_[A-Za-z0-9]+$/.test(value || '')) throw new Error('Could not connect to Stripe test mode. Check the CLI installation and test key.');
     if (value !== process.env.STRIPE_WEBHOOK_SECRET) {
       saveSecrets({ STRIPE_WEBHOOK_SECRET: value });
-      console.log('Local signing secret updated in Doppler. Restart npm run dev to load it.');
+      console.log('Local signing secret updated in the runtime environment file. Restart npm run dev to load it.');
     }
     const child = spawn(executable, [...prefix, 'listen', '--skip-update', '--latest', '--events',
       'payment_intent.succeeded,setup_intent.succeeded,charge.refunded', '--forward-to',

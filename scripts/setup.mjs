@@ -252,7 +252,7 @@ function printHelp() {
 
 Usage: npm run setup [-- options]
 
-Reads the selected Doppler runtime and operations configs using
+Reads the selected local runtime and operations environment files using
 SUPABASE_ACCESS_TOKEN (a personal access token):
   - runs the database migration(s)
   - configures the Site URL + redirect allow-list and turns on
@@ -288,12 +288,12 @@ async function main() {
   const token = get(env, "SUPABASE_ACCESS_TOKEN");
   if (isBlank(token)) {
     die(
-      "SUPABASE_ACCESS_TOKEN is not set in the selected operations config.",
-      "Add it in Doppler, then rerun npm run setup. See SETUP.md for required permissions."
+      "SUPABASE_ACCESS_TOKEN is not set in the selected operations environment file.",
+      "Add it to the operations environment file, then rerun npm run setup. See SETUP.md for required permissions."
     );
   }
   if (isBlank(get(env, "AGENT37_API_KEY"))) {
-    warn("AGENT37_API_KEY is still blank — add it to the runtime config in Doppler.");
+    warn("AGENT37_API_KEY is still blank — add it to the runtime environment file.");
   }
 
   const call = api(token);
@@ -324,7 +324,7 @@ async function main() {
   } else if (FLAGS.noCreate) {
     die(
       "No Supabase project configured, and --no-create was passed.",
-      "Set NEXT_PUBLIC_SUPABASE_URL in the runtime config in Doppler and rerun."
+      "Set NEXT_PUBLIC_SUPABASE_URL in the runtime environment file and rerun."
     );
   } else {
     step("No Supabase project configured — creating a new free one");
@@ -338,7 +338,7 @@ async function main() {
     const pickHint =
       `Re-run ${bold("npm run setup")} after choosing one:\n` +
       `  • Target a specific org — set one of these:\n${orgList}\n` +
-      `  • Or reuse an existing project — set NEXT_PUBLIC_SUPABASE_URL in Doppler`;
+      `  • Or reuse an existing project — set NEXT_PUBLIC_SUPABASE_URL in the runtime environment file`;
 
     const wantOrg = process.env.SUPABASE_ORG;
     if (wantOrg && !orgs.some((o) => o.id === wantOrg || o.slug === wantOrg)) {

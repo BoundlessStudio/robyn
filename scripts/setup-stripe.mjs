@@ -10,11 +10,11 @@ const saveValue = (name, value) => saveSecrets({ [name]: value });
 async function main() {
   const args = process.argv.slice(2);
   if (args.includes('--help')) {
-    console.log('Configure the Stripe billing webhook:\n  npm run billing:setup -- --config prd --url https://your-app.com\nRequires STRIPE_SECRET_KEY. Saves the signing secret to Doppler and endpoint ID to the operations config.');
+    console.log('Configure the Stripe billing webhook:\n  npm run billing:setup -- --config prd --url https://your-app.com\nRequires STRIPE_SECRET_KEY. Saves the signing secret to the local runtime file and endpoint ID to the operations file.');
     return;
   }
   if (args.length && (args.length !== 2 || args[0] !== '--url')) throw new Error('Use --help for setup options.');
-  if (!process.env.STRIPE_SECRET_KEY) throw new Error('Configure STRIPE_SECRET_KEY in Doppler first.');
+  if (!process.env.STRIPE_SECRET_KEY) throw new Error('Configure STRIPE_SECRET_KEY in the runtime environment file first.');
   const site = new URL(args[1] || process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost');
   if (site.protocol !== 'https:' || ['localhost','127.0.0.1','[::1]'].includes(site.hostname) || site.username || site.password) throw new Error('Provide the public HTTPS app URL. Use Stripe CLI webhook forwarding for local-only development.');
   const endpointUrl = new URL('/api/billing/webhook', site.origin);
@@ -27,7 +27,7 @@ async function main() {
     if (candidate.origin === endpointUrl.origin && candidate.pathname === endpointUrl.pathname) { existing = endpoint; break; }
   }
   if (existing) {
-    if (!process.env.STRIPE_WEBHOOK_SECRET || process.env.STRIPE_WEBHOOK_ENDPOINT_ID !== existing.id) throw new Error('A webhook already exists for this URL. Stripe reveals its signing secret only when created; save STRIPE_WEBHOOK_SECRET in the Doppler runtime config and STRIPE_WEBHOOK_ENDPOINT_ID in the operations config, then rerun.');
+    if (!process.env.STRIPE_WEBHOOK_SECRET || process.env.STRIPE_WEBHOOK_ENDPOINT_ID !== existing.id) throw new Error('A webhook already exists for this URL. Stripe reveals its signing secret only when created; save STRIPE_WEBHOOK_SECRET in the runtime environment file and STRIPE_WEBHOOK_ENDPOINT_ID in the operations file, then rerun.');
     const enabled = existing.enabled_events.includes('*') ? ['*'] : [...new Set([...existing.enabled_events, ...events])];
     await stripe.webhookEndpoints.update(existing.id, { url, enabled_events: enabled, disabled: false });
   } else {
@@ -37,7 +37,7 @@ async function main() {
     saveValue('STRIPE_WEBHOOK_ENDPOINT_ID', endpoint.id);
   }
   saveValue('NEXT_PUBLIC_SITE_URL', site.origin);
-  console.log(`Configured billing webhook: ${endpointUrl.origin}${endpointUrl.pathname}\nSigning secret saved in Doppler. Schedule billing:sync every five minutes.`);
+  console.log(`Configured billing webhook: ${endpointUrl.origin}${endpointUrl.pathname}\nSigning secret saved locally. Schedule billing:sync every five minutes.`);
 }
 
 main().catch((error) => {

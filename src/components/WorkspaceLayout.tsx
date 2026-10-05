@@ -65,7 +65,7 @@ export async function WorkspaceLayout({ children }: { children: React.ReactNode 
 
   // Table access goes through the privileged client; the user came from the verified session above.
   const db = createAdminClient();
-  // The dedicated Host account never bootstraps a tenant just by visiting a dashboard/profile URL.
+  // The Host user never bootstraps a tenant just by visiting a dashboard/profile URL.
   if (await isHostAdmin(db, user.id)) redirect("/host");
   let workspaces = await loadWorkspaces(db, user.id);
   if (workspaces.length === 0) {

@@ -5,7 +5,7 @@
 //
 // Run it before shipping a change that touches the create/chat/delete path:
 //   npm run smoke -- --config dev
-// (receives AGENT37_API_KEY from Doppler). Pass --keep to skip the
+// (receives AGENT37_API_KEY from the local runtime file). Pass --keep to skip the
 // delete and leave the instance running for manual poking.
 //
 // This talks straight to the Agent37 API (control plane + the instance's data plane),
@@ -17,7 +17,7 @@ const KEEP = process.argv.includes("--keep");
 
 const KEY = process.env.AGENT37_API_KEY;
 if (!KEY || !KEY.startsWith("sk_live_")) {
-  console.error("Set AGENT37_API_KEY in the selected Doppler runtime config first.");
+  console.error("Set AGENT37_API_KEY in the selected runtime environment file first.");
   process.exit(1);
 }
 

@@ -1,0 +1,7 @@
+# Copy ignored local configuration into new Codex-managed worktrees.
+.env.local
+.env.ops.local
+.env.preview.local
+.env.ops.preview.local
+.env.production.local
+.env.ops.production.local

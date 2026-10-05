@@ -2,7 +2,7 @@
 
 A branded agent dashboard on the [Agent37](https://www.agent37.com) Cloud API: auth, Hermes agents, chat, files, messaging apps (Telegram, WhatsApp, Slack, Discord), integrations, schedules, and fleet management.
 
-Host administrators use `/host` for visibility across tenants, recorded billing, and application configuration, and to set workspace agent limits and add credit directly to workspace balances. Each workspace remains a tenant and defaults to an agent limit of 1. [HOST.md](HOST.md) covers the migrations, controls, and Doppler-backed invitation bootstrap for the dedicated `master@rgbknights.com` account.
+The first user who signs up becomes Host and uses `/host` for visibility across tenants, recorded billing, and application configuration, and to set workspace agent limits and add credit directly to workspace balances. Later users become tenants; each workspace defaults to an agent limit of 1. [HOST.md](HOST.md) covers automatic assignment, upgrades, and controls.
 
 Admins manage **Billing** at `/dashboard/billing`: a prepaid USD balance starting at $0, Stripe top-ups, saved payment methods, and optional automatic top-up. No usage or tiers appear on Billing. [BILLING.md](BILLING.md) covers the migrations, Stripe webhook, required reconciliation schedule, and Host credit grants. The app's balances are separate from the operator's Agent37 wallet.
 
@@ -24,7 +24,7 @@ The inbox allowlist uses the agent creator's account email. Add an allowed phone
 
 ## Setup
 
-Use Doppler for secrets in main and every Git worktree. Follow
+Use ignored local environment files in main and every Git worktree. Follow
 **[SETUP.md](SETUP.md)** for Supabase setup and deployment, and
 **[SECRETS.md](SECRETS.md)** for config selection and secret updates.
 
@@ -33,15 +33,16 @@ The two bootstrap credentials are:
 - `AGENT37_API_KEY` — Agent37 dashboard → **Cloud → API keys**, then **fund the wallet** (Cloud → Billing).
 - `SUPABASE_ACCESS_TOKEN` — [supabase.com/dashboard/account/tokens](https://supabase.com/dashboard/account/tokens).
 
-Store the Agent37 key in the runtime config and the Supabase management token in
-the matching operations config. Then:
+Store the Agent37 key in `.env.local` and the Supabase management token in
+`.env.ops.local`. Then:
 
 ```
 npm install
-doppler login
 npm run setup
+npm run email:setup
 npm run dev
 ```
 
 Commands default to development. Production commands require `--config prd`.
-No `.env.local` copy or worktree hook is needed.
+`.worktreeinclude` copies the local runtime/operations files into new managed
+worktrees. Account emails use Resend SMTP; see [SETUP.md](SETUP.md#account-email-through-resend).
