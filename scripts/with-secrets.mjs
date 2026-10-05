@@ -9,7 +9,6 @@ const commands = {
   start: ['node_modules/next/dist/bin/next', 'start'],
   setup: ['scripts/setup.mjs'],
   smoke: ['scripts/smoke.mjs'],
-  'billing:coupon': ['--experimental-strip-types', 'scripts/issue-billing-coupon.mjs'],
   'billing:setup': ['scripts/setup-stripe.mjs'],
   'billing:sync': ['scripts/sync-billing.mjs'],
   'billing:listen': ['scripts/listen-stripe.mjs'],

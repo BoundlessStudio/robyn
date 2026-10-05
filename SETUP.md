@@ -33,7 +33,7 @@ config map and [.env.example](.env.example) for the blank key inventory.
    backend with separate Stripe/webhook settings in `stg`.
 7. Run `npm run secrets:check`, then `npm run dev` and open
    `http://localhost:3000`. Sign up using email and password. New workspaces start
-   with zero balance. A coupon can fund a development workspace without a payment;
+   with zero balance. Host can add credit to a development workspace without a payment;
    provisioning/chat still incurs real Agent37 charges.
 
 Commands default to `dev`. Use `--config stg` or `--config prd` explicitly for
@@ -60,7 +60,7 @@ Pushing a branch produces a Vercel preview; merging main deploys production.
 Secret changes apply to new deployments, so redeploy after editing deployed
 Doppler configs. Vercel builds use synced variables directly; no Doppler CLI/token
 is needed on Vercel. [BILLING.md](BILLING.md) covers Stripe webhooks, workspace
-coupons, and the required reconciliation schedule.
+credit grants, and the required reconciliation schedule.
 
 ## Optional Inkbox
 

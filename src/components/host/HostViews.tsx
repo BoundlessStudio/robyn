@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { HostWorkspaceControls } from "@/components/host/HostWorkspaceControls";
-import type { HostBillingFlag, HostConfiguration, HostCoupon, HostOverview, HostPage, HostTenantDetails, HostTenantSummary } from "@/lib/host-types";
+import type { HostBillingFlag, HostConfiguration, HostOverview, HostPage, HostTenantDetails, HostTenantSummary } from "@/lib/host-types";
 
 const FLAGS: Record<HostBillingFlag, string> = {
   wallet_missing: "Wallet unavailable", balance_empty: "Balance empty or negative", auto_top_up_error: "Automatic top-up error",
@@ -144,7 +144,6 @@ export function HostTenantsView() {
 
 export function HostTenantView({ id }: { id: string }) {
   const [pages, setPages] = useState({ member: 1, agent: 1, ledger: 1 });
-  const [coupon, setCoupon] = useState<HostCoupon | null>(null);
   const { data, error, loading, refresh } = useHostRead<HostTenantDetails>(`/api/host/tenants/${id}?member_page=${pages.member}&agent_page=${pages.agent}&ledger_page=${pages.ledger}`);
   const changePage = (key: keyof typeof pages, value: number) => setPages((previous) => ({ ...previous, [key]: value }));
   return <>
@@ -153,7 +152,7 @@ export function HostTenantView({ id }: { id: string }) {
     <ReadState loading={loading} error={error} />
     {data && <>
       <BillingFlags flags={data.tenant.billing_flags} />
-      <HostWorkspaceControls key={id} tenant={data.tenant} coupon={coupon} onCoupon={setCoupon} onChanged={refresh} />
+      <HostWorkspaceControls key={id} tenant={data.tenant} onChanged={refresh} />
       <div className="grid items-start gap-4 lg:grid-cols-2">
         <Panel title="Workspace"><dl className="divide-y">
           <Property label="Workspace ID" value={data.tenant.id} /><Property label="Created" value={dateTime(data.tenant.created_at)} />

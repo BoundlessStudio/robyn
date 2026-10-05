@@ -74,12 +74,11 @@ The upstream metadata `app_creation` identifies that reservation. If a creation 
 verify its upstream outcome before completing its mirror or removing the service-role reservation;
 never release it while the agent may still exist or the request may still be running.
 
-Host can create a coupon with **$0.01–$10,000** of USD credit for a workspace. The code is shown
-on creation for copying, expires after 30 days, and can be redeemed only once by that workspace's
-admin in Billing. Creating it does not credit the wallet; redemption atomically adds the specified
-amount and records a coupon ledger entry. Only the hash is stored, and Host issuance records its
-creator. Concurrent redemption attempts still grant credit once. The existing trusted terminal
-issuance command remains available.
+Apply `0009_host_workspace_credit.sql` before using **Add credit** in tenant details. Host can
+add **$0.01–$10,000** of USD credit directly to a workspace balance. Each grant atomically
+updates the wallet and records a credit ledger entry with the Host user's ID. Retrying the same
+request grants credit once. Workspace roles cannot grant credit. Coupon issuance and redemption
+have been retired; historical coupon records and ledger entries remain available for audit.
 
 Agent status and resources come from the database mirror. Opening or refreshing Host never
 contacts agents, settles usage, charges cards, or provisions resources. Usage reconciliation

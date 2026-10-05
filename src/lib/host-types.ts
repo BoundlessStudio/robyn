@@ -66,7 +66,7 @@ export interface HostWallet {
 export interface HostLedgerEntry {
   id: string;
   amount_micros: number;
-  kind: "payment" | "coupon" | "usage" | "refund";
+  kind: "payment" | "coupon" | "credit" | "usage" | "refund";
   created_at: string;
 }
 
@@ -80,11 +80,10 @@ export interface HostTenantDetails {
   pending_payments: { amount_micros: number; created_at: string; needs_review: boolean }[];
 }
 
-export interface HostCoupon {
-  code: string;
+export interface HostCredit {
   workspace_id: string;
   amount_micros: number;
-  expires_at: string;
+  balance_micros: number;
 }
 
 export interface HostConfiguration {

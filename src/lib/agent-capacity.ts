@@ -15,7 +15,7 @@ export async function reserveAgentCreation(db: DB, workspaceId: string, userId: 
   if (error) {
     const failures: Record<string, [number, string]> = {
       agent_limit_reached: [409, "This workspace has reached its agent limit."],
-      workspace_balance_empty: [402, "Add funds or redeem a coupon in workspace Billing to create agents."],
+      workspace_balance_empty: [402, "Add funds in workspace Billing to create agents."],
       wallet_unavailable: [503, "Workspace wallet is unavailable. Please retry."],
       workspace_not_found: [404, "Workspace not found."], admin_required: [403, "Admin role required."],
       invalid_assignee: [400, "The assigned user must belong to this workspace."],
