@@ -137,6 +137,8 @@ export interface CreateAgentInput {
   name?: string;
   metadata?: Record<string, unknown>;
   budget?: { monthly_cap_micros?: number; credit_micros?: number };
+  auto_sleep?: boolean;
+  idle_timeout_seconds?: number;
 }
 
 export interface ResizeInput {
@@ -150,6 +152,8 @@ export const agent37 = {
   getAgent: (id: string) => call<Agent>(`/instances/${id}`),
   createAgent: (body: CreateAgentInput) =>
     call<Agent>("/instances", { method: "POST", body: JSON.stringify(body) }),
+  editAgent: (id: string, body: {name?:string;user?:string;metadata?:Record<string,unknown>;auto_sleep?:boolean;idle_timeout_seconds?:number}) =>
+    call<Agent>(`/instances/${id}`, {method:"PATCH",body:JSON.stringify(body)}),
   deleteAgent: (id: string) =>
     call<{ id: string; deleted: boolean }>(`/instances/${id}`, { method: "DELETE" }),
 
@@ -193,6 +197,14 @@ export const agent37 = {
     call<Usage>(`/instances/${id}/usage${month ? `?month=${encodeURIComponent(month)}` : ""}`),
 
   listTemplates: () => call<{ data: Template[] }>("/templates"),
+
+  getBilling: () => call<{
+    balance_usd: number;
+    tier: number;
+    instance_limit: number;
+    past_due: boolean;
+    auto_top_up: { enabled: boolean; threshold_usd: number; amount_usd: number } | null;
+  }>("/billing"),
 
   // ---- Per-instance Agents API (data plane: web chat) — served on the instance host, see
   // instanceFetch. The streaming surfaces (POST /v1/responses SSE, GET/PUT /v1/files/content,

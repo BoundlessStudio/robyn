@@ -141,6 +141,21 @@
 .asset-preview { min-height:350px; display:flex; align-items:center; justify-content:center; padding:25px; background-image:radial-gradient(#5c66512b .7px,transparent .7px); background-size:14px 14px; }
 .asset-preview>img,.asset-preview>video { max-height:520px; max-width:100%; object-fit:contain; box-shadow:0 10px 60px #0008; }
 .asset-preview>audio { width:100%; }
+.embedded-editor { position:relative; display:flex; flex-direction:column; flex:1 0 560px; min-height:560px; background:#1b1c1f; }
+.embedded-editor iframe { display:block; width:100%; flex:1; min-height:520px; border:0; }
+.editor-library-status { flex:none; display:flex; align-items:center; justify-content:space-between; gap:14px; padding:6px 16px; font-size:11px; color:#e8dfcc; background:#252522; border-bottom:1px solid #41413b; }
+.editor-library-status .studio-button { padding:6px 9px; font-size:10px; }
+.embedded-editor iframe:fullscreen { width:100vw; height:100dvh; }
+.embedded-editor:fullscreen { width:100vw; height:100dvh; min-height:0; flex-basis:auto; }
+.embedded-editor:fullscreen iframe { min-height:0; height:0; flex:1; }
+.embedded-editor .studio-error { margin:0; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+@media(min-width:1201px) and (max-width:1500px) {
+  .project-workspace.has-editor { height:auto!important; }
+  .has-editor .project-columns { grid-template-columns:164px minmax(0,1fr); overflow:visible!important; }
+  .has-editor .project-canvas { height:calc(100dvh - 187px); }
+  .has-editor .project-details { grid-column:1/-1; min-height:440px; border-left:0; border-top:1px solid var(--studio-line); }
+  .has-editor .project-resize { display:none; }
+}
 .asset-native-placeholder { text-align:center; }
 .asset-native-placeholder>span { display:grid; place-items:center; width:86px; height:100px; border-radius:9px; margin:0 auto 24px; font-size:29px; color:white; box-shadow:0 10px 50px #0005; }
 .asset-native-placeholder h2 { font-size:22px; letter-spacing:-.8px; margin-bottom:14px; overflow-wrap:anywhere; }

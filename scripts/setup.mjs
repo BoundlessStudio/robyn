@@ -264,6 +264,12 @@ async function configureAuth(call, ref, siteUrl) {
     .map((s) => s.trim())
     .filter(Boolean);
   const allow = Array.from(new Set([...existing, ...wanted]));
+  if (current.site_url === siteUrl && wanted.every(url => existing.includes(url))
+    && current.external_email_enabled === true && current.disable_signup === true
+    && current.mailer_autoconfirm === false) {
+    ok(`Auth configuration already matches ${siteUrl}`);
+    return;
+  }
   await call("PATCH", `/v1/projects/${ref}/config/auth`, {
     site_url: siteUrl,
     uri_allow_list: allow.join(","),

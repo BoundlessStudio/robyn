@@ -26,13 +26,13 @@
   ],
   "editor": {
     "adapterVersion": "0.1.0",
-    "release": null,
-    "bundleUrl": null,
+    "release": "filmcraft-v0.10.0-robyn-0.1.0",
+    "bundleUrl": "https://robyn-artcraft-editors.vercel.app/filmcraft/v0.10.0-0.1.0/?empty&fresh&norecover&robyn",
     "status": "pending"
   },
   "workstation": {
-    "template": null,
-    "release": null,
+    "template": "robyn-filmcraft-0-10-0@1",
+    "release": "sha256:9af6580357fc0f559d2dc63d0fab876003f7de816cdcda4d0f666b5ccc438d43",
     "status": "pending"
   }
 }

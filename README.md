@@ -34,7 +34,7 @@ Each `src/studio/apps/*.json` owns an application's role, instructions, capabili
 
 Deploy through Vercel. Runtime variables are `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `AGENT37_API_KEY`, and `NEXT_PUBLIC_SITE_URL`. The Supabase management token is setup-only and must not be deployed. The homepage does not load ArtCraft editor bundles.
 
-Public signup is disabled. The hosted email/password sign-in works. Supabase's email-link Site URL and redirect allow-list still need the deployed origin; the scoped setup token cannot update Auth configuration (`project_admin_write` is required). Finish that setting in the project dashboard before issuing pilot invitations or password-reset links.
+Public signup is disabled. Hosted email/password sign-in works, and Supabase's Site URL and callback allow-list are configured for the live site and local development. The scoped setup token can verify these settings; changing them requires the dashboard or `project_admin_write`. Setup skips an unnecessary Auth update when the intended settings already match.
 
 ## Attribution
 
