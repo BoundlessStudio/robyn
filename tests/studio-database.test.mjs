@@ -8,7 +8,7 @@ test("studio revisions isolate tenants, preserve conflicts, resume uploads, and 
   const db = new PGlite();
   const userA = randomUUID(); const userB = randomUUID();
   const profile = { key: "director", kind: "director", role: "Creative Director", version: "1.0.0", instructions: "Coordinate the project." };
-  const packageData = { files: [{ path: "master/document.native", role: "master", mimeType: "application/octet-stream", bytes: 32, sha256: "a".repeat(64) }], dependencies: [], message: "Saved work" };
+  const packageData = { files: [{ path: "master/Création — 東京.native", role: "master", mimeType: "application/octet-stream", bytes: 32, sha256: "a".repeat(64) }], dependencies: [], message: "Saved work" };
   const scalar = async (sql, values = []) => (await db.query(sql, values)).rows[0].result;
   try {
     await db.exec(`
@@ -19,13 +19,13 @@ test("studio revisions isolate tenants, preserve conflicts, resume uploads, and 
       alter default privileges in schema public grant all on tables to anon, authenticated, service_role;
       create schema storage;
       create table storage.buckets(id text primary key, name text, public boolean, file_size_limit bigint);
-      create table storage.objects(id uuid primary key default gen_random_uuid(), bucket_id text references storage.buckets(id));
+      create table storage.objects(id uuid primary key default gen_random_uuid(), bucket_id text references storage.buckets(id), name text);
       alter table storage.objects enable row level security;
       grant usage on schema storage to anon, authenticated, service_role;
       grant all on storage.objects to anon, authenticated, service_role;
       create policy another_apps_broad_policy on storage.objects for all to anon, authenticated using(true) with check(true);
     `);
-    const migrations = ["0001_init.sql", "0002_pilot_access.sql", "0003_studio_assets.sql", "0004_private_storage.sql", "0005_revision_forks.sql"];
+    const migrations = ["0001_init.sql", "0002_pilot_access.sql", "0003_studio_assets.sql", "0004_private_storage.sql", "0005_revision_forks.sql", "0007_storage_object_names.sql"];
     for (const file of migrations) await db.exec(await fs.readFile(new URL(`../supabase/migrations/${file}`, import.meta.url), "utf8"));
     await db.query("insert into auth.users(id,email) values($1,'a@example.test'),($2,'b@example.test')", [userA,userB]);
     const tables = ["studio_employees", "studio_projects", "studio_assets", "studio_revisions", "studio_package_files", "studio_revision_dependencies", "studio_activity"];
@@ -56,6 +56,11 @@ test("studio revisions isolate tenants, preserve conflicts, resume uploads, and 
     await assert.rejects(begin(wsB,userB,asset,null),/not found/);
     await assert.rejects(begin(wsA,userA,asset,null,{...packageData,dependencies:[{assetId:randomUUID(),revisionId:randomUUID()}]}),/dependency unavailable/);
     const first = await begin(wsA,userA,asset,null);
+    assert.equal(await scalar("select path as result from studio_package_files where revision_id=$1",[first]),packageData.files[0].path);
+    assert.match(await scalar("select storage_key as result from studio_package_files where revision_id=$1",[first]),/^[0-9a-f/-]+$/);
+    await db.query("update studio_package_files set storage_key=$1 where revision_id=$2",[`${wsA}/legacy/Création — 東京.native`,first]);
+    await db.exec("reset role");await db.exec(await fs.readFile(new URL("../supabase/migrations/0007_storage_object_names.sql",import.meta.url),"utf8"));await db.exec("set role service_role");
+    assert.match(await scalar("select storage_key as result from studio_package_files where revision_id=$1",[first]),/^[0-9a-f/-]+$/);
     await assert.rejects(commit(wsA,userA,first,[]),/incomplete upload/);
     const wrongSize = (await verified(first)).map(file => ({...file, bytes: 31}));
     await assert.rejects(commit(wsA,userA,first,wrongSize),/incomplete upload/);

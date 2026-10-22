@@ -1,6 +1,7 @@
 import type { AssetRef, AssetSummary, PackageFileRole } from "./assets";
 
 export const EDITOR_BRIDGE_PROTOCOL = "robyn.editor.v1";
+export type EditorSaveMode = "revision" | "saveAs" | "copy";
 export interface OpenAssetResult {
   ref: AssetRef;
   files: Array<{ path: string; role: string; mimeType: string; bytes: number; sha256: string; downloadUrl: string }>;
@@ -10,7 +11,7 @@ export interface EditorBridge {
   openAsset(ref: AssetRef): Promise<OpenAssetResult>;
   // Blob structured cloning stays inside the browser. The host uploads directly
   // to private Storage; Vercel receives only package metadata and commit requests.
-  saveAsset(input: { assetId: string; expectedBaseRevisionId: string | null; files: Array<{path:string;role:PackageFileRole;file:Blob}>; dependencies:AssetRef[]; message:string }): Promise<{ ref: AssetRef; status: "committed" | "conflict" }>;
+  saveAsset(input: { assetId: string; expectedBaseRevisionId: string | null; mode?: EditorSaveMode; creationId?: string; name?: string; files: Array<{path:string;role:PackageFileRole;file:Blob}>; dependencies:AssetRef[]; message:string }): Promise<{ ref: AssetRef; status: "committed" | "conflict" }>;
   listProjectAssets(): Promise<AssetSummary[]>;
   insertAsset(ref: AssetRef): Promise<OpenAssetResult>;
   notifyChanges(input: { dirty: boolean; assetId: string }): void;

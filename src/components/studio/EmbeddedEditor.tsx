@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from "react";
 import { EDITOR_BRIDGE_PROTOCOL, isTrustedEditorEvent, type EditorMessage } from "@/studio/editor-bridge";
 import { createEditorHost } from "@/studio/editor-host";
 import type { AssetRef } from "@/studio/assets";
-import type { SaveResult } from "@/studio/transfer-client";
+import type { EditorSaveResult } from "@/studio/editor-host";
 
-export function EmbeddedEditor({projectId,initialRef,bundleUrl,name,onSaved,onDirty}:{projectId:string;initialRef:AssetRef;bundleUrl:string;name:string;onSaved:(result:SaveResult)=>void;onDirty:(dirty:boolean)=>void}) {
+export function EmbeddedEditor({projectId,initialRef,bundleUrl,name,onSaved,onDirty}:{projectId:string;initialRef:AssetRef;bundleUrl:string;name:string;onSaved:(result:EditorSaveResult)=>void;onDirty:(dirty:boolean)=>void}) {
   const shell=useRef<HTMLDivElement>(null);
   const frame=useRef<HTMLIFrameElement>(null);
   const callbacks=useRef({onSaved,onDirty});callbacks.current={onSaved,onDirty};
@@ -21,7 +21,7 @@ export function EmbeddedEditor({projectId,initialRef,bundleUrl,name,onSaved,onDi
     }
     url.hash=new URLSearchParams({channel:binding.channel,parentOrigin:window.location.origin,assetId:binding.ref.assetId,revisionId:binding.ref.revisionId}).toString();
     let dirty=false;let active=true;
-    const host=createEditorHost({projectId,initialRef:binding.ref,signal:controller.signal,onDirty:value=>{dirty=value;callbacks.current.onDirty(value);if(!value)setStatus("Saved revision open");},onStatus:setStatus,onSaved:result=>{setStatus(result.status==="committed"?"Saved to your library":"Conflicting save preserved — check revision history");callbacks.current.onSaved(result);}});
+    const host=createEditorHost({projectId,initialRef:binding.ref,signal:controller.signal,onDirty:value=>{dirty=value;callbacks.current.onDirty(value);if(!value)setStatus("Saved revision open");},onStatus:setStatus,onSaved:result=>{setError("");setStatus(result.status==="committed"?"Saved to your library":"Conflicting save preserved — check revision history");callbacks.current.onSaved(result);}});
     function receive(event:MessageEvent){
       if(!isTrustedEditorEvent(event,frame.current?.contentWindow??null,url.origin,binding.channel))return;
       const message=event.data as EditorMessage;

@@ -34,3 +34,35 @@ test("the editor refuses a revision whose returned asset identity differs",async
     await assert.rejects(host.handle(message("open","openAsset",initialRef)),/does not belong/);
   }finally{globalThis.fetch=original;}
 });
+
+test("Copy retains the bound asset; Save As adopts the committed asset without reopening the editor",async()=>{
+  const original=globalThis.fetch;
+  const copied="33333333-3333-4333-8333-333333333333",adopted="44444444-4444-4444-8444-444444444444";
+  const assets=[{id:initialRef.assetId,app_id:"filmcraft"}], revisions=new Map<string,{assetId:string;base:string|null;dependencies:unknown[]}>();
+  const results:unknown[]=[];let index=0;
+  globalThis.fetch=async(url,options)=>{
+    const path=String(url),body=options?.body?JSON.parse(String(options.body)):{};
+    let output:unknown;
+    if(path.includes("/projects/"))output={assets};
+    else if(path==="/api/studio/assets") {assets.push({id:body.creationId,app_id:body.appId});output={asset:assets.at(-1)};}
+    else if(path.endsWith("/revisions")&&options?.method==="POST"){
+      const revisionId=`55555555-5555-4555-8555-${String(++index).padStart(12,"0")}`;
+      revisions.set(revisionId,{assetId:path.split("/")[4],base:body.expectedBaseRevisionId,dependencies:body.package.dependencies});output={revisionId};
+    }else if(path.endsWith("/transfers"))output={transfers:[]};
+    else if(path.endsWith("/commit")){const revisionId=path.split("/")[4];output={assetId:revisions.get(revisionId)!.assetId,revisionId,status:"committed"};}
+    else throw Error(`Unexpected test route ${path}`);
+    return new Response(JSON.stringify(output),{headers:{"Content-Type":"application/json"}});
+  };
+  try{
+    const host=createEditorHost({projectId:"project",initialRef,signal:new AbortController().signal,onDirty(){},onStatus(){},onSaved:result=>results.push(result)});
+    const payload={assetId:initialRef.assetId,expectedBaseRevisionId:initialRef.revisionId,files:[{path:"edit.fcproj",role:"master",file:new Blob(["native"])}],dependencies:[]};
+    await host.handle(message("copy","saveAsset",{...payload,mode:"copy",creationId:copied,name:"A copy"}));
+    await host.handle(message("original-notify","notifyChanges",{assetId:initialRef.assetId,dirty:true}));
+    const saved=await host.handle(message("save-as","saveAsset",{...payload,mode:"saveAs",creationId:adopted,name:"Another direction"})) as {ref:typeof initialRef};
+    await host.handle(message("adopted-notify","notifyChanges",{assetId:adopted,dirty:false}));
+    await assert.rejects(host.handle(message("old","saveAsset",payload)),/exact revision/);
+    await host.handle(message("continued","saveAsset",{...payload,assetId:adopted,expectedBaseRevisionId:saved.ref.revisionId}));
+    assert.deepEqual([...revisions.values()].map(row=>[row.assetId,row.base]),[[copied,null],[adopted,null],[adopted,saved.ref.revisionId]]);
+    assert.deepEqual([...revisions.values()][0].dependencies,[initialRef]);assert.equal(results.length,3);
+  }finally{globalThis.fetch=original;}
+});
