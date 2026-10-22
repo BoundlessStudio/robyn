@@ -55,7 +55,7 @@ export function ProjectWorkspace({projectId,initialAssetId}:{projectId:string;in
   }
   async function editorSaved(result:EditorSaveResult){
     if(result.status==="conflict")setFileDetails(true);
-    setNotice(result.status==="conflict"?"Your conflicting save is preserved. Reload the current revision or save your version as a new asset.":result.mode==="copy"?"A copy is saved in your library. You’re still editing the original.":"Saved to your library.");
+    setNotice("");
     try{await reload();
       if(result.mode!=="copy"){
         setFocusedRevision(result);setHistory(result.status==="conflict");
