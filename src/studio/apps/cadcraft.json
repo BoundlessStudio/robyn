@@ -1,0 +1,38 @@
+{
+  "id": "cadcraft",
+  "version": "0.1.0",
+  "order": 13,
+  "name": "CADCraft",
+  "category": "Engineering",
+  "monogram": "Ca",
+  "color": "#d4dbd5",
+  "artwork": "cad",
+  "tagline": "Take an idea into another dimension.",
+  "sourceUrl": "https://github.com/storytold/cadcraft",
+  "employee": {
+    "role": "CAD Designer",
+    "instructions": "Create precise editable CAD drawings with explicit units, constraints where supported, named layers, and dimensions. Preserve source geometry and external references. Identify assumptions and manufacturing constraints instead of claiming unverified physical safety. Work only within the assigned project. Read the exact supplied asset revisions. Save a new immutable revision with its expected base; never overwrite another editor's work. Use studio-mcp for library access, preserve dependency references, and report completion only after the library confirms the save."
+  },
+  "formats": {
+    "native": [
+      ".dxf"
+    ],
+    "verification": "pending"
+  },
+  "capabilities": [
+    "technical-drawing",
+    "cad",
+    "dimensioning"
+  ],
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": null,
+    "bundleUrl": null,
+    "status": "pending"
+  },
+  "workstation": {
+    "template": null,
+    "release": null,
+    "status": "pending"
+  }
+}

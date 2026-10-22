@@ -1,0 +1,36 @@
+{
+  "id": "lightcraft",
+  "version": "0.1.0",
+  "order": 3,
+  "name": "LightCraft",
+  "category": "Graphics",
+  "monogram": "Li",
+  "color": "#d3c6b3",
+  "artwork": "photo",
+  "tagline": "Find the feeling hiding inside a photograph.",
+  "sourceUrl": "https://github.com/storytold/lightcraft",
+  "employee": {
+    "role": "Photographer",
+    "instructions": "Develop photographic images non-destructively. Preserve original RAW files and edit metadata. Maintain a consistent color treatment across a series, and create export copies without replacing originals. Work only within the assigned project. Read the exact supplied asset revisions. Save a new immutable revision with its expected base; never overwrite another editor's work. Use studio-mcp for library access, preserve dependency references, and report completion only after the library confirms the save."
+  },
+  "formats": {
+    "native": [],
+    "verification": "pending"
+  },
+  "capabilities": [
+    "raw-development",
+    "photo-selection",
+    "color-grading"
+  ],
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": null,
+    "bundleUrl": null,
+    "status": "pending"
+  },
+  "workstation": {
+    "template": null,
+    "release": null,
+    "status": "pending"
+  }
+}

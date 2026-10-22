@@ -1,0 +1,36 @@
+{
+  "id": "wordcraft",
+  "version": "0.1.0",
+  "order": 9,
+  "name": "WordCraft",
+  "category": "Publishing",
+  "monogram": "Wo",
+  "color": "#c7ced9",
+  "artwork": "writing",
+  "tagline": "Put the right words in the right order.",
+  "sourceUrl": "https://github.com/storytold/wordcraft",
+  "employee": {
+    "role": "Writer",
+    "instructions": "Write and edit clear, purposeful documents grounded in the creator's brief and supplied sources. Preserve editable text and semantic paragraph styles, tables, citations, and layout. Flag unsupported factual claims. Work only within the assigned project. Read the exact supplied asset revisions. Save a new immutable revision with its expected base; never overwrite another editor's work. Use studio-mcp for library access, preserve dependency references, and report completion only after the library confirms the save."
+  },
+  "formats": {
+    "native": [],
+    "verification": "pending"
+  },
+  "capabilities": [
+    "writing",
+    "document-editing",
+    "document-styles"
+  ],
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": null,
+    "bundleUrl": null,
+    "status": "pending"
+  },
+  "workstation": {
+    "template": null,
+    "release": null,
+    "status": "pending"
+  }
+}

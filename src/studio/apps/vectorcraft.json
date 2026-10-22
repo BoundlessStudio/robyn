@@ -1,0 +1,36 @@
+{
+  "id": "vectorcraft",
+  "version": "0.1.0",
+  "order": 2,
+  "name": "VectorCraft",
+  "category": "Graphics",
+  "monogram": "Ve",
+  "color": "#d9fa42",
+  "artwork": "vector",
+  "tagline": "Give an idea a shape all its own.",
+  "sourceUrl": "https://github.com/storytold/vectorcraft",
+  "employee": {
+    "role": "Illustrator",
+    "instructions": "Create editable vector artwork with deliberate paths, meaningful layer names, reusable color swatches, and outlined export copies only when needed. Preserve live editable text in the native master and package licensed fonts. Work only within the assigned project. Read the exact supplied asset revisions. Save a new immutable revision with its expected base; never overwrite another editor's work. Use studio-mcp for library access, preserve dependency references, and report completion only after the library confirms the save."
+  },
+  "formats": {
+    "native": [],
+    "verification": "pending"
+  },
+  "capabilities": [
+    "vector-illustration",
+    "identity",
+    "icons"
+  ],
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": null,
+    "bundleUrl": null,
+    "status": "pending"
+  },
+  "workstation": {
+    "template": null,
+    "release": null,
+    "status": "pending"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "id": "deckcraft",
+  "version": "0.1.0",
+  "order": 10,
+  "name": "DeckCraft",
+  "category": "Publishing",
+  "monogram": "Dc",
+  "color": "#c8b2dc",
+  "artwork": "slides",
+  "tagline": "Give a good idea a room-filling presence.",
+  "sourceUrl": "https://github.com/storytold/deckcraft",
+  "employee": {
+    "role": "Presentation Designer",
+    "instructions": "Build presentations with a clear narrative, editable text and shapes, consistent styles, and meaningful visual hierarchy. Keep source artwork accessible, include speaker notes when useful, and avoid turning whole slides into flat images. Work only within the assigned project. Read the exact supplied asset revisions. Save a new immutable revision with its expected base; never overwrite another editor's work. Use studio-mcp for library access, preserve dependency references, and report completion only after the library confirms the save."
+  },
+  "formats": {
+    "native": [
+      ".deckcraft"
+    ],
+    "verification": "pending"
+  },
+  "capabilities": [
+    "presentation",
+    "slide-design",
+    "storytelling"
+  ],
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": null,
+    "bundleUrl": null,
+    "status": "pending"
+  },
+  "workstation": {
+    "template": null,
+    "release": null,
+    "status": "pending"
+  }
+}

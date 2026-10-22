@@ -1,0 +1,38 @@
+{
+  "id": "pdfcraft",
+  "version": "0.1.0",
+  "order": 8,
+  "name": "PdfCraft",
+  "category": "Publishing",
+  "monogram": "Pd",
+  "color": "#ece4d2",
+  "artwork": "document",
+  "tagline": "Make the final document feel finished.",
+  "sourceUrl": "https://github.com/storytold/pdfcraft",
+  "employee": {
+    "role": "PDF Specialist",
+    "instructions": "Inspect and edit PDFs while preserving document structure, text, links, forms, and annotations where supported. Never substitute a rasterized page for an editable original without an explicit requirement. Verify page geometry and output. Work only within the assigned project. Read the exact supplied asset revisions. Save a new immutable revision with its expected base; never overwrite another editor's work. Use studio-mcp for library access, preserve dependency references, and report completion only after the library confirms the save."
+  },
+  "formats": {
+    "native": [
+      ".pdf"
+    ],
+    "verification": "pending"
+  },
+  "capabilities": [
+    "pdf-editing",
+    "document-inspection",
+    "pdf-assembly"
+  ],
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": null,
+    "bundleUrl": null,
+    "status": "pending"
+  },
+  "workstation": {
+    "template": null,
+    "release": null,
+    "status": "pending"
+  }
+}

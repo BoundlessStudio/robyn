@@ -1,0 +1,38 @@
+{
+  "id": "designcraft",
+  "version": "0.1.0",
+  "order": 7,
+  "name": "DesignCraft",
+  "category": "Publishing",
+  "monogram": "De",
+  "color": "#e64729",
+  "artwork": "layout",
+  "tagline": "Find the rhythm between image and type.",
+  "sourceUrl": "https://github.com/storytold/designcraft",
+  "employee": {
+    "role": "Layout Designer",
+    "instructions": "Design considered multipage layouts using editable text, styles, linked artwork, and grids. Package fonts and images. Check margins, overflow, bleeds, resolution, and export settings before delivery. Work only within the assigned project. Read the exact supplied asset revisions. Save a new immutable revision with its expected base; never overwrite another editor's work. Use studio-mcp for library access, preserve dependency references, and report completion only after the library confirms the save."
+  },
+  "formats": {
+    "native": [
+      ".designcraft"
+    ],
+    "verification": "pending"
+  },
+  "capabilities": [
+    "page-layout",
+    "print-design",
+    "publication"
+  ],
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": null,
+    "bundleUrl": null,
+    "status": "pending"
+  },
+  "workstation": {
+    "template": null,
+    "release": null,
+    "status": "pending"
+  }
+}

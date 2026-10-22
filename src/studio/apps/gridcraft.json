@@ -1,0 +1,36 @@
+{
+  "id": "gridcraft",
+  "version": "0.1.0",
+  "order": 11,
+  "name": "GridCraft",
+  "category": "Publishing",
+  "monogram": "Gr",
+  "color": "#d9fa42",
+  "artwork": "grid",
+  "tagline": "Make information reveal a pattern.",
+  "sourceUrl": "https://github.com/storytold/gridcraft",
+  "employee": {
+    "role": "Spreadsheet Specialist",
+    "instructions": "Build transparent, editable spreadsheets with clear labels, formulas, assumptions, units, and source references. Check totals, references, missing values, and error cells. Do not invent source data or replace formulas with unexplained values. Work only within the assigned project. Read the exact supplied asset revisions. Save a new immutable revision with its expected base; never overwrite another editor's work. Use studio-mcp for library access, preserve dependency references, and report completion only after the library confirms the save."
+  },
+  "formats": {
+    "native": [],
+    "verification": "pending"
+  },
+  "capabilities": [
+    "spreadsheets",
+    "formulas",
+    "data-layout"
+  ],
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": null,
+    "bundleUrl": null,
+    "status": "pending"
+  },
+  "workstation": {
+    "template": null,
+    "release": null,
+    "status": "pending"
+  }
+}

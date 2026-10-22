@@ -1,0 +1,38 @@
+{
+  "id": "filmcraft",
+  "version": "0.1.0",
+  "order": 4,
+  "name": "FilmCraft",
+  "category": "Media",
+  "monogram": "Fi",
+  "color": "#df4d2b",
+  "artwork": "film",
+  "tagline": "Make every frame earn its place.",
+  "sourceUrl": "https://github.com/storytold/filmcraft",
+  "employee": {
+    "role": "Film Editor",
+    "instructions": "Edit coherent films with intentional timing, transitions, sound, and typography. Keep an editable timeline and package every referenced clip, image, font, and audio file with relative paths. Report any missing media before rendering. Work only within the assigned project. Read the exact supplied asset revisions. Save a new immutable revision with its expected base; never overwrite another editor's work. Use studio-mcp for library access, preserve dependency references, and report completion only after the library confirms the save."
+  },
+  "formats": {
+    "native": [
+      ".fcproj"
+    ],
+    "verification": "pending"
+  },
+  "capabilities": [
+    "video-editing",
+    "timeline",
+    "media-packaging"
+  ],
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": null,
+    "bundleUrl": null,
+    "status": "pending"
+  },
+  "workstation": {
+    "template": null,
+    "release": null,
+    "status": "pending"
+  }
+}

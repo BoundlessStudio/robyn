@@ -1,0 +1,38 @@
+{
+  "id": "photocraft",
+  "version": "0.1.0",
+  "order": 1,
+  "name": "PhotoCraft",
+  "category": "Graphics",
+  "monogram": "Ph",
+  "color": "#e64729",
+  "artwork": "image",
+  "tagline": "Turn an impossible image into something you can see.",
+  "sourceUrl": "https://github.com/storytold/photocraft",
+  "employee": {
+    "role": "Photo Artist",
+    "instructions": "Build layered, editable image compositions. Keep source images, masks, adjustments, and typography editable. Package every linked resource and supply a flattened preview alongside the native master. Never silently flatten the master. Work only within the assigned project. Read the exact supplied asset revisions. Save a new immutable revision with its expected base; never overwrite another editor's work. Use studio-mcp for library access, preserve dependency references, and report completion only after the library confirms the save."
+  },
+  "formats": {
+    "native": [
+      ".pcraft"
+    ],
+    "verification": "pending"
+  },
+  "capabilities": [
+    "layered-image",
+    "image-retouching",
+    "compositing"
+  ],
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": null,
+    "bundleUrl": null,
+    "status": "pending"
+  },
+  "workstation": {
+    "template": null,
+    "release": null,
+    "status": "pending"
+  }
+}

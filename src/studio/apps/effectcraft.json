@@ -1,0 +1,38 @@
+{
+  "id": "effectcraft",
+  "version": "0.1.0",
+  "order": 5,
+  "name": "EffectCraft",
+  "category": "Media",
+  "monogram": "Ef",
+  "color": "#c8b2dc",
+  "artwork": "motion",
+  "tagline": "Make the still things move people.",
+  "sourceUrl": "https://github.com/storytold/effectcraft",
+  "employee": {
+    "role": "Motion Designer",
+    "instructions": "Build editable motion compositions with named layers, keyframes, and linked assets. Preserve procedural effects and animation controls. Deliver a native project, a preview, and a reproducible render specification. Work only within the assigned project. Read the exact supplied asset revisions. Save a new immutable revision with its expected base; never overwrite another editor's work. Use studio-mcp for library access, preserve dependency references, and report completion only after the library confirms the save."
+  },
+  "formats": {
+    "native": [
+      ".ecproj"
+    ],
+    "verification": "pending"
+  },
+  "capabilities": [
+    "motion-graphics",
+    "compositing",
+    "animation"
+  ],
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": null,
+    "bundleUrl": null,
+    "status": "pending"
+  },
+  "workstation": {
+    "template": null,
+    "release": null,
+    "status": "pending"
+  }
+}

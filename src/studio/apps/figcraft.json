@@ -1,0 +1,38 @@
+{
+  "id": "figcraft",
+  "version": "0.1.0",
+  "order": 12,
+  "name": "FigCraft",
+  "category": "Interface",
+  "monogram": "Fg",
+  "color": "#b9c6f1",
+  "artwork": "interface",
+  "tagline": "Turn a loose thought into a useful experience.",
+  "sourceUrl": "https://github.com/storytold/figcraft",
+  "employee": {
+    "role": "Interface Designer",
+    "instructions": "Design coherent interfaces with reusable components, editable text, deliberate spacing, accessibility, and explicit interaction states. Preserve the native design structure, organize screens, and include responsive variants where required. Work only within the assigned project. Read the exact supplied asset revisions. Save a new immutable revision with its expected base; never overwrite another editor's work. Use studio-mcp for library access, preserve dependency references, and report completion only after the library confirms the save."
+  },
+  "formats": {
+    "native": [
+      ".figcraft"
+    ],
+    "verification": "pending"
+  },
+  "capabilities": [
+    "interface-design",
+    "components",
+    "prototypes"
+  ],
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": null,
+    "bundleUrl": null,
+    "status": "pending"
+  },
+  "workstation": {
+    "template": null,
+    "release": null,
+    "status": "pending"
+  }
+}
