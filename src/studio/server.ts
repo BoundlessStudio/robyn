@@ -39,6 +39,11 @@ export function publicApps() {
 
 export async function readStudioBody(request: Request): Promise<Record<string, unknown>> {
   if (!hasSameOrigin(request)) throw new ApiError(403, "origin_mismatch", "Submit this request from your studio.");
+  return readMetadataBody(request);
+}
+
+/** Bounded metadata parser shared by cookie and employee authentication paths. */
+export async function readMetadataBody(request: Request): Promise<Record<string, unknown>> {
   if (!request.headers.get("content-type")?.startsWith("application/json")) throw new ApiError(415, "invalid_content_type", "Send a JSON request.");
   const reader = request.body?.getReader();
   if (!reader) throw new ApiError(400, "invalid_request", "A request body is required.");

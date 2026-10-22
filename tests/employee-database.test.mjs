@@ -1,0 +1,99 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import fs from "node:fs/promises";
+import {randomUUID,createHash} from "node:crypto";
+import {PGlite} from "@electric-sql/pglite";
+
+test("employee assignments enforce project scope, three slots, serialized employees, retry identity, and cancellation",async()=>{
+  const db=new PGlite();
+  const scalar=async(sql,values=[])=>(await db.query(sql,values)).rows[0]?.result;
+  try{
+    await db.exec(`create role anon; create role authenticated; create role service_role bypassrls;
+      create schema auth; create table auth.users(id uuid primary key,email text);
+      create function auth.uid() returns uuid language sql stable as 'select null::uuid';
+      grant usage on schema auth to service_role; grant select on auth.users to service_role;
+      alter default privileges in schema public grant all on tables to anon,authenticated,service_role;
+      create schema storage; create table storage.buckets(id text primary key,name text,public boolean,file_size_limit bigint);
+      create table storage.objects(id uuid primary key default gen_random_uuid(),bucket_id text references storage.buckets(id));
+      alter table storage.objects enable row level security; grant usage on schema storage to anon,authenticated,service_role;
+      grant all on storage.objects to anon,authenticated,service_role;`);
+    const migrations=(await fs.readdir(new URL("../supabase/migrations",import.meta.url))).filter(x=>x.endsWith(".sql")).sort();
+    for(const name of migrations)await db.exec(await fs.readFile(new URL(`../supabase/migrations/${name}`,import.meta.url),"utf8"));
+    for(const role of ["anon","authenticated"]){
+      await db.exec(`set role ${role}`);
+      for(const table of ["studio_assignments","studio_assignment_inputs","studio_employee_tokens","studio_employee_operations"])await assert.rejects(db.query(`select * from ${table}`),/permission denied/);
+      await assert.rejects(scalar("select studio_employee_scope($1) as result",["a".repeat(64)]),/permission denied/);
+      await db.exec("reset role");
+    }
+    const users=[randomUUID(),randomUUID()];await db.query("insert into auth.users(id) values($1),($2)",users);
+    await db.exec("set role service_role");
+    const profiles=Array.from({length:4},(_,i)=>({key:`test${i}`,kind:"specialist",appId:`test${i}`,role:`Specialist ${i}`,version:"0.1.0",instructions:"Create editable work."}));
+    profiles.push({key:"director",kind:"director",appId:null,role:"Director",version:"0.1.0",instructions:"Coordinate."});
+    const workspace=await scalar("select initialize_studio($1,$2) as result",[users[0],JSON.stringify(profiles)]);
+    const foreignWorkspace=await scalar("select initialize_studio($1,$2) as result",[users[1],JSON.stringify(profiles)]);
+    const employees=(await db.query("select id,app_id,employee_key from studio_employees where workspace_id=$1 order by employee_key",[workspace])).rows;
+    for(const e of employees){
+      await db.query("insert into agents(workspace_id,agent37_id) values($1,$2)",[workspace,e.employee_key]);
+      await db.query("update studio_employees set instance_id=$2,provision_state='ready' where id=$1",[e.id,e.employee_key]);
+    }
+    const director=employees[0];const specialists=employees.slice(1);
+    const project=await scalar("insert into studio_projects(workspace_id,created_by,name) values($1,$2,'Campaign') returning id as result",[workspace,users[0]]);
+    const otherProject=await scalar("insert into studio_projects(workspace_id,created_by,name) values($1,$2,'Other project') returning id as result",[workspace,users[0]]);
+    const foreignProject=await scalar("insert into studio_projects(workspace_id,created_by,name) values($1,$2,'Private') returning id as result",[foreignWorkspace,users[1]]);
+    const create=(employee,request=randomUUID(),brief="Make editable work.",p=project,inputs=[])=>scalar("select create_studio_assignment($1,$2,$3,$4,$5,$6,$7) as result",[workspace,users[0],p,employee,request,brief,JSON.stringify(inputs)]);
+    const key=randomUUID();const first=await create(specialists[0].id,key);
+    assert.equal((await create(specialists[0].id,key)).id,first.id);
+    await assert.rejects(create(specialists[0].id,key,"Different brief."),/operation key reused/);
+    await assert.rejects(create(specialists[0].id,randomUUID(),"Foreign",foreignProject),/not found/);
+    const queuedSame=await create(specialists[0].id);
+    const jobs=[first,...await Promise.all(specialists.slice(1).map(e=>create(e.id)))];
+    const claim=assignment=>scalar("select claim_studio_assignment($1,$2,$3) as result",[workspace,users[0],assignment]);
+    const claims=await Promise.all(jobs.map(job=>claim(job.id)));
+    assert.equal(claims.filter(x=>x.claimed).length,3);
+    assert.equal((await claim(queuedSame.id)).claimed,false);
+    assert.equal((await claim(first.id)).claimed,false);
+    assert.equal((await claim(first.id)).assignment.session_id,claims[0].assignment.session_id);
+    const directorJob=await create(director.id);assert.equal((await claim(directorJob.id)).claimed,true);
+    const issue=async(job,instance)=>{const hash=createHash("sha256").update(randomUUID()).digest("hex");await db.query("insert into studio_employee_tokens(assignment_id,instance_id,token_hash,expires_at) values($1,$2,$3,now()+interval '1 hour')",[job,instance,hash]);return hash;};
+    const hash=await issue(first.id,specialists[0].employee_key);
+    const scope=await scalar("select studio_employee_scope($1) as result",[hash]);assert.equal(scope.projectId,project);assert.equal(scope.employeeId,specialists[0].id);
+    const wrongHash=await issue(first.id,"other-workstation");await assert.rejects(scalar("select studio_employee_scope($1) as result",[wrongHash]),/access denied/);
+    const assetOperation=randomUUID();
+    const createAsset=(h=hash,key=assetOperation,name="Film")=>scalar("select employee_create_asset($1,$2,$3) as result",[h,key,name]);
+    const asset=await createAsset();assert.deepEqual(await createAsset(),asset);
+    await assert.rejects(createAsset(hash,assetOperation,"Changed"),/operation key reused/);
+    const directorHash=await issue(directorJob.id,"director");await assert.rejects(createAsset(directorHash,randomUUID()),/access denied/);
+    const otherAsset=await scalar("insert into studio_assets(workspace_id,project_id,created_by,app_id,name) values($1,$2,$3,'test0','Private asset') returning id as result",[workspace,otherProject,users[0]]);
+    const wrongAppAsset=await scalar("insert into studio_assets(workspace_id,project_id,created_by,app_id,name) values($1,$2,$3,'test1','Another specialist') returning id as result",[workspace,project,users[0]]);
+    const pkg={files:[{path:"edit.native",role:"master",mimeType:"application/octet-stream",bytes:32,sha256:"a".repeat(64)}],dependencies:[],message:"Created by employee"};
+    const revisionOperation=randomUUID();
+    const begin=(a=asset.assetId,op=revisionOperation,pkgValue=pkg,base=null)=>scalar("select employee_begin_revision($1,$2,$3,$4,$5) as result",[hash,op,a,base,JSON.stringify(pkgValue)]);
+    await assert.rejects(begin(otherAsset,randomUUID()),/not found/);
+    await assert.rejects(begin(wrongAppAsset,randomUUID()),/not found/);
+    await assert.rejects(begin(asset.assetId,randomUUID(),{...pkg,dependencies:[{assetId:otherAsset,revisionId:randomUUID()}]}),/dependency unavailable/);
+    const revision=await begin();assert.deepEqual(await begin(),revision);
+    await assert.rejects(begin(asset.assetId,revisionOperation,{...pkg,message:"Changed"}),/operation key reused/);
+    assert.equal(await scalar("select author_employee_id as result from studio_revisions where id=$1",[revision.revisionId]),specialists[0].id);
+    const verified=await scalar("select jsonb_agg(jsonb_build_object('id',id,'bytes',bytes)) as result from studio_package_files where revision_id=$1",[revision.revisionId]);
+    const commit=(h=hash,r=revision.revisionId,v=verified)=>scalar("select employee_commit_revision($1,$2,$3) as result",[h,r,JSON.stringify(v)]);
+    await assert.rejects(commit(hash,revision.revisionId,[]),/incomplete upload/);
+    const saved=await commit();assert.equal(saved.status,"committed");assert.deepEqual(await commit(hash,revision.revisionId,[]),saved);
+    const otherHash=await issue(jobs[1].id,specialists[1].employee_key);await assert.rejects(commit(otherHash),/not found/);
+    const next=await begin(asset.assetId,randomUUID(),pkg,revision.revisionId);
+    const cancel=(user=users[0])=>scalar("select cancel_studio_assignment($1,$2,$3) as result",[workspace,user,first.id]);
+    await assert.rejects(cancel(users[1]),/not found/);
+    assert.equal((await cancel()).state,"cancelling");
+    await assert.rejects(commit(hash,next.revisionId,verified),/access denied/);
+    await assert.rejects(createAsset(),/access denied/);
+    assert.equal(await scalar("select current_revision_id as result from studio_assets where id=$1",[asset.assetId]),revision.revisionId);
+    // Cancellation keeps the employee and slot occupied until its real run stops.
+    assert.equal((await claim(queuedSame.id)).claimed,false);assert.equal((await claim(jobs[3].id)).claimed,false);
+    await db.query("update studio_assignments set state='cancelled' where id=$1",[first.id]);
+    assert.equal((await claim(queuedSame.id)).claimed,true);
+    const queuedJob=await create(specialists[3].id);
+    assert.equal((await scalar("select cancel_studio_assignment($1,$2,$3) as result",[workspace,users[0],queuedJob.id])).state,"cancelled");
+    await db.exec("reset role");
+    await db.exec(await fs.readFile(new URL("../supabase/migrations/0006_employee_assignments.sql",import.meta.url),"utf8"));
+    assert.equal(await scalar("select count(*)::int as result from studio_employee_operations where assignment_id=$1",[first.id]),3);
+  }finally{await db.close();}
+});

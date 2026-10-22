@@ -210,6 +210,7 @@ export const agent37 = {
   // instanceFetch. The streaming surfaces (POST /v1/responses SSE, GET/PUT /v1/files/content,
   // GET /v1/files/archive) go through instanceFetch directly from their routes. ----
   listModels: (id: string) => instanceCall<ModelsResponse>(id, "/v1/models"),
+  health: (id: string) => instanceCall<{ok:boolean;agent:string;healthy:boolean}>(id,"/v1/health?agent=hermes"),
   // The thread rail: every session on the instance. Items carry `title`, a `preview` of the first
   // message, and timestamps — the sessions route turns these into the rail's label + ordering.
   listSessions: (id: string) => instanceCall<SessionListResponse>(id, "/v1/sessions"),
