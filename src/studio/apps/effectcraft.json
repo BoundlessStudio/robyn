@@ -17,7 +17,7 @@
     "native": [
       ".ecproj"
     ],
-    "verification": "pending"
+    "verification": "verified"
   },
   "capabilities": [
     "motion-graphics",
@@ -25,14 +25,14 @@
     "animation"
   ],
   "editor": {
-    "adapterVersion": "0.1.0",
-    "release": null,
-    "bundleUrl": null,
-    "status": "pending"
+    "adapterVersion": "0.1.2",
+    "release": "effectcraft-v0.14.0-robyn-0.1.2",
+    "bundleUrl": "https://robyn-artcraft-editors.vercel.app/effectcraft/v0.14.0-0.1.2/?robyn",
+    "status": "verified"
   },
   "workstation": {
-    "template": null,
-    "release": null,
-    "status": "pending"
+    "template": "robyn-effectcraft-0-14-0@1",
+    "release": "sha256:56228ad33996ff68f4abe5fe0388ea33eb4adee24a5ea9916dbe5536d284f12b",
+    "status": "verified"
   }
 }

@@ -236,6 +236,25 @@ export const agent37 = {
       `/v1/responses/${encodeURIComponent(responseId)}/cancel`,
       { method: "POST" }
     ),
+  // Durable assignment workers consume only the first identity, then recover
+  // through this same response/session. Never retry POST after an unknown reply.
+  submitAssignmentTurn: (id: string, input: string, sessionId: string, signal: AbortSignal) =>
+    instanceFetch(id, "/v1/responses", {
+      method: "POST", signal, headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ input, session_id: sessionId, stream: true, agent: "hermes", model: "default", provider: "custom:Agent37" }),
+    }),
+  assignmentResponseStream: (id: string, responseId: string, signal: AbortSignal) =>
+    instanceFetch(id, `/v1/responses/${encodeURIComponent(responseId)}/stream`, { signal }),
+  assignmentSession: (id: string, sessionId: string) =>
+    instanceCall<SessionDetail>(id, `/v1/sessions/${encodeURIComponent(sessionId)}?agent=hermes`, { signal: AbortSignal.timeout(185_000) }),
+  writeWorkstationFile: async (id: string, path: string, bytes: Uint8Array) => {
+    const response = await instanceFetch(id, `/v1/files/content?path=${encodeURIComponent(path)}`, {
+      method: "PUT", headers: { "Content-Type": "application/octet-stream" },
+      body: Buffer.from(bytes), signal: AbortSignal.timeout(185_000),
+    });
+    await response.body?.cancel();
+    if (!response.ok) throw new Agent37Error(response.status, "workstation_file_write_failed", "Could not prepare the employee's workstation.");
+  },
 
   // ---- Per-instance file browser (Agents API /v1/files) — JSON surfaces only. The byte surfaces
   // (GET/PUT /v1/files/content, GET /v1/files/archive) stream and so go through instanceFetch. ----

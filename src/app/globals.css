@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "streamdown/styles.css";
+@source "../../node_modules/streamdown/dist/*.js";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -89,3 +91,24 @@
     cursor: pointer;
   }
 }
+
+/* Markdown inherits the typography of its conversation, note or document. */
+.ai-markdown { min-width:0; max-width:100%; overflow-wrap:anywhere; white-space:normal; }
+.ai-markdown > :first-child { margin-top:0; }
+.ai-markdown > :last-child { margin-bottom:0; }
+.ai-markdown p { margin:0.75em 0; }
+.ai-markdown ul { list-style:disc; padding-left:1.5em; margin:0.75em 0; }
+.ai-markdown ol { list-style:decimal; padding-left:1.5em; margin:0.75em 0; }
+.ai-markdown li { margin:0.3em 0; padding-left:0.1em; }
+.ai-markdown .task-list-item { list-style:none; }
+.ai-markdown li > p { margin:0.35em 0; }
+.ai-markdown :is(ul,ol) :is(ul,ol) { margin:0.3em 0; }
+.ai-markdown a { text-decoration:underline; text-underline-offset:0.18em; }
+.ai-markdown code { font-size:0.9em; }
+.ai-markdown :not(pre) > code { padding:0.12em 0.3em; border-radius:3px; background:color-mix(in srgb,currentColor 8%,transparent); white-space:break-spaces; }
+.ai-markdown pre { max-width:100%; overflow-x:auto; white-space:pre; }
+.ai-markdown pre code { white-space:pre; overflow-wrap:normal; }
+.ai-markdown blockquote { margin:1em 0; padding-left:1em; border-left:2px solid currentColor; }
+.ai-markdown table { font-size:inherit; }
+.ai-markdown :is(th,td) { padding:0.55em 0.7em; border:1px solid color-mix(in srgb,currentColor 20%,transparent); }
+.ai-markdown th { text-align:left; font-weight:600; }

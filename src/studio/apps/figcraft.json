@@ -1,6 +1,6 @@
 {
   "id": "figcraft",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "order": 12,
   "name": "FigCraft",
   "category": "Interface",
@@ -17,7 +17,7 @@
     "native": [
       ".figcraft"
     ],
-    "verification": "pending"
+    "verification": "verified"
   },
   "capabilities": [
     "interface-design",
@@ -25,14 +25,14 @@
     "prototypes"
   ],
   "editor": {
-    "adapterVersion": "0.1.0",
-    "release": null,
-    "bundleUrl": null,
-    "status": "pending"
+    "adapterVersion": "0.1.3",
+    "release": "figcraft-v0.9.0-robyn-0.1.3",
+    "bundleUrl": "https://robyn-artcraft-editors.vercel.app/figcraft/v0.9.0-0.1.3/?robyn&webgl",
+    "status": "verified"
   },
   "workstation": {
-    "template": null,
-    "release": null,
-    "status": "pending"
+    "template": "robyn-figcraft-0-9-0@1",
+    "release": "sha256:1f6bcfdd286c2fe49d0ab53a11449a00760bec8071099bd372738a6fc1d527c2",
+    "status": "verified"
   }
 }

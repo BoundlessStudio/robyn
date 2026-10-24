@@ -35,6 +35,43 @@ test("the editor refuses a revision whose returned asset identity differs",async
   }finally{globalThis.fetch=original;}
 });
 
+test("employee handoff requires a clean exact revision and preserves its request identity",async()=>{
+  const original=globalThis.fetch, requests:Record<string,unknown>[]=[];
+  globalThis.fetch=async(url,options)=>{
+    if(String(url).includes("/projects/"))return Response.json({assets:[{id:initialRef.assetId,app_id:"filmcraft"}]});
+    assert.equal(String(url),"/api/studio/assignments");
+    requests.push(JSON.parse(String(options?.body)));
+    return Response.json({assignmentId:"33333333-3333-4333-8333-333333333333"});
+  };
+  try{
+    const host=createEditorHost({projectId:"project",initialRef,signal:new AbortController().signal,onDirty(){},onStatus(){},onSaved(){}});
+    const requestId="44444444-4444-4444-8444-444444444444",payload={ref:initialRef,instruction:"Preserve my edit; change the title.",requestId};
+    await host.handle(message("dirty","notifyChanges",{assetId:initialRef.assetId,dirty:true}));
+    await assert.rejects(host.handle(message("unsaved","requestAgentEdit",payload)),/Save your edits/);
+    await host.handle(message("clean","notifyChanges",{assetId:initialRef.assetId,dirty:false}));
+    await assert.rejects(host.handle(message("wrong-ref","requestAgentEdit",{...payload,ref:{...initialRef,revisionId:requestId}})),/exact saved revision/);
+    const sent=host.handle(message("handoff","requestAgentEdit",payload));
+    assert.equal(host.handle(message("handoff","requestAgentEdit",payload)),sent);
+    await sent;
+    assert.deepEqual(requests,[{projectId:"project",appId:"filmcraft",brief:payload.instruction,inputs:[initialRef],requestId}]);
+  }finally{globalThis.fetch=original;}
+});
+
+test("employee handoff rechecks changes received during asynchronous authorization",async()=>{
+  const original=globalThis.fetch;let authorize!:(response:Response)=>void,posts=0;
+  globalThis.fetch=async(url)=>{
+    if(String(url).includes("/projects/"))return new Promise<Response>(resolve=>{authorize=resolve;});
+    posts++;return Response.json({assignmentId:"33333333-3333-4333-8333-333333333333"});
+  };
+  try{
+    const host=createEditorHost({projectId:"project",initialRef,signal:new AbortController().signal,onDirty(){},onStatus(){},onSaved(){}});
+    const sent=host.handle(message("44444444-4444-4444-8444-444444444444","requestAgentEdit",{ref:initialRef,instruction:"Preserve the saved artwork."}));
+    await host.handle(message("changed","notifyChanges",{assetId:initialRef.assetId,dirty:true}));
+    authorize(Response.json({assets:[{id:initialRef.assetId,app_id:"vectorcraft"}]}));
+    await assert.rejects(sent,/Save your edits/);assert.equal(posts,0);
+  }finally{globalThis.fetch=original;}
+});
+
 test("Copy retains the bound asset; Save As adopts the committed asset without reopening the editor",async()=>{
   const original=globalThis.fetch;
   const copied="33333333-3333-4333-8333-333333333333",adopted="44444444-4444-4444-8444-444444444444";
@@ -63,6 +100,8 @@ test("Copy retains the bound asset; Save As adopts the committed asset without r
     await assert.rejects(host.handle(message("old","saveAsset",payload)),/exact revision/);
     await host.handle(message("continued","saveAsset",{...payload,assetId:adopted,expectedBaseRevisionId:saved.ref.revisionId}));
     assert.deepEqual([...revisions.values()].map(row=>[row.assetId,row.base]),[[copied,null],[adopted,null],[adopted,saved.ref.revisionId]]);
-    assert.deepEqual([...revisions.values()][0].dependencies,[initialRef]);assert.equal(results.length,3);
+    assert.deepEqual([...revisions.values()][0].dependencies,[initialRef]);
+    assert.deepEqual([...revisions.values()][2].dependencies,[initialRef],"later saves retain the source revision added by Save As");
+    assert.equal(results.length,3);
   }finally{globalThis.fetch=original;}
 });

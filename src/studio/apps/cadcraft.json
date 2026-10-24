@@ -17,7 +17,7 @@
     "native": [
       ".dxf"
     ],
-    "verification": "pending"
+    "verification": "verified"
   },
   "capabilities": [
     "technical-drawing",
@@ -25,14 +25,14 @@
     "dimensioning"
   ],
   "editor": {
-    "adapterVersion": "0.1.0",
-    "release": null,
-    "bundleUrl": null,
-    "status": "pending"
+    "adapterVersion": "0.1.2",
+    "release": "cadcraft-v0.10.0-robyn-0.1.2",
+    "bundleUrl": "https://robyn-artcraft-editors.vercel.app/cadcraft/v0.10.0-0.1.2/?robyn&webgl",
+    "status": "verified"
   },
   "workstation": {
-    "template": null,
-    "release": null,
-    "status": "pending"
+    "template": "robyn-cadcraft-0-10-0@1",
+    "release": "sha256:bca46321dc438354d1b169a91e4f5075d0bad5afc70052b6e6fa0fbcf0f1e488",
+    "status": "verified"
   }
 }

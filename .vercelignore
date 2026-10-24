@@ -1,0 +1,12 @@
+.git
+.vercel
+node_modules
+.next
+out
+build
+artifacts
+.gstack
+.env*
+*.tsbuildinfo
+*.pem
+*-debug.log*

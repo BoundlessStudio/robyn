@@ -4,6 +4,8 @@
 
 This checkout now implements **Robyn Creative Studio**. The user's complete scope and acceptance criteria live in `docs/PLAN.md`; that scope supersedes the starter's generic no-features setup guidance. Keep the server-side authorization and single Agent37 client boundary below. The pilot uses invitation-only authentication, and public signup must remain disabled. Add application integrations as independent `src/studio/apps/*.json` modules. Native images and browser adapter patches belong in the companion runtime repository, not a Dockerfile here. A manifest must not say verified until its native/browser round trip has passed.
 
+The current pilot is **desktop-only** for the authenticated studio, all thirteen Crafts and Research. Mobile/compact editor implementation and acceptance are out of scope and must not block pilot completion. The public homepage supports mobile presentation; small-screen studio entry must explain the desktop requirement. Preserve opened desktop editor sessions when a window is temporarily narrowed.
+
 Run `npm run typecheck`, `npm test`, and `npm run build`. The homepage also requires browser visual review at desktop and mobile widths. Public examples are illustrative until real integration verification is complete. Never print `.env.local` or expose credential values.
 
 Guidance for AI coding agents (and humans) working in the **Agent37 Starter Kit**.

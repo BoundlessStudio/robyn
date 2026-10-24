@@ -1,0 +1,21 @@
+# Passwordless invitations and sign-in
+
+Robyn uses Supabase email links with public signup disabled. First-time creators open their invitation email, then press **Enter your studio**. That button verifies the invited address, sets the browser session, and sends them to `/dashboard`. They do not set a password or fill in another sign-in form.
+
+Returning creators request a single-use email link at `/login`. The browser uses `signInWithOtp` with `shouldCreateUser: false`. An address with a pending, unaccepted invitation must use its invitation first: Supabase treats unconfirmed addresses as signup attempts and rejects ordinary magic-link requests when signup is disabled. If that first invitation expires, an administrator can reissue it with `inviteUserByEmail`; do not manually mark the address confirmed or enable public signup.
+
+The versioned invitation and magic-link email templates live in `supabase/templates/`. Both use a token hash and the server `/auth/callback` handler. A GET or HEAD only redirects to `/auth/confirm`; the token is verified by a same-origin form POST after the creator presses the button. This prevents ordinary email safety scans and previews from consuming the single-use link. Responses are not cached. The confirmation page and callback use `strict-origin` referrer policy: this hides the token-bearing path while preserving the browser's Origin header for form validation. Do not use `no-referrer` here; native form POSTs then send `Origin: null` and fail the request check. `scripts/setup.mjs` installs these templates. Supabase's hosted templates were checked against these files on 2026-10-23. The sender is `Robyn Creative Studio <studio@mail.robyn.academy>`.
+
+The callback accepts internal paths or absolute return URLs on the same origin. It rejects external redirects. Earlier invitations pointing at `/reset-password` now open `/dashboard`; the legacy password page also redirects there. A used link keeps a browser with a verified existing session in its studio. A browser without a session receives a retry explanation instead.
+
+Validation on 2026-10-23:
+
+- Type checking and all 32 tests passed, including preview requests, same-origin enforcement, and link reuse. One full run hit a PGlite WebAssembly memory allocation error while other work was active; the complete rerun passed.
+- Production deployment `dpl_4wjiLqEfa3p4DvMH6K2xisYieVPF` is READY; its Vercel logs confirm `npm run build` compiled and completed successfully. It preserves the previous production source and adds only the authentication changes.
+- A generated link for an existing QA account established session cookies and accessed its own workspace. Anonymous access was rejected, reuse of the link was rejected, and only the newly created QA session was signed out.
+- A passwordless request for an uninvited address was rejected without creating an account.
+- The live desktop sign-in page was visually reviewed. Evidence is in the ignored `artifacts/qa/passwordless/` directory; it contains no authentication tokens.
+- Live HEAD and repeated GET requests did not consume a QA link or create a session. The confirmation page rendered, a cross-origin POST returned 403, the intended POST returned 303 with working session cookies, reuse retained an existing session, and reuse in another browser was rejected. The temporary QA session was signed out locally.
+- The user's subsequent form rejection was reproduced by clicking the actual button in Chrome. After correcting the referrer policy, a fresh QA link was opened and its button clicked in the same browser; it reached `/dashboard`. Supabase independently confirmed a new sign-in from that click. The browser kept its existing QA identity; no creator invitation was consumed by the test. Evidence: `artifacts/qa/passwordless/browser-origin-proof.json` and `browser-signin-success.png`.
+
+The requested creator's invitation was accepted for sending at 2026-10-23 23:58 UTC. Supabase recorded that it was consumed at 2026-10-24 00:00 UTC, activating the account; the user then reported a used-link error. This prompted the preview protection above. A fresh passwordless email was sent after the fix. The creator's link was deliberately not consumed during QA.

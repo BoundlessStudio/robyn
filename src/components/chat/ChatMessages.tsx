@@ -42,8 +42,8 @@ function ThinkingBlock({ content, live }: { content: string; live: boolean }) {
         {live && <Loader2 className="h-3 w-3 animate-spin" />}
       </button>
       {open && (
-        <div className="mt-1 max-h-60 overflow-y-auto whitespace-pre-wrap break-words border-l-2 border-border pl-3 text-xs leading-relaxed text-muted-foreground">
-          {content}
+        <div className="mt-1 max-h-60 overflow-y-auto border-l-2 border-border pl-3 text-xs leading-relaxed text-muted-foreground">
+          <Markdown content={content} mode={live ? "streaming" : "static"} isAnimating={live}/>
         </div>
       )}
     </div>
@@ -118,7 +118,7 @@ export function ChatMessages({ messages, isStreaming }: { messages: ChatMessage[
                   ))}
                 </div>
               )}
-              {m.content ? <Markdown content={m.content} /> : showDots ? <TypingDots /> : null}
+              {m.content ? <Markdown content={m.content} mode={lastAssistant && isStreaming ? "streaming" : "static"} isAnimating={lastAssistant && isStreaming} controls className="chat-markdown text-sm leading-relaxed"/> : showDots ? <TypingDots /> : null}
             </div>
           </div>
         );

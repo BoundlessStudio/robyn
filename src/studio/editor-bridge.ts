@@ -15,7 +15,8 @@ export interface EditorBridge {
   listProjectAssets(): Promise<AssetSummary[]>;
   insertAsset(ref: AssetRef): Promise<OpenAssetResult>;
   notifyChanges(input: { dirty: boolean; assetId: string }): void;
-  requestAgentEdit(input: { ref: AssetRef; instruction: string }): Promise<{ assignmentId: string }>;
+  /** Keep requestId when retrying after a lost acknowledgement. */
+  requestAgentEdit(input: { ref: AssetRef; instruction: string; requestId?: string }): Promise<{ assignmentId: string }>;
 }
 
 export type EditorMessage = {

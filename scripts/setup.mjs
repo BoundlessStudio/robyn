@@ -247,6 +247,12 @@ async function runMigrations(call, ref) {
 }
 
 async function configureAuth(call, ref, siteUrl) {
+  const emailTemplates = {
+    mailer_subjects_invite: "Your Robyn studio invitation",
+    mailer_templates_invite_content: fs.readFileSync(path.join(MIGRATIONS_DIR, "../templates/invite.html"), "utf8"),
+    mailer_subjects_magic_link: "Your Robyn sign-in link",
+    mailer_templates_magic_link_content: fs.readFileSync(path.join(MIGRATIONS_DIR, "../templates/magic-link.html"), "utf8"),
+  };
   const wanted = [
     `${siteUrl}/**`,
     `${siteUrl}/auth/callback`,
@@ -266,7 +272,8 @@ async function configureAuth(call, ref, siteUrl) {
   const allow = Array.from(new Set([...existing, ...wanted]));
   if (current.site_url === siteUrl && wanted.every(url => existing.includes(url))
     && current.external_email_enabled === true && current.disable_signup === true
-    && current.mailer_autoconfirm === false) {
+    && current.mailer_autoconfirm === false
+    && Object.entries(emailTemplates).every(([key, value]) => current[key] === value)) {
     ok(`Auth configuration already matches ${siteUrl}`);
     return;
   }
@@ -277,6 +284,7 @@ async function configureAuth(call, ref, siteUrl) {
     // Hiding signup in the UI alone would leave the public Auth API open.
     disable_signup: true,
     mailer_autoconfirm: false,
+    ...emailTemplates,
   });
   ok(`Auth Site URL set to ${siteUrl}`);
   info(`Redirect allow-list: ${allow.join(", ")}`);
@@ -291,7 +299,7 @@ Reads .env.local and finishes the Supabase setup for you using
 SUPABASE_ACCESS_TOKEN (a personal access token):
   - runs the database migration(s)
   - configures the Site URL + redirect allow-list and turns on
-    email + password auth (invited accounts only; public signup disabled)
+    emailed sign-in links (invited accounts only; public signup disabled)
   - fills in NEXT_PUBLIC_SUPABASE_URL / NEXT_PUBLIC_SUPABASE_ANON_KEY /
     SUPABASE_SERVICE_ROLE_KEY (server-only)
 

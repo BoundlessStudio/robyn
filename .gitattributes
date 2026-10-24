@@ -1,0 +1,2 @@
+# Workstation releases are verified by byte size and SHA-256 on every checkout.
+vendor/** -text

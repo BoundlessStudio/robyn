@@ -1,0 +1,7 @@
+<div style="background:#efeee3;color:#1b2a20;padding:32px;font-family:Arial,sans-serif;line-height:1.6">
+  <p style="font-size:24px;font-weight:bold">robyn</p>
+  <h2>Your studio is waiting.</h2>
+  <p>Follow this link to sign in to your private creative studio. No password needed.</p>
+  <p><a style="color:#c6502f" href="{{ .SiteURL }}/auth/callback?token_hash={{ .TokenHash }}&amp;type=email&amp;next={{ .RedirectTo | urlquery }}">Enter your studio →</a></p>
+  <p style="font-size:12px">This link works once. If you didn’t request it, you can ignore this email.</p>
+</div>

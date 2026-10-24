@@ -1,6 +1,6 @@
 {
   "id": "deckcraft",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "order": 10,
   "name": "DeckCraft",
   "category": "Publishing",
@@ -17,7 +17,7 @@
     "native": [
       ".deckcraft"
     ],
-    "verification": "pending"
+    "verification": "verified"
   },
   "capabilities": [
     "presentation",
@@ -25,14 +25,14 @@
     "storytelling"
   ],
   "editor": {
-    "adapterVersion": "0.1.0",
-    "release": null,
-    "bundleUrl": null,
-    "status": "pending"
+    "adapterVersion": "0.1.2",
+    "release": "deckcraft-v0.9.0-robyn-0.1.2",
+    "bundleUrl": "https://robyn-artcraft-editors.vercel.app/deckcraft/v0.9.0-0.1.2/?robyn&webgl",
+    "status": "verified"
   },
   "workstation": {
-    "template": null,
-    "release": null,
-    "status": "pending"
+    "template": "robyn-deckcraft-0-9-0@1",
+    "release": "sha256:3dfcd2d3dd5333c261a3800b3d66acae6be286813f921e384dcfce9e816104d5",
+    "status": "verified"
   }
 }

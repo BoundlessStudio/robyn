@@ -2,14 +2,14 @@ import "server-only";
 import { requireUser, type DB } from "@/lib/auth";
 import { ApiError } from "@/lib/http";
 import { hasSameOrigin } from "@/lib/request-origin";
-import { studioApps } from "./apps/registry";
+import { studioTools as studioApps } from "./tools";
 import { creativeDirector } from "./director";
 import { isAppReady } from "./manifest";
 import { requireUuid } from "./assets";
 
 export const STUDIO_BUCKET = "studio-assets";
 export const profiles = [
-  { key: creativeDirector.id, kind: "director", appId: null, role: creativeDirector.role, version: "0.1.0", instructions: creativeDirector.instructions },
+  { key: creativeDirector.id, kind: "director", appId: null, role: creativeDirector.role, version: "0.3.0", instructions: creativeDirector.instructions },
   ...studioApps.map(app => ({ key: app.id, kind: "specialist", appId: app.id, role: app.employee.role, version: app.version, instructions: app.employee.instructions })),
 ];
 

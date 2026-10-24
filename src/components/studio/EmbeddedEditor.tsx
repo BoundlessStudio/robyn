@@ -1,19 +1,38 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useImperativeHandle, useRef, useState } from "react";
 import { EDITOR_BRIDGE_PROTOCOL, isTrustedEditorEvent, type EditorMessage } from "@/studio/editor-bridge";
 import { createEditorHost } from "@/studio/editor-host";
 import type { AssetRef } from "@/studio/assets";
 import type { EditorSaveResult } from "@/studio/editor-host";
 
-export function EmbeddedEditor({projectId,initialRef,bundleUrl,name,onSaved,onDirty}:{projectId:string;initialRef:AssetRef;bundleUrl:string;name:string;onSaved:(result:EditorSaveResult)=>void;onDirty:(dirty:boolean)=>void}) {
+export interface EditorViewState { status:string; dirty:boolean; error:string }
+export interface EmbeddedEditorHandle { expand:()=>void }
+
+export function EmbeddedEditor({ref,projectId,initialRef,bundleUrl,name,onSaved,onDirty,onState}:{ref?:React.Ref<EmbeddedEditorHandle>;projectId:string;initialRef:AssetRef;bundleUrl:string;name:string;onSaved:(result:EditorSaveResult)=>void;onDirty:(dirty:boolean)=>void;onState:(state:EditorViewState)=>void}) {
   const shell=useRef<HTMLDivElement>(null);
   const frame=useRef<HTMLIFrameElement>(null);
-  const callbacks=useRef({onSaved,onDirty});callbacks.current={onSaved,onDirty};
+  const callbacks=useRef({onSaved,onDirty,onState});callbacks.current={onSaved,onDirty,onState};
   const [binding]=useState(()=>({ref:initialRef,channel:crypto.randomUUID()}));
   const [src,setSrc]=useState("");const [status,setStatus]=useState(`Opening ${name}…`);const [error,setError]=useState("");
+  const [openingDelayed,setOpeningDelayed]=useState(false);const [frameAttempt,setFrameAttempt]=useState(0);
   const [expanded,setExpanded]=useState(false);
+  const fullscreenReturnFocus=useRef<HTMLElement|null>(null);
+  const wasExpanded=useRef(false);
   const [hasChanges,setHasChanges]=useState(false);
-  useEffect(()=>{const changed=()=>setExpanded(document.fullscreenElement===shell.current);document.addEventListener("fullscreenchange",changed);return()=>document.removeEventListener("fullscreenchange",changed);},[]);
+  function hasBlankFrame(){try{return frame.current?.contentDocument?.URL==="about:blank";}catch{return false;}}
+  useEffect(()=>{
+    if(!src)return;
+    const timer=window.setTimeout(()=>{if(hasBlankFrame())setOpeningDelayed(true);},8000);
+    return()=>window.clearTimeout(timer);
+  },[src,frameAttempt]);
+  function retryOpening(){
+    setOpeningDelayed(false);
+    // Only replace a document that never opened; a live editor may contain work.
+    if(hasBlankFrame())setFrameAttempt(value=>value+1);
+  }
+  useImperativeHandle(ref,()=>({expand:()=>{fullscreenReturnFocus.current=document.activeElement instanceof HTMLElement?document.activeElement:null;void shell.current?.requestFullscreen().catch(()=>setError("Your browser could not expand the editor."));}}),[]);
+  useEffect(()=>callbacks.current.onState({status,dirty:hasChanges,error}),[status,hasChanges,error]);
+  useEffect(()=>{const changed=()=>{const active=document.fullscreenElement===shell.current;setExpanded(active);if(wasExpanded.current&&!active)queueMicrotask(()=>fullscreenReturnFocus.current?.focus({preventScroll:true}));wasExpanded.current=active;};document.addEventListener("fullscreenchange",changed);return()=>document.removeEventListener("fullscreenchange",changed);},[]);
   useEffect(()=>{
     const controller=new AbortController();
     const url=new URL(bundleUrl);
@@ -41,5 +60,5 @@ export function EmbeddedEditor({projectId,initialRef,bundleUrl,name,onSaved,onDi
     setSrc(url.toString());
     return()=>{active=false;controller.abort();window.removeEventListener("message",receive);window.removeEventListener("beforeunload",leaving);document.removeEventListener("click",navigate,true);callbacks.current.onDirty(false);};
   },[binding,bundleUrl,projectId]);
-  return <div ref={shell} className="embedded-editor"><div className="editor-library-status"><span role="status">{status}{hasChanges&&<strong> · Unsaved edits</strong>}</span><button className="studio-button" onClick={()=>{const action=expanded?document.exitFullscreen():shell.current?.requestFullscreen();void action?.catch(()=>setError("Your browser could not change the editor view."));}}>{expanded?"Return to project ↙":"Expand editor ↗"}</button></div>{error&&<div className="studio-error" role="alert">{error}<button className="studio-button" onClick={()=>setError("")}>Dismiss</button></div>}{src&&<iframe ref={frame} src={src} title={`${name} editor`} sandbox="allow-scripts allow-same-origin allow-downloads allow-modals" allow="autoplay; clipboard-read; clipboard-write; fullscreen" allowFullScreen referrerPolicy="no-referrer"/>}</div>;
+  return <div ref={shell} className="embedded-editor">{expanded&&<div className="editor-fullscreen-bar"><span role="status">{hasChanges?"Unsaved edits":status}</span><button className="studio-tool-button" onClick={()=>{void document.exitFullscreen().catch(()=>setError("Your browser could not return to the project."));}}>Return to project ↙</button></div>}{error&&<div className="studio-error" role="alert">{error}<button className="studio-button" onClick={()=>setError("")}>Dismiss</button></div>}{openingDelayed&&<div className="editor-startup"><div><span className="studio-eyebrow">YOUR CREATIVE WORKSPACE</span><h2>{name} is taking a little longer.</h2><p role="status">The editor hasn’t opened yet. Try opening it again to continue with your saved revision.</p><button className="studio-button primary" onClick={retryOpening}>Open {name}</button></div></div>}{src&&<iframe key={frameAttempt} ref={frame} src={src} onLoad={()=>setOpeningDelayed(false)} title={`${name} editor`} sandbox="allow-scripts allow-same-origin allow-downloads allow-modals" allow="autoplay; clipboard-read; clipboard-write; fullscreen" allowFullScreen referrerPolicy="no-referrer"/>}</div>;
 }

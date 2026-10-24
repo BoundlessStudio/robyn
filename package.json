@@ -11,13 +11,14 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "test": "node --import tsx --test tests/*.test.ts tests/*.test.mjs",
+    "test": "node --import tsx --test tests/*.test.ts tests/*.test.mjs && node --conditions=import --import tsx --test tests/*.test.tsx",
     "smoke": "node scripts/smoke.mjs"
   },
   "dependencies": {
     "@fontsource-variable/space-grotesk": "^5.3.0",
     "@fontsource/instrument-serif": "^5.3.0",
     "@noble/hashes": "^2.4.0",
+    "@novnc/novnc": "1.7.0",
     "@radix-ui/react-dialog": "^1.1.6",
     "@radix-ui/react-dropdown-menu": "^2.1.6",
     "@radix-ui/react-label": "^2.1.2",
@@ -36,7 +37,8 @@
     "sonner": "^1.7.4",
     "streamdown": "^2.7.1",
     "tailwind-merge": "^2.6.0",
-    "tus-js-client": "^4.3.1"
+    "tus-js-client": "^4.3.1",
+    "workflow": "5.2.3"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",

@@ -1,6 +1,6 @@
 {
   "id": "photocraft",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "order": 1,
   "name": "PhotoCraft",
   "category": "Graphics",
@@ -17,7 +17,7 @@
     "native": [
       ".pcraft"
     ],
-    "verification": "pending"
+    "verification": "verified"
   },
   "capabilities": [
     "layered-image",
@@ -25,14 +25,14 @@
     "compositing"
   ],
   "editor": {
-    "adapterVersion": "0.1.0",
-    "release": null,
-    "bundleUrl": null,
-    "status": "pending"
+    "adapterVersion": "0.1.4",
+    "release": "photocraft-v0.12.0-robyn-0.1.4",
+    "bundleUrl": "https://robyn-artcraft-editors.vercel.app/photocraft/v0.12.0-0.1.4/?robyn&webgl",
+    "status": "verified"
   },
   "workstation": {
-    "template": null,
-    "release": null,
-    "status": "pending"
+    "template": "robyn-photocraft-0-12-0@1",
+    "release": "sha256:b56cb9749d2f3dc88c9f50a12803d57bfa29d359635d0999575055876944c849",
+    "status": "verified"
   }
 }

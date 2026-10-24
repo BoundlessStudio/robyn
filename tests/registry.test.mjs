@@ -30,6 +30,8 @@ test("an independent application registers without editing an existing specialis
 test("readiness cannot be asserted without pinned artifacts", () => {
   const app = structuredClone(readManifests(path.resolve("src/studio/apps"))[0].app);
   app.editor.status = "verified";
+  app.editor.release = null;
+  app.editor.bundleUrl = null;
   assert.throws(() => validateManifest(app), /pin a release/);
   app.editor.release = "test-only";
   assert.throws(() => validateManifest(app), /missing editor bundle/);

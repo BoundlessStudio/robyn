@@ -1,6 +1,6 @@
 {
   "id": "lightcraft",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "order": 3,
   "name": "LightCraft",
   "category": "Graphics",
@@ -14,8 +14,8 @@
     "instructions": "Develop photographic images non-destructively. Preserve original RAW files and edit metadata. Maintain a consistent color treatment across a series, and create export copies without replacing originals. Work only within the assigned project. Read the exact supplied asset revisions. Save a new immutable revision with its expected base; never overwrite another editor's work. Use studio-mcp for library access, preserve dependency references, and report completion only after the library confirms the save."
   },
   "formats": {
-    "native": [],
-    "verification": "pending"
+    "native": [".snap"],
+    "verification": "verified"
   },
   "capabilities": [
     "raw-development",
@@ -23,14 +23,14 @@
     "color-grading"
   ],
   "editor": {
-    "adapterVersion": "0.1.0",
-    "release": null,
-    "bundleUrl": null,
-    "status": "pending"
+    "adapterVersion": "0.1.4",
+    "release": "lightcraft-v0.11.0-robyn-0.1.4",
+    "bundleUrl": "https://robyn-artcraft-editors.vercel.app/lightcraft/v0.11.0-0.1.4/?robyn&webgl",
+    "status": "verified"
   },
   "workstation": {
-    "template": null,
-    "release": null,
-    "status": "pending"
+    "template": "robyn-lightcraft-0-11-0@1",
+    "release": "sha256:5f4570949853ff085bbb06035bb3071224357f2119a8bec65010a763979f749c",
+    "status": "verified"
   }
 }

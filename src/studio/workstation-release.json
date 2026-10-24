@@ -1,0 +1,71 @@
+{
+  "version": "0.1.19",
+  "directory": "vendor/robyn-workstation/0.1.19-a0e7cd013ff2",
+  "fingerprint": "a0e7cd013ff24fe071eeaf382c9be9527bdaa863cc70b14098365aadd377c695",
+  "files": {
+    "studio-mcp.cjs": {
+      "bytes": 1831195,
+      "sha256": "a27cfdd1b6dffeb3b08a7d22c80a090a6634bf42c6ce67c6839dcbd932111e24"
+    },
+    "configure-hermes.py": {
+      "bytes": 2028,
+      "sha256": "ad099fb8a6e86ba521e7e6a00a0605a206766676138c3d1e2bde7676af38e750"
+    },
+    "skills/cadcraft.md": {
+      "bytes": 1838,
+      "sha256": "2b1ca249dd4fd5f6b2950d33d42a530272563681b35eea6b0a0dc9f1b8f2a219"
+    },
+    "skills/deckcraft.md": {
+      "bytes": 2035,
+      "sha256": "f72308cf8882c6b56317027cbce042ca7abe6b9d7dfc037e02095212245da0e5"
+    },
+    "skills/designcraft.md": {
+      "bytes": 1785,
+      "sha256": "154a7046e27896e20de99bac5bfb5563a650217f24d445853c02f8dbf1a0a08d"
+    },
+    "skills/effectcraft.md": {
+      "bytes": 2040,
+      "sha256": "11539b89a13bb97be7df0a588d97b0ce647dc833728cf6651f21eb8593d07c26"
+    },
+    "skills/figcraft.md": {
+      "bytes": 1870,
+      "sha256": "847345f3a76ba38c139a5f4b4e9b20ca3ade96ada0f9d878df15178a55a56799"
+    },
+    "skills/filmcraft.md": {
+      "bytes": 3041,
+      "sha256": "35335951b520e51688ad01d15a210d6132531dd7eec9dfb54617a69a3c877d39"
+    },
+    "skills/gridcraft.md": {
+      "bytes": 2366,
+      "sha256": "ff3f61a8ddf0fe7974c65adddbcb27c8c9561a1c36caf495410828b784439676"
+    },
+    "skills/lightcraft.md": {
+      "bytes": 2433,
+      "sha256": "5526d9a69a644ca397bdd6d1c618086a670bfc600f7d29bce5dafe6dbd295d09"
+    },
+    "skills/pdfcraft.md": {
+      "bytes": 3550,
+      "sha256": "6b014fb2cb21db91e9b724a5084b3b1ed50c6c26bafe7746eaaf1da38db7a63d"
+    },
+    "skills/photocraft.md": {
+      "bytes": 3419,
+      "sha256": "1acb778d4954c859c8c6359b56728ca05409e70d0c11cb41982b004ee3ce3635"
+    },
+    "skills/soundcraft.md": {
+      "bytes": 2229,
+      "sha256": "9947d0cb8aa95b2aebad159c4b3337b496c6418ec408eb637922baa944e02db7"
+    },
+    "skills/vectorcraft.md": {
+      "bytes": 3253,
+      "sha256": "5bcaf89b9c45c8265293ab9e6d9f3687022740386e4b1fdade976ce49d3f760e"
+    },
+    "skills/wordcraft.md": {
+      "bytes": 1951,
+      "sha256": "20cf9722502f2963090a13197571e89eb56230c2db919823f0779a0657e70461"
+    },
+    "skills/research.md": {
+      "bytes": 2171,
+      "sha256": "2fd0f6b2d7dec5a872a1063122c54f6102eaebac462fea3d0b6b15ee052793b1"
+    }
+  }
+}

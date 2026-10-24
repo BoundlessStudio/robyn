@@ -47,12 +47,14 @@ test("employee assignments enforce project scope, three slots, serialized employ
     await assert.rejects(create(specialists[0].id,randomUUID(),"Foreign",foreignProject),/not found/);
     const queuedSame=await create(specialists[0].id);
     const jobs=[first,...await Promise.all(specialists.slice(1).map(e=>create(e.id)))];
+    await scalar("select bind_studio_assignment_workflow($1,$2,$3,$4) as result",[workspace,users[0],first.id,"employee-boundary-test"]);
     const claim=assignment=>scalar("select claim_studio_assignment($1,$2,$3) as result",[workspace,users[0],assignment]);
     const claims=await Promise.all(jobs.map(job=>claim(job.id)));
     assert.equal(claims.filter(x=>x.claimed).length,3);
     assert.equal((await claim(queuedSame.id)).claimed,false);
     assert.equal((await claim(first.id)).claimed,false);
     assert.equal((await claim(first.id)).assignment.session_id,claims[0].assignment.session_id);
+    assert.equal(await scalar("select claim_studio_assignment_dispatch($1,$2,$3,$4,$5) as result",[workspace,users[0],first.id,"employee-boundary-test",claims[0].assignment.run_attempt]),true);
     const directorJob=await create(director.id);assert.equal((await claim(directorJob.id)).claimed,true);
     const issue=async(job,instance)=>{const hash=createHash("sha256").update(randomUUID()).digest("hex");await db.query("insert into studio_employee_tokens(assignment_id,instance_id,token_hash,expires_at) values($1,$2,$3,now()+interval '1 hour')",[job,instance,hash]);return hash;};
     const hash=await issue(first.id,specialists[0].employee_key);

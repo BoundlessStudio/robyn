@@ -1,6 +1,6 @@
 {
   "id": "vectorcraft",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "order": 2,
   "name": "VectorCraft",
   "category": "Graphics",
@@ -15,7 +15,7 @@
   },
   "formats": {
     "native": [".vectorcraft", ".drawcraft"],
-    "verification": "pending"
+    "verification": "verified"
   },
   "capabilities": [
     "vector-illustration",
@@ -23,14 +23,14 @@
     "icons"
   ],
   "editor": {
-    "adapterVersion": "0.1.0",
-    "release": "vectorcraft-v0.14.0-robyn-0.1.0",
-    "bundleUrl": "https://robyn-artcraft-editors.vercel.app/vectorcraft/v0.14.0-0.1.0/?robyn&webgl",
-    "status": "pending"
+    "adapterVersion": "0.1.4",
+    "release": "vectorcraft-v0.14.0-robyn-0.1.4",
+    "bundleUrl": "https://robyn-artcraft-editors.vercel.app/vectorcraft/v0.14.0-0.1.4/?robyn&webgl",
+    "status": "verified"
   },
   "workstation": {
     "template": "robyn-vectorcraft-0-14-0@1",
     "release": "sha256:b04d54cf9231cbb76f9d929395f0735ead37a326ecb33299ba2947636150ad76",
-    "status": "pending"
+    "status": "verified"
   }
 }

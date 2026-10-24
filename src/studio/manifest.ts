@@ -1,6 +1,7 @@
 export type IntegrationStatus = "pending" | "verified";
 
 export interface StudioAppManifest {
+  kind?: "craft" | "research";
   id: string;
   version: string;
   order: number;
@@ -19,7 +20,13 @@ export interface StudioAppManifest {
 }
 
 export function isAppReady(app: StudioAppManifest): boolean {
+  if (app.kind === "research") return app.editor.status === "verified" && app.workstation.status === "verified"
+    && app.formats.verification === "verified" && Boolean(app.editor.release && app.workstation.template && app.workstation.release);
   return app.editor.status === "verified" && app.workstation.status === "verified"
     && app.formats.verification === "verified" && Boolean(app.editor.release
     && app.editor.bundleUrl && app.workstation.template && app.workstation.release);
+}
+
+export function isEmployeeReady(app: StudioAppManifest): boolean {
+  return app.kind === "research" ? app.workstation.status === "verified" && Boolean(app.workstation.template && app.workstation.release) : isAppReady(app);
 }

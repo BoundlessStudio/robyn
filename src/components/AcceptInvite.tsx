@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { apiFetch } from "@/lib/api";
-import { branding } from "@/config/branding";
+import { AuthFrame } from "@/components/brand/AuthFrame";
+import { DesktopStudioGate } from "@/components/studio/DesktopStudioGate";
 import { Button } from "@/components/ui/button";
 
 const STORAGE_KEY = "agent37wl_workspace";
@@ -34,11 +35,11 @@ export function AcceptInvite({
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center px-6">
+    <DesktopStudioGate><AuthFrame>
       <div className="w-full max-w-sm space-y-6 text-center">
-        <h1 className="text-xl font-semibold tracking-tight">{branding.appName}</h1>
+        <h1 className="text-4xl font-medium tracking-tight">A place for your ideas.</h1>
         <div className="rounded-lg border bg-card p-6">
-          <p className="text-sm text-muted-foreground">You&apos;ve been invited to join</p>
+          <p className="text-sm text-muted-foreground">You&apos;ve been invited to join this desktop studio</p>
           <p className="mt-1 text-lg font-medium">{workspaceName}</p>
           <p className="mt-1 text-sm text-muted-foreground">as {role}</p>
           <Button className="mt-4 w-full" onClick={accept} disabled={busy}>
@@ -46,6 +47,6 @@ export function AcceptInvite({
           </Button>
         </div>
       </div>
-    </main>
+    </AuthFrame></DesktopStudioGate>
   );
 }

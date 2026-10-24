@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { getSession } from "@/lib/auth";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { AcceptInvite } from "@/components/AcceptInvite";
-import { branding } from "@/config/branding";
+import { AuthFrame } from "@/components/brand/AuthFrame";
 
 type Ctx = { params: Promise<{ token: string }> };
 
@@ -26,11 +26,11 @@ export default async function InvitePage({ params }: Ctx) {
 
 function Message({ text }: { text: string }) {
   return (
-    <main className="flex min-h-screen items-center justify-center px-6 text-center">
+    <AuthFrame>
       <div className="max-w-sm space-y-2">
-        <h1 className="text-xl font-semibold tracking-tight">{branding.appName}</h1>
+        <h1 className="text-4xl font-medium tracking-tight">Your invitation.</h1>
         <p className="text-sm text-muted-foreground">{text}</p>
       </div>
-    </main>
+    </AuthFrame>
   );
 }

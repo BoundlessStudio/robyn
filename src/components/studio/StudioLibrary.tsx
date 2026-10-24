@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Search, ArrowUpRight } from "lucide-react";
 import { apiFetch } from "@/lib/api";
-import { studioApps } from "@/studio/apps/registry";
+import { studioTools as studioApps } from "@/studio/tools";
 import type { AssetSummary, ProjectSummary } from "@/studio/assets";
 import { StudioStudy } from "./StudioStudy";
 

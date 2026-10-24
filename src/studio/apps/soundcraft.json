@@ -1,6 +1,6 @@
 {
   "id": "soundcraft",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "order": 6,
   "name": "SoundCraft",
   "category": "Media",
@@ -14,8 +14,8 @@
     "instructions": "Produce editable audio sessions with organized tracks, source media, routing, automation, and intentional gain staging. Package all samples and note plugin dependencies. Export a preview and appropriate delivery stems. Work only within the assigned project. Read the exact supplied asset revisions. Save a new immutable revision with its expected base; never overwrite another editor's work. Use studio-mcp for library access, preserve dependency references, and report completion only after the library confirms the save."
   },
   "formats": {
-    "native": [],
-    "verification": "pending"
+    "native": [".scraft"],
+    "verification": "verified"
   },
   "capabilities": [
     "audio-editing",
@@ -23,14 +23,14 @@
     "sound-design"
   ],
   "editor": {
-    "adapterVersion": "0.1.0",
-    "release": null,
-    "bundleUrl": null,
-    "status": "pending"
+    "adapterVersion": "0.1.4",
+    "release": "soundcraft-v0.11.0-robyn-0.1.4",
+    "bundleUrl": "https://robyn-artcraft-editors.vercel.app/soundcraft/v0.11.0-0.1.4/?robyn&webgl",
+    "status": "verified"
   },
   "workstation": {
-    "template": null,
-    "release": null,
-    "status": "pending"
+    "template": "robyn-soundcraft-0-11-0@1",
+    "release": "sha256:8d7030eff81589c4a267a2ecd3f039338e8c690e8703a358e4c8846bc8375e22",
+    "status": "verified"
   }
 }

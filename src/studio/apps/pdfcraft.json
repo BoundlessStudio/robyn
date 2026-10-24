@@ -1,6 +1,6 @@
 {
   "id": "pdfcraft",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "order": 8,
   "name": "PdfCraft",
   "category": "Publishing",
@@ -17,7 +17,7 @@
     "native": [
       ".pdf"
     ],
-    "verification": "pending"
+    "verification": "verified"
   },
   "capabilities": [
     "pdf-editing",
@@ -25,14 +25,14 @@
     "pdf-assembly"
   ],
   "editor": {
-    "adapterVersion": "0.1.0",
-    "release": null,
-    "bundleUrl": null,
-    "status": "pending"
+    "adapterVersion": "0.1.4",
+    "release": "pdfcraft-v0.11.0-robyn-0.1.4",
+    "bundleUrl": "https://robyn-artcraft-editors.vercel.app/pdfcraft/v0.11.0-0.1.4/?robyn&webgl",
+    "status": "verified"
   },
   "workstation": {
-    "template": null,
-    "release": null,
-    "status": "pending"
+    "template": "robyn-pdfcraft-0-11-0@1",
+    "release": "sha256:165fb8dc380c404f670a5e09b092ede8b0991aa3003ca9f7ea5c1c9133cd9881",
+    "status": "verified"
   }
 }

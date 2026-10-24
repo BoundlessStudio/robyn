@@ -5,11 +5,17 @@ import { validateRevisionPackage } from "./assets";
 import { type EmployeeScope, employeeDbFailure } from "./employee-auth";
 import { ownedAsset, ownedRevision, revisionFiles, verifyStoredFiles, textField, id, dbFailure } from "./server";
 import { readSavedPackage, preparePackageTransfers } from "./package-store";
+import { studioTools as studioApps } from "./tools";
+import { isEmployeeReady } from "./manifest";
+import { parseCampaignSteps } from "./campaigns";
+import { launchCampaign } from "./campaign-launch";
 
 const uuid={type:"string",format:"uuid"};
 const tool=(name:string,description:string,properties:Record<string,unknown>,required:string[]=[])=>({name,description,inputSchema:{type:"object",properties,required,additionalProperties:false}});
 export const employeeTools=[
   tool("studio_context","Read your assignment, its exact input revisions, and the project brief.",{}),
+  tool("studio_team","Director only: discover the studio's available specialists and their capabilities.",{}),
+  tool("studio_plan","Director only: save one immutable production plan. Prerequisites must precede their consumers; their exact output revisions are handed onward automatically.",{operationId:uuid,steps:{type:"array",minItems:1,maxItems:20,items:{type:"object",properties:{key:{type:"string"},appId:{type:"string"},brief:{type:"string",maxLength:10000},dependsOn:{type:"array",items:{type:"string"}},inputs:{type:"array",items:{type:"object",properties:{assetId:uuid,revisionId:uuid},required:["assetId","revisionId"]}},final:{type:"boolean"}},required:["key","appId","brief","dependsOn","inputs","final"],additionalProperties:false}}},["operationId","steps"]),
   tool("studio_list_assets","List saved assets in this assigned project. Always open an exact assetId + revisionId.",{}),
   tool("studio_open_asset","Get short-lived private downloads for one exact saved native package. Verify every file's size and SHA-256 before opening.",{assetId:uuid,revisionId:uuid},["assetId","revisionId"]),
   tool("studio_create_asset","Create a library entry for your specialist application. Retrying the same operationId and name returns the same asset.",{operationId:uuid,name:{type:"string",minLength:1,maxLength:160}},["operationId","name"]),
@@ -35,7 +41,23 @@ export async function employeeToolCall(auth:{db:DB;tokenHash:string;scope:Employ
   if(name==="studio_context"){
     const {data:project,error}=await db.from("studio_projects").select("id,name,brief").eq("workspace_id",s.workspaceId).eq("id",s.projectId).single();dbFailure(error);
     const {data:inputs,error:inputError}=await db.from("studio_assignment_inputs").select("asset_id,revision_id").eq("workspace_id",s.workspaceId).eq("assignment_id",s.assignmentId);dbFailure(inputError);
-    return {assignmentId:s.assignmentId,role:s.role,appId:s.appId,brief:s.brief,project,inputs:(inputs??[]).map(row=>({assetId:row.asset_id,revisionId:row.revision_id}))};
+    const {data:assignment,error:assignmentError}=await db.from("studio_assignments").select("purpose").eq("workspace_id",s.workspaceId).eq("id",s.assignmentId).single();dbFailure(assignmentError);
+    if(!assignment)throw new ApiError(404,"not_found","Assignment not found.");
+    const {data:campaign,error:campaignError}=await db.from("studio_campaigns").select("id,state,specification").eq("workspace_id",s.workspaceId).eq("root_assignment_id",s.assignmentId).maybeSingle();dbFailure(campaignError);
+    return {assignmentId:s.assignmentId,role:s.role,appId:s.appId,purpose:assignment.purpose,brief:s.brief,project,campaign,inputs:(inputs??[]).map(row=>({assetId:row.asset_id,revisionId:row.revision_id}))};
+  }
+  if(name==="studio_team"){
+    if(s.kind!=="director")throw new ApiError(403,"director_only","Only the Director can coordinate the studio.");
+    return {specialists:studioApps.map(app=>({appId:app.id,role:app.employee.role,capabilities:app.capabilities,ready:isEmployeeReady(app)})),maxConcurrentSpecialists:3};
+  }
+  if(name==="studio_plan"){
+    if(s.kind!=="director")throw new ApiError(403,"director_only","Only the Director can create a production plan.");
+    let steps;try{steps=parseCampaignSteps(args.steps);}catch(error){throw new ApiError(400,"invalid_campaign",(error as Error).message);}
+    if(steps.some(step=>!studioApps.some(app=>app.id===step.appId&&isEmployeeReady(app))))throw new ApiError(409,"integration_pending","The plan includes an application that is still being verified. Use studio_team to check availability.");
+    const {data,error}=await db.rpc("director_create_campaign",{p_hash:tokenHash,p_operation:id(args.operationId,"operation ID"),p_steps:steps});employeeDbFailure(error);
+    const campaign=data as {campaignId:string;state:string;steps:number};
+    await launchCampaign(db,{workspaceId:s.workspaceId,userId:s.userId,campaignId:campaign.campaignId});
+    return campaign;
   }
   if(name==="studio_list_assets"){
     const {data,error}=await db.from("studio_assets").select("id,name,app_id,current_revision_id").eq("workspace_id",s.workspaceId).eq("project_id",s.projectId).not("current_revision_id","is",null).order("created_at",{ascending:false}).limit(300);dbFailure(error);

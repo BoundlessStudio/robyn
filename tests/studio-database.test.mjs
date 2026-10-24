@@ -95,6 +95,28 @@ test("studio revisions isolate tenants, preserve conflicts, resume uploads, and 
     assert.equal(staleRestore.status,"conflict"); assert.equal(await head(),restore.revisionId);
     const linked = await begin(wsA,userA,asset,restore.revisionId,{...packageData,dependencies:[{assetId:asset,revisionId:first}]});
     assert.equal(await scalar("select dependency_revision_id as result from studio_revision_dependencies where revision_id=$1",[linked]),first);
+
+    // A placed VectorCraft file must stay frozen in DeckCraft when the illustrator
+    // saves a new source version, including after restoring the deck later.
+    const sourceAsset = await scalar("insert into studio_assets(workspace_id,project_id,created_by,app_id,name) values($1,$2,$3,'vectorcraft','Shared illustration') returning id as result",[wsA,project,userA]);
+    const targetAsset = await scalar("insert into studio_assets(workspace_id,project_id,created_by,app_id,name) values($1,$2,$3,'deckcraft','Presentation') returning id as result",[wsA,project,userA]);
+    const sourceFirst = await begin(wsA,userA,sourceAsset,null);
+    await commit(wsA,userA,sourceFirst,await verified(sourceFirst));
+    const placed = {...packageData,dependencies:[{assetId:sourceAsset,revisionId:sourceFirst}]};
+    const targetFirst = await begin(wsA,userA,targetAsset,null,placed);
+    await commit(wsA,userA,targetFirst,await verified(targetFirst));
+    const sourceNext = await begin(wsA,userA,sourceAsset,sourceFirst,{...packageData,files:packageData.files.map(file=>({...file,sha256:"b".repeat(64)}))});
+    await commit(wsA,userA,sourceNext,await verified(sourceNext));
+    assert.equal(await scalar("select current_revision_id as result from studio_assets where id=$1",[sourceAsset]),sourceNext);
+    assert.equal(await scalar("select dependency_revision_id as result from studio_revision_dependencies where revision_id=$1",[targetFirst]),sourceFirst);
+    assert.equal(await scalar("select sha256 as result from studio_package_files where revision_id=$1",[sourceFirst]),"a".repeat(64));
+    const restoredDeck = await scalar("select restore_studio_revision($1,$2,$3,$4,$5) as result",[wsA,userA,targetAsset,targetFirst,targetFirst]);
+    assert.equal(restoredDeck.status,"committed");
+    assert.equal(await scalar("select dependency_revision_id as result from studio_revision_dependencies where revision_id=$1",[restoredDeck.revisionId]),sourceFirst);
+    // An exact, valid source reference still cannot be shared into another tenant.
+    const foreignProject = await scalar("insert into studio_projects(workspace_id,created_by,name) values($1,$2,'Another studio') returning id as result",[wsB,userB]);
+    const foreignTarget = await scalar("insert into studio_assets(workspace_id,project_id,created_by,app_id,name) values($1,$2,$3,'deckcraft','Foreign deck') returning id as result",[wsB,foreignProject,userB]);
+    await assert.rejects(begin(wsB,userB,foreignTarget,null,placed),/dependency unavailable/);
     // Setup can be rerun without resetting saved work or employee versions.
     await db.exec("reset role");
     for (const file of migrations) await db.exec(await fs.readFile(new URL(`../supabase/migrations/${file}`, import.meta.url),"utf8"));

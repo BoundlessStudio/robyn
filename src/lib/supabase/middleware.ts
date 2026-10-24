@@ -7,7 +7,7 @@ export async function updateSession(request: NextRequest) {
   const { pathname } = request.nextUrl;
   // The public creative site does not need an auth round trip. This also lets
   // the site render before the pilot's private services have been configured.
-  if (pathname === "/" || pathname === "/privacy" || pathname === "/api/invite-requests") return response;
+  if (pathname === "/" || pathname === "/privacy" || pathname === "/robots.txt" || pathname === "/sitemap.xml" || pathname === "/api/invite-requests") return response;
   // This one endpoint authenticates a revocable assignment capability in its
   // handler. Employee workstations never receive a creator's session cookie.
   if (pathname === "/api/studio/mcp") return response;
@@ -45,9 +45,8 @@ export async function updateSession(request: NextRequest) {
 
   if (!user && !isPublic) {
     if (pathname.startsWith("/api/")) return NextResponse.json({ error: { code: "unauthorized", message: "Sign in required" } }, { status: 401 });
-    const url = request.nextUrl.clone();
-    url.pathname = "/login";
-    url.searchParams.set("next", pathname);
+    const url = new URL("/login", request.url);
+    url.searchParams.set("next", pathname + request.nextUrl.search);
     return NextResponse.redirect(url);
   }
 

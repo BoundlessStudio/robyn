@@ -1,6 +1,6 @@
 {
   "id": "gridcraft",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "order": 11,
   "name": "GridCraft",
   "category": "Publishing",
@@ -14,8 +14,8 @@
     "instructions": "Build transparent, editable spreadsheets with clear labels, formulas, assumptions, units, and source references. Check totals, references, missing values, and error cells. Do not invent source data or replace formulas with unexplained values. Work only within the assigned project. Read the exact supplied asset revisions. Save a new immutable revision with its expected base; never overwrite another editor's work. Use studio-mcp for library access, preserve dependency references, and report completion only after the library confirms the save."
   },
   "formats": {
-    "native": [],
-    "verification": "pending"
+    "native": [".xlsx"],
+    "verification": "verified"
   },
   "capabilities": [
     "spreadsheets",
@@ -23,14 +23,14 @@
     "data-layout"
   ],
   "editor": {
-    "adapterVersion": "0.1.0",
-    "release": null,
-    "bundleUrl": null,
-    "status": "pending"
+    "adapterVersion": "0.1.2",
+    "release": "gridcraft-v0.10.0-robyn-0.1.2",
+    "bundleUrl": "https://robyn-artcraft-editors.vercel.app/gridcraft/v0.10.0-0.1.2/?robyn&webgl",
+    "status": "verified"
   },
   "workstation": {
-    "template": null,
-    "release": null,
-    "status": "pending"
+    "template": "robyn-gridcraft-0-10-0@1",
+    "release": "sha256:7a74c01ecc0599d9a6c67a000c0a2245cfb6641d9e0d641c5167d99a295a8149",
+    "status": "verified"
   }
 }

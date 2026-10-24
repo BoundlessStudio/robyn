@@ -13,6 +13,7 @@ export interface EmployeeScope {
 export function employeeDbFailure(error: {message:string;code?:string} | null) {
   if (error?.message.includes("employee access denied")) throw new ApiError(401,"employee_access_denied","This assignment credential has expired or been revoked.");
   if (error?.message.includes("operation key reused")) throw new ApiError(409,"operation_key_reused","Use the same operation ID only when retrying the same request.");
+  if (error?.message.includes("campaign already planned")) throw new ApiError(409,"campaign_already_planned","This assignment already has a saved plan. Read studio_context to see it; do not submit a different plan.");
   dbFailure(error);
 }
 export const hashEmployeeToken = (token: string) => createHash("sha256").update(token).digest("hex");
