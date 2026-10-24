@@ -25,7 +25,7 @@
   "editor": {
     "adapterVersion": "0.1.4",
     "release": "vectorcraft-v0.14.0-robyn-0.1.4",
-    "bundleUrl": "https://robyn-artcraft-editors.vercel.app/vectorcraft/v0.14.0-0.1.4/?robyn&webgl",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/vectorcraft/v0.14.0-0.1.4/?robyn&webgl",
     "status": "verified"
   },
   "workstation": {

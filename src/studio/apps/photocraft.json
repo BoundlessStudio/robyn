@@ -27,7 +27,7 @@
   "editor": {
     "adapterVersion": "0.1.4",
     "release": "photocraft-v0.12.0-robyn-0.1.4",
-    "bundleUrl": "https://robyn-artcraft-editors.vercel.app/photocraft/v0.12.0-0.1.4/?robyn&webgl",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/photocraft/v0.12.0-0.1.4/?robyn&webgl",
     "status": "verified"
   },
   "workstation": {

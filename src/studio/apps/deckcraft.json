@@ -27,7 +27,7 @@
   "editor": {
     "adapterVersion": "0.1.2",
     "release": "deckcraft-v0.9.0-robyn-0.1.2",
-    "bundleUrl": "https://robyn-artcraft-editors.vercel.app/deckcraft/v0.9.0-0.1.2/?robyn&webgl",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/deckcraft/v0.9.0-0.1.2/?robyn&webgl",
     "status": "verified"
   },
   "workstation": {

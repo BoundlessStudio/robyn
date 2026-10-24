@@ -13,6 +13,12 @@ Configured and verified on 2026-10-23. The public website is **https://robyn.aca
 
 ## Embedded editor origin
 
+The current distribution is the read-only Cloudflare Worker at **https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev**, backed by the private `robyn-editor-artifacts` Standard R2 bucket in the Cloudflare **Robyn** account. Each independent Craft manifest keeps its existing versioned path and release pin. All 37 published releases, 15,634 paths and their licenses are retained as 661 unique SHA-256 objects totaling 976,122,736 bytes. Authentication, private creator packages and Agent37 workstations keep their existing providers and authorization boundaries.
+
+The Worker preserves the exact allowed iframe parents and security headers below, and supplies immutable caching, executable/font MIME types, HEAD, ETag and byte-range responses. The R2 development public URL stays disabled. The companion repository's `deploy/cloudflare/README.md` documents the pinned deployment and publication commands. Vercel artifact retirement is gated on hosted byte verification, actual authenticated editor/save checks and the production studio cutover; the legacy editor origin can then remain as a minimal compatibility proxy without editor payloads.
+
+### Original Vercel setup
+
 - The companion editor host also needs the website origin in its CSP `frame-ancestors` policy. Its original policy omitted the new custom domain; this was corrected in `../robyn-artcraft-runtime/deploy/vercel.json` and published as `dpl_49HwsmSaLzYBjHkhYhNvQRXn3cFv` on 2026-10-23.
 - The exact allowed parents are `https://robyn.academy`, the existing studio Vercel hostname, and the two localhost:3000 development origins. No wildcard was added.
 - All 22 existing release directories (8,250 files) were preserved byte-for-byte. This deployment changes headers only; it does not promote candidate adapters.

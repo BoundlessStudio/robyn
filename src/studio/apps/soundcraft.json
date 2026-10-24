@@ -25,7 +25,7 @@
   "editor": {
     "adapterVersion": "0.1.4",
     "release": "soundcraft-v0.11.0-robyn-0.1.4",
-    "bundleUrl": "https://robyn-artcraft-editors.vercel.app/soundcraft/v0.11.0-0.1.4/?robyn&webgl",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/soundcraft/v0.11.0-0.1.4/?robyn&webgl",
     "status": "verified"
   },
   "workstation": {
