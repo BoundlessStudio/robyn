@@ -6,7 +6,9 @@ Robyn is an invitation-only, passwordless, solo-creator studio at **https://roby
 
 ## Release boundary
 
-The last recorded production web release is `dpl_DHoVNKVXKsYjQ1UTQxJUE6cgTW9A`: budget/media features, migrations through `0017_budget_queue_slots.sql`, workstation client **0.1.21**. The review fixes are a separate local candidate with migrations **0018–0022** and workstation **0.1.23**. They have not been deployed to the application or applied to production. The support-forwarding Worker is deployed independently and is live.
+The last recorded production web release is `dpl_DHoVNKVXKsYjQ1UTQxJUE6cgTW9A`: budget/media features, migrations through `0017_budget_queue_slots.sql`, workstation client **0.1.21**. The review fixes are a separate reviewed candidate with migrations **0018–0022** and workstation **0.1.23**. They have not been deployed to the application or applied to production. The support-forwarding Worker is deployed independently and is live.
+
+The paired draft PRs now pass hosted Linux CI: 74 web tests, 68 runtime tests, typecheck, full audits, builds and 18 public layout/axe/keyboard combinations. Both main branches currently have no required-check protection.
 
 Use [RELEASE-2026-10-25.md](RELEASE-2026-10-25.md) for source commits, digests, migration adoption, editor pins and rollback boundaries. Never replay the historical migration files to reconstruct an existing database. [SETUP.md](../SETUP.md) documents explicit baselining and checksummed incremental setup.
 

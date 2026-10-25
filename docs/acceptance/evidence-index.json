@@ -110,6 +110,11 @@
       "capability": "Public candidate pages",
       "evidence": "artifacts/qa/project-review-20261025/remediation-public-review.json",
       "summary": "Built support/privacy/homepage desktop and mobile visual review, keyboard Support link and no observed horizontal overflow; not a full accessibility certification."
+    },
+    {
+      "area": "October 25 remediation follow-up",
+      "summary": "Explicit abandoned-upload cleanup, confirmed native snapshot retention, 74 web and 68 runtime tests, passing hosted Linux CI, all 18 public cross-engine layout/axe/keyboard checks on Linux. Windows WebKit has four explicitly unverified plain-link navigation cases.",
+      "record": "docs/acceptance/remediation-followup.json"
     }
   ],
   "evidence": [
@@ -747,6 +752,54 @@
       "path": "artifacts/qa/project-review-20261025/remediation-footer-mobile.png",
       "bytes": 28453,
       "sha256": "7cfa307f52d66f331778dd300458120d88edde51b7d1070fa5eb532070a2afda",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/retention-web-tests.log",
+      "bytes": 8177,
+      "sha256": "ef3abf09d22c512331a1ec5e260e485938670622b27bb0b68c7b19070fe698fb",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/retention-runtime-tests.log",
+      "bytes": 7154,
+      "sha256": "469ac87f9a71d82603927608057522e8da35aff75ba00b52eeafee2265bb5155",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/retention-build.log",
+      "bytes": 3883,
+      "sha256": "f63bddfc3e5ae51e8cb24a6e9741c4b77f5374d0d16bdc40d0d2f28c83aa058a",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/public-accessibility-final/results.json",
+      "bytes": 7051,
+      "sha256": "bcadf2c16d5c2e96dfaad93cc9cbbfe8dba4e4e0a262bf123aa4bff790eb34eb",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/public-accessibility-final/chromium-1440-privacy.png",
+      "bytes": 83982,
+      "sha256": "3351ba74d2db60847ad0ee30d4a77f73a15629da78247e1bee96c9f799bff338",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/public-accessibility-final/chromium-390-privacy.png",
+      "bytes": 45715,
+      "sha256": "edc60efd2fdeb76cc3829474c5832d2eb5edafb45ab2eb8ad732ea63d00851c1",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/public-accessibility-final/firefox-390-home.png",
+      "bytes": 55054,
+      "sha256": "b4b3c2b4d178198aaa31500cff204695d1f565eaa2795d8d9c7157ad0af9b2fa",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/public-accessibility-final/webkit-390-home.png",
+      "bytes": 49312,
+      "sha256": "3df3550a02ea53f58bf000d7397efe32197f43947876fbe5aa4c537e5c187636",
       "access": "private local QA archive; content not published"
     }
   ]
