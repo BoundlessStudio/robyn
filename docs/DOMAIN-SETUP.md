@@ -1,6 +1,6 @@
 # Robyn domain configuration
 
-Configured and verified on 2026-10-23. The public website is **https://robyn.academy**.
+Website/auth configured October 23; editor distribution updated October 24; support receiving added October 25, 2026. The public website is **https://robyn.academy**. Verification counts below are dated checkpoints; current scope is in [CURRENT-STATUS.md](CURRENT-STATUS.md).
 
 ## Website
 
@@ -35,7 +35,7 @@ The 2026-10-24 cutover passed hosted SHA-256 verification of all 661 unique obje
 - Sender: **Robyn Creative Studio <studio@mail.robyn.academy>**.
 - Credential: **Robyn Supabase SMTP**, restricted to sending from `mail.robyn.academy`; stored in Supabase's encrypted SMTP configuration. No Resend secret is needed in browser code or the Vercel application for Supabase Auth mail.
 - Supabase's custom-SMTP hourly limit is 30, with a 60-second per-user interval.
-- This configuration handles outgoing authentication email. Resend receiving is disabled; no inbound mailbox or forwarding was added.
+- This subdomain configuration handles outgoing authentication email. The separate root-domain support inbox and forwarding added October 25 are described below.
 - Existing Resend domains and keys were preserved. The initial domain setup did not send a test message. On 2026-10-24, read-only inspection of the existing Robyn invitation and sign-in records confirmed that Resend reports both as Delivered from `studio@mail.robyn.academy`. Actual detail-page screenshots and message IDs are recorded in `artifacts/qa/domain-setup/delivery-proof.json`; no new email was sent for this inspection. Inbox placement was not inspected.
 
 ## DNS records changed
@@ -61,3 +61,18 @@ The parked A record was replaced. GoDaddy's NS, SOA, `_domainconnect`, and exist
 - Configuration evidence and screenshots: `artifacts/qa/domain-setup/index.html` and `verification.json`. The original verifier does not send email and Supabase masks its saved SMTP credential. The later `delivery-proof.json`, `signin-delivered.png` and `invitation-delivered.png` separately establish provider-reported delivery of both existing branded messages.
 
 Official setup reference: [Resend SMTP with Supabase](https://resend.com/docs/send-with-supabase-smtp).
+
+## Support receiving and forwarding — October 25
+
+`support@robyn.academy` is a Resend receiving inbox. A signed webhook calls the dedicated Cloudflare Worker, which forwards only this inbox to `developer@venatiostudios.com`. The owner approved the required Full access Resend key; the API key and webhook secret are encrypted Cloudflare secrets. Source, delivery guard, retry identity and rotation are in [deploy/support-forwarder](../deploy/support-forwarder/README.md).
+
+The verified root-domain DNS additions are:
+
+| Type | Host | Value |
+| --- | --- | --- |
+| MX (priority 10) | `@` | `receive.forge.rmta.net` |
+| CNAME | `rsend` | `rsend.forge.rmta.net` |
+| CNAME | `send` | `send.forge.rmta.net` |
+| TXT | `resend._domainkey` | Public DKIM supplied by the verified Resend root domain |
+
+There was no existing root MX record. Other DNS, the `mail.robyn.academy` authentication sender and its restricted SMTP key remain intact. Resend reports root-domain sending/receiving verified. One setup message was received and its forward to the configured developer inbox reported Delivered; the production webhook succeeded. This is provider-reported delivery, not a claim about inbox placement or a human reply. Private message IDs and the reviewed screenshot remain in the ignored support-forwarding evidence; the maintained acceptance index records their hashes.

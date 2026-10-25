@@ -12,12 +12,14 @@ export async function readSavedPackage(db: DB, workspaceId: string, revisionId: 
   await verifyStoredFiles(db, files);
   const { data: dependencies, error } = await db.from("studio_revision_dependencies").select("dependency_asset_id,dependency_revision_id").eq("workspace_id", workspaceId).eq("revision_id", revisionId);
   dbFailure(error);
+  const { data: sourceCredits, error: creditsError } = dependencies?.length ? await db.rpc("read_source_credits", { p_workspace: workspaceId, p_revision: revisionId }) : { data: [], error: null };
+  dbFailure(creditsError);
   const downloads = await mapInBatches(files, async file => {
     const { data, error } = await db.storage.from(STUDIO_BUCKET).createSignedUrl(file.storage_key, 300, file.role === "preview" ? undefined : { download: file.path.split("/").pop() });
     if (error || !data) throw new ApiError(503, "storage_unavailable", "The package could not be opened. Please retry.");
     return { path: file.path, role: file.role, bytes: Number(file.bytes), sha256: file.sha256, mimeType: file.mime_type, downloadUrl: data.signedUrl };
   });
-  return { ref: { assetId: revision.asset_id, revisionId }, revision, files: downloads, dependencies: (dependencies ?? []).map(ref => ({ assetId: ref.dependency_asset_id, revisionId: ref.dependency_revision_id })) };
+  return { ref: { assetId: revision.asset_id, revisionId }, revision, provenance: revision.provenance ?? {}, sourceCredits, files: downloads, dependencies: (dependencies ?? []).map(ref => ({ assetId: ref.dependency_asset_id, revisionId: ref.dependency_revision_id })) };
 }
 
 export async function preparePackageTransfers(db: DB, workspaceId: string, revisionId: string) {

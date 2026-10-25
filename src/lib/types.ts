@@ -94,6 +94,7 @@ export interface Usage {
     llm: { cost_micros: number; calls: number; input_tokens: number; output_tokens: number };
     brave: { cost_micros: number; calls: number };
     composio: { cost_micros: number; calls: number };
+    perflo?: { cost_micros: number; calls: number };
   };
 }
 

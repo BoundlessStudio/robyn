@@ -5,6 +5,7 @@ import { isEmployeeReady } from "@/studio/manifest";
 import { assignmentRpc } from "@/studio/assignment-server";
 import { launchAssignment } from "@/studio/assignment-launch";
 import type { Assignment, AssignmentSummary, StudioEmployee } from "@/studio/assignments";
+import {paidCapacity} from "@/studio/paid-capacity";
 
 export const maxDuration = 300;
 
@@ -67,6 +68,8 @@ export async function POST(request: Request) {
     if (employee.kind === "specialist" && !studioApps.some(app => app.id === employee.app_id && isEmployeeReady(app))) throw new ApiError(409, "integration_pending", "This employee's application is still being verified.");
     const brief = textField(input.brief, 20000, "Assignment brief");
     const requestId = id(input.requestId, "request ID");
+    const {data:existing,error:existingError}=await db.from("studio_assignments").select("id").eq("workspace_id",workspaceId).eq("project_id",projectId).eq("request_key",requestId).maybeSingle();dbFailure(existingError);
+    if(!existing){const capacity=await paidCapacity(db,employee);if(!capacity.availableMicros)throw new ApiError(409,capacity.code??"employee_budget_required",`${capacity.reason} Manage budget in Studio settings; your draft is preserved.`);}
     if (!Array.isArray(input.inputs) || input.inputs.length > 100) throw new ApiError(400, "invalid_inputs", "Supply up to 100 exact saved revisions.");
     const inputs = input.inputs.map(ref => {
       if (!ref || typeof ref !== "object" || Array.isArray(ref)) throw new ApiError(400, "invalid_inputs", "Choose an exact saved revision.");

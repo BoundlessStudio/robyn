@@ -1,0 +1,753 @@
+{
+  "updated": "2026-10-25",
+  "scope": "Recorded desktop pilot acceptance and subsequent budget/media evidence. Isolated remediation tests are separate from live native/provider acceptance.",
+  "historicalPilot": {
+    "requirementGroups": 15,
+    "recordedChecks": 31,
+    "crafts": [
+      {
+        "id": "photocraft",
+        "status": "recorded production acceptance passed",
+        "editorRelease": "photocraft-v0.12.0-robyn-0.1.4",
+        "proof": "artifacts/qa/employee-handoff/photo-hosted-roundtrip-proof.json"
+      },
+      {
+        "id": "vectorcraft",
+        "status": "recorded production acceptance passed",
+        "editorRelease": "vectorcraft-v0.14.0-robyn-0.1.4",
+        "proof": "artifacts/qa/employee-handoff/vector-hosted-roundtrip-proof.json"
+      },
+      {
+        "id": "lightcraft",
+        "status": "recorded production acceptance passed",
+        "editorRelease": "lightcraft-v0.11.0-robyn-0.1.4",
+        "proof": "artifacts/qa/employee-handoff/light-hosted-roundtrip-proof.json"
+      },
+      {
+        "id": "filmcraft",
+        "status": "recorded production acceptance passed",
+        "editorRelease": "filmcraft-v0.10.0-robyn-0.1.4",
+        "proof": "artifacts/qa/employee-handoff/film-hosted-roundtrip-proof.json"
+      },
+      {
+        "id": "effectcraft",
+        "status": "recorded production acceptance passed",
+        "editorRelease": "effectcraft-v0.14.0-robyn-0.1.2",
+        "proof": "artifacts/qa/employee-handoff/effect-hosted-roundtrip-proof.json"
+      },
+      {
+        "id": "soundcraft",
+        "status": "recorded production acceptance passed",
+        "editorRelease": "soundcraft-v0.11.0-robyn-0.1.4",
+        "proof": "artifacts/qa/employee-handoff/sound-hosted-roundtrip-proof.json"
+      },
+      {
+        "id": "designcraft",
+        "status": "recorded production acceptance passed",
+        "editorRelease": "designcraft-v0.11.0-robyn-0.1.2",
+        "proof": "artifacts/qa/employee-handoff/design-hosted-roundtrip-proof.json"
+      },
+      {
+        "id": "pdfcraft",
+        "status": "recorded production acceptance passed",
+        "editorRelease": "pdfcraft-v0.11.0-robyn-0.1.4",
+        "proof": "artifacts/qa/employee-handoff/pdf-preserve-hosted-roundtrip-proof.json"
+      },
+      {
+        "id": "wordcraft",
+        "status": "recorded production acceptance passed",
+        "editorRelease": "wordcraft-v0.9.0-robyn-0.1.2",
+        "proof": "artifacts/qa/employee-handoff/word-hosted-roundtrip-proof.json"
+      },
+      {
+        "id": "deckcraft",
+        "status": "recorded production acceptance passed",
+        "editorRelease": "deckcraft-v0.9.0-robyn-0.1.2",
+        "proof": "artifacts/qa/employee-handoff/deck-hosted-roundtrip-proof.json"
+      },
+      {
+        "id": "gridcraft",
+        "status": "recorded production acceptance passed",
+        "editorRelease": "gridcraft-v0.10.0-robyn-0.1.2",
+        "proof": "artifacts/qa/employee-handoff/grid-hosted-roundtrip-proof.json"
+      },
+      {
+        "id": "figcraft",
+        "status": "recorded production acceptance passed",
+        "editorRelease": "figcraft-v0.9.0-robyn-0.1.3",
+        "proof": "artifacts/qa/employee-handoff/fig-hosted-roundtrip-proof.json"
+      },
+      {
+        "id": "cadcraft",
+        "status": "recorded production acceptance passed",
+        "editorRelease": "cadcraft-v0.10.0-robyn-0.1.2",
+        "proof": "artifacts/qa/employee-handoff/cad-hosted-roundtrip-proof.json"
+      }
+    ]
+  },
+  "additions": [
+    {
+      "capability": "Studio allowance and shared media",
+      "evidence": "artifacts/qa/budget-assets-deploy-20261025/functional-results.json",
+      "summary": "Recorded hosted validation, exact-source reload and real Commons acquisition; no additional paid generation."
+    },
+    {
+      "capability": "Generated media",
+      "evidence": "artifacts/qa/commons-media-20261024/provider-checks.json",
+      "summary": "One image, one speech and one five-second MiniMax H3 acquisition; total USD 0.439483. No broader option coverage claimed."
+    },
+    {
+      "capability": "Support forwarding",
+      "evidence": "artifacts/qa/project-review-20261025/support-forwarding.json",
+      "summary": "Signed webhook and one provider-reported delivered forward to the configured developer inbox."
+    },
+    {
+      "capability": "Database backups",
+      "evidence": "artifacts/qa/project-review-20261025/database-backup-status.png",
+      "summary": "Dashboard confirms Free plan: project backups not included. Storage-file backups deferred by owner."
+    },
+    {
+      "capability": "Public candidate pages",
+      "evidence": "artifacts/qa/project-review-20261025/remediation-public-review.json",
+      "summary": "Built support/privacy/homepage desktop and mobile visual review, keyboard Support link and no observed horizontal overflow; not a full accessibility certification."
+    }
+  ],
+  "evidence": [
+    {
+      "path": "artifacts/qa/ascii-tour/hosted-invitation-proof.json",
+      "bytes": 181,
+      "sha256": "530693a10eaab637e50363579cb9d75cfc61221ffcadcce4ef919c695b8289d3",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/ascii-tour/hosted-results.json",
+      "bytes": 4544,
+      "sha256": "e20dbfc291f4fa83d54b4650dd42ad8985efa5ffdb0b6905002d09dacf797caf",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/assignment-runner-hosted-proof.json",
+      "bytes": 3801,
+      "sha256": "06cbfa004d0033920889a5ce3ea928e975f8994a60cd7ef6ebd2165c83354d68",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/budget-assets-deploy-20261025/functional-results.json",
+      "bytes": 1597,
+      "sha256": "96b443c45d076f2235f1d29c48b53d909a3f5b6d021104365491b33f893ce5a5",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/budget-assets-deploy-20261025/source-audit.json",
+      "bytes": 231,
+      "sha256": "700b7a592c493eda88b7261c3ca3697eec898c91b2499a404a69845c37dca48c",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/campaign-concurrency-proof.json",
+      "bytes": 795,
+      "sha256": "4a7d7c0a0c2ea0d0f4f04061fafe00bd8b5b045a5feee160c8f19875c3d2cd4b",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/campaign-queued-cancellation-proof.json",
+      "bytes": 1214,
+      "sha256": "94e4209895a3d0c35b7faa943946c1c3204d72dd5e851fa3eb851dae7b69ec72",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/commons-media-20261024/provider-checks.json",
+      "bytes": 4948,
+      "sha256": "9225356fb4547bb8bdcc4c6b3c988c9fbd9846b1c4ac39db971062145a8201b2",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/commons-media-20261024/worker-regression.json",
+      "bytes": 391,
+      "sha256": "244763fab9b1390b75026bef0d4e1113689c93f5d8fc3315c01d196e2ce2f87e",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/commons-media-20261024/workstation-resume.json",
+      "bytes": 270,
+      "sha256": "451d60d55296dd4015202ec6eb059a04dc199d504260171dde36ad3015384d2f",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/desktop-pilot-mobile-home-20261024/editor-resize-hosted.json",
+      "bytes": 826,
+      "sha256": "1e0e9029d74e5e37d42e72091b21d9468338c79eb2c9a434d64acdcdbcaa5a8a",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/desktop-pilot-mobile-home-20261024/entry-hosted.json",
+      "bytes": 254,
+      "sha256": "aff4b8d12f7dc77813a4df2ee2db9bc9585012bc7e0b3de6df8efbdc8edd3bf6",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/desktop-pilot-mobile-home-20261024/index.html",
+      "bytes": 6201,
+      "sha256": "6f8bc069b5ef71515709564f5b18c8083edb5f724a34cacc40a10bae42a21add",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/desktop-pilot-mobile-home-20261024/invitation-proof.json",
+      "bytes": 320,
+      "sha256": "17ae975e5c6daf0d1bdae3fb7a4510841689955ded77be454d8d83e6fd3a8e75",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/desktop-pilot-mobile-home-20261024/mobile-chapters-hosted.json",
+      "bytes": 2663,
+      "sha256": "ff5b755d22b2917b79ca2bf205553528c96f3711c873f9ce734b904703677fc1",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/desktop-pilot-mobile-home-20261024/proof.json",
+      "bytes": 6444,
+      "sha256": "5244aa9f12981a749ed9169f920510487be8d732f93ccb976e6cf00ad7cb5692",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/dispatch-concurrency-proof.json",
+      "bytes": 795,
+      "sha256": "0e01bcaa0a3e9cefb64e82491c014e92eb7a22d1e021cc55d86f712a516652b0",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/domain-setup/delivery-proof.json",
+      "bytes": 1679,
+      "sha256": "8162864caf0725d54f5d7ecc7964c832cf7d29362830a643eb45c5d518fb2124",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/domain-setup/verification.json",
+      "bytes": 1486,
+      "sha256": "c6948d39139d95b0b8d7c02a86157db5c9d2b2348f7131c98a84bd4493c56ad1",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/editor-startup/headless-results.json",
+      "bytes": 11258,
+      "sha256": "27ff4b361de9a0ca993a3f9418768838f1536dc831b886bf549713597438f67f",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/editor-startup/native-reload-proof.json",
+      "bytes": 2061,
+      "sha256": "badee3d2a62656f27d30718d41c0dc071e558ad4a7731d96c077521b41829655",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/cad-hosted-returned.png",
+      "bytes": 162604,
+      "sha256": "3a3c2a1705f9e700979ae9196bfb0048f27f58f6dfa5d52a609d6fd0a47af975",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/cad-hosted-roundtrip-proof.json",
+      "bytes": 1005,
+      "sha256": "ea56121cbb52823f7bad022720b2348d0608e56736320990b3187922052730c9",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/deck-continuation-proof.json",
+      "bytes": 1151,
+      "sha256": "49f40817a5d76a246f4031375861e4e31f0f4ae247e009669f93af6c90d0e8b1",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/deck-hosted-delivered.jpg",
+      "bytes": 138412,
+      "sha256": "a1e315fcf276eb8c25663d11a6378737ab64b8d611ea03b1ec2aa74dc1f10773",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/deck-hosted-roundtrip-proof.json",
+      "bytes": 1275,
+      "sha256": "a18a26404405e20f88b06f0e9ede572b422bcb195145ce66ea99f038eb6843e1",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/design-hosted-returned.png",
+      "bytes": 141004,
+      "sha256": "2da128e3fe6616d0a6b15d963bec47129ba9687f257a42cf1c0dd2d450fc8733",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/design-hosted-roundtrip-proof.json",
+      "bytes": 1182,
+      "sha256": "c481ce60e26124e83d44676037422f32d827fdbd26604f318d92ea119e45a4a7",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/desktop-controls-20261023.html",
+      "bytes": 8556,
+      "sha256": "d7866fc96f38e29a0920e9a6f0ac24dc13bf9a950f9eb68e7c485824946d8d2d",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/effect-hosted-returned.png",
+      "bytes": 164063,
+      "sha256": "58ef8ea19c860bbf6db19abe28427a0c344357574f3f9448cb863d3e20b0f942",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/effect-hosted-roundtrip-proof.json",
+      "bytes": 2229,
+      "sha256": "fe3edb5b09b8372e3659f4f2be288785c97f4a66b7aef59a26061ebe1933e64a",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/effect-hosted-ui.json",
+      "bytes": 941,
+      "sha256": "6fef3bd7be2b4a42203310fb7fe00de8c9df897a7c67609edd4089c3b0c05ab2",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/fig-hosted-returned.png",
+      "bytes": 119218,
+      "sha256": "ad2bb11386076bd4a190be8879ea6902dcffd4595ed85963508ecc145cca629c",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/fig-hosted-roundtrip-proof.json",
+      "bytes": 1052,
+      "sha256": "286813b39bdd23044df3af6069b8a23d0b2e3685857f91aef0d04ac1f2260a75",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/film-hosted-returned.png",
+      "bytes": 146059,
+      "sha256": "537a0ca43d0900532ef9fd1e8e64ea5377a0c05cc78fdcbcf479ce836f64ac62",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/film-hosted-roundtrip-proof.json",
+      "bytes": 1008,
+      "sha256": "3b70f25476a27ccc72278530d5c55cf3818a6a180dd32475c79b7e29392a2f22",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/grid-hosted-delivered-overview.jpg",
+      "bytes": 169137,
+      "sha256": "6320b9de36d80a02da3fec9990e01ec16ab04e63d2fb1268dfa2d24c4acda923",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/grid-hosted-roundtrip-proof.json",
+      "bytes": 1077,
+      "sha256": "45c337993763af33c99043b81cc94e7e4834c634ed06a5b4cc07e1587313992b",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/hosted-approvals.json",
+      "bytes": 2373,
+      "sha256": "857e591eb5ec81e8fb21af4331d011f3f2498c61b05076d1c16d678f46e7da40",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/index.html",
+      "bytes": 10667,
+      "sha256": "a2cfc54d6f1a081a68ec5640b124eacab31528a5fdd4f64405c9f86668deb9d8",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/light-hosted-returned.png",
+      "bytes": 118625,
+      "sha256": "0deacb15ad761a4c3988ecde0b531597f6feded7cb2ed532991e66aebadecf35",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/light-hosted-roundtrip-proof.json",
+      "bytes": 1022,
+      "sha256": "3a78dbef523bbe702abe4830b21bb74fa9ff43b031eeaa6911026ae07dc050e4",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/pdf-preserve-hosted-page-one.png",
+      "bytes": 137891,
+      "sha256": "4b4bf5f7e43537de6d0942acc3bfe199ae8f804d480b73ca2e7e7027edebf890",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/pdf-preserve-hosted-roundtrip-proof.json",
+      "bytes": 1078,
+      "sha256": "9af9bc95bb324a7d045782757e7782ec3867067c50fb75c89242a95a558caade",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/photo-hosted-returned.png",
+      "bytes": 149719,
+      "sha256": "baf0fae836fc8e2b886401fbfd49a2a8798147c9fae1b6e80cc48946fc050af5",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/photo-hosted-roundtrip-proof.json",
+      "bytes": 1602,
+      "sha256": "e28149f176a9ed6793d5502818dccfbf0dd145695a916ecc9866e7b690bec374",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/sound-hosted-returned.png",
+      "bytes": 158540,
+      "sha256": "4394f503623054c0f64f454cef9b5b755c423da86055815406d98e2882bf4e47",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/sound-hosted-roundtrip-proof.json",
+      "bytes": 1186,
+      "sha256": "250f483fbe0bce92f26caf1b4b7bc50cbebd24c6e5892ad606a349dbaeabb8bf",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/vector-hosted-delivered.jpg",
+      "bytes": 141806,
+      "sha256": "44b21fde9d460ea9250457af5481d125919f5712b2e0a522f153e25dc6ade7ac",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/vector-hosted-roundtrip-proof.json",
+      "bytes": 1297,
+      "sha256": "4ebc54accff465665b25e018ab8ff3d434dcd7fe2ece4cfff5fe2963c9b8a687",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/word-hosted-delivered.jpg",
+      "bytes": 176723,
+      "sha256": "906a991ca2d2738bb55c9674f7adcf2781a2b4aa0c72e30ebdf8d5284caf9a69",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/employee-handoff/word-hosted-roundtrip-proof.json",
+      "bytes": 943,
+      "sha256": "58fd48f31427438edb5188657498591aa39365f14ed2f82dd658f7f3217d6751",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/headless-studio-20261024/deck-library-return.png",
+      "bytes": 201213,
+      "sha256": "c1ff44be5b62fbfdca3fd4b6442520342aed09c20f5b3b096d50eade713a749c",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/headless-studio-20261024/native-roundtrip-proof.json",
+      "bytes": 1411,
+      "sha256": "75fc60a2a7585fb1710bf1cd342a592876afb5a3cf2a90e9fd86b36990bd6a51",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/headless-studio-20261024/visual-review.json",
+      "bytes": 931,
+      "sha256": "56f8f43e5dac818086dadfaf35f4ab49fae396209da22c8a18c03e958443e118",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/homepage-editor-captures/hosted-checks.json",
+      "bytes": 2679,
+      "sha256": "ca456248f9f6247b00ec1ffbf835be0058e89895a49125f767444048ce7704a2",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/markdown-hosted-final-proof.json",
+      "bytes": 260,
+      "sha256": "821509a33e534d5792a20e0ccf5f9811327e4768afe6a84edbb123ca322128c2",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/module-check-20261024/library-placement-proof.json",
+      "bytes": 1511,
+      "sha256": "7e168b6148ae791609ca7359a6e4142c72dcbe5774b5bbcbb0b733aedf24ff83",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/new-creator-20261024/cleanup.json",
+      "bytes": 188,
+      "sha256": "8ecbdcde06eca06716f7341ede2cb77ec7461097a03e4f7af0e623ad530376dc",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/new-creator-20261024/first-brief.png",
+      "bytes": 481789,
+      "sha256": "be99babebd096d0bc3e14d157af512acd2ba63fd347479a6a833423db0591142",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/new-creator-20261024/flow.json",
+      "bytes": 820,
+      "sha256": "1a14c200156f273d4ee1e89a6f5c28a9d1d609ef95e3b742d542e64c31b31caa",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/new-creator-20261024/preconfirmation.json",
+      "bytes": 124,
+      "sha256": "6e35d8cf60e879ec23a14fe6ce1d1fa03569d77c84f259ab9a06676f45d0d45c",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/new-creator-20261024/proof.json",
+      "bytes": 825,
+      "sha256": "8a1f650c4d68bb76e8570dc9ebc814f35ba141636202068e085af14c9c30f939",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/new-creator-20261024/visual-review.json",
+      "bytes": 1423,
+      "sha256": "edc666fdca2bd9240eeb2f9c9000d650d672f7c92bef1e2a14f1a04cd2ae643d",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/passwordless/confirmation-proof.json",
+      "bytes": 296,
+      "sha256": "4660fa8e201c7db35061f0b5fae977836087e3b33ce503e38764c9d2c349b8a5",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/passwordless/session-proof.json",
+      "bytes": 275,
+      "sha256": "c7263711f58064aa03fc152b853393ba3cec59342e2a0ca8fa147961985bb73e",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/pilot-acceptance-audit.json",
+      "bytes": 27463,
+      "sha256": "6b5792ced67dfa80d9ae6102397c4bcf70b71a1819ef3d263f206bbf0e620742",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/pilot-final-desktop/client-boundary.json",
+      "bytes": 676,
+      "sha256": "89df3263ce1dcbe885af2fabf4f9391f438e96059ae4e8e8e6da143814ef9b76",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/pilot-final-desktop/contrast-after.json",
+      "bytes": 51371,
+      "sha256": "46299caab837078a076bc2bd925d0b0a8493e5d0e48954d3710a108b37050f98",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/pilot-final-desktop/homepage-contrast-after.png",
+      "bytes": 114887,
+      "sha256": "bcdf12dfd8d6cb2af8fe88ba87019dd75ad85693755a8fd60a43f2bd3d3045e4",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/pilot-final-desktop/homepage-keyboard-contrast-review.json",
+      "bytes": 3837,
+      "sha256": "ca4b6b148d8b8bee7e92aa6a42b62108d919507dbbf21e741e82734e5cd1d654",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/pilot-final-desktop/homepage-review.json",
+      "bytes": 9939,
+      "sha256": "9372c20d0a83f503c36830ce2d85afafc3f1eadfaa564f6af7d9f616e8d2e049",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/pilot-final-desktop/index.html",
+      "bytes": 4803,
+      "sha256": "de263ee4a2af62a69b691bda42b6ba736c7da63d8e416ed1d5e05a26d6dbd40b",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/pilot-final-desktop/live-workstations.json",
+      "bytes": 7199,
+      "sha256": "2ff0b575e45e6562c8918a8ec31759674eeb112008f3a68ec95091935a1173dd",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/pilot-final-desktop/robin-renderer.json",
+      "bytes": 1550,
+      "sha256": "fcabe65b8260b5c850a093b7bcdfca7019540436caf1b832a6184c18c3d4f9a3",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/database-backup-status.png",
+      "bytes": 67437,
+      "sha256": "82f1c1319cd35af2694a3bdb274cc7182ef44c922d808f5afb8ce23671e9e657",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/release-evidence.json",
+      "bytes": 230,
+      "sha256": "97b571df696d4b3acd976204b6c972e7adebbb44e4719e579cef39cdce274b3d",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/support-forwarding.json",
+      "bytes": 821,
+      "sha256": "014e4d793d9b7a58c5651011d7f61b137bde46d73872012afd5f43dd4fd18c18",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/research/active-turn-paused.json",
+      "bytes": 1087,
+      "sha256": "f4f21bfb1867a5e72482393e80911ae00eba71f551fc58290b1c481eae20a750",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/research/director-handoff-proof.json",
+      "bytes": 754,
+      "sha256": "2e36bab12a69e3c87c63233066fd732c56f96a8da126582a85370854226186d2",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/research/hosted-proof.json",
+      "bytes": 896,
+      "sha256": "2d8c3a555f52618da1e8fc70bbfae4f7d8d956f07a1e4ea392bc7bdd6930235b",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/research/roundtrip-proof.json",
+      "bytes": 1101,
+      "sha256": "1c7f3c1449286cf3d5651541f73e61a983905ce47ed1cecfc1ccb499bca718a6",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/research/tool-proof.json",
+      "bytes": 2989,
+      "sha256": "818a76a32781692d1b10d252851ecc9ed78de44254387b337d8e67bea8a68542",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/robin-flight/hosted-checks.json",
+      "bytes": 312,
+      "sha256": "decd039d063fb95bd59fd0ebcab0547446ae279f57a88f1679f252c396b63201",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/studio-isolation.json",
+      "bytes": 160,
+      "sha256": "ffc45c803ab743ac3c6629c0108f830b29d410bab793ad10d822437fbddf57b8",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/studio-readiness-20261024/employees-hosted.png",
+      "bytes": 322635,
+      "sha256": "59353107c217f4aba2f18ed401010d46f0f8fd42199772bb524a3bad4342e69f",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/studio-readiness-20261024/hosted-fixture.json",
+      "bytes": 1367,
+      "sha256": "44cc1918f959e3fb3bc24ea0930d47c85affb768b9ae1c028b6a26a6a559d687",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/studio-readiness-20261024/hosted.json",
+      "bytes": 1905,
+      "sha256": "611ba4f013f553ae9fb9d2bd1fca2b34d539844852a02cf3444d79406d836661",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/studio-readiness-20261024/panels.json",
+      "bytes": 2782,
+      "sha256": "34e5f09f980d11c8dcab7e67d03852329c524f75500e4b41a21f01ca67817532",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/studio-readiness-20261024/proof.json",
+      "bytes": 1542,
+      "sha256": "609263468ade6aa619eaa3c66f6a42e1a26db4235d3a503d41fc4842f5c0da47",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/studio-readiness-20261024/review-panel-loaded.png",
+      "bytes": 247968,
+      "sha256": "a88a4009617c14ff1e2d3a069d9a710c72365c02dc57fa35b097ef6e28d37c50",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/studio-result-summary.json",
+      "bytes": 1004,
+      "sha256": "8a8ecbf5d02101115dca4ba0bd1d41f3a8121015226a7e3a7d5886b70ec285e2",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/upload-resume-ui-20261024/pause-observation.json",
+      "bytes": 1456,
+      "sha256": "d6874ec8275fb081f27e2f7ab3da625c9ffbf8e8c64bbd7b558de30b34eb114c",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/upload-resume-ui-20261024/paused.png",
+      "bytes": 169420,
+      "sha256": "0cff2327c19c7f340894033962aa1957c5c474e87fd9f017539ebf90021731ee",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/upload-resume-ui-20261024/proof.json",
+      "bytes": 1582,
+      "sha256": "83ca4106bb58a4a864c7e1bb631d89392f19297e5b3a1315d75625bdf2e69c03",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/upload-resume-ui-20261024/resume-observation.json",
+      "bytes": 1863,
+      "sha256": "644c46cddabbcc2c9b75a5061bebd95224aad4e1a88a6e8210136f70cfbe86d8",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/upload-resume-ui-20261024/resumed-and-opened.png",
+      "bytes": 200600,
+      "sha256": "c4084c3b79b1eace8d5fdb1a033fe0640a52d2dd438eec6f846531799895bf34",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/remediation-public-review.json",
+      "bytes": 872,
+      "sha256": "5d32adad93bf5bf65ba2f16caeeeaaaec9f4a0992b1d91db717ce002f98246f4",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/support-desktop.png",
+      "bytes": 144444,
+      "sha256": "d8005f5047cce4b16cceffa7a6caf6040db4c2bdfd232792354b4064cf8dee3d",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/support-mobile.png",
+      "bytes": 131322,
+      "sha256": "8370cb853465b872505a0d62b4e11c87f06794ca129b32af0d4544df7e51a504",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/privacy-desktop.png",
+      "bytes": 224064,
+      "sha256": "8706fad65cf5c5e9b34df239b3c2f3ba8dea63bcfc3f667b1650eccec016d574",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/privacy-mobile.png",
+      "bytes": 201977,
+      "sha256": "8a36204d904b57cb43e6fae1a72b820408179d54e9cf5ca03e9fb8536932f7cc",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/remediation-home-desktop.png",
+      "bytes": 99813,
+      "sha256": "7b486431d744fcf4e8b2d357687ffd2706b201b1903a23a496536de0461ba5b1",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/remediation-home-mobile.png",
+      "bytes": 29873,
+      "sha256": "c7bab19f80c995c3f0809b8c433db932bd832eadc8e358eebe665eeac46ad1f8",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/remediation-footer-desktop.png",
+      "bytes": 103128,
+      "sha256": "5636195c975ec229d1b3dc1d3d693cb4a9fa89e1b638af77a56b26f36d460641",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/remediation-footer-mobile.png",
+      "bytes": 28453,
+      "sha256": "7cfa307f52d66f331778dd300458120d88edde51b7d1070fa5eb532070a2afda",
+      "access": "private local QA archive; content not published"
+    }
+  ]
+}

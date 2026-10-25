@@ -15,11 +15,13 @@ export interface RevisionPackage {
 export interface AssetSummary {
   id: string;
   project_id: string;
-  app_id: string;
+  app_id: string | null;
+  asset_kind?: "native" | "image" | "audio" | "video";
   name: string;
   current_revision_id: string | null;
   created_at: string;
   preview_url?: string | null;
+  project?: { name: string } | null;
 }
 export interface ProjectSummary { id: string; name: string; brief: string; status: "active" | "archived"; created_at: string; updated_at: string; preview_url?: string | null }
 
@@ -56,13 +58,13 @@ export function validateRevisionPackage(value: unknown): RevisionPackage {
     paths.add(path.toLocaleLowerCase("en-US"));
     if (!["master", "preview", "export", "dependency"].includes(String(file.role))) throw new Error("Invalid package file role.");
     if (typeof file.mimeType !== "string" || file.mimeType.length > 120 || !/^[\w.+-]+\/[\w.+-]+$/.test(file.mimeType)) throw new Error("Invalid file media type.");
-    if (typeof file.bytes !== "number" || !Number.isSafeInteger(file.bytes) || file.bytes < 1 || file.bytes > 10 * 1024 ** 3) throw new Error("Files must be between 1 byte and 10 GiB.");
+    if (typeof file.bytes !== "number" || !Number.isSafeInteger(file.bytes) || file.bytes < 1 || file.bytes > 512 * 1024 ** 2) throw new Error("Pilot files must be between 1 byte and 512 MiB.");
     if (typeof file.sha256 !== "string" || !/^[0-9a-f]{64}$/i.test(file.sha256)) throw new Error("Each file needs its SHA-256 digest.");
     totalBytes += file.bytes;
     return { path, role: file.role as PackageFileRole, mimeType: file.mimeType, bytes: file.bytes, sha256: file.sha256.toLowerCase() };
   });
   if (files.filter(file => file.role === "master").length !== 1) throw new Error("A revision must have exactly one native master file.");
-  if (totalBytes > 50 * 1024 ** 3) throw new Error("A revision package cannot exceed 50 GiB.");
+  if (totalBytes > 1024 ** 3) throw new Error("A pilot revision package cannot exceed 1 GiB.");
   if (!Array.isArray(input.dependencies) || input.dependencies.length > 100) throw new Error("Supply at most 100 exact dependency revisions.");
   const refs = new Set<string>();
   const dependencies = input.dependencies.map(raw => {

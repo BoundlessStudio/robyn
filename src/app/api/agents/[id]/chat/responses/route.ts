@@ -3,6 +3,8 @@ import { requireAgentAccess } from "@/lib/auth";
 import { ApiError, handleError, readJson } from "@/lib/http";
 import { FILES_ONLY_PROMPT } from "@/lib/types";
 import { upstreamErrorMessage } from "../../_helpers";
+import {paidCapacity} from "@/studio/paid-capacity";
+import type {StudioEmployee} from "@/studio/assignments";
 
 type Ctx = { params: Promise<{ id: string }> };
 
@@ -22,7 +24,10 @@ interface ResponsesBody {
 export async function POST(request: Request, { params }: Ctx) {
   try {
     const { id } = await params;
-    await requireAgentAccess(id, "admin");
+    const {db,row}=await requireAgentAccess(id, "admin");
+    const {data:employee,error:employeeError}=await db.from("studio_employees").select("*").eq("workspace_id",row.workspace_id).eq("instance_id",id).maybeSingle();
+    if(employeeError)throw new ApiError(503,"budget_unavailable","The employee allowance could not be checked.");
+    if(employee){const capacity=await paidCapacity(db,employee as StudioEmployee);if(!capacity.availableMicros)throw new ApiError(409,capacity.code??"employee_budget_required",`${capacity.reason} The Studio owner can manage allocations in Settings.`);}
 
     const body = await readJson<ResponsesBody>(request);
     const input = (body.input ?? "").trim();

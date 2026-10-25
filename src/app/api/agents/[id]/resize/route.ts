@@ -1,13 +1,15 @@
 import { agent37 } from "@/lib/agent37";
 import { requireAgentAccess } from "@/lib/auth";
 import { ApiError, handleError, json, readJson } from "@/lib/http";
+import { requireLegacyAgent } from "@/studio/legacy-agent-guard";
 
 type Ctx = { params: Promise<{ id: string }> };
 
 export async function POST(request: Request, { params }: Ctx) {
   try {
     const { id } = await params;
-    const { db } = await requireAgentAccess(id, "admin");
+    const { db, row } = await requireAgentAccess(id, "admin");
+    await requireLegacyAgent(db, row.workspace_id, id);
 
     const body = await readJson<{ cpu?: number; memory?: number; disk?: number }>(request);
     if (!body.cpu && !body.memory && !body.disk) {

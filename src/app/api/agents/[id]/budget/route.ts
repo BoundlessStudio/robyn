@@ -21,7 +21,10 @@ export async function GET(_request: Request, { params }: Ctx) {
 export async function PATCH(request: Request, { params }: Ctx) {
   try {
     const { id } = await params;
-    await requireAgentAccess(id, "admin");
+    const {db,row}=await requireAgentAccess(id, "admin");
+    const {data:employee,error}=await db.from("studio_employees").select("id").eq("workspace_id",row.workspace_id).eq("instance_id",id).maybeSingle();
+    if(error)throw new ApiError(503,"budget_unavailable","The Studio allocation could not be checked.");
+    if(employee)throw new ApiError(409,"studio_budget_required","Manage this employee’s allocation in Studio settings → AI budget.");
 
     const { monthly_cap_usd } = await readJson<{ monthly_cap_usd?: number }>(request);
     if (typeof monthly_cap_usd !== "number" || !Number.isFinite(monthly_cap_usd) || monthly_cap_usd < 0) {

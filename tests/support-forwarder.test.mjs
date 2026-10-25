@@ -1,0 +1,21 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {createHmac,randomUUID,randomBytes} from "node:crypto";
+import {forwardSupport,INBOX_ID,FORWARD_TO} from "../deploy/support-forwarder/worker.mjs";
+test("support forwarding verifies signatures, isolates the inbox and preserves retry identity",async()=>{
+  const now=Date.now(),secret=randomBytes(32),env={RESEND_API_KEY:"fixture",RESEND_WEBHOOK_SECRET:`whsec_${secret.toString('base64')}`};
+  const event={type:"inbox.email.received",created_at:new Date(now).toISOString(),data:{inbox_id:INBOX_ID,thread_id:randomUUID(),email_id:randomUUID()}};
+  const request=(value=event,valid=true,time=now)=>{const body=JSON.stringify(value),id=randomUUID(),timestamp=String(Math.floor(time/1000));return new Request('https://local.test/inbound',{method:'POST',body,headers:{'svix-id':id,'svix-timestamp':timestamp,'svix-signature':`v1,${createHmac('sha256',valid?secret:randomBytes(32)).update(`${id}.${timestamp}.${body}`).digest('base64')}`}});};
+  const calls=[],send=async(url,options)=>{calls.push({url,...options});return new Response('{}');};
+  assert.equal((await forwardSupport(request(),{},send,now)).status,503);
+  assert.equal((await forwardSupport(request(event,false),env,send,now)).status,401);
+  assert.equal((await forwardSupport(request(event,true,now-600000),env,send,now)).status,401);
+  assert.equal((await forwardSupport(request({...event,data:{...event.data,inbox_id:randomUUID()}}),env,send,now)).status,204);
+  assert.equal((await forwardSupport(request({...event,created_at:new Date(now-25*3600000).toISOString()}),env,send,now)).status,409);
+  assert.equal(calls.length,0);
+  assert.equal((await forwardSupport(request(),env,send,now)).status,204);
+  assert.equal((await forwardSupport(request(),env,send,now)).status,204);
+  assert.equal(calls[0].headers['Idempotency-Key'],calls[1].headers['Idempotency-Key']);
+  assert.deepEqual(JSON.parse(calls[0].body),{to:[FORWARD_TO]});
+  assert.equal((await forwardSupport(request(),env,async()=>new Response('private error',{status:500}),now)).status,502);
+});

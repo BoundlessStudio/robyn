@@ -472,3 +472,50 @@
 .assignment-panel .studio-action-row {flex-wrap:wrap;gap:8px;}
 
 .study-research { background:#ccd6b8; color:#26382b; }.study-research .study-type { font-size:80px; }.study-research-orbit { position:absolute; right:14%; bottom:18%; border:1px solid currentColor; border-radius:50%; width:95px; height:95px; display:grid; place-items:center; font-size:58px; font-family:monospace; }
+
+/* Media acquisition is a project panel; it never replaces an open editor. */
+.studio-modal:has(.media-panel) { max-width:900px; }
+.media-panel { display:grid; gap:22px; line-height:1.6; }
+.media-panel p { margin:0; color:#cfcec3; font-size:12px; }
+.media-panel a,.source-provenance a { color:#d9eab4; text-decoration:underline; text-underline-offset:3px; }
+.media-tabs,.media-inline { display:flex!important; gap:12px; flex-wrap:wrap; align-items:end; }
+.media-tabs button[aria-pressed=true] { background:#d9eab4; color:#182015; }
+.media-search { grid-template-columns:150px minmax(0,1fr) auto; align-items:end; }
+.media-results { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.media-results article { display:grid; align-content:start; gap:9px; border-top:1px solid #505b47; padding-top:14px; min-width:0; }
+.media-results img { width:100%; height:125px; object-fit:cover; background:#171b15; }
+.media-results h3 { font-size:13px; margin:0; overflow-wrap:anywhere; }
+.media-results p,.media-results a { font-size:11px; overflow-wrap:anywhere; }
+.media-results .studio-button { margin-top:5px; }
+.media-budget { border-top:1px solid #505b47; padding-top:16px; font-size:12px; }
+.media-budget summary { cursor:pointer; margin-bottom:12px; }
+.media-budget form { margin-top:14px; }
+.media-jobs>h3 { margin:0 0 12px; font-size:14px; }
+.media-jobs article { display:flex; justify-content:space-between; align-items:center; gap:16px; border-top:1px solid #424b3b; padding:13px 0; }
+.media-jobs article>div { min-width:0; overflow-wrap:anywhere; }
+.media-jobs strong { font-size:12px; }
+.media-jobs .studio-button { flex-shrink:0; }
+.source-provenance { margin-bottom:24px; overflow-wrap:anywhere; }
+.source-provenance dl { display:grid; grid-template-columns:110px minmax(0,1fr); gap:8px 15px; font-size:11px; }
+.source-provenance dt { color:#bbb9a9; }
+.source-provenance dd { margin:0; }
+.source-provenance p,.source-provenance summary { font-size:11px; line-height:1.6; }
+.source-provenance pre { max-width:100%; overflow:auto; }
+
+/* The owner manages one allowance across the complete creative team. */
+.studio-budget { scroll-margin-top: 110px; }
+.studio-budget .studio-form { max-width: none; }
+.studio-budget .studio-form > label { max-width: 480px; }
+.studio-budget-totals { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; margin: 24px 0 14px; }
+.studio-budget-totals > div { border: 1px solid var(--studio-line,#d9d5c9); padding: 16px; border-radius: 8px; }
+.studio-budget-totals span,.studio-budget-totals strong { display: block; }
+.studio-budget-totals span { font-size: 12px; margin-bottom: 7px; }
+.studio-budget-totals strong { font-size: 22px; font-weight: 500; }
+.studio-budget-table-wrap { max-width: 100%; overflow-x: auto; margin: 18px 0; }
+.studio-budget-table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+.studio-budget-table th,.studio-budget-table td { padding: 13px 10px; border-bottom: 1px solid var(--studio-line,#d9d5c9); vertical-align: middle; }
+.studio-budget-table th { font-weight: 500; }
+.studio-budget-table small { display: block; font-weight: 400; opacity: .65; margin-top: 4px; }
+.studio-budget-table input { width: 135px; }
+.studio-budget details { margin: 24px 0; }
+.studio-budget summary { cursor: pointer; }

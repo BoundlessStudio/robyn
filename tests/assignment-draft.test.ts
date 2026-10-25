@@ -1,0 +1,31 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { randomUUID } from "node:crypto";
+import { acknowledgeAssignmentDraft, assignmentDraftKey, emptyAssignmentDraft, readAssignmentDraft, saveAssignmentDraft } from "../src/studio/assignment-draft";
+
+test("assignment drafts recover exact requests and acknowledged drafts cannot resurrect legacy briefs", () => {
+  const entries = new Map<string, string>();
+  const storage = { getItem: (key: string) => entries.get(key) ?? null, setItem: (key: string, value: string) => { entries.set(key, value); } };
+  const project = randomUUID(), mode = "assignments";
+  entries.set(`robyn-brief:${project}:${mode}`, "Legacy brief");
+  const draft = readAssignmentDraft(storage, project, mode);
+  assert.equal(draft.brief, "Legacy brief");
+  const request = { projectId: project, employeeId: randomUUID(), brief: draft.brief, inputs: [{assetId:randomUUID(),revisionId:randomUUID()}], requestId:randomUUID() };
+  saveAssignmentDraft(storage, project, mode, { ...draft, pending: request });
+  const restored = readAssignmentDraft(storage, project, mode);
+  assert.deepEqual(restored.pending, request);
+  assert.equal(restored.employeeId, request.employeeId);
+  assert.equal(restored.includeOpen, true);
+  assert.equal(readAssignmentDraft(storage, project, "director").pending, null);
+  assert.equal(readAssignmentDraft(storage, randomUUID(), mode).pending, null);
+  assert.deepEqual(acknowledgeAssignmentDraft(storage, project, mode, randomUUID()).pending, request, "a late acknowledgement cannot clear a different pending request");
+  assert.equal(acknowledgeAssignmentDraft(storage, project, mode, request.requestId).pending, null);
+  saveAssignmentDraft(storage, project, mode, emptyAssignmentDraft());
+  assert.equal(readAssignmentDraft(storage, project, mode).brief, "");
+  assert.equal(entries.get(`robyn-brief:${project}:${mode}`), "Legacy brief", "cleared journal overrides the old storage entry");
+  entries.set(assignmentDraftKey(project, mode), JSON.stringify({ ...draft, pending: { ...request, projectId: randomUUID() } }));
+  assert.throws(() => readAssignmentDraft(storage, project, mode), /Invalid saved assignment request/);
+  entries.set(assignmentDraftKey(project, mode), "corrupt");
+  assert.throws(() => readAssignmentDraft(storage, project, mode));
+  assert.throws(() => saveAssignmentDraft({setItem:()=>{throw Error("Storage unavailable");}}, project, mode, restored), /Storage unavailable/);
+});

@@ -46,7 +46,7 @@ export async function savePackage(input:{assetId:string;expectedBaseRevisionId:s
   let revisionId:string|null=null;
   try{revisionId=localStorage.getItem(key);}catch{/* Private browsing may disable persistence. */}
   if(revisionId){
-    const history=await apiFetch<{revisions:Array<{id:string;state:string}>}>(`/api/studio/assets/${input.assetId}/revisions`);
+    const history=await apiFetch<{revisions:Array<{id:string;state:string}>}>(`/api/studio/assets/${input.assetId}/revisions?revisionId=${encodeURIComponent(revisionId)}`);
     const prior=history.revisions.find(row=>row.id===revisionId);
     if(prior?.state==="committed"||prior?.state==="conflict"){try{localStorage.removeItem(key);}catch{}return{assetId:input.assetId,revisionId,status:prior.state};}
     if(!prior||prior.state!=="uploading")revisionId=null;

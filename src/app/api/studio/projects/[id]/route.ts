@@ -1,5 +1,6 @@
 import { json, handleError, ApiError } from "@/lib/http";
 import { requireStudio, ownedProject, readStudioBody, textField, dbFailure } from "@/studio/server";
+import { finishPage } from "@/studio/pagination";
 
 export async function GET(_request: Request, context: { params: Promise<{ id: string }> }) {
   try {
@@ -7,11 +8,12 @@ export async function GET(_request: Request, context: { params: Promise<{ id: st
     const { id } = await context.params;
     const project = await ownedProject(db, workspaceId, id);
     const [assets, activity] = await Promise.all([
-      db.from("studio_assets").select("*").eq("workspace_id", workspaceId).eq("project_id", id).order("created_at", { ascending: false }).limit(300),
+      db.from("studio_assets").select("*").eq("workspace_id", workspaceId).eq("project_id", id).or("asset_kind.eq.native,current_revision_id.not.is.null").order("created_at", { ascending: false }).order("id",{ascending:false}).limit(101),
       db.from("studio_activity").select("*").eq("workspace_id", workspaceId).eq("project_id", id).order("created_at", { ascending: false }).limit(50),
     ]);
     dbFailure(assets.error); dbFailure(activity.error);
-    return json({ project, assets: assets.data, activity: activity.data });
+    const page = finishPage(assets.data??[],100);
+    return json({ project, assets: page.items, nextAssetCursor:page.nextCursor, activity: activity.data });
   } catch (error) { return handleError(error); }
 }
 

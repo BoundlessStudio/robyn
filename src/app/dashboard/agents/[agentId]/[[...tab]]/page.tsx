@@ -1,4 +1,5 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { isStudioInstance } from "@/studio/legacy-agent-guard";
 import { getAgentRow, requireMember, requireUser } from "@/lib/auth";
 import { parseAgentTab } from "@/lib/dashboard-tabs";
 import { AgentWorkspace } from "@/components/AgentWorkspace";
@@ -25,6 +26,7 @@ export default async function AgentWorkspacePage({
   if (!row) notFound();
   const role = await requireMember(db, row.workspace_id, user.id).catch(() => null);
   if (!role) notFound();
+  if (await isStudioInstance(db, row.workspace_id, agentId)) redirect("/dashboard/employees");
 
   return (
     <AgentWorkspace

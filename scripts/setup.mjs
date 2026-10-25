@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
+import { runMigrations } from "./migrations.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const ENV_FILE = path.join(ROOT, ".env.local");
@@ -14,6 +15,7 @@ const args = process.argv.slice(2);
 const FLAGS = {
   noCreate: args.includes("--no-create"),
   help: args.includes("--help") || args.includes("-h"),
+  baseline: args.includes("--baseline") ? args[args.indexOf("--baseline") + 1] : null,
 };
 
 const PLACEHOLDERS = new Set([
@@ -217,35 +219,6 @@ async function createProject(call, { name, orgSlug, region }) {
   }
 }
 
-async function runMigrations(call, ref) {
-  const files = fs
-    .readdirSync(MIGRATIONS_DIR)
-    .filter((f) => f.endsWith(".sql"))
-    .sort();
-  if (!files.length) {
-    warn("No migrations found — skipping.");
-    return;
-  }
-  for (const file of files) {
-    const query = fs.readFileSync(path.join(MIGRATIONS_DIR, file), "utf8");
-    let lastErr;
-    for (let attempt = 1; attempt <= 4; attempt++) {
-      try {
-        await call("POST", `/v1/projects/${ref}/database/query`, { query });
-        ok(`Applied ${file}`);
-        lastErr = null;
-        break;
-      } catch (e) {
-        lastErr = e;
-        const transient = !e.status || e.status >= 500 || e.status === 503 || e.status === 504;
-        if (!transient || attempt === 4) break;
-        await sleep(4000 * attempt);
-      }
-    }
-    if (lastErr) throw new Error(`Migration ${file} failed: ${lastErr.message}`);
-  }
-}
-
 async function configureAuth(call, ref, siteUrl) {
   const emailTemplates = {
     mailer_subjects_invite: "Your Robyn studio invitation",
@@ -307,6 +280,9 @@ If NEXT_PUBLIC_SUPABASE_URL is blank, it creates a free project for you.
 
 Options:
   --no-create   Don't create a project; fail if none is configured.
+  --baseline <filename.sql>
+                Record a verified legacy schema through this exact file without
+                replaying it, then apply later migrations. See SETUP.md.
   -h, --help    Show this help.
 
 Env overrides:
@@ -321,6 +297,9 @@ async function main() {
   if (FLAGS.help) {
     printHelp();
     return;
+  }
+  if (args.includes("--baseline") && (!FLAGS.baseline || FLAGS.baseline.startsWith("--"))) {
+    die("--baseline requires the exact last fully applied migration filename. See SETUP.md.");
   }
 
   log(bold("Setting up agent37-starter-kit\n"));
@@ -456,7 +435,7 @@ async function main() {
   saveEnv(env);
 
   step("Applying database migrations");
-  await runMigrations(call, ref);
+  await runMigrations(call, ref, { directory: MIGRATIONS_DIR, baseline: FLAGS.baseline, report: ok });
 
   step("Configuring authentication");
   await configureAuth(call, ref, siteUrl);

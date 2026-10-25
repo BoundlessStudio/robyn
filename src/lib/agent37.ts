@@ -190,11 +190,11 @@ export const agent37 = {
       body: JSON.stringify({ port, ...(ttlSeconds ? { ttl_seconds: ttlSeconds } : {}) }),
     }),
 
-  getBudget: (id: string) => call<Budget>(`/instances/${id}/budget`),
+  getBudget: (id: string) => call<Budget>(`/instances/${id}/budget`,{signal:AbortSignal.timeout(10_000)}),
   setBudget: (id: string, body: { monthly_cap_micros: number }) =>
-    call<Budget>(`/instances/${id}/budget`, { method: "PATCH", body: JSON.stringify(body) }),
+    call<Budget>(`/instances/${id}/budget`, { method: "PATCH", body: JSON.stringify(body),signal:AbortSignal.timeout(10_000) }),
   getUsage: (id: string, month?: string) =>
-    call<Usage>(`/instances/${id}/usage${month ? `?month=${encodeURIComponent(month)}` : ""}`),
+    call<Usage>(`/instances/${id}/usage${month ? `?month=${encodeURIComponent(month)}` : ""}`,{signal:AbortSignal.timeout(10_000)}),
 
   listTemplates: () => call<{ data: Template[] }>("/templates"),
 

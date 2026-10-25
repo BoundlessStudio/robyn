@@ -1,0 +1,8 @@
+{
+  "name": "robyn-support-forwarder",
+  "account_id": "ad511085f517f4740591851cad7686eb",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-25",
+  "workers_dev": true,
+  "observability": { "enabled": false }
+}

@@ -9,6 +9,8 @@ export interface Assignment {
   dispatch_started_at: string | null; terminal_history_at: string | null;
   employee_generation: number | null;
   browser_paused?: boolean;
+  budget_paused?: boolean;
+  budget_turns?: Array<{sessionId:string;responseId:string;pausedAt:string}>;
   browser_turns?: Array<{sessionId:string;responseId:string|null;returnedAt:string;controlId:string}>;
   result_text: string | null; error_code: string | null;
   purpose: "independent" | "campaign_step" | "campaign_final";
@@ -22,6 +24,7 @@ export interface StudioEmployee {
   browser_control?: "agent" | "requesting" | "human";
   browser_control_id?: string | null;
   browser_assignment_id?: string | null;
+  monthly_cap_micros?: number;
 }
 export interface AssignmentIdentity { workspaceId: string; userId: string; assignmentId: string }
 export interface AssignmentFence extends AssignmentIdentity { workflowId: string; attemptId: string }

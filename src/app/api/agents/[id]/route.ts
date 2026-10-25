@@ -1,6 +1,7 @@
 import { agent37, Agent37Error } from "@/lib/agent37";
 import { requireAgentAccess } from "@/lib/auth";
 import { ApiError, handleError, json, readJson } from "@/lib/http";
+import { requireLegacyAgent } from "@/studio/legacy-agent-guard";
 
 type Ctx = { params: Promise<{ id: string }> };
 
@@ -25,7 +26,8 @@ export async function PATCH(request: Request, { params }: Ctx) {
 export async function DELETE(_request: Request, { params }: Ctx) {
   try {
     const { id } = await params;
-    const { db } = await requireAgentAccess(id, "admin");
+    const { db, row } = await requireAgentAccess(id, "admin");
+    await requireLegacyAgent(db, row.workspace_id, id);
 
     try {
       await agent37.deleteAgent(id);

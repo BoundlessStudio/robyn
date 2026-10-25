@@ -5,6 +5,21 @@ import {isTrustedEditorEvent,EDITOR_BRIDGE_PROTOCOL,type EditorMessage} from "..
 
 const initialRef={assetId:"11111111-1111-4111-8111-111111111111",revisionId:"22222222-2222-4222-8222-222222222222"};
 const message=(requestId:string,operation:EditorMessage["operation"],payload:unknown):EditorMessage=>({protocol:EDITOR_BRIDGE_PROTOCOL,channel:"frame",requestId,operation,payload});
+
+test("published editor pickers can select first-class sources while opening only exact project revisions",async()=>{
+  const original=globalThis.fetch;
+  const source={id:initialRef.assetId,app_id:null,asset_kind:"image",name:"Source image",current_revision_id:initialRef.revisionId};
+  const pkg={ref:initialRef,files:[{path:"original/source.png",role:"master",mimeType:"image/png"}],dependencies:[],provenance:{provider:"commons"}};
+  globalThis.fetch=async url=>Response.json(String(url).includes("/revisions/")?pkg:{assets:[source]});
+  try{
+    const host=createEditorHost({projectId:"project",initialRef,signal:new AbortController().signal,onDirty(){},onStatus(){},onSaved(){}});
+    const listed=await host.handle(message("list","listProjectAssets",{})) as Array<typeof source>;
+    assert.equal(listed[0].app_id,"image");assert.equal(listed[0].asset_kind,"image");
+    assert.deepEqual(await host.handle(message("insert","insertAsset",initialRef)),pkg);
+    await assert.rejects(host.handle(message("foreign","insertAsset",{...initialRef,assetId:"33333333-3333-4333-8333-333333333333"})),/outside the open project/);
+    assert.equal(source.app_id,null,"canonical source retains no owning Craft");
+  }finally{globalThis.fetch=original;}
+});
 test("editor boundary requires the exact source window, origin and channel",()=>{
   const source={} as Window;const data=message("read","openAsset",initialRef);
   assert.equal(isTrustedEditorEvent({source,origin:"https://editor.example",data},source,"https://editor.example","frame"),true);
