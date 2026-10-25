@@ -18,7 +18,7 @@ The findings below preserve the original review evidence. Status updates disting
 | R08 | Fixed locally. Exact-file requests renew private short-lived URLs. Playback renewal retains position and the existing editor. Route authorization and real-component expiry/error regressions pass. |
 | R09 | Creator-facing bypass closed locally. Legacy lifecycle/resize/delete routes reject Studio employees; tests prove no upstream mutation. Deliberate persistent-workstation replacement remains an operator acceptance gap. |
 | R10 | Implemented locally. Persistent private workflow health, progress timestamps, bounded error backoff, safe categories, Needs attention UI and recovery runbook preserve uncertain-action fences. Hosted workflow rollout remains pending. |
-| R11 | Release checkpoint in progress. Reviewed source, lockfiles and immutable workstation candidate are being captured in paired commits. Production stays at its recorded deployment until candidate rollout. |
+| R11 | Captured in paired commits: web f759aa0 and runtime cf2dcd8. Clean Git exports pass typecheck, 70 web tests, 67 runtime tests, production build and dependency audits; all 16 workstation files reproduce exactly. Source digests, editor pins and rollback boundaries are recorded. Production rollout remains pending. |
 | R12 | Implemented locally. Both repositories now have CI gates. Maintained tests cover the reproduced failures, provider contracts and lost budget synchronization acknowledgements. Hosted CI and branch protection remain unverified. |
 | R13 | Preview policy enforced locally. Catalog-only services cannot start new paid work; their existing operation IDs remain recoverable. Service-specific readiness and conservative reservation wording are explicit. Expanded paid service/option acceptance remains open; no new generation was purchased. |
 | R14 | Partially implemented. Expired unreferenced search rows and confirmed, settled media working copies have safe cleanup; receipts and request identity remain. Tests and retention policy are maintained. General abandoned Storage-upload and native working-copy cleanup remain open. |
@@ -28,6 +28,8 @@ The findings below preserve the original review evidence. Status updates disting
 | R18 | Desktop Chromium baseline and unsupported-device behavior are explicit. Candidate public-page checks are recorded separately. Safari/Firefox, additional GPUs, physical phones and full native-editor accessibility remain unverified; compact editors stay outside the pilot. |
 
 Application fixes remain local; support forwarding is the independent service deployed during remediation. Before-fix evidence below is historical.
+
+Final local verification used clean Git exports with declared dependencies and public placeholder build configuration: **70 web tests and 67 runtime tests passed**, typecheck and production build passed, and both complete dependency audits reported zero vulnerabilities. The rebuilt workstation matched all 16 pinned files. The [release source record](acceptance/release-source.json) contains the exact commits, source-file hashes and verification scope. Hosted CI execution, application rollout and the explicitly open operating/acceptance checks are separate.
 
 ## Overall assessment (original review)
 
@@ -246,7 +248,7 @@ An owner can interrupt a running employee, resize infrastructure outside the Stu
 
 ### R11 The deployed budget and media release is not captured by Git HEAD
 
-**Remediation — October 25, 2026:** Release checkpoint in progress. Reviewed source, lockfiles and immutable workstation candidate are being captured in paired commits. Production stays at its recorded deployment until candidate rollout. See [operations](OPERATIONS.md) and [release evidence](RELEASE-2026-10-25.md).
+**Remediation — October 25, 2026:** Captured in paired commits: web f759aa0 and runtime cf2dcd8. Clean Git exports pass typecheck, 70 web tests, 67 runtime tests, production build and dependency audits; all 16 workstation files reproduce exactly. Source digests, editor pins and rollback boundaries are recorded. Production rollout remains pending. See [operations](OPERATIONS.md) and [release evidence](RELEASE-2026-10-25.md).
 
 **P2 · Confirmed release-management gap.** The current release depends on modified and untracked application files, migrations 0013–0017, new tests and vendor releases. The companion runtime also has uncommitted client/media changes. Both HEAD commits describe the earlier R2 migration.
 
