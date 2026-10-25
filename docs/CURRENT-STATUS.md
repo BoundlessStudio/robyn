@@ -6,7 +6,7 @@ Robyn is an invitation-only, passwordless, solo-creator studio at **https://roby
 
 ## Release boundary
 
-The last recorded production web release is `dpl_DHoVNKVXKsYjQ1UTQxJUE6cgTW9A`: budget/media features, migrations through `0017_budget_queue_slots.sql`, workstation client **0.1.21**. The review fixes are a separate local candidate with migrations **0018–0021** and workstation **0.1.22**. They have not been deployed to the application or applied to production. The support-forwarding Worker is deployed independently and is live.
+The last recorded production web release is `dpl_DHoVNKVXKsYjQ1UTQxJUE6cgTW9A`: budget/media features, migrations through `0017_budget_queue_slots.sql`, workstation client **0.1.21**. The review fixes are a separate local candidate with migrations **0018–0022** and workstation **0.1.23**. They have not been deployed to the application or applied to production. The support-forwarding Worker is deployed independently and is live.
 
 Use [RELEASE-2026-10-25.md](RELEASE-2026-10-25.md) for source commits, digests, migration adoption, editor pins and rollback boundaries. Never replay the historical migration files to reconstruct an existing database. [SETUP.md](../SETUP.md) documents explicit baselining and checksummed incremental setup.
 
@@ -37,10 +37,10 @@ The three historical paid media checks total **$0.439483**. The remediation test
 
 ## Before broader invitations
 
-- Roll out and verify the local candidate, including incremental migration adoption and workstation 0.1.22 on an idle employee.
+- Roll out and verify the local candidate, including incremental migration adoption and workstation 0.1.23 on an idle employee.
 - Establish a database restore point and rehearse the hosted recovery procedure. No backup retention or recovery-time promise is currently established.
 - Complete service/option acceptance before promoting additional generation services. Preserve the explicit preview policy.
-- Finish reference-aware abandoned-upload and old native-working-copy retention; the implemented cleanup covers expired search records and confirmed media working copies.
+- Exercise the owner-authorized cleanup in the hosted candidate. Local coverage now includes explicit abandoned uploads and confirmed native transfer snapshots; unsaved working folders remain retained.
 - Complete browser, physical-phone public-site and native-editor accessibility checks before extending support claims.
 - Review applicable terms and the manual export/closure process before broader invitations or subscriptions.
 

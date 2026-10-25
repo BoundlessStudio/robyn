@@ -60,14 +60,32 @@ For an incident, inspect filesystem free space and the media job's `state.json`/
 | Search cache/discoveries | Expire after their recorded lifetime; owner-scoped search prunes at most 500 expired rows per class. A discovery referenced by any media job is retained |
 | Completed media local originals, previews and transfer offsets | Delete only allowlisted local working files after a committed revision and final billing settlement are proven. Never remove provider receipts or submission/request identity. The worker is not woken solely for housekeeping |
 | Unresolved payments, active uploads and uncertain dispatches | Retain until their external outcome and recovery needs are resolved; no age-based cleanup |
-| Other abandoned Storage uploads and old native working folders | General cleanup is not enabled. Review remains open; do not implement deletion by asset age |
+| Explicitly abandoned creator uploads | Operator-only, exact revision; permanent closure and seven-day quarantine. Shared object keys and any recovery reference prevent deletion. Age alone never abandons an upload |
+| Native transfer snapshots | Preserve an uncertain upload snapshot; remove a freshly recreated duplicate on retry, and remove the original only after persisting the confirmed save. Verify every path/hash; retain receipts |
+| Native working folders and opened inputs | Retain unsaved working data. No age-based or blanket deletion is enabled |
 | Support messages | Kept in the restricted Resend inbox and receiving mailbox while needed for the case. A formal closure/retention schedule still needs operator review |
 
-Restores and forks can share Storage keys. Any future cleanup must compute reachability across **all** revisions, exact dependencies, active transfers, employee operations and media jobs, then recheck references immediately before deletion. Track unique Storage keys separately from logical per-revision bytes. A dry-run inventory and isolated restore/fork tests are required before enabling general deletion. No Storage-file backup is being added in this remediation; the owner explicitly deferred it.
+Restores and forks can share Storage keys. The implemented upload cleanup checks **all** manifest references, exact dependencies, assignment inputs/deliverables, employee operations and media jobs, then rechecks references when claiming deletion. A database tombstone blocks new references to retired keys. Track unique Storage keys separately from logical per-revision bytes. The dry-run inventory reports unique manifest bytes separately from per-revision totals; it is not a measurement of billable provider storage. Isolated tests preserve restores/forks and uncertain payments. No Storage-file backup is being added in this remediation; the owner explicitly deferred it.
+
+### Explicit upload cleanup
+
+Use the owner-scoped operator command. Default mode is read-only. Abandon only an exact creator upload the owner explicitly no longer wants; saved/conflicting revisions, employee output and recovery references are refused.
+
+```sh
+node scripts/storage-retention.mjs WORKSPACE_UUID OWNER_UUID inventory
+node scripts/storage-retention.mjs WORKSPACE_UUID OWNER_UUID abandon REVISION_UUID
+node scripts/storage-retention.mjs WORKSPACE_UUID OWNER_UUID abandon REVISION_UUID --apply
+node scripts/storage-retention.mjs WORKSPACE_UUID OWNER_UUID prune
+node scripts/storage-retention.mjs WORKSPACE_UUID OWNER_UUID prune --apply
+```
+
+Abandonment permanently closes that upload. Only unshared keys become eligible after seven days. Supabase documents [two-hour signed upload tokens](https://supabase.com/docs/reference/javascript/storage-from-createsigneduploadurl) and [resumable upload URLs lasting up to 24 hours](https://supabase.com/docs/guides/storage/uploads/resumable-uploads); the quarantine outlasts both. The application checks upload state again after signing, so a delayed response cannot return fresh credentials after abandonment.
+
+Prune handles at most 50 claimed keys, deletes through the Storage API, then acknowledges each exact claim. On a lost deletion response, preserve the tombstone and retry after the 15-minute lease. Never remove Storage metadata directly, shorten the quarantine, clear a tombstone, or replace a key to bypass a retained reference. All original manifest rows and operation IDs remain. This is temporary-data cleanup, not a backup or saved-asset deletion policy.
 
 ## Database and cross-service restore
 
-**Verified October 25:** the Supabase dashboard for `robyn-creative-studio` shows the **Free** organization plan and says project backups are not included. The configured Management API token returned 403 for the backup inventory; the dashboard resolves the earlier uncertainty. No retained hosted restore point, PITR policy, or measured recovery time is established. Do not assume that using Supabase supplies a usable backup on this plan. [Supabase's backup documentation](https://supabase.com/docs/guides/platform/backups) describes plan coverage and recommends logical exports for Free projects. Database backup metadata does not include Storage object bytes; those backups remain deferred here.
+**Verified October 25:** the Supabase dashboard for `robyn-creative-studio` shows the **Free** organization plan and says project backups are not included. The configured Management API token returned 403 for the backup inventory; the dashboard resolves the earlier uncertainty. No retained hosted restore point, PITR policy, or measured recovery time is established. A later read-only Management SQL check confirmed PostgreSQL 17.11 and available database credentials; pooler discovery returned 403. The attempted local Docker rehearsal could not start because its secrets-engine socket was inaccessible. No database export/restore or Docker reset was performed. Do not assume that using Supabase supplies a usable backup on this plan. [Supabase's backup documentation](https://supabase.com/docs/guides/platform/backups) describes plan coverage and recommends logical exports for Free projects. Database backup metadata does not include Storage object bytes; those backups remain deferred here.
 
 The isolated maintained test `tests/database-restore.test.mjs` restores a PGlite snapshot with a Research notebook, native fixture, exact dependency, conflicting revision, settled media job and uncertain external actions. It verifies rows, byte-hash metadata, owner isolation, private grants, migration history and dispatch fences. It does **not** establish hosted Supabase restore compatibility, a native-editor reopen, workstation recovery or a backup of creator files.
 

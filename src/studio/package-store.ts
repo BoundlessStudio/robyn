@@ -36,6 +36,10 @@ export async function preparePackageTransfers(db: DB, workspaceId: string, revis
     if (error || !data) throw new ApiError(503, "storage_unavailable", "Private Storage could not prepare the upload. Please retry.");
     return { id: file.id, path: file.path, uploaded: false, bytes: Number(file.bytes), mimeType: file.mime_type, sha256: file.sha256, storageKey: file.storage_key, token: data.token, signedUrl: data.signedUrl };
   });
+  // An operator may have abandoned this upload while Storage was signing it.
+  // Never return freshly signed tickets after that terminal decision.
+  const { error: openError } = await db.rpc("assert_studio_upload_open", { p_workspace: workspaceId, p_revision: revisionId });
+  dbFailure(openError);
   const url = new URL(process.env.NEXT_PUBLIC_SUPABASE_URL!);
   if (url.hostname.endsWith(".supabase.co")) url.hostname = url.hostname.replace(".supabase.co", ".storage.supabase.co");
   return { bucket: STUDIO_BUCKET, resumableEndpoint: `${url.origin}/storage/v1/upload/resumable/sign`, chunkSize: 6 * 1024 * 1024, transfers };

@@ -1,15 +1,15 @@
 {
-  "version": "0.1.22",
-  "directory": "vendor/robyn-workstation/0.1.22-40303f07072b",
-  "fingerprint": "40303f07072bc474ebb3b1746edd80110c4b14b5d3f70a7c283f8fcb3b307129",
+  "version": "0.1.23",
+  "directory": "vendor/robyn-workstation/0.1.23-463adbe8641b",
+  "fingerprint": "463adbe8641bb2b9f9c232027e4a1edcc5af9bc2c210581cce68af4bfc8ea58d",
   "files": {
     "studio-mcp.cjs": {
-      "bytes": 1833951,
-      "sha256": "c4776310a3a5fea51bca03edf4484aa0eb2152b1a5ab6337fe969aeea78fe9b1"
+      "bytes": 1838316,
+      "sha256": "6e7b4525b249cfdd81b00fccceec7ee4ca537663d4493fe1ef8ad6d0559a3b32"
     },
     "configure-hermes.py": {
       "bytes": 1989,
-      "sha256": "de97c933d197da9662f9ccb969a3fcde3a3047bd2af30a2985ec146c08c2494e"
+      "sha256": "f20740586af56b7ba2a773d497779041d1737f3e096ed3a27060df0861166dda"
     },
     "skills/cadcraft.md": {
       "bytes": 1838,

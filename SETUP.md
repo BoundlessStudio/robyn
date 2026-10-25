@@ -69,7 +69,9 @@ these steps in order; don't skip the checks.
      re-run as `SUPABASE_ORG=<slug> npm run setup` for the one I want (usually my personal org).
    - `401` → my Supabase token is wrong/expired; ask for a new one.
    - `404` → `NEXT_PUBLIC_SUPABASE_URL` points at a project this token can't see.
-6. **Verify.** Run `npm run typecheck` and `npm run build` (no test suite — these two are the gate).
+6. **Verify.** Run `npm run typecheck`, `npm test`, `npm run build` and `npm run test:public`.
+   Install the declared Playwright browser first (`npx playwright install chromium`). CI also checks
+   the public pages in Firefox and WebKit; those checks do not certify native editors in those engines.
 7. **Start.** Run `npm run dev` and report the URL (<http://localhost:3000>). The public homepage
    accepts access requests; studio accounts are invited individually. Public signup is disabled. Remind me
    that creating an agent needs a funded wallet — a `402` at create time is the wallet, not a bug.
@@ -84,20 +86,23 @@ npm install
 npm run setup     # first run creates .env.local and prints the two keys to paste
 #                 → paste both into .env.local, then:
 npm run setup     # creates/configures Supabase, runs the migration, sets up auth
-npm run dev       # http://localhost:3000 → sign up with email + password
+npm run dev       # http://localhost:3000 → invited creators use an email sign-in link
 ```
 
 <details>
 <summary><b>Manual Supabase setup</b> — if you'd rather not use an access token</summary>
 
-Leave `SUPABASE_ACCESS_TOKEN` blank, skip `npm run setup`, create a free
-[Supabase](https://supabase.com) project, then: (1) **SQL Editor** → run
-[`supabase/migrations/0001_init.sql`](supabase/migrations/0001_init.sql) (it sets up the schema
-*and* revokes direct client table access — all DB access is server-side);
-(2) **Authentication → Providers** → enable **Email**; (3) **Authentication → URL
-Configuration** → Site URL `http://localhost:3000`, add `http://localhost:3000/auth/callback`
-to Redirect URLs. Paste the project URL, anon key, and **service-role key** (Project Settings →
-API) into `.env.local` (`SUPABASE_SERVICE_ROLE_KEY` — server-only), then `npm run dev`.
+Prefer the checked setup runner above. Applying only `0001_init.sql` creates the historical
+starter, not Creative Studio. A manual installation must apply the complete ordered migration
+set with the same private ledger/checksums from `scripts/migrations.mjs`; an existing database
+needs the explicit verified baseline described above. Do not run every SQL file again.
+
+Keep Email authentication enabled and **new public signup disabled**. Configure the trusted
+site URL, `/auth/callback` redirect and the preview-safe email confirmation templates from
+`scripts/setup.mjs`. Configure the sign-in sender before inviting creators. Add the project URL,
+anonymous key and server-only service-role key to `.env.local`; keep administrative tokens and
+database passwords out of the browser and deployment environment. Complete the same test/build
+checks before granting access. See [current status](docs/CURRENT-STATUS.md) for the pilot flow.
 </details>
 
 ## Deploy to production (Vercel)
