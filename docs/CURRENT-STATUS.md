@@ -6,7 +6,7 @@ Robyn is an invitation-only, passwordless, solo-creator studio at **https://roby
 
 ## Release boundary
 
-The last recorded production web release is `dpl_DHoVNKVXKsYjQ1UTQxJUE6cgTW9A`: budget/media features, migrations through `0017_budget_queue_slots.sql`, workstation client **0.1.21**. The review fixes are a separate reviewed candidate with migrations **0018–0022** and workstation **0.1.23**. They have not been deployed to the application or applied to production. The support-forwarding Worker is deployed independently and is live.
+The last recorded production web release is `dpl_DHoVNKVXKsYjQ1UTQxJUE6cgTW9A`: budget/media features, migrations through `0017_budget_queue_slots.sql`, workstation client **0.1.21**. The review fixes are a separate reviewed candidate with migrations **0018–0022** and workstation **0.1.23**. Vercel reports a successful Git-connected PR preview. The candidate has not been promoted to production or applied to the production database; authenticated preview recovery is not accepted yet. The support-forwarding Worker is deployed independently and is live.
 
 The paired draft PRs now pass hosted Linux CI: 74 web tests, 68 runtime tests, typecheck, full audits, builds and 18 public layout/axe/keyboard combinations. Both main branches currently have no required-check protection.
 

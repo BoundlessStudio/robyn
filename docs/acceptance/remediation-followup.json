@@ -1,6 +1,6 @@
 {
   "recordedAt": "2026-10-25T14:29:37.618Z",
-  "deploymentStatus": "Reviewed candidate on feature branches; application and production migrations have not been deployed",
+  "deploymentStatus": "Reviewed candidate on feature branches; Git-connected Vercel reported a successful PR preview. No production promotion, production migration or hosted workstation upgrade was performed.",
   "previousCheckpoint": "release-source.json",
   "sourceCheckpoints": {
     "web": {
@@ -278,5 +278,12 @@
     "webMainProtected": false,
     "runtimeMainProtected": false,
     "note": "CI runs on pushes and pull requests; merge enforcement is not enabled. No branch settings were changed."
+  },
+  "preview": {
+    "source": "GitHub Vercel status on PR #19",
+    "headCommit": "01b0c5097168a8b46afe0f2f053fe32dc8431fb3",
+    "status": "success",
+    "details": "https://vercel.com/venatio-studios/robyn-creative-studio/Ea8MkMjZwmpY8vZJF5Y18TkK6Vu5",
+    "acceptance": "Build/deployment status only; authenticated recovery paths were not exercised against this preview."
   }
 }
