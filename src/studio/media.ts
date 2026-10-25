@@ -29,12 +29,12 @@ export interface MediaJob {
   budget_employee_id?: string | null;
 }
 export const generationServices = [
-  { id: "blockrun-image-gen", name: "Image · CogView / Nano Banana", kind: "image", available: true },
+  { id: "blockrun-image-gen", name: "Image · CogView-4", kind: "image", available: true },
   { id: "paysponge-gemini-image", name: "Image · Gemini (acceptance pending)", kind: "image", available: false },
   { id: "blockrun-image-edit", name: "Edit saved image · Nano Banana (acceptance pending)", kind: "image", available: false },
-  { id: "blockrun-tts", name: "Speech · ElevenLabs", kind: "audio", available: true },
+  { id: "blockrun-tts", name: "Speech · ElevenLabs Flash", kind: "audio", available: true },
   { id: "blockrun-ai-api-v1-audio-sound-effects", name: "Sound effect · ElevenLabs (acceptance pending)", kind: "audio", available: false },
-  { id: "treza-video", name: "Video · MiniMax / Seedance", kind: "video", available: true },
+  { id: "treza-video", name: "Video · MiniMax H3", kind: "video", available: true },
 ] as const;
 
 function boundedText(value: unknown, max: number, label: string) {
