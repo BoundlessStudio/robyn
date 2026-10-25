@@ -115,6 +115,11 @@
       "area": "October 25 remediation follow-up",
       "summary": "Explicit abandoned-upload cleanup, confirmed native snapshot retention, 74 web and 68 runtime tests, passing hosted Linux CI, all 18 public cross-engine layout/axe/keyboard checks on Linux. Windows WebKit has four explicitly unverified plain-link navigation cases.",
       "record": "docs/acceptance/remediation-followup.json"
+    },
+    {
+      "area": "R13/R18 acceptance follow-up",
+      "summary": "Exact generation profiles/contracts/pricing, durable media submission, 81 passing web tests, three-engine media dialog checks, native placement/save/reopen of existing paid outputs, and explicit native accessibility limits. No new paid generation or production rollout.",
+      "record": "docs/acceptance/r13-r18.json"
     }
   ],
   "evidence": [
@@ -800,6 +805,144 @@
       "path": "artifacts/qa/project-review-20261025/public-accessibility-final/webkit-390-home.png",
       "bytes": 49312,
       "sha256": "3df3550a02ea53f58bf000d7397efe32197f43947876fbe5aa4c537e5c187636",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/catalog-sanitized.json",
+      "bytes": 8508,
+      "sha256": "2b500fa7b6abc1fb543306448371a63d598a9bba8fb0553ae50e1dac19ba8af5",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/acceptance-plan.json",
+      "bytes": 1495,
+      "sha256": "edcb2e34941f81b9186f466bb8af38d3a2384691fd3cc64d0f5497e681c837a2",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/qa-inventory.json",
+      "bytes": 1295,
+      "sha256": "dd9883dba2266720b4d50d6047b48e99b25cd5981277e3af9e8453beb6333fe4",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/native-startup.json",
+      "bytes": 2445,
+      "sha256": "2b7ef56a01bc4258183570820737922ee126c765fb3e95874bbee718e6977a16",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/native-accessibility.json",
+      "bytes": 1081,
+      "sha256": "399f7b27973c6529c8ecb24a31b0185767f635cb763d9cea1d39ff65043d0eb9",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/existing-paid-native-saves.json",
+      "bytes": 4421,
+      "sha256": "28d5f47e1c17a2c5a1e6c7ce1d52e4b5ed4d4290a74076d82b05a4514383a5e4",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/existing-paid-native-reopen.json",
+      "bytes": 826,
+      "sha256": "61562923f7304a144a6e24fdeb3337c2ff5372cf638dca6a69c469176c3cb8c8",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/source-preservation.json",
+      "bytes": 778,
+      "sha256": "ed3b0f9703794e791fcae4a21071454679d5ba776363d79ade93b0d4276ed0b4",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/typecheck.log",
+      "bytes": 61,
+      "sha256": "bfb6b9bb7a8b00f34503cccf733ee41de1c63849ef1c731da2a0a2fae8af1a0b",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/web-tests.log",
+      "bytes": 8965,
+      "sha256": "e55d3960c6f60f89abd557e37963c99fa58a5c0cffd3f4560821c37a930a5113",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/build.log",
+      "bytes": 3883,
+      "sha256": "3ead00bfabdf62667e9f036d984d888b2be0703b870d4a47880c342c575446e2",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/npm-audit.json",
+      "bytes": 389,
+      "sha256": "c5e611b491943cf2883066c842ba42443983377c4f9ad58b89d1bc199b025c4b",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/public/results.json",
+      "bytes": 7051,
+      "sha256": "e0f864e5dcf0dd926c4fc1c28da8757b82f5b297e91b77c4ff18c8f7c32df91f",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/media-speech-desktop.png",
+      "bytes": 72121,
+      "sha256": "1b3b17655d72e132a638fca2197b48e58ad1b3cdd8dd8f0300f2a865ba65a1bf",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/media-video-1200.png",
+      "bytes": 63666,
+      "sha256": "2781d9731a7f9f0ec8d8a94172cbd2817fe9bb0b0e1dc91113289641f2d1d563",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/media-high-contrast.png",
+      "bytes": 44069,
+      "sha256": "9e0ada84ff014ea3332361fac3c7714e93087e08cfb0ba5c5920dd269633fd85",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/media-reflow-top.png",
+      "bytes": 26186,
+      "sha256": "6f70e6789c817942512fc05beff7043bda10e64c828a1a9d014ff1ecf09a0d4c",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/media-reflow-action.png",
+      "bytes": 20448,
+      "sha256": "8d70ed38997a0a251df2f96eb9e58b601c399456cbd2a2d2bec2221d76dda61c",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/photo-generated-reopened.png",
+      "bytes": 274511,
+      "sha256": "0cdf9a0fa52706ca9ea71318713f91e32e7b9fc2a99ea41e965304508e2109bb",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/sound-generated-reopened.png",
+      "bytes": 143589,
+      "sha256": "749db49db155d4778bd4981860022846175ffff8f601fe161e4adbdb920251c6",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/film-generated-reopened.png",
+      "bytes": 199875,
+      "sha256": "dd48fb5b773039d8c118b42b1f25222e9d9c9b5d7092ed5805e2cc4419be0c7c",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/support-browser-help-desktop.png",
+      "bytes": 94566,
+      "sha256": "f4bf7fb710967ef106be014984ff70b68fc3ba9de99a1e1b917d896f74cdbcbe",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/support-browser-help-mobile.png",
+      "bytes": 49027,
+      "sha256": "0cdf5a3dd004b7b9478e4429701c973afc041a53b5bb4e4bafc2f5a18b5a834f",
       "access": "private local QA archive; content not published"
     }
   ]

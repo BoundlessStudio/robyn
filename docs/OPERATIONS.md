@@ -1,5 +1,7 @@
 # Pilot support and recovery
 
+**Current scope, October 25:** the owner deferred database recovery-point creation, production rollout and hosted recovery checks, in addition to Storage-file backups. The future procedures below remain documented; they are not active prerequisites for the R13/R18 acceptance follow-up.
+
 Owner: the Robyn pilot operator, reached at **support@robyn.academy**. Mail forwards to **developer@venatiostudios.com**. Access to Supabase, Vercel, Agent37, Cloudflare and Resend remains with their existing account owners; the web application does not grant creators provider-admin access. No guaranteed response or recovery time is offered during the pilot.
 
 ## Identify a stalled job

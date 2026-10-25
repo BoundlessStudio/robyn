@@ -1,5 +1,6 @@
 import { requireUuid, type AssetRef, type RevisionPackage } from "./assets";
 import { mediaCanCancelUnpaid, mediaNeedsSettlement } from "./media-recovery";
+import { generationPrice } from "./media-readiness";
 
 export type MediaKind = "image" | "audio" | "video";
 export type SearchKind = "image" | "video" | "music" | "sound_effect";
@@ -60,7 +61,9 @@ export function parseMediaRequest(input: Record<string, unknown>): MediaRequest 
   const allowed: Record<string, readonly (string | number)[]> = service.id === "treza-video"
     ? { seconds: [5, 10, 15], aspectRatio: ["16:9", "9:16"], model: ["minimax-h3", "seedance-2.5"] }
     : service.id === "blockrun-image-gen" ? { model: ["zai/cogview-4", "google/nano-banana"], size: ["512x512", "768x768", "1024x1024", "768x1344", "1344x768", "1440x1440"] }
-    : service.id === "blockrun-tts" ? { response_format: ["mp3", "wav", "opus"], speed: [0.7, 0.8, 0.9, 1, 1.1, 1.2] } : {};
+    : service.id === "blockrun-tts" ? { voice: ["sarah", "george"], response_format: ["mp3", "wav", "opus"], speed: [0.7, 0.8, 0.9, 1, 1.1, 1.2] }
+    : service.id === "blockrun-image-edit" ? { model: ["google/nano-banana"], size: ["1024x1024"] }
+    : service.id === "blockrun-ai-api-v1-audio-sound-effects" ? { duration_seconds: [5], response_format: ["mp3", "wav", "opus"] } : {};
   for (const [key, value] of Object.entries(supplied)) {
     if (!allowed[key]?.includes(value as string | number)) throw new Error(`Unsupported ${key} setting for this service.`);
     settings[key] = value as string | number;
@@ -77,13 +80,7 @@ export function parseMediaRequest(input: Record<string, unknown>): MediaRequest 
 /** System estimates from the verified Perflo catalog. The worker rechecks live
  * discovery and maxCharge before paying; actual provider charges are recorded. */
 export function estimatedMediaCost(request:Pick<MediaRequest,"service"|"settings"|"prompt">) {
-  if(request.service==="blockrun-image-gen")return request.settings?.model==="google/nano-banana"?53500:16750;
-  if(request.service==="paysponge-gemini-image")return 20000;
-  if(request.service==="blockrun-image-edit")return 54000;
-  if(request.service==="blockrun-ai-api-v1-audio-sound-effects")return 53501;
-  if(request.service==="blockrun-tts")return Math.max(53500,2000+Math.ceil((request.prompt?.length??0)*53500/1000));
-  if(request.service==="treza-video"){const seconds=Number(request.settings?.seconds??5);return (request.settings?.model==="seedance-2.5"?{5:1640000,10:3270000,15:4900000}:{5:420000,10:840000,15:1260000})[seconds as 5|10|15]??4900000;}
-  return 10000000;
+  return generationPrice(request).reservationMicros;
 }
 
 /** Do not accept arbitrary URL imports or redirects to private/internal hosts. */

@@ -2,14 +2,15 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { apiFetch, readApiError } from "@/lib/api";
 import type { AssetRef, AssetSummary } from "@/studio/assets";
-import { estimatedMediaCost,generationServices, type MediaDiscovery, type publicMediaJob } from "@/studio/media";
+import { generationServices, type MediaDiscovery, type publicMediaJob } from "@/studio/media";
 import { mediaStatusMessage } from "@/studio/media-status";
+import { generationPrice, generationReadiness } from "@/studio/media-readiness";
 import { StudioDialog } from "./StudioDialog";
 
 type Job = ReturnType<typeof publicMediaJob>;
 interface SearchResult extends MediaDiscovery { id: string; license: string; licenseUrl: string; attribution: string }
 interface Budget { availableMicros: number|null;reason:string|null }
-const dollars = (micros: number) => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 4 }).format(micros / 1_000_000);
+const dollars = (micros: number) => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 6 }).format(micros / 1_000_000);
 const active = (job: Job) => !["completed", "failed", "cancelled", "uncertain"].includes(job.state);
 
 export function MediaPanel({ projectId, assets, close, onSaved, onOpen }: { projectId: string; assets: AssetSummary[]; close: () => void; onSaved: () => Promise<unknown>; onOpen: (ref: AssetRef) => Promise<void> }) {
@@ -21,7 +22,10 @@ export function MediaPanel({ projectId, assets, close, onSaved, onOpen }: { proj
   const [workstationAvailable, setWorkstationAvailable] = useState(false);
   const [service, setService] = useState<string>(generationServices[0].id), [name, setName] = useState(""), [prompt, setPrompt] = useState("");
   const [seconds, setSeconds] = useState("5"), [aspect, setAspect] = useState("16:9"), [model, setModel] = useState(""), [source, setSource] = useState("");
-  const estimate=estimatedMediaCost({service,prompt,settings:{model,seconds:Number(seconds)}});
+  const selectedSettings: Record<string, string | number> = service === "treza-video" ? { seconds: Number(seconds), aspectRatio: aspect, ...(model ? { model } : {}) } : service === "blockrun-image-gen" && model ? { model } : {};
+  const quote = generationPrice({service,prompt,settings:selectedSettings});
+  const readiness = generationReadiness({service,settings:selectedSettings});
+  const estimate=quote.reservationMicros;
   const canGenerate=budget?.availableMicros!==null&&budget?.availableMicros!==undefined&&budget.availableMicros>=estimate;
   const pendingKey = `robyn-media-pending:${projectId}`;
   const [pending, setPending] = useState<Record<string, unknown> | null>(() => {
@@ -47,7 +51,13 @@ export function MediaPanel({ projectId, assets, close, onSaved, onOpen }: { proj
   }
   async function submit(request: Record<string, unknown>) {
     setBusy(true); setError(""); setPending(request);
-    try { localStorage.setItem(pendingKey, JSON.stringify(request)); } catch { /* Jobs also remain visible in the server-backed list. */ }
+    try { localStorage.setItem(pendingKey, JSON.stringify(request)); }
+    catch {
+      // Sending without durable identity would make a lost acknowledgement
+      // impossible to retry safely after a reload.
+      setError("This browser could not save the request identity, so no additional request was sent. Allow site storage and retry, or reconnect an existing job below.");
+      setBusy(false); return;
+    }
     try {
       const response=await fetch("/api/studio/media/jobs",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(request)});
       if(!response.ok){
@@ -65,6 +75,7 @@ export function MediaPanel({ projectId, assets, close, onSaved, onOpen }: { proj
   }
   async function generate(event: React.FormEvent) {
     event.preventDefault();
+    if (!readiness.available) { setError(readiness.explanation); return; }
     const settings = service === "treza-video" ? { seconds: Number(seconds), aspectRatio: aspect, ...(model ? { model } : {}) } : service === "blockrun-image-gen" && model ? { model } : {};
     const asset = assets.find(asset => asset.id === source);
     await submit({ projectId, operationId: crypto.randomUUID(), operation: "generate", name, service, prompt, settings, inputs: service === "blockrun-image-edit" && asset?.current_revision_id ? [{ assetId: asset.id, revisionId: asset.current_revision_id }] : [] });
@@ -86,12 +97,13 @@ export function MediaPanel({ projectId, assets, close, onSaved, onOpen }: { proj
         {searched && !results.length && <p className="studio-note">No supported CC0 or CC BY files matched this page of results. Try another search.</p>}
       </> : <form className="studio-form" onSubmit={generate}><p>Generate through Perflo on your studio workstation. Image, speech and video each have a recorded acquisition; not every model, size, voice or duration has been accepted. Options awaiting their first acceptance are unavailable. Only completed, saved sources become available to the Crafts.</p><label>Service<select value={service} onChange={event => { setService(event.target.value); setModel(""); }}>{generationServices.map(service => <option key={service.id} value={service.id} disabled={!service.available}>{service.name}</option>)}</select></label>
         <label>Asset name<input required maxLength={160} value={name} onChange={event => setName(event.target.value)}/></label><label>Prompt or speech text<textarea required rows={4} maxLength={service === "treza-video" ? 2000 : 10000} value={prompt} onChange={event => setPrompt(event.target.value)}/></label>
-        {service === "blockrun-image-gen" && <label>Model<select value={model} onChange={event => setModel(event.target.value)}><option value="">CogView-4</option><option value="google/nano-banana">Nano Banana</option></select></label>}
+        <p className="studio-note" role="status">{readiness.label}: {Object.values(readiness.profile).join(" · ")}. {readiness.explanation}</p>
+        {service === "blockrun-image-gen" && <label>Model<select value={model} onChange={event => setModel(event.target.value)}><option value="">CogView-4 · 1024 × 1024</option><option value="google/nano-banana" disabled>Nano Banana · acceptance pending</option></select></label>}
         {service === "blockrun-image-edit" && <label>Saved source image<select required value={source} onChange={event => setSource(event.target.value)}><option value="">Choose an acquired image</option>{assets.filter(asset => asset.asset_kind === "image" && asset.current_revision_id).map(asset => <option key={asset.id} value={asset.id}>{asset.name}</option>)}</select></label>}
-        {service === "treza-video" && <div className="media-inline"><label>Duration<select value={seconds} onChange={event => setSeconds(event.target.value)}>{[5, 10, 15].map(value => <option key={value} value={value}>{value} seconds</option>)}</select></label><label>Aspect ratio<select value={aspect} onChange={event => setAspect(event.target.value)}><option>16:9</option><option>9:16</option></select></label><label>Model<select value={model} onChange={event => setModel(event.target.value)}><option value="">MiniMax H3</option><option value="seedance-2.5">Seedance 2.5</option></select></label></div>}
-        <p className="studio-note">Maximum reservation estimate: {dollars(estimate)}. This may exceed the final provider charge; unused allowance is released once the final receipt is known. The Director has {budget?.availableMicros===null||!budget?"an unverified allowance":`${dollars(budget.availableMicros)} available`}. Actual charges are recorded after generation.</p>
+        {service === "treza-video" && <div className="media-inline"><label>Duration<select value={seconds} onChange={event => setSeconds(event.target.value)}>{[5, 10, 15].map(value => <option key={value} value={value} disabled={value!==5}>{value} seconds{value!==5?" · acceptance pending":""}</option>)}</select></label><label>Aspect ratio<select value={aspect} onChange={event => setAspect(event.target.value)}><option>16:9</option><option value="9:16" disabled>9:16 · acceptance pending</option></select></label><label>Model<select value={model} onChange={event => setModel(event.target.value)}><option value="">MiniMax H3</option><option value="seedance-2.5" disabled>Seedance 2.5 · acceptance pending</option></select></label></div>}
+        <p className="studio-note">Estimated provider charge: {dollars(quote.expectedMicros)}. Maximum reservation: {dollars(estimate)}. {quote.basis} Unused allowance is released once the final receipt is known. The Director has {budget?.availableMicros===null||!budget?"an unverified allowance":`${dollars(budget.availableMicros)} available`}. Actual charges are recorded after generation.</p>
         {!canGenerate&&<p role="status">{budget?.reason??"The Director needs more allowance for this generation. Choose a cheaper option or adjust the Studio budget."} <a href="/dashboard/settings#studio-budget" target="_blank" rel="noreferrer">Manage budget ↗</a></p>}
-        <button className="studio-button primary" disabled={busy || Boolean(pending) || !canGenerate || !workstationAvailable}>Generate</button>
+        <button className="studio-button primary" disabled={busy || Boolean(pending) || !readiness.available || !canGenerate || !workstationAvailable}>Generate</button>
       </form>}
       <p><a href="/dashboard/settings#studio-budget" target="_blank" rel="noreferrer">Manage the Studio AI budget ↗</a></p>
       {tab==="stock"&&searched&&<div className="media-inline"><button className="studio-button" disabled={busy||searchPage===1||searchSignature!==JSON.stringify({kind,query})} onClick={()=>void search(undefined,searchPage-1)}>Previous results</button><span>Page {searchPage}</span><button className="studio-button" disabled={busy||searchPage>=25||!results.length||searchSignature!==JSON.stringify({kind,query})} onClick={()=>void search(undefined,searchPage+1)}>Next results</button></div>}

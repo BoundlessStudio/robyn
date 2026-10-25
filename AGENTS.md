@@ -30,7 +30,7 @@ Messaging/integration legacy routes still require owner checks. Messaging creden
 Follow [SETUP.md](SETUP.md). Setup uses a private checksummed migration ledger and atomic incremental execution. Existing installations require a verified explicit baseline; never blindly replay migration files or clear the ledger to bypass an error. The two historical 0007 filenames are distinct ledger entries. Add a new migration for schema corrections.
 
     npm ci
-    npx playwright install chromium
+    npx playwright install chromium firefox webkit
     npm run typecheck
     npm test
     npm run build

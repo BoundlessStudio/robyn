@@ -70,8 +70,8 @@ these steps in order; don't skip the checks.
    - `401` → my Supabase token is wrong/expired; ask for a new one.
    - `404` → `NEXT_PUBLIC_SUPABASE_URL` points at a project this token can't see.
 6. **Verify.** Run `npm run typecheck`, `npm test`, `npm run build` and `npm run test:public`.
-   Install the declared Playwright browser first (`npx playwright install chromium`). CI also checks
-   the public pages in Firefox and WebKit; those checks do not certify native editors in those engines.
+   Install all three Playwright engines first (`npx playwright install chromium firefox webkit`). Media
+   dialog and public-page checks use them; those checks do not certify every native editor in those engines.
 7. **Start.** Run `npm run dev` and report the URL (<http://localhost:3000>). The public homepage
    accepts access requests; studio accounts are invited individually. Public signup is disabled. Remind me
    that creating an agent needs a funded wallet — a `402` at create time is the wallet, not a bug.

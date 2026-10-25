@@ -1,0 +1,450 @@
+{
+  "checkedAt": "2026-10-25T19:16:45.137Z",
+  "scope": "R13 media acceptance and R18 browser/accessibility candidate follow-up; no production rollout",
+  "source": {
+    "webBaseCommit": "6261ca4456478bc9eb7c3d6b65f04bc23a930527",
+    "runtimeCommit": "b38019aaeedcee20b299cf1fad6b683ec10c0720",
+    "runtimeChanged": false,
+    "normalization": "UTF-8 text, CRLF normalized to LF; excludes this generated evidence record",
+    "files": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "919104f233e7f6cbccf4dc982b09929cdf16849a1751ae77703618e6f50ca5a0"
+      },
+      {
+        "path": "README.md",
+        "sha256": "fb900b8eb335aa0a53407b1abe875f7ba897cde1aefff674f6671b1548d33f56"
+      },
+      {
+        "path": "SETUP.md",
+        "sha256": "d1b1ef5e1240c94886325066319f08b13019ffd98e6fd0555bd2c8d142ed7491"
+      },
+      {
+        "path": "docs/BROWSER-SUPPORT.md",
+        "sha256": "7cef06462e7ec076e6750986966f4faac9fa15c9aee71f75ef922cc2d8a54bf3"
+      },
+      {
+        "path": "docs/CURRENT-STATUS.md",
+        "sha256": "4b1031f13daf46cffd29801bf696b3bed0ff9b33e596e1dd0a0a7b5d12ef120f"
+      },
+      {
+        "path": "docs/OPERATIONS.md",
+        "sha256": "7d75536122697cefed70de8da8ef72b5669b2e5a58552ed599a947f25f16c1a2"
+      },
+      {
+        "path": "docs/PLAN.md",
+        "sha256": "1b288d4040c9043b23ff7d6e35bcb24032fd2736017dce001491b1bfed623b59"
+      },
+      {
+        "path": "docs/PROJECT-REVIEW-2026-10-25.md",
+        "sha256": "17d7b508cb8bf5444aad73e27b3a625932262bbcf7f48dd3413ad63aa7d29b60"
+      },
+      {
+        "path": "docs/RELEASE-2026-10-25.md",
+        "sha256": "d67426e9c1b4e203fa56a7748d417dd91b2b0e7fc9c24d1a002e2fa0e5fbb253"
+      },
+      {
+        "path": "package.json",
+        "sha256": "e00d739d741e06a3bfdfd7915e50bd3c29682624c7bd233b5fa2f250045d9d05"
+      },
+      {
+        "path": "src/app/support/page.tsx",
+        "sha256": "55b9fa89878d5e0286a4b419978a343e845ed89037df502f85ebd4d2529b4f44"
+      },
+      {
+        "path": "src/components/studio/MediaPanel.tsx",
+        "sha256": "82b100978b115726f70833351c6ada059ccbce22af37a05f76445ded8ea92efd"
+      },
+      {
+        "path": "src/components/studio/ProjectWorkspace.tsx",
+        "sha256": "79362a85938f1269288d46a7fd51a26f4d549abb49821fe2f2dec394365dee3d"
+      },
+      {
+        "path": "src/studio/media-server.ts",
+        "sha256": "73d3ccbdeeb3c05d80d2c77864281ee195ff61221bf4b5c638b8356c57bb97af"
+      },
+      {
+        "path": "src/studio/media-status.ts",
+        "sha256": "e7714e96e8ae9c002d62b0be45fb163eaf995305b14ea985491cb1e4b2d46659"
+      },
+      {
+        "path": "src/studio/media-worker.py",
+        "sha256": "13dcfcb994a7c87121b71201a539a8bf9c0202d939231097a5336adf5e92215f"
+      },
+      {
+        "path": "src/studio/media.ts",
+        "sha256": "38a5658af79259de6ef8ffd1b632066ecddaa93d194e0e0b4fa553a77391540f"
+      },
+      {
+        "path": "tests/media-worker.test.mjs",
+        "sha256": "c61a0bafa0e0c27e8d7f472dcb9ddf6bfb813e42d0efcc7ad0902ab028b0e03e"
+      },
+      {
+        "path": "tests/recovery-boundaries.test.mjs",
+        "sha256": "cb2d11ff0d81325258f85daf84021495826113ab80a3dc6308d67a6bfd56c8bc"
+      },
+      {
+        "path": "docs/MEDIA-ACCEPTANCE.md",
+        "sha256": "d4ea2c90f6658b4e6202e7101ef5f1ef8a13ad8f00a8896504ebc2244a7589f1"
+      },
+      {
+        "path": "src/studio/media-readiness.ts",
+        "sha256": "28551dfd8dbcd49948799290513db6ff5d647f47b90886a084b40855065ba0ae"
+      },
+      {
+        "path": "tests/helpers/media-contracts.py",
+        "sha256": "98705d9412fd63124dabe49fe12bfec7bc10c8178866e9b0e7509bd3c57afd22"
+      },
+      {
+        "path": "tests/helpers/media-ui.mjs",
+        "sha256": "1de1ae12ccee0729659e5b6a4ea17e211d0f2109e16a5ab09dfec6ba261514f6"
+      },
+      {
+        "path": "tests/media-accessibility.test.mjs",
+        "sha256": "e8a2859c59fae83a2338393ef8d651f6b4ac11db82c1c4e29ce627cd682aa704"
+      },
+      {
+        "path": "tests/media-readiness.test.ts",
+        "sha256": "04e6d7dff9e28b903f4f5191ecabf6cab0888656b6fcec47fa47f137159ee1f0"
+      }
+    ]
+  },
+  "verification": {
+    "webTests": {
+      "passed": 81,
+      "failed": 0,
+      "command": "npm test",
+      "concurrency": 4
+    },
+    "typecheck": "passed",
+    "productionBuild": "passed",
+    "fullAudit": {
+      "total": 0
+    },
+    "public": {
+      "cases": 18,
+      "layoutAxePassed": 18,
+      "keyboardPassed": 14,
+      "keyboardUnverified": [
+        {
+          "browser": "webkit",
+          "path": "/support",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "reason": "Windows WebKit excludes implicit links in its default keyboard settings; reproduced with a plain HTML anchor. Full link navigation remains unverified."
+        },
+        {
+          "browser": "webkit",
+          "path": "/privacy",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "reason": "Windows WebKit excludes implicit links in its default keyboard settings; reproduced with a plain HTML anchor. Full link navigation remains unverified."
+        },
+        {
+          "browser": "webkit",
+          "path": "/support",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "reason": "Windows WebKit excludes implicit links in its default keyboard settings; reproduced with a plain HTML anchor. Full link navigation remains unverified."
+        },
+        {
+          "browser": "webkit",
+          "path": "/privacy",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "reason": "Windows WebKit excludes implicit links in its default keyboard settings; reproduced with a plain HTML anchor. Full link navigation remains unverified."
+        }
+      ]
+    },
+    "mediaPanel": {
+      "engines": [
+        "Chromium 156.0.8078.4",
+        "Firefox 157.0",
+        "WebKit 27.2"
+      ],
+      "checks": [
+        "WCAG A/AA axe",
+        "keyboard open/Escape/focus return",
+        "forced colors and reduced motion",
+        "minimum desktop width and zoom-equivalent CSS viewport reflow",
+        "same pending operation after remount at zero allowance",
+        "original embedded editor and unsaved state retained",
+        "no new POST if browser identity persistence fails"
+      ]
+    },
+    "resourceIncident": "Initial unrestricted full suite alongside nine native WASM sessions exhausted local memory. Closed those sessions, capped test workers at four, and complete suite passed. Native reopens then ran sequentially.",
+    "publicVisualReview": [
+      "Support desktop and mobile initial view",
+      "Support browser/accessibility guidance desktop and mobile",
+      "Media desktop, minimum width, forced colors and zoom-equivalent viewport"
+    ]
+  },
+  "media": {
+    "historicalPaidMicros": 439483,
+    "newPaidMicros": 0,
+    "pendingApprovalMicros": 130000,
+    "preparedBatchCeilingMicros": 127501,
+    "promotedServices": [],
+    "nativeChecks": [
+      {
+        "app": "photocraft",
+        "service": "blockrun-image-gen",
+        "sourceExport": {
+          "path": "export/source.jpg",
+          "sha256": "b56fa827e9db77a1b6e920d7feb6a8b74896ad56289069671f15ea580528097d",
+          "bytes": 33813
+        },
+        "preserved": true,
+        "editor": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/photocraft/v0.12.0-0.1.4/?robyn&webgl",
+        "saveConfirmed": true,
+        "reopened": true,
+        "sourceRevisionRetained": true
+      },
+      {
+        "app": "soundcraft",
+        "service": "blockrun-tts",
+        "sourceExport": {
+          "path": "export/editing.wav",
+          "sha256": "c44d76be528a05981e9332de83184f620884f81e6f6325cdc091f00a513cf427",
+          "bytes": 280972
+        },
+        "preserved": true,
+        "editor": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/soundcraft/v0.11.0-0.1.4/?robyn&webgl",
+        "saveConfirmed": true,
+        "reopened": true,
+        "sourceRevisionRetained": true
+      },
+      {
+        "app": "filmcraft",
+        "service": "treza-video",
+        "sourceExport": {
+          "path": "export/editing.mp4",
+          "sha256": "1ae56c5c663471cfa8f71028c603d391399e83593256e798d07048ad05ed4e3e",
+          "bytes": 872818
+        },
+        "preserved": true,
+        "editor": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/filmcraft/v0.10.0-0.1.4/?robyn",
+        "saveConfirmed": true,
+        "reopened": true,
+        "sourceRevisionRetained": true
+      }
+    ],
+    "nativeScope": "Actual pinned native editors, ordinary picker/menu input, isolated bridge and local saved packages. Film import was into its media library. No production revisions, employee continuation or new final video render.",
+    "contractSources": [
+      "https://blockrun.ai/docs/api-reference/image-generation",
+      "https://blockrun.ai/docs/api-reference/image-editing",
+      "https://blockrun.ai/docs/api-reference/text-to-speech"
+    ],
+    "rightsReview": "Per-service managed-provider/model terms remain a promotion requirement; recorded provenance is not a blanket commercial license."
+  },
+  "nativeStartup": {
+    "platform": "Windows",
+    "chromium": {
+      "version": "156.0.8078.4",
+      "apps": [
+        "photocraft",
+        "soundcraft",
+        "filmcraft"
+      ],
+      "savedPackagesOpened": true
+    },
+    "comparisons": [
+      {
+        "engine": "Firefox",
+        "version": "157.0",
+        "apps": [
+          "photocraft",
+          "soundcraft",
+          "filmcraft"
+        ],
+        "savedPackagesOpened": true
+      },
+      {
+        "engine": "Playwright WebKit",
+        "version": "27.2",
+        "apps": [
+          "photocraft",
+          "soundcraft",
+          "filmcraft"
+        ],
+        "savedPackagesOpened": true
+      }
+    ],
+    "scope": "Startup status and real file load only for comparison engines, not physical Safari or full editing/playback/GPU acceptance."
+  },
+  "nativeAccessibility": {
+    "app": "photocraft",
+    "adapter": "0.1.4",
+    "findings": [
+      "Native text-entry input has no accessible name (axe label violation).",
+      "Canvas tool controls are not individually exposed in the browser accessibility tree."
+    ],
+    "picker": "Named search/close/place controls and keyboard focus return observed.",
+    "accepted": false
+  },
+  "deferredByOwner": [
+    "Storage-file backups",
+    "recoverable database point",
+    "production rollout",
+    "hosted recovery checks"
+  ],
+  "remaining": [
+    "three preview-service paid acquisitions awaiting approval",
+    "service-specific rights acceptance",
+    "additional generation options",
+    "native text-entry and semantic accessibility",
+    "physical phones/Safari, GPU comparisons, full native keyboard/screen-reader and actual OS/browser zoom checks"
+  ],
+  "cleanup": {
+    "qaBrowsersClosed": true,
+    "director": "Existing owned Director woke for free catalog discovery; final status sleeping."
+  },
+  "artifactHashes": [
+    {
+      "path": "artifacts/qa/r13-r18-20261025/catalog-sanitized.json",
+      "bytes": 8508,
+      "sha256": "2b500fa7b6abc1fb543306448371a63d598a9bba8fb0553ae50e1dac19ba8af5",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/acceptance-plan.json",
+      "bytes": 1495,
+      "sha256": "edcb2e34941f81b9186f466bb8af38d3a2384691fd3cc64d0f5497e681c837a2",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/qa-inventory.json",
+      "bytes": 1295,
+      "sha256": "dd9883dba2266720b4d50d6047b48e99b25cd5981277e3af9e8453beb6333fe4",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/native-startup.json",
+      "bytes": 2445,
+      "sha256": "2b7ef56a01bc4258183570820737922ee126c765fb3e95874bbee718e6977a16",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/native-accessibility.json",
+      "bytes": 1081,
+      "sha256": "399f7b27973c6529c8ecb24a31b0185767f635cb763d9cea1d39ff65043d0eb9",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/existing-paid-native-saves.json",
+      "bytes": 4421,
+      "sha256": "28d5f47e1c17a2c5a1e6c7ce1d52e4b5ed4d4290a74076d82b05a4514383a5e4",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/existing-paid-native-reopen.json",
+      "bytes": 826,
+      "sha256": "61562923f7304a144a6e24fdeb3337c2ff5372cf638dca6a69c469176c3cb8c8",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/source-preservation.json",
+      "bytes": 778,
+      "sha256": "ed3b0f9703794e791fcae4a21071454679d5ba776363d79ade93b0d4276ed0b4",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/typecheck.log",
+      "bytes": 61,
+      "sha256": "bfb6b9bb7a8b00f34503cccf733ee41de1c63849ef1c731da2a0a2fae8af1a0b",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/web-tests.log",
+      "bytes": 8965,
+      "sha256": "e55d3960c6f60f89abd557e37963c99fa58a5c0cffd3f4560821c37a930a5113",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/build.log",
+      "bytes": 3883,
+      "sha256": "3ead00bfabdf62667e9f036d984d888b2be0703b870d4a47880c342c575446e2",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/npm-audit.json",
+      "bytes": 389,
+      "sha256": "c5e611b491943cf2883066c842ba42443983377c4f9ad58b89d1bc199b025c4b",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/public/results.json",
+      "bytes": 7051,
+      "sha256": "e0f864e5dcf0dd926c4fc1c28da8757b82f5b297e91b77c4ff18c8f7c32df91f",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/media-speech-desktop.png",
+      "bytes": 72121,
+      "sha256": "1b3b17655d72e132a638fca2197b48e58ad1b3cdd8dd8f0300f2a865ba65a1bf",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/media-video-1200.png",
+      "bytes": 63666,
+      "sha256": "2781d9731a7f9f0ec8d8a94172cbd2817fe9bb0b0e1dc91113289641f2d1d563",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/media-high-contrast.png",
+      "bytes": 44069,
+      "sha256": "9e0ada84ff014ea3332361fac3c7714e93087e08cfb0ba5c5920dd269633fd85",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/media-reflow-top.png",
+      "bytes": 26186,
+      "sha256": "6f70e6789c817942512fc05beff7043bda10e64c828a1a9d014ff1ecf09a0d4c",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/media-reflow-action.png",
+      "bytes": 20448,
+      "sha256": "8d70ed38997a0a251df2f96eb9e58b601c399456cbd2a2d2bec2221d76dda61c",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/photo-generated-reopened.png",
+      "bytes": 274511,
+      "sha256": "0cdf9a0fa52706ca9ea71318713f91e32e7b9fc2a99ea41e965304508e2109bb",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/sound-generated-reopened.png",
+      "bytes": 143589,
+      "sha256": "749db49db155d4778bd4981860022846175ffff8f601fe161e4adbdb920251c6",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/film-generated-reopened.png",
+      "bytes": 199875,
+      "sha256": "dd48fb5b773039d8c118b42b1f25222e9d9c9b5d7092ed5805e2cc4419be0c7c",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/support-browser-help-desktop.png",
+      "bytes": 94566,
+      "sha256": "f4bf7fb710967ef106be014984ff70b68fc3ba9de99a1e1b917d896f74cdbcbe",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/r13-r18-20261025/support-browser-help-mobile.png",
+      "bytes": 49027,
+      "sha256": "0cdf5a3dd004b7b9478e4429701c973afc041a53b5bb4e4bafc2f5a18b5a834f",
+      "access": "private local QA archive; content not published"
+    }
+  ]
+}

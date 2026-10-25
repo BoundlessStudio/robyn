@@ -219,6 +219,49 @@ def output_from(result, destination):
     return False
 
 
+def generation_body(spec):
+    """Build the reviewed vendor contract; never depend on changing defaults."""
+    service = spec.get("service")
+    text = spec.get("prompt")
+    settings = spec.get("settings", {})
+    limit = 1000 if service == "blockrun-ai-api-v1-audio-sound-effects" else 2000 if service == "treza-video" else 10000
+    if not isinstance(text, str) or not text.strip() or len(text) > limit or not isinstance(settings, dict):
+        raise ValueError("media_request_contract_changed")
+    if service == "paysponge-gemini-image":
+        if settings:
+            raise ValueError("media_request_contract_changed")
+        return {"contents": [{"parts": [{"text": text}]}]}
+    if service == "blockrun-image-gen":
+        defaults = {"model": "zai/cogview-4", "size": "1024x1024"}
+        allowed = {"model": ["zai/cogview-4", "google/nano-banana"], "size": ["512x512", "768x768", "1024x1024", "768x1344", "1344x768", "1440x1440"]}
+    elif service == "blockrun-image-edit":
+        defaults = {"model": "google/nano-banana", "size": "1024x1024"}
+        allowed = {"model": ["google/nano-banana"], "size": ["1024x1024"]}
+    elif service == "blockrun-tts":
+        defaults = {"voice": "sarah", "response_format": "mp3", "speed": 1}
+        allowed = {"voice": ["sarah", "george"], "response_format": ["mp3", "wav", "opus"], "speed": [0.7, 0.8, 0.9, 1, 1.1, 1.2]}
+    elif service == "blockrun-ai-api-v1-audio-sound-effects":
+        defaults = {"duration_seconds": 5, "response_format": "mp3"}
+        allowed = {"duration_seconds": [5], "response_format": ["mp3", "wav", "opus"]}
+    elif service == "treza-video":
+        defaults = {"model": "minimax-h3", "seconds": 5, "aspectRatio": "16:9"}
+        allowed = {"model": ["minimax-h3", "seedance-2.5"], "seconds": [5, 10, 15], "aspectRatio": ["16:9", "9:16"]}
+    else:
+        raise ValueError("media_request_contract_changed")
+    if any(key not in allowed or value not in allowed[key] for key, value in settings.items()):
+        raise ValueError("media_request_contract_changed")
+    body = {**defaults, **settings}
+    if body.get("model") == "google/nano-banana" and body["size"] != "1024x1024":
+        raise ValueError("media_request_contract_changed")
+    if service == "blockrun-tts":
+        body.update(model="elevenlabs/flash-v2.5", input=text)
+    elif service == "blockrun-ai-api-v1-audio-sound-effects":
+        body["text"] = text
+    else:
+        body["prompt"] = text
+    return body
+
+
 def generate(original):
     receipt = ROOT / "provider-receipt.json"
     if receipt.exists():
@@ -242,13 +285,7 @@ def generate(original):
         from decimal import Decimal
         if vendor.get("price", {}).get("currency") != "USD" or int(Decimal(vendor["price"]["amount"]) * 1000000) > spec["maxCostMicros"]:
             raise ValueError("perflo_price_exceeds_ceiling")
-        body = dict(spec.get("settings", {}))
-        if spec["service"] == "paysponge-gemini-image":
-            body = {"contents": [{"parts": [{"text": spec["prompt"]}]}]}
-        elif spec["service"] == "blockrun-tts":
-            body["input"] = spec["prompt"]
-        else:
-            body["prompt"] = spec["prompt"]
+        body = generation_body(spec)
         if spec["service"] == "blockrun-image-edit":
             source = ROOT / "edit-source"
             download(REQUEST["inputUrl"], source)

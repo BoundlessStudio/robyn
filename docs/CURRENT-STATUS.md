@@ -10,6 +10,8 @@ The last recorded production web release is `dpl_DHoVNKVXKsYjQ1UTQxJUE6cgTW9A`: 
 
 The paired draft PRs now pass hosted Linux CI: 74 web tests, 68 runtime tests, typecheck, full audits, builds and 18 public layout/axe/keyboard combinations. Both main branches currently have no required-check protection.
 
+The R13/R18 follow-up adds exact provider-option gates, corrected contracts/prices and three-engine Media-panel regressions. The current local suite has **81 passing web tests**. [Media acceptance](MEDIA-ACCEPTANCE.md) and [browser support](BROWSER-SUPPORT.md) separate native evidence, preview services and accessibility limits. The owner has deferred database recovery, production rollout and hosted recovery checks as well as Storage-file backups; these are not the current next actions.
+
 Use [RELEASE-2026-10-25.md](RELEASE-2026-10-25.md) for source commits, digests, migration adoption, editor pins and rollback boundaries. Never replay the historical migration files to reconstruct an existing database. [SETUP.md](../SETUP.md) documents explicit baselining and checksummed incremental setup.
 
 ## Acceptance matrix
@@ -25,25 +27,25 @@ Use [RELEASE-2026-10-25.md](RELEASE-2026-10-25.md) for source commits, digests, 
 | Director campaigns | Recorded persisted specialist dependencies and final review; uncertain dispatch stays fenced |
 | Studio AI allowance | Recorded hosted automatic/custom allocation and retry. Local tests now cover a lost provider synchronization response |
 | Commons media | Recorded image/audio/video acquisition, provenance, Craft placement and native reopening. Search now has pages; source acquisition now has space admission |
-| blockrun-image-gen | One real image acquisition recorded; all offered models/sizes are not accepted by that single result |
-| blockrun-tts | One real speech acquisition recorded; broader voice/format/speed acceptance remains |
-| treza-video | One five-second MiniMax H3 acquisition and receipt recovery recorded; other options remain outside that proof |
+| blockrun-image-gen | CogView-4 1024 × 1024 acquisition plus exact-image placement/save/reopen in PhotoCraft; other models/sizes are gated |
+| blockrun-tts | Flash/Sarah/MP3/speed 1 acquisition plus WAV import/save/reopen in SoundCraft; other options are gated |
+| treza-video | Five-second MiniMax H3, 16:9 acquisition/receipt plus editing-copy import/save/reopen in FilmCraft; other options are gated |
 | Gemini image, image edit, sound effects preview services | Catalog discovery only. Local candidate disables new acquisitions and retains recovery of existing request IDs |
 | Generated music / reference-image video | Not accepted; music generation is not implemented and video reference inputs are rejected |
-| Browser/device coverage | Chromium desktop is the tested baseline; public mobile emulation recorded. See [BROWSER-SUPPORT.md](BROWSER-SUPPORT.md) for unverified environments |
+| Browser/device coverage | Chromium remains the native baseline. Media-panel keyboard/axe/reflow passes in three engines; Photo/Sound/Film startup also passes in Firefox/WebKit. Physical devices and full canvas accessibility remain unaccepted. See [BROWSER-SUPPORT.md](BROWSER-SUPPORT.md) |
 | Recovery hardening | Local maintained tests cover setup replay, full composer retry identity, media capacity/cancellation/settlement, old revisions, URL renewal, lost budget acknowledgement and isolated database restore |
 | Support | `support@robyn.academy` forwards to `developer@venatiostudios.com`; provider-reported delivery and a successful webhook verified October 25 |
-| Backups | Supabase dashboard confirms the Free plan has no included project backups. Hosted database restore remains open. Separate Storage-file backups are explicitly deferred by the owner |
+| Backups | Dashboard observation: Free plan, no included project backups. Database recovery and hosted checks, plus Storage-file backups, are owner-deferred |
 
-The three historical paid media checks total **$0.439483**. The remediation tests use isolated fixtures and do not add paid generations or employee turns. Some per-Craft verification fields describe an earlier startup checkpoint; the later hosted handoff and R2 acceptance in this index supersede those dated conclusions without rewriting their historical evidence.
+The three historical paid media checks total **$0.439483**. The follow-up reused those files in actual native editors through an isolated bridge, preserving exact bytes and source revisions. It added no paid generations, employee turns or production revisions. A three-service preview acceptance batch awaits the requested $0.13 approval. Some per-Craft verification fields describe an earlier startup checkpoint; later central evidence supersedes those dated conclusions without rewriting their history.
 
 ## Before broader invitations
 
-- Roll out and verify the local candidate, including incremental migration adoption and workstation 0.1.23 on an idle employee.
-- Establish a database restore point and rehearse the hosted recovery procedure. No backup retention or recovery-time promise is currently established.
+- Future, owner-deferred: roll out and verify the candidate, including incremental migrations and workstation 0.1.23 on an idle employee.
+- Future, owner-deferred: establish database recovery and rehearse hosted recovery. No retention or recovery-time promise is established.
 - Complete service/option acceptance before promoting additional generation services. Preserve the explicit preview policy.
 - Exercise the owner-authorized cleanup in the hosted candidate. Local coverage now includes explicit abandoned uploads and confirmed native transfer snapshots; unsaved working folders remain retained.
 - Complete browser, physical-phone public-site and native-editor accessibility checks before extending support claims.
 - Review applicable terms and the manual export/closure process before broader invitations or subscriptions.
 
-The next actions and safe stopping conditions are in [OPERATIONS.md](OPERATIONS.md). Storage-file backups, compact native editors, subscription billing and extra speculative homepage performance work remain outside the current scope.
+The operator procedures are retained in [OPERATIONS.md](OPERATIONS.md). Recovery/rollout and Storage-file backups remain deferred; compact native editors, subscription billing and extra speculative homepage performance work remain outside the current scope.

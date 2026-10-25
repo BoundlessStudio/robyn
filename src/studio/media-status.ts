@@ -1,4 +1,7 @@
 const explanations: Record<string, string> = {
+  media_request_contract_changed: "These generation options no longer match the reviewed provider request. No new payment was submitted. Contact support before creating a replacement request.",
+  perflo_price_exceeds_ceiling: "The provider's current price exceeds this request's reserved allowance. No new payment was submitted. Review the price before starting a new request.",
+  perflo_service_unavailable: "This generation service is unavailable in the current provider catalog. No new payment was submitted. Existing receipts remain recoverable.",
   media_disk_space_required: "The workstation needs more free space before processing can continue. Contact support, then reconnect this same job; do not start a second purchase.",
   payment_outcome_unknown: "The payment acknowledgement was lost and no task ID is available. Allowance remains reserved. Support must check the provider's records before resolving it.",
   payment_settlement_pending: "The provider has not reported a final charge. Check the existing receipt to reconnect; this does not make another purchase.",

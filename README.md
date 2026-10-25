@@ -10,10 +10,10 @@ The October 25 review fixes are a **local release candidate**, separate from the
 
 ## Develop and verify
 
-Use Node 24 and Python 3. The browser regression fixtures require Playwright Chromium.
+Use Node 24 and Python 3. Browser regression fixtures require Playwright Chromium, Firefox and WebKit.
 
     npm ci
-    npx playwright install chromium
+    npx playwright install chromium firefox webkit
     npm run dev
 
 Configure secrets privately using [SETUP.md](SETUP.md). Never print or commit .env.local. Fresh setup uses a checksummed migration ledger. Existing deployments require a verified explicit baseline before incremental execution; do not replay old migrations. Native workstations require a funded Agent37 account.

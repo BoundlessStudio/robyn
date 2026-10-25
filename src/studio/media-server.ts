@@ -3,7 +3,8 @@ import { createHash } from "node:crypto";
 import type { DB } from "@/lib/auth";
 import { ApiError } from "@/lib/http";
 import { dbFailure, id, ownedProject } from "./server";
-import { generationServices, parseMediaRequest, parseMediaSearch, publicMediaJob, type MediaIdentity, type MediaJob } from "./media";
+import { parseMediaRequest, parseMediaSearch, publicMediaJob, type MediaIdentity, type MediaJob } from "./media";
+import { generationReadiness } from "./media-readiness";
 import { searchStock, type StockRecord } from "./media-providers";
 import {ownedBudgetEmployee} from "./employee-budgets";
 import {paidCapacity} from "./paid-capacity";
@@ -41,12 +42,12 @@ export async function createMediaJob(db: DB, identity: MediaIdentity, input: Rec
   const operationId = id(input.operationId, "operation ID");
   let request;
   try { request = parseMediaRequest(input); } catch (error) { throw new ApiError(400, "invalid_media_request", (error as Error).message); }
-  if (request.operation === "generate" && !generationServices.find(service => service.id === request.service)?.available) {
+  if (request.operation === "generate" && !generationReadiness(request).available) {
     // Existing operation IDs still reach the SQL idempotency check. Withdrawing
     // an option must never prevent reconciliation of a previously accepted job.
     const { data: existing, error } = await db.from("studio_media_jobs").select("id").eq("workspace_id",identity.workspaceId).eq("created_by",identity.userId).eq("project_id",identity.projectId).eq("operation_id",operationId).maybeSingle();
     mediaDbFailure(error);
-    if (!existing) throw new ApiError(409,"media_acceptance_pending","This service is awaiting acquisition and editable-file acceptance. Choose an available service.");
+    if (!existing) throw new ApiError(409,"media_acceptance_pending","This exact generation option is awaiting acquisition and editable-file acceptance. Choose an available option.");
   }
   if (!process.env.AGENT37_API_KEY) throw new ApiError(503, "media_workstation_unavailable", "Media acquisition requires a configured studio workstation.");
   const { data, error } = await db.rpc("create_media_job", { p_workspace: identity.workspaceId, p_user: identity.userId, p_project: identity.projectId, p_operation: operationId, p_request: request, p_hash: employeeHash ?? null });
