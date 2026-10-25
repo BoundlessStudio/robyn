@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-25T19:16:45.137Z",
+  "checkedAt": "2026-10-25T19:26:04.004Z",
   "scope": "R13 media acceptance and R18 browser/accessibility candidate follow-up; no production rollout",
   "source": {
     "webBaseCommit": "6261ca4456478bc9eb7c3d6b65f04bc23a930527",
@@ -108,7 +108,23 @@
         "sha256": "04e6d7dff9e28b903f4f5191ecabf6cab0888656b6fcec47fa47f137159ee1f0"
       }
     ],
-    "webImplementationCommit": "e9970ebb39010bab812ebe81c55b0ac2ea15a325"
+    "webImplementationCommit": "e9970ebb39010bab812ebe81c55b0ac2ea15a325",
+    "followups": [
+      {
+        "commit": "468f80dd69389883a7c9677e024e466c914163b6",
+        "description": "Align employee tool guidance and creator service labels with the accepted generation profiles.",
+        "files": [
+          {
+            "path": "src/studio/employee-tools.ts",
+            "sha256": "b2788081c9a804b0d6652cdd10f61c83dd48d568418bca42b4523e8a8df0f2b5"
+          },
+          {
+            "path": "src/studio/media.ts",
+            "sha256": "58f9bd3ab6bf9dffc27102f4d9fc3beacbe4316aed7acbc7ca3e92571a0bd84d"
+          }
+        ]
+      }
+    ]
   },
   "verification": {
     "webTests": {
@@ -186,7 +202,22 @@
       "Support desktop and mobile initial view",
       "Support browser/accessibility guidance desktop and mobile",
       "Media desktop, minimum width, forced colors and zoom-equivalent viewport"
-    ]
+    ],
+    "localValidationCommit": "468f80dd69389883a7c9677e024e466c914163b6",
+    "hostedCI": {
+      "headCommit": "905e85c523f156a762cb920270d0125d8eb5648c",
+      "runId": 40225446111,
+      "url": "https://github.com/BoundlessStudio/robyn/actions/runs/40225446111",
+      "conclusion": "success",
+      "checks": [
+        "81 web tests",
+        "typecheck",
+        "full audit",
+        "production build",
+        "18 public cross-engine checks"
+      ],
+      "scope": "Hosted implementation checkpoint before the label/tool-guidance follow-up; current PR checks re-run for subsequent commits."
+    }
   },
   "media": {
     "historicalPaidMicros": 439483,
@@ -365,14 +396,14 @@
     },
     {
       "path": "artifacts/qa/r13-r18-20261025/web-tests.log",
-      "bytes": 8965,
-      "sha256": "e55d3960c6f60f89abd557e37963c99fa58a5c0cffd3f4560821c37a930a5113",
+      "bytes": 8963,
+      "sha256": "bbe7957be80c821f269243d6b18d290b1f75065315124fe4b36498cd26ff9eb2",
       "access": "private local QA archive; content not published"
     },
     {
       "path": "artifacts/qa/r13-r18-20261025/build.log",
       "bytes": 3883,
-      "sha256": "3ead00bfabdf62667e9f036d984d888b2be0703b870d4a47880c342c575446e2",
+      "sha256": "2e0b3953f3ce684ba07b1e8c5d5c92f9c8761b0592e9e2e567ff133129df5c97",
       "access": "private local QA archive; content not published"
     },
     {
