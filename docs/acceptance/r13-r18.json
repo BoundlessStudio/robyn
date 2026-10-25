@@ -107,7 +107,8 @@
         "path": "tests/media-readiness.test.ts",
         "sha256": "04e6d7dff9e28b903f4f5191ecabf6cab0888656b6fcec47fa47f137159ee1f0"
       }
-    ]
+    ],
+    "webImplementationCommit": "e9970ebb39010bab812ebe81c55b0ac2ea15a325"
   },
   "verification": {
     "webTests": {
@@ -446,5 +447,10 @@
       "sha256": "0cdf5a3dd004b7b9478e4429701c973afc041a53b5bb4e4bafc2f5a18b5a834f",
       "access": "private local QA archive; content not published"
     }
-  ]
+  ],
+  "review": {
+    "pullRequest": "https://github.com/BoundlessStudio/robyn/pull/19",
+    "runtimePullRequest": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/1",
+    "ci": "See the current check run attached to the draft PR. This record names the locally tested implementation checkpoint."
+  }
 }
