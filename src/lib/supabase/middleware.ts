@@ -7,7 +7,7 @@ export async function updateSession(request: NextRequest) {
   const { pathname } = request.nextUrl;
   // The public creative site does not need an auth round trip. This also lets
   // the site render before the pilot's private services have been configured.
-  if (pathname === "/" || pathname === "/privacy" || pathname === "/robots.txt" || pathname === "/sitemap.xml" || pathname === "/api/invite-requests") return response;
+  if (pathname === "/" || pathname === "/privacy" || pathname === "/support" || pathname === "/robots.txt" || pathname === "/sitemap.xml" || pathname === "/api/invite-requests") return response;
   // This one endpoint authenticates a revocable assignment capability in its
   // handler. Employee workstations never receive a creator's session cookie.
   if (pathname === "/api/studio/mcp") return response;

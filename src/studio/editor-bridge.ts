@@ -6,6 +6,8 @@ export interface OpenAssetResult {
   ref: AssetRef;
   files: Array<{ path: string; role: string; mimeType: string; bytes: number; sha256: string; downloadUrl: string }>;
   dependencies: AssetRef[];
+  provenance?: Record<string, unknown>;
+  sourceCredits?: Array<{ ref: AssetRef; name: string; provenance: Record<string, unknown> }>;
 }
 export interface EditorBridge {
   openAsset(ref: AssetRef): Promise<OpenAssetResult>;

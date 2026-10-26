@@ -1,0 +1,4305 @@
+{
+  "recordedAt": "2026-10-25T13:18:47.791Z",
+  "deploymentStatus": "Local candidate only; no production application deployment or migration performed",
+  "sourceCheckpoints": {
+    "web": {
+      "commit": "f759aa085618f5537b9a65a3ebb69c44789b1066",
+      "tree": "84425d6665109a4be5d3b5d014375eb115353ab1",
+      "files": 548,
+      "sha256": "fae27d043cc483f0ce2c7669c8048b9eed78f0fc95c3cb6a81ef632080a22c64"
+    },
+    "runtime": {
+      "commit": "cf2dcd885948728958ce1ea5674a21f90e2fd0a5",
+      "tree": "0c77bcd2c2d266462b2da353c1d70c73e7a0d455",
+      "files": 219,
+      "sha256": "4c2f1ff6afd098971255e6f5a354f1f95b2a4c3abe6d7bca8e33296b4a3c7d4d"
+    }
+  },
+  "production": {
+    "deployment": "dpl_DHoVNKVXKsYjQ1UTQxJUE6cgTW9A",
+    "workstation": "0.1.21",
+    "lastMigration": "0017_budget_queue_slots.sql",
+    "savedSourceFingerprint": "2746b3995270fb791b8fa8fc63bb1ec00ad836d172636de8890cc3127504dafc",
+    "sourceComparisonRegularFiles": 407,
+    "claim": "Saved input-manifest consistency; production was built before these remediation commits."
+  },
+  "workstation": {
+    "version": "0.1.22",
+    "directory": "vendor/robyn-workstation/0.1.22-40303f07072b",
+    "fingerprint": "40303f07072bc474ebb3b1746edd80110c4b14b5d3f70a7c283f8fcb3b307129",
+    "files": {
+      "studio-mcp.cjs": {
+        "bytes": 1833951,
+        "sha256": "c4776310a3a5fea51bca03edf4484aa0eb2152b1a5ab6337fe969aeea78fe9b1"
+      },
+      "configure-hermes.py": {
+        "bytes": 1989,
+        "sha256": "de97c933d197da9662f9ccb969a3fcde3a3047bd2af30a2985ec146c08c2494e"
+      },
+      "skills/cadcraft.md": {
+        "bytes": 1838,
+        "sha256": "2b1ca249dd4fd5f6b2950d33d42a530272563681b35eea6b0a0dc9f1b8f2a219"
+      },
+      "skills/deckcraft.md": {
+        "bytes": 2035,
+        "sha256": "f72308cf8882c6b56317027cbce042ca7abe6b9d7dfc037e02095212245da0e5"
+      },
+      "skills/designcraft.md": {
+        "bytes": 1785,
+        "sha256": "154a7046e27896e20de99bac5bfb5563a650217f24d445853c02f8dbf1a0a08d"
+      },
+      "skills/effectcraft.md": {
+        "bytes": 2040,
+        "sha256": "11539b89a13bb97be7df0a588d97b0ce647dc833728cf6651f21eb8593d07c26"
+      },
+      "skills/figcraft.md": {
+        "bytes": 1870,
+        "sha256": "847345f3a76ba38c139a5f4b4e9b20ca3ade96ada0f9d878df15178a55a56799"
+      },
+      "skills/filmcraft.md": {
+        "bytes": 3041,
+        "sha256": "35335951b520e51688ad01d15a210d6132531dd7eec9dfb54617a69a3c877d39"
+      },
+      "skills/gridcraft.md": {
+        "bytes": 2366,
+        "sha256": "ff3f61a8ddf0fe7974c65adddbcb27c8c9561a1c36caf495410828b784439676"
+      },
+      "skills/lightcraft.md": {
+        "bytes": 2433,
+        "sha256": "5526d9a69a644ca397bdd6d1c618086a670bfc600f7d29bce5dafe6dbd295d09"
+      },
+      "skills/pdfcraft.md": {
+        "bytes": 3550,
+        "sha256": "6b014fb2cb21db91e9b724a5084b3b1ed50c6c26bafe7746eaaf1da38db7a63d"
+      },
+      "skills/photocraft.md": {
+        "bytes": 3419,
+        "sha256": "1acb778d4954c859c8c6359b56728ca05409e70d0c11cb41982b004ee3ce3635"
+      },
+      "skills/soundcraft.md": {
+        "bytes": 2229,
+        "sha256": "9947d0cb8aa95b2aebad159c4b3337b496c6418ec408eb637922baa944e02db7"
+      },
+      "skills/vectorcraft.md": {
+        "bytes": 3253,
+        "sha256": "5bcaf89b9c45c8265293ab9e6d9f3687022740386e4b1fdade976ce49d3f760e"
+      },
+      "skills/wordcraft.md": {
+        "bytes": 1951,
+        "sha256": "20cf9722502f2963090a13197571e89eb56230c2db919823f0779a0657e70461"
+      },
+      "skills/research.md": {
+        "bytes": 2171,
+        "sha256": "2fd0f6b2d7dec5a872a1063122c54f6102eaebac462fea3d0b6b15ee052793b1"
+      }
+    }
+  },
+  "editorPins": [
+    {
+      "id": "cadcraft",
+      "editor": {
+        "adapterVersion": "0.1.2",
+        "release": "cadcraft-v0.10.0-robyn-0.1.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/cadcraft/v0.10.0-0.1.2/?robyn&webgl",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-cadcraft-0-10-0@1",
+        "release": "sha256:bca46321dc438354d1b169a91e4f5075d0bad5afc70052b6e6fa0fbcf0f1e488",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "deckcraft",
+      "editor": {
+        "adapterVersion": "0.1.2",
+        "release": "deckcraft-v0.9.0-robyn-0.1.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/deckcraft/v0.9.0-0.1.2/?robyn&webgl",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-deckcraft-0-9-0@1",
+        "release": "sha256:3dfcd2d3dd5333c261a3800b3d66acae6be286813f921e384dcfce9e816104d5",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "designcraft",
+      "editor": {
+        "adapterVersion": "0.1.2",
+        "release": "designcraft-v0.11.0-robyn-0.1.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/designcraft/v0.11.0-0.1.2/?robyn&webgl",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-designcraft-0-11-0@1",
+        "release": "sha256:eb7ef35e69d14ed050f718199979820091a5265bb9c55742c33ff26022bdd6cc",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "effectcraft",
+      "editor": {
+        "adapterVersion": "0.1.2",
+        "release": "effectcraft-v0.14.0-robyn-0.1.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/effectcraft/v0.14.0-0.1.2/?robyn",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-effectcraft-0-14-0@1",
+        "release": "sha256:56228ad33996ff68f4abe5fe0388ea33eb4adee24a5ea9916dbe5536d284f12b",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "figcraft",
+      "editor": {
+        "adapterVersion": "0.1.3",
+        "release": "figcraft-v0.9.0-robyn-0.1.3",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/figcraft/v0.9.0-0.1.3/?robyn&webgl",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-figcraft-0-9-0@1",
+        "release": "sha256:1f6bcfdd286c2fe49d0ab53a11449a00760bec8071099bd372738a6fc1d527c2",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "filmcraft",
+      "editor": {
+        "adapterVersion": "0.1.4",
+        "release": "filmcraft-v0.10.0-robyn-0.1.4",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/filmcraft/v0.10.0-0.1.4/?robyn",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-filmcraft-0-10-0@1",
+        "release": "sha256:9af6580357fc0f559d2dc63d0fab876003f7de816cdcda4d0f666b5ccc438d43",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "gridcraft",
+      "editor": {
+        "adapterVersion": "0.1.2",
+        "release": "gridcraft-v0.10.0-robyn-0.1.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/gridcraft/v0.10.0-0.1.2/?robyn&webgl",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-gridcraft-0-10-0@1",
+        "release": "sha256:7a74c01ecc0599d9a6c67a000c0a2245cfb6641d9e0d641c5167d99a295a8149",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "lightcraft",
+      "editor": {
+        "adapterVersion": "0.1.4",
+        "release": "lightcraft-v0.11.0-robyn-0.1.4",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/lightcraft/v0.11.0-0.1.4/?robyn&webgl",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-lightcraft-0-11-0@1",
+        "release": "sha256:5f4570949853ff085bbb06035bb3071224357f2119a8bec65010a763979f749c",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "pdfcraft",
+      "editor": {
+        "adapterVersion": "0.1.4",
+        "release": "pdfcraft-v0.11.0-robyn-0.1.4",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/pdfcraft/v0.11.0-0.1.4/?robyn&webgl",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-pdfcraft-0-11-0@1",
+        "release": "sha256:165fb8dc380c404f670a5e09b092ede8b0991aa3003ca9f7ea5c1c9133cd9881",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "photocraft",
+      "editor": {
+        "adapterVersion": "0.1.4",
+        "release": "photocraft-v0.12.0-robyn-0.1.4",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/photocraft/v0.12.0-0.1.4/?robyn&webgl",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-photocraft-0-12-0@1",
+        "release": "sha256:b56cb9749d2f3dc88c9f50a12803d57bfa29d359635d0999575055876944c849",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "soundcraft",
+      "editor": {
+        "adapterVersion": "0.1.4",
+        "release": "soundcraft-v0.11.0-robyn-0.1.4",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/soundcraft/v0.11.0-0.1.4/?robyn&webgl",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-soundcraft-0-11-0@1",
+        "release": "sha256:8d7030eff81589c4a267a2ecd3f039338e8c690e8703a358e4c8846bc8375e22",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "vectorcraft",
+      "editor": {
+        "adapterVersion": "0.1.4",
+        "release": "vectorcraft-v0.14.0-robyn-0.1.4",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/vectorcraft/v0.14.0-0.1.4/?robyn&webgl",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-vectorcraft-0-14-0@1",
+        "release": "sha256:b04d54cf9231cbb76f9d929395f0735ead37a326ecb33299ba2947636150ad76",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "wordcraft",
+      "editor": {
+        "adapterVersion": "0.1.2",
+        "release": "wordcraft-v0.9.0-robyn-0.1.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/wordcraft/v0.9.0-0.1.2/?robyn&webgl",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-wordcraft-0-9-0@1",
+        "release": "sha256:08ce901c9c0bff1c38bd1334bbcda226ef1b31e7c5678916a8adc9c957e525f2",
+        "status": "verified"
+      }
+    }
+  ],
+  "migrations": [
+    {
+      "filename": "0001_init.sql",
+      "sha256": "a199c4efcfecf0a57e83341fc767c42ee11af43a0e3c5548d495881a829d6ad3",
+      "productionRecorded": true
+    },
+    {
+      "filename": "0002_pilot_access.sql",
+      "sha256": "c045dbbd32b9897e4895e07200ae3b5d34334754c2c5bcb8b323ed73bf57c7ea",
+      "productionRecorded": true
+    },
+    {
+      "filename": "0003_studio_assets.sql",
+      "sha256": "02eb789d687f3b5a44596addf04391a5daf3abcf69bedf90defc1df7e2a1a6bb",
+      "productionRecorded": true
+    },
+    {
+      "filename": "0004_private_storage.sql",
+      "sha256": "4fd3260d697666bc6feda72aad9ddf6522c65b3e535db4981e05d4bdb6a0c203",
+      "productionRecorded": true
+    },
+    {
+      "filename": "0005_revision_forks.sql",
+      "sha256": "c92a26f2f85127faf55d3bae5cc9d0a65726cadfa6074787b0321ef2ae629f3a",
+      "productionRecorded": true
+    },
+    {
+      "filename": "0006_employee_assignments.sql",
+      "sha256": "93391b46d60259b2450f50b9053ae2a27a27d3062e7153c45fa9a8ce3eb3e087",
+      "productionRecorded": true
+    },
+    {
+      "filename": "0007_assignment_dispatch.sql",
+      "sha256": "b52915fc8daf861f8880e21e919e682b97e1d866e9dcbe9fe4b015cded4ee097",
+      "productionRecorded": true
+    },
+    {
+      "filename": "0007_storage_object_names.sql",
+      "sha256": "67bccb0f82808f29f6d7592e394882956024e23d2b039ee8db75a7379a92e0aa",
+      "productionRecorded": true
+    },
+    {
+      "filename": "0008_assignment_runner.sql",
+      "sha256": "c4d03200254d40105cb2707e9666b4a7cd0ab6150f86d430e5b05e2b54a3d433",
+      "productionRecorded": true
+    },
+    {
+      "filename": "0009_assignment_reviews.sql",
+      "sha256": "47bc61a5d258b9f4921853c0c68c21dae0b337a34dff32bc1ebbf02a07339444",
+      "productionRecorded": true
+    },
+    {
+      "filename": "0010_assignment_recovery.sql",
+      "sha256": "1c5c4786c583f7e8548593b6c4466ddf07d98987c6832dc6c1470d29a414608a",
+      "productionRecorded": true
+    },
+    {
+      "filename": "0011_director_campaigns.sql",
+      "sha256": "32d6bd762f9e2119cf9a1b0ccd887b60c59e7444f39e9ad98d590ce68eb3f754",
+      "productionRecorded": true
+    },
+    {
+      "filename": "0012_research_browser.sql",
+      "sha256": "328902be602020ad3ca435851ea0b6ef8cef9224553be2eb5fc5294fd35e1d49",
+      "productionRecorded": true
+    },
+    {
+      "filename": "0013_source_media.sql",
+      "sha256": "88122bcfe7071be4e0ee863521d5a099acff75264a745c8f35254edf8de05598",
+      "productionRecorded": true
+    },
+    {
+      "filename": "0014_employee_budgets.sql",
+      "sha256": "c2e14ad489f32a713708eccea5771aa8c67591e1dbabef5674029894d84609a8",
+      "productionRecorded": true
+    },
+    {
+      "filename": "0015_studio_ai_budget.sql",
+      "sha256": "bbbe93588597845f556acc88462aaaa1df689c305263f653d767235445ca9801",
+      "productionRecorded": true
+    },
+    {
+      "filename": "0016_assignment_budget_pause.sql",
+      "sha256": "61869511f893855eb70645b5493c67d94099757261e7eaaf7b789f1a968f70bf",
+      "productionRecorded": true
+    },
+    {
+      "filename": "0017_budget_queue_slots.sql",
+      "sha256": "b421eb43b836f6f2161337d8ee3eb6bc0d8b1503978dcbd37c718ab863930728",
+      "productionRecorded": true
+    },
+    {
+      "filename": "0018_media_queue_slots.sql",
+      "sha256": "0698c2cb3d2bfd9e3f8d4b61a69d71656813a3679a1c43bb1460d8732da35231",
+      "productionRecorded": false
+    },
+    {
+      "filename": "0019_media_settlement.sql",
+      "sha256": "f5ba0e93cf496de89de616a48c12bcfc1a2b3be60ef309a082774d2c68d8609d",
+      "productionRecorded": false
+    },
+    {
+      "filename": "0020_workflow_health.sql",
+      "sha256": "4dbc1ca6051cb606481913b606d1f5197d71422a426cdce785abf7e0ffe732e8",
+      "productionRecorded": false
+    },
+    {
+      "filename": "0021_media_retention.sql",
+      "sha256": "24d0d846643e93d5a9085b27caf35bd2431439b2152f12dba707576312f9072f",
+      "productionRecorded": false
+    }
+  ],
+  "validation": {
+    "state": "passed",
+    "verifiedAt": "2026-10-25T13:30:58.444Z",
+    "method": "Clean Git archives with npm ci; builds verified outside either repository so no parent project configuration or private environment files were inherited.",
+    "environment": {
+      "os": "Windows",
+      "node": "24.18.0",
+      "npm": "11.16.0",
+      "git": "2.54.0.windows.1",
+      "privateConfigurationCopied": false,
+      "buildConfiguration": "Public placeholder site/Supabase URL and anonymous key only"
+    },
+    "web": {
+      "typecheck": "passed",
+      "tests": {
+        "passed": 70,
+        "failed": 0,
+        "skipped": 0,
+        "groups": [
+          66,
+          4
+        ]
+      },
+      "productionBuild": {
+        "result": "passed",
+        "workflows": 3,
+        "steps": 25,
+        "staticGenerationEntries": 37
+      },
+      "fullDependencyAudit": {
+        "vulnerabilities": 0
+      }
+    },
+    "runtime": {
+      "tests": {
+        "passed": 67,
+        "failed": 0,
+        "skipped": 0
+      },
+      "workstationBuild": "passed",
+      "fullDependencyAudit": {
+        "vulnerabilities": 0
+      },
+      "reproducedFiles": 16,
+      "exactFileMismatches": 0,
+      "bundleSha256": "c4776310a3a5fea51bca03edf4484aa0eb2152b1a5ab6337fe969aeea78fe9b1"
+    },
+    "sourceVerification": {
+      "files": 767,
+      "semanticChanges": 0,
+      "generatedLineEndingChange": "prebuild rewrites src/studio/apps/registry.ts from exported CRLF to LF; content equals the recorded Git blob after line-ending normalization",
+      "hashConvention": "Per-file exact bytes from the initial Windows Git export; immutable vendor bytes are never line-ending-normalized",
+      "fingerprintDefinition": "SHA-256 of JSON.stringify(sources[repository])"
+    },
+    "clientCredentialScan": {
+      "files": 49,
+      "knownPrivateValuesChecked": 8,
+      "matches": 0
+    },
+    "evidenceIndex": {
+      "filesVerified": 106,
+      "missingOrChanged": 0
+    },
+    "hostedCI": "not executed"
+  },
+  "limits": [
+    "Storage-file backups deferred by owner",
+    "Supabase Free plan: no included project backups; hosted restore not completed",
+    "No new paid generation or employee turns",
+    "No broadened browser/native/provider acceptance"
+  ],
+  "sources": {
+    "web": [
+      {
+        "path": ".env.example",
+        "bytes": 1275,
+        "sha256": "c84a3a07fb8efecfe32e11b0e7904fdc879d2bdc6d97e27d03ecfd8e2ccdc462"
+      },
+      {
+        "path": ".gitattributes",
+        "bytes": 98,
+        "sha256": "0b46a267e0bf4d81b686a28a9560fad14a737c8cae10837026e9f69dd72132d1"
+      },
+      {
+        "path": ".github/workflows/check.yml",
+        "bytes": 797,
+        "sha256": "2fccdd4cb6b3233c610aef7d8f1b1ba25ff0448c7fcf24345ab49aa50784668a"
+      },
+      {
+        "path": ".gitignore",
+        "bytes": 352,
+        "sha256": "20a34df8bf18179f6353bfae0515df7a916649a928b8bd0f415249329aa45557"
+      },
+      {
+        "path": ".vercelignore",
+        "bytes": 111,
+        "sha256": "f3b3b99352eac15a9b7cb6fb59efbce787f319a30afa1966ecbcb7ed58af0db6"
+      },
+      {
+        "path": "AGENTS.md",
+        "bytes": 6849,
+        "sha256": "78d08e67dcf732404de517c1b6e7090c8704bafa9b9877682cab6a2808bbaebe"
+      },
+      {
+        "path": "CLAUDE.md",
+        "bytes": 31,
+        "sha256": "6b975e7980b86822debf1f22e284559e2f71a5fe00c17e6b7229f02af6eeb2cd"
+      },
+      {
+        "path": "LICENSE",
+        "bytes": 1085,
+        "sha256": "3b80253df280301bbda3f8abc0a4a2f17f3d60fbd8296870114db2347f340ab6"
+      },
+      {
+        "path": "README.md",
+        "bytes": 4030,
+        "sha256": "a3951d2c6338ee4c74e271ae286af154958cadb046013bd728ab28fdf29bd5ea"
+      },
+      {
+        "path": "SETUP.md",
+        "bytes": 7363,
+        "sha256": "49682a525ee72077d436382832c6ebb8143cd7162a2ebe4a03661be53b6e8080"
+      },
+      {
+        "path": "deploy/support-forwarder/README.md",
+        "bytes": 2554,
+        "sha256": "a42c8cc33016756b90916fa108c3f08732afc3d7f696cdb8edf8647b3bf7fd8e"
+      },
+      {
+        "path": "deploy/support-forwarder/worker.mjs",
+        "bytes": 3717,
+        "sha256": "fa3e5c1fc6e287b8386167036324a0f0fef2a9434ccab7b9f46cce4fe4bd772b"
+      },
+      {
+        "path": "deploy/support-forwarder/wrangler.jsonc",
+        "bytes": 226,
+        "sha256": "87317baebf272df0b4fecc3cb0e442d4736f974f6d077824c3450683cf679b31"
+      },
+      {
+        "path": "docs/ARTWORK.md",
+        "bytes": 1111,
+        "sha256": "98975cc2f28bb71c37720d263bec3efd60589f8822ed157cbca08bb8b3729d37"
+      },
+      {
+        "path": "docs/BRANDING.md",
+        "bytes": 3248,
+        "sha256": "40e687890e6b78d1187fd3c2e54ad1e4f099cfd6cde8c13f06f40ca5a2338b74"
+      },
+      {
+        "path": "docs/BROWSER-SUPPORT.md",
+        "bytes": 2412,
+        "sha256": "93963696ca799484d9b18cf42f8ce922d660642e097dabd1bf7498e1f2257fb9"
+      },
+      {
+        "path": "docs/CURRENT-STATUS.md",
+        "bytes": 5731,
+        "sha256": "13064b0c86bfaafb45b6df14d424c6c9d7b3c902c7aac6d8f14e012df84f6823"
+      },
+      {
+        "path": "docs/DOMAIN-SETUP.md",
+        "bytes": 9135,
+        "sha256": "4cb4d0ff19775b8f93b3b8efdfd94d26d06cacdcd80f762920ede60d2623bc77"
+      },
+      {
+        "path": "docs/HOMEPAGE-ARTWORK.md",
+        "bytes": 4021,
+        "sha256": "c70ef5c041c569150ca8fe990acb93b108fd4385b2f5b0c86442f6f577d21b38"
+      },
+      {
+        "path": "docs/HOMEPAGE-QA.md",
+        "bytes": 10628,
+        "sha256": "9583fae36b4333d9adfc4502c68d55dc53ef09b2d2d7d76274ebd7d2297d9d6a"
+      },
+      {
+        "path": "docs/OPERATIONS.md",
+        "bytes": 15173,
+        "sha256": "8b0bfc77ec1b1d8cc16b1738b133cc48ff5d6875929f0863c20eb260bc1e137f"
+      },
+      {
+        "path": "docs/PASSWORDLESS-AUTH.md",
+        "bytes": 4255,
+        "sha256": "007839da5aef921845a92ef655dee16a7686bdda12a791452165f9a56bb57561"
+      },
+      {
+        "path": "docs/PAUSE-CHECKPOINT.md",
+        "bytes": 251383,
+        "sha256": "d3ef6d0428153c336bf3b46a01a4f8cdb23a7815305bce0ace056a495aa0a9da"
+      },
+      {
+        "path": "docs/PLAN.md",
+        "bytes": 84940,
+        "sha256": "2601bcd4a161d9fa66b0872e3982ddb8e527ee5bd660bc77c8d199ba6190a762"
+      },
+      {
+        "path": "docs/PROJECT-REVIEW-2026-10-25.md",
+        "bytes": 50890,
+        "sha256": "85ba11983d397bd334e2a4da35597c29d32f61576cb7896fd153f2b15cf894a8"
+      },
+      {
+        "path": "docs/RELEASE-2026-10-25.md",
+        "bytes": 5034,
+        "sha256": "7a9964dec7bbe7ce57a90b34fb29e27c524d6b52a7d43a0db0ba802867010a1b"
+      },
+      {
+        "path": "docs/UPSTREAM-STARTER.md",
+        "bytes": 1217,
+        "sha256": "569a25a5978a3589629a56d07d7150293de2ec1b7164ec402203e60823424845"
+      },
+      {
+        "path": "docs/acceptance/evidence-index.json",
+        "bytes": 32970,
+        "sha256": "fc861dfca8181962a4fe1fc7f98e5601a672ec673a589254e2d4170d4608597f"
+      },
+      {
+        "path": "next.config.ts",
+        "bytes": 646,
+        "sha256": "ca11049aacae586771e34071534232d3ecf890f440dcb05d6a02090b1e7a0544"
+      },
+      {
+        "path": "package-lock.json",
+        "bytes": 395776,
+        "sha256": "9864739bde31854260cc936df25d5e26cb2357e3315a73d273d0ee8c4a7b9bbb"
+      },
+      {
+        "path": "package.json",
+        "bytes": 1926,
+        "sha256": "ee978f16b28364f035cb3e73e01b71692855b00e34a5995586f684d9b7ff96b2"
+      },
+      {
+        "path": "postcss.config.mjs",
+        "bytes": 101,
+        "sha256": "7b299d3d3b16699ddda397c0b2373b3af4f25f8fc9ccc9b3d9e64ef083bc1c21"
+      },
+      {
+        "path": "public/artwork/crafts/cadcraft.png",
+        "bytes": 314883,
+        "sha256": "24405eb1801eb95b2997a07a3e43c11a6be0011625770808c5347324c49603c9"
+      },
+      {
+        "path": "public/artwork/crafts/deckcraft.png",
+        "bytes": 103926,
+        "sha256": "a3efeac7b43d18c8c5e2ed14297a886d5ecb2c45cd846fdb93a4f98062fd99d6"
+      },
+      {
+        "path": "public/artwork/crafts/designcraft.png",
+        "bytes": 20036,
+        "sha256": "321348e876b58b81960a4c07f91395fb227a027f580cd5c422d6c973da45eb54"
+      },
+      {
+        "path": "public/artwork/crafts/effectcraft.png",
+        "bytes": 34643,
+        "sha256": "f01159bd4a1058701c8689ba581d6aec60d7f4816b0eb7d6519f06e73e1815f7"
+      },
+      {
+        "path": "public/artwork/crafts/figcraft.png",
+        "bytes": 117056,
+        "sha256": "53f70f7dddff979b5ff18b5ad19ef23bda4b7b66bc2386080cb37170715e4a58"
+      },
+      {
+        "path": "public/artwork/crafts/filmcraft.png",
+        "bytes": 2056271,
+        "sha256": "1be13b58d4885797f37432a9f135707460833226d0caa7d806c988b15c8b50f5"
+      },
+      {
+        "path": "public/artwork/crafts/gridcraft.png",
+        "bytes": 28950,
+        "sha256": "c5252442dc994a50771222b145bd6f0236e869687ef185c661173178a2377d03"
+      },
+      {
+        "path": "public/artwork/crafts/lightcraft.png",
+        "bytes": 2041845,
+        "sha256": "0b968c9e000772f80d29f9dfce6d085ba80b6703d065814e97e7bba611ea088a"
+      },
+      {
+        "path": "public/artwork/crafts/pdfcraft.png",
+        "bytes": 68749,
+        "sha256": "d34e67b2c255b64218763e1efc7dc21fc15d308cff0d60145cb4b1eeb3ed8644"
+      },
+      {
+        "path": "public/artwork/crafts/photocraft.png",
+        "bytes": 621958,
+        "sha256": "76f358b999e11a3567f359379dd35e466e46d244fec1933e7d0f0834592214df"
+      },
+      {
+        "path": "public/artwork/crafts/soundcraft.svg",
+        "bytes": 7964,
+        "sha256": "87d71080dd3447d11fa9d82e73daff1d1bb4bee90b736076fd2753fc21b51e1c"
+      },
+      {
+        "path": "public/artwork/crafts/vectorcraft.png",
+        "bytes": 15575,
+        "sha256": "d7e737be05892d08eb8551b39186bdc070088bbd7d14fbc2cece4203ba7d843f"
+      },
+      {
+        "path": "public/artwork/crafts/wordcraft.png",
+        "bytes": 118952,
+        "sha256": "eb193652e4b996f1cbb519ad43ab4bc1d54124a088c78d393dbe69d937b2953b"
+      },
+      {
+        "path": "public/artwork/editors/cadcraft.png",
+        "bytes": 239831,
+        "sha256": "7f1ba85398c7751bfb7258f0b49a7030acc8bb756df29a0a5598276f7cde0b06"
+      },
+      {
+        "path": "public/artwork/editors/deckcraft.png",
+        "bytes": 214063,
+        "sha256": "94408fdd67bd948f40970b919e50e39de20b69a4423ad1a4dfdf3ae92bbabd22"
+      },
+      {
+        "path": "public/artwork/editors/designcraft.png",
+        "bytes": 233423,
+        "sha256": "b18eba52d7676b1007a203f4d56706d48f9e4239480f37315f3f1419473340ab"
+      },
+      {
+        "path": "public/artwork/editors/effectcraft.png",
+        "bytes": 218222,
+        "sha256": "064414d25c8e5a1ef288f2e30178dd996bb704ab28e092e4137609b6043fe005"
+      },
+      {
+        "path": "public/artwork/editors/figcraft.png",
+        "bytes": 157750,
+        "sha256": "cce3031e3fdc0739efb8e0bd7942d83ce928c201415a02869d37ca489d35b5db"
+      },
+      {
+        "path": "public/artwork/editors/filmcraft.png",
+        "bytes": 232766,
+        "sha256": "ae558d79900923ffc5ecbf0183c9a23da8955f08b4b9516146ab6887fe197de4"
+      },
+      {
+        "path": "public/artwork/editors/gridcraft.png",
+        "bytes": 171540,
+        "sha256": "acfda8152f24d9dffe22e9695442be0201ca88a33099e6862b6543f37bd92740"
+      },
+      {
+        "path": "public/artwork/editors/lightcraft.png",
+        "bytes": 610365,
+        "sha256": "de7ac576092f05fa5ceb414d139a376bf8539852496278748933a10670791a26"
+      },
+      {
+        "path": "public/artwork/editors/pdfcraft.png",
+        "bytes": 225177,
+        "sha256": "5cd8bc594098678790f7e3752db9d67f9732d0af4b7551245de473a9aac7a323"
+      },
+      {
+        "path": "public/artwork/editors/photocraft.png",
+        "bytes": 610007,
+        "sha256": "93e738dd88adc374489193e69cefbaa918d64ee0548272d2e86c07667d44729a"
+      },
+      {
+        "path": "public/artwork/editors/research.jpg",
+        "bytes": 148964,
+        "sha256": "61b81767cae59cf0efe8e81b166b7c7a76743b97e1cfc336c5b768a5b1b655ce"
+      },
+      {
+        "path": "public/artwork/editors/soundcraft.png",
+        "bytes": 188504,
+        "sha256": "cd781711be4e703c87db3a6e954d1fa1140c550ccad1e2be2138cbb81301fb74"
+      },
+      {
+        "path": "public/artwork/editors/vectorcraft.png",
+        "bytes": 349809,
+        "sha256": "ee62806a91a2682a8162c88a5fe9571b12a74988f1a03652b76836fc5aa0f21f"
+      },
+      {
+        "path": "public/artwork/editors/wordcraft.png",
+        "bytes": 206312,
+        "sha256": "ae458764d2426dd54756c50fe25c5d80d8191e7269b5705bad283abaf9f327b5"
+      },
+      {
+        "path": "public/artwork/offscript-bloom.png",
+        "bytes": 2056271,
+        "sha256": "1be13b58d4885797f37432a9f135707460833226d0caa7d806c988b15c8b50f5"
+      },
+      {
+        "path": "public/brand/robin-ascii.svg",
+        "bytes": 124477,
+        "sha256": "c442b114973821186351f705666b3c5230db0b30197a72379c63423063b478d2"
+      },
+      {
+        "path": "public/brand/robin-icon-512.png",
+        "bytes": 21237,
+        "sha256": "14a483623ebf8827736598772a00b840a229eed1570202919411ad73e89e8797"
+      },
+      {
+        "path": "public/brand/robin-icon.svg",
+        "bytes": 705,
+        "sha256": "5ca948a8a6d02aee0a2cc9c114fd247c13cc33624bcc48d430c162953b198759"
+      },
+      {
+        "path": "public/brand/robyn-social.png",
+        "bytes": 168001,
+        "sha256": "3ff161c5987b2907a0cdaa188b67f5dc5e9945b826a228beda19c360fe846f91"
+      },
+      {
+        "path": "screenshots/demo.gif",
+        "bytes": 8211372,
+        "sha256": "da718011f7fc53a5b21dd7440f5d6ebb100dd2ba516a52a503f6a1b0eab3cd21"
+      },
+      {
+        "path": "scripts/generate-brand-assets.mjs",
+        "bytes": 7199,
+        "sha256": "3681ca1b5f2e4e934cc736c9400b2b7721d4e7cccf06ac163757c240fa2c398d"
+      },
+      {
+        "path": "scripts/generate-registry.mjs",
+        "bytes": 3209,
+        "sha256": "68a830836d3db0d2b559b333f6a3c756f54bf077c05ba49edf0793ddc804e2c7"
+      },
+      {
+        "path": "scripts/import-workstation-release.mjs",
+        "bytes": 2429,
+        "sha256": "6e547d91440edae79cc59cd04a92fb9550d60f78dfa0b3f7dcb42f5c09670b68"
+      },
+      {
+        "path": "scripts/migrations.mjs",
+        "bytes": 5440,
+        "sha256": "63fc4e979a8662b9c9a420d8ff1bd81190fd47d4f94a77b8416752315a045b5a"
+      },
+      {
+        "path": "scripts/settle-media.mjs",
+        "bytes": 3266,
+        "sha256": "347a0011269c487aa074e269226206879ed0d7cbec91a546d779f7471424ec04"
+      },
+      {
+        "path": "scripts/setup.mjs",
+        "bytes": 18242,
+        "sha256": "3affc0e227e4142f3fe3be36d900910e14d14d4658a9806b2af0821373d8d760"
+      },
+      {
+        "path": "scripts/smoke.mjs",
+        "bytes": 3754,
+        "sha256": "a80a46a8923a8d701ce48e1f56e00efc26cca8c9b6760e32df5edcbd1281bbf8"
+      },
+      {
+        "path": "src/app/api/agents/[id]/[action]/route.ts",
+        "bytes": 1040,
+        "sha256": "e69d95a99898065d4354cc9b9e0318de2acf8c06c885d20da69deab2358dc719"
+      },
+      {
+        "path": "src/app/api/agents/[id]/_helpers.ts",
+        "bytes": 2150,
+        "sha256": "e300b3c63a755fe57cc4f413b25e5fd106b770a987a3a30c6fdf8eb28b29705c"
+      },
+      {
+        "path": "src/app/api/agents/[id]/budget/route.ts",
+        "bytes": 1705,
+        "sha256": "09a57058e535a259ca9bb4ebc9f5fb9f541fa9a25866966c5cd0a27548a6fe8e"
+      },
+      {
+        "path": "src/app/api/agents/[id]/channels/[channel]/route.ts",
+        "bytes": 5950,
+        "sha256": "40f5c8eb4c382256ce992237f97ac63ba86039111ba2379c2f405323d31294d3"
+      },
+      {
+        "path": "src/app/api/agents/[id]/channels/route.ts",
+        "bytes": 1343,
+        "sha256": "069674deeab2a488985a70772e6a18f301b7a12de2cf150a38ec31f96501d1b6"
+      },
+      {
+        "path": "src/app/api/agents/[id]/chat/files/route.ts",
+        "bytes": 2139,
+        "sha256": "16a43e5ae336181880243c940e6d066808bd7eb2d6ee7e86349c9c5bbc92941e"
+      },
+      {
+        "path": "src/app/api/agents/[id]/chat/models/route.ts",
+        "bytes": 525,
+        "sha256": "f1f52b1c2ff55bd8021deae0a8ce5b5bbc769f37cc79385c3d5b5270e8f5f845"
+      },
+      {
+        "path": "src/app/api/agents/[id]/chat/responses/[responseId]/cancel/route.ts",
+        "bytes": 555,
+        "sha256": "31601577c6e32514ebfa84c9932a5502e6455299025cf1ee9c5fbf40d00ef128"
+      },
+      {
+        "path": "src/app/api/agents/[id]/chat/responses/[responseId]/stream/route.ts",
+        "bytes": 1750,
+        "sha256": "32e9d878f5e0a9641ee2fa1b8a7e519bd67b63e9eef36e80645ea04bde6d3947"
+      },
+      {
+        "path": "src/app/api/agents/[id]/chat/responses/route.ts",
+        "bytes": 3948,
+        "sha256": "4cae5a70440e877ba42c0b013c3822c0cda94968d8b5cd7a4340e35a8fcb0388"
+      },
+      {
+        "path": "src/app/api/agents/[id]/chat/sessions/[sessionId]/route.ts",
+        "bytes": 2198,
+        "sha256": "b5f2cdeb7593d93c9d90846d4d650487876a39c891b5818c6a18460d10290bf1"
+      },
+      {
+        "path": "src/app/api/agents/[id]/chat/sessions/route.ts",
+        "bytes": 1215,
+        "sha256": "77514458d0e9c3df5a1581b78666dd3eeaf200de4f2a9889cb618ca80c608492"
+      },
+      {
+        "path": "src/app/api/agents/[id]/files/archive/route.ts",
+        "bytes": 1843,
+        "sha256": "9ae75330f2a469d02b1fa94ef559a3d1061f4f4b62b091a6db96f4adc983531a"
+      },
+      {
+        "path": "src/app/api/agents/[id]/files/content/route.ts",
+        "bytes": 4006,
+        "sha256": "ee7008633ad3b96dde0cf3604543fdc930a96ddebea91842b168047a80ea5cab"
+      },
+      {
+        "path": "src/app/api/agents/[id]/files/dir/route.ts",
+        "bytes": 736,
+        "sha256": "37f851dc62a5a504fb8f6c4675188a7a79102f6e9c43d938f4471875f7d222e1"
+      },
+      {
+        "path": "src/app/api/agents/[id]/files/list/route.ts",
+        "bytes": 915,
+        "sha256": "e2a03f8554f61a183e5c3a8dc431eb43949c4211759ef7785f055ffa773959f0"
+      },
+      {
+        "path": "src/app/api/agents/[id]/files/route.ts",
+        "bytes": 1444,
+        "sha256": "4fdb643c08b4b5935f13b7e35885323087490e02f577bfa2959002b520bbf2b7"
+      },
+      {
+        "path": "src/app/api/agents/[id]/integrations/connect/route.ts",
+        "bytes": 833,
+        "sha256": "96c63b94cb83de857b660c9e0d2f305ddc64642d5a5efc62e332323e4e28baa5"
+      },
+      {
+        "path": "src/app/api/agents/[id]/integrations/connections/[connectedAccountId]/route.ts",
+        "bytes": 889,
+        "sha256": "114bb56429de2f60180462f1e6a23a9b070df3acfad21cddad2d9c04d6206053"
+      },
+      {
+        "path": "src/app/api/agents/[id]/integrations/connections/route.ts",
+        "bytes": 466,
+        "sha256": "f52ea46b3b62961abdd616f20fe3380af9688323199d5762ce15a8cf1c1e68f0"
+      },
+      {
+        "path": "src/app/api/agents/[id]/integrations/toolkits/route.ts",
+        "bytes": 597,
+        "sha256": "effd1740042959c53a1d635826e5e0e5c21d6e382c5f3360272913bd6a3f8b07"
+      },
+      {
+        "path": "src/app/api/agents/[id]/resize/route.ts",
+        "bytes": 1137,
+        "sha256": "3894eaf1f8db93137dd3517ebb10282b9b43ceea16e625b84997bd9ca01d0d6d"
+      },
+      {
+        "path": "src/app/api/agents/[id]/route.ts",
+        "bytes": 1528,
+        "sha256": "6cf850b2b70c02b6f92136250c221220edd2bcfe4e3a4f7c83439dd37b95ddf5"
+      },
+      {
+        "path": "src/app/api/agents/[id]/signed-url/route.ts",
+        "bytes": 1279,
+        "sha256": "a9c51a6bcdf9939b5cb88ca7a94e5dde60c6cc83995eced82c2b1bdfe2d02684"
+      },
+      {
+        "path": "src/app/api/agents/[id]/usage/route.ts",
+        "bytes": 534,
+        "sha256": "3289160cf4921f96d601e1372e0331f25628a5a4e03b0707db3ff1d8a0fcbdf8"
+      },
+      {
+        "path": "src/app/api/agents/route.ts",
+        "bytes": 4556,
+        "sha256": "8c48ecbe93f27bd348b84591cb9f47aa5bca06056d2125ce1ad9808bf7101589"
+      },
+      {
+        "path": "src/app/api/invitations/[token]/route.ts",
+        "bytes": 427,
+        "sha256": "6327f773cb9a756c0e20b33a8aa3f1350bfdfe7c74f0351f2590ffcc545e6d0b"
+      },
+      {
+        "path": "src/app/api/invite-requests/route.ts",
+        "bytes": 3246,
+        "sha256": "4c9df329b76f6143d83e021d0be9c9966049043e239826647595f2c6aaa72036"
+      },
+      {
+        "path": "src/app/api/studio/assets/[id]/restore/route.ts",
+        "bytes": 1366,
+        "sha256": "364bf4a792a39abf08f6e120751c088fed64ee065cbb7eab9693794f86faccd4"
+      },
+      {
+        "path": "src/app/api/studio/assets/[id]/revisions/route.ts",
+        "bytes": 2501,
+        "sha256": "2106d13653b639f705c19495e1d8e04d9edaabf20ee20ecd4762fe5f88fa13d3"
+      },
+      {
+        "path": "src/app/api/studio/assets/[id]/route.ts",
+        "bytes": 399,
+        "sha256": "f6314f4d0e48ec03efd0d4b2749f0b73345595689732b38f0a28140a4bc298c1"
+      },
+      {
+        "path": "src/app/api/studio/assets/route.ts",
+        "bytes": 2833,
+        "sha256": "8c11049625b1e6df781273f974558de9323804afbdafc8888a9fa39080518522"
+      },
+      {
+        "path": "src/app/api/studio/assignments/[id]/review/route.ts",
+        "bytes": 1741,
+        "sha256": "3ad417e69ebe78aaf387aa4e73823e8e94b1a6364a33f9c8ed8083ad0ee3333d"
+      },
+      {
+        "path": "src/app/api/studio/assignments/[id]/route.ts",
+        "bytes": 1725,
+        "sha256": "2bfc4980488e00fce63f8e611e08db01de827c19c537f40f34afd2ffd7d1bc7b"
+      },
+      {
+        "path": "src/app/api/studio/assignments/route.ts",
+        "bytes": 7829,
+        "sha256": "5bb8f341a171fe19a6dbce5b677e293e2c0c621b2096af523bbe0c9ffac05755"
+      },
+      {
+        "path": "src/app/api/studio/bootstrap/route.ts",
+        "bytes": 622,
+        "sha256": "ebc66d9024de20756c22d7ed50827d416a4abf60cc666b1607ea8b9be041ea16"
+      },
+      {
+        "path": "src/app/api/studio/budgets/[id]/route.ts",
+        "bytes": 508,
+        "sha256": "6e778c9cff60529a2e93e0858c300b44ad8c7957c50a5fd4a90e5de004283b3f"
+      },
+      {
+        "path": "src/app/api/studio/budgets/route.ts",
+        "bytes": 620,
+        "sha256": "f06649f14d4deeed8ffb453a500e6ce19d8843ce26370b66c1286b452486bf02"
+      },
+      {
+        "path": "src/app/api/studio/health/route.ts",
+        "bytes": 1073,
+        "sha256": "54b18c460caca58967efac4a106ca0fc8671a91454f5fa199c99e32424e45e67"
+      },
+      {
+        "path": "src/app/api/studio/mcp/route.ts",
+        "bytes": 3348,
+        "sha256": "1c6f5a284b73d2ff16384c383ca56afe8ea3f72d9ac39886261421e43de62980"
+      },
+      {
+        "path": "src/app/api/studio/media/jobs/[id]/route.ts",
+        "bytes": 1581,
+        "sha256": "e8407c52a8da87e1530c5b3c5635b9362d396a7b4fe3bd995657fc51251da740"
+      },
+      {
+        "path": "src/app/api/studio/media/jobs/route.ts",
+        "bytes": 1531,
+        "sha256": "01d3f2472c2351e5c4e7edd842d91388ebbc400c754f2cfd9417dcc8759bbdc9"
+      },
+      {
+        "path": "src/app/api/studio/media/search/route.ts",
+        "bytes": 511,
+        "sha256": "27c1e273d6cacd5907eaeb9f7d7e4e05ec2ccdf41671a52f7d9cb3dcf5ca6905"
+      },
+      {
+        "path": "src/app/api/studio/projects/[id]/route.ts",
+        "bytes": 2256,
+        "sha256": "8a356bcedc66572ba025eaf71d242860cd987931af146b22cebc589ad2c7661b"
+      },
+      {
+        "path": "src/app/api/studio/projects/route.ts",
+        "bytes": 2271,
+        "sha256": "d874104384b478e0b71a087a4f83b4f7eaa364eb26902c2ed5425d9133e549a7"
+      },
+      {
+        "path": "src/app/api/studio/research/browser/route.ts",
+        "bytes": 1480,
+        "sha256": "85567d74da2fedb57e3b525a08fef2c7aad50be5b01b44dbc05e45773e9a4032"
+      },
+      {
+        "path": "src/app/api/studio/revisions/[id]/commit/route.ts",
+        "bytes": 1149,
+        "sha256": "774d5500527fc664170b9d574880ace83787e365a3c27ab44d001b2f24f91133"
+      },
+      {
+        "path": "src/app/api/studio/revisions/[id]/file/route.ts",
+        "bytes": 1747,
+        "sha256": "39115e4b0abdbc0ba38970d786de9aea96a87ca97f8a6b6cda74e07805a1d03a"
+      },
+      {
+        "path": "src/app/api/studio/revisions/[id]/fork/route.ts",
+        "bytes": 958,
+        "sha256": "3c5a5d26ae7b6377ebbacc3b7d690e5ce67fcdeca6bb5f2e0778b1c12a30bcb3"
+      },
+      {
+        "path": "src/app/api/studio/revisions/[id]/route.ts",
+        "bytes": 473,
+        "sha256": "6be47005d82f9aa3e52552bd1fa678cc7d83efb2d067b68bd095d67f0abd18db"
+      },
+      {
+        "path": "src/app/api/studio/revisions/[id]/transfers/route.ts",
+        "bytes": 539,
+        "sha256": "2656df551fee557f2690bb55b5d3dc93d86afad8ec1e422c9eb59194d89e8b9f"
+      },
+      {
+        "path": "src/app/api/studio/settings/route.ts",
+        "bytes": 493,
+        "sha256": "fa01321bafcd4ffebfde78c9d57847e74cd145870023e989c02ca6d1ab5bb1eb"
+      },
+      {
+        "path": "src/app/api/workspaces/[id]/invitations/[token]/route.ts",
+        "bytes": 696,
+        "sha256": "b2fe00775a49df40b3d0e20c84983b49326ed8e8c3994b818955dc8851e5c23e"
+      },
+      {
+        "path": "src/app/api/workspaces/[id]/members/[userId]/route.ts",
+        "bytes": 1166,
+        "sha256": "03e8df710ecd6d8cc470a7fa75ee7a5352c539378548be6c40255c0935fc0916"
+      },
+      {
+        "path": "src/app/api/workspaces/[id]/members/route.ts",
+        "bytes": 1347,
+        "sha256": "7f4ab481e7ef2a171fc348ebae18b76223c3d1d2d0ffafd84aa757c9d00fd8c0"
+      },
+      {
+        "path": "src/app/api/workspaces/[id]/route.ts",
+        "bytes": 1319,
+        "sha256": "dd143a2e1f87712068e6da5a6e82891358ad9c52718b1a2d684d0e02338a39ec"
+      },
+      {
+        "path": "src/app/api/workspaces/route.ts",
+        "bytes": 468,
+        "sha256": "12d7fb20b40c3f21c97f9f3bdb1f636839b3526a30b3051a48c9299735768721"
+      },
+      {
+        "path": "src/app/apple-icon.png",
+        "bytes": 6123,
+        "sha256": "36a7ef499dd97baf3ce5ed17aad233f21de6e08a79902ba0e07a907662663b72"
+      },
+      {
+        "path": "src/app/auth/callback/route.ts",
+        "bytes": 598,
+        "sha256": "d0b486523fbdb95fdb002a35b72fbc48520fadb7a14d9f6da0f47b6fc1985b50"
+      },
+      {
+        "path": "src/app/auth/confirm/page.tsx",
+        "bytes": 2314,
+        "sha256": "7d3a52b049ddbbbf87e162adbf16eb136109eeebbb678607577fe7261cc8ae8a"
+      },
+      {
+        "path": "src/app/brand.css",
+        "bytes": 4161,
+        "sha256": "e0f30cb9a1d0b92fa4c1153df08d8b814aacb5b05024c62dd27a02206577323f"
+      },
+      {
+        "path": "src/app/dashboard/(fleet)/applications/page.tsx",
+        "bytes": 141,
+        "sha256": "6d2b6c9222b3f4705048c1a4efbd83837d906ccbb1ac8b6bfbace1df02361a09"
+      },
+      {
+        "path": "src/app/dashboard/(fleet)/employees/page.tsx",
+        "bytes": 132,
+        "sha256": "a6fd4ca9b5ef98d8f845f7c2fda653ac431b02d2f23b9eb5c18b3efeb97ba7e3"
+      },
+      {
+        "path": "src/app/dashboard/(fleet)/health/page.tsx",
+        "bytes": 121,
+        "sha256": "4d4f2567a6e98816c9aafa00fa0e783a5b571bc0a03a1cf1803bdf4b890508af"
+      },
+      {
+        "path": "src/app/dashboard/(fleet)/layout.tsx",
+        "bytes": 458,
+        "sha256": "13ff57d92a9e29bcc3828e0d3c81d1a4aca14a7d580da93bbf1e4619bd32a75a"
+      },
+      {
+        "path": "src/app/dashboard/(fleet)/library/page.tsx",
+        "bytes": 126,
+        "sha256": "c433a77624d7d6d25837183d1980ff51d172f26cfdc858482ffb030c3e024fc0"
+      },
+      {
+        "path": "src/app/dashboard/(fleet)/members/page.tsx",
+        "bytes": 111,
+        "sha256": "b2b648500cde8291857974070eb04889cd44535358830a5ed5cf09744129b495"
+      },
+      {
+        "path": "src/app/dashboard/(fleet)/page.tsx",
+        "bytes": 139,
+        "sha256": "5f0a6315b5f8216f07b41e351135e6c2dced392caaa30a5f3207363318d9a6fd"
+      },
+      {
+        "path": "src/app/dashboard/(fleet)/projects/[id]/page.tsx",
+        "bytes": 325,
+        "sha256": "114c46ddd32a9bc76d5b5db48f6c85034648a54f2857c774cbe873ee1bd451b8"
+      },
+      {
+        "path": "src/app/dashboard/(fleet)/research/page.tsx",
+        "bytes": 138,
+        "sha256": "bc25ddcf84ac0314200f76d7119224088f74dee0b29490d87269421e098e3aac"
+      },
+      {
+        "path": "src/app/dashboard/(fleet)/settings/page.tsx",
+        "bytes": 139,
+        "sha256": "8588c570bbe369e00823ad739ecbb32b1391a30967f9a6ae815daafa767fb1cf"
+      },
+      {
+        "path": "src/app/dashboard/agents/[agentId]/[[...tab]]/page.tsx",
+        "bytes": 1652,
+        "sha256": "48b54686d5e4008356f71a8d919e5f9145dab278257aa8c735556cb92c7b8d63"
+      },
+      {
+        "path": "src/app/dashboard/layout.tsx",
+        "bytes": 786,
+        "sha256": "5db7b5ca079be6cfda41c623a2f66223883d3f15cc1ef9dd86338530d0d85aa6"
+      },
+      {
+        "path": "src/app/dashboard/studio.css",
+        "bytes": 64220,
+        "sha256": "5b2f773a034ca248d00d2870a962998fef8cd34f871b05ca811986831859ec3b"
+      },
+      {
+        "path": "src/app/favicon.ico",
+        "bytes": 3245,
+        "sha256": "b004c7726f0f97552616a7bf46291b06ca9015cd1a04f9b581ee9eae95c4da10"
+      },
+      {
+        "path": "src/app/globals.css",
+        "bytes": 4634,
+        "sha256": "beab5249bc3156c6bb8637edb96692acf8b1d4e76051e53cbf5fe6fa2ba7b7d1"
+      },
+      {
+        "path": "src/app/home.css",
+        "bytes": 20157,
+        "sha256": "2f5d94410351defea6cb0a677ae6464a78444cdf878ca8bff3341ab4d43e3d8f"
+      },
+      {
+        "path": "src/app/icon.svg",
+        "bytes": 705,
+        "sha256": "5ca948a8a6d02aee0a2cc9c114fd247c13cc33624bcc48d430c162953b198759"
+      },
+      {
+        "path": "src/app/invite/[token]/page.tsx",
+        "bytes": 1528,
+        "sha256": "6c54cef4169829dc574dc01a2b412c8bb3c0c7651bac8dc99b0b120b7be17c4a"
+      },
+      {
+        "path": "src/app/layout.tsx",
+        "bytes": 1141,
+        "sha256": "f0a6b64a979b601e704b1900c8a91f7ecc5c68df3c4ac47f9a17a4cc8e4fa983"
+      },
+      {
+        "path": "src/app/login/page.tsx",
+        "bytes": 4464,
+        "sha256": "26eb598b3407f676c2610ee49a5901f0a50fc5b909aef6fae1d75feb4cdbbb8e"
+      },
+      {
+        "path": "src/app/page.tsx",
+        "bytes": 1290,
+        "sha256": "48e836a7145e10925490c0a15828b16a6308e44897481b1f6b8fc28a9d8a6b4a"
+      },
+      {
+        "path": "src/app/privacy/page.tsx",
+        "bytes": 4959,
+        "sha256": "7f615864b7d50166cce40922f56ec5dfa9bc6fae0e0a84a1bd40cd5452020835"
+      },
+      {
+        "path": "src/app/reset-password/page.tsx",
+        "bytes": 214,
+        "sha256": "fb25501c9ffb20509a0c7547a1de106b204784619cc1e54b8a0b8f103aa16551"
+      },
+      {
+        "path": "src/app/robots.ts",
+        "bytes": 380,
+        "sha256": "1ec87f3ab48492b59553b5e025445687218cb5c48c72f40aa0383762674c736e"
+      },
+      {
+        "path": "src/app/sitemap.ts",
+        "bytes": 318,
+        "sha256": "fc98df3a5ee4e4c0a117b65cca098dae058fe655244c1724e47800c2fc5ad78c"
+      },
+      {
+        "path": "src/app/support/page.tsx",
+        "bytes": 3460,
+        "sha256": "521ef2219964b49f9993f044fb53a9c43a3285406d2c87e7dc68c75aedf5e077"
+      },
+      {
+        "path": "src/components/AcceptInvite.tsx",
+        "bytes": 1692,
+        "sha256": "2636088da9c9f55f23d79aa095f5b4f0bc98ea3a9f575731d41c32db692cb2fa"
+      },
+      {
+        "path": "src/components/AccountMenu.tsx",
+        "bytes": 6001,
+        "sha256": "fd9992131e30a9d901f370f5c651f71b3f6d21cbf2f218ce557a93a7b04e9492"
+      },
+      {
+        "path": "src/components/ActiveAgentSwitcher.tsx",
+        "bytes": 2777,
+        "sha256": "b840c145ab6db8de089db684a0ff795ae621489f6b84c7f6f263702b35162ed2"
+      },
+      {
+        "path": "src/components/AgentNameCell.tsx",
+        "bytes": 4647,
+        "sha256": "797f02d07cd2d20f7e3a0951ad773499edf0765a80472961c1034a4823e06f4d"
+      },
+      {
+        "path": "src/components/AgentSettingsTab.tsx",
+        "bytes": 13166,
+        "sha256": "20b422f22029a2338db5c8311117e963be510ef367b9c969ec56c7e6a0bb77b9"
+      },
+      {
+        "path": "src/components/AgentWorkspace.tsx",
+        "bytes": 11319,
+        "sha256": "da19f5da9bf87dde89aeeca1682a2cef888819dd15ea19640118a7595c2f3d33"
+      },
+      {
+        "path": "src/components/AgentsView.tsx",
+        "bytes": 8176,
+        "sha256": "cc36301c23cb4d639a892d74c92f6adfb264ab3906df27e64b0b130ebe35873b"
+      },
+      {
+        "path": "src/components/BudgetDialog.tsx",
+        "bytes": 4014,
+        "sha256": "a75cebebc6621a7274171575d7dd6d8dd4ebd1407571c536bd2c4d99401a545a"
+      },
+      {
+        "path": "src/components/ConfirmDialog.tsx",
+        "bytes": 1575,
+        "sha256": "2ca678a3de0da7c99adb60c2170ad9a814474a8ba245020eb1092f7a8ec6491a"
+      },
+      {
+        "path": "src/components/CreateAgentButton.tsx",
+        "bytes": 3591,
+        "sha256": "6727dc1a8354fdf469e0cd922bbb2afd11e1170f15a5e1ad39350b334dd3326f"
+      },
+      {
+        "path": "src/components/DashboardShell.tsx",
+        "bytes": 2328,
+        "sha256": "b3d44aad3d7af259b8a7c5abdd6d8316fb4209d72c29f6b68fffa359560ff933"
+      },
+      {
+        "path": "src/components/DropOverlay.tsx",
+        "bytes": 717,
+        "sha256": "afc9957c5c698fae2e9d8d21d5c2ffeadd080019e0b5fef212fcca7c77223eaa"
+      },
+      {
+        "path": "src/components/HiddenFileInput.tsx",
+        "bytes": 734,
+        "sha256": "fe676dd200fbaf58a05d5be455b8b1f7ad62544a935ecd68bf9db8c9b3c4276c"
+      },
+      {
+        "path": "src/components/IntegrationsDialog.tsx",
+        "bytes": 1378,
+        "sha256": "5516a259983f232d719432ad5e423d60ea0f916ff70f8c038e7af07fde570f0a"
+      },
+      {
+        "path": "src/components/IntegrationsTab.tsx",
+        "bytes": 16307,
+        "sha256": "ec88de102b469352031eb1190621b9edb0094005f41c5617f96bfdbd5a57f315"
+      },
+      {
+        "path": "src/components/Markdown.tsx",
+        "bytes": 719,
+        "sha256": "ef5b5fc4901863623bcbf1cb0d41b41e4606df7b7e4a97cb4af89867674ea19b"
+      },
+      {
+        "path": "src/components/MembersView.tsx",
+        "bytes": 7943,
+        "sha256": "c6834edf3ccf4dc6c8340bbca8f3869cd35d66b91af1069b2b8360c4241b915f"
+      },
+      {
+        "path": "src/components/OpenPortButtons.tsx",
+        "bytes": 4539,
+        "sha256": "4ee0519c02357c0357c7c2acb66d616e7f997f8473b2d7decd9973cfe012f96f"
+      },
+      {
+        "path": "src/components/SettingsView.tsx",
+        "bytes": 3789,
+        "sha256": "79c4143a9a5c9bfb260335008821e58cb4cd93e4172045ed700448e7727f5fa3"
+      },
+      {
+        "path": "src/components/WorkspaceProvider.tsx",
+        "bytes": 2122,
+        "sha256": "3778533dcbbab3739f97d08154e194cb6b2372319aa8931514b43cc8eb79b896"
+      },
+      {
+        "path": "src/components/brand/AuthFrame.tsx",
+        "bytes": 1115,
+        "sha256": "24a810c32e33bdf17fda0546025f20bd6129b1e33a39f1f9d8f87b9637784f38"
+      },
+      {
+        "path": "src/components/brand/BrandWordmark.tsx",
+        "bytes": 165,
+        "sha256": "a049a7eb45f28cf918fb8ce1a8046c0dff41b6b0dd0b0572031d4ee15442f6a6"
+      },
+      {
+        "path": "src/components/brand/RobinMark.tsx",
+        "bytes": 792,
+        "sha256": "8623ac2b0a3964a98ae871f8fc8ef41e3c227232adb9b34787a74905e8f8cb2f"
+      },
+      {
+        "path": "src/components/channels/BrandIcons.tsx",
+        "bytes": 5495,
+        "sha256": "9269d8da651a8f1f1dccdd16b149522b721a66b384940e88a64557877cc64b75"
+      },
+      {
+        "path": "src/components/channels/ChannelCredentialsForm.tsx",
+        "bytes": 6274,
+        "sha256": "2ab43d9d470d5323b9aa00bc8e4df69a5d2740dc47ab525747cd5ba8c9062475"
+      },
+      {
+        "path": "src/components/channels/ChannelsTab.tsx",
+        "bytes": 7486,
+        "sha256": "08ec22462a332508fdc82d3bf7b51c3f8b92a6e1f4cdb04d7c86c288a0d59d06"
+      },
+      {
+        "path": "src/components/channels/TelegramConnect.tsx",
+        "bytes": 9450,
+        "sha256": "13a2f3964f17d1817d18874ea49d0aa834167289dddfa41f991ee834a9d67008"
+      },
+      {
+        "path": "src/components/channels/WhatsAppConnect.tsx",
+        "bytes": 6717,
+        "sha256": "2bd706e99f772e8337ffea91ade2cac6782ed1103f1c85d69983a7acb1c79061"
+      },
+      {
+        "path": "src/components/chat/Attachments.tsx",
+        "bytes": 2569,
+        "sha256": "dfb327d185f1eb8d870cdd657328cdb09aad86f7ef04f62b9ea88a8fa30f292c"
+      },
+      {
+        "path": "src/components/chat/ChatComposer.tsx",
+        "bytes": 6409,
+        "sha256": "6ec004268e76bbd7b07308389943f0a3343b7231554e30c0d91a8681a7e5883b"
+      },
+      {
+        "path": "src/components/chat/ChatMessages.tsx",
+        "bytes": 5287,
+        "sha256": "d99e034429ceaeff96b340ee44740301bafd8eb4709c5c2bc3e536d70b66ebb1"
+      },
+      {
+        "path": "src/components/chat/ChatProvider.tsx",
+        "bytes": 11223,
+        "sha256": "9fddc0cfa9df244530367cdc6a1fb30d53dce4112931e326260d4464acadbe27"
+      },
+      {
+        "path": "src/components/chat/ChatSidebar.tsx",
+        "bytes": 7057,
+        "sha256": "3af91ede977034acb4820910656fe12bd1d1a8e076abfbb26fc9a594e7a37b93"
+      },
+      {
+        "path": "src/components/chat/ChatView.tsx",
+        "bytes": 6547,
+        "sha256": "ce64be8365eabcf9c77098203f1c8cbe8663829a26447d812190aab1b5c71189"
+      },
+      {
+        "path": "src/components/chat/EffortMenu.tsx",
+        "bytes": 1815,
+        "sha256": "64ca6f04f7dac0da3260ad3132a0e977927d83567d831e567aefeb74a2c14c7c"
+      },
+      {
+        "path": "src/components/chat/Markdown.tsx",
+        "bytes": 41,
+        "sha256": "6d77d4998a2640ebc95c7ede2f6d1e540b767fc9159c5fc5eadda1c0ffefd427"
+      },
+      {
+        "path": "src/components/chat/ModelMenu.tsx",
+        "bytes": 3577,
+        "sha256": "03274264649fdc506f342bf9b8e586f5e3afbeca33f8f17703c5003d42316547"
+      },
+      {
+        "path": "src/components/chat/types.ts",
+        "bytes": 4643,
+        "sha256": "e724df36c69ff99c53f27e14eac3ca88318e1b695e8d3be8419487fb12c3d9fb"
+      },
+      {
+        "path": "src/components/chat/useChat.ts",
+        "bytes": 22900,
+        "sha256": "e68220af8bc4a562ddc651d70a3c4162e649d364d0d6f058eccbe8c167a8ee16"
+      },
+      {
+        "path": "src/components/chat/useChatAttachments.ts",
+        "bytes": 5633,
+        "sha256": "227f4cdfa43486aedfada049e0f8474b071b6cf58dd2d6a4f09d024e39ede4a8"
+      },
+      {
+        "path": "src/components/chat/useChatModels.ts",
+        "bytes": 2349,
+        "sha256": "10b1da37286fb8f62042196e336d27c6a3b11116a014a4fcd1523004f2a1d582"
+      },
+      {
+        "path": "src/components/files/FilePreview.tsx",
+        "bytes": 4437,
+        "sha256": "81fbd5550436e5747e4b29a09350a6ed56766f566b4d0fc1a637e4fc37fc68a5"
+      },
+      {
+        "path": "src/components/files/FilesTab.tsx",
+        "bytes": 546,
+        "sha256": "b409376b56ce70f40c8782b4fc92380f40cbb764a0664095a56f359639458007"
+      },
+      {
+        "path": "src/components/files/FilesView.tsx",
+        "bytes": 25552,
+        "sha256": "581efb4202a8c781d03bff8b35c5a2a2d73924a8457209214ea2529f320527e1"
+      },
+      {
+        "path": "src/components/files/types.ts",
+        "bytes": 3888,
+        "sha256": "c4032677ab60da279d41a6eb7f93a44a262e8a79877063fcba0b8fd3ad1bba21"
+      },
+      {
+        "path": "src/components/files/useFileBrowser.ts",
+        "bytes": 9550,
+        "sha256": "f7a00e2e1f1b5a8ac82e6cd1af2824d4d79909b950fd621030106efa1f5d71c8"
+      },
+      {
+        "path": "src/components/home/Artwork.tsx",
+        "bytes": 6690,
+        "sha256": "c84229a88becc7e2f4beb4362178e558d9a352676df62983a0d5c1f19afcda9b"
+      },
+      {
+        "path": "src/components/home/AsciiRobin.tsx",
+        "bytes": 16782,
+        "sha256": "5895f9e3562b35aaad4e5a9795cca1e1dbb4f40dfc96afc5feae18a55103496b"
+      },
+      {
+        "path": "src/components/home/CraftArtwork.tsx",
+        "bytes": 3503,
+        "sha256": "c037be28785d53de48e6f280c19d4f7587b9c5c0d9ff904ca9d17c6867c53d61"
+      },
+      {
+        "path": "src/components/home/CreativeHomepage.tsx",
+        "bytes": 1204,
+        "sha256": "ab063ec77dce04c7b45ee2b54bfc37b31375b7ef62313a09bac399a0dece5fec"
+      },
+      {
+        "path": "src/components/home/FlightStory.tsx",
+        "bytes": 7935,
+        "sha256": "8071df2dbba67b02df7d7e65694afcf76386017be6590983a2e652063dbbd0c6"
+      },
+      {
+        "path": "src/components/home/InvitationForm.tsx",
+        "bytes": 3703,
+        "sha256": "013114ec60c196a0a952f7fa94f8dee71a618509f5c714d856bdc22a2fb3bd27"
+      },
+      {
+        "path": "src/components/home/craft-artwork.ts",
+        "bytes": 4436,
+        "sha256": "15a2d59d884a919e88c90ea91f72ce71a17983ba86dd79add8e4765054191d70"
+      },
+      {
+        "path": "src/components/home/craft-tour.ts",
+        "bytes": 5040,
+        "sha256": "80f86a6393d76d549dc06ddf45ad4df404bd753a4d91f9fea0155be63f4b1ea3"
+      },
+      {
+        "path": "src/components/studio/AssignmentPanel.tsx",
+        "bytes": 17078,
+        "sha256": "8d0bfdbf4bd8ecd8734bf2b8dbb8d831d2aca6eb897d0c1bf3735ad2aac80f51"
+      },
+      {
+        "path": "src/components/studio/DesktopStudioGate.tsx",
+        "bytes": 2726,
+        "sha256": "f46699e11ca6d50125bb836f835e2b96819fd418efc84ceabaaa415863797d3f"
+      },
+      {
+        "path": "src/components/studio/EmbeddedEditor.tsx",
+        "bytes": 6808,
+        "sha256": "2d5c7e7d883a07b0d4cd3ab15a5b0be37cb48927ad3c5c6a5e60e8af521a5978"
+      },
+      {
+        "path": "src/components/studio/MediaPanel.tsx",
+        "bytes": 14240,
+        "sha256": "fd0d312aa9b45f378704024a7f52c53350cc5f7761d02c22e1cb55187e48d2b9"
+      },
+      {
+        "path": "src/components/studio/ProjectWorkspace.tsx",
+        "bytes": 26872,
+        "sha256": "3e3ee07caa4aecc4ddb43f5624dfc655c898658c62679a0c2317fa91e19edbfa"
+      },
+      {
+        "path": "src/components/studio/ResearchBrowser.tsx",
+        "bytes": 5790,
+        "sha256": "1fb507d98a574d08a2912b9dc031db65190c30fc31e11889b39aaff11bbe6252"
+      },
+      {
+        "path": "src/components/studio/ResearchBrowserButton.tsx",
+        "bytes": 227,
+        "sha256": "429bfa4b8a884dce9e841dcc565048692d73464f2dee36134236d8007254e6fd"
+      },
+      {
+        "path": "src/components/studio/ResearchNotebook.tsx",
+        "bytes": 6755,
+        "sha256": "aab53e87008e946a61752d4afd287ecd179e69ac631d8e6cf921c122bb46f5f2"
+      },
+      {
+        "path": "src/components/studio/SavedMedia.tsx",
+        "bytes": 1538,
+        "sha256": "eda0548c1be36d0bfb6b4fcd6c4a708e7e30b0f6fd9a1cd2256407bc86bf681d"
+      },
+      {
+        "path": "src/components/studio/SourceProvenance.tsx",
+        "bytes": 3144,
+        "sha256": "56fe9fcd6578696545566ec2e861bd1296ff9a12066c75fe4e0929b5e927f4fb"
+      },
+      {
+        "path": "src/components/studio/StudioApplications.tsx",
+        "bytes": 2060,
+        "sha256": "2199b711bf48955401001ba4b5a381f6e25a8df61851bab245e1ab842cf4f517"
+      },
+      {
+        "path": "src/components/studio/StudioBudget.tsx",
+        "bytes": 8937,
+        "sha256": "d631481edae121c605e45a1fabfd42ba9c5280d45719dcd74978d3fad05a8153"
+      },
+      {
+        "path": "src/components/studio/StudioDialog.tsx",
+        "bytes": 1364,
+        "sha256": "c88e2a58b91862038a38bf572caf9ff25deca0459ca07edd308161a321f27b95"
+      },
+      {
+        "path": "src/components/studio/StudioEmployees.tsx",
+        "bytes": 3090,
+        "sha256": "995b25a17ef384f5a81abcb0ca1b304eb7209190434f6bb85aacaa7b8e0d4e50"
+      },
+      {
+        "path": "src/components/studio/StudioHealth.tsx",
+        "bytes": 2552,
+        "sha256": "33bfe0378b392f5e7a30c19942f9f7ad83d94b17fc4ed63508d4d8860f5518be"
+      },
+      {
+        "path": "src/components/studio/StudioLibrary.tsx",
+        "bytes": 3146,
+        "sha256": "40571456e2b43fa979db2488debdbe721cb5442035172e7eb4c41ac6e95ffafe"
+      },
+      {
+        "path": "src/components/studio/StudioNavigationMenu.tsx",
+        "bytes": 1780,
+        "sha256": "feec1718a8acce20704c0ae881895e68a6849e7a47b35fdee21eb0ec625c5468"
+      },
+      {
+        "path": "src/components/studio/StudioProjects.tsx",
+        "bytes": 5653,
+        "sha256": "3970f8022cb516748c1cebc3ffb088314245413104f574e1cfe5af4293463ad4"
+      },
+      {
+        "path": "src/components/studio/StudioSettings.tsx",
+        "bytes": 2530,
+        "sha256": "fefbce74936470d3101a4f4a8a324f214e4e3a6d9c53352ef1be6e435af33a37"
+      },
+      {
+        "path": "src/components/studio/StudioShell.tsx",
+        "bytes": 1890,
+        "sha256": "1fa82804bcb1a177929352ab14bcdab33e65884c3ac6fd4d978d8346f849d30b"
+      },
+      {
+        "path": "src/components/studio/StudioStudy.tsx",
+        "bytes": 1494,
+        "sha256": "08237eb17c778aeceb09584c0ab04330681444770b7e06233b1794acd0a914b0"
+      },
+      {
+        "path": "src/components/studio/UploadPackageDialog.tsx",
+        "bytes": 6523,
+        "sha256": "ed09bbfae05afbd76ca0aaef557bfedcaaa4a07e00d0b2b617c0fb3b6b74192a"
+      },
+      {
+        "path": "src/components/studio/usePagedStudioList.ts",
+        "bytes": 1839,
+        "sha256": "d46d5ca68ed0104d41f9f96f151df3a8d26e2b9b455f0c6918e56798cb3ac259"
+      },
+      {
+        "path": "src/components/ui/badge.tsx",
+        "bytes": 1150,
+        "sha256": "6f1a34d08fa80fe9f0fda951c223e4e4f23845fcce9b7f41b5688131c6662957"
+      },
+      {
+        "path": "src/components/ui/button.tsx",
+        "bytes": 1826,
+        "sha256": "e04621e4da1a0bae335a7a8cd8166e78452862a06eed913020283c122cfb34d9"
+      },
+      {
+        "path": "src/components/ui/dialog.tsx",
+        "bytes": 3350,
+        "sha256": "bf8f6c2b0ea46ad523bf6c71c733174d161af878436726ccf061e110ee7a76fc"
+      },
+      {
+        "path": "src/components/ui/dropdown-menu.tsx",
+        "bytes": 3042,
+        "sha256": "4c41e3f14808d024263d01bd5695ca3c4e1e8e6dffc47a51d33d4f0f215b3dbe"
+      },
+      {
+        "path": "src/components/ui/input.tsx",
+        "bytes": 710,
+        "sha256": "d78dca42eecaff9eaf67297559f0f14260d67f32b22549bc4ef5bfe189f56335"
+      },
+      {
+        "path": "src/components/ui/label.tsx",
+        "bytes": 594,
+        "sha256": "eddc7af856a9e2804780312f06044e9507391a0291647f36ca956a7e99eb9519"
+      },
+      {
+        "path": "src/components/ui/tooltip.tsx",
+        "bytes": 1308,
+        "sha256": "01ff3db7096b59cf090fcd1c1f6b9379681fcedfc63a22954d789af1c9c97b37"
+      },
+      {
+        "path": "src/components/useAsyncAction.ts",
+        "bytes": 817,
+        "sha256": "5c2c6cca37fe5595134eaec599698d6e6a908d4abf7c290f26d400a378e8afae"
+      },
+      {
+        "path": "src/components/useDropZone.ts",
+        "bytes": 1565,
+        "sha256": "588de2f91f0e4ad3e987b06021826ca0a21eca978425907ad0aeee2085db1150"
+      },
+      {
+        "path": "src/config/agents.ts",
+        "bytes": 2477,
+        "sha256": "184aee5ae9a426872d8b5f02a2999c2d3d869de923f09910300e145e620eabf3"
+      },
+      {
+        "path": "src/config/auth.ts",
+        "bytes": 201,
+        "sha256": "a095bbb6a05577c0a383b8ae439874d2365ff9e540e4c5e74d489d5886cf99a6"
+      },
+      {
+        "path": "src/config/branding.ts",
+        "bytes": 819,
+        "sha256": "5d29b1ba4999b30d4e510cc495a3e3fb7f2cb88582ec0be60f6359ab75a094b6"
+      },
+      {
+        "path": "src/config/robin-mark.json",
+        "bytes": 396,
+        "sha256": "a7f423d226cc1f6b70b66953b5ca3250675c65d4906a13625b575f0d12b7981b"
+      },
+      {
+        "path": "src/config/social-metadata.ts",
+        "bytes": 623,
+        "sha256": "0b0f2f955a34d960dc24353fdcdc33ef6d96f1cc28b8c4958431d7b2374c854f"
+      },
+      {
+        "path": "src/config/support.ts",
+        "bytes": 55,
+        "sha256": "2c61255029059bcd4fe09eabff3a0ebcaba47b67181f718ecda37dd95ab94a5f"
+      },
+      {
+        "path": "src/lib/agent37.ts",
+        "bytes": 14355,
+        "sha256": "fe1988ff9721db6dc71d364779f6bbdd94ad41320ffe586b69bea32f5665e4c8"
+      },
+      {
+        "path": "src/lib/api-error.ts",
+        "bytes": 175,
+        "sha256": "ad777123fbdf9858cd1991be1f2b13e47117246e1dabb2c55a73febc6c0ee6fb"
+      },
+      {
+        "path": "src/lib/api.ts",
+        "bytes": 938,
+        "sha256": "ce55aaefd24b7d8af853d31a1e76630398600c743d281cc585a34f23a646a66c"
+      },
+      {
+        "path": "src/lib/auth-redirect.ts",
+        "bytes": 647,
+        "sha256": "ec1a2c606eaef83b2f9028ecf2917c3e95f59ba09d7a281dc5dcd6fe0c0999fb"
+      },
+      {
+        "path": "src/lib/auth.ts",
+        "bytes": 3117,
+        "sha256": "c5c3a512f9743e1553c83e48924bffc1c62b00612b7a12654295acc03425e44d"
+      },
+      {
+        "path": "src/lib/channels.ts",
+        "bytes": 5654,
+        "sha256": "1d1379d667554be8582ed1c8102ac7ac35e3845c5f72a12b01775b2998f655cb"
+      },
+      {
+        "path": "src/lib/dashboard-tabs.ts",
+        "bytes": 1363,
+        "sha256": "913ee24aa59e2bcfb01546519848e00edde437af6a3c8aac509a64787de21376"
+      },
+      {
+        "path": "src/lib/email-link-flow.ts",
+        "bytes": 3003,
+        "sha256": "d83f0eb60932a9e4f448ac34754e2aec7854af87adb7de0fd8581170b3b0ba8e"
+      },
+      {
+        "path": "src/lib/format.ts",
+        "bytes": 831,
+        "sha256": "06a5fc072931dfe7d956b2a9fc6f5f117bcb36a6ffee768e21b00d2ea5f6ed1c"
+      },
+      {
+        "path": "src/lib/hermes-messaging.ts",
+        "bytes": 5656,
+        "sha256": "52406aace8902e80b2a601490b8bc6b65cbf9ea7b736b39f40cc2955bc01a75c"
+      },
+      {
+        "path": "src/lib/http.ts",
+        "bytes": 930,
+        "sha256": "00bc4eb676f5dff908e5fb3d664f271208bf9810994145f189d0f7afc0d15ca4"
+      },
+      {
+        "path": "src/lib/integration-catalog.ts",
+        "bytes": 3155,
+        "sha256": "3a36992a0d734ec1968268f864911b9e5bf3a9893d2b384063df087293e21deb"
+      },
+      {
+        "path": "src/lib/invitation-request.ts",
+        "bytes": 1009,
+        "sha256": "92f3df023285b14d7fb460366b45eb4e83b90a51851ceb378f4e02aa10de3f4a"
+      },
+      {
+        "path": "src/lib/request-origin.ts",
+        "bytes": 1040,
+        "sha256": "c44994b67e7144ca104bfd4b6de0cafdc225e1aaee1b8cc8fd56b2605fc763fa"
+      },
+      {
+        "path": "src/lib/site-url.ts",
+        "bytes": 2091,
+        "sha256": "c3ec80ccf0018f4b2a4ba49d33c34a1d1d5282f9ff87fdc4dea654e5e22c27b8"
+      },
+      {
+        "path": "src/lib/supabase/admin.ts",
+        "bytes": 1577,
+        "sha256": "29f82ba09dce6609092fa638d5fe957aa6447f61ffd0a3a9ff011a627b1b84cb"
+      },
+      {
+        "path": "src/lib/supabase/client.ts",
+        "bytes": 222,
+        "sha256": "f7da0497def7dc5367064451c417c7df275afa05da37b524a4fba59741ce9e24"
+      },
+      {
+        "path": "src/lib/supabase/middleware.ts",
+        "bytes": 2476,
+        "sha256": "045b0d2640fee9b2816f81d1f916a31f9b51f4557ebb0a93945148a7a37980e5"
+      },
+      {
+        "path": "src/lib/supabase/server.ts",
+        "bytes": 816,
+        "sha256": "3988450842813bced1d93474a2995a86ae4017a91f8319689186aafec8f0aca3"
+      },
+      {
+        "path": "src/lib/telegram.ts",
+        "bytes": 3680,
+        "sha256": "f1a2366d396572e3ce65205687a85ac04b0ec0074c2519aec0d14d43606166bf"
+      },
+      {
+        "path": "src/lib/types.ts",
+        "bytes": 6725,
+        "sha256": "3373495ecd34d2b2f4396b864ef9e2a9903d02d2486967dc4825a57e04ae8cf8"
+      },
+      {
+        "path": "src/lib/utils.ts",
+        "bytes": 175,
+        "sha256": "c0adf27efbfa148d5abcf99e860f8e3e6c8fc77a1f99e023c08ef4f12e6ece29"
+      },
+      {
+        "path": "src/novnc.d.ts",
+        "bytes": 262,
+        "sha256": "8abb561f3e9532d56d9d83acacc763941b52c50c11df238eab217dc28eaec521"
+      },
+      {
+        "path": "src/proxy.ts",
+        "bytes": 383,
+        "sha256": "181a761b007643ccbfb48f7d3eea5236ca50960288feeb2b83c8fce1b2e31458"
+      },
+      {
+        "path": "src/studio/apps/cadcraft.json",
+        "bytes": 1554,
+        "sha256": "edd3ec045fe6ad34551e035f5014b76fdae458050cda4353fbe75939f20fd021"
+      },
+      {
+        "path": "src/studio/apps/deckcraft.json",
+        "bytes": 1555,
+        "sha256": "ff4759c3e0c5c04a47445212b443e0498841f5aa14c7f30abfb933d9c02e3b9e"
+      },
+      {
+        "path": "src/studio/apps/designcraft.json",
+        "bytes": 1523,
+        "sha256": "18908b3e4ae292dd9a999d663caef3b3a3b76e0aba1ce63a3cde9fbbb475291e"
+      },
+      {
+        "path": "src/studio/apps/effectcraft.json",
+        "bytes": 1517,
+        "sha256": "7ead3693d7f3e016a4413be16622e757660c6e3aaf5cef8c7f77541b1021c856"
+      },
+      {
+        "path": "src/studio/apps/figcraft.json",
+        "bytes": 1554,
+        "sha256": "c069b5ea37701627a2e11da66fdeff34735e0d20764d336fc1943a073e36e735"
+      },
+      {
+        "path": "src/studio/apps/filmcraft.json",
+        "bytes": 1518,
+        "sha256": "0295ce0317ed52e2b9ac276daeb997f899cebacc3080e3e3b3c6afd3aa91600f"
+      },
+      {
+        "path": "src/studio/apps/gridcraft.json",
+        "bytes": 1531,
+        "sha256": "a6a9cfbd0016df61f96a81e1fac129c233a840241be6b2dc61098504e4cb40f3"
+      },
+      {
+        "path": "src/studio/apps/lightcraft.json",
+        "bytes": 1507,
+        "sha256": "0e0cad12052aaf834e3589e75907900dcac224f399ef31523e1823a6044bdb9e"
+      },
+      {
+        "path": "src/studio/apps/pdfcraft.json",
+        "bytes": 1543,
+        "sha256": "ab404ce630e22d0249d4c1300e589cc67822e4a2437ca4a4ea7414f52ac88e6e"
+      },
+      {
+        "path": "src/studio/apps/photocraft.json",
+        "bytes": 1559,
+        "sha256": "d92439f6acf0784d87feca7489aad72453be7f91eb945fdeb986e3a2bdc3c982"
+      },
+      {
+        "path": "src/studio/apps/registry.ts",
+        "bytes": 1117,
+        "sha256": "2c8f3e9f1acc6a52f3931e072eaa9f253ef5c3758aae8dca8694792b9df66ead"
+      },
+      {
+        "path": "src/studio/apps/soundcraft.json",
+        "bytes": 1508,
+        "sha256": "ddd6baa341bc2765f26b0aaf2bc43797e11073de553a60c2d4d470922aa22e62"
+      },
+      {
+        "path": "src/studio/apps/vectorcraft.json",
+        "bytes": 1534,
+        "sha256": "9cf6cf039d1217d58aec3598286827b98a0ee50a0f2a6334be8635c1b79a9dbe"
+      },
+      {
+        "path": "src/studio/apps/wordcraft.json",
+        "bytes": 1498,
+        "sha256": "b06c6193ed16d92e1c52ca088089d63e4902e1250e5568cdfbb76e414bb1ee4a"
+      },
+      {
+        "path": "src/studio/assets.ts",
+        "bytes": 4897,
+        "sha256": "7d84ddb0704c8110d57d7e11879ff4cf5f3c1a0e4e65a8413f53330164ae0e13"
+      },
+      {
+        "path": "src/studio/assignment-draft.ts",
+        "bytes": 2949,
+        "sha256": "b8e46c19f4127744b3e4df10826be3b026b9641e89865d12470758b2e93e00b9"
+      },
+      {
+        "path": "src/studio/assignment-launch.ts",
+        "bytes": 1447,
+        "sha256": "34a7f24d6896eb48a883e5bde8df569e5d46daf536884bcd2b0f94b85b987beb"
+      },
+      {
+        "path": "src/studio/assignment-protocol.ts",
+        "bytes": 3670,
+        "sha256": "ec2bac3596ef2226dcb1faacd65582d9acf3d6dee44ba644c5ad80b3cc5df762"
+      },
+      {
+        "path": "src/studio/assignment-server.ts",
+        "bytes": 2740,
+        "sha256": "199f5dc807931c41987f98e4693b9719ee8f75ec6fa31c9da699654769041ed1"
+      },
+      {
+        "path": "src/studio/assignments.ts",
+        "bytes": 2690,
+        "sha256": "46fc65ba8eb1df5035c7d6b0b29811a6ba25682c2b83e15720d8d7c086b9fb05"
+      },
+      {
+        "path": "src/studio/budget-plan.ts",
+        "bytes": 2701,
+        "sha256": "0736c3151d2e1846f01dab5be04d9e6b8479a502082978f0e8fcc1a0d0769103"
+      },
+      {
+        "path": "src/studio/campaign-launch.ts",
+        "bytes": 1099,
+        "sha256": "e6911df54d819ef32e2a20cd4bca5d04c89b8ea142649e8afa5b030c58f75eab"
+      },
+      {
+        "path": "src/studio/campaign-server.ts",
+        "bytes": 964,
+        "sha256": "e85339659b36d7ccbe301e7ed8f2096939db062e9c91eec5cb26fe6adc66b48a"
+      },
+      {
+        "path": "src/studio/campaigns.ts",
+        "bytes": 2333,
+        "sha256": "f643d81ca6bb53e4ec6359043fb6654a6eb18dcff0e580eda4bfc285f8535ea1"
+      },
+      {
+        "path": "src/studio/director.ts",
+        "bytes": 1626,
+        "sha256": "f4daee690cc33acf0a53938971d9e60f456b2f04cd44328f3638497ba98d7551"
+      },
+      {
+        "path": "src/studio/editor-bridge.ts",
+        "bytes": 2641,
+        "sha256": "6ca2f066e5974ba87ca00c86316647fe86160e6f3ac323fae7051479ecd22c9c"
+      },
+      {
+        "path": "src/studio/editor-host.ts",
+        "bytes": 9134,
+        "sha256": "68aae534253a979d7a789f406a8a997ecd3aac2f638ac9402a2c17de538319ef"
+      },
+      {
+        "path": "src/studio/employee-auth.ts",
+        "bytes": 2697,
+        "sha256": "02444e0e3ff4a978e5b896b6e6a2cc8f75e0144a02a47191fa806d525623aa4a"
+      },
+      {
+        "path": "src/studio/employee-budgets.ts",
+        "bytes": 2957,
+        "sha256": "317f2a898e5239edec1d6d6f09970c02195287a4882637e07107216913fa6e6c"
+      },
+      {
+        "path": "src/studio/employee-tools.ts",
+        "bytes": 11581,
+        "sha256": "0c746f2549d672887edea54eb3b4616a66f33edb89a56203bf943a1ec10bcea5"
+      },
+      {
+        "path": "src/studio/legacy-agent-guard.ts",
+        "bytes": 893,
+        "sha256": "7b735199ad57c28b7a9576a0e95af27a55a43bbd6fa229f9ea024c47be8df20e"
+      },
+      {
+        "path": "src/studio/manifest.ts",
+        "bytes": 1477,
+        "sha256": "755cd4a166f5ba10deb75a30a5922ce10047179fd28b0fec3329982519b3a1ec"
+      },
+      {
+        "path": "src/studio/media-commons.ts",
+        "bytes": 3598,
+        "sha256": "ccd92a1738130887d26a964e5cc8885c122148738a9e25cd6beb186d929410bc"
+      },
+      {
+        "path": "src/studio/media-launch.ts",
+        "bytes": 998,
+        "sha256": "b71831f36d70a656d72b67a25cf19ee16fd7369aa771c51c67de61b0e2cea432"
+      },
+      {
+        "path": "src/studio/media-providers.ts",
+        "bytes": 3937,
+        "sha256": "b22fc7e278e2c6089fd9644592c2a1946d02618dd85b95fccbebcd1ca43d6fc6"
+      },
+      {
+        "path": "src/studio/media-recovery.ts",
+        "bytes": 628,
+        "sha256": "b6adefa4922a8015e5d7c839e5d3387eb89ce9ba9284d173b73c9bc18366a116"
+      },
+      {
+        "path": "src/studio/media-server.ts",
+        "bytes": 7229,
+        "sha256": "abd495c25a3149b4b6be2b2f3793565317904afbe4241d61f819601baf5f91e2"
+      },
+      {
+        "path": "src/studio/media-status.ts",
+        "bytes": 1880,
+        "sha256": "65f3f33972fb5c557858d72a425c66a7d75053c19381abeaaed6f98646df2d7b"
+      },
+      {
+        "path": "src/studio/media-worker.py",
+        "bytes": 25957,
+        "sha256": "06e79a4396827a2ca4f5c260864672f8846fab616b099d607bebcd58f5ebf261"
+      },
+      {
+        "path": "src/studio/media.ts",
+        "bytes": 8545,
+        "sha256": "f3059915c3f7f91c5c20febd0e9ef5459e4a7a4b9fd7f0f515a671f43d6a03fa"
+      },
+      {
+        "path": "src/studio/package-store.ts",
+        "bytes": 3746,
+        "sha256": "a7ece592cd43eb87bac60669b0ae82751af078b453b3b1fb49c03e251d1ff77d"
+      },
+      {
+        "path": "src/studio/pagination.ts",
+        "bytes": 1625,
+        "sha256": "cbaaf8c95bc0c49ff5131d66cc6bed4431dcdd95d5446a39b20ac8e477d90410"
+      },
+      {
+        "path": "src/studio/paid-capacity.ts",
+        "bytes": 2387,
+        "sha256": "546779b35463bc9131ebca424f9bc00225613e670a177112796b2bd69ddd5a9a"
+      },
+      {
+        "path": "src/studio/research-browser.ts",
+        "bytes": 3520,
+        "sha256": "3b8e90cc5349159524e024f9720dfcba9e9c54f60469ac0820985d725e8b9c6e"
+      },
+      {
+        "path": "src/studio/review-draft.ts",
+        "bytes": 1561,
+        "sha256": "7c0a8efc385324966bb82d4ecf659d462454686485f0f76235609ffb29ae53b5"
+      },
+      {
+        "path": "src/studio/saved-file.ts",
+        "bytes": 228,
+        "sha256": "12025fe2b41df7eb61c606f2950b9e5a0efd31f2cfea4b43e36fb8bf503ad62f"
+      },
+      {
+        "path": "src/studio/server.ts",
+        "bytes": 8783,
+        "sha256": "ed934bd1ca6e5c406a4c3736496cda1a8d05d361e1815758770f63cf88d2ca4d"
+      },
+      {
+        "path": "src/studio/specialists/research.ts",
+        "bytes": 2569,
+        "sha256": "89460cad16f2d2439e5ae2a36a3af65b7dbac14e36bacab020d41253b67d93fe"
+      },
+      {
+        "path": "src/studio/studio-budgets.ts",
+        "bytes": 7600,
+        "sha256": "ffddf80aea879232fd71e0ee637575c1cb63c2d646aeb6486d47a81af95d8276"
+      },
+      {
+        "path": "src/studio/tools.ts",
+        "bytes": 309,
+        "sha256": "3ba54e20f024b61e70a3df0cb58fa22bda893274e24cbd276ad4ae3fefe3c48b"
+      },
+      {
+        "path": "src/studio/transfer-client.ts",
+        "bytes": 6030,
+        "sha256": "2720eab60081898d8c4e30797d270c700f8911d727e29ca2764000975ff4c29d"
+      },
+      {
+        "path": "src/studio/workflow-health.ts",
+        "bytes": 1104,
+        "sha256": "1a9dcca77f117403ebf5c09c6e1970fc9c386773d2bccdcf238a2bd1d124e2bd"
+      },
+      {
+        "path": "src/studio/workstation-release.json",
+        "bytes": 2505,
+        "sha256": "bacba6cefa2ee4ec17238f4b5fb3e4475832386ee1ade2e7a4d7889350f6f077"
+      },
+      {
+        "path": "src/studio/workstation.ts",
+        "bytes": 11767,
+        "sha256": "3db260ccf7247c0b468f5b6a12802347d56f24b287ffb8f9723ae812e7cf1c59"
+      },
+      {
+        "path": "src/workflows/assignment/index.ts",
+        "bytes": 2241,
+        "sha256": "168d9b2eb863901662a41fe151e88dac7753cc597c4ff2bca57d75e0371d164c"
+      },
+      {
+        "path": "src/workflows/assignment/steps.ts",
+        "bytes": 12240,
+        "sha256": "37d36f24cdd9a25c5ee6eafadcc09cfefc66ffeb0412c8e5e74ebb4ccd663a74"
+      },
+      {
+        "path": "src/workflows/campaign/index.ts",
+        "bytes": 921,
+        "sha256": "ea46c24c04713cb980d1980252fe1fd379c456548a45e90cf5f33e5b5c7c2677"
+      },
+      {
+        "path": "src/workflows/campaign/steps.ts",
+        "bytes": 1234,
+        "sha256": "77afe83270e427eafc705ab39ff2c694e914a7076b95544dd7879bad698eb9f3"
+      },
+      {
+        "path": "src/workflows/health.ts",
+        "bytes": 592,
+        "sha256": "92b1ef4e59a13e241a4ca40968612569958b2acf5e8e1fa3494b62699d8855c0"
+      },
+      {
+        "path": "src/workflows/media/index.ts",
+        "bytes": 869,
+        "sha256": "7d7a13ae1bd7b93c7f38422fa26b2ee1fe8cda152c568dbd45ad30aa668f09dc"
+      },
+      {
+        "path": "src/workflows/media/steps.ts",
+        "bytes": 20839,
+        "sha256": "65dc182faea18718ff2c54c5133f78535a4068cd446a9d2baf0ea7e1edef665e"
+      },
+      {
+        "path": "supabase/migrations/0001_init.sql",
+        "bytes": 9163,
+        "sha256": "647d886a940ef0d48b1c5c2c62416c73add379bcfa144fe0177b593b492afecc"
+      },
+      {
+        "path": "supabase/migrations/0002_pilot_access.sql",
+        "bytes": 2880,
+        "sha256": "8cfb10f9f9a5d5529aa4fab74f3fa3b85648c7cc15112fbd70aecb19619c4d54"
+      },
+      {
+        "path": "supabase/migrations/0003_studio_assets.sql",
+        "bytes": 18301,
+        "sha256": "41735413ae856fa2da78b56dbe7aeab33f8b3fac52cdf6a0c69f05050a9ca4ee"
+      },
+      {
+        "path": "supabase/migrations/0004_private_storage.sql",
+        "bytes": 588,
+        "sha256": "2b2dd56d150a0ecbeec78399d90932ec35445b0b17c652b9bfa92ae769e51cd6"
+      },
+      {
+        "path": "supabase/migrations/0005_revision_forks.sql",
+        "bytes": 2537,
+        "sha256": "7de674ba1931866d352ca54a9a3d1f7c1ef51b8dc5c99ca3802285285f05f413"
+      },
+      {
+        "path": "supabase/migrations/0006_employee_assignments.sql",
+        "bytes": 15046,
+        "sha256": "77479caf921eeb9f9aae91d4bd7d5b64d5dbab57a2d13eacfbf5df9a5e4350a0"
+      },
+      {
+        "path": "supabase/migrations/0007_assignment_dispatch.sql",
+        "bytes": 7135,
+        "sha256": "e8b376ece9804494541d6f7b902e5a9960abb53cde1e3028a57b7d72e46f70e9"
+      },
+      {
+        "path": "supabase/migrations/0007_storage_object_names.sql",
+        "bytes": 3383,
+        "sha256": "7e38390edb31302091e0ce410a6c419ae1259ced2cdd27ddae5c2c321a6f6c7b"
+      },
+      {
+        "path": "supabase/migrations/0008_assignment_runner.sql",
+        "bytes": 10095,
+        "sha256": "6c5680e83376f1af47ea230ea3ca0b9f143199ba63f86bc0a3406242c2c25f9b"
+      },
+      {
+        "path": "supabase/migrations/0009_assignment_reviews.sql",
+        "bytes": 4027,
+        "sha256": "89707a48496f53f8b682b3e23c6a4eeee92f16027036e050921e2318a6bf41ca"
+      },
+      {
+        "path": "supabase/migrations/0010_assignment_recovery.sql",
+        "bytes": 3289,
+        "sha256": "0c93d16a0bf35b79be5a380e6d1e40433e251e18eb8f9880c11360151a36cd8e"
+      },
+      {
+        "path": "supabase/migrations/0011_director_campaigns.sql",
+        "bytes": 21220,
+        "sha256": "be056e20863ea6d78de1700bf0dfc48de5cebb6064f8d96e3fc00335a5e921f7"
+      },
+      {
+        "path": "supabase/migrations/0012_research_browser.sql",
+        "bytes": 11764,
+        "sha256": "f6e25d9a3cd3773d40b303acc83774b1742403ff1db2686cd5e17ced7059b2c4"
+      },
+      {
+        "path": "supabase/migrations/0013_source_media.sql",
+        "bytes": 18289,
+        "sha256": "67840bcece6d97af88a027a4d927eb810d17c7087238ce85547820c8a0baa10b"
+      },
+      {
+        "path": "supabase/migrations/0014_employee_budgets.sql",
+        "bytes": 7244,
+        "sha256": "f5ec92ec5e2d3941b276d5b2df512932073044baf5410ad6c0319162bf31c9fb"
+      },
+      {
+        "path": "supabase/migrations/0015_studio_ai_budget.sql",
+        "bytes": 6755,
+        "sha256": "07822971c1b2ea4f64f3476d0439c0a37fbbf4414503f78bef9b1b5aad60da21"
+      },
+      {
+        "path": "supabase/migrations/0016_assignment_budget_pause.sql",
+        "bytes": 2446,
+        "sha256": "c040a31a9e71fc32a07d4525f6c24db2705244318159d50546a1ec29c6f30c7f"
+      },
+      {
+        "path": "supabase/migrations/0017_budget_queue_slots.sql",
+        "bytes": 4019,
+        "sha256": "06d3cebbb8617f564290390e57d6f28b533a1794e7328a60cd94cdd4dd7bf1d3"
+      },
+      {
+        "path": "supabase/migrations/0018_media_queue_slots.sql",
+        "bytes": 6805,
+        "sha256": "4f52840a3e27f9bd0ae03e5049aafe32900569620a957f110a9d6042da7fb623"
+      },
+      {
+        "path": "supabase/migrations/0019_media_settlement.sql",
+        "bytes": 4982,
+        "sha256": "95fd0559bdfdabc8de12e0e7278e04f4fc7dda1347e3dd8c251a7286873296f3"
+      },
+      {
+        "path": "supabase/migrations/0020_workflow_health.sql",
+        "bytes": 3616,
+        "sha256": "539fa62610b56fd17a7ac62c32015236855194d9596c07d14a4cd55826428700"
+      },
+      {
+        "path": "supabase/migrations/0021_media_retention.sql",
+        "bytes": 1565,
+        "sha256": "beb7108ea00297e2fe564655bfed035179ccfef3d77b1fd9cbe80c5d08d49794"
+      },
+      {
+        "path": "supabase/templates/invite.html",
+        "bytes": 590,
+        "sha256": "d4c7ef0fb952f42521741595956ce4a88990eea3f2f1a82b723c7e30a8b95cd9"
+      },
+      {
+        "path": "supabase/templates/magic-link.html",
+        "bytes": 585,
+        "sha256": "83e4c3458d6c22fa9666fdd0116603b8d4eca5030d4bfd99dd51e2a62b0f7909"
+      },
+      {
+        "path": "tests/asset-package.test.ts",
+        "bytes": 1719,
+        "sha256": "b9fbcf5e1b8dcafc424accd7aeb6fb66a6bd29cf0397e006a01f162796e0df61"
+      },
+      {
+        "path": "tests/assignment-dispatch.test.mjs",
+        "bytes": 17800,
+        "sha256": "1e1f13e6ff51882e7ce49d57090750a447c7180885002c07fe42b8d98c5073e4"
+      },
+      {
+        "path": "tests/assignment-draft.test.ts",
+        "bytes": 2510,
+        "sha256": "141f4e29900c0126085b67d50cf45af3e781e5db8c65c15b50fec7e40613edf2"
+      },
+      {
+        "path": "tests/assignment-protocol.test.ts",
+        "bytes": 3088,
+        "sha256": "978f9120ac6801e09cb798e7272094840f5dbcda121d337a441845ad7616e864"
+      },
+      {
+        "path": "tests/assignment-recovery.test.mjs",
+        "bytes": 5848,
+        "sha256": "a6b0d07e50cdcb3c387f7d3fac45f8fc0678e69f8c55565d56c71f504cebd47a"
+      },
+      {
+        "path": "tests/auth-redirect.test.ts",
+        "bytes": 1234,
+        "sha256": "5e820ea60c952bb47cf5f8b5c283f297b89daeb8fa0012efc996cd552075fa1a"
+      },
+      {
+        "path": "tests/budget-plan.test.ts",
+        "bytes": 1996,
+        "sha256": "40368ec9c97de9c1eabca40619c80d40b9ece9526c0d76c4371a0014e3844162"
+      },
+      {
+        "path": "tests/budget-response-recovery.test.mjs",
+        "bytes": 3603,
+        "sha256": "94ce04be7677d056cc1994f78e17f854dca949a98d1d305a75d2dfa9fa5f42b7"
+      },
+      {
+        "path": "tests/campaign-database.test.mjs",
+        "bytes": 16361,
+        "sha256": "efaf6bc5a9681febb73660e610682d9aab707870ac3edd9b2a3dd305d27dde70"
+      },
+      {
+        "path": "tests/database-restore.test.mjs",
+        "bytes": 6079,
+        "sha256": "2c23edaf3ee1744f253bad7d58185e4bd65bb0c18bac5ff20dafa97ed5071d4f"
+      },
+      {
+        "path": "tests/editor-host.test.ts",
+        "bytes": 9943,
+        "sha256": "dd943a3d99be1f0c603e545487a883b95b7801a72b8a3d9d0bbb5ce129c78818"
+      },
+      {
+        "path": "tests/email-link-flow.test.ts",
+        "bytes": 3778,
+        "sha256": "ed33eeb6e3de43a21485ee08057b7730e51b7ff02387b3122e76d07d0045b9e9"
+      },
+      {
+        "path": "tests/employee-database.test.mjs",
+        "bytes": 10306,
+        "sha256": "c86de94a646c39d20a202bcb1ce419f3d20ae2437ef26fd0115acd381fa9da47"
+      },
+      {
+        "path": "tests/helpers/assignment-browser.mjs",
+        "bytes": 4366,
+        "sha256": "a9bf40c0703594ae4c0366ba65dd804fa7e0f19fd253fe47ae8b70604dac314d"
+      },
+      {
+        "path": "tests/helpers/database.mjs",
+        "bytes": 1041,
+        "sha256": "5acc04d5348535ea879cfbce394ab71ceb7f1e47a0826997d6acc991b28a365e"
+      },
+      {
+        "path": "tests/helpers/media-worker.py",
+        "bytes": 4449,
+        "sha256": "1fd3177d302b1d44c6b74955ad20f95e6271a8da675e7fa3bba1ccbe5630de4f"
+      },
+      {
+        "path": "tests/helpers/module.mjs",
+        "bytes": 1259,
+        "sha256": "2747f4d746458b4728759164d6259f586106e9f75a7a6f3edf51808fe03ae741"
+      },
+      {
+        "path": "tests/invitation-request.test.ts",
+        "bytes": 2400,
+        "sha256": "add4293b196ab3910eee74b1a0803dab7aa58828c5700a4cb837ed60da198e3d"
+      },
+      {
+        "path": "tests/legacy-controls.test.mjs",
+        "bytes": 2358,
+        "sha256": "6dcdf84b1951b0d380e381ab2f9bf1dfcf38f98e68cedc7e714fa1781b816009"
+      },
+      {
+        "path": "tests/library-browser.test.mjs",
+        "bytes": 3600,
+        "sha256": "d789ec4e2f243bf8a291a51be651c3295a41e1988f846f6e857de61a26c7d6d4"
+      },
+      {
+        "path": "tests/markdown.test.tsx",
+        "bytes": 2391,
+        "sha256": "a7d5f889cfec5e49b2ff8f9850bfef816864fa66679c726154e84caa85b77533"
+      },
+      {
+        "path": "tests/media-browser.test.mjs",
+        "bytes": 4339,
+        "sha256": "cbc76bca172fafe098f952310f2392d9f8bf80a18a0c2cb65c38686dad6d764a"
+      },
+      {
+        "path": "tests/media-capacity.test.mjs",
+        "bytes": 5648,
+        "sha256": "a62cf45ab3c1561217ef5fa2a5945a90944873cad9b4a408ebe2b2c5d462e702"
+      },
+      {
+        "path": "tests/media-database.test.mjs",
+        "bytes": 13717,
+        "sha256": "c1596b4261fa6b991acbc1be792119ad6893fd48f284177826096ad71ba00d8f"
+      },
+      {
+        "path": "tests/media-retention.test.mjs",
+        "bytes": 2469,
+        "sha256": "bec5cb78038c2182f6ced980110d72cb9bbe80624095e1b65d4afbaedd63872f"
+      },
+      {
+        "path": "tests/media-settlement.test.mjs",
+        "bytes": 4330,
+        "sha256": "49ceeefc16199911c75f71e7c635d2c0b4722a57595f66eb0562476ce56c7eeb"
+      },
+      {
+        "path": "tests/media-worker.test.mjs",
+        "bytes": 492,
+        "sha256": "3693cb8560c3e0b2eab01c90a0d7f997b80ca0067b4ea8bff7c99a7073446eba"
+      },
+      {
+        "path": "tests/media.test.ts",
+        "bytes": 5408,
+        "sha256": "ce50671603bf3b335703497e796e207efc8e8487c012799123f96041ad83f7b1"
+      },
+      {
+        "path": "tests/operator-settlement.test.mjs",
+        "bytes": 905,
+        "sha256": "4355309dfb423a05bc4842b19050c7a1d710d5a3096ea30e480dd4a7179a985b"
+      },
+      {
+        "path": "tests/package-capacity.test.ts",
+        "bytes": 782,
+        "sha256": "3d25040eb8da549cee7640a22e79e94fc3019225a58e2c875db7fbff9d588738"
+      },
+      {
+        "path": "tests/pagination.test.ts",
+        "bytes": 1358,
+        "sha256": "6b10d3d4cb90914e42c02533c817df59162ee68648e074fb8548b0152f5b1803"
+      },
+      {
+        "path": "tests/pilot-database.test.mjs",
+        "bytes": 2823,
+        "sha256": "bb60e9add44a6e0492947de6a97b6fca40d991d94d501a3428f98911a5de6941"
+      },
+      {
+        "path": "tests/recovery-boundaries.test.mjs",
+        "bytes": 3276,
+        "sha256": "7c76d218bbcf42284ed4ff4f1a5262beb32474b44f4842dfd8d6c67f29e8a6fe"
+      },
+      {
+        "path": "tests/registry.test.mjs",
+        "bytes": 2113,
+        "sha256": "c30844226d7421089d95f8fab1f0ce74ea0687f7df9e4945cfb601295127e91c"
+      },
+      {
+        "path": "tests/research-browser.test.mjs",
+        "bytes": 6491,
+        "sha256": "7f798cb9c3a83d80d36e769e773192f9f11888621fab1c0520613ca6ff694223"
+      },
+      {
+        "path": "tests/research-registry.test.ts",
+        "bytes": 946,
+        "sha256": "5b40b434a7893edcb257dda3495f6af2d1ceb316b0498f696d017fdf64cba3c4"
+      },
+      {
+        "path": "tests/review-recovery.test.mjs",
+        "bytes": 3292,
+        "sha256": "e023a044db888daf896fb9aa0cfd76819509ee53a9c43eec4085c1f4c60d8b29"
+      },
+      {
+        "path": "tests/saved-files.test.mjs",
+        "bytes": 2333,
+        "sha256": "72b67e0123fd9de66c052149caa5a1c0fd6bc09d383778f7ea35b5aeb515fc51"
+      },
+      {
+        "path": "tests/setup-migrations.test.mjs",
+        "bytes": 6609,
+        "sha256": "e7fc4e6638ffa80b41804902738c0e0e5295949d627ac1867df94d9447e82596"
+      },
+      {
+        "path": "tests/studio-budget-database.test.mjs",
+        "bytes": 9266,
+        "sha256": "56a01f8b241d2fe8bc4ef6b355566273b5350f8cb31cb18057e24402d9d75639"
+      },
+      {
+        "path": "tests/studio-database.test.mjs",
+        "bytes": 12807,
+        "sha256": "bdec36a339a808a8f48679f73e9c88a7da272e705bb71029157388373bfbc1d1"
+      },
+      {
+        "path": "tests/support-access.test.mjs",
+        "bytes": 1569,
+        "sha256": "13a5a780068ebe467d772a0a49fbc43b4b86997dde78f5cfbbb9c2c62e688005"
+      },
+      {
+        "path": "tests/support-forwarder.test.mjs",
+        "bytes": 2118,
+        "sha256": "93efab0084908059e35bda2d89f057afff91d57a2001f3d68af7e54034dc4918"
+      },
+      {
+        "path": "tests/workflow-health.test.ts",
+        "bytes": 1155,
+        "sha256": "09fbcd297cb1629a989b30a1491f3aaae0e18c8d4248f2d4607dcf158baa0e8b"
+      },
+      {
+        "path": "tsconfig.json",
+        "bytes": 760,
+        "sha256": "8738c78cdf0fe847a3fb8abbf9e012d08012385d67f5e8efebccf7a9b316b972"
+      },
+      {
+        "path": "vendor/README.md",
+        "bytes": 1096,
+        "sha256": "84d4daca4976e0c5f3c957df6d26bcbe6143a11a4a2fe13d3961170197e5ba41"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.16-fef826e44ccd/configure-hermes.py",
+        "bytes": 2026,
+        "sha256": "8b7c0c629dbe4ca7c2bfba7010748357efe0e88407385deac0a58ece46313d58"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.16-fef826e44ccd/skills/cadcraft.md",
+        "bytes": 1838,
+        "sha256": "2b1ca249dd4fd5f6b2950d33d42a530272563681b35eea6b0a0dc9f1b8f2a219"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.16-fef826e44ccd/skills/deckcraft.md",
+        "bytes": 2035,
+        "sha256": "f72308cf8882c6b56317027cbce042ca7abe6b9d7dfc037e02095212245da0e5"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.16-fef826e44ccd/skills/designcraft.md",
+        "bytes": 1785,
+        "sha256": "154a7046e27896e20de99bac5bfb5563a650217f24d445853c02f8dbf1a0a08d"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.16-fef826e44ccd/skills/effectcraft.md",
+        "bytes": 2040,
+        "sha256": "11539b89a13bb97be7df0a588d97b0ce647dc833728cf6651f21eb8593d07c26"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.16-fef826e44ccd/skills/figcraft.md",
+        "bytes": 1870,
+        "sha256": "847345f3a76ba38c139a5f4b4e9b20ca3ade96ada0f9d878df15178a55a56799"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.16-fef826e44ccd/skills/filmcraft.md",
+        "bytes": 3041,
+        "sha256": "35335951b520e51688ad01d15a210d6132531dd7eec9dfb54617a69a3c877d39"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.16-fef826e44ccd/skills/gridcraft.md",
+        "bytes": 2366,
+        "sha256": "ff3f61a8ddf0fe7974c65adddbcb27c8c9561a1c36caf495410828b784439676"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.16-fef826e44ccd/skills/lightcraft.md",
+        "bytes": 2433,
+        "sha256": "5526d9a69a644ca397bdd6d1c618086a670bfc600f7d29bce5dafe6dbd295d09"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.16-fef826e44ccd/skills/pdfcraft.md",
+        "bytes": 2718,
+        "sha256": "9964bb5e772f9a3e106fad23d839fe6944a9d5e564e64a6da9a4c1bddd18d2cf"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.16-fef826e44ccd/skills/photocraft.md",
+        "bytes": 2538,
+        "sha256": "e50f20d4e34e65709c16dcb6c521f5196b61be2ffd2e4c4441b754834543e8d1"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.16-fef826e44ccd/skills/soundcraft.md",
+        "bytes": 2229,
+        "sha256": "9947d0cb8aa95b2aebad159c4b3337b496c6418ec408eb637922baa944e02db7"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.16-fef826e44ccd/skills/vectorcraft.md",
+        "bytes": 3253,
+        "sha256": "5bcaf89b9c45c8265293ab9e6d9f3687022740386e4b1fdade976ce49d3f760e"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.16-fef826e44ccd/skills/wordcraft.md",
+        "bytes": 1951,
+        "sha256": "20cf9722502f2963090a13197571e89eb56230c2db919823f0779a0657e70461"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.16-fef826e44ccd/studio-mcp.cjs",
+        "bytes": 1826843,
+        "sha256": "2ad1dd1ed2a03ef388cc4d3e18f31d01686e020d11109124d17017eb2309176f"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.17-ac2a0b22ff12/configure-hermes.py",
+        "bytes": 2026,
+        "sha256": "f9b484b68b979cc0b4204043756e72ac05a0cc3cfe16452406674a2e4762bc35"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.17-ac2a0b22ff12/skills/cadcraft.md",
+        "bytes": 1838,
+        "sha256": "2b1ca249dd4fd5f6b2950d33d42a530272563681b35eea6b0a0dc9f1b8f2a219"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.17-ac2a0b22ff12/skills/deckcraft.md",
+        "bytes": 2035,
+        "sha256": "f72308cf8882c6b56317027cbce042ca7abe6b9d7dfc037e02095212245da0e5"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.17-ac2a0b22ff12/skills/designcraft.md",
+        "bytes": 1785,
+        "sha256": "154a7046e27896e20de99bac5bfb5563a650217f24d445853c02f8dbf1a0a08d"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.17-ac2a0b22ff12/skills/effectcraft.md",
+        "bytes": 2040,
+        "sha256": "11539b89a13bb97be7df0a588d97b0ce647dc833728cf6651f21eb8593d07c26"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.17-ac2a0b22ff12/skills/figcraft.md",
+        "bytes": 1870,
+        "sha256": "847345f3a76ba38c139a5f4b4e9b20ca3ade96ada0f9d878df15178a55a56799"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.17-ac2a0b22ff12/skills/filmcraft.md",
+        "bytes": 3041,
+        "sha256": "35335951b520e51688ad01d15a210d6132531dd7eec9dfb54617a69a3c877d39"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.17-ac2a0b22ff12/skills/gridcraft.md",
+        "bytes": 2366,
+        "sha256": "ff3f61a8ddf0fe7974c65adddbcb27c8c9561a1c36caf495410828b784439676"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.17-ac2a0b22ff12/skills/lightcraft.md",
+        "bytes": 2433,
+        "sha256": "5526d9a69a644ca397bdd6d1c618086a670bfc600f7d29bce5dafe6dbd295d09"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.17-ac2a0b22ff12/skills/pdfcraft.md",
+        "bytes": 2718,
+        "sha256": "9964bb5e772f9a3e106fad23d839fe6944a9d5e564e64a6da9a4c1bddd18d2cf"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.17-ac2a0b22ff12/skills/photocraft.md",
+        "bytes": 2538,
+        "sha256": "e50f20d4e34e65709c16dcb6c521f5196b61be2ffd2e4c4441b754834543e8d1"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.17-ac2a0b22ff12/skills/soundcraft.md",
+        "bytes": 2229,
+        "sha256": "9947d0cb8aa95b2aebad159c4b3337b496c6418ec408eb637922baa944e02db7"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.17-ac2a0b22ff12/skills/vectorcraft.md",
+        "bytes": 3253,
+        "sha256": "5bcaf89b9c45c8265293ab9e6d9f3687022740386e4b1fdade976ce49d3f760e"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.17-ac2a0b22ff12/skills/wordcraft.md",
+        "bytes": 1951,
+        "sha256": "20cf9722502f2963090a13197571e89eb56230c2db919823f0779a0657e70461"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.17-ac2a0b22ff12/studio-mcp.cjs",
+        "bytes": 1829217,
+        "sha256": "afb85c53de9af9b6aafffece7872711f66c88a06987921f6de3661abc4509863"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.18-53779a53743a/configure-hermes.py",
+        "bytes": 2026,
+        "sha256": "5510d80d45de2da16dd40ed2a1c025fd9dc69c95ad62ebb384e56212c1d5f296"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.18-53779a53743a/skills/cadcraft.md",
+        "bytes": 1838,
+        "sha256": "2b1ca249dd4fd5f6b2950d33d42a530272563681b35eea6b0a0dc9f1b8f2a219"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.18-53779a53743a/skills/deckcraft.md",
+        "bytes": 2035,
+        "sha256": "f72308cf8882c6b56317027cbce042ca7abe6b9d7dfc037e02095212245da0e5"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.18-53779a53743a/skills/designcraft.md",
+        "bytes": 1785,
+        "sha256": "154a7046e27896e20de99bac5bfb5563a650217f24d445853c02f8dbf1a0a08d"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.18-53779a53743a/skills/effectcraft.md",
+        "bytes": 2040,
+        "sha256": "11539b89a13bb97be7df0a588d97b0ce647dc833728cf6651f21eb8593d07c26"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.18-53779a53743a/skills/figcraft.md",
+        "bytes": 1870,
+        "sha256": "847345f3a76ba38c139a5f4b4e9b20ca3ade96ada0f9d878df15178a55a56799"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.18-53779a53743a/skills/filmcraft.md",
+        "bytes": 3041,
+        "sha256": "35335951b520e51688ad01d15a210d6132531dd7eec9dfb54617a69a3c877d39"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.18-53779a53743a/skills/gridcraft.md",
+        "bytes": 2366,
+        "sha256": "ff3f61a8ddf0fe7974c65adddbcb27c8c9561a1c36caf495410828b784439676"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.18-53779a53743a/skills/lightcraft.md",
+        "bytes": 2433,
+        "sha256": "5526d9a69a644ca397bdd6d1c618086a670bfc600f7d29bce5dafe6dbd295d09"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.18-53779a53743a/skills/pdfcraft.md",
+        "bytes": 2718,
+        "sha256": "9964bb5e772f9a3e106fad23d839fe6944a9d5e564e64a6da9a4c1bddd18d2cf"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.18-53779a53743a/skills/photocraft.md",
+        "bytes": 2538,
+        "sha256": "e50f20d4e34e65709c16dcb6c521f5196b61be2ffd2e4c4441b754834543e8d1"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.18-53779a53743a/skills/research.md",
+        "bytes": 2092,
+        "sha256": "2a36d1504896810d4c01979f63ae280e78a4d3169d5c6d9cd77d0de85b49524d"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.18-53779a53743a/skills/soundcraft.md",
+        "bytes": 2229,
+        "sha256": "9947d0cb8aa95b2aebad159c4b3337b496c6418ec408eb637922baa944e02db7"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.18-53779a53743a/skills/vectorcraft.md",
+        "bytes": 3253,
+        "sha256": "5bcaf89b9c45c8265293ab9e6d9f3687022740386e4b1fdade976ce49d3f760e"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.18-53779a53743a/skills/wordcraft.md",
+        "bytes": 1951,
+        "sha256": "20cf9722502f2963090a13197571e89eb56230c2db919823f0779a0657e70461"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.18-53779a53743a/studio-mcp.cjs",
+        "bytes": 1833095,
+        "sha256": "30be2a25c7e1b04f5cbdbb40f36124aad659b21c8e97eac2517be0ad3d6001c9"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-a0e7cd013ff2/configure-hermes.py",
+        "bytes": 2028,
+        "sha256": "ad099fb8a6e86ba521e7e6a00a0605a206766676138c3d1e2bde7676af38e750"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-a0e7cd013ff2/skills/cadcraft.md",
+        "bytes": 1838,
+        "sha256": "2b1ca249dd4fd5f6b2950d33d42a530272563681b35eea6b0a0dc9f1b8f2a219"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-a0e7cd013ff2/skills/deckcraft.md",
+        "bytes": 2035,
+        "sha256": "f72308cf8882c6b56317027cbce042ca7abe6b9d7dfc037e02095212245da0e5"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-a0e7cd013ff2/skills/designcraft.md",
+        "bytes": 1785,
+        "sha256": "154a7046e27896e20de99bac5bfb5563a650217f24d445853c02f8dbf1a0a08d"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-a0e7cd013ff2/skills/effectcraft.md",
+        "bytes": 2040,
+        "sha256": "11539b89a13bb97be7df0a588d97b0ce647dc833728cf6651f21eb8593d07c26"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-a0e7cd013ff2/skills/figcraft.md",
+        "bytes": 1870,
+        "sha256": "847345f3a76ba38c139a5f4b4e9b20ca3ade96ada0f9d878df15178a55a56799"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-a0e7cd013ff2/skills/filmcraft.md",
+        "bytes": 3041,
+        "sha256": "35335951b520e51688ad01d15a210d6132531dd7eec9dfb54617a69a3c877d39"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-a0e7cd013ff2/skills/gridcraft.md",
+        "bytes": 2366,
+        "sha256": "ff3f61a8ddf0fe7974c65adddbcb27c8c9561a1c36caf495410828b784439676"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-a0e7cd013ff2/skills/lightcraft.md",
+        "bytes": 2433,
+        "sha256": "5526d9a69a644ca397bdd6d1c618086a670bfc600f7d29bce5dafe6dbd295d09"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-a0e7cd013ff2/skills/pdfcraft.md",
+        "bytes": 3550,
+        "sha256": "6b014fb2cb21db91e9b724a5084b3b1ed50c6c26bafe7746eaaf1da38db7a63d"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-a0e7cd013ff2/skills/photocraft.md",
+        "bytes": 3419,
+        "sha256": "1acb778d4954c859c8c6359b56728ca05409e70d0c11cb41982b004ee3ce3635"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-a0e7cd013ff2/skills/research.md",
+        "bytes": 2171,
+        "sha256": "2fd0f6b2d7dec5a872a1063122c54f6102eaebac462fea3d0b6b15ee052793b1"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-a0e7cd013ff2/skills/soundcraft.md",
+        "bytes": 2229,
+        "sha256": "9947d0cb8aa95b2aebad159c4b3337b496c6418ec408eb637922baa944e02db7"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-a0e7cd013ff2/skills/vectorcraft.md",
+        "bytes": 3253,
+        "sha256": "5bcaf89b9c45c8265293ab9e6d9f3687022740386e4b1fdade976ce49d3f760e"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-a0e7cd013ff2/skills/wordcraft.md",
+        "bytes": 1951,
+        "sha256": "20cf9722502f2963090a13197571e89eb56230c2db919823f0779a0657e70461"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-a0e7cd013ff2/studio-mcp.cjs",
+        "bytes": 1831195,
+        "sha256": "a27cfdd1b6dffeb3b08a7d22c80a090a6634bf42c6ce67c6839dcbd932111e24"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-c20378f7d1b9/configure-hermes.py",
+        "bytes": 2028,
+        "sha256": "ad099fb8a6e86ba521e7e6a00a0605a206766676138c3d1e2bde7676af38e750"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-c20378f7d1b9/skills/cadcraft.md",
+        "bytes": 1838,
+        "sha256": "2b1ca249dd4fd5f6b2950d33d42a530272563681b35eea6b0a0dc9f1b8f2a219"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-c20378f7d1b9/skills/deckcraft.md",
+        "bytes": 2035,
+        "sha256": "f72308cf8882c6b56317027cbce042ca7abe6b9d7dfc037e02095212245da0e5"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-c20378f7d1b9/skills/designcraft.md",
+        "bytes": 1785,
+        "sha256": "154a7046e27896e20de99bac5bfb5563a650217f24d445853c02f8dbf1a0a08d"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-c20378f7d1b9/skills/effectcraft.md",
+        "bytes": 2040,
+        "sha256": "11539b89a13bb97be7df0a588d97b0ce647dc833728cf6651f21eb8593d07c26"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-c20378f7d1b9/skills/figcraft.md",
+        "bytes": 1870,
+        "sha256": "847345f3a76ba38c139a5f4b4e9b20ca3ade96ada0f9d878df15178a55a56799"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-c20378f7d1b9/skills/filmcraft.md",
+        "bytes": 3041,
+        "sha256": "35335951b520e51688ad01d15a210d6132531dd7eec9dfb54617a69a3c877d39"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-c20378f7d1b9/skills/gridcraft.md",
+        "bytes": 2366,
+        "sha256": "ff3f61a8ddf0fe7974c65adddbcb27c8c9561a1c36caf495410828b784439676"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-c20378f7d1b9/skills/lightcraft.md",
+        "bytes": 2433,
+        "sha256": "5526d9a69a644ca397bdd6d1c618086a670bfc600f7d29bce5dafe6dbd295d09"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-c20378f7d1b9/skills/pdfcraft.md",
+        "bytes": 2718,
+        "sha256": "9964bb5e772f9a3e106fad23d839fe6944a9d5e564e64a6da9a4c1bddd18d2cf"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-c20378f7d1b9/skills/photocraft.md",
+        "bytes": 2538,
+        "sha256": "e50f20d4e34e65709c16dcb6c521f5196b61be2ffd2e4c4441b754834543e8d1"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-c20378f7d1b9/skills/research.md",
+        "bytes": 2171,
+        "sha256": "2fd0f6b2d7dec5a872a1063122c54f6102eaebac462fea3d0b6b15ee052793b1"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-c20378f7d1b9/skills/soundcraft.md",
+        "bytes": 2229,
+        "sha256": "9947d0cb8aa95b2aebad159c4b3337b496c6418ec408eb637922baa944e02db7"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-c20378f7d1b9/skills/vectorcraft.md",
+        "bytes": 3253,
+        "sha256": "5bcaf89b9c45c8265293ab9e6d9f3687022740386e4b1fdade976ce49d3f760e"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-c20378f7d1b9/skills/wordcraft.md",
+        "bytes": 1951,
+        "sha256": "20cf9722502f2963090a13197571e89eb56230c2db919823f0779a0657e70461"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-c20378f7d1b9/studio-mcp.cjs",
+        "bytes": 1831195,
+        "sha256": "a27cfdd1b6dffeb3b08a7d22c80a090a6634bf42c6ce67c6839dcbd932111e24"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-e6df88e18870/configure-hermes.py",
+        "bytes": 2028,
+        "sha256": "ad099fb8a6e86ba521e7e6a00a0605a206766676138c3d1e2bde7676af38e750"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-e6df88e18870/skills/cadcraft.md",
+        "bytes": 1838,
+        "sha256": "2b1ca249dd4fd5f6b2950d33d42a530272563681b35eea6b0a0dc9f1b8f2a219"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-e6df88e18870/skills/deckcraft.md",
+        "bytes": 2035,
+        "sha256": "f72308cf8882c6b56317027cbce042ca7abe6b9d7dfc037e02095212245da0e5"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-e6df88e18870/skills/designcraft.md",
+        "bytes": 1785,
+        "sha256": "154a7046e27896e20de99bac5bfb5563a650217f24d445853c02f8dbf1a0a08d"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-e6df88e18870/skills/effectcraft.md",
+        "bytes": 2040,
+        "sha256": "11539b89a13bb97be7df0a588d97b0ce647dc833728cf6651f21eb8593d07c26"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-e6df88e18870/skills/figcraft.md",
+        "bytes": 1870,
+        "sha256": "847345f3a76ba38c139a5f4b4e9b20ca3ade96ada0f9d878df15178a55a56799"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-e6df88e18870/skills/filmcraft.md",
+        "bytes": 3041,
+        "sha256": "35335951b520e51688ad01d15a210d6132531dd7eec9dfb54617a69a3c877d39"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-e6df88e18870/skills/gridcraft.md",
+        "bytes": 2366,
+        "sha256": "ff3f61a8ddf0fe7974c65adddbcb27c8c9561a1c36caf495410828b784439676"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-e6df88e18870/skills/lightcraft.md",
+        "bytes": 2433,
+        "sha256": "5526d9a69a644ca397bdd6d1c618086a670bfc600f7d29bce5dafe6dbd295d09"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-e6df88e18870/skills/pdfcraft.md",
+        "bytes": 3550,
+        "sha256": "6b014fb2cb21db91e9b724a5084b3b1ed50c6c26bafe7746eaaf1da38db7a63d"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-e6df88e18870/skills/photocraft.md",
+        "bytes": 2538,
+        "sha256": "e50f20d4e34e65709c16dcb6c521f5196b61be2ffd2e4c4441b754834543e8d1"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-e6df88e18870/skills/research.md",
+        "bytes": 2171,
+        "sha256": "2fd0f6b2d7dec5a872a1063122c54f6102eaebac462fea3d0b6b15ee052793b1"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-e6df88e18870/skills/soundcraft.md",
+        "bytes": 2229,
+        "sha256": "9947d0cb8aa95b2aebad159c4b3337b496c6418ec408eb637922baa944e02db7"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-e6df88e18870/skills/vectorcraft.md",
+        "bytes": 3253,
+        "sha256": "5bcaf89b9c45c8265293ab9e6d9f3687022740386e4b1fdade976ce49d3f760e"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-e6df88e18870/skills/wordcraft.md",
+        "bytes": 1951,
+        "sha256": "20cf9722502f2963090a13197571e89eb56230c2db919823f0779a0657e70461"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.19-e6df88e18870/studio-mcp.cjs",
+        "bytes": 1831195,
+        "sha256": "a27cfdd1b6dffeb3b08a7d22c80a090a6634bf42c6ce67c6839dcbd932111e24"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.20-0ed9b8b28834/configure-hermes.py",
+        "bytes": 2028,
+        "sha256": "c4ecf4038b2dc4bf925add594d92f2fdf867534af3fabdfe4ee7d915747efe56"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.20-0ed9b8b28834/skills/cadcraft.md",
+        "bytes": 1838,
+        "sha256": "2b1ca249dd4fd5f6b2950d33d42a530272563681b35eea6b0a0dc9f1b8f2a219"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.20-0ed9b8b28834/skills/deckcraft.md",
+        "bytes": 2035,
+        "sha256": "f72308cf8882c6b56317027cbce042ca7abe6b9d7dfc037e02095212245da0e5"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.20-0ed9b8b28834/skills/designcraft.md",
+        "bytes": 1785,
+        "sha256": "154a7046e27896e20de99bac5bfb5563a650217f24d445853c02f8dbf1a0a08d"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.20-0ed9b8b28834/skills/effectcraft.md",
+        "bytes": 2040,
+        "sha256": "11539b89a13bb97be7df0a588d97b0ce647dc833728cf6651f21eb8593d07c26"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.20-0ed9b8b28834/skills/figcraft.md",
+        "bytes": 1870,
+        "sha256": "847345f3a76ba38c139a5f4b4e9b20ca3ade96ada0f9d878df15178a55a56799"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.20-0ed9b8b28834/skills/filmcraft.md",
+        "bytes": 3041,
+        "sha256": "35335951b520e51688ad01d15a210d6132531dd7eec9dfb54617a69a3c877d39"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.20-0ed9b8b28834/skills/gridcraft.md",
+        "bytes": 2366,
+        "sha256": "ff3f61a8ddf0fe7974c65adddbcb27c8c9561a1c36caf495410828b784439676"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.20-0ed9b8b28834/skills/lightcraft.md",
+        "bytes": 2433,
+        "sha256": "5526d9a69a644ca397bdd6d1c618086a670bfc600f7d29bce5dafe6dbd295d09"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.20-0ed9b8b28834/skills/pdfcraft.md",
+        "bytes": 3550,
+        "sha256": "6b014fb2cb21db91e9b724a5084b3b1ed50c6c26bafe7746eaaf1da38db7a63d"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.20-0ed9b8b28834/skills/photocraft.md",
+        "bytes": 3419,
+        "sha256": "1acb778d4954c859c8c6359b56728ca05409e70d0c11cb41982b004ee3ce3635"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.20-0ed9b8b28834/skills/research.md",
+        "bytes": 2171,
+        "sha256": "2fd0f6b2d7dec5a872a1063122c54f6102eaebac462fea3d0b6b15ee052793b1"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.20-0ed9b8b28834/skills/soundcraft.md",
+        "bytes": 2229,
+        "sha256": "9947d0cb8aa95b2aebad159c4b3337b496c6418ec408eb637922baa944e02db7"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.20-0ed9b8b28834/skills/vectorcraft.md",
+        "bytes": 3253,
+        "sha256": "5bcaf89b9c45c8265293ab9e6d9f3687022740386e4b1fdade976ce49d3f760e"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.20-0ed9b8b28834/skills/wordcraft.md",
+        "bytes": 1951,
+        "sha256": "20cf9722502f2963090a13197571e89eb56230c2db919823f0779a0657e70461"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.20-0ed9b8b28834/studio-mcp.cjs",
+        "bytes": 1833305,
+        "sha256": "5d3de60737eadaf3171bae12780d3fe0b97f3e1d4865bd528b88f8c6429df86e"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.21-f9df991431b0/configure-hermes.py",
+        "bytes": 2028,
+        "sha256": "a2f8aebfcf491b993b6a2dc80b76fcbd0ec6b53a6a7055a1405120e75f1a8b7c"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.21-f9df991431b0/skills/cadcraft.md",
+        "bytes": 1838,
+        "sha256": "2b1ca249dd4fd5f6b2950d33d42a530272563681b35eea6b0a0dc9f1b8f2a219"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.21-f9df991431b0/skills/deckcraft.md",
+        "bytes": 2035,
+        "sha256": "f72308cf8882c6b56317027cbce042ca7abe6b9d7dfc037e02095212245da0e5"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.21-f9df991431b0/skills/designcraft.md",
+        "bytes": 1785,
+        "sha256": "154a7046e27896e20de99bac5bfb5563a650217f24d445853c02f8dbf1a0a08d"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.21-f9df991431b0/skills/effectcraft.md",
+        "bytes": 2040,
+        "sha256": "11539b89a13bb97be7df0a588d97b0ce647dc833728cf6651f21eb8593d07c26"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.21-f9df991431b0/skills/figcraft.md",
+        "bytes": 1870,
+        "sha256": "847345f3a76ba38c139a5f4b4e9b20ca3ade96ada0f9d878df15178a55a56799"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.21-f9df991431b0/skills/filmcraft.md",
+        "bytes": 3041,
+        "sha256": "35335951b520e51688ad01d15a210d6132531dd7eec9dfb54617a69a3c877d39"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.21-f9df991431b0/skills/gridcraft.md",
+        "bytes": 2366,
+        "sha256": "ff3f61a8ddf0fe7974c65adddbcb27c8c9561a1c36caf495410828b784439676"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.21-f9df991431b0/skills/lightcraft.md",
+        "bytes": 2433,
+        "sha256": "5526d9a69a644ca397bdd6d1c618086a670bfc600f7d29bce5dafe6dbd295d09"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.21-f9df991431b0/skills/pdfcraft.md",
+        "bytes": 3550,
+        "sha256": "6b014fb2cb21db91e9b724a5084b3b1ed50c6c26bafe7746eaaf1da38db7a63d"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.21-f9df991431b0/skills/photocraft.md",
+        "bytes": 3419,
+        "sha256": "1acb778d4954c859c8c6359b56728ca05409e70d0c11cb41982b004ee3ce3635"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.21-f9df991431b0/skills/research.md",
+        "bytes": 2171,
+        "sha256": "2fd0f6b2d7dec5a872a1063122c54f6102eaebac462fea3d0b6b15ee052793b1"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.21-f9df991431b0/skills/soundcraft.md",
+        "bytes": 2229,
+        "sha256": "9947d0cb8aa95b2aebad159c4b3337b496c6418ec408eb637922baa944e02db7"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.21-f9df991431b0/skills/vectorcraft.md",
+        "bytes": 3253,
+        "sha256": "5bcaf89b9c45c8265293ab9e6d9f3687022740386e4b1fdade976ce49d3f760e"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.21-f9df991431b0/skills/wordcraft.md",
+        "bytes": 1951,
+        "sha256": "20cf9722502f2963090a13197571e89eb56230c2db919823f0779a0657e70461"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.21-f9df991431b0/studio-mcp.cjs",
+        "bytes": 1833288,
+        "sha256": "75191953c19de8d3d11a5ffa962da68598b48b95711ac5dc3fad5deb544b493d"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.22-40303f07072b/configure-hermes.py",
+        "bytes": 1989,
+        "sha256": "de97c933d197da9662f9ccb969a3fcde3a3047bd2af30a2985ec146c08c2494e"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.22-40303f07072b/skills/cadcraft.md",
+        "bytes": 1838,
+        "sha256": "2b1ca249dd4fd5f6b2950d33d42a530272563681b35eea6b0a0dc9f1b8f2a219"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.22-40303f07072b/skills/deckcraft.md",
+        "bytes": 2035,
+        "sha256": "f72308cf8882c6b56317027cbce042ca7abe6b9d7dfc037e02095212245da0e5"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.22-40303f07072b/skills/designcraft.md",
+        "bytes": 1785,
+        "sha256": "154a7046e27896e20de99bac5bfb5563a650217f24d445853c02f8dbf1a0a08d"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.22-40303f07072b/skills/effectcraft.md",
+        "bytes": 2040,
+        "sha256": "11539b89a13bb97be7df0a588d97b0ce647dc833728cf6651f21eb8593d07c26"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.22-40303f07072b/skills/figcraft.md",
+        "bytes": 1870,
+        "sha256": "847345f3a76ba38c139a5f4b4e9b20ca3ade96ada0f9d878df15178a55a56799"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.22-40303f07072b/skills/filmcraft.md",
+        "bytes": 3041,
+        "sha256": "35335951b520e51688ad01d15a210d6132531dd7eec9dfb54617a69a3c877d39"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.22-40303f07072b/skills/gridcraft.md",
+        "bytes": 2366,
+        "sha256": "ff3f61a8ddf0fe7974c65adddbcb27c8c9561a1c36caf495410828b784439676"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.22-40303f07072b/skills/lightcraft.md",
+        "bytes": 2433,
+        "sha256": "5526d9a69a644ca397bdd6d1c618086a670bfc600f7d29bce5dafe6dbd295d09"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.22-40303f07072b/skills/pdfcraft.md",
+        "bytes": 3550,
+        "sha256": "6b014fb2cb21db91e9b724a5084b3b1ed50c6c26bafe7746eaaf1da38db7a63d"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.22-40303f07072b/skills/photocraft.md",
+        "bytes": 3419,
+        "sha256": "1acb778d4954c859c8c6359b56728ca05409e70d0c11cb41982b004ee3ce3635"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.22-40303f07072b/skills/research.md",
+        "bytes": 2171,
+        "sha256": "2fd0f6b2d7dec5a872a1063122c54f6102eaebac462fea3d0b6b15ee052793b1"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.22-40303f07072b/skills/soundcraft.md",
+        "bytes": 2229,
+        "sha256": "9947d0cb8aa95b2aebad159c4b3337b496c6418ec408eb637922baa944e02db7"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.22-40303f07072b/skills/vectorcraft.md",
+        "bytes": 3253,
+        "sha256": "5bcaf89b9c45c8265293ab9e6d9f3687022740386e4b1fdade976ce49d3f760e"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.22-40303f07072b/skills/wordcraft.md",
+        "bytes": 1951,
+        "sha256": "20cf9722502f2963090a13197571e89eb56230c2db919823f0779a0657e70461"
+      },
+      {
+        "path": "vendor/robyn-workstation/0.1.22-40303f07072b/studio-mcp.cjs",
+        "bytes": 1833951,
+        "sha256": "c4776310a3a5fea51bca03edf4484aa0eb2152b1a5ab6337fe969aeea78fe9b1"
+      }
+    ],
+    "runtime": [
+      {
+        "path": ".gitattributes",
+        "bytes": 52,
+        "sha256": "c52da2d73ffc5804c90db414217e26befe8999c1408fcd540770e2a4e0f377d6"
+      },
+      {
+        "path": ".github/workflows/check.yml",
+        "bytes": 418,
+        "sha256": "95e7cf11ee873ae4de28384ebd7d183a70d72cfadd431a59dafff7a88c17d345"
+      },
+      {
+        "path": ".gitignore",
+        "bytes": 89,
+        "sha256": "f6ca7e44f3a3da02e3ec52b21facb7706b3c44d19638fd9c33fc58cd9458927c"
+      },
+      {
+        "path": "AGENTS.md",
+        "bytes": 1419,
+        "sha256": "e90c515de40352f2e92f6d0ccd56fb82b166e3f180ed8608324c978bc46c3237"
+      },
+      {
+        "path": "README.md",
+        "bytes": 7330,
+        "sha256": "16836324e6f062b9edb8c47e90db957abc895911fe245ca212506eb9d6b4e788"
+      },
+      {
+        "path": "apps/cadcraft/Dockerfile",
+        "bytes": 876,
+        "sha256": "0d520e16a54eafe721eb42cb0a3205ba07b17bc0372f6289e5b60c9b1d63038c"
+      },
+      {
+        "path": "apps/cadcraft/SKILL.md",
+        "bytes": 1838,
+        "sha256": "2b1ca249dd4fd5f6b2950d33d42a530272563681b35eea6b0a0dc9f1b8f2a219"
+      },
+      {
+        "path": "apps/cadcraft/adapter.mjs",
+        "bytes": 5640,
+        "sha256": "d29b514d94bf3a547882001b31283c1e45d5dfd843915b968dbc069fb11321c4"
+      },
+      {
+        "path": "apps/cadcraft/build-web.mjs",
+        "bytes": 5878,
+        "sha256": "4a7682d3c424bbde3bac01e74167631d8ebbe65f0d6b4cb5d15c55327dedafce"
+      },
+      {
+        "path": "apps/cadcraft/native-package.mjs",
+        "bytes": 1662,
+        "sha256": "d95bed3f5a05e453dea24d3d1b79ad2132ccf83a7329ca31c976d5a2482fa712"
+      },
+      {
+        "path": "apps/cadcraft/package.mjs",
+        "bytes": 3811,
+        "sha256": "896419f52e35828a018a056366631d8d8f3d8589fbd714e7d343c4c4e27c68bc"
+      },
+      {
+        "path": "apps/cadcraft/patches/0001-robyn-library.patch",
+        "bytes": 70862,
+        "sha256": "c2ffa6613c58a077509a28742a1c4bd3a2e6d789bf8b4ea600e1c89d7069fe4d"
+      },
+      {
+        "path": "apps/cadcraft/release.json",
+        "bytes": 1028,
+        "sha256": "5ed223ef210eff891fd69ba1c4f6476da77130b8c79a56034b44a7a50859ab49"
+      },
+      {
+        "path": "apps/cadcraft/verification-v0.1.0.json",
+        "bytes": 7435,
+        "sha256": "54d3851c1eb48a61c46342a552a452991eced5cbc6dd18126ca0ac87b3fba7ba"
+      },
+      {
+        "path": "apps/cadcraft/verification-v0.1.2-local.json",
+        "bytes": 8851,
+        "sha256": "fff138562824f4655968200f7b0208cd15c2ccd37cd30a1ea76ba12d9ba581b8"
+      },
+      {
+        "path": "apps/cadcraft/verification.json",
+        "bytes": 9199,
+        "sha256": "9bf90772c34df1e36f117db3722d3564384480b6a20129eb80840473128c6212"
+      },
+      {
+        "path": "apps/deckcraft/Dockerfile",
+        "bytes": 889,
+        "sha256": "c575570d66de5a4ebd53b84056f1d3bae2de567c54f14ac2d5f08241c4c3c128"
+      },
+      {
+        "path": "apps/deckcraft/SKILL.md",
+        "bytes": 2035,
+        "sha256": "f72308cf8882c6b56317027cbce042ca7abe6b9d7dfc037e02095212245da0e5"
+      },
+      {
+        "path": "apps/deckcraft/adapter.mjs",
+        "bytes": 5342,
+        "sha256": "ad7b844b4490255a1aa780b218e3603d1d1bae692bccf7273d5dddd35ba2e8cb"
+      },
+      {
+        "path": "apps/deckcraft/audio-output.mjs",
+        "bytes": 3884,
+        "sha256": "072683a9972c9e6c3cbaceae3577f562312e337435b868529064213869d4f6b8"
+      },
+      {
+        "path": "apps/deckcraft/build-web.mjs",
+        "bytes": 5924,
+        "sha256": "2a5b0d519b8eb89fd60994e763a6cde3d3903b107235c54ef6d49c5aa2867ee3"
+      },
+      {
+        "path": "apps/deckcraft/container.mjs",
+        "bytes": 5008,
+        "sha256": "cb373ccd33549aabc952e418114cf261148840afb6839953de05e1c172627cf5"
+      },
+      {
+        "path": "apps/deckcraft/native-package.mjs",
+        "bytes": 4020,
+        "sha256": "61ea97de1e541bb12d5a452c4408350754f110b48590b872b31ae35771856573"
+      },
+      {
+        "path": "apps/deckcraft/package.mjs",
+        "bytes": 6494,
+        "sha256": "afed6a08c56c290b04731db8201a82b562438cdda6a1f2423b8066048164a908"
+      },
+      {
+        "path": "apps/deckcraft/patches/0001-robyn-library.patch",
+        "bytes": 65086,
+        "sha256": "5504a3efe42175c9c1dac1e39a3cf9e68955bdabb764de365c3329f5f16d7de9"
+      },
+      {
+        "path": "apps/deckcraft/release.json",
+        "bytes": 1029,
+        "sha256": "b9b410efb3938f48ef1c4aace4dd1db1e5c36b38f0017ebc534892a06babbbf4"
+      },
+      {
+        "path": "apps/deckcraft/verification.json",
+        "bytes": 9247,
+        "sha256": "29a0c943f891fbc63100810c6dacb6716ab2a869d3569e72e66e443a10b9292b"
+      },
+      {
+        "path": "apps/designcraft/Dockerfile",
+        "bytes": 921,
+        "sha256": "741795db20ce2c41de592f1462033c05eb1cd6228e02d368883c88f144a9a9d9"
+      },
+      {
+        "path": "apps/designcraft/SKILL.md",
+        "bytes": 1785,
+        "sha256": "154a7046e27896e20de99bac5bfb5563a650217f24d445853c02f8dbf1a0a08d"
+      },
+      {
+        "path": "apps/designcraft/adapter.mjs",
+        "bytes": 5284,
+        "sha256": "5bbf4634da07cf4c8a30f3a887b7bd640b2cac32c795baeb98a41ac0d9b8cba3"
+      },
+      {
+        "path": "apps/designcraft/build-web.mjs",
+        "bytes": 5933,
+        "sha256": "292a7577eef87f66510485a82473a3bfb92e81c9bcc04a99a6cdd9acca5e39b9"
+      },
+      {
+        "path": "apps/designcraft/container.mjs",
+        "bytes": 5040,
+        "sha256": "544b23743454999c6fec4c1c95041727748851260df773f237f1291c94057307"
+      },
+      {
+        "path": "apps/designcraft/native-package.mjs",
+        "bytes": 4966,
+        "sha256": "eb20ce27217ee8652d3a68b3a97722940c1e922de127842c3b4f469fd675b0a9"
+      },
+      {
+        "path": "apps/designcraft/package.mjs",
+        "bytes": 5615,
+        "sha256": "42905a7d84c982b56ffb1462d86ddda1d395402d75c46d0e0b2e36af1074df6d"
+      },
+      {
+        "path": "apps/designcraft/patches/0001-robyn-library.patch",
+        "bytes": 50777,
+        "sha256": "f27f00f80cb17ef3cde3ce2b16891a694b10848822a5a8e16d53528f301a9e25"
+      },
+      {
+        "path": "apps/designcraft/release.json",
+        "bytes": 1053,
+        "sha256": "2bece1f187d4763f059244223244ac37b319e5b204aaaee6ac6f8ac20a1b0528"
+      },
+      {
+        "path": "apps/designcraft/verification-v0.1.0.json",
+        "bytes": 5317,
+        "sha256": "0eefe9f9b7821352581fa80bcaf8f33c1ff95471b33f9845955d1677d716a2c9"
+      },
+      {
+        "path": "apps/designcraft/verification-v0.1.2-local.json",
+        "bytes": 6692,
+        "sha256": "405d6d4957abb59af1710d4077ccb132bdc10d8b3167f95c5e59d7c9e115ec27"
+      },
+      {
+        "path": "apps/designcraft/verification.json",
+        "bytes": 7158,
+        "sha256": "819f309152d86a1b00427c5592d6c776d53f31ff5d94f9e1490c32785517087c"
+      },
+      {
+        "path": "apps/effectcraft/Dockerfile",
+        "bytes": 932,
+        "sha256": "9a6a5ec9fd64dd49b5f6bf7813fe1abffa8136e3eac77eb8dda3c68dd9057dc1"
+      },
+      {
+        "path": "apps/effectcraft/SKILL.md",
+        "bytes": 2040,
+        "sha256": "11539b89a13bb97be7df0a588d97b0ce647dc833728cf6651f21eb8593d07c26"
+      },
+      {
+        "path": "apps/effectcraft/adapter.mjs",
+        "bytes": 5972,
+        "sha256": "f072fd8b8381395e95f1c84439ba16b6ee83ee23173cc7dde6e678d697fdb0fc"
+      },
+      {
+        "path": "apps/effectcraft/build-web.mjs",
+        "bytes": 5877,
+        "sha256": "44b3e4482e7832821eb52d2a3f61eefebe86e47e38b8f4aa2002c166f90563e9"
+      },
+      {
+        "path": "apps/effectcraft/ci/0001-windows-compatibility.patch",
+        "bytes": 8965,
+        "sha256": "3f58bb3952468d761073ca4d9c1815c22c71c134f80d807f52820baf8fd0e813"
+      },
+      {
+        "path": "apps/effectcraft/ci/README.md",
+        "bytes": 6889,
+        "sha256": "0bdf357401a3dd5e385ef6c34ffae627c50ff0834c70cbcc507fca85f5ea0b41"
+      },
+      {
+        "path": "apps/effectcraft/linked-files.mjs",
+        "bytes": 2869,
+        "sha256": "781579982a5af038fde5819c981eac14c9ca5b581b946f4636e5f89953fe78d3"
+      },
+      {
+        "path": "apps/effectcraft/native-package.mjs",
+        "bytes": 5166,
+        "sha256": "85543fb268814ead93536133395a812d1fcb9781024d9725df63f4f41c20c0f6"
+      },
+      {
+        "path": "apps/effectcraft/package.mjs",
+        "bytes": 4582,
+        "sha256": "53b00de9b670d6eeef471f16b79a8b49972a4a9a6d3bee528a8b04624f93ad5e"
+      },
+      {
+        "path": "apps/effectcraft/patches/0001-robyn-library.patch",
+        "bytes": 36604,
+        "sha256": "ffdb35daebdf10a04b52879aa17223d4384d85070e8c14e6c03d556789a6cece"
+      },
+      {
+        "path": "apps/effectcraft/release.json",
+        "bytes": 916,
+        "sha256": "24548a8b67d61b2572029447793d7144c33e14f4ef24b8835c7163e5704bf790"
+      },
+      {
+        "path": "apps/effectcraft/verification-v0.1.0.json",
+        "bytes": 7000,
+        "sha256": "7235aa4cb2909120f6a5c4ef126eae0680c44dbc716503bb32886ce2b8b4aa08"
+      },
+      {
+        "path": "apps/effectcraft/verification-v0.1.2-local.json",
+        "bytes": 8993,
+        "sha256": "6aa964874c358dc62a910e64041c68252719621c697fce88b8af55f306690fca"
+      },
+      {
+        "path": "apps/effectcraft/verification.json",
+        "bytes": 9485,
+        "sha256": "55fdde06a877ccd98634936b9d7b44ea3d9dcbb247bc64f8fb5d907963170623"
+      },
+      {
+        "path": "apps/figcraft/Dockerfile",
+        "bytes": 874,
+        "sha256": "d64d51095a31eaea4123b7469d570906c9505c177baaaeca8376901a33fe9557"
+      },
+      {
+        "path": "apps/figcraft/SKILL.md",
+        "bytes": 1870,
+        "sha256": "847345f3a76ba38c139a5f4b4e9b20ca3ade96ada0f9d878df15178a55a56799"
+      },
+      {
+        "path": "apps/figcraft/adapter.mjs",
+        "bytes": 5206,
+        "sha256": "f5787ba6460d3784498cb224e31aca6bda25158cc5758e5b2526a001f0b3931b"
+      },
+      {
+        "path": "apps/figcraft/build-web.mjs",
+        "bytes": 5881,
+        "sha256": "38230cba6f8b6effec5150cc10c894f7b7b65760ca1f7978a7be9a3d38bfd28c"
+      },
+      {
+        "path": "apps/figcraft/native-package.mjs",
+        "bytes": 1660,
+        "sha256": "b05d0591f289b503f499a95b7ff0af8be5090a378545c225e1de0a4a778b2421"
+      },
+      {
+        "path": "apps/figcraft/package.mjs",
+        "bytes": 2012,
+        "sha256": "2a8d7001b6f26d40d5f96d8e4de5ac0e4fa4bb814505a69d6d936f70b9700b14"
+      },
+      {
+        "path": "apps/figcraft/patches/0001-robyn-library.patch",
+        "bytes": 47456,
+        "sha256": "0cf7abbc0a0a43ab6293d9bd3c99d3b3dc9edf03cc85d397e3e409fda67c1c2b"
+      },
+      {
+        "path": "apps/figcraft/release.json",
+        "bytes": 1020,
+        "sha256": "424f8224bd49da2f04507223eb26dae886fe8eba00f8910d5df146550dcfa319"
+      },
+      {
+        "path": "apps/figcraft/verification-v0.1.0.json",
+        "bytes": 6257,
+        "sha256": "de3b1797942faf145eef033e9ced2b23b66cc4782f94b379df129096a6387ad3"
+      },
+      {
+        "path": "apps/figcraft/verification-v0.1.3-local.json",
+        "bytes": 7573,
+        "sha256": "3cbe6644b18133662fee3e40b7df7d62d16a2eaa9a4b1b54e713ba58e22390ca"
+      },
+      {
+        "path": "apps/figcraft/verification.json",
+        "bytes": 8048,
+        "sha256": "6366c4081f99a3ebcb5bb118b2ce9e3e2017210be75502810a1db853c2498dea"
+      },
+      {
+        "path": "apps/filmcraft/Dockerfile",
+        "bytes": 902,
+        "sha256": "f199e5072c5131e559a9a97300794ab4628e2a091523851961f97acb1c5592a6"
+      },
+      {
+        "path": "apps/filmcraft/SKILL.md",
+        "bytes": 3041,
+        "sha256": "35335951b520e51688ad01d15a210d6132531dd7eec9dfb54617a69a3c877d39"
+      },
+      {
+        "path": "apps/filmcraft/adapter.mjs",
+        "bytes": 5473,
+        "sha256": "3f5b4bbee4691a9bbd21999d2f4f45fb3ccd8ff602e2abd2556ec19fbd7d924a"
+      },
+      {
+        "path": "apps/filmcraft/native-package.mjs",
+        "bytes": 3051,
+        "sha256": "c68ad63c238711540037f145632225dc75b8fdf54b6890378b5d9a1a301d10b8"
+      },
+      {
+        "path": "apps/filmcraft/package-cli.mjs",
+        "bytes": 346,
+        "sha256": "6ff63c18adc2eb49778906c4a560e0fda49274f90b4f21155bf19c21d312236f"
+      },
+      {
+        "path": "apps/filmcraft/package.mjs",
+        "bytes": 6995,
+        "sha256": "c7637c83db6964e759677957613174a29ae22776c23112f084f2225b1ae3f0fd"
+      },
+      {
+        "path": "apps/filmcraft/patches/0001-robyn-library.patch",
+        "bytes": 27306,
+        "sha256": "f0df123331cdcfba29cb16bed5f84aba0b279165755027fcdeebc7e9566e29a8"
+      },
+      {
+        "path": "apps/filmcraft/release.json",
+        "bytes": 900,
+        "sha256": "cdf625fc38ba7d8a8e0cae46dfbbe8e45954d1410907954de49d9c761bb4fb45"
+      },
+      {
+        "path": "apps/filmcraft/verification-v0.1.2.json",
+        "bytes": 5258,
+        "sha256": "ad47b70ea11569970eefb9b29fb3048efcb96b195fc32f10eb254d1c5dfacd94"
+      },
+      {
+        "path": "apps/filmcraft/verification-v0.1.4-local.json",
+        "bytes": 6495,
+        "sha256": "861f80df4299f43cad50ced76d46f8f1f9c1de11b3e81cb1a3b86237b8fadfe5"
+      },
+      {
+        "path": "apps/filmcraft/verification.json",
+        "bytes": 7052,
+        "sha256": "014db0f85d0752b85733b8bb48004727582fd310236435496710afe5d94ebb76"
+      },
+      {
+        "path": "apps/gridcraft/Dockerfile",
+        "bytes": 891,
+        "sha256": "2f789051c2e7472fba3717bf0b03ad54d1cde1480c8379658de77154df0e72d8"
+      },
+      {
+        "path": "apps/gridcraft/SKILL.md",
+        "bytes": 2366,
+        "sha256": "ff3f61a8ddf0fe7974c65adddbcb27c8c9561a1c36caf495410828b784439676"
+      },
+      {
+        "path": "apps/gridcraft/adapter.mjs",
+        "bytes": 5229,
+        "sha256": "b4eeb1e5ed727d5d484250c2681931966a8dedfd03f9c474c22697751ee6af2d"
+      },
+      {
+        "path": "apps/gridcraft/build-web.mjs",
+        "bytes": 5905,
+        "sha256": "dfeffb8c8b1291629022d2ad443b4a09e34793985d733f1e2191299048513854"
+      },
+      {
+        "path": "apps/gridcraft/native-package.mjs",
+        "bytes": 1674,
+        "sha256": "e533b01fca6a9680b4bea14261e4ddb09298b927b1c4d6209c16a2292f26b28f"
+      },
+      {
+        "path": "apps/gridcraft/package.mjs",
+        "bytes": 2204,
+        "sha256": "f00e7537aa64503303de5285786da2332669e5b27304bfe933792cdee3cd6580"
+      },
+      {
+        "path": "apps/gridcraft/patches/0001-robyn-library.patch",
+        "bytes": 44858,
+        "sha256": "1bcb0d4c31f27e3b9b65b507163dd6f44da4f82d80b5949c231c77d24df0ceb3"
+      },
+      {
+        "path": "apps/gridcraft/release.json",
+        "bytes": 1036,
+        "sha256": "feaadf022c4283b47826dbf5fa8036b528921de0cfda7997a1b9c1804f645279"
+      },
+      {
+        "path": "apps/gridcraft/verification.json",
+        "bytes": 9027,
+        "sha256": "2f1cda6c86f0390f8c322148e4e52128eba963e9842ef786ee191a1671e3a152"
+      },
+      {
+        "path": "apps/lightcraft/Dockerfile",
+        "bytes": 917,
+        "sha256": "191492117821e98294c834c0ef2a42658521019a049dc03b4186fb46137a5552"
+      },
+      {
+        "path": "apps/lightcraft/SKILL.md",
+        "bytes": 2433,
+        "sha256": "5526d9a69a644ca397bdd6d1c618086a670bfc600f7d29bce5dafe6dbd295d09"
+      },
+      {
+        "path": "apps/lightcraft/adapter.mjs",
+        "bytes": 5410,
+        "sha256": "8de2d3aa1843dff8a164a9323740e08f15e5417d8147a5dc9bd2ef6af9ed1403"
+      },
+      {
+        "path": "apps/lightcraft/build-web.mjs",
+        "bytes": 6654,
+        "sha256": "b736c330c7b44f26acfd144370cf377cb6a0b28f8aed855667f9a43ff9b8cd45"
+      },
+      {
+        "path": "apps/lightcraft/native-package.mjs",
+        "bytes": 4638,
+        "sha256": "f2c483c3960628732115f4ed339d79bba4ded68f5e0b33b9bccb2c6caaf71d14"
+      },
+      {
+        "path": "apps/lightcraft/package.mjs",
+        "bytes": 5468,
+        "sha256": "351ad48afd50f64f1933aebc3b605cb944ce1f75133a631bdb8cc73fd272b36e"
+      },
+      {
+        "path": "apps/lightcraft/patches/0001-robyn-library.patch",
+        "bytes": 38378,
+        "sha256": "890817e0d7a1ed65463fb03eaf7a9abddf37612111d4ff5a05b6f38d8cfc1735"
+      },
+      {
+        "path": "apps/lightcraft/release.json",
+        "bytes": 1046,
+        "sha256": "26d418b676857ea4e1d5b4b9070dd1a0f85597e32d284393a9d684886fa6b404"
+      },
+      {
+        "path": "apps/lightcraft/verification-v0.1.0.json",
+        "bytes": 3370,
+        "sha256": "a45f87f19d86c943f84083fd5098d19e9db0b8fe390a579d5ab1810f8e281080"
+      },
+      {
+        "path": "apps/lightcraft/verification-v0.1.2.json",
+        "bytes": 4043,
+        "sha256": "698c795604d24088567242a897df5a1ede6b5df965205bd92cc310d255f9a86e"
+      },
+      {
+        "path": "apps/lightcraft/verification-v0.1.4-local.json",
+        "bytes": 5206,
+        "sha256": "97a8f9600bba2f99e04ef514d4d8a9cdcf47af0d8552fbe523707d6652f7baad"
+      },
+      {
+        "path": "apps/lightcraft/verification.json",
+        "bytes": 5941,
+        "sha256": "68acc06c3b668f5813da8e1788a23c9d69930d0e03192e5eec91500adfb1bd46"
+      },
+      {
+        "path": "apps/pdfcraft/Dockerfile",
+        "bytes": 876,
+        "sha256": "e1893bde4325078099b13c20c6e1f17638b997bb727bd177395cb9be832f208b"
+      },
+      {
+        "path": "apps/pdfcraft/SKILL.md",
+        "bytes": 3550,
+        "sha256": "6b014fb2cb21db91e9b724a5084b3b1ed50c6c26bafe7746eaaf1da38db7a63d"
+      },
+      {
+        "path": "apps/pdfcraft/adapter.mjs",
+        "bytes": 4918,
+        "sha256": "a34bc0244c034065f52128a07bd75ebf3a486906e8bdbe1e563e3601493490b6"
+      },
+      {
+        "path": "apps/pdfcraft/build-web.mjs",
+        "bytes": 5961,
+        "sha256": "5d2203cde720aa05323e2726993d64d519366c5c17611c770e65aec7d5d87fd1"
+      },
+      {
+        "path": "apps/pdfcraft/native-batch.mjs",
+        "bytes": 1411,
+        "sha256": "01e2c8cd97fb65e3e95c1ccb47dccba11225617d225d2ef5dad4fe06836a533d"
+      },
+      {
+        "path": "apps/pdfcraft/native-package.mjs",
+        "bytes": 1863,
+        "sha256": "4e4e43add25cd2f82c0e6f5117006c9a71b6c1ee46fd714a5814b98868bf1bc4"
+      },
+      {
+        "path": "apps/pdfcraft/package.mjs",
+        "bytes": 2369,
+        "sha256": "b995e8a1534022a102044f57fb59da21b0cd52129523b63a2a384949f2ded505"
+      },
+      {
+        "path": "apps/pdfcraft/patches/0001-robyn-library.patch",
+        "bytes": 111225,
+        "sha256": "752abed112af6e9d29c3cd8494ee2b1c14c1b48daea6fb32e9444506e43d73e4"
+      },
+      {
+        "path": "apps/pdfcraft/patches/0002-studio-brand-test.patch",
+        "bytes": 931,
+        "sha256": "12e7b5e97324f078e84c3b27077cee528dc5a2146381b7cf436832df0ad7c95e"
+      },
+      {
+        "path": "apps/pdfcraft/patches/0003-rust-1-95-font-lint.patch",
+        "bytes": 673,
+        "sha256": "47b85a5d9c9ed2ebfad5cce179c77fa1ed01dd1e2e57bb323c5a3e220d2a11ef"
+      },
+      {
+        "path": "apps/pdfcraft/patches/0004-robyn-translation-attribution.patch",
+        "bytes": 40858,
+        "sha256": "9ca85d036aba21903b243f0d4759bd58ee98db03fadfb7adef8c11be28dfec8a"
+      },
+      {
+        "path": "apps/pdfcraft/patches/0005-unique-annotation-names.patch",
+        "bytes": 17725,
+        "sha256": "8a2e70962b5052e5feaddabd71a567791d6445c58119bde8d8f74cdd4b27fd51"
+      },
+      {
+        "path": "apps/pdfcraft/prepare-source.mjs",
+        "bytes": 3818,
+        "sha256": "7fd8e9fe066a758905bdba9b9be6634353c2bb6a69456de2042832b4e6e0f08b"
+      },
+      {
+        "path": "apps/pdfcraft/release.json",
+        "bytes": 1029,
+        "sha256": "cc9ae427010f7fac4d88d9be0ff4b89a333c35955cb574abeb1d7d76cab3cba9"
+      },
+      {
+        "path": "apps/pdfcraft/verification.json",
+        "bytes": 12040,
+        "sha256": "c39815dba29975310b6a268c198a8eb4a16dfb28c9f608633a2fb1f485d36f32"
+      },
+      {
+        "path": "apps/photocraft/Dockerfile",
+        "bytes": 917,
+        "sha256": "31cb5fa1ad16c29f778c588ee586908c2602ecc2d98221bf491bc379755a0186"
+      },
+      {
+        "path": "apps/photocraft/SKILL.md",
+        "bytes": 3419,
+        "sha256": "1acb778d4954c859c8c6359b56728ca05409e70d0c11cb41982b004ee3ce3635"
+      },
+      {
+        "path": "apps/photocraft/adapter.mjs",
+        "bytes": 5102,
+        "sha256": "da35ffc4874bd511ddd67c3c967ed1ab4fad1caf2d687b07a5e068ea09b62e06"
+      },
+      {
+        "path": "apps/photocraft/build-web.mjs",
+        "bytes": 6963,
+        "sha256": "65dea1f926895107b684ea819d02aa607f713d12f4d6b7bf358095ca42d9dcd1"
+      },
+      {
+        "path": "apps/photocraft/container.mjs",
+        "bytes": 5020,
+        "sha256": "0372cfbbb3381d9a8d56b7d69d574e15b51728749c16d392a6cd7befcee35c9d"
+      },
+      {
+        "path": "apps/photocraft/native-package.mjs",
+        "bytes": 3095,
+        "sha256": "f6b296b756ea75024e891853344b7db134a630171a5a603d30274be51134169b"
+      },
+      {
+        "path": "apps/photocraft/package.mjs",
+        "bytes": 8553,
+        "sha256": "f332b86a0152a0a6bf77c2aaf1b222c6aa0f2a16d3799d431b5e8c29564f6f4d"
+      },
+      {
+        "path": "apps/photocraft/patches/0001-robyn-library.patch",
+        "bytes": 46827,
+        "sha256": "333c537501886126bd2efd2849531fe7650ae1bf66c9db8c259f7b7f9029bb36"
+      },
+      {
+        "path": "apps/photocraft/release.json",
+        "bytes": 1045,
+        "sha256": "8eecae892383e23f02331217101623c8d0c3ee3d9e8d21fa69ce615f0347209d"
+      },
+      {
+        "path": "apps/photocraft/verification-v0.1.0.json",
+        "bytes": 3009,
+        "sha256": "c5bb1f498f1ae9ae5979af877b58a87d684c486fcf9f2ae0e3467e7f466953fe"
+      },
+      {
+        "path": "apps/photocraft/verification-v0.1.2.json",
+        "bytes": 3873,
+        "sha256": "1b99c1dd06a390c9d49f2abbc7de0d0a63f91b3ac8e0819fb3f742b6437c1ae9"
+      },
+      {
+        "path": "apps/photocraft/verification-v0.1.4-local.json",
+        "bytes": 5542,
+        "sha256": "8f6d519ae470812b39178652497ee610fe8668acea686910a008b293e7646cd8"
+      },
+      {
+        "path": "apps/photocraft/verification.json",
+        "bytes": 6351,
+        "sha256": "350127e8e5a795b35c784a6d08d4bcae6dfd63928dd6788dd7e96829d450d41a"
+      },
+      {
+        "path": "apps/research/Dockerfile",
+        "bytes": 783,
+        "sha256": "4864f521fbf95c711f510458ebdd1cb1366a2f8b8a68e477dff3ec308d19ab8b"
+      },
+      {
+        "path": "apps/research/LICENSE",
+        "bytes": 1064,
+        "sha256": "98c11fa4800d30b4a00ab1285111a46ba38bda674fbd50789a4f619619835fb7"
+      },
+      {
+        "path": "apps/research/README.md",
+        "bytes": 2083,
+        "sha256": "825abc13985c2b1676e6717de2938b18cf9cfe709a1d77c9e89fa0f5c5bb21b4"
+      },
+      {
+        "path": "apps/research/SKILL.md",
+        "bytes": 2171,
+        "sha256": "2fd0f6b2d7dec5a872a1063122c54f6102eaebac462fea3d0b6b15ee052793b1"
+      },
+      {
+        "path": "apps/research/desktop-entrypoint.sh",
+        "bytes": 2256,
+        "sha256": "48ed032a2a34ef5675475dfaffcf4050c65b2092ecebef992b63d409cc345601"
+      },
+      {
+        "path": "apps/research/native-package.mjs",
+        "bytes": 957,
+        "sha256": "755f273271bce812aa62128f2ba09732e1fc47c8cd605d7ed2d4a644b8d2bb5a"
+      },
+      {
+        "path": "apps/research/release.json",
+        "bytes": 516,
+        "sha256": "f2d8de9c1980b845cd1d5eae4e7c8bd8bbc4ad9022ab9cd0535e31d38f165403"
+      },
+      {
+        "path": "apps/research/verification.json",
+        "bytes": 1522,
+        "sha256": "2955fff9c14ccbcb32d6478931395d335c9c78dce877c56203abdc83fa3e6ab0"
+      },
+      {
+        "path": "apps/soundcraft/Dockerfile",
+        "bytes": 917,
+        "sha256": "93c6c1bbd0e19b7c398a58ff7bed21011e2562c48948882a89a82db8493bef87"
+      },
+      {
+        "path": "apps/soundcraft/SKILL.md",
+        "bytes": 2229,
+        "sha256": "9947d0cb8aa95b2aebad159c4b3337b496c6418ec408eb637922baa944e02db7"
+      },
+      {
+        "path": "apps/soundcraft/adapter.mjs",
+        "bytes": 5298,
+        "sha256": "1e4003dae09f5f5a0ec8a17ec934e01121d2f649ed6e9d4ff2c5c1a0c4207fb7"
+      },
+      {
+        "path": "apps/soundcraft/build-web.mjs",
+        "bytes": 5660,
+        "sha256": "4faaa7f3e753f13afdd3e492db5b7dc9450b6987c23a45e5ce891177d36eafaa"
+      },
+      {
+        "path": "apps/soundcraft/native-package.mjs",
+        "bytes": 3746,
+        "sha256": "bdb22347502d0d1eff972ba5dd34f0ffcb726948592a01943de6ada2823a2cd3"
+      },
+      {
+        "path": "apps/soundcraft/package.mjs",
+        "bytes": 3032,
+        "sha256": "1d1da997337057f1f1afd6ce65cc6c9b0b8a398e66e90950d20ac37c1ef317c7"
+      },
+      {
+        "path": "apps/soundcraft/patches/0001-robyn-library.patch",
+        "bytes": 54009,
+        "sha256": "8204af20088aae824c2705764fa63a91eac72bb8a3aec63da30e5617fa9e67d4"
+      },
+      {
+        "path": "apps/soundcraft/release.json",
+        "bytes": 907,
+        "sha256": "4bbbc6d76a549a27ad23e48fd87a40befceb6b4880959a24ef94a0546550b07d"
+      },
+      {
+        "path": "apps/soundcraft/verification-v0.1.0.json",
+        "bytes": 4107,
+        "sha256": "a9aec154ff7e6a2cf71892a535daf3aa5b2e8675dc57552338ba4fac588c3ee5"
+      },
+      {
+        "path": "apps/soundcraft/verification-v0.1.2.json",
+        "bytes": 7264,
+        "sha256": "643a82a9696e143dbfc2b480b03730d630ed39f77cb38eda8f39da23ffe95c17"
+      },
+      {
+        "path": "apps/soundcraft/verification-v0.1.4-local.json",
+        "bytes": 8967,
+        "sha256": "653223461810c0881401bdbed04e03b2192a827e15de4af4433f0c53c611202d"
+      },
+      {
+        "path": "apps/soundcraft/verification.json",
+        "bytes": 9459,
+        "sha256": "b190fc903e5eed7fd5284e2ee8b7b7fde37d6f6288cb2c98026429754c02fc73"
+      },
+      {
+        "path": "apps/vectorcraft/Dockerfile",
+        "bytes": 932,
+        "sha256": "62c3a1297f1291542091cec0fc5092054274fe100746287e79a957c5562e1823"
+      },
+      {
+        "path": "apps/vectorcraft/SKILL.md",
+        "bytes": 3253,
+        "sha256": "5bcaf89b9c45c8265293ab9e6d9f3687022740386e4b1fdade976ce49d3f760e"
+      },
+      {
+        "path": "apps/vectorcraft/adapter.mjs",
+        "bytes": 5030,
+        "sha256": "29e568bfd51232ca29f693ba4281b5f745af7efc19c11a3cdce2b21c1498619e"
+      },
+      {
+        "path": "apps/vectorcraft/build-web.mjs",
+        "bytes": 5917,
+        "sha256": "ca07a57949a52522438f771f4fa14829fdea30ad16c19db7a8785661db044e34"
+      },
+      {
+        "path": "apps/vectorcraft/native-package.mjs",
+        "bytes": 3100,
+        "sha256": "ebcbf1925f3c2273d396ea1feffa9038e818e0680c9ae138eafc4f4640c79977"
+      },
+      {
+        "path": "apps/vectorcraft/package.mjs",
+        "bytes": 8841,
+        "sha256": "80962ce07c67f22f60b31597fd43253f2a4371cf3063c434278934f734d7201a"
+      },
+      {
+        "path": "apps/vectorcraft/patches/0001-robyn-library.patch",
+        "bytes": 81600,
+        "sha256": "5bb27d5c3d438ed966c02ef6ad267d84b53f38f487663ae3428047262380f4eb"
+      },
+      {
+        "path": "apps/vectorcraft/release.json",
+        "bytes": 1054,
+        "sha256": "2552684f1ff05d114761e2ac57658fdf8c3a3f2295db7be4267e3a7d2a9fe2a6"
+      },
+      {
+        "path": "apps/vectorcraft/verification-v0.1.0.json",
+        "bytes": 2955,
+        "sha256": "91dad5bf8b8c102e6d6c7987073dd21b034cba4777011c770979b886eaa92d03"
+      },
+      {
+        "path": "apps/vectorcraft/verification.json",
+        "bytes": 5927,
+        "sha256": "46f0a39deaa6bf9d0000c7d6389947dabc91e2d55c03eab314824f539e7770cc"
+      },
+      {
+        "path": "apps/wordcraft/Dockerfile",
+        "bytes": 889,
+        "sha256": "d6cef2078996a3096ac5b6db144c5c69023f6fe943d8dd0b2e455f8f231f375f"
+      },
+      {
+        "path": "apps/wordcraft/SKILL.md",
+        "bytes": 1951,
+        "sha256": "20cf9722502f2963090a13197571e89eb56230c2db919823f0779a0657e70461"
+      },
+      {
+        "path": "apps/wordcraft/adapter.mjs",
+        "bytes": 5273,
+        "sha256": "e4b0b9edcd78e3e43b71ee77a8aec3248eb28da161c13f7483cb064169dc71c3"
+      },
+      {
+        "path": "apps/wordcraft/build-web.mjs",
+        "bytes": 5889,
+        "sha256": "41d9d6e1b177826aaa8beac59855e88fe42e552a6d930530e19af20fec857829"
+      },
+      {
+        "path": "apps/wordcraft/native-package.mjs",
+        "bytes": 1646,
+        "sha256": "be0af3e88face77f9a3ccc5d5b8de0c1966920cfdcaf0228f5dcf113d57c1611"
+      },
+      {
+        "path": "apps/wordcraft/package.mjs",
+        "bytes": 2212,
+        "sha256": "a4c6d75431c6b683c3f9be70100d30aeab029e50b5b8b252925f58f705738db0"
+      },
+      {
+        "path": "apps/wordcraft/patches/0001-robyn-library.patch",
+        "bytes": 53107,
+        "sha256": "7c22fdf9f76b7f9003f16c99696b8ab3d7d5155bdf4278b075a52bf9ec5149c3"
+      },
+      {
+        "path": "apps/wordcraft/release.json",
+        "bytes": 1030,
+        "sha256": "1720fa01d8de908fa7888dd8cce72a0ec7ed011aece979a75cb69c9c8734aec2"
+      },
+      {
+        "path": "apps/wordcraft/verification.json",
+        "bytes": 8833,
+        "sha256": "8a5b7339efdc1f8976d4599b027168a787a8f84e0b5631be0ac130f9a93db90e"
+      },
+      {
+        "path": "deploy/.vercelignore",
+        "bytes": 65,
+        "sha256": "846b90f1260fede7f6e1f5d1c19f20692cdeca5c25f9f69223f8b34733c66a99"
+      },
+      {
+        "path": "deploy/cloudflare/README.md",
+        "bytes": 5468,
+        "sha256": "08e56db4fff0ae93ad6a6e3224ca9251d0e842ebe42b1ba84510689183224417"
+      },
+      {
+        "path": "deploy/cloudflare/catalog.json",
+        "bytes": 2608604,
+        "sha256": "7d354a13e1fb2e7c18010d90ab03be6bf063466d30230b3d246ac139fe8b132e"
+      },
+      {
+        "path": "deploy/cloudflare/worker.mjs",
+        "bytes": 4269,
+        "sha256": "b1596de48711d072ea7544031cb1407ad37c956b351c2cc72e6c743210081f5a"
+      },
+      {
+        "path": "deploy/cloudflare/wrangler.jsonc",
+        "bytes": 334,
+        "sha256": "38e4004b6b3d801e47a6ed4eb48a0347bf079da04e280c423fed07b6bd58b354"
+      },
+      {
+        "path": "deploy/vercel.json",
+        "bytes": 765,
+        "sha256": "e16ddb1f7e5607298b7988332b1d75a902e2c3b0d99f07ee21c2cb910a4bfd0e"
+      },
+      {
+        "path": "lib/agent-edit.mjs",
+        "bytes": 11644,
+        "sha256": "39ad27afc44d6ba5ee9e9131b3e5ee0492cf3905b2ab1e5b55ee0eee7947ccdb"
+      },
+      {
+        "path": "lib/asset-licenses.mjs",
+        "bytes": 1203,
+        "sha256": "94d161cfe84a6c32a9a9d05969024283a438933201d6cc6d99f75521b5289ee3"
+      },
+      {
+        "path": "lib/asset-picker.mjs",
+        "bytes": 7704,
+        "sha256": "97d28e3b2d6136b48f5c9d4c81feeba3e4893bfde25f3ef812e8c5989ec81f6d"
+      },
+      {
+        "path": "lib/configure-hermes.py",
+        "bytes": 1989,
+        "sha256": "de97c933d197da9662f9ccb969a3fcde3a3047bd2af30a2985ec146c08c2494e"
+      },
+      {
+        "path": "lib/derived-files.mjs",
+        "bytes": 2096,
+        "sha256": "c7de2adba4bb75cb2206433f2ac7cc357efb8e473f2663399e2cc069cba318e3"
+      },
+      {
+        "path": "lib/disk-space.mjs",
+        "bytes": 473,
+        "sha256": "b24297663706c06d98aa3354b723f22be45d4160b2bc8433e8427afe949fa35f"
+      },
+      {
+        "path": "lib/editor-client.mjs",
+        "bytes": 2628,
+        "sha256": "3061f0836e4c8d4cb4f3277a135712c4b868d5f0d207a67045fce94eca41672d"
+      },
+      {
+        "path": "lib/name-picker.mjs",
+        "bytes": 3892,
+        "sha256": "bce06f482215159c8ab6c4c679b24d40222c9420827ad1990961d68e17e0c8ad"
+      },
+      {
+        "path": "lib/native-apps.mjs",
+        "bytes": 3625,
+        "sha256": "1f7b937c2c4771573756c587283db428cd4d3d3c7fb219fcde3293aef8bececa"
+      },
+      {
+        "path": "lib/package.mjs",
+        "bytes": 3468,
+        "sha256": "edb624687bb647b38cc8074789fe4473fee213222b779a3c7ebdfe3025de14e7"
+      },
+      {
+        "path": "lib/save-coordinator.mjs",
+        "bytes": 3483,
+        "sha256": "57aee96262a5a90677915821a11fabbc6638a93737ef3b5348679b1032eda39a"
+      },
+      {
+        "path": "lib/studio-mcp.mjs",
+        "bytes": 7655,
+        "sha256": "194cb2935a3bb27618f0b567ff28800e0375bcd54556e95e61997a740cf63f71"
+      },
+      {
+        "path": "lib/workstation-client.mjs",
+        "bytes": 18457,
+        "sha256": "f4c9f0ced325da3db3518b9a4b7d07602cbcc8473e02b75a4e49d5e5406c662a"
+      },
+      {
+        "path": "package-lock.json",
+        "bytes": 101007,
+        "sha256": "0c742713b5c614436671c65fa88e94e1b0da658426e27abd4d2572b20a554d22"
+      },
+      {
+        "path": "package.json",
+        "bytes": 840,
+        "sha256": "4266158588433f12396504203b0b0a46721a64a9cb1b473aa4cb4631602e179e"
+      },
+      {
+        "path": "scripts/build-native.mjs",
+        "bytes": 3266,
+        "sha256": "701b354b354f60dc6c61036e2d809e40cc58295b025ebc2de8a35e435134b50d"
+      },
+      {
+        "path": "scripts/build-research.mjs",
+        "bytes": 4923,
+        "sha256": "7869157ada1e8fff6eba14ae023a1689e8f415c114b166189af373d74dfa052b"
+      },
+      {
+        "path": "scripts/build-web.mjs",
+        "bytes": 4666,
+        "sha256": "c71c9b33509d4c9b215478cd378e28064718756db424ee6640f656caa89aa022"
+      },
+      {
+        "path": "scripts/build-workstation.mjs",
+        "bytes": 637,
+        "sha256": "b473d92a8c1c6ed4720f0083c4578033af93171a6cbead92807c91cb3854bd9d"
+      },
+      {
+        "path": "scripts/fetch-release.mjs",
+        "bytes": 2134,
+        "sha256": "cd3ec0e9d3567044dd7ffc01ce1d527ccffdbef6452efb0f9a434417d386a52f"
+      },
+      {
+        "path": "scripts/prepare-r2-artifacts.mjs",
+        "bytes": 6401,
+        "sha256": "44097211c4f916feeb1ab408e1c0bb08a50e9335d613bd837e484655a6c11f66"
+      },
+      {
+        "path": "scripts/prepare-source.mjs",
+        "bytes": 1550,
+        "sha256": "4f86f4678ffc7208a4753afba0dc420d130b558f1efbf79643dbc17afdc59847"
+      },
+      {
+        "path": "scripts/prepare-vercel-compat.mjs",
+        "bytes": 2061,
+        "sha256": "af87079e579f849ac3fbe1f28511d08b79a4f08429315744e06425c65309dd42"
+      },
+      {
+        "path": "scripts/publish-r2-artifacts.mjs",
+        "bytes": 5979,
+        "sha256": "389499acea56cf3fb794b504d209bf310a76cfa4093fe5beb310cbbe0d7e1667"
+      },
+      {
+        "path": "scripts/rebuild-adapter.mjs",
+        "bytes": 4403,
+        "sha256": "46eb24724e5de96dcb05037544b5d8c77e9fdfcff6a1af4bc2908d824240b92e"
+      },
+      {
+        "path": "scripts/serve-web.mjs",
+        "bytes": 1490,
+        "sha256": "faecd4a6bd86f08dce2674a8c11e95f7deee3f55d0ed08ea5f9633c6549f4250"
+      },
+      {
+        "path": "tests/agent-edit.test.mjs",
+        "bytes": 5720,
+        "sha256": "bc7cedcd01323635dbe44b0e52f476453a7420056329d361b2884d2d0630c1db"
+      },
+      {
+        "path": "tests/artifact-worker.test.mjs",
+        "bytes": 3614,
+        "sha256": "e8967a2347fbebf65410c262746b17e809d167a06a14c080399111c23c4628be"
+      },
+      {
+        "path": "tests/cadcraft-package.test.mjs",
+        "bytes": 3555,
+        "sha256": "c03ad105f82bb8f0710955230b4d66b9b2b4678d896fa1805b1d1bdd9e0381b1"
+      },
+      {
+        "path": "tests/deckcraft-audio.test.mjs",
+        "bytes": 1723,
+        "sha256": "0c461719a45f37ad0ef8cb948980071fcf436756de67702ed4db9b700e16b3a2"
+      },
+      {
+        "path": "tests/deckcraft-package.test.mjs",
+        "bytes": 6556,
+        "sha256": "ba7f5000ad733174f1a22cadc675918743b5f2317c19fc83321c3ab8aa2de1b4"
+      },
+      {
+        "path": "tests/derived-files.test.mjs",
+        "bytes": 1724,
+        "sha256": "14d08af78028984b7416c40a170348dc9812d602a4f705fe13e3edb59aedf543"
+      },
+      {
+        "path": "tests/designcraft-package.test.mjs",
+        "bytes": 9111,
+        "sha256": "21ac0f51ee26f4e155acfe213f116a1e68147fcd382dd8d905a0bbe58f5194fa"
+      },
+      {
+        "path": "tests/disk-space.test.mjs",
+        "bytes": 642,
+        "sha256": "d55d36970f7ea4b14b42da1760b513dfc2ea07bcd1899ed029c3410d2b76a1d7"
+      },
+      {
+        "path": "tests/effectcraft-package.test.mjs",
+        "bytes": 6148,
+        "sha256": "08c1d5af82ceded94846a93186e3952a057fc6103587417c7ebfbf3e8c74f8dd"
+      },
+      {
+        "path": "tests/figcraft-package.test.mjs",
+        "bytes": 3007,
+        "sha256": "6353141cea04abec0daf694d22b0d9ba7ad814da5d8263684c4dcc059823f4f1"
+      },
+      {
+        "path": "tests/filmcraft-package.test.mjs",
+        "bytes": 3710,
+        "sha256": "1b876acee2832421b3e472b93e2a27d1078cd6108505953752afff9a45b4a055"
+      },
+      {
+        "path": "tests/gridcraft-package.test.mjs",
+        "bytes": 2883,
+        "sha256": "b476397ca869d296f380dc4d2a37bf65b47a752667d77dcec5032111be295af9"
+      },
+      {
+        "path": "tests/lightcraft-package.test.mjs",
+        "bytes": 6678,
+        "sha256": "e09e60908107bd70c869ca7edede959eccdb87ea7b6ada9e8e364b630b509f0b"
+      },
+      {
+        "path": "tests/media-tools.test.mjs",
+        "bytes": 1496,
+        "sha256": "d061aa62dd708cbabf669404f71d5acbf61f8e2a59fe91f88f48e64e3e155f5d"
+      },
+      {
+        "path": "tests/native-package.test.mjs",
+        "bytes": 2618,
+        "sha256": "680ce66e8fc938ae19f1f33a9da894869442e15314f5e152c4e9ab942ab82b94"
+      },
+      {
+        "path": "tests/pdfcraft-native-batch.test.mjs",
+        "bytes": 2414,
+        "sha256": "5181c2111b509715bf90e82ba6126b33019b9bd87c6c6210fc9b410060278f52"
+      },
+      {
+        "path": "tests/pdfcraft-package.test.mjs",
+        "bytes": 4143,
+        "sha256": "9bfe6e4cc688ce0e335aa26db80d573584c6facdba4fc61a2e39fe39e4d191fa"
+      },
+      {
+        "path": "tests/photocraft-package.test.mjs",
+        "bytes": 5655,
+        "sha256": "480b9ca0383a896b71ad9628c2c6d971ae8b19fadc51760578c3988220c5ddaa"
+      },
+      {
+        "path": "tests/research.test.mjs",
+        "bytes": 1273,
+        "sha256": "63aefa22043bdcd9e9a5c4e04d69c5ab95767bc53af6435de6733884a2ea620b"
+      },
+      {
+        "path": "tests/save-coordinator.test.mjs",
+        "bytes": 3451,
+        "sha256": "780583c631d0c0cc370640528897155f2c8336cd167a6e94c16b3a987122c133"
+      },
+      {
+        "path": "tests/soundcraft-package.test.mjs",
+        "bytes": 5078,
+        "sha256": "c452d3b348f6d72c0521be71daa80e082e3f6b7c5cb475a4a0ba56929a4858bc"
+      },
+      {
+        "path": "tests/vectorcraft-package.test.mjs",
+        "bytes": 5343,
+        "sha256": "3b24e057853ddd632f9682a4c1836f3bad17301bf6fa761cbedb454d8046ede1"
+      },
+      {
+        "path": "tests/wordcraft-package.test.mjs",
+        "bytes": 2865,
+        "sha256": "dcceffebf13f0972d418a52db90e4d7c0a9de441ddcb1aba32aedbd81c642efe"
+      },
+      {
+        "path": "tests/workstation-client.test.mjs",
+        "bytes": 10296,
+        "sha256": "cf9011f5b8beb49c700ea7b1cb0d327637ad471c9fe144ee41fdd3413a398335"
+      }
+    ]
+  }
+}

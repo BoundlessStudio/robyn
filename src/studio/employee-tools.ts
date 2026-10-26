@@ -9,15 +9,22 @@ import { studioTools as studioApps } from "./tools";
 import { isEmployeeReady } from "./manifest";
 import { parseCampaignSteps } from "./campaigns";
 import { launchCampaign } from "./campaign-launch";
+import { createMediaJob, ownedMediaJob, searchMedia } from "./media-server";
+import { launchMediaJob } from "./media-launch";
+import { publicMediaJob } from "./media";
 
 const uuid={type:"string",format:"uuid"};
 const tool=(name:string,description:string,properties:Record<string,unknown>,required:string[]=[])=>({name,description,inputSchema:{type:"object",properties,required,additionalProperties:false}});
 export const employeeTools=[
+  tool("search_media","Search Wikimedia Commons within this project. Only CC0 and CC BY results are shown. A search preview is not an acquired source asset.",{kind:{type:"string",enum:["image","video","music","sound_effect"]},query:{type:"string",minLength:1,maxLength:100},page:{type:"integer",minimum:1,maximum:25}},["kind","query"]),
+  tool("import_media","Acquire one search result as an immutable source-media asset. Keep the operationId on retries; poll get_media_job before using the result.",{operationId:uuid,discoveryId:uuid,kind:{type:"string",enum:["image","audio","video"]},name:{type:"string",minLength:1,maxLength:160}},["operationId","discoveryId","kind","name"]),
+  tool("generate_media","Start a budgeted Perflo job. New work accepts only blockrun-image-gen (CogView-4, 1024x1024), blockrun-tts (Flash v2.5, Sarah, MP3, speed 1), or treza-video (MiniMax H3, 5 seconds, 16:9). Empty settings choose those defaults. Other listed services/options remain readable only to retry an existing operation; do not create new preview requests. Robyn estimates cost and charges the Director allocation. Poll get_media_job. Keep the original operationId and exact request after an uncertain response. Image-edit recovery needs its original saved source-image input.",{operationId:uuid,service:{type:"string",enum:["blockrun-image-gen","paysponge-gemini-image","blockrun-image-edit","blockrun-tts","blockrun-ai-api-v1-audio-sound-effects","treza-video"]},name:{type:"string",minLength:1,maxLength:160},prompt:{type:"string",minLength:1,maxLength:10000},settings:{type:"object"},inputs:{type:"array",maxItems:1,items:{type:"object",properties:{assetId:uuid,revisionId:uuid},required:["assetId","revisionId"],additionalProperties:false}}},["operationId","service","name","prompt"]),
+  tool("get_media_job","Read/reconnect the same media job. Use its exact output AssetRef only once completed. Uncertain payments retain their spend reservation; never replace them with a new operationId.",{jobId:uuid},["jobId"]),
   tool("studio_context","Read your assignment, its exact input revisions, and the project brief.",{}),
   tool("studio_team","Director only: discover the studio's available specialists and their capabilities.",{}),
   tool("studio_plan","Director only: save one immutable production plan. Prerequisites must precede their consumers; their exact output revisions are handed onward automatically.",{operationId:uuid,steps:{type:"array",minItems:1,maxItems:20,items:{type:"object",properties:{key:{type:"string"},appId:{type:"string"},brief:{type:"string",maxLength:10000},dependsOn:{type:"array",items:{type:"string"}},inputs:{type:"array",items:{type:"object",properties:{assetId:uuid,revisionId:uuid},required:["assetId","revisionId"]}},final:{type:"boolean"}},required:["key","appId","brief","dependsOn","inputs","final"],additionalProperties:false}}},["operationId","steps"]),
   tool("studio_list_assets","List saved assets in this assigned project. Always open an exact assetId + revisionId.",{}),
-  tool("studio_open_asset","Get short-lived private downloads for one exact saved native package. Verify every file's size and SHA-256 before opening.",{assetId:uuid,revisionId:uuid},["assetId","revisionId"]),
+  tool("studio_open_asset","Get short-lived private downloads and provenance for one exact saved native or source-media package. Verify every file's size and SHA-256 before opening.",{assetId:uuid,revisionId:uuid},["assetId","revisionId"]),
   tool("studio_create_asset","Create a library entry for your specialist application. Retrying the same operationId and name returns the same asset.",{operationId:uuid,name:{type:"string",minLength:1,maxLength:160}},["operationId","name"]),
   tool("studio_begin_revision","Reserve an immutable native package. Supply the exact expected base, or null for a new asset. File bytes upload directly to Storage.",{operationId:uuid,assetId:uuid,expectedBaseRevisionId:{anyOf:[uuid,{type:"null"}]},package:{type:"object"}},["operationId","assetId","expectedBaseRevisionId","package"]),
   tool("studio_upload_transfers","Get resumable upload tickets for your reserved revision; never send media bytes to this endpoint.",{revisionId:uuid},["revisionId"]),
@@ -26,6 +33,18 @@ export const employeeTools=[
 
 export async function employeeToolCall(auth:{db:DB;tokenHash:string;scope:EmployeeScope},name:string,args:Record<string,unknown>) {
   const {db,tokenHash,scope:s}=auth;
+  const mediaIdentity={workspaceId:s.workspaceId,userId:s.userId,projectId:s.projectId};
+  if(name==="search_media")return searchMedia(db,mediaIdentity,args);
+  if(name==="import_media"||name==="generate_media"){
+    const job=await createMediaJob(db,mediaIdentity,{...args,operation:name==="import_media"?"import":"generate",...(name==="import_media"?{provider:"commons"}:{})},tokenHash);
+    await launchMediaJob(db,mediaIdentity,job);
+    return {job:publicMediaJob(job)};
+  }
+  if(name==="get_media_job"){
+    const job=await ownedMediaJob(db,mediaIdentity,id(args.jobId,"media job ID"));
+    await launchMediaJob(db,mediaIdentity,job);
+    return {job:publicMediaJob(job)};
+  }
   const ownedProjectAsset=async(value:unknown)=>{
     const asset=await ownedAsset(db,s.workspaceId,id(value,"asset ID"));
     if(asset.project_id!==s.projectId)throw new ApiError(404,"not_found","Asset not found in this project.");
@@ -60,8 +79,8 @@ export async function employeeToolCall(auth:{db:DB;tokenHash:string;scope:Employ
     return campaign;
   }
   if(name==="studio_list_assets"){
-    const {data,error}=await db.from("studio_assets").select("id,name,app_id,current_revision_id").eq("workspace_id",s.workspaceId).eq("project_id",s.projectId).not("current_revision_id","is",null).order("created_at",{ascending:false}).limit(300);dbFailure(error);
-    return {assets:(data??[]).map(row=>({name:row.name,appId:row.app_id,ref:{assetId:row.id,revisionId:row.current_revision_id}}))};
+    const {data,error}=await db.from("studio_assets").select("id,name,app_id,asset_kind,current_revision_id").eq("workspace_id",s.workspaceId).eq("project_id",s.projectId).not("current_revision_id","is",null).order("created_at",{ascending:false}).limit(300);dbFailure(error);
+    return {assets:(data??[]).map(row=>({name:row.name,appId:row.app_id,kind:row.asset_kind,ref:{assetId:row.id,revisionId:row.current_revision_id}}))};
   }
   if(name==="studio_open_asset"){
     const asset=await ownedProjectAsset(args.assetId);

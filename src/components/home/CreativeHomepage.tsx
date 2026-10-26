@@ -14,6 +14,6 @@ export function CreativeHomepage() {
       <Link className="studio-entry" href="/login">Desktop studio <ArrowUpRight size={18} /></Link>
     </header>
     <FlightStory />
-    <footer className="ascii-footer"><Link href="/" className="ascii-wordmark" aria-label="Robyn, home">robyn</Link><span>SMALL BIRD. BIG IDEAS. DESKTOP STUDIO.</span><div><Link href="/privacy">Privacy</Link><Link href="/login">Studio sign in <ArrowUpRight size={15} /></Link><a href="#an-idea">Back to the bird ↑</a></div></footer>
+    <footer className="ascii-footer"><Link href="/" className="ascii-wordmark" aria-label="Robyn, home">robyn</Link><span>SMALL BIRD. BIG IDEAS. DESKTOP STUDIO.</span><div><Link href="/privacy">Privacy</Link><Link href="/support">Support</Link><Link href="/login">Studio sign in <ArrowUpRight size={15} /></Link><a href="#an-idea">Back to the bird ↑</a></div></footer>
   </main>;
 }

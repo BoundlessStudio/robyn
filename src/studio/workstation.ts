@@ -37,6 +37,11 @@ function matchingTemplate(instance: Agent, template: string) {
 /** A create attempt is recorded before the upstream request. Recovery only
  * adopts an exact metadata match, including its persistent attempt UUID. */
 export async function ensureEmployeeInstance(db: DB, identity: AssignmentIdentity, employee: StudioEmployee): Promise<Agent | null> {
+  // Existing paid results may still be collected by their bound workstation.
+  // New setup waits while the owner allocation is being synchronized.
+  const {data:budgetPolicy,error:budgetError}=await db.from("studio_managed_budgets").select("sync_state").eq("workspace_id",identity.workspaceId).maybeSingle();
+  if(budgetError)throw new Error("Studio budget unavailable");
+  if(budgetPolicy&&budgetPolicy.sync_state!=="synced")return null;
   const template = employeeTemplate(employee);
   const args = { p_workspace: identity.workspaceId, p_user: identity.userId, p_employee: employee.id };
   employee = await assignmentRpc<StudioEmployee>(db, "claim_studio_employee_provision", args);
@@ -53,7 +58,7 @@ export async function ensureEmployeeInstance(db: DB, identity: AssignmentIdentit
       instance = await agent37.createAgent({
         template, name: `Robyn · ${employee.role}`, user: identity.userId,
         resources: { cpu: DEFAULT_AGENT.cpu, memory: DEFAULT_AGENT.memory, disk: DEFAULT_AGENT.disk },
-        budget: { monthly_cap_micros: DEFAULT_AGENT.monthlyCapUsd * 1_000_000 },
+        budget: { monthly_cap_micros: Number(employee.monthly_cap_micros ?? 0) },
         auto_sleep: true, idle_timeout_seconds: 900,
         metadata: { app_workspace: identity.workspaceId, studio_employee: employee.id, studio_provision_attempt: employee.provision_attempt },
       });

@@ -1,41 +1,37 @@
 # Robyn Creative Studio
 
-An invited personal creative studio with a Creative Director and independent AI specialists paired with ArtCraft applications. Built on Next.js, the Agent37 starter kit, Supabase, and Vercel.
+An invitation-only creative studio at **[robyn.academy](https://robyn.academy)**: a Creative Director, thirteen Craft specialists and Research, working with private native files that the creator can keep editing. Built with Next.js, Supabase, Agent37 and Vercel. Public editor releases are delivered through Cloudflare R2 and a separate read-only Worker.
 
-The site is deployed at [robyn-creative-studio.vercel.app](https://robyn-creative-studio.vercel.app). The creative homepage includes original artwork, movable prints, an interactive campaign, an employee roster, a revision demonstration, and an invitation form with verified Supabase persistence.
+The authenticated pilot is **desktop-only**. The public homepage is a mobile-capable, continuous ASCII robin tour with real Craft interface captures. Sign-in uses invitation-only email links; public signup and subscription billing are disabled. [Current status and acceptance](docs/CURRENT-STATUS.md) is the concise entry point. [PLAN.md](docs/PLAN.md) retains complete scope and dated history.
 
-The private studio carries that art direction into Projects, Asset Library, AI Employees, Applications, and Settings. It includes real project briefs, preview-led collections, native package imports with relative linked files, direct signed/resumable Storage transfers, immutable revision history, restoration, and preserved conflicts with save-as-new-asset. Desktop, tablet, mobile, and hosted sign-in have been reviewed.
+All thirteen native/browser integrations and Research have recorded production round trips. The deployed budget/media release supports shared Commons media, three generation services with bounded evidence, immutable provenance, exact revision handoffs and Studio AI allowance allocation. Broader generation options, browser coverage and recovery claims remain limited to their documented acceptance.
 
-The full pilot is **in development**. The 13 editor and native workstation integrations remain pending and are explicitly marked as such in their manifests. A visible roster is not a completed integration. [The implementation plan](docs/PLAN.md) defines the full acceptance criteria.
+The October 25 review fixes are a **local release candidate**, separate from the deployed application. See the [remediation report](docs/PROJECT-REVIEW-2026-10-25.md), [release record](docs/RELEASE-2026-10-25.md) and [operator runbook](docs/OPERATIONS.md). Support forwarding is live at **support@robyn.academy**.
 
-## Local development
+## Develop and verify
 
-```sh
-npm install
-npm run setup
-npm run dev
-```
+Use Node 24 and Python 3. Browser regression fixtures require Playwright Chromium, Firefox and WebKit.
 
-The first setup run creates ignored `.env.local`. Add the Agent37 key and Supabase management token there, then rerun setup to configure Supabase, apply all migrations, and disable public signup. Do not put secrets into tracked files. See [SETUP.md](SETUP.md) for credentials and deployment details. Native workstations require a funded Agent37 account.
+    npm ci
+    npx playwright install chromium firefox webkit
+    npm run dev
 
-```sh
-npm run typecheck
-npm test
-npm run build
-```
+Configure secrets privately using [SETUP.md](SETUP.md). Never print or commit .env.local. Fresh setup uses a checksummed migration ledger. Existing deployments require a verified explicit baseline before incremental execution; do not replay old migrations. Native workstations require a funded Agent37 account.
 
-Tests exercise invitation validation, redirect and origin boundaries, database grants, tenant isolation, atomic revision commits, missing dependencies, conflicts, restores, forks, and independent app registration. Live Supabase checks cover invitation persistence, onboarding, cross-tenant denial, resumable transfers, exact download bytes, and revision recovery. These package-service fixtures do not count as ArtCraft native/browser round trips.
+    npm run typecheck
+    npm test
+    npm run build
 
-## Application modules
+Maintained tests exercise ownership, private grants, exact packages, conflicts/restores, migration replay, persisted retry identity, uncertain dispatch/payment recovery, media capacity/space, expired URLs and older-library discovery. CI runs these gates; the companion runtime has its own tests and bundle gate. Isolated fixtures do not replace live native/provider acceptance.
 
-Each `src/studio/apps/*.json` owns an application's role, instructions, capabilities, formats, editor release, native template, and readiness. `npm run registry` generates the registry and runs automatically before development and builds. Add a module without changing existing specialists. Mark an integration verified only after pinning and testing its artifacts.
+## Application and deployment boundaries
 
-## Deployment
+Each src/studio/apps/*.json owns one Craft's role, instructions, formats, release pins, native template and readiness. npm run registry validates/generates the registry before development and builds. The companion ../robyn-artcraft-runtime owns native images, browser adapters and immutable workstation bundles. Mark an integration verified only after its real native/browser round trip passes.
 
-Deploy through Vercel. Runtime variables are `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `AGENT37_API_KEY`, and `NEXT_PUBLIC_SITE_URL`. The Supabase management token is setup-only and must not be deployed. The homepage does not load ArtCraft editor bundles.
+All private actions go through server ownership checks. src/lib/agent37.ts is the single Agent37 client; service-role and Agent37 secrets never reach the browser. Package bytes transfer directly using short-lived private Storage authorization. File/media links renew against their exact saved revision.
 
-Public signup is disabled. Hosted email/password sign-in works, and Supabase's Site URL and callback allow-list are configured for the live site and local development. The scoped setup token can verify these settings; changing them requires the dashboard or `project_admin_write`. Setup skips an unnecessary Auth update when the intended settings already match.
+Vercel runtime variables: NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY, AGENT37_API_KEY, NEXT_PUBLIC_SITE_URL. The Supabase management token is setup-only. Preserve invitation-only Auth and [passwordless confirmation](docs/PASSWORDLESS-AUTH.md). Domain and independent support-mail deployment are recorded in [DOMAIN-SETUP.md](docs/DOMAIN-SETUP.md).
 
 ## Attribution
 
-The foundation is [agent37-platform/starter-kit](https://github.com/agent37-platform/starter-kit), imported at `e6caed10767a0c7aafc77d76b0a54c9050169e8b`, under its retained MIT license. [Original starter documentation](docs/UPSTREAM-STARTER.md) is preserved for reference. [Artwork provenance](docs/ARTWORK.md) and [homepage QA](docs/HOMEPAGE-QA.md) document the public experience.
+Built on [agent37-platform/starter-kit](https://github.com/agent37-platform/starter-kit), imported at e6caed10767a0c7aafc77d76b0a54c9050169e8b, under its retained MIT license. [Historical starter documentation](docs/UPSTREAM-STARTER.md) is reference material, not current product scope. [Homepage artwork provenance](docs/HOMEPAGE-ARTWORK.md) and the maintained acceptance index distinguish illustrations from verified integrations.

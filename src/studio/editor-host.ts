@@ -37,7 +37,10 @@ export function createEditorHost(options:{projectId:string;initialRef:AssetRef;s
     switch(message.operation){
       case "openAsset": return open(assetRef(message.payload));
       case "insertAsset": return open(assetRef(message.payload));
-      case "listProjectAssets": return assets(true);
+      // Published editor pickers use this legacy field solely for their label
+      // and skip null values. Give source media its kind label on the bridge;
+      // canonical API/database assets still have app_id=null and no owning Craft.
+      case "listProjectAssets": return (await assets(true)).map(asset=>asset.app_id ? asset : {...asset,app_id:asset.asset_kind??"media"});
       case "notifyChanges": {
         const input=object(message.payload);
         if(input.assetId!==assetId||typeof input.dirty!=="boolean")throw Error("Invalid change notification.");

@@ -1,15 +1,22 @@
 import { json, handleError, ApiError } from "@/lib/http";
 import { requireStudio, readStudioBody, textField, appFor, id, ownedProject, dbFailure, withAssetPreviews } from "@/studio/server";
+import { readPage, pageFilter, finishPage, literalSearch } from "@/studio/pagination";
 
 export async function GET(request: Request) {
   try {
     const { db, workspaceId } = await requireStudio();
     const projectId = new URL(request.url).searchParams.get("projectId");
     if (projectId) await ownedProject(db, workspaceId, id(projectId));
-    let query = db.from("studio_assets").select("*").eq("workspace_id", workspaceId);
+    const page = readPage(request.url);
+    let query = db.from("studio_assets").select("*,project:studio_projects(name)").eq("workspace_id", workspaceId);
     if (projectId) query = query.eq("project_id", projectId);
-    const { data, error } = await query.order("created_at", { ascending: false }).limit(300);
-    dbFailure(error); return json({ assets: await withAssetPreviews(db,workspaceId,data??[]) });
+    if (page.search) query = query.ilike("name", literalSearch(page.search));
+    const visible = "asset_kind.eq.native,current_revision_id.not.is.null";
+    query = query.or(page.after ? `and(or(${visible}),or(${pageFilter(page.after)}))` : visible);
+    const { data, error } = await query.order("created_at", { ascending: false }).order("id", {ascending:false}).limit(page.size+1);
+    dbFailure(error);
+    const result = finishPage(data??[], page.size);
+    return json({ assets: await withAssetPreviews(db,workspaceId,result.items), nextCursor:result.nextCursor });
   } catch (error) { return handleError(error); }
 }
 

@@ -14,6 +14,34 @@ and writes the Supabase URL, anon key, and **server-only service-role key** back
 with the service-role key; see [`AGENTS.md`](AGENTS.md).) It's idempotent and fills only blank
 values. Per-variable docs live in [`.env.example`](.env.example).
 
+## Migration history and existing installations
+
+Setup records each complete filename and its SHA-256 checksum in the private
+`robyn_setup.migrations` ledger. It applies only the remaining suffix, under one
+database transaction and lock. A failure rolls back the whole suffix; a retry
+after a lost response skips committed work. Changed or missing applied files,
+or migrations inserted before an applied file, stop setup before application SQL
+runs. Add corrections in a new migration. Checksums normalize CRLF to LF.
+Both `0007_assignment_dispatch.sql` and `0007_storage_object_names.sql` are distinct
+entries; do not rename them or use the numeric prefix alone as a version.
+
+Older installations have no ledger. Setup refuses to replay their schema. Verify
+the last **fully applied** file against the deployment/migration record and the
+database, then baseline it once. The reviewed October 25 pilot is through
+`0017_budget_queue_slots.sql`:
+
+```bash
+npm run setup -- --no-create --baseline 0017_budget_queue_slots.sql
+```
+
+This explicitly records the verified prefix without executing it and applies any
+later files atomically. It does not infer schema state, repair a partially applied
+migration, or make an unknown database current by marking every file applied. If
+the old setup already failed during replay, restore or repair its regressed
+definitions before baselining. Do not baseline such a database from column
+existence alone. On subsequent runs, use `npm run setup` normally. Keep the ledger
+in database backups; do not clear it to bypass checksum errors.
+
 ## For your coding agent
 
 The README tells adopters to paste a one-liner that points here. If you're that agent, follow
@@ -41,7 +69,9 @@ these steps in order; don't skip the checks.
      re-run as `SUPABASE_ORG=<slug> npm run setup` for the one I want (usually my personal org).
    - `401` → my Supabase token is wrong/expired; ask for a new one.
    - `404` → `NEXT_PUBLIC_SUPABASE_URL` points at a project this token can't see.
-6. **Verify.** Run `npm run typecheck` and `npm run build` (no test suite — these two are the gate).
+6. **Verify.** Run `npm run typecheck`, `npm test`, `npm run build` and `npm run test:public`.
+   Install all three Playwright engines first (`npx playwright install chromium firefox webkit`). Media
+   dialog and public-page checks use them; those checks do not certify every native editor in those engines.
 7. **Start.** Run `npm run dev` and report the URL (<http://localhost:3000>). The public homepage
    accepts access requests; studio accounts are invited individually. Public signup is disabled. Remind me
    that creating an agent needs a funded wallet — a `402` at create time is the wallet, not a bug.
@@ -56,20 +86,23 @@ npm install
 npm run setup     # first run creates .env.local and prints the two keys to paste
 #                 → paste both into .env.local, then:
 npm run setup     # creates/configures Supabase, runs the migration, sets up auth
-npm run dev       # http://localhost:3000 → sign up with email + password
+npm run dev       # http://localhost:3000 → invited creators use an email sign-in link
 ```
 
 <details>
 <summary><b>Manual Supabase setup</b> — if you'd rather not use an access token</summary>
 
-Leave `SUPABASE_ACCESS_TOKEN` blank, skip `npm run setup`, create a free
-[Supabase](https://supabase.com) project, then: (1) **SQL Editor** → run
-[`supabase/migrations/0001_init.sql`](supabase/migrations/0001_init.sql) (it sets up the schema
-*and* revokes direct client table access — all DB access is server-side);
-(2) **Authentication → Providers** → enable **Email**; (3) **Authentication → URL
-Configuration** → Site URL `http://localhost:3000`, add `http://localhost:3000/auth/callback`
-to Redirect URLs. Paste the project URL, anon key, and **service-role key** (Project Settings →
-API) into `.env.local` (`SUPABASE_SERVICE_ROLE_KEY` — server-only), then `npm run dev`.
+Prefer the checked setup runner above. Applying only `0001_init.sql` creates the historical
+starter, not Creative Studio. A manual installation must apply the complete ordered migration
+set with the same private ledger/checksums from `scripts/migrations.mjs`; an existing database
+needs the explicit verified baseline described above. Do not run every SQL file again.
+
+Keep Email authentication enabled and **new public signup disabled**. Configure the trusted
+site URL, `/auth/callback` redirect and the preview-safe email confirmation templates from
+`scripts/setup.mjs`. Configure the sign-in sender before inviting creators. Add the project URL,
+anonymous key and server-only service-role key to `.env.local`; keep administrative tokens and
+database passwords out of the browser and deployment environment. Complete the same test/build
+checks before granting access. See [current status](docs/CURRENT-STATUS.md) for the pilot flow.
 </details>
 
 ## Deploy to production (Vercel)

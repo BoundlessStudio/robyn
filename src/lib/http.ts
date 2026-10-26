@@ -1,16 +1,8 @@
 import { NextResponse } from "next/server";
 import { Agent37Error } from "@/lib/agent37";
 
-export class ApiError extends Error {
-  status: number;
-  code: string;
-  constructor(status: number, code: string, message: string) {
-    super(message);
-    this.name = "ApiError";
-    this.status = status;
-    this.code = code;
-  }
-}
+import { ApiError } from "./api-error";
+export { ApiError } from "./api-error";
 
 export function json<T>(data: T, status = 200) {
   return NextResponse.json(data, { status, headers: { "Cache-Control": "private, no-store" } });

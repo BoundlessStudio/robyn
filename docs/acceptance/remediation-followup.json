@@ -1,0 +1,289 @@
+{
+  "recordedAt": "2026-10-25T14:29:37.618Z",
+  "deploymentStatus": "Reviewed candidate on feature branches; Git-connected Vercel reported a successful PR preview. No production promotion, production migration or hosted workstation upgrade was performed.",
+  "previousCheckpoint": "release-source.json",
+  "sourceCheckpoints": {
+    "web": {
+      "commit": "316a6d3d85bd2d2f6fe8529721acf0ebde11ef1a",
+      "tree": "27bfb5bd9e15cff5c1a5332fb25da46c86ef0aa3",
+      "trackedFiles": 570,
+      "treeInventorySha256": "775bb55c58e18b4a4434631dfa8f682c566b2fed4a46f9d1a88b0f4bbb7daf88",
+      "digestScope": "UTF-8 git ls-tree -rz output (mode, type, Git object ID and path) at the named commit",
+      "lockfileSha256": "3b3ce57f91a342ec17c3b802e740e0c4bd625f7cd21b48570190eef6fd859451",
+      "pullRequest": "https://github.com/BoundlessStudio/robyn/pull/19"
+    },
+    "runtime": {
+      "commit": "b38019aaeedcee20b299cf1fad6b683ec10c0720",
+      "tree": "2c7c745294160c89819f5dbdfa77855f4e7a6f67",
+      "trackedFiles": 221,
+      "treeInventorySha256": "a5d7b611c76289d385135ef392499ba6fd80c2d9563c13a289d0ca028262cd1c",
+      "digestScope": "UTF-8 git ls-tree -rz output (mode, type, Git object ID and path) at the named commit",
+      "lockfileSha256": "0c742713b5c614436671c65fa88e94e1b0da658426e27abd4d2572b20a554d22",
+      "pullRequest": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/1"
+    }
+  },
+  "workstation": {
+    "version": "0.1.23",
+    "directory": "vendor/robyn-workstation/0.1.23-463adbe8641b",
+    "fingerprint": "463adbe8641bb2b9f9c232027e4a1edcc5af9bc2c210581cce68af4bfc8ea58d",
+    "files": {
+      "studio-mcp.cjs": {
+        "bytes": 1838316,
+        "sha256": "6e7b4525b249cfdd81b00fccceec7ee4ca537663d4493fe1ef8ad6d0559a3b32"
+      },
+      "configure-hermes.py": {
+        "bytes": 1989,
+        "sha256": "f20740586af56b7ba2a773d497779041d1737f3e096ed3a27060df0861166dda"
+      },
+      "skills/cadcraft.md": {
+        "bytes": 1838,
+        "sha256": "2b1ca249dd4fd5f6b2950d33d42a530272563681b35eea6b0a0dc9f1b8f2a219"
+      },
+      "skills/deckcraft.md": {
+        "bytes": 2035,
+        "sha256": "f72308cf8882c6b56317027cbce042ca7abe6b9d7dfc037e02095212245da0e5"
+      },
+      "skills/designcraft.md": {
+        "bytes": 1785,
+        "sha256": "154a7046e27896e20de99bac5bfb5563a650217f24d445853c02f8dbf1a0a08d"
+      },
+      "skills/effectcraft.md": {
+        "bytes": 2040,
+        "sha256": "11539b89a13bb97be7df0a588d97b0ce647dc833728cf6651f21eb8593d07c26"
+      },
+      "skills/figcraft.md": {
+        "bytes": 1870,
+        "sha256": "847345f3a76ba38c139a5f4b4e9b20ca3ade96ada0f9d878df15178a55a56799"
+      },
+      "skills/filmcraft.md": {
+        "bytes": 3041,
+        "sha256": "35335951b520e51688ad01d15a210d6132531dd7eec9dfb54617a69a3c877d39"
+      },
+      "skills/gridcraft.md": {
+        "bytes": 2366,
+        "sha256": "ff3f61a8ddf0fe7974c65adddbcb27c8c9561a1c36caf495410828b784439676"
+      },
+      "skills/lightcraft.md": {
+        "bytes": 2433,
+        "sha256": "5526d9a69a644ca397bdd6d1c618086a670bfc600f7d29bce5dafe6dbd295d09"
+      },
+      "skills/pdfcraft.md": {
+        "bytes": 3550,
+        "sha256": "6b014fb2cb21db91e9b724a5084b3b1ed50c6c26bafe7746eaaf1da38db7a63d"
+      },
+      "skills/photocraft.md": {
+        "bytes": 3419,
+        "sha256": "1acb778d4954c859c8c6359b56728ca05409e70d0c11cb41982b004ee3ce3635"
+      },
+      "skills/soundcraft.md": {
+        "bytes": 2229,
+        "sha256": "9947d0cb8aa95b2aebad159c4b3337b496c6418ec408eb637922baa944e02db7"
+      },
+      "skills/vectorcraft.md": {
+        "bytes": 3253,
+        "sha256": "5bcaf89b9c45c8265293ab9e6d9f3687022740386e4b1fdade976ce49d3f760e"
+      },
+      "skills/wordcraft.md": {
+        "bytes": 1951,
+        "sha256": "20cf9722502f2963090a13197571e89eb56230c2db919823f0779a0657e70461"
+      },
+      "skills/research.md": {
+        "bytes": 2171,
+        "sha256": "2fd0f6b2d7dec5a872a1063122c54f6102eaebac462fea3d0b6b15ee052793b1"
+      }
+    }
+  },
+  "pendingMigrations": [
+    {
+      "file": "0018_media_queue_slots.sql",
+      "sha256": "0698c2cb3d2bfd9e3f8d4b61a69d71656813a3679a1c43bb1460d8732da35231",
+      "normalization": "CRLF to LF"
+    },
+    {
+      "file": "0019_media_settlement.sql",
+      "sha256": "f5ba0e93cf496de89de616a48c12bcfc1a2b3be60ef309a082774d2c68d8609d",
+      "normalization": "CRLF to LF"
+    },
+    {
+      "file": "0020_workflow_health.sql",
+      "sha256": "4dbc1ca6051cb606481913b606d1f5197d71422a426cdce785abf7e0ffe732e8",
+      "normalization": "CRLF to LF"
+    },
+    {
+      "file": "0021_media_retention.sql",
+      "sha256": "24d0d846643e93d5a9085b27caf35bd2431439b2152f12dba707576312f9072f",
+      "normalization": "CRLF to LF"
+    },
+    {
+      "file": "0022_abandoned_upload_retention.sql",
+      "sha256": "ca9db68d33a7b535cddb0b5661a1557ee0d31f0c60d16327a492841a2ac70302",
+      "normalization": "CRLF to LF"
+    }
+  ],
+  "verification": {
+    "local": {
+      "webTests": 74,
+      "runtimeTests": 68,
+      "typecheck": "passed",
+      "productionBuild": "passed",
+      "runtimeBuild": "passed",
+      "runtimeCleanGitExport": {
+        "commit": "b38019aaeedcee20b299cf1fad6b683ec10c0720",
+        "matchingPinnedFiles": 16,
+        "bundleSha256": "6e7b4525b249cfdd81b00fccceec7ee4ca537663d4493fe1ef8ad6d0559a3b32"
+      }
+    },
+    "hosted": {
+      "web": {
+        "headCommit": "316a6d3d85bd2d2f6fe8529721acf0ebde11ef1a",
+        "runId": 40202325123,
+        "jobId": 121195918182,
+        "url": "https://github.com/BoundlessStudio/robyn/actions/runs/40202325123",
+        "result": "success",
+        "platform": "ubuntu-latest",
+        "tests": 74,
+        "typecheck": "passed",
+        "fullDependencyAudit": "zero vulnerabilities",
+        "productionBuild": "passed",
+        "publicLayoutAxeCombinations": 18,
+        "publicKeyboardFocusPassed": 18,
+        "publicUnverifiedCases": 0
+      },
+      "runtime": {
+        "headCommit": "b38019aaeedcee20b299cf1fad6b683ec10c0720",
+        "runId": 40202297513,
+        "jobId": 121195836063,
+        "url": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/actions/runs/40202297513",
+        "result": "success",
+        "platform": "ubuntu-latest",
+        "tests": 68,
+        "fullDependencyAudit": "zero vulnerabilities",
+        "bundleSha256": "6e7b4525b249cfdd81b00fccceec7ee4ca537663d4493fe1ef8ad6d0559a3b32"
+      }
+    }
+  },
+  "publicPages": {
+    "scope": "Public pages only; no native-editor, physical-device or screen-reader certification",
+    "localPlatform": "Windows",
+    "checkedAt": "2026-10-25T14:21:19.198Z",
+    "engines": [
+      "chromium",
+      "firefox",
+      "webkit"
+    ],
+    "layoutAxeCombinations": 18,
+    "keyboardFocusPassed": 14,
+    "keyboardUnverified": [
+      {
+        "browser": "webkit",
+        "path": "/support",
+        "width": 1440,
+        "reason": "Windows WebKit excludes implicit links in its default keyboard settings; reproduced with a plain HTML anchor. Full link navigation remains unverified."
+      },
+      {
+        "browser": "webkit",
+        "path": "/privacy",
+        "width": 1440,
+        "reason": "Windows WebKit excludes implicit links in its default keyboard settings; reproduced with a plain HTML anchor. Full link navigation remains unverified."
+      },
+      {
+        "browser": "webkit",
+        "path": "/support",
+        "width": 390,
+        "reason": "Windows WebKit excludes implicit links in its default keyboard settings; reproduced with a plain HTML anchor. Full link navigation remains unverified."
+      },
+      {
+        "browser": "webkit",
+        "path": "/privacy",
+        "width": 390,
+        "reason": "Windows WebKit excludes implicit links in its default keyboard settings; reproduced with a plain HTML anchor. Full link navigation remains unverified."
+      }
+    ],
+    "visualReview": [
+      "chromium-1440-privacy.png",
+      "chromium-390-privacy.png",
+      "firefox-390-home.png",
+      "webkit-390-home.png"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "artifacts/qa/project-review-20261025/retention-web-tests.log",
+      "bytes": 8177,
+      "sha256": "ef3abf09d22c512331a1ec5e260e485938670622b27bb0b68c7b19070fe698fb",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/retention-runtime-tests.log",
+      "bytes": 7154,
+      "sha256": "469ac87f9a71d82603927608057522e8da35aff75ba00b52eeafee2265bb5155",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/retention-build.log",
+      "bytes": 3883,
+      "sha256": "f63bddfc3e5ae51e8cb24a6e9741c4b77f5374d0d16bdc40d0d2f28c83aa058a",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/public-accessibility-final/results.json",
+      "bytes": 7051,
+      "sha256": "bcadf2c16d5c2e96dfaad93cc9cbbfe8dba4e4e0a262bf123aa4bff790eb34eb",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/public-accessibility-final/chromium-1440-privacy.png",
+      "bytes": 83982,
+      "sha256": "3351ba74d2db60847ad0ee30d4a77f73a15629da78247e1bee96c9f799bff338",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/public-accessibility-final/chromium-390-privacy.png",
+      "bytes": 45715,
+      "sha256": "edc60efd2fdeb76cc3829474c5832d2eb5edafb45ab2eb8ad732ea63d00851c1",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/public-accessibility-final/firefox-390-home.png",
+      "bytes": 55054,
+      "sha256": "b4b3c2b4d178198aaa31500cff204695d1f565eaa2795d8d9c7157ad0af9b2fa",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/project-review-20261025/public-accessibility-final/webkit-390-home.png",
+      "bytes": 49312,
+      "sha256": "3df3550a02ea53f58bf000d7397efe32197f43947876fbe5aa4c537e5c187636",
+      "access": "private local QA archive; content not published"
+    }
+  ],
+  "remaining": [
+    "Production migration adoption, deployment and idle-employee workstation upgrade",
+    "Hosted low-space admission, existing-paid-task recovery and cleanup acceptance",
+    "Deliberate persistent-workstation replacement acceptance",
+    "Provider model/voice/duration promotion acceptance",
+    "Hosted database/native recovery drill and measured recovery target",
+    "Applicable terms and closure retention decisions before wider invitations",
+    "Physical phones, native Safari/Firefox and full editor accessibility"
+  ],
+  "deferredByOwner": [
+    "Separate backups of Supabase Storage file bytes"
+  ],
+  "production": {
+    "deployment": "dpl_DHoVNKVXKsYjQ1UTQxJUE6cgTW9A",
+    "lastMigration": "0017_budget_queue_slots.sql",
+    "workstation": "0.1.21"
+  },
+  "branchProtection": {
+    "checkedAt": "2026-10-25T14:31:12.623Z",
+    "webMainProtected": false,
+    "runtimeMainProtected": false,
+    "note": "CI runs on pushes and pull requests; merge enforcement is not enabled. No branch settings were changed."
+  },
+  "preview": {
+    "source": "GitHub Vercel status on PR #19",
+    "headCommit": "01b0c5097168a8b46afe0f2f053fe32dc8431fb3",
+    "status": "success",
+    "details": "https://vercel.com/venatio-studios/robyn-creative-studio/Ea8MkMjZwmpY8vZJF5Y18TkK6Vu5",
+    "acceptance": "Build/deployment status only; authenticated recovery paths were not exercised against this preview."
+  }
+}
