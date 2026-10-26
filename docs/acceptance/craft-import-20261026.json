@@ -1,11 +1,11 @@
 {
   "date": "2026-10-26",
-  "status": "Verified locally; not deployed",
+  "status": "Historical local acceptance before the authorized production rollout",
   "scope": "Native project intake across all thirteen Crafts and reusable common source media",
   "sourceBase": {
     "web": "74efbe79994b345d6254804efcd7eebb2e3048d6",
     "runtime": "20be994facb07f29ffbf5f1f5decd4b5e2a7b7f5",
-    "changes": "Uncommitted local changes in both repositories; source hashes identify this acceptance state"
+    "changes": "Changes were uncommitted at this local checkpoint; source hashes identify that acceptance state. Merged and deployed commits are recorded separately."
   },
   "sourceSha256Lf": {
     "src/components/studio/ImportDocumentDialog.tsx": "b232fb9a2b7113a6def74cd346956af6e11ecc465619c7a76f7b562420be8dab",
@@ -270,5 +270,6 @@
     "Director first-draft and blank-document proposals remain outside this import change."
   ],
   "earlierAcceptance": "native-import-20261026.json",
-  "artifactsDirectory": "artifacts/qa/craft-import-20261026"
+  "artifactsDirectory": "artifacts/qa/craft-import-20261026",
+  "productionRecord": "production-import-20261026.json"
 }

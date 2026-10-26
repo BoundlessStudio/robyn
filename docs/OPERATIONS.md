@@ -1,6 +1,6 @@
 # Pilot support and recovery
 
-**Current scope, October 25:** the owner subsequently authorized production rollout. The review fixes, migrations through 0022 and workstation 0.1.23 pin are deployed; bounded hosted checks are recorded in [the release record](RELEASE-2026-10-25.md). Database recovery-point creation, the full cross-service restore drill and Storage-file backups remain deferred. Deliberate workstation replacement and purchased-result recovery after a real space failure remain unaccepted.
+**Current scope, October 26:** the owner authorized and completed the native/source import rollout after the October 25 review fixes. Migrations through 0023 and the unchanged workstation 0.1.23 pin are deployed; bounded hosted checks are recorded in [the current release record](RELEASE-2026-10-26.md) and [the earlier remediation record](RELEASE-2026-10-25.md). Database recovery-point creation, the full cross-service restore drill and Storage-file backups remain deferred. Deliberate workstation replacement and purchased-result recovery after a real space failure remain unaccepted.
 
 Owner: the Robyn pilot operator, reached at **support@robyn.academy**. Mail forwards to **developer@venatiostudios.com**. Access to Supabase, Vercel, Agent37, Cloudflare and Resend remains with their existing account owners; the web application does not grant creators provider-admin access. No guaranteed response or recovery time is offered during the pilot.
 
