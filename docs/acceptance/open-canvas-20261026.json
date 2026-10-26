@@ -1,0 +1,426 @@
+{
+  "date": "2026-10-26",
+  "status": "local acceptance; not deployed",
+  "webCommit": "c0d9eae28764faa02e260c286f467f799848deef",
+  "runtimeCommit": "7a8c83e4e9578e8c83147cfe355d6484a5935d6a",
+  "checksPassed": {"webTests": 101, "runtimeTests": 72, "canvasBrowserTestsPerEngine": 5, "importBrowserTestsPerEngine": 7, "browserEngines": ["chromium", "firefox", "webkit"], "typecheck": true, "productionBuild": true, "gitStarterBlobHashes": 26},
+  "webBase": "9db8ea402e1914657303409027d427c155ade7db",
+  "runtimeBase": "f3db024429407272d4d1151447ccd9189afb96e3",
+  "migration": "0024_open_canvas.sql",
+  "migrationSha256": "82513e477d81304c73951aeab3254a305cce8f258b8aab38e854998a288afda1",
+  "workstationVersion": "0.1.23 (unchanged)",
+  "starterManifestSha256": "b99e90d0adf1c691ebc171748f6585fcb760f824181844268e2ba36ab837acda",
+  "paidAiTurns": 0,
+  "privateTransport": "isolated component fixture with actual HTTP/TUS bytes and BFF acknowledgements",
+  "nativeContinuation": "Browser-saved package opened, resaved and reopened with the pinned native CLI; LightCraft, FilmCraft and PDFCraft also received a further native change.",
+  "checks": [
+    {
+      "appId": "wordcraft",
+      "sourceCommit": "2e6db0bd88795e80375176c01665cff7dbe2b057",
+      "editorRelease": "wordcraft-v0.9.0-robyn-0.1.2",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/wordcraft/v0.9.0-0.1.2/?robyn&webgl",
+      "starter": {
+        "path": "Untitled document.docx",
+        "role": "master",
+        "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "bytes": 6490,
+        "sha256": "4a00f315ae573c76db491c2bd99929581345aabaa667d5bc24e18c1f46c191af",
+        "url": "/studio/starters/1/wordcraft/Untitled%20document.docx"
+      },
+      "browserSavedFiles": [
+        {
+          "path": "Untitled document.docx",
+          "role": "master",
+          "mimeType": "application/octet-stream",
+          "bytes": 6537,
+          "sha256": "c1f5c7e4ba0c1d653554c85aa0adbaf27b8c794caac7ab6f5c2416de2f835cf8"
+        }
+      ],
+      "nativeContinuation": {
+        "appId": "wordcraft",
+        "bytes": 6539,
+        "sha256": "882be263b71870382b3c0e940a66a815c741fdf28e9ac1475e6866def72ee4d5"
+      }
+    },
+    {
+      "appId": "deckcraft",
+      "sourceCommit": "fe510bdac68118f2c9a714e69d0ff572e3f9a0c7",
+      "editorRelease": "deckcraft-v0.9.0-robyn-0.1.2",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/deckcraft/v0.9.0-0.1.2/?robyn&webgl",
+      "starter": {
+        "path": "Untitled presentation.deckcraft",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 4592,
+        "sha256": "c1eabc895761e375e7516389cd7f4b029d29fef0da9382effbb831b0453b42d9",
+        "url": "/studio/starters/1/deckcraft/Untitled%20presentation.deckcraft"
+      },
+      "browserSavedFiles": [
+        {
+          "path": "Untitled presentation.deckcraft",
+          "role": "master",
+          "mimeType": "application/octet-stream",
+          "bytes": 111621,
+          "sha256": "863309c2f6d4a11f39558274a663042bd21380bb084f509ab848a91096404e4e"
+        }
+      ],
+      "nativeContinuation": {
+        "appId": "deckcraft",
+        "bytes": 4606,
+        "sha256": "6a251d69b69fcf6571858efe2f9441e406f5cff34f1521eb0bb145a72953f4a2"
+      }
+    },
+    {
+      "appId": "vectorcraft",
+      "sourceCommit": "ad0566943ab9741e6356bbc9b53c3cc09895068d",
+      "editorRelease": "vectorcraft-v0.14.0-robyn-0.1.4",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/vectorcraft/v0.14.0-0.1.4/?robyn&webgl",
+      "starter": {
+        "path": "Untitled illustration.vectorcraft",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 21651,
+        "sha256": "73788b29360bd1e3b179cc6c377556e6072d57f0663bcf8dcb91fbd70ecbda41",
+        "url": "/studio/starters/1/vectorcraft/Untitled%20illustration.vectorcraft"
+      },
+      "browserSavedFiles": [
+        {
+          "path": "Untitled illustration.vectorcraft",
+          "role": "master",
+          "mimeType": "application/octet-stream",
+          "bytes": 10030,
+          "sha256": "2d83d1e2425183e574af35239ad660dba150a7c2e95f1e3a38c9c4c1a0407873"
+        }
+      ],
+      "nativeContinuation": {
+        "appId": "vectorcraft",
+        "bytes": 24261,
+        "sha256": "b9e9ce23446e3f3c56248e4cc9c5ecd1b9bf0d268b9d30daf0c3228a221b9fdf"
+      }
+    },
+    {
+      "appId": "photocraft",
+      "sourceCommit": "6a2d027ee2e7ca12afd248544ed2262b0fa078dd",
+      "editorRelease": "photocraft-v0.12.0-robyn-0.1.4",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/photocraft/v0.12.0-0.1.4/?robyn&webgl",
+      "starter": {
+        "path": "Untitled image.pcraft",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 6972,
+        "sha256": "9c51335e5484367188fb00f12f73fa7ca8be0adaa7438354c706034cffc01127",
+        "url": "/studio/starters/1/photocraft/Untitled%20image.pcraft"
+      },
+      "browserSavedFiles": [
+        {
+          "path": "Untitled image.pcraft",
+          "role": "master",
+          "mimeType": "application/octet-stream",
+          "bytes": 30961,
+          "sha256": "258db41647be5e3654da5cb18468253fecc2797a310a81908c3a0ed24f277a19"
+        }
+      ],
+      "nativeContinuation": {
+        "appId": "photocraft",
+        "bytes": 32370,
+        "sha256": "c83e522527d82938897dcb665d27ff34437d4229e5056a7e255c4bc8f93c776f"
+      }
+    },
+    {
+      "appId": "lightcraft",
+      "sourceCommit": "ec0cda9a6f320e3b32f659f16718f7bce6c3f12f",
+      "editorRelease": "lightcraft-v0.11.0-robyn-0.1.4",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/lightcraft/v0.11.0-0.1.4/?robyn&webgl",
+      "starter": {
+        "path": "catalog.snap",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 133,
+        "sha256": "4240ef0b863a4fda5355f701e0288ad7066132bfc0bd285f2f3ab7f20d8f3d15",
+        "url": "/studio/starters/1/lightcraft/catalog.snap"
+      },
+      "browserSavedFiles": [
+        {
+          "path": "catalog.snap",
+          "role": "master",
+          "mimeType": "application/json",
+          "bytes": 225,
+          "sha256": "93955fb572df92adc0923f5bbc46c048eae9f6c05aaf6c9e2af6b58a5356b1ec"
+        },
+        {
+          "path": "ui.json",
+          "role": "dependency",
+          "mimeType": "application/octet-stream",
+          "bytes": 4354,
+          "sha256": "663c42acd2ee9968ba2b5bf87989d96e7f479d95df274db29367c5351df1abac"
+        }
+      ],
+      "nativeContinuation": {
+        "appId": "lightcraft",
+        "bytes": 234,
+        "sha256": "615c008266607627f31e9eb7685fb2ad710c87e7f5732f8ba522bf61a603f76e"
+      }
+    },
+    {
+      "appId": "designcraft",
+      "sourceCommit": "4d62a501c18fb3cf453c6e9f19f15cbc9c558e26",
+      "editorRelease": "designcraft-v0.11.0-robyn-0.1.2",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/designcraft/v0.11.0-0.1.2/?robyn&webgl",
+      "starter": {
+        "path": "Untitled layout.designcraft",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 4951,
+        "sha256": "e3f06f0e1f2f0bd18f48c4bf2b00d6816e1252fb3ec0f51e9755eecb66578914",
+        "url": "/studio/starters/1/designcraft/Untitled%20layout.designcraft"
+      },
+      "browserSavedFiles": [
+        {
+          "path": "Untitled layout.designcraft",
+          "role": "master",
+          "mimeType": "application/octet-stream",
+          "bytes": 9298,
+          "sha256": "680bf1f1e145dc174cdefbad83246ec3dc39e5d2582eb576244b1139a99f8ea3"
+        }
+      ],
+      "nativeContinuation": {
+        "appId": "designcraft",
+        "bytes": 6149,
+        "sha256": "e6e7cb11bd009347b1382ff94c5abca2153d6f655d726864c5aec6713169fff8"
+      }
+    },
+    {
+      "appId": "figcraft",
+      "sourceCommit": "28de91d9ae72fc7fbc2199ac5ee2c8be237980d5",
+      "editorRelease": "figcraft-v0.9.0-robyn-0.1.3",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/figcraft/v0.9.0-0.1.3/?robyn&webgl",
+      "starter": {
+        "path": "Untitled design.figcraft",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 401,
+        "sha256": "d948972c9b609a189e1e7ca156f136ac3fa61f3ffa4e2a3feec6b801346c3971",
+        "url": "/studio/starters/1/figcraft/Untitled%20design.figcraft"
+      },
+      "browserSavedFiles": [
+        {
+          "path": "Untitled design.figcraft",
+          "role": "master",
+          "mimeType": "application/octet-stream",
+          "bytes": 3447,
+          "sha256": "b1d9acc2f64946447bbc5af80412938ad7b1515e312adbff5835436582f4fd4f"
+        }
+      ],
+      "nativeContinuation": {
+        "appId": "figcraft",
+        "bytes": 3447,
+        "sha256": "b1d9acc2f64946447bbc5af80412938ad7b1515e312adbff5835436582f4fd4f"
+      }
+    },
+    {
+      "appId": "filmcraft",
+      "sourceCommit": "cdf43fd366e378da266cb6d3c94549a45244be1f",
+      "editorRelease": "filmcraft-v0.10.0-robyn-0.1.4",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/filmcraft/v0.10.0-0.1.4/?robyn",
+      "starter": {
+        "path": "Untitled film.fcproj",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 3282,
+        "sha256": "ea65afbb979843138c9f41811f68128b99bef74c0a1ec1f32979207434413155",
+        "url": "/studio/starters/1/filmcraft/Untitled%20film.fcproj"
+      },
+      "browserSavedFiles": [
+        {
+          "path": "Untitled film.fcproj",
+          "role": "master",
+          "mimeType": "application/json",
+          "bytes": 3453,
+          "sha256": "810a4a27dcae0b9d91299ddad6b457fa0af6a22d8890d837546b4e7b41113e7e"
+        }
+      ],
+      "nativeContinuation": {
+        "appId": "filmcraft",
+        "bytes": 3502,
+        "sha256": "bac7b76dd29ba62507f7a00add2877f7aba0ed1f0d74fad0b4c250f5b8792878"
+      }
+    },
+    {
+      "appId": "effectcraft",
+      "sourceCommit": "26b40199b72121aa7f4e55a63718e1b4dd48a859",
+      "editorRelease": "effectcraft-v0.14.0-robyn-0.1.2",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/effectcraft/v0.14.0-0.1.2/?robyn",
+      "starter": {
+        "path": "Untitled composition.ecproj",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 2476,
+        "sha256": "b360b6ec7b76f83e95fa39fe4995b40244a8049e69b1df6038d02664102d7ebc",
+        "url": "/studio/starters/1/effectcraft/Untitled%20composition.ecproj"
+      },
+      "browserSavedFiles": [
+        {
+          "path": "Untitled composition.ecproj",
+          "role": "master",
+          "mimeType": "application/json",
+          "bytes": 11506,
+          "sha256": "92b1d9d257a61c36d8a40ee473eaaf554016bc95c3329ed60ed90c358c748747"
+        },
+        {
+          "path": "previews/active.png",
+          "role": "preview",
+          "mimeType": "image/png",
+          "bytes": 3240988,
+          "sha256": "b231f37556cea1171d5c4c1764241b7ec928a8713253be9cf4ddcb76227f558a"
+        }
+      ],
+      "nativeContinuation": {
+        "appId": "effectcraft",
+        "bytes": 37080,
+        "sha256": "3fa4907f2551c372df49d35f5464e3dd4a893428d97842537afe539dec43bee8"
+      }
+    },
+    {
+      "appId": "soundcraft",
+      "sourceCommit": "b74fca0fb0f8b4a8474c447c1b6043a5028a5de2",
+      "editorRelease": "soundcraft-v0.11.0-robyn-0.1.4",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/soundcraft/v0.11.0-0.1.4/?robyn&webgl",
+      "starter": {
+        "path": "Untitled audio.scraft",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 2387,
+        "sha256": "a42597ebf3aed6eb66e52ad1c9be08d0a94c0e077ad438f9b2962c8f97dcae14",
+        "url": "/studio/starters/1/soundcraft/Untitled%20audio.scraft"
+      },
+      "browserSavedFiles": [
+        {
+          "path": "Untitled audio.scraft",
+          "role": "master",
+          "mimeType": "application/json",
+          "bytes": 2363,
+          "sha256": "99321898a0a59a0b0ba2942c47107e98a68a68b250531fb4e0a0861f4aa0c231"
+        }
+      ],
+      "nativeContinuation": {
+        "appId": "soundcraft",
+        "bytes": 3810,
+        "sha256": "ebe58e9bb12ed118108078997f7d1ef722d0602809cacff6c4b533507d77e790"
+      }
+    },
+    {
+      "appId": "pdfcraft",
+      "sourceCommit": "3e3064532f04fd6ec769c6bd7b2c97464757970e",
+      "editorRelease": "pdfcraft-v0.11.0-robyn-0.1.4",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/pdfcraft/v0.11.0-0.1.4/?robyn&webgl",
+      "starter": {
+        "path": "Untitled PDF.pdf",
+        "role": "master",
+        "mimeType": "application/pdf",
+        "bytes": 564,
+        "sha256": "c7084e01e5113a63186adf328df355992d1b9959359e236869e477b3f1b6c95d",
+        "url": "/studio/starters/1/pdfcraft/Untitled%20PDF.pdf"
+      },
+      "browserSavedFiles": [
+        {
+          "path": "Untitled PDF.pdf",
+          "role": "master",
+          "mimeType": "application/octet-stream",
+          "bytes": 1421,
+          "sha256": "59d7aaa3d417576b536dc6899695fed00dc5014e4f56fd4b5019e4f637c5931a"
+        }
+      ],
+      "nativeContinuation": {
+        "appId": "pdfcraft",
+        "bytes": 1796,
+        "sha256": "114dd2fb0abf27da924bd489a24917eb47730a220c0b6fb18efefaec70bb3a0c"
+      }
+    },
+    {
+      "appId": "gridcraft",
+      "sourceCommit": "2ebdf164c2c9c536122e0a2cffe79078b5c818ac",
+      "editorRelease": "gridcraft-v0.10.0-robyn-0.1.2",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/gridcraft/v0.10.0-0.1.2/?robyn&webgl",
+      "starter": {
+        "path": "Untitled spreadsheet.xlsx",
+        "role": "master",
+        "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "bytes": 3990,
+        "sha256": "6690e1424fca3695b95b483195b455febc0cbebe6c527bf88607836f2eb5a44d",
+        "url": "/studio/starters/1/gridcraft/Untitled%20spreadsheet.xlsx"
+      },
+      "browserSavedFiles": [
+        {
+          "path": "Untitled spreadsheet.xlsx",
+          "role": "master",
+          "mimeType": "application/octet-stream",
+          "bytes": 4035,
+          "sha256": "206c99fdf54032d872636266e198108dc310255cd6ae473bbc622ec1530f57b9"
+        }
+      ],
+      "nativeContinuation": {
+        "appId": "gridcraft",
+        "bytes": 4035,
+        "sha256": "206c99fdf54032d872636266e198108dc310255cd6ae473bbc622ec1530f57b9"
+      }
+    },
+    {
+      "appId": "cadcraft",
+      "sourceCommit": "e86eacf094fefda1cdb6ba5137a336f29deb5d99",
+      "editorRelease": "cadcraft-v0.10.0-robyn-0.1.2",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/cadcraft/v0.10.0-0.1.2/?robyn&webgl",
+      "starter": {
+        "path": "Untitled drawing.dxf",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 18218,
+        "sha256": "2447ad3870e8fe321f01324c0e2ec0503f229606ed8f1dd9e131a6e00f50d6de",
+        "url": "/studio/starters/1/cadcraft/Untitled%20drawing.dxf"
+      },
+      "browserSavedFiles": [
+        {
+          "path": "Untitled drawing.dxf",
+          "role": "master",
+          "mimeType": "application/octet-stream",
+          "bytes": 18594,
+          "sha256": "e964f8e9077a848bae3538fe29578a5f459e0d9c2f3b2865d35dbfae3542e4cf"
+        }
+      ],
+      "nativeContinuation": {
+        "appId": "cadcraft",
+        "bytes": 18594,
+        "sha256": "e964f8e9077a848bae3538fe29578a5f459e0d9c2f3b2865d35dbfae3542e4cf"
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "canvas-1440.png",
+      "sha256": "86eb14841f6c71b9cb7de422514543bef1ce0c06375b5f5086e07d4c85591926"
+    },
+    {
+      "file": "canvas-1200.png",
+      "sha256": "0ac77891ef91ddec392780416056ccdd74028c631faedab22e298eae9328a243"
+    },
+    {
+      "file": "manual-1200.png",
+      "sha256": "2f5d90b2e755a9f6746c7cf05e5421f00434ab6419dc52e3d6ca10156a2947dc"
+    },
+    {
+      "file": "idea-1200.png",
+      "sha256": "b3ad3bafb507537eb7c1780d0c1d026badea27664ea62c1835e77afcc395755c"
+    },
+    {
+      "file": "plan-returned-1200.png",
+      "sha256": "ec2f08a09d591acbaa0b5545205fa293fde6e8bfc45b21336b16865fa3cf76ec"
+    },
+    {
+      "file": "rename-1200.png",
+      "sha256": "d95d67b355206e739869e525f60821e70cca9bca9c7f3da273dce2dedb097f8a"
+    },
+    {
+      "file": "recovery-1200.png",
+      "sha256": "f071a815bef8b4691253ef29a76eee44897f49e2d9fa8ba25b083197a607f423"
+    }
+  ]
+}
