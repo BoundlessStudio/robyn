@@ -1,6 +1,6 @@
 # Pilot support and recovery
 
-**Current scope, October 25:** the owner deferred database recovery-point creation, production rollout and hosted recovery checks, in addition to Storage-file backups. The future procedures below remain documented; they are not active prerequisites for the R13/R18 acceptance follow-up.
+**Current scope, October 25:** the owner subsequently authorized production rollout. The review fixes, migrations through 0022 and workstation 0.1.23 pin are deployed; bounded hosted checks are recorded in [the release record](RELEASE-2026-10-25.md). Database recovery-point creation, the full cross-service restore drill and Storage-file backups remain deferred. Deliberate workstation replacement and purchased-result recovery after a real space failure remain unaccepted.
 
 Owner: the Robyn pilot operator, reached at **support@robyn.academy**. Mail forwards to **developer@venatiostudios.com**. Access to Supabase, Vercel, Agent37, Cloudflare and Resend remains with their existing account owners; the web application does not grant creators provider-admin access. No guaranteed response or recovery time is offered during the pilot.
 
@@ -112,7 +112,7 @@ Rehearse the following in an isolated environment before restoring production:
 6. Reapply only new migrations through the ledger. Deploy the matching web/runtime/editor pins into the isolated environment. Reopen the representative Research notebook and native files; preserve conflict identities and credits.
 7. Verify a second creator cannot read the restored project or file. Test reconnect and ensure no second payment or initial agent turn. Record timings and outcomes privately, then define measured RPO/RTO. Production cutover is a separate reviewed action.
 
-Until that drill and a retained database export exist, R15 remains partially open. Storage-file backups remain intentionally deferred.
+Until that drill and a retained database export exist, R15 remains deferred. Storage-file backups remain intentionally deferred.
 
 ## Creator export, removal and access recovery
 

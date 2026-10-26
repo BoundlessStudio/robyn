@@ -1,0 +1,417 @@
+{
+  "recordedAt": "2026-10-26T02:51:30.727Z",
+  "localReleaseDate": "2026-10-25",
+  "timezone": "America/Toronto",
+  "status": "Deployed to production with bounded hosted verification",
+  "canonicalUrl": "https://robyn.academy",
+  "sourceCheckpoints": {
+    "web": {
+      "commit": "99737202b6363fd6f584ea3a2b8045681fa27cdf",
+      "tree": "be074dc491e4f46527006d3ba42b2bf1d76a4778",
+      "trackedFiles": 578,
+      "treeInventorySha256": "4d5e5cb90a239700e2a6e3aa4a7260a28775d99d0348bbde423277881897e625",
+      "digestScope": "Raw git ls-tree -rz bytes at the named commit; lockfile digest uses the Git blob",
+      "lockfileSha256": "3b3ce57f91a342ec17c3b802e740e0c4bd625f7cd21b48570190eef6fd859451",
+      "pullRequest": "https://github.com/BoundlessStudio/robyn/pull/19",
+      "reviewedHead": "12a2babad63d94b5d044d13f9282c9ecab660da7"
+    },
+    "runtime": {
+      "commit": "c15aa038fd22aa50c7d946d051b1a7e5756ed728",
+      "tree": "2c7c745294160c89819f5dbdfa77855f4e7a6f67",
+      "trackedFiles": 221,
+      "treeInventorySha256": "a5d7b611c76289d385135ef392499ba6fd80c2d9563c13a289d0ca028262cd1c",
+      "digestScope": "Raw git ls-tree -rz bytes at the named commit; lockfile digest uses the Git blob",
+      "lockfileSha256": "0c742713b5c614436671c65fa88e94e1b0da658426e27abd4d2572b20a554d22",
+      "pullRequest": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/1",
+      "implementationCommit": "b38019aaeedcee20b299cf1fad6b683ec10c0720"
+    }
+  },
+  "applicationDeployment": {
+    "id": "dpl_CX1G2CV9gyAN55x9xY5D2dguoPMQ",
+    "url": "robyn-creative-studio-f62e71tuu-venatio-studios.vercel.app",
+    "state": "READY",
+    "created": 1792981007874,
+    "commit": "99737202b6363fd6f584ea3a2b8045681fa27cdf",
+    "branch": "main",
+    "scope": "First deployment of these application bytes. Later documentation-only main commits may rebuild the same application."
+  },
+  "previousDeployment": {
+    "id": "dpl_DHoVNKVXKsYjQ1UTQxJUE6cgTW9A",
+    "workstation": "0.1.21",
+    "migrationAtOriginalRelease": "0017_budget_queue_slots.sql",
+    "scope": "Retained prior operational reference; rollback with the upgraded database has not been rehearsed. Never roll back ledger, settlements or request identities."
+  },
+  "database": {
+    "checkedAt": "2026-10-26T02:15:01.431Z",
+    "baseline": "0017_budget_queue_slots.sql",
+    "baselinedFiles": 18,
+    "appliedFiles": [
+      "0018_media_queue_slots.sql",
+      "0019_media_settlement.sql",
+      "0020_workflow_health.sql",
+      "0021_media_retention.sql",
+      "0022_abandoned_upload_retention.sql"
+    ],
+    "ledgerFiles": 23,
+    "ledgerSha256": "04c5a81861c0f65655b57229778ea8d2226863d7c75d59898481467a84b4f05f",
+    "allExistingTablesUnchanged": 26,
+    "existingRows": 2020,
+    "schemaMatchesCandidate": true,
+    "unchangedRerun": true,
+    "recoverableDatabaseBackupCreated": false,
+    "storageBackupCreated": false,
+    "baselineComparison": {
+      "functions": 54,
+      "tables": 26,
+      "columns": 239,
+      "constraints": 158,
+      "indexes": 63,
+      "grantsAndRowSecurity": true,
+      "postgresVersion": "17.11",
+      "normalization": "CRLF/LF function text and PostgreSQL-version not-null catalog representation; full column nullability checked",
+      "supabaseManagedHelperPreserved": true
+    },
+    "rowProofScope": "Full-row digests immediately before and after migration, before labelled QA writes; schema and fingerprints are not a recoverable backup"
+  },
+  "workstation": {
+    "checkedAt": "2026-10-26T02:26:20.181Z",
+    "version": "0.1.23",
+    "fingerprint": "463adbe8641bb2b9f9c232027e4a1edcc5af9bc2c210581cce68af4bfc8ea58d",
+    "bundleSha256": "6e7b4525b249cfdd81b00fccceec7ee4ca537663d4493fe1ef8ad6d0559a3b32",
+    "ready": true,
+    "preparations": 2,
+    "initialInstanceStatus": "sleeping",
+    "noAgentResponse": true,
+    "paidTurnSubmitted": false,
+    "activation": "Actual serialized assignment setup with controlled restart; cancelled before dispatch",
+    "fleetPolicy": "Every subsequent assignment installs and activates this pinned release before any employee turn.",
+    "bundleBytes": 1838316,
+    "allEmployeesEagerlyUpgraded": false,
+    "canaryCancelledBeforeDispatch": true,
+    "capabilitiesRevoked": true,
+    "employeeInstanceIdentitiesAndCapsUnchanged": true,
+    "publicEditorPinsChanged": false
+  },
+  "hostedChecks": {
+    "routes": [
+      {
+        "route": "/api/studio/bootstrap",
+        "status": 200
+      },
+      {
+        "route": "/api/studio/health",
+        "status": 200
+      },
+      {
+        "route": "/api/studio/projects?limit=2",
+        "status": 200
+      },
+      {
+        "route": "/api/studio/bootstrap",
+        "anonymous": true,
+        "status": 401
+      },
+      {
+        "route": "/api/studio/health",
+        "anonymous": true,
+        "status": 401
+      }
+    ],
+    "commons": {
+      "freeAcquisitionsCompleted": 2,
+      "chargedMicros": 0,
+      "exactSourceDisplayed": true,
+      "pagination": {
+        "nextPage": 2,
+        "previousPage": 1,
+        "returnedOriginalResult": true,
+        "returnedOriginalPage": true
+      },
+      "recovery": {
+        "reconnectStatus": 202,
+        "replayStatus": 202,
+        "sameJob": true
+      }
+    },
+    "unpaidCapacity": {
+      "waitingJobsDuringFreeAcquisition": 3,
+      "reservedMicros": 0,
+      "freeImportCompleted": true,
+      "cancellationThroughUiAndAuthorizedRoute": true,
+      "cancelledFixtures": 3,
+      "remainingReservations": 0
+    },
+    "privateDownload": {
+      "httpStatus": 200,
+      "bytes": 1978899,
+      "expectedBytes": 1978899,
+      "sha256": "56b0b7bcf5f41aabde6f07d128bc5bc09f9bd505f25d9eef93ae3c7d49590c6e",
+      "expectedSha256": "56b0b7bcf5f41aabde6f07d128bc5bc09f9bd505f25d9eef93ae3c7d49590c6e",
+      "matching": true,
+      "minutesSinceAcquisition": 8.031516666666667
+    },
+    "spaceAdmission": {
+      "checkedAt": "2026-10-26T02:33:05.996Z",
+      "workerSha256": "13dcfcb994a7c87121b71201a539a8bf9c0202d939231097a5336adf5e92215f",
+      "scope": "Actual worker reservation functions on the owned workstation; simulated competing reservation only",
+      "normalAdmission": true,
+      "insufficientFutureSpaceRejected": true,
+      "recoveryAfterReservationReleased": true,
+      "freeBytes": 6294020096,
+      "actualDiskFilled": false,
+      "paymentSubmitted": false
+    },
+    "mediaCleanup": {
+      "jobs": 2,
+      "bytesFreed": 6234003,
+      "requestAndCommitEvidenceRetained": true,
+      "spaceReleased": true,
+      "savedOriginalsRetained": true,
+      "generalStorageDeletionBatchRan": false
+    },
+    "legacyLifecycle": {
+      "status": 409,
+      "code": "studio_lifecycle_required"
+    },
+    "generationReadiness": {
+      "acceptedServices": 3,
+      "previewServicesDisabled": 3,
+      "additionalImageModelDisabled": true,
+      "paidSubmission": false
+    },
+    "health": {
+      "authenticatedStatus": 200,
+      "anonymousStatus": 401,
+      "completedMediaWorkflows": 2,
+      "needsAttentionAtCheck": 0
+    },
+    "finalData": {
+      "managedAndMediaBudgetRowsUnchanged": true,
+      "ownershipRowsUnchanged": true,
+      "publicSignupDisabled": true,
+      "existingProvisionedEmployees": 15
+    },
+    "visual": {
+      "engine": "Chromium",
+      "desktop": {
+        "width": 1440,
+        "height": 1000
+      },
+      "mobile": {
+        "width": 390,
+        "height": 844
+      },
+      "homepageDesktopAndMobile": "reviewed and passed",
+      "supportMobile": "reviewed and passed",
+      "compactStudio": "desktop-required notice reviewed and passed",
+      "savedSourceAndGenerationDialog": "reviewed and passed",
+      "physicalDeviceAcceptance": false
+    },
+    "cleanup": {
+      "allCanaryAndCancellationFixturesTerminal": true,
+      "qaProjectAndTwoSavedFreeSourcesRetained": true,
+      "ownedBrowserSessionsClosed": true
+    }
+  },
+  "validation": {
+    "webMain": {
+      "commit": "99737202b6363fd6f584ea3a2b8045681fa27cdf",
+      "run": "https://github.com/BoundlessStudio/robyn/actions/runs/40258313974",
+      "conclusion": "success",
+      "webTests": 81,
+      "publicCrossEngineChecks": 18,
+      "typecheck": true,
+      "audit": true,
+      "build": true
+    },
+    "runtimeCheckpoint": {
+      "commit": "b38019aaeedcee20b299cf1fad6b683ec10c0720",
+      "run": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/actions/runs/40202297513",
+      "conclusion": "success",
+      "tests": 68,
+      "audit": true,
+      "build": true,
+      "pinnedFilesReproduced": 16
+    }
+  },
+  "reviewStatus": {
+    "doneAndDeployed": [
+      "R01",
+      "R02",
+      "R03",
+      "R04",
+      "R05",
+      "R07",
+      "R08",
+      "R10",
+      "R11",
+      "R12",
+      "R14",
+      "R16"
+    ],
+    "partial": [
+      "R06",
+      "R09",
+      "R13",
+      "R17",
+      "R18"
+    ],
+    "deferred": [
+      "R15"
+    ]
+  },
+  "limits": [
+    "No new paid generation or AI turn. Preview-service $0.13 acceptance approval remains pending.",
+    "Controlled space reservation probe is not actual disk exhaustion or purchased-result recovery.",
+    "Paid cancellation/settlement, lost assignment acknowledgement and playback seek recovery retain isolated regression evidence; these were not forced with new paid work during rollout.",
+    "No deliberate employee replacement, full cross-service restore drill, recoverable database point or Storage-file backup.",
+    "No new native editor release, physical-device certification or full native accessibility acceptance.",
+    "Expired search pruning and confirmed local media cleanup run normally; no general abandoned-upload or Storage-object deletion batch was run."
+  ],
+  "evidence": [
+    {
+      "path": "artifacts/qa/production-rollout-20261025/application-deployment.json",
+      "bytes": 242,
+      "sha256": "6bd2ceb353e0f95c628c19c9613f13344a661b92c3c11c3cc5775a043da205e2",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/production-rollout-20261025/baseline-comparison.json",
+      "bytes": 3363,
+      "sha256": "3f316bf17fc8911bcebea0fef5426cdb782cfa67e473b150a0d97628c72abbed",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/production-rollout-20261025/migration-result.json",
+      "bytes": 618,
+      "sha256": "54eb9f1efac2fb66f9fde4f156037e471a1185cb3b3a9737ca6d668cc2c2a5da",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/production-rollout-20261025/migration-ledger.json",
+      "bytes": 4872,
+      "sha256": "c203e91742188e8863a3543aa1a8532a398a343d6b1d2ff5593a4e270f6f36ab",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/production-rollout-20261025/data-before.json",
+      "bytes": 2828,
+      "sha256": "df19be95f3a5ee9d0300de2ee4dc9c5109e083ef2e41bd45f33685a7ff396f94",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/production-rollout-20261025/data-after-migration.json",
+      "bytes": 2828,
+      "sha256": "df19be95f3a5ee9d0300de2ee4dc9c5109e083ef2e41bd45f33685a7ff396f94",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/production-rollout-20261025/runtime-canary.json",
+      "bytes": 596,
+      "sha256": "8a7ebccd838d5eb7c61061b03e61808cdcb45f4d47a3abf20f30634e38fce848",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/production-rollout-20261025/runtime-canary-cancelled.json",
+      "bytes": 80,
+      "sha256": "790756586c8d313f6d50ca6c525eb7b99c19567aa2f7a7b30fbf391e82316f35",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/production-rollout-20261025/capacity-cancellation.json",
+      "bytes": 592,
+      "sha256": "b204c99ef7fd3aeee4192c36a2aee0a6383b17619e16b62b3492329f5e9df364",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/production-rollout-20261025/commons-pagination.json",
+      "bytes": 106,
+      "sha256": "0e9c7d2653c44cab659504f2aafb942a40c66af5e0d1f0582ff264178a96d677",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/production-rollout-20261025/media-retry.json",
+      "bytes": 70,
+      "sha256": "0d7e9fac1fff4d03dfd6011cc3a216057cba28e26c33ce0680e28e626e20515e",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/production-rollout-20261025/route-smoke.json",
+      "bytes": 374,
+      "sha256": "f03ffd66dfcc39563dde300122e7e66939aa9968d3b45da2bdef0e2f188717b0",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/production-rollout-20261025/generation-options.json",
+      "bytes": 904,
+      "sha256": "381c2beb07f54947e79269d53fe16b45b47daa0e272e54cbc76df574836328d1",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/production-rollout-20261025/legacy-guard.json",
+      "bytes": 58,
+      "sha256": "3fc88951e3c782b8bc0c4db89d8e18c9f4e58d4228ba024dfc0e1007a725ca76",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/production-rollout-20261025/hosted-space-probe.json",
+      "bytes": 444,
+      "sha256": "251ddac62066a316fe21d2c258cec26c70656eb9f2544cbf5692191224b1dd71",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/production-rollout-20261025/hosted-media-cleanup.private.json",
+      "bytes": 455,
+      "sha256": "1802002abe73027c7c31743baa77d2e7f0bfe89cfefcf8243d336b86885b11bf",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/production-rollout-20261025/download-proof.json",
+      "bytes": 307,
+      "sha256": "f5555d8e694c0ce3acb9073fb676dd948eeb0414a136b31d05542fcbcd1f69c4",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/production-rollout-20261025/final-readback.json",
+      "bytes": 505,
+      "sha256": "3534edee386ca5ba77e2b761c32b01af3523afe69669a786c919e2111d4865c0",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/production-rollout-20261025/homepage-desktop.png",
+      "bytes": 221623,
+      "sha256": "94ea5bbbcb82c2497e4183f460c00fc6c80b4bcdfeb7899e3549f06520d83c54",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/production-rollout-20261025/homepage-mobile.png",
+      "bytes": 62690,
+      "sha256": "3d02d356385689824277eaeeef8526e6f7f2c3612184a8280a8962fb32f33332",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/production-rollout-20261025/support-mobile.png",
+      "bytes": 43129,
+      "sha256": "da300527985bb27a4783de136856fc4df784785cb61ec46d71ea5ddf775ee81b",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/production-rollout-20261025/compact-studio-gate.png",
+      "bytes": 38199,
+      "sha256": "bba07285320911a358a5e2c1ab2392dfdd3a2909492e6cfe16e2d3f60b5c2e1c",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/production-rollout-20261025/generation-readiness.png",
+      "bytes": 84219,
+      "sha256": "e549dec7df8e683a464abe310ab69552f13f17be111a4342d85ef7618a26b0ce",
+      "access": "private local QA archive; content not published"
+    },
+    {
+      "path": "artifacts/qa/production-rollout-20261025/saved-source.png",
+      "bytes": 379193,
+      "sha256": "310c25bf5c393d38c42ec60dfe2e78cc3ab086fb9229527b662092eb93e20ea8",
+      "access": "private local QA archive; content not published"
+    }
+  ]
+}

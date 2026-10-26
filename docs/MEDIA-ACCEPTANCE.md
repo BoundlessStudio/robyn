@@ -1,6 +1,6 @@
 # Media acceptance and promotion
 
-Updated October 25, 2026. This record covers R13. The candidate has not been rolled out. A provider's catalog listing is discovery, not acceptance of every option it offers.
+Updated October 25, 2026. This record covers R13. The exact-profile gates and request/pricing fixes are now deployed; [production checks](acceptance/production-rollout-20261025.json) verified accepted labels and disabled previews without a new paid generation. A provider's catalog listing is discovery, not acceptance of every option it offers.
 
 ## Enabled acquisition profiles
 

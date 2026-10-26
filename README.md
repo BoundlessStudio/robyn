@@ -6,7 +6,7 @@ The authenticated pilot is **desktop-only**. The public homepage is a mobile-cap
 
 All thirteen native/browser integrations and Research have recorded production round trips. The deployed budget/media release supports shared Commons media, three generation services with bounded evidence, immutable provenance, exact revision handoffs and Studio AI allowance allocation. Broader generation options, browser coverage and recovery claims remain limited to their documented acceptance.
 
-The October 25 review fixes are a **local release candidate**, separate from the deployed application. See the [remediation report](docs/PROJECT-REVIEW-2026-10-25.md), [release record](docs/RELEASE-2026-10-25.md) and [operator runbook](docs/OPERATIONS.md). Support forwarding is live at **support@robyn.academy**.
+The October 25 review fixes are **deployed**, with production migrations through 0022 and workstation client 0.1.23 verified on the Director canary. Other employees activate that pin during their next serialized assignment setup. See the [remediation report](docs/PROJECT-REVIEW-2026-10-25.md), [release record](docs/RELEASE-2026-10-25.md) and [operator runbook](docs/OPERATIONS.md) for completed work and remaining acceptance. Support forwarding is live at **support@robyn.academy**.
 
 ## Develop and verify
 
