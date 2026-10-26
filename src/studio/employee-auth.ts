@@ -9,6 +9,7 @@ export interface EmployeeScope {
   workspaceId: string; projectId: string; assignmentId: string; employeeId: string;
   appId: string | null; kind: "director" | "specialist"; userId: string;
   instanceId: string; brief: string; role: string;
+  startMode?: import("./start-mode").StartMode;
 }
 export function employeeDbFailure(error: {message:string;code?:string} | null) {
   if (error?.message.includes("employee access denied")) throw new ApiError(401,"employee_access_denied","This assignment credential has expired or been revoked.");

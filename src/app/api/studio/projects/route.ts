@@ -1,5 +1,5 @@
-import { json, handleError } from "@/lib/http";
-import { requireStudio, readStudioBody, textField, dbFailure, withAssetPreviews } from "@/studio/server";
+import { json, handleError, ApiError } from "@/lib/http";
+import { requireStudio, readStudioBody, textField, id, dbFailure, withAssetPreviews } from "@/studio/server";
 import { readPage, pageFilter, finishPage, literalSearch } from "@/studio/pagination";
 
 export async function GET(request: Request) {
@@ -28,7 +28,13 @@ export async function POST(request: Request) {
     const input = await readStudioBody(request);
     const name = textField(input.name, 120, "Project name");
     const brief = textField(input.brief, 20000, "Brief", true);
-    const { data, error } = await db.from("studio_projects").insert({ workspace_id: workspaceId, name, brief, created_by: user.id }).select("*").single();
+    const creationId=input.creationId===undefined?undefined:id(input.creationId,"creation ID");
+    const { data, error } = await db.from("studio_projects").insert({...(creationId?{id:creationId}:{}), workspace_id: workspaceId, name, brief, created_by: user.id }).select("*").single();
+    if(creationId&&error?.code==="23505"){
+      const prior=await db.from("studio_projects").select("*").eq("id",creationId).eq("workspace_id",workspaceId).eq("created_by",user.id).maybeSingle();dbFailure(prior.error);
+      if(!prior.data)throw new ApiError(409,"creation_id_reused","This project request is already in use. Open a new project.");
+      return json({project:prior.data});
+    }
     dbFailure(error); return json({ project: data }, 201);
   } catch (error) { return handleError(error); }
 }

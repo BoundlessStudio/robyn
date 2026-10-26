@@ -528,3 +528,52 @@
 .studio-budget-table input { width: 135px; }
 .studio-budget details { margin: 24px 0; }
 .studio-budget summary { cursor: pointer; }
+
+/* The canvas is the first project screen, and stays available for new work. */
+.project-start { display:flex; flex:1; background:radial-gradient(ellipse at 40% 30%,#292720,#141413 70%); }
+.open-canvas { width:100%; max-width:1160px; margin:auto; padding:48px clamp(28px,4vw,72px) 42px; }
+.open-canvas h2 { font-size:clamp(38px,4vw,62px); font-weight:450; letter-spacing:-2.6px; line-height:1.08; margin:20px 0; }
+.open-canvas h2:focus { outline:none; }
+.open-canvas h2 em { font-family:"Instrument Serif",serif; font-weight:400; color:#d5c7ab; }
+.open-canvas .canvas-intro { color:#bdb6a6; font-size:14px; line-height:1.6; margin:0 0 30px; }
+.canvas-choices { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:15px; }
+.canvas-choices>button { text-align:left; display:flex; align-items:flex-start; flex-direction:column; border:1px solid #514c3f; border-radius:10px; padding:24px; min-height:225px; background:#22221e; transition:background .15s,border-color .15s; }
+.canvas-choices>button:hover { background:#2e3026; border-color:#b8c59d; }
+.canvas-choices>button>svg { color:#c0cda9; margin-bottom:26px; }
+.canvas-choices strong { font-size:17px; font-weight:500; letter-spacing:-.4px; margin-bottom:9px; }
+.canvas-choices span { font-size:12px; color:#bdb6a6; line-height:1.65; margin-bottom:24px; }
+.canvas-choices b { display:flex; align-items:center; gap:8px; margin-top:auto; font-size:11px; font-weight:500; color:#d2dfb9; }
+.canvas-drop-hint { margin:22px 0 0; color:#a9a28f; font-size:11px; line-height:1.7; }
+.canvas-drop-hint button { text-decoration:underline; text-underline-offset:3px; margin-left:6px; }
+.canvas-back { display:flex; align-items:center; gap:7px; color:#bdb6a6; font-size:11px; margin-bottom:28px; }
+.canvas-idea { max-width:720px; }
+.open-canvas .canvas-focus-heading { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+.canvas-idea .assignment-panel>p { line-height:1.7; font-size:13px; max-width:570px; }
+.canvas-idea .studio-form { max-width:none; margin:24px 0; }
+.canvas-idea textarea { min-height:140px; font-size:14px; }
+.canvas-idea .assignment-list { margin-top:28px; }
+.canvas-idea .assignment-panel h2 em { color:#d5c7ab; }
+.canvas-allowance { border-left:2px solid #aebc95; padding:0 0 0 15px; font-size:12px; line-height:1.6; }
+.canvas-allowance strong { font-weight:500; }
+.canvas-allowance p { color:#bdb6a6; margin:5px 0; max-width:600px; }
+.canvas-allowance a { color:#d2dfb9; text-decoration:underline; text-underline-offset:3px; font-size:11px; }
+.canvas-manual-note { color:#bdb6a6; font-size:12px; margin:-15px 0 28px; line-height:1.6; }
+.canvas-crafts { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+.canvas-crafts button { display:flex; align-items:center; gap:12px; min-height:82px; text-align:left; border:1px solid #494638; border-radius:8px; padding:16px; background:#22221e; }
+.canvas-crafts button:hover { border-color:#b8c59d; background:#2e3026; }
+.canvas-crafts i { display:grid; place-items:center; width:35px; height:35px; border-radius:5px; flex-shrink:0; color:#24251e; font-size:12px; font-style:normal; }
+.canvas-crafts span { flex:1; }
+.canvas-crafts strong { display:block; font-size:13px; font-weight:500; }
+.canvas-crafts small { display:block; margin-top:4px; font-size:10px; line-height:1.5; color:#bdb6a6; }
+.canvas-crafts button>svg { flex-shrink:0; color:#aebc95; }
+.canvas-start-progress { border:1px solid #494638; border-radius:10px; padding:24px; }
+.canvas-start-progress p { color:#bdb6a6; font-size:13px; line-height:1.7; margin:12px 0; }
+.project-name { flex:0 1 auto; min-width:80px; }
+.project-name h1>button { max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; text-align:left; }
+.project-name h1>button:hover { text-decoration:underline; text-underline-offset:4px; }
+.project-name form { display:flex; align-items:center; gap:5px; }
+.project-name input { width:clamp(120px,17vw,250px); background:#282822; border:1px solid #77725e; border-radius:4px; padding:5px 8px; font-size:13px; }
+.project-name .studio-error { position:absolute; top:48px; left:80px; z-index:10; max-width:480px; background:#271d1b; padding:10px; }
+.open-canvas button:focus-visible,.project-name button:focus-visible { outline:2px solid #d5e8ab; outline-offset:4px; }
+.open-canvas button:disabled { opacity:.5; cursor:default; }
+@media(max-width:1350px) { .open-canvas{padding:35px 28px}.canvas-choices>button{padding:19px}.canvas-choices strong{font-size:15px}.canvas-crafts button{padding:13px;gap:9px} }

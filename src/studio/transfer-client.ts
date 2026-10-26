@@ -37,7 +37,7 @@ function uploadFile(file:Blob,transfer:Transfer,endpoint:string,bucket:string,si
 
 /** File bytes go straight from the browser to private Storage. Local resume
  * state contains a revision ID, never a credential or a copy of the media. */
-export async function savePackage(input:{assetId:string;expectedBaseRevisionId:string|null;files:LocalPackageFile[];dependencies:AssetRef[];message:string;sourceImport?:{projectId:string;name:string};signal?:AbortSignal;onProgress?:(message:string,percent:number)=>void}):Promise<SaveResult> {
+export async function savePackage(input:{assetId:string;expectedBaseRevisionId:string|null;files:LocalPackageFile[];dependencies:AssetRef[];message:string;sourceImport?:{projectId:string;name:string};blankStart?:{projectId:string;templateId:string};signal?:AbortSignal;onProgress?:(message:string,percent:number)=>void}):Promise<SaveResult> {
   const files=[];
   for(const file of input.files){input.onProgress?.(`Checking ${file.path}…`,0);files.push({path:file.path,role:file.role,bytes:file.file.size,mimeType:file.file.type||"application/octet-stream",sha256:await digestFile(file.file,input.signal)});}
   const pkg:RevisionPackage=validateRevisionPackage({files,dependencies:input.dependencies,message:input.message});
@@ -51,7 +51,7 @@ export async function savePackage(input:{assetId:string;expectedBaseRevisionId:s
     if(prior?.state==="committed"||prior?.state==="conflict"){try{localStorage.removeItem(key);}catch{}return{assetId:input.assetId,revisionId,status:prior.state};}
     if(!prior||prior.state!=="uploading")revisionId=null;
   }
-  if(!revisionId){const revision=await apiFetch<{revisionId:string}>(input.sourceImport?"/api/studio/sources":`/api/studio/assets/${input.assetId}/revisions`,{method:"POST",body:JSON.stringify(input.sourceImport?{...input.sourceImport,creationId:input.assetId,package:pkg}:{expectedBaseRevisionId:input.expectedBaseRevisionId,package:pkg}),signal:input.signal});revisionId=revision.revisionId;try{localStorage.setItem(key,revisionId);}catch{}}
+  if(!revisionId){const revision=await apiFetch<{revisionId:string}>(input.blankStart?"/api/studio/starters":input.sourceImport?"/api/studio/sources":`/api/studio/assets/${input.assetId}/revisions`,{method:"POST",body:JSON.stringify(input.blankStart?{...input.blankStart,creationId:input.assetId,package:pkg}:input.sourceImport?{...input.sourceImport,creationId:input.assetId,package:pkg}:{expectedBaseRevisionId:input.expectedBaseRevisionId,package:pkg}),signal:input.signal});revisionId=revision.revisionId;try{localStorage.setItem(key,revisionId);}catch{}}
   const ticket=await apiFetch<{bucket:string;resumableEndpoint:string;transfers:Transfer[]}>(`/api/studio/revisions/${revisionId}/transfers`,{method:"POST",body:"{}",signal:input.signal});
   const total=files.reduce((sum,file)=>sum+file.bytes,0);let completed=0;
   for(const transfer of ticket.transfers){

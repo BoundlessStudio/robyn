@@ -33,6 +33,8 @@ export const employeeTools=[
 
 export async function employeeToolCall(auth:{db:DB;tokenHash:string;scope:EmployeeScope},name:string,args:Record<string,unknown>) {
   const {db,tokenHash,scope:s}=auth;
+  if(s.startMode==="plan"&&["studio_plan","import_media","generate_media","studio_create_asset","studio_begin_revision","studio_upload_transfers","studio_commit_revision"].includes(name))
+    throw new ApiError(409,"planning_only","This request is for planning. Return your advice to the creator; production needs a new Make a first draft request.");
   const mediaIdentity={workspaceId:s.workspaceId,userId:s.userId,projectId:s.projectId};
   if(name==="search_media")return searchMedia(db,mediaIdentity,args);
   if(name==="import_media"||name==="generate_media"){
@@ -42,7 +44,7 @@ export async function employeeToolCall(auth:{db:DB;tokenHash:string;scope:Employ
   }
   if(name==="get_media_job"){
     const job=await ownedMediaJob(db,mediaIdentity,id(args.jobId,"media job ID"));
-    await launchMediaJob(db,mediaIdentity,job);
+    if(s.startMode!=="plan")await launchMediaJob(db,mediaIdentity,job);
     return {job:publicMediaJob(job)};
   }
   const ownedProjectAsset=async(value:unknown)=>{
@@ -63,7 +65,7 @@ export async function employeeToolCall(auth:{db:DB;tokenHash:string;scope:Employ
     const {data:assignment,error:assignmentError}=await db.from("studio_assignments").select("purpose").eq("workspace_id",s.workspaceId).eq("id",s.assignmentId).single();dbFailure(assignmentError);
     if(!assignment)throw new ApiError(404,"not_found","Assignment not found.");
     const {data:campaign,error:campaignError}=await db.from("studio_campaigns").select("id,state,specification").eq("workspace_id",s.workspaceId).eq("root_assignment_id",s.assignmentId).maybeSingle();dbFailure(campaignError);
-    return {assignmentId:s.assignmentId,role:s.role,appId:s.appId,purpose:assignment.purpose,brief:s.brief,project,campaign,inputs:(inputs??[]).map(row=>({assetId:row.asset_id,revisionId:row.revision_id}))};
+    return {assignmentId:s.assignmentId,role:s.role,appId:s.appId,purpose:assignment.purpose,startMode:s.startMode??"work",brief:s.brief,project,campaign,inputs:(inputs??[]).map(row=>({assetId:row.asset_id,revisionId:row.revision_id}))};
   }
   if(name==="studio_team"){
     if(s.kind!=="director")throw new ApiError(403,"director_only","Only the Director can coordinate the studio.");

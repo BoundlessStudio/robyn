@@ -8,6 +8,8 @@ import {build} from 'esbuild';
 export const projectId = '11111111-1111-4111-8111-111111111111';
 export const origin = 'http://127.0.0.1:3000';
 const root = fileURLToPath(new URL('../../', import.meta.url));
+const starters=JSON.parse(await readFile(root+'src/studio/generated/blank-starters.json','utf8'));
+const director='bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb';
 let bundlePromise;
 
 async function bundle() {
@@ -52,7 +54,7 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
   // Only this isolated QA context may reach its temporary loopback TUS server.
   const context=await browser.newContext({viewport,permissions:browser.browserType().name()==='chromium'?['local-network-access']:[]});
   const page=await context.newPage();page.setDefaultTimeout(realEditor?60000:10000);
-  const state={assets:new Map(),revisions:new Map(),bytes:new Map(),requests:[],errors:[],failCreationReply:false,failCommitReply:false,holdTransfers:false,releaseTransfers:null};
+  const state={assets:new Map(),revisions:new Map(),bytes:new Map(),requests:[],errors:[],assignments:new Map(),allowance:5000000,failAllowance:false,failAssignmentReply:false,failStarterDownload:false,failCreationReply:false,failCommitReply:false,holdTransfers:false,releaseTransfers:null};
   // WebKit's interception API omits Blob request bodies. Receive real TUS bytes
   // on loopback for every engine instead of substituting the selected input.
   const transferServer=createServer(async(req,res)=>{
@@ -89,10 +91,36 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
     if(url.pathname==='/studio.css')return route.fulfill({contentType:'text/css',body:css});
     if(url.pathname==='/space.woff2')return route.fulfill({contentType:'font/woff2',body:await readFile(root+'node_modules/@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2')});
     if(url.pathname==='/serif.woff2')return route.fulfill({contentType:'font/woff2',body:await readFile(root+'node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2')});
+    if(url.pathname.startsWith('/studio/starters/')){
+      const file=starters.flatMap(item=>item.files).find(file=>file.url===url.pathname);
+      if(!file)return route.fulfill({status:404,body:'Unknown starter'});
+      return route.fulfill({contentType:file.mimeType,body:state.failStarterDownload?Buffer.from('Corrupt download'):await readFile(root+'public'+decodeURIComponent(file.url))});
+    }
     if(url.pathname.startsWith('/api/')){
-      const input=method==='POST'?req.postDataJSON():null;
+      const input=['POST','PATCH'].includes(method)?req.postDataJSON():null;
       state.requests.push({path:url.pathname,method,input});
-      if(url.pathname===`/api/studio/projects/${projectId}`)return route.fulfill({json:{project,assets:[...state.assets.values()],activity:[],nextAssetCursor:null}});
+      if(url.pathname===`/api/studio/projects/${projectId}`){if(method==='PATCH')Object.assign(project,input);return route.fulfill({json:{project,assets:[...state.assets.values()],activity:[],nextAssetCursor:null}});}
+      if(url.pathname.startsWith('/api/studio/budgets/'))return route.fulfill(state.failAllowance?{status:503,json:{error:{message:'Unavailable'}}}:{json:{availableMicros:state.allowance,reason:state.allowance?null:'No AI allowance remains.'}});
+      if(url.pathname==='/api/studio/assignments'){
+        if(method==='POST'){
+          assert.equal(input.projectId,projectId);assert.equal(input.employeeId,director);
+          const prior=state.assignments.get(input.requestId);if(prior)assert.deepEqual(prior.input,input);
+          else state.assignments.set(input.requestId,{input,id:randomUUID(),employeeId:director,appId:null,role:'Creative Director',brief:input.brief,startMode:input.startMode,state:'queued',result:null,deliverables:[],createdAt:project.created_at});
+          if(state.failAssignmentReply)return route.fulfill({status:503,json:{error:{message:'Reconnect the saved request.'}}});
+          return route.fulfill({json:{assignmentId:state.assignments.get(input.requestId).id,state:'queued'}});
+        }
+        return route.fulfill({json:{employees:[{id:director,role:'Creative Director',appId:null,ready:true}],assignments:[...state.assignments.values()]}});
+      }
+      if(url.pathname==='/api/studio/starters'){
+        const starter=starters.find(item=>item.id===input.templateId);assert.ok(starter);assert.equal(input.projectId,projectId);
+        const id=input.creationId;let revision=[...state.revisions.values()].find(row=>row.assetId===id);
+        if(!revision){
+          state.assets.set(id,{id,project_id:projectId,app_id:starter.appId,name:starter.name,asset_kind:'native',current_revision_id:null,created_at:project.created_at});
+          revision={id:randomUUID(),assetId:id,state:'uploading',revision_number:1,created_at:project.created_at,package:input.package};state.revisions.set(revision.id,revision);
+        }else assert.deepEqual(revision.package,input.package);
+        if(state.failCreationReply){state.failCreationReply=false;return route.abort('failed');}
+        return route.fulfill({json:{revisionId:revision.id}});
+      }
       if(url.pathname==='/api/studio/sources'){
         assert.equal(input.projectId,projectId);
         const id=input.creationId;
@@ -152,7 +180,7 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
   return {page,context,state};
 }
 
-export async function dropDocument(page, filename, content, target='.project-blank') {
+export async function dropDocument(page, filename, content, target='.project-start') {
   const transfer=await page.evaluateHandle(({filename,content})=>{const data=new DataTransfer();data.items.add(new File([content],filename));return data;},{filename,content});
   await page.locator(target).dispatchEvent('dragover',{dataTransfer:transfer});
   await page.locator(target).dispatchEvent('drop',{dataTransfer:transfer});

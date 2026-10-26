@@ -49,7 +49,7 @@ test('file-picker import retries lost creation and commit replies without duplic
     const {page,state}=await nativeImportFixture(browser);
     state.failCreationReply=true;
     const chooser=page.waitForEvent('filechooser');
-    await page.locator('.project-blank').getByRole('button',{name:'Bring existing files',exact:true}).click();
+    await page.locator('.project-start').getByRole('button',{name:'Bring existing files',exact:true}).click();
     await (await chooser).setFiles({name:'Budget.xlsx',mimeType:'application/octet-stream',buffer:Buffer.from('Spreadsheet transport fixture')});
     await page.getByRole('alert').waitFor();assert.equal(state.assets.size,1);
     state.failCommitReply=true;
@@ -94,7 +94,7 @@ test('unrecognised and mixed files stay editable in the detailed import without 
     assert.equal(await page.getByLabel('Project to open',{exact:true}).locator('option').count(),3);
     assert.equal(state.assets.size,0);
     await page.getByRole('button',{name:'Close dialog'}).click();
-    await page.getByRole('button',{name:'Import a folder or linked files',exact:true}).click();
+    await page.getByRole('button',{name:'Bring a folder or linked files',exact:true}).click();
     assert.equal(await page.getByLabel('Choose project folder').count(),1);
     assert.deepEqual(state.errors,[]);
   }finally{await browser.close();}
@@ -138,7 +138,7 @@ test('the folder path still preserves a native master and its linked files with 
     await writeFile(join(folder,'unrelated-private.txt'),'Do not upload unrelated folder files');
     await writeFile(join(folder,'images','cover.png'),'Linked transport fixture');
     const {page,state}=await nativeImportFixture(browser);
-    await page.getByRole('button',{name:'Import a folder or linked files',exact:true}).click();
+    await page.getByRole('button',{name:'Bring a folder or linked files',exact:true}).click();
     await page.getByLabel('Choose project folder').setInputFiles(folder);
     await page.frameLocator('iframe[title="SoundCraft editor"]').getByText('Ready',{exact:true}).waitFor();
     const revision=[...state.revisions.values()][0];
