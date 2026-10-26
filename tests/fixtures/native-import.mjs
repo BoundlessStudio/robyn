@@ -1,0 +1,160 @@
+import assert from 'node:assert/strict';
+import {createHash, randomUUID} from 'node:crypto';
+import {readFile} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import {createServer} from 'node:http';
+import {build} from 'esbuild';
+
+export const projectId = '11111111-1111-4111-8111-111111111111';
+export const origin = 'http://127.0.0.1:3000';
+const root = fileURLToPath(new URL('../../', import.meta.url));
+let bundlePromise;
+
+async function bundle() {
+  bundlePromise ??= build({
+    stdin: {contents: `
+      import {StrictMode} from 'react';
+      import {createRoot} from 'react-dom/client';
+      import {WorkspaceProvider} from './src/components/WorkspaceProvider';
+      import {ProjectWorkspace} from './src/components/studio/ProjectWorkspace';
+      import {StudioLibrary} from './src/components/studio/StudioLibrary';
+      createRoot(document.getElementById('root')).render(<StrictMode><WorkspaceProvider initialWorkspaces={[]} userEmail="fixture@example.test"><div className="studio-shell project-mode"><main className="studio-main">{location.pathname==='/dashboard/library'?<StudioLibrary/>:<ProjectWorkspace projectId="${projectId}" initialAssetId={new URLSearchParams(location.search).get('asset')??undefined}/>}</main></div></WorkspaceProvider></StrictMode>);
+    `, resolveDir:root, sourcefile:'native-import-fixture.tsx', loader:'tsx'},
+    jsx:'automatic', bundle:true, write:false, platform:'browser', format:'iife', tsconfig:root+'tsconfig.json',
+    define:{'process.env.NODE_ENV':'"development"', 'process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY':'"isolated-fixture"'},
+    plugins:[{name:'next-link',setup(b){
+      b.onResolve({filter:/^next\/link$/},()=>({path:'link',namespace:'fixture'}));
+      b.onLoad({filter:/.*/,namespace:'fixture'},()=>({contents:'import React from "react";export default function Link(props){return React.createElement("a",props)}',loader:'js',resolveDir:root}));
+    }}],
+  });
+  return (await bundlePromise).outputFiles[0].text;
+}
+
+// A transport peer, not a native editor. Native editing is checked separately
+// against the published WordCraft bundle; these tests exercise the actual host.
+const editor = `<!doctype html><html lang="en"><head><title>Isolated editor peer</title></head><body>
+  <label>Document text<textarea id="text"></textarea></label><button id="save">Save document</button><p id="state" role="status">Opening</p>
+  <script>
+    const params=new URLSearchParams(location.hash.slice(1)), channel=params.get('channel'), parentOrigin=params.get('parentOrigin');
+    let ref={assetId:params.get('assetId'),revisionId:params.get('revisionId')}, path, pending=new Map();
+    function request(operation,payload){return new Promise((resolve,reject)=>{const requestId=crypto.randomUUID();pending.set(requestId,{resolve,reject});parent.postMessage({protocol:'robyn.editor.v1',channel,requestId,operation,payload},parentOrigin);});}
+    addEventListener('message',event=>{const message=event.data;if(event.origin!==parentOrigin||message.channel!==channel||message.kind!=='result')return;const task=pending.get(message.requestId);if(task){pending.delete(message.requestId);message.ok?task.resolve(message.result):task.reject(Error(message.error));}});
+    request('openAsset',ref).then(async pkg=>{const master=pkg.files.find(file=>file.role==='master');path=master.path;document.getElementById('text').value=await (await fetch(master.downloadUrl)).text();await request('notifyChanges',{assetId:ref.assetId,dirty:false});document.getElementById('state').textContent='Ready';});
+    document.getElementById('text').oninput=()=>request('notifyChanges',{assetId:ref.assetId,dirty:true});
+    document.getElementById('save').onclick=async()=>{const result=await request('saveAsset',{assetId:ref.assetId,expectedBaseRevisionId:ref.revisionId,files:[{path,role:'master',file:new Blob([document.getElementById('text').value],{type:'application/octet-stream'})}],dependencies:[],message:'Edited transport fixture'});ref=result.ref;await request('notifyChanges',{assetId:ref.assetId,dirty:false});document.getElementById('state').textContent='Saved';};
+  </script></body></html>`;
+
+export async function nativeImportFixture(browser, {realEditor=false, viewport={width:1440,height:960}, workspaceOrigin=origin, fileOrigin='https://native-import-files.test'}={}) {
+  const script=await bundle();
+  const css=await readFile(root+'node_modules/tailwindcss/preflight.css','utf8')+'\n'+
+    '@font-face{font-family:"Space Grotesk Variable";font-style:normal;font-weight:300 700;src:url(/space.woff2)}@font-face{font-family:"Instrument Serif";font-style:italic;font-weight:400;src:url(/serif.woff2)}\n'+
+    await readFile(root+'src/app/dashboard/studio.css','utf8');
+  // Only this isolated QA context may reach its temporary loopback TUS server.
+  const context=await browser.newContext({viewport,permissions:browser.browserType().name()==='chromium'?['local-network-access']:[]});
+  const page=await context.newPage();page.setDefaultTimeout(realEditor?60000:10000);
+  const state={assets:new Map(),revisions:new Map(),bytes:new Map(),requests:[],errors:[],failCreationReply:false,failCommitReply:false,holdTransfers:false,releaseTransfers:null};
+  // WebKit's interception API omits Blob request bodies. Receive real TUS bytes
+  // on loopback for every engine instead of substituting the selected input.
+  const transferServer=createServer(async(req,res)=>{
+    const headers={'access-control-allow-origin':'*','access-control-allow-methods':'POST,PATCH,HEAD,OPTIONS','access-control-allow-headers':'*','access-control-expose-headers':'Location,Upload-Offset,Upload-Length,Tus-Resumable','tus-resumable':'1.0.0'};
+    if(req.method==='OPTIONS'){res.writeHead(204,headers);return res.end();}
+    const parts=[];for await(const part of req)parts.push(part);const bytes=Buffer.concat(parts);
+    const metadata=Object.fromEntries(String(req.headers['upload-metadata']??'').split(',').map(item=>{const [key,value]=item.trim().split(' ');return[key,Buffer.from(value??'','base64').toString()];}));
+    const key=req.method==='POST'?metadata.objectName:decodeURIComponent((req.url??'').slice('/storage/upload/'.length));
+    if(!key){res.writeHead(400,headers);return res.end();}
+    if(req.method==='HEAD'){res.writeHead(200,{...headers,'upload-offset':String(state.bytes.get(key)?.length??0)});return res.end();}
+    const stored=req.method==='PATCH'?Buffer.concat([state.bytes.get(key)??Buffer.alloc(0),bytes]):bytes;
+    state.bytes.set(key,stored);
+    res.writeHead(req.method==='POST'?201:204,{...headers,location:`${transferOrigin}/storage/upload/${encodeURIComponent(key)}`,'upload-offset':String(stored.length)});res.end();
+  });
+  await new Promise(resolve=>transferServer.listen(0,'127.0.0.1',resolve));transferServer.unref();
+  const transferOrigin=`http://127.0.0.1:${transferServer.address().port}`;
+  context.once('close',()=>{transferServer.closeAllConnections();transferServer.close();});
+  page.on('pageerror',error=>state.errors.push(error.message));
+  const project={id:projectId,name:'First project',brief:'',status:'active',created_at:'2026-10-26T12:00:00Z',updated_at:'2026-10-26T12:00:00Z'};
+  const cors={'access-control-allow-origin':'*'};
+  await context.route('**/*',async route=>{
+    const req=route.request(),url=new URL(req.url()),method=req.method();
+    if(url.origin===transferOrigin)return route.continue();
+    if(url.hostname==='robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev'){
+      if(realEditor)return route.continue();
+      return route.fulfill({contentType:'text/html',body:editor});
+    }
+    if(url.origin===fileOrigin&&url.pathname.startsWith('/stored/')){
+      const key=decodeURIComponent(url.pathname.slice('/stored/'.length));
+      return route.fulfill({contentType:'application/octet-stream',headers:cors,body:state.bytes.get(key)??Buffer.alloc(0)});
+    }
+    if(url.origin!==workspaceOrigin)return route.fulfill({status:404,body:'No external fixture requests'});
+    if(url.pathname==='/fixture.js')return route.fulfill({contentType:'text/javascript',body:script});
+    if(url.pathname==='/studio.css')return route.fulfill({contentType:'text/css',body:css});
+    if(url.pathname==='/space.woff2')return route.fulfill({contentType:'font/woff2',body:await readFile(root+'node_modules/@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2')});
+    if(url.pathname==='/serif.woff2')return route.fulfill({contentType:'font/woff2',body:await readFile(root+'node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2')});
+    if(url.pathname.startsWith('/api/')){
+      const input=method==='POST'?req.postDataJSON():null;
+      state.requests.push({path:url.pathname,method,input});
+      if(url.pathname===`/api/studio/projects/${projectId}`)return route.fulfill({json:{project,assets:[...state.assets.values()],activity:[],nextAssetCursor:null}});
+      if(url.pathname==='/api/studio/sources'){
+        assert.equal(input.projectId,projectId);
+        const id=input.creationId;
+        let revision=[...state.revisions.values()].find(row=>row.assetId===id);
+        if(!revision){
+          const kind=input.package.files.find(file=>file.role==='master').mimeType.split('/')[0];
+          state.assets.set(id,{id,project_id:projectId,app_id:null,name:input.name,asset_kind:kind,current_revision_id:null,created_at:project.created_at});
+          revision={id:randomUUID(),assetId:id,state:'uploading',revision_number:1,created_at:project.created_at,package:input.package};
+          state.revisions.set(revision.id,revision);
+        }else assert.deepEqual(revision.package,input.package);
+        if(state.failCreationReply){state.failCreationReply=false;return route.abort('failed');}
+        return route.fulfill({json:{revisionId:revision.id}});
+      }
+      const fileMatch=url.pathname.match(/^\/api\/studio\/revisions\/([^/]+)\/file$/);
+      if(fileMatch){
+        const revision=state.revisions.get(fileMatch[1]),file=revision.package.files.find(file=>file.path===url.searchParams.get('path'));
+        return route.fulfill({contentType:file.mimeType,headers:cors,body:state.bytes.get(revision.id+'/'+file.path)});
+      }
+      if(url.pathname==='/api/studio/assets'){
+        if(method==='GET')return route.fulfill({json:{assets:[...state.assets.values()].map(asset=>({...asset,project:{name:project.name}})),nextCursor:null}});
+        assert.equal(input.projectId,projectId);
+        const id=input.creationId??randomUUID();
+        if(!state.assets.has(id))state.assets.set(id,{id,project_id:projectId,app_id:input.appId,name:input.name,asset_kind:'native',current_revision_id:null,created_at:project.created_at});
+        if(state.failCreationReply){state.failCreationReply=false;return route.abort('failed');}
+        return route.fulfill({json:{asset:state.assets.get(id)}});
+      }
+      const assetMatch=url.pathname.match(/^\/api\/studio\/assets\/([^/]+)(\/revisions)?$/);
+      if(assetMatch){
+        const asset=state.assets.get(assetMatch[1]);
+        if(!assetMatch[2])return route.fulfill({json:{asset}});
+        if(method==='GET')return route.fulfill({json:{revisions:[...state.revisions.values()].filter(row=>row.assetId===asset.id),nextCursor:null}});
+        const id=randomUUID();state.revisions.set(id,{id,assetId:asset.id,state:'uploading',revision_number:state.revisions.size+1,created_at:project.created_at,...input});
+        return route.fulfill({json:{revisionId:id}});
+      }
+      const revisionMatch=url.pathname.match(/^\/api\/studio\/revisions\/([^/]+)(\/(transfers|commit))?$/);
+      if(revisionMatch){
+        const revision=state.revisions.get(revisionMatch[1]),asset=state.assets.get(revision.assetId);
+        if(revisionMatch[3]==='transfers'){
+          if(state.holdTransfers)await new Promise(resolve=>{state.releaseTransfers=()=>{state.holdTransfers=false;resolve();};});
+          return route.fulfill({json:{bucket:'isolated',resumableEndpoint:transferOrigin+'/storage/upload/resumable',transfers:revision.package.files.map(file=>({...file,uploaded:state.bytes.has(revision.id+'/'+file.path),token:'isolated-token',storageKey:revision.id+'/'+file.path}))}});
+        }
+        if(revisionMatch[3]==='commit'){
+          for(const file of revision.package.files){const bytes=state.bytes.get(revision.id+'/'+file.path);assert.equal(bytes?.length,file.bytes);assert.equal(createHash('sha256').update(bytes).digest('hex'),file.sha256);}
+          revision.state='committed';asset.current_revision_id=revision.id;
+          if(state.failCommitReply){state.failCommitReply=false;return route.abort('failed');}
+          return route.fulfill({json:{assetId:asset.id,revisionId:revision.id,status:'committed'}});
+        }
+        return route.fulfill({json:{ref:{assetId:asset.id,revisionId:revision.id},revision,dependencies:revision.package.dependencies,files:revision.package.files.map(file=>({...file,downloadUrl:fileOrigin+'/stored/'+encodeURIComponent(revision.id+'/'+file.path)}))}});
+      }
+      return route.fulfill({status:404,json:{error:{message:'Unexpected fixture API request'}}});
+    }
+    if(url.pathname.startsWith('/dashboard'))return route.fulfill({contentType:'text/html',body:`<!doctype html><html lang="en"><head><title>Import workspace fixture</title><style>*,*::before,*::after{box-sizing:border-box}body,h1,h2,h3,p{margin:0}button{border:0;background:none;color:inherit;cursor:pointer}a{color:inherit}.studio-shell.project-mode{display:block}</style><link rel="stylesheet" href="/studio.css"></head><body><div id="root"></div><script>window.process={env:{NODE_ENV:'development'}};</script><script src="/fixture.js"></script></body></html>`});
+    return route.fulfill({status:404,body:'Isolated fixture'});
+  });
+  await page.goto(`${workspaceOrigin}/dashboard/projects/${projectId}`);
+  try{await page.getByRole('heading',{name:'First project',exact:true}).waitFor();}catch(error){if(state.errors.length)throw Error(state.errors.join('\n'));throw error;}
+  return {page,context,state};
+}
+
+export async function dropDocument(page, filename, content, target='.project-blank') {
+  const transfer=await page.evaluateHandle(({filename,content})=>{const data=new DataTransfer();data.items.add(new File([content],filename));return data;},{filename,content});
+  await page.locator(target).dispatchEvent('dragover',{dataTransfer:transfer});
+  await page.locator(target).dispatchEvent('drop',{dataTransfer:transfer});
+  await transfer.dispose();
+}

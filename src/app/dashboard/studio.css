@@ -102,6 +102,11 @@
 .studio-action-row { display:flex; flex-wrap:wrap; gap:9px; margin-top:15px; }
 .studio-upload-progress progress { width:100%; accent-color:#ece7db; }
 .studio-upload-progress p { font-size:11px; color:#c9c2b5; margin-top:8px; }
+.studio-import-filename { font-size:15px; overflow-wrap:anywhere; margin:0 0 12px; }
+.studio-import-filename~.studio-upload-progress { margin-top:24px; }
+.project-drop-active { outline:2px dashed #c9d7b7; outline-offset:-8px; }
+.project-import-folder { margin-top:18px; color:#c5bdaa; font-size:11px; text-decoration:underline; text-underline-offset:4px; }
+.project-import-folder:focus-visible { outline:2px solid #ece7db; outline-offset:6px; }
 .project-workspace { min-height:100dvh; display:flex; flex-direction:column; }
 .project-header { display:flex; align-items:center; gap:19px; padding:25px 28px; border-bottom:1px solid var(--studio-line); min-width:0; }
 .project-header>a { color:#b6c2aa; padding:8px; }
@@ -501,6 +506,10 @@
 .source-provenance dd { margin:0; }
 .source-provenance p,.source-provenance summary { font-size:11px; line-height:1.6; }
 .source-provenance pre { max-width:100%; overflow:auto; }
+.source-import-note { flex:0 0 auto; width:100%; max-width:640px; padding:18px 24px; text-align:center; overflow-wrap:anywhere; }
+.source-import-note p { font-size:13px; line-height:1.5; }
+.source-import-note a { text-decoration:underline; font-size:12px; }
+.asset-preview:has(.source-import-note) { flex-direction:column; }
 
 /* The owner manages one allowance across the complete creative team. */
 .studio-budget { scroll-margin-top: 110px; }
