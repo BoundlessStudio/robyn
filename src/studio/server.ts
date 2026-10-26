@@ -113,7 +113,7 @@ export async function mapInBatches<T, R>(items: T[], action: (item: T) => Promis
 
 /** Only committed current revisions from this owned studio can supply a cover.
  * Signed URLs send image bytes directly from private Storage to the browser. */
-export async function withAssetPreviews<T extends {current_revision_id:string|null}>(db: DB, workspaceId:string, assets:T[]) {
+export async function withAssetPreviews<T extends {current_revision_id:string|null;asset_kind?:string}>(db: DB, workspaceId:string, assets:T[]) {
   const ids=assets.flatMap(asset=>asset.current_revision_id?[asset.current_revision_id]:[]);
   if(!ids.length)return assets.map(asset=>({...asset,preview_url:null as string|null}));
   const covers=new Map<string,string>();
@@ -121,6 +121,13 @@ export async function withAssetPreviews<T extends {current_revision_id:string|nu
     const {data,error}=await db.from("studio_package_files").select("revision_id,storage_key").eq("workspace_id",workspaceId).in("revision_id",ids.slice(offset,offset+100)).eq("role","preview").in("mime_type",["image/png","image/jpeg","image/webp","image/gif","image/avif"]).order("path");
     dbFailure(error);
     for(const row of data??[])if(!covers.has(row.revision_id))covers.set(row.revision_id,row.storage_key);
+  }
+  // Uploaded source images are already viewable. They do not need a separate
+  // thumbnail before they can appear in the library.
+  const originals=assets.flatMap(asset=>asset.asset_kind==="image"&&asset.current_revision_id&&!covers.has(asset.current_revision_id)?[asset.current_revision_id]:[]);
+  for(let offset=0;offset<originals.length;offset+=100){
+    const {data,error}=await db.from("studio_package_files").select("revision_id,storage_key").eq("workspace_id",workspaceId).in("revision_id",originals.slice(offset,offset+100)).eq("role","master").lte("bytes",2*1024**2).in("mime_type",["image/png","image/jpeg","image/webp","image/gif","image/svg+xml"]).order("path");
+    dbFailure(error);for(const row of data??[])covers.set(row.revision_id,row.storage_key);
   }
   const paths=[...new Set(covers.values())];
   const urls=new Map<string,string>();

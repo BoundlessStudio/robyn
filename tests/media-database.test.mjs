@@ -32,6 +32,21 @@ test("source media preserves scoped immutable revisions, budget reservations, re
     const project = await scalar("insert into studio_projects(workspace_id,created_by,name) values($1,$2,'Media') returning id as result", [workspace, user]);
     const otherProject = await scalar("insert into studio_projects(workspace_id,created_by,name) values($1,$2,'Other') returning id as result", [workspace, user]);
     const foreignProject = await scalar("insert into studio_projects(workspace_id,created_by,name) values($1,$2,'Foreign') returning id as result", [foreignWorkspace, foreignUser]);
+    // Local upload needs no provider job and never assigns a source to a Craft.
+    const localId=randomUUID(),localPackage={files:[{path:'Cover.png',role:'master',mimeType:'image/png',bytes:8,sha256:'c'.repeat(64)}],dependencies:[],message:'Imported original'};
+    const local=(creation=localId,pkg=localPackage,owner=user,target=project)=>scalar("select begin_local_source_import($1,$2,$3,$4,'Cover','image',$5) as result",[workspace,owner,target,creation,JSON.stringify(pkg)]);
+    const localRevision=await local();assert.equal(await local(),localRevision,'lost replies reuse the first revision');
+    assert.deepEqual((await db.query('select app_id,asset_kind from studio_assets where id=$1',[localId])).rows[0],{app_id:null,asset_kind:'image'});
+    await assert.rejects(local(localId,{...localPackage,files:[{...localPackage.files[0],sha256:'d'.repeat(64)}]}),/identity reused/);
+    await assert.rejects(local(randomUUID(),localPackage,foreignUser),/not found/);
+    await assert.rejects(local(randomUUID(),localPackage,user,foreignProject),/not found/);
+    const localFiles=(await db.query('select id,bytes from studio_package_files where revision_id=$1',[localRevision])).rows;
+    await scalar('select commit_studio_revision($1,$2,$3,$4) as result',[workspace,user,localRevision,JSON.stringify(localFiles)]);
+    assert.equal(await local(),localRevision,'confirmed local originals remain immutable on retry');
+    assert.equal(await scalar('select count(*)::int as result from studio_revisions where asset_id=$1',[localId]),1);
+    await db.exec('reset role; set role authenticated');
+    await assert.rejects(local(),/permission denied/);
+    await db.exec('reset role; set role service_role');
     const discovery = await scalar("insert into studio_media_discoveries(workspace_id,project_id,provider,source_id,kind,metadata,expires_at) values($1,$2,'commons','123','image','{}',now()+interval '1 hour') returning id as result", [workspace, project]);
     await db.query("insert into studio_media_budgets(workspace_id,monthly_limit_micros) values($1,100000)", [workspace]);
     await db.query("insert into agents(workspace_id,agent37_id) values($1,'director-test')",[workspace]);

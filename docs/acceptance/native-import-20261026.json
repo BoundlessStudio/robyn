@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-26",
+  "status": "Historical local acceptance of the initial three-format slice; extended by craft-import-20261026.json; not deployed",
+  "scope": "First native-document import slice",
+  "sourceBase": {
+    "web": "74efbe79994b345d6254804efcd7eebb2e3048d6",
+    "runtime": "20be994facb07f29ffbf5f1f5decd4b5e2a7b7f5"
+  },
+  "sourceSha256Lf": {
+    "src/studio/native-import.ts": "f1446c055442e74173c4941e0a852127343a3c0ec237ef26f1a2e922a3680812",
+    "src/components/studio/ImportDocumentDialog.tsx": "c9971ef2965cc85a012290943f41df411a097ca8c695d712126cbd36f98071fd",
+    "src/components/studio/ProjectWorkspace.tsx": "604ae83a6665ac8edf319cae6360ebaa50a1656dd31abfcfc3e6a1e63017fd32",
+    "src/components/studio/UploadPackageDialog.tsx": "3cbcfa25276e94539e759614efae223b3aaeb8cefb3760aed5465d3843cabe4f",
+    "src/app/dashboard/studio.css": "26d8c1a73ba7bf1b288bfa9623d840fba44f1b7a75eb531647b193bb85a48cbd",
+    "tests/native-import.test.ts": "c631c112b4f653c5c24bf86c613026d80abc153ffe904a92949f888bba88f078",
+    "tests/native-import-browser.test.mjs": "ba1d3aa087e7a0c7fb29ab546a397967e6339ae0c8b7c76a5b89b3f52872f4b2",
+    "tests/fixtures/native-import.mjs": "12099da2e1c1947003786b99fed58eb29f56c39dfb5801962bc9d3e9d23aac04"
+  },
+  "directFormats": [
+    ".docx",
+    ".xlsx",
+    ".pdf"
+  ],
+  "behaviour": [
+    "File picker and drops on the empty workspace or asset rail select the Craft and name automatically.",
+    "A confirmed original revision opens immediately and appears in the existing library.",
+    "Lost creation and commit replies retry with the same identity; pause/resume preserves the upload.",
+    "Other recognised native project formats prefill the detailed form so linked files can be included.",
+    "Unknown or ambiguous files create nothing before explicit input; folder imports preserve relative paths.",
+    "Dropping another document respects unsaved editor work."
+  ],
+  "checks": {
+    "node": "24.18.0",
+    "npmCi": "passed; audit reported zero vulnerabilities",
+    "typecheck": "passed",
+    "webTests": 87,
+    "runtimeWordPackageTests": 2,
+    "productionBuild": "passed",
+    "desktopViewports": [
+      {
+        "width": 1440,
+        "height": 960
+      },
+      {
+        "width": 1024,
+        "height": 768
+      }
+    ],
+    "visualStates": [
+      "empty workspace",
+      "import progress",
+      "paused import",
+      "unrecognised file",
+      "linked project prefill",
+      "native document open",
+      "native edit",
+      "library reopening"
+    ],
+    "targetedAxeViolations": [],
+    "consoleErrors": [],
+    "exploratoryChecks": [
+      "empty file rejected before asset creation",
+      "folder/files controls retain expected state",
+      "Escape returns focus",
+      "no horizontal clipping at tested desktop widths"
+    ],
+    "publicChecks": {
+      "combinations": 18,
+      "layoutAndAxe": "passed",
+      "keyboardPassed": 14,
+      "keyboardUnverified": 4,
+      "limitation": "Existing Windows WebKit default keyboard-navigation cases remain explicitly unverified."
+    }
+  },
+  "nativeRoundTrip": {
+    "editor": "wordcraft/v0.9.0-0.1.2",
+    "storage": "Isolated in-memory API and Storage fixtures; actual published editor and existing native executable",
+    "originalSha256": "c74b82f01fe6b5abe9bf449efc7322175dbe2c0e1216aa369278ffa4a65b66cd",
+    "importedOriginalSha256": "c74b82f01fe6b5abe9bf449efc7322175dbe2c0e1216aa369278ffa4a65b66cd",
+    "browserSavedSha256": "3d7cfb4f3037e4eacef05773d9304d16b468d31fb59d35ce1eeb1709fb9a0b36",
+    "nativeContinuedSha256": "82457d6205ecbd092de0a28105aa106c58c4af44ef746c8a9a3b97456c245668",
+    "checks": [
+      "Original imported bytes exactly match the native source.",
+      "Normal canvas keyboard editing and Ctrl+S produced a second immutable revision with the first as its expected base.",
+      "Reopening from the real library component retained the browser paragraph.",
+      "Independent WordCraft CLI reopening found the browser paragraph.",
+      "A further native edit preserved the browser paragraph and saved a new DOCX."
+    ]
+  },
+  "limits": [
+    "No production private reads/writes, employee turns, new editor release or runtime changes.",
+    "No new format conversion, automatic linked-file discovery or batch separation.",
+    "Director first-draft and blank-document proposals are outside this first slice.",
+    "Native acceptance added here is WordCraft on desktop Chromium; no broader new Craft/browser acceptance claim."
+  ],
+  "artifactsDirectory": "artifacts/qa/native-import-20261026"
+}

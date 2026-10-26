@@ -1,6 +1,6 @@
 # Current pilot status
 
-Updated October 25, 2026. This is the current index; [PLAN.md](PLAN.md) retains the complete scope and dated implementation history. [The review report](PROJECT-REVIEW-2026-10-25.md) tracks remediation and remaining acceptance work.
+Updated October 26, 2026. This is the current index; [PLAN.md](PLAN.md) retains the complete scope and dated implementation history. [The review report](PROJECT-REVIEW-2026-10-25.md) tracks remediation and remaining acceptance work.
 
 Robyn is an invitation-only, passwordless, solo-creator studio at **https://robyn.academy**. Its Creative Director, thirteen Craft specialists and Research work with private native files and exact saved revisions. The authenticated studio is desktop-only. Public signup and commercial subscriptions are disabled. The public homepage supports small screens.
 
@@ -15,6 +15,12 @@ The web application pins workstation **0.1.23**. Its exact bundle and controlled
 The owner authorized this rollout after the earlier deferral. Database recovery-point creation, the full cross-service restore drill and Storage-file backups remain deferred. [Media acceptance](MEDIA-ACCEPTANCE.md) and [browser support](BROWSER-SUPPORT.md) retain the open preview-service and native accessibility limits.
 
 Use [RELEASE-2026-10-25.md](RELEASE-2026-10-25.md) for source commits, digests, migration adoption, editor pins and rollback boundaries. Never replay the historical migration files to reconstruct an existing database. [SETUP.md](../SETUP.md) documents explicit baselining and checksummed incremental setup.
+
+## Local changes awaiting release
+
+**Native and source-file import — October 26.** Recognised native projects now select their Craft and name automatically across all thirteen Crafts. Robyn checks the additional Crafts' native dependencies before creating an asset, asks for missing files or a containing folder when needed, and saves only the selected project and the files it uses. Multiple native masters require one project choice. Common images, audio and video instead become reusable source assets with no owning Craft, open in a preview, and appear in the library. Creators use the existing **Place from studio** controls when a source is needed inside a Craft. This does not automatically convert common media into native documents.
+
+Local acceptance covers 91 web tests, 70 runtime tests, typecheck, production build and seven intake/recovery checks on each of Chromium, Firefox and WebKit. Genuine native projects opened in all ten additional published editors; CADCraft also passed source placement, confirmed save, library reopening and independent native continuation. The earlier WordCraft round trip remains recorded. Targeted desktop visual/accessibility checks and real audio/video playback passed. Source creation requires the new **0023_local_source_import.sql** migration through the verified ledger; it has only been applied in isolated tests. The web and companion runtime changes are local and uncommitted, with no production records or employee workstations changed. [Current sanitized acceptance](acceptance/craft-import-20261026.json) separates these checks from [the initial three-format slice](acceptance/native-import-20261026.json). The Director first-draft and blank-document proposals remain future work; the production release above is unchanged.
 
 ## Review completion
 

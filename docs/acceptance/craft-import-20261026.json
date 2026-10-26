@@ -1,0 +1,274 @@
+{
+  "date": "2026-10-26",
+  "status": "Verified locally; not deployed",
+  "scope": "Native project intake across all thirteen Crafts and reusable common source media",
+  "sourceBase": {
+    "web": "74efbe79994b345d6254804efcd7eebb2e3048d6",
+    "runtime": "20be994facb07f29ffbf5f1f5decd4b5e2a7b7f5",
+    "changes": "Uncommitted local changes in both repositories; source hashes identify this acceptance state"
+  },
+  "sourceSha256Lf": {
+    "src/components/studio/ImportDocumentDialog.tsx": "b232fb9a2b7113a6def74cd346956af6e11ecc465619c7a76f7b562420be8dab",
+    "src/components/studio/ProjectWorkspace.tsx": "83d62c0ab48ebc4081f28cf3690dd2f50cf2649ba68166a34e9ef817201c7b8a",
+    "src/components/studio/UploadPackageDialog.tsx": "3cbcfa25276e94539e759614efae223b3aaeb8cefb3760aed5465d3843cabe4f",
+    "src/studio/native-import.ts": "ff32779dec29fa45b65af481a70bc1d80472eccd55d6d19787ed9dc32653e5b6",
+    "src/studio/source-import.ts": "386b0c9b52f2339fcf32726758bb4b3155d537921ca04c7913c30b52a246b64f",
+    "src/studio/transfer-client.ts": "66caff75d03ec1878434098e43a6f60e14372ab52b251f0a0a5d764f2421d10e",
+    "src/studio/server.ts": "1a2e37248b048fb22307e1e9f772dd9b5f82597dda70fa9e8f9759e83f1a41c4",
+    "src/app/api/studio/sources/route.ts": "8c57a57776518b7c3ca46c2d48f91e0d59246ce2311e2fadcee08346d77cc0e4",
+    "src/app/dashboard/studio.css": "a0b8398150142e18139278c4abaed35d1c8542dbc705c3119e227d3a8b09894a",
+    "supabase/migrations/0023_local_source_import.sql": "2e1105ee981be0848d405596690b576fb65b330cd9c84c48d469e24088c245a9",
+    "tests/native-import.test.ts": "4796908e85b6e649592956f84fd434efb2e82584ea62ef143e68aef8fd02fb8e",
+    "tests/native-import-browser.test.mjs": "c13524ba0aa56e281cf68e67893a6f13831b45f3089e1be2ac3792f343a328d8",
+    "tests/fixtures/native-import.mjs": "171a440e2f75b65ba241a6b574f288139e15c822daf22fbac44079488013fbf3",
+    "tests/source-import.test.ts": "06621f584649dc4d4b0403f31b5cb938aea8eb831027a6b2b3436575253d55cd",
+    "tests/media-database.test.mjs": "77c8abdd7d93f2fed90d8e73ab3489512aa8db81b7b43fdc0064c1401651ce09"
+  },
+  "runtimeSourceSha256Lf": {
+    "lib/import-inspection.mjs": "81f2d82169ae02d913197e785f86e212e9143a6bcc8cf36a8a86d1d7f5c7050f",
+    "scripts/build-import-inspection.mjs": "e2944e3d4706be5aef79c05362bc2b218fb5c98fd653e293494a7300cc0376e7",
+    "tests/import-inspection.test.mjs": "56a5b673ace68da495d14537ba38d2611586bf14f569d75e1694ea966526402d"
+  },
+  "generatedInspectorSha256": "4e05223869f589b2ed1036a64b72728bdf29a0fd24a6f3be2088c38d34b80ca1",
+  "migration": {
+    "file": "0023_local_source_import.sql",
+    "state": "Validated with all migrations in isolated PGlite tests; not applied to a deployed database; requires the existing verified migration-ledger workflow"
+  },
+  "editorPins": {
+    "cadcraft": "cadcraft-v0.10.0-robyn-0.1.2",
+    "deckcraft": "deckcraft-v0.9.0-robyn-0.1.2",
+    "designcraft": "designcraft-v0.11.0-robyn-0.1.2",
+    "effectcraft": "effectcraft-v0.14.0-robyn-0.1.2",
+    "figcraft": "figcraft-v0.9.0-robyn-0.1.3",
+    "filmcraft": "filmcraft-v0.10.0-robyn-0.1.4",
+    "gridcraft": "gridcraft-v0.10.0-robyn-0.1.2",
+    "lightcraft": "lightcraft-v0.11.0-robyn-0.1.4",
+    "pdfcraft": "pdfcraft-v0.11.0-robyn-0.1.4",
+    "photocraft": "photocraft-v0.12.0-robyn-0.1.4",
+    "soundcraft": "soundcraft-v0.11.0-robyn-0.1.4",
+    "vectorcraft": "vectorcraft-v0.14.0-robyn-0.1.4",
+    "wordcraft": "wordcraft-v0.9.0-robyn-0.1.2"
+  },
+  "workstationClientVersion": "0.1.23 (unchanged)",
+  "behaviour": [
+    "Recognised native files select their Craft and name automatically. Self-contained projects save and open immediately.",
+    "The same per-Craft runtime package checks reject missing/unsafe/nested links before any asset write. A creator adds linked files or chooses a containing folder; multiple native masters require one project choice.",
+    "Only the selected master and referenced files are saved from native folders. Original bytes and relative paths survive; unrelated files and an empty compacted LightCraft journal are excluded.",
+    "LightCraft master filenames and FilmCraft extension casing are normalized for the existing published adapters without changing source bytes.",
+    "PNG/JPG/JPEG/SVG/WebP/GIF, WAV/MP3/FLAC/OGG/M4A and MP4/MOV/WebM import as source assets with no owning Craft. Multiple supported source files create separate assets and open the final preview.",
+    "Image insertion exports retain the exact original bytes. Existing Place from studio controls choose how a source is used. No automatic native conversion or forced default Craft.",
+    "Source asset and first revision creation are atomic and owner-scoped; exact replays reuse them after uncertain replies. The ordinary source revision route stays closed to later edits.",
+    "Small source images can supply library covers; larger originals are not loaded as gallery thumbnails.",
+    "Pause/continue and dirty-work protection remain in place."
+  ],
+  "checks": {
+    "node": "24.18.0",
+    "typecheck": "passed",
+    "webTests": 91,
+    "runtimeTests": 70,
+    "productionBuild": "passed",
+    "browserIntakeTests": {
+      "chromium": 7,
+      "firefox": 7,
+      "webkit": 7
+    },
+    "testTransport": "Actual components, isolated BFF fixtures and an actual loopback TUS receiver; only the owned Chromium QA context receives loopback permission. No production data.",
+    "visualViewports": [
+      [
+        1440,
+        960
+      ],
+      [
+        1024,
+        768
+      ]
+    ],
+    "visualStates": [
+      "workspace",
+      "progress and pause",
+      "missing linked files",
+      "ambiguous project choice",
+      "source image preview",
+      "audio/video playback",
+      "published native editors"
+    ],
+    "targetedAxeViolations": [],
+    "exploratoryChecks": [
+      "Unsupported documents require explicit native-format handling",
+      "Missing and nested model resources block before writes",
+      "Unrelated folder content is excluded",
+      "Lost creation and commit responses preserve import identity",
+      "Real SVG artwork with unsupported text remains a source and CADCraft explains its placement limitation",
+      "No horizontal overflow or clipped controls in the reviewed desktop states"
+    ]
+  },
+  "publishedEditorOpenChecks": [
+    {
+      "app": "photocraft",
+      "status": "opened",
+      "files": [
+        {
+          "path": "offscript_continued.pcraft",
+          "sha256": "f5bbb1b6143fcd06e68c61e56733edda5687eaaa87223eb600691a30b21d44a6",
+          "bytes": 4117224
+        }
+      ],
+      "errors": []
+    },
+    {
+      "app": "vectorcraft",
+      "status": "opened",
+      "files": [
+        {
+          "path": "Linked bloom composition.vectorcraft",
+          "sha256": "c531ac1646652207a60c6ac76b677e6e4a8e91da830cfcba6855f032920751d1",
+          "bytes": 515297
+        },
+        {
+          "path": "Nested bloom.vectorcraft",
+          "sha256": "a468f8e36f38f7a60e2d384a5832bcd06270b0fc9637c192e772053e08f87700",
+          "bytes": 166099
+        },
+        {
+          "path": "media/bloom.png",
+          "sha256": "1be13b58d4885797f37432a9f135707460833226d0caa7d806c988b15c8b50f5",
+          "bytes": 2056271
+        }
+      ],
+      "errors": []
+    },
+    {
+      "app": "soundcraft",
+      "status": "opened",
+      "files": [
+        {
+          "path": "OFFSCRIPT-final.scraft",
+          "sha256": "f40d6a1fce07f9d3770cd00d039c1f8d6dee63a9453d78c49c8cf22a7b0dc967",
+          "bytes": 9302
+        }
+      ],
+      "errors": []
+    },
+    {
+      "app": "designcraft",
+      "status": "opened",
+      "files": [
+        {
+          "path": "OFFSCRIPT.designcraft",
+          "sha256": "04aa34f36fecba5b94a075970137f9a6f6dc96e59dfd0b5caee29fc2b0e71ecf",
+          "bytes": 27564
+        }
+      ],
+      "errors": []
+    },
+    {
+      "app": "deckcraft",
+      "status": "opened",
+      "files": [
+        {
+          "path": "offscript.deckcraft",
+          "sha256": "7dedbd841bc7f63c83ed5fc56e4926cf0cb9677a95ea53ebd22810dac7fc4604",
+          "bytes": 137910
+        }
+      ],
+      "errors": []
+    },
+    {
+      "app": "figcraft",
+      "status": "opened",
+      "files": [
+        {
+          "path": "OFFSCRIPT.figcraft",
+          "sha256": "fcc0fa1fbf236719f16a3c0cc5ba39294076f6f3c00be1bcc0424b95b8498471",
+          "bytes": 29790
+        }
+      ],
+      "errors": []
+    },
+    {
+      "app": "filmcraft",
+      "status": "opened",
+      "files": [
+        {
+          "path": "edit.fcproj",
+          "sha256": "8588b1808c36e1bc24c159a53de4ab56aa02c590a7de65121bfd4c40ec4be247",
+          "bytes": 28988
+        },
+        {
+          "path": "media/bloom.png",
+          "sha256": "1be13b58d4885797f37432a9f135707460833226d0caa7d806c988b15c8b50f5",
+          "bytes": 2056271
+        }
+      ],
+      "errors": []
+    },
+    {
+      "app": "effectcraft",
+      "status": "opened",
+      "files": [
+        {
+          "path": "Offscript.ecproj",
+          "sha256": "aba064b47da58ac9c266daf26eea74189e96f1572afe2bc9d9af74464378cfbc",
+          "bytes": 67813
+        }
+      ],
+      "errors": []
+    },
+    {
+      "app": "lightcraft",
+      "status": "opened",
+      "files": [
+        {
+          "path": "catalog.snap",
+          "sha256": "be0891b4d48495c05c95558d4f81706f44df9ca5c59afab195f178e8e4b74789",
+          "bytes": 14256
+        },
+        {
+          "path": "ui.json",
+          "sha256": "45621a347707a751a2d005c00dd8b2ac63c840dd13885bf2aae596f0bd849727",
+          "bytes": 4325
+        },
+        {
+          "path": "view.json",
+          "sha256": "3c47d3ccc200bc5f27e12cad0316fa9ce6843b08cabcc66b3f2800ddb26b0e3c",
+          "bytes": 251
+        },
+        {
+          "path": "originals/source/bloom.png",
+          "sha256": "1be13b58d4885797f37432a9f135707460833226d0caa7d806c988b15c8b50f5",
+          "bytes": 2056271
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "cadRoundTrip": {
+    "editor": "cadcraft/v0.10.0-0.1.2",
+    "environment": "Actual published editor and installed native CLI; isolated project/BFF/Storage fixtures",
+    "browserSavedSha256": "f46f014f74f38d464bdc1fee07096f03e182aa98220b2cb0fb15911698e99591",
+    "nativeContinuedSha256": "947f8952162420e8766b7e7513f271c74fd227515406b586fd0c785189517d34",
+    "checks": [
+      "Native DXF directly imported and opened",
+      "New local SVG source placed through the actual Place from studio picker",
+      "Ctrl+S confirmed a new immutable DXF revision with the exact SVG source revision dependency",
+      "Library reopen passed",
+      "Native CLI loaded 24 entities with zero skipped records",
+      "Native continuation added a line and saved 25 entities with zero skipped records"
+    ]
+  },
+  "sourcePlayback": {
+    "svg": "Preview decoded and reopened from library",
+    "wav": "Actual 8-second WAV played through browser controls",
+    "mp4": "Actual H.264/AAC MP4 played through browser controls"
+  },
+  "limits": [
+    "This is local acceptance, not a deployment or new editor release. Existing editor/workstation pins are unchanged.",
+    "Published-editor checks for the ten additional Crafts were on desktop Chromium; the other browser counts cover host intake/transfers through a transport peer. Only CADCraft has a new full native continuation in this extension; the earlier WordCraft round trip is recorded separately.",
+    "Native links must form a portable package. Unsupported external references, un-compacted LightCraft journals, corrupt/unsupported native versions and missing media require correction before import.",
+    "Common files remain reusable sources. Each Craft retains its own insertion and codec limits; importing a file does not promise conversion into every native format.",
+    "Directory drops lead to the folder picker. Mixed unrelated native projects require a project choice; this is not a general folder organizer.",
+    "Director first-draft and blank-document proposals remain outside this import change."
+  ],
+  "earlierAcceptance": "native-import-20261026.json",
+  "artifactsDirectory": "artifacts/qa/craft-import-20261026"
+}
