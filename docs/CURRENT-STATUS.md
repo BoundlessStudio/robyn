@@ -14,6 +14,18 @@ The R13/R18 follow-up adds exact provider-option gates, corrected contracts/pric
 
 Use [RELEASE-2026-10-25.md](RELEASE-2026-10-25.md) for source commits, digests, migration adoption, editor pins and rollback boundaries. Never replay the historical migration files to reconstruct an existing database. [SETUP.md](../SETUP.md) documents explicit baselining and checksummed incremental setup.
 
+## Review completion
+
+The [review report](PROJECT-REVIEW-2026-10-25.md#completion-status--october-25-2026) now assigns one explicit status to every R-number:
+
+| Status | Findings |
+| --- | --- |
+| Done in the reviewed candidate (12) | R01, R02, R03, R04, R05, R07, R08, R10, R11, R12, R14, R16 |
+| Partial (5) | R06 capacity acceptance; R09 deliberate replacement; R13 preview-provider acceptance; R17 terms/retention policy; R18 native accessibility and broader device acceptance |
+| Deferred by owner (1) | R15 cross-service recovery |
+
+“Done in candidate” means implemented and checked, not deployed. The remaining hosted R06/R09 checks and the shared production rollout remain deferred. R13's three preview acquisitions still await the requested $0.13 approval. The report separates current work from the original defect descriptions and recommended sequence.
+
 ## Acceptance matrix
 
 “Recorded” means a specific earlier live exercise passed. It does not imply every tool, model or browser combination is accepted. The version-controlled [evidence index](acceptance/evidence-index.json) contains sanitized summaries and hashes, not raw private QA records.
