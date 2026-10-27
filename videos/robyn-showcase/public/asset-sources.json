@@ -1,0 +1,143 @@
+{
+  "note": "Unmodified repository assets. Screenshot crop is presentation-only. See ../../docs/HOMEPAGE-ARTWORK.md and ../../public/brand/apps/sources.json.",
+  "files": [
+    {
+      "source": "public/brand/apps/photocraft.webp",
+      "destination": "apps/photocraft.webp",
+      "bytes": 34146,
+      "sha256": "3dc4caf2a44de97ddde2d18fcb6b5629f97c3bd159ff8a4a35f3bf122854513a"
+    },
+    {
+      "source": "public/brand/apps/lightcraft.webp",
+      "destination": "apps/lightcraft.webp",
+      "bytes": 25402,
+      "sha256": "8db8bf365af9a422f37c96ef29a25e55c9508993e782f291cdfd15d4d33dc47e"
+    },
+    {
+      "source": "public/brand/apps/vectorcraft.webp",
+      "destination": "apps/vectorcraft.webp",
+      "bytes": 27266,
+      "sha256": "c48f5f530363ea86278c80729a4fcd75346be8bf2f5718d3beaffcbbcfe093cf"
+    },
+    {
+      "source": "public/brand/apps/designcraft.webp",
+      "destination": "apps/designcraft.webp",
+      "bytes": 24474,
+      "sha256": "e51060f1e246783bf3163db378d8adcfd53e0a468590df9bad9f36243323fb6a"
+    },
+    {
+      "source": "public/brand/apps/figcraft.webp",
+      "destination": "apps/figcraft.webp",
+      "bytes": 30224,
+      "sha256": "c9e9753431a038b186bcf411c1c98a126bf326e03e618f3cf59b41f562833fad"
+    },
+    {
+      "source": "public/brand/apps/filmcraft.webp",
+      "destination": "apps/filmcraft.webp",
+      "bytes": 24538,
+      "sha256": "b9da03e528790c6bcca4403d45cd538512e82accf1a6b6384d0cfb59834f3b35"
+    },
+    {
+      "source": "public/brand/apps/effectcraft.webp",
+      "destination": "apps/effectcraft.webp",
+      "bytes": 26172,
+      "sha256": "0c65ee3b451a5447315725fb93d454fabd7adf3a598c835ebe293eebf3e799e0"
+    },
+    {
+      "source": "public/brand/apps/soundcraft.webp",
+      "destination": "apps/soundcraft.webp",
+      "bytes": 13776,
+      "sha256": "f02169fc5dbf594f2516f0dc22cfa7ac2ce324a8dd7ea92958270649e75f8ef2"
+    },
+    {
+      "source": "public/brand/apps/wordcraft.webp",
+      "destination": "apps/wordcraft.webp",
+      "bytes": 43010,
+      "sha256": "1dd203cc9a1ba33f0415564a8a4d8b740b780fb68976ec5c32a2d58675d0f1b4"
+    },
+    {
+      "source": "public/brand/apps/pdfcraft.webp",
+      "destination": "apps/pdfcraft.webp",
+      "bytes": 27992,
+      "sha256": "96d7d96e89eca7bb43f198606af3cf3aa13b3bb262147c885eb063c060086eb6"
+    },
+    {
+      "source": "public/brand/apps/deckcraft.webp",
+      "destination": "apps/deckcraft.webp",
+      "bytes": 45416,
+      "sha256": "3a9b53df2850d1d17825087c67afe45269bbb7cbdcc98671e7945ab6793e18cb"
+    },
+    {
+      "source": "public/brand/apps/gridcraft.webp",
+      "destination": "apps/gridcraft.webp",
+      "bytes": 47024,
+      "sha256": "d245e8bfe2f747944ea2ecbaba1f8e63213dd040793d6a09eeb3cbc7dc1f0d01"
+    },
+    {
+      "source": "public/brand/apps/cadcraft.webp",
+      "destination": "apps/cadcraft.webp",
+      "bytes": 46960,
+      "sha256": "0fb06b48bafefe5cc2e4371836aed6db7907d5953f9df9c4711a7f77de5f45d2"
+    },
+    {
+      "source": "public/brand/apps/research.webp",
+      "destination": "apps/research.webp",
+      "bytes": 31634,
+      "sha256": "c82cb6a3f60f318fbc28b3013d39f57888fc776aeb83987e4b7f1f4218c43e26"
+    },
+    {
+      "source": "public/artwork/editors/photocraft.png",
+      "destination": "editors/photocraft.png",
+      "bytes": 610007,
+      "sha256": "93e738dd88adc374489193e69cefbaa918d64ee0548272d2e86c07667d44729a"
+    },
+    {
+      "source": "public/artwork/editors/filmcraft.png",
+      "destination": "editors/filmcraft.png",
+      "bytes": 232766,
+      "sha256": "ae558d79900923ffc5ecbf0183c9a23da8955f08b4b9516146ab6887fe197de4"
+    },
+    {
+      "source": "public/artwork/editors/research.jpg",
+      "destination": "editors/research.jpg",
+      "bytes": 148964,
+      "sha256": "61b81767cae59cf0efe8e81b166b7c7a76743b97e1cfc336c5b768a5b1b655ce"
+    },
+    {
+      "source": "public/artwork/offscript-bloom.png",
+      "destination": "artwork/bloom.png",
+      "bytes": 2056271,
+      "sha256": "1be13b58d4885797f37432a9f135707460833226d0caa7d806c988b15c8b50f5"
+    },
+    {
+      "source": "node_modules/@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2",
+      "destination": "fonts/space-grotesk.woff2",
+      "bytes": 22288,
+      "sha256": "0640890476fc1198ab4de571fb658de443c4d85b66466ec09534a8737ab1ce9d"
+    },
+    {
+      "source": "node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2",
+      "destination": "fonts/instrument-serif.woff2",
+      "bytes": 21032,
+      "sha256": "5eb09b5ac0e28b67c2f041c8ba6d244604ca0c0980d65912ab2d47fed84ddc31"
+    },
+    {
+      "source": "node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2",
+      "destination": "fonts/instrument-serif-italic.woff2",
+      "bytes": 22128,
+      "sha256": "5a51946dfffa82972bc98745359c46761515641fda557c25116459a9f83da4a7"
+    },
+    {
+      "source": "node_modules/@fontsource-variable/space-grotesk/LICENSE",
+      "destination": "fonts/Space-Grotesk-LICENSE.txt",
+      "bytes": 4401,
+      "sha256": "18a4de52385f6b988782639d5d0cc1326e5a8c2de9a7f01d7b20d9aedcc60943"
+    },
+    {
+      "source": "node_modules/@fontsource/instrument-serif/LICENSE",
+      "destination": "fonts/Instrument-Serif-LICENSE.txt",
+      "bytes": 4532,
+      "sha256": "b6106a757902d2d412e09d94dc4a226fe3da80485208a98003969f1b8b6b1d74"
+    }
+  ]
+}
