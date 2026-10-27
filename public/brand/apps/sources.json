@@ -1,0 +1,115 @@
+{
+  "retrieved": "2026-10-27",
+  "catalogue": "https://getartcraft.com/apps",
+  "note": "Ten unchanged ArtCraft originals plus four Robyn animal illustrations requested by the owner.",
+  "icons": [
+    {
+      "id": "photocraft",
+      "source": "https://getartcraft.com/images/apps/photocraft/icon.webp",
+      "bytes": 34146,
+      "sha256": "3dc4caf2a44de97ddde2d18fcb6b5629f97c3bd159ff8a4a35f3bf122854513a"
+    },
+    {
+      "id": "vectorcraft",
+      "source": "https://getartcraft.com/images/apps/vectorcraft/icon.webp",
+      "bytes": 27266,
+      "sha256": "c48f5f530363ea86278c80729a4fcd75346be8bf2f5718d3beaffcbbcfe093cf"
+    },
+    {
+      "id": "filmcraft",
+      "source": "https://getartcraft.com/images/apps/filmcraft/icon.webp",
+      "bytes": 24538,
+      "sha256": "b9da03e528790c6bcca4403d45cd538512e82accf1a6b6384d0cfb59834f3b35"
+    },
+    {
+      "id": "lightcraft",
+      "source": "https://getartcraft.com/images/apps/lightcraft/icon.webp",
+      "bytes": 25402,
+      "sha256": "8db8bf365af9a422f37c96ef29a25e55c9508993e782f291cdfd15d4d33dc47e"
+    },
+    {
+      "id": "pdfcraft",
+      "source": "https://getartcraft.com/images/apps/pdfcraft/icon.webp",
+      "bytes": 27992,
+      "sha256": "96d7d96e89eca7bb43f198606af3cf3aa13b3bb262147c885eb063c060086eb6"
+    },
+    {
+      "id": "effectcraft",
+      "source": "https://getartcraft.com/images/apps/effectcraft/icon.webp",
+      "bytes": 26172,
+      "sha256": "0c65ee3b451a5447315725fb93d454fabd7adf3a598c835ebe293eebf3e799e0"
+    },
+    {
+      "id": "designcraft",
+      "source": "https://getartcraft.com/images/apps/designcraft/icon.webp",
+      "bytes": 24474,
+      "sha256": "e51060f1e246783bf3163db378d8adcfd53e0a468590df9bad9f36243323fb6a"
+    },
+    {
+      "id": "figcraft",
+      "source": "https://getartcraft.com/images/apps/figcraft/icon.webp",
+      "bytes": 30224,
+      "sha256": "c9e9753431a038b186bcf411c1c98a126bf326e03e618f3cf59b41f562833fad"
+    },
+    {
+      "id": "soundcraft",
+      "source": "https://getartcraft.com/images/apps/soundcraft/icon.webp",
+      "bytes": 13776,
+      "sha256": "f02169fc5dbf594f2516f0dc22cfa7ac2ce324a8dd7ea92958270649e75f8ef2"
+    },
+    {
+      "id": "cadcraft",
+      "source": "https://getartcraft.com/images/apps/cadcraft/icon.webp",
+      "bytes": 9256,
+      "sha256": "6e5031366dfc3b01abd92496767483f7311cf126f3f8c6c5453f2464fb1e54ef"
+    },
+    {
+      "id": "research",
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-10-27",
+      "prompt": "Create one production-ready application icon for Robyn's Research application, visually belonging to the ArtCraft icon family shown in this conversation. Single square icon only, no text, no wordmark, no layout or presentation board. A flat vivid periwinkle-blue (#7472E8) rounded-square tile fills the canvas with clean rounded corners and true transparency outside the tile. Inside, an antique natural-history wood engraving of an inquisitive raven in three-quarter profile, head and upper breast filling most of the tile, facing left. Fine black ink crosshatching and warm ivory highlights, strong recognizable silhouette, detailed feathers, a bright observant eye. One simple small antique magnifying glass is held beside the raven's breast and reinforces research without obscuring its face. The engraving has a crisp cutout edge directly on the solid colour, just like the fox, dragon, owl, lynx and lion ArtCraft animal icons. Maintain legibility at 48x48 pixels. Tight crop, raven large, tile and engraving flat, no 3D, no gradients, no shadow, no sticker rim, no surrounding margin, no decorative background, no letters. 1024x1024 square output with alpha only beyond the rounded corners.",
+      "width": 256,
+      "height": 256,
+      "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved.",
+      "sourceSha256": "58553fae52b18e331391965f0b4a080f1c4590ddaf996271323a168acf8f348e",
+      "bytes": 31634,
+      "sha256": "c82cb6a3f60f318fbc28b3013d39f57888fc776aeb83987e4b7f1f4218c43e26"
+    },
+    {
+      "id": "wordcraft",
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-10-27",
+      "prompt": "Create a single production application icon for WordCraft in the ArtCraft animal icon family: a black-and-ivory antique natural-history wood engraving of an elephant's head and upper shoulders, three-quarter view facing left, expressive eye, large ears, gently curled trunk clearly visible. Fine dense black ink hatching, warm ivory paper-white highlights, crisp isolated animal silhouette. The elephant fills almost the whole icon, cropped at the bottom. Background is a uniform vivid royal blue #3C59DD rounded-square tile filling the square canvas, large smooth rounded corners, actual transparency outside the corners only. Icon must match the detailed monochrome fox, owl, lynx, lion and chameleon illustrations on flat saturated coloured rounded tiles shown in this conversation. Strong outline legible at 48 pixels. One icon only, 1024x1024. No text, letters, book, pen, UI, shadow, gradients, sticker rim or surrounding margin. No scenery. Flat vintage engraved animal, not cartoon or 3D.",
+      "width": 256,
+      "height": 256,
+      "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved.",
+      "sourceSha256": "b1a1368749a33fed1f605343ccacc34e355596e38c5a7062929296e1d83da70e",
+      "bytes": 43010,
+      "sha256": "1dd203cc9a1ba33f0415564a8a4d8b740b780fb68976ec5c32a2d58675d0f1b4"
+    },
+    {
+      "id": "deckcraft",
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-10-27",
+      "prompt": "Create a single production application icon for DeckCraft in the ArtCraft animal icon family: a black-and-ivory antique natural-history wood engraving of a proud peacock with its distinctive slim curved neck, small feather crown and elegant head in profile facing left, with a compact fan of patterned tail feathers rising behind it. Composition makes the peacock head and neck prominent and recognizable, not lost in feathers. Fine dense black ink hatching, warm ivory paper-white highlights, crisp isolated animal silhouette. The bird fills almost the whole icon, cropped at the bottom. Background is a uniform vivid orange #FF731B rounded-square tile filling the square canvas, large smooth rounded corners, actual transparency outside the corners only. Icon must match the detailed monochrome fox, owl, lynx, lion and chameleon illustrations on flat saturated coloured rounded tiles shown in this conversation. Strong outline legible at 48 pixels. One icon only, 1024x1024. No text, letters, objects, UI, shadow, gradients, sticker rim or surrounding margin. No scenery. Flat vintage engraved animal, not cartoon or 3D.",
+      "width": 256,
+      "height": 256,
+      "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved.",
+      "sourceSha256": "8d6973df581a013f58fd622189a671648a9326c8f6f9415539a10933c2301cf5",
+      "bytes": 45416,
+      "sha256": "3a9b53df2850d1d17825087c67afe45269bbb7cbdcc98671e7945ab6793e18cb"
+    },
+    {
+      "id": "gridcraft",
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-10-27",
+      "prompt": "Create a single production application icon for GridCraft in the ArtCraft animal icon family: a black-and-ivory antique natural-history wood engraving of a beaver's head and upper chest, three-quarter view facing left. Broad round head, small round ears, bright observant eye, characteristic blunt muzzle and two clear modest front teeth; small forepaws at the bottom, a hint of flat patterned tail on one side. Fine dense black ink hatching, warm ivory paper-white highlights, crisp isolated animal silhouette. The beaver fills almost the whole icon, cropped at the bottom. Background is a uniform vivid emerald green #209D59 rounded-square tile filling the square canvas, large smooth rounded corners, actual transparency outside the corners only. Icon must match the detailed monochrome fox, owl, lynx, lion and chameleon illustrations on flat saturated coloured rounded tiles shown in this conversation. Strong outline legible at 48 pixels. One icon only, 1024x1024. No text, letters, tools, UI, shadow, gradients, sticker rim or surrounding margin. No scenery. Flat vintage engraved animal, not cartoon or 3D.",
+      "width": 256,
+      "height": 256,
+      "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved.",
+      "sourceSha256": "2605fc6a86d837b04eb90207d9bf74f15108f01b7256c7e73be8992ba4abc949",
+      "bytes": 47024,
+      "sha256": "d245e8bfe2f747944ea2ecbaba1f8e63213dd040793d6a09eeb3cbc7dc1f0d01"
+    }
+  ]
+}

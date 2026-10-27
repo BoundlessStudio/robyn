@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight, Globe, Upload, Users } from "lucide-react";
+import { ArrowUpRight, Upload, Users } from "lucide-react";
+import { research } from "@/studio/specialists/research";
 import { launchableApps } from "@/studio/application-launch";
 import { currentBlankStarters } from "@/studio/blank-starters";
 import type { ApplicationLaunch } from "./useApplicationLaunch";
+import { AppIcon } from "./AppIcon";
 
 export function LaunchProgress({ launch, ready, onResume }: { launch: ApplicationLaunch; ready: boolean; onResume: () => void }) {
   return <>
@@ -26,10 +28,10 @@ export function ApplicationLauncher({ launch, ready, onLaunch, onFiles, onFolder
     {!ready && <p className="studio-note">This project is archived. Open Project details to reactivate it and create new files.</p>}
     <div className="application-grid" aria-label="Project applications">
       {launchableApps.map(app => <button key={app.id} disabled={!ready || !launch.storageReady || launch.busy || Boolean(launch.pending)} onClick={() => onLaunch(app.id)}>
-        <span className="application-icon" style={{ background: app.color }} aria-hidden="true">{app.monogram}</span>
+        <AppIcon app={app} className="application-icon"/>
         <span><strong>{app.name}</strong><small>{currentBlankStarters.find(item => item.appId === app.id)?.description}</small></span><ArrowUpRight size={15} aria-hidden="true"/>
       </button>)}
-      <Link href="/dashboard/research" className="application-research"><span className="application-icon" aria-hidden="true"><Globe size={23}/></span><span><strong>Research</strong><small>Open your research browser</small></span><ArrowUpRight size={15}/></Link>
+      <Link href="/dashboard/research" className="application-research"><AppIcon app={research} className="application-icon"/><span><strong>Research</strong><small>Open your research browser</small></span><ArrowUpRight size={15}/></Link>
     </div>
     <footer><span>Manual editing uses no AI allowance.</span><div><button onClick={onFiles} disabled={launch.busy}><Upload size={14}/>Open existing files</button><button onClick={onFolder} disabled={launch.busy}>Folder or linked files</button><button onClick={onEmployees} disabled={launch.busy}><Users size={14}/>AI Employees</button></div></footer>
   </div>;
