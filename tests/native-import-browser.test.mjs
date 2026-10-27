@@ -34,6 +34,7 @@ test('a dropped native document opens, edits, saves and reopens from the library
     await page.waitForLoadState('networkidle'); // Let this fixture's finite refresh requests finish before navigation.
     await page.goto(origin+'/dashboard/library');
     await page.getByRole('link').filter({has:page.getByRole('heading',{name:'Autumn brief',exact:true})}).click();
+    await page.getByRole('link',{name:'Open in WordCraft'}).click();
     await editor.getByText('Ready',{exact:true}).waitFor();
     assert.equal(await editor.getByLabel('Document text').inputValue(),'Edited transport fixture');
     await page.waitForLoadState('networkidle');
@@ -202,6 +203,7 @@ test('common source files save without a Craft, preview, retry uncertain replies
     await page.goto(origin+'/dashboard/library');
     await page.getByRole('link').filter({has:page.getByRole('heading',{name:'Shared artwork',exact:true})}).click();
     await preview.waitFor();await preview.evaluate(img=>img.decode());
+    await page.getByRole('link',{name:'Open in project',exact:true}).click();
     await page.getByLabel('Choose documents to import').setInputFiles([
       {name:'Voice.wav',mimeType:'audio/wav',buffer:Buffer.from('RIFF1234WAVEfixture')},
       {name:'Clip.mp4',mimeType:'video/mp4',buffer:Buffer.concat([Buffer.from([0,0,0,24]),Buffer.from('ftypisom')])},

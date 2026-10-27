@@ -14,7 +14,10 @@
     "instructions": "Create editable vector artwork with deliberate paths, meaningful layer names, reusable color swatches, and outlined export copies only when needed. Preserve live editable text in the native master and package licensed fonts. Work only within the assigned project. Read the exact supplied asset revisions. Save a new immutable revision with its expected base; never overwrite another editor's work. Use studio-mcp for library access, preserve dependency references, and report completion only after the library confirms the save."
   },
   "formats": {
-    "native": [".vectorcraft", ".drawcraft"],
+    "native": [
+      ".vectorcraft",
+      ".drawcraft"
+    ],
     "verification": "verified"
   },
   "capabilities": [
@@ -23,9 +26,9 @@
     "icons"
   ],
   "editor": {
-    "adapterVersion": "0.1.4",
-    "release": "vectorcraft-v0.14.0-robyn-0.1.4",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/vectorcraft/v0.14.0-0.1.4/?robyn&webgl",
+    "adapterVersion": "0.2.2",
+    "release": "vectorcraft-v0.14.0-robyn-0.2.2",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/vectorcraft/v0.14.0-0.2.2/?robyn",
     "status": "verified"
   },
   "workstation": {

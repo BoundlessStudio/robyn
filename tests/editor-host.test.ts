@@ -6,6 +6,50 @@ import {isTrustedEditorEvent,EDITOR_BRIDGE_PROTOCOL,type EditorMessage} from "..
 const initialRef={assetId:"11111111-1111-4111-8111-111111111111",revisionId:"22222222-2222-4222-8222-222222222222"};
 const message=(requestId:string,operation:EditorMessage["operation"],payload:unknown):EditorMessage=>({protocol:EDITOR_BRIDGE_PROTOCOL,channel:"frame",requestId,operation,payload});
 
+test("editor pickers and project authorization include every page without cursor loops",async()=>{
+  const original=globalThis.fetch,requests:string[]=[];
+  const old={id:initialRef.assetId,app_id:"filmcraft",current_revision_id:initialRef.revisionId};
+  globalThis.fetch=async url=>{
+    const path=String(url);requests.push(path);
+    if(path.includes('/revisions/'))return Response.json({ref:initialRef,files:[],dependencies:[]});
+    if(path.includes('cursor=older'))return Response.json({assets:[old],nextCursor:null});
+    return Response.json({assets:[],nextCursor:'older',nextAssetCursor:'older'});
+  };
+  try{
+    const host=createEditorHost({projectId:'project',initialRef,signal:new AbortController().signal,onDirty(){},onStatus(){},onSaved(){}});
+    assert.deepEqual(await host.handle(message('all','listProjectAssets',{})),[old]);
+    assert.deepEqual(await host.handle(message('old','openAsset',initialRef)),{ref:initialRef,files:[],dependencies:[]});
+    assert.equal(requests.filter(path=>path.includes('cursor=older')).length,2);
+    globalThis.fetch=async()=>Response.json({assets:[],nextCursor:'repeat',nextAssetCursor:'repeat'});
+    await assert.rejects(host.handle(message('loop','listProjectAssets',{})),/finish loading/);
+  }finally{globalThis.fetch=original;}
+});
+
+test("Craft imports save an original through the project BFF, preserve editor binding and fence changed retries",async()=>{
+  const original=globalThis.fetch,requests:Array<{path:string;body:any}>=[],changes:boolean[]=[];
+  const imported='33333333-3333-4333-8333-333333333333',revision='44444444-4444-4444-8444-444444444444';let notices=0;
+  globalThis.fetch=async(url,options)=>{
+    const path=String(url),body=options?.body?JSON.parse(String(options.body)):{};requests.push({path,body});
+    if(path==='/api/studio/sources')return Response.json({revisionId:revision});
+    if(path.endsWith('/transfers'))return Response.json({transfers:[]});
+    if(path.endsWith('/commit'))return Response.json({assetId:imported,revisionId:revision,status:'committed'});
+    throw Error('Unexpected import request');
+  };
+  try{
+    const host=createEditorHost({projectId:'owned-project',initialRef,signal:new AbortController().signal,onDirty:value=>changes.push(value),onStatus(){},onSaved(){assert.fail('Import must not switch the open editor');},onImported(){notices++;}});
+    await host.handle(message('dirty','notifyChanges',{assetId:initialRef.assetId,dirty:true}));
+    const file=new Blob(['<svg xmlns="http://www.w3.org/2000/svg"/>']),input={creationId:imported,name:'Source.svg',file};
+    const result=await host.handle(message('import','importAsset',input));
+    assert.deepEqual(result,{ref:{assetId:imported,revisionId:revision},status:'committed'});
+    assert.equal(requests[0].body.projectId,'owned-project');assert.equal(requests[0].body.creationId,imported);
+    assert.equal(requests[0].body.package.files[0].role,'master');assert.equal(requests[0].body.package.files[0].mimeType,'image/svg+xml');
+    await assert.rejects(host.handle(message('changed','importAsset',{...input,file:new Blob(['<svg>different</svg>'])})),/different files/);
+    assert.deepEqual(changes,[true]);assert.equal(notices,1);
+    await host.handle(message('still-original','notifyChanges',{assetId:initialRef.assetId,dirty:false}));
+    await assert.rejects(host.handle(message('invalid','importAsset',{...input,name:'../escape.svg'})),/relative/);
+  }finally{globalThis.fetch=original;}
+});
+
 test("published editor pickers can select first-class sources while opening only exact project revisions",async()=>{
   const original=globalThis.fetch;
   const source={id:initialRef.assetId,app_id:null,asset_kind:"image",name:"Source image",current_revision_id:initialRef.revisionId};

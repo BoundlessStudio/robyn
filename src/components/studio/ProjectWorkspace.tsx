@@ -11,7 +11,7 @@ import {ProjectName} from "./ProjectName";
 import { Markdown } from "@/components/Markdown";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Plus, File, X, History, Upload, ArrowUpRight, RefreshCw, MoreHorizontal, Maximize2, PanelLeft, Info, Shapes, Users } from "lucide-react";
+import { ArrowLeft, Plus, File, X, History, Upload, ArrowUpRight, RefreshCw, MoreHorizontal, Maximize2, PanelLeft, Info, Shapes, Users, Images } from "lucide-react";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
 import { apiFetch, readApiError } from "@/lib/api";
 import { studioTools as studioApps } from "@/studio/tools";
@@ -36,7 +36,7 @@ type Panel=typeof panelNames[number];
 // Candidate bundles can be reviewed together without promoting their manifests.
 const previewEditors:Record<string,string>=process.env.NODE_ENV==="development"?JSON.parse(process.env.NEXT_PUBLIC_EDITOR_PREVIEW_URLS??"{}"):{};
 
-export function ProjectWorkspace({projectId,initialAssetId,initialAppId,initialLaunchId}:{projectId:string;initialAssetId?:string;initialAppId?:string;initialLaunchId?:string}) {
+export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,initialAppId,initialLaunchId}:{projectId:string;initialAssetId?:string;initialRevisionId?:string;initialAppId?:string;initialLaunchId?:string}) {
   const [project,setProject]=useState<ProjectSummary|null>(null);const [assets,setAssets]=useState<AssetSummary[]>([]);const [activity,setActivity]=useState<Activity[]>([]);
   const [selected,setSelected]=useState(initialAssetId??"");const [tabs,setTabs]=useState<string[]>(initialAssetId?[initialAssetId]:[]);const [panel,setPanel]=useState<Panel>("Brief");
   const [brief,setBrief]=useState("");const [error,setError]=useState("");const [notice,setNotice]=useState("");const [busy,setBusy]=useState(false);
@@ -45,8 +45,8 @@ export function ProjectWorkspace({projectId,initialAssetId,initialAppId,initialL
   const [intake,setIntake]=useState<{files:globalThis.File[];folder:boolean}|null>(null);
   const [dropTarget,setDropTarget]=useState<"canvas"|"assets"|null>(null);
   const filePicker=useRef<HTMLInputElement>(null);const importButton=useRef<HTMLButtonElement>(null);
-  const [packageData,setPackageData]=useState<OpenPackage|null>(null);const [opening,setOpening]=useState(false);const [revisionId,setRevisionId]=useState<string|null>(null);
-  const [focusedRevision,setFocusedRevision]=useState<AssetRef|null>(null);
+  const [loadedPackage,setPackageData]=useState<OpenPackage|null>(null);const [opening,setOpening]=useState(false);const [revisionId,setRevisionId]=useState<string|null>(null);
+  const [focusedRevision,setFocusedRevision]=useState<AssetRef|null>(initialAssetId&&initialRevisionId?{assetId:initialAssetId,revisionId:initialRevisionId}:null);
   const [researchHandoff,setResearchHandoff]=useState(0);
   const [fileDetails,setFileDetails]=useState(false);const [projectPanelOpen,setProjectPanelOpen]=useState(false);
   const [fork,setFork]=useState<string|null>(null);const [panelWidth,setPanelWidth]=useState(320);
@@ -65,12 +65,14 @@ export function ProjectWorkspace({projectId,initialAssetId,initialAppId,initialL
   useEffect(()=>{
     const url=new URL(window.location.href);
     if(selected){url.searchParams.set("asset",selected);for(const key of ["start","app","launch"])url.searchParams.delete(key);}else url.searchParams.delete("asset");
+    if(focusedRevision?.assetId===selected)url.searchParams.set("revision",focusedRevision.revisionId);else url.searchParams.delete("revision");
     if(url.href!==window.location.href)window.history.replaceState(null,"",url.pathname+url.search+url.hash);
-  },[selected]);
+  },[selected,focusedRevision]);
   const asset=assets.find(row=>row.id===selected);const app=studioApps.find(app=>app.id===asset?.app_id);
   const previewEditorUrl=process.env.NODE_ENV==="development"&&app?(app.id===process.env.NEXT_PUBLIC_EDITOR_PREVIEW_APP?process.env.NEXT_PUBLIC_EDITOR_PREVIEW_URL:previewEditors[app.id]):null;
   const editorUrl=previewEditorUrl??(app?.editor.status==="verified"?app.editor.bundleUrl:null);
   const targetRevision=focusedRevision&&focusedRevision.assetId===asset?.id?focusedRevision.revisionId:asset?.current_revision_id;
+  const packageData=loadedPackage&&loadedPackage.ref.assetId===asset?.id&&loadedPackage.ref.revisionId===targetRevision?loadedPackage:null;
   const reload=useCallback(async()=>{const data=await apiFetch<{project:ProjectSummary;assets:AssetSummary[];activity:Activity[];nextAssetCursor:string|null}>(`/api/studio/projects/${projectId}`);
     const selectedId=selectedNow.current;
     if(selectedId&&!data.assets.some(row=>row.id===selectedId)){const extra=await apiFetch<{asset:AssetSummary}>(`/api/studio/assets/${selectedId}`);if(extra.asset.project_id===projectId)data.assets.push(extra.asset);}
@@ -86,7 +88,7 @@ export function ProjectWorkspace({projectId,initialAssetId,initialAppId,initialL
     setRevisionId(target??null);
     if(!asset){setOpening(false);return;}
     apiFetch<{revisions:Revision[];nextCursor:string|null}>(`/api/studio/assets/${asset.id}/revisions`).then(data=>{if(live){setRevisions(data.revisions);setRevisionCursor(data.nextCursor);}}).catch(error=>{if(live)setError(error.message);});
-    if(target){setOpening(true);apiFetch<OpenPackage>(`/api/studio/revisions/${target}`).then(data=>{if(live)setPackageData(data);}).catch(error=>{if(live)setError(error.message);}).finally(()=>{if(live)setOpening(false);});}
+    if(target){setOpening(true);apiFetch<OpenPackage>(`/api/studio/revisions/${target}`).then(data=>{if(data.ref.assetId!==asset.id||data.ref.revisionId!==target)throw Error("The revision does not belong to this asset.");if(live)setPackageData(data);}).catch(error=>{if(live)setError(error.message);}).finally(()=>{if(live)setOpening(false);});}
     else setOpening(false);
     return()=>{live=false;};
   },[asset?.id,asset?.current_revision_id,focusedRevision]);
@@ -177,6 +179,7 @@ export function ProjectWorkspace({projectId,initialAssetId,initialAppId,initialL
       <div className="project-header-actions">
         {asset&&<button ref={applicationsButton} className="studio-tool-button application-launch-button" onClick={()=>setApplicationsOpen(true)} disabled={!project||launch.busy} aria-expanded={applicationsOpen}><Shapes size={16}/><span>Applications</span></button>}
         <button ref={importButton} className="studio-tool-button" onClick={()=>filePicker.current?.click()} disabled={!project||launch.busy}><Upload size={15}/><span>Open existing</span></button>
+        <Link className="studio-tool-button" href={`/dashboard/library?projectId=${projectId}`} target="_blank" rel="noopener" title="Manage assets in a new tab; your editor stays open"><Images size={16}/><span>Assets</span><ArrowUpRight size={12}/></Link>
         <button className="studio-tool-button" aria-label="Files" aria-expanded={!assetsCollapsed} onClick={()=>setAssetsCollapsed(value=>!value)}><PanelLeft size={16}/><span>Files</span></button>
         <button className="studio-tool-button" aria-label="AI Employees" aria-expanded={projectPanelOpen&&!projectInformation} onClick={()=>{if(projectPanelOpen&&!projectInformation)setProjectPanelOpen(false);else showEmployees();}}><Users size={16}/><span>AI Employees</span></button>
         <button className="studio-tool-button" aria-label="Project details" aria-expanded={projectPanelOpen&&projectInformation} onClick={showProjectDetails}><Info size={16}/><span>Project details</span></button>
@@ -195,6 +198,7 @@ export function ProjectWorkspace({projectId,initialAssetId,initialAppId,initialL
             <DropdownMenuLabel>{app?.name??`${asset.asset_kind} source`} · {packageData?.revision.revision_number?`Revision ${packageData.revision.revision_number}`:packageData?.revision.state==="conflict"?"Preserved conflict":targetRevision?"Saved native file":"No saved revision"}</DropdownMenuLabel><DropdownMenuSeparator/>
             <DropdownMenuItem onSelect={()=>{setHistory(false);setFileDetails(true);}}><Info size={15}/>File details</DropdownMenuItem>
             <DropdownMenuItem onSelect={()=>{setHistory(true);setFileDetails(true);}}><History size={15}/>Revision history</DropdownMenuItem>
+            <DropdownMenuItem asChild><Link href={`/dashboard/library/${asset.id}${targetRevision?`?revision=${targetRevision}`:""}`} target="_blank" rel="noopener"><ArrowUpRight size={15}/>Exports & downloads</Link></DropdownMenuItem>
             {!sourceMedia&&<DropdownMenuItem onSelect={()=>importPackage("revision")}><Upload size={15}/>Import revision</DropdownMenuItem>}
             {hasEditor&&<DropdownMenuItem asChild><a href="/support#supported-setup" target="_blank" rel="noreferrer"><Info size={15}/>Browser & accessibility help ↗</a></DropdownMenuItem>}
           </DropdownMenuContent></DropdownMenu>
@@ -202,7 +206,7 @@ export function ProjectWorkspace({projectId,initialAssetId,initialAppId,initialL
         </div>}
       </div>
     {!asset?<div className={`project-start${dropTarget==="canvas"?" project-drop-active":""}`} onDragOver={event=>dragOver(event,"canvas")} onDragLeave={dragLeave} onDrop={dropFiles}>{launcher}</div>:<>
-      {app?.kind==="research"&&targetRevision?<ResearchNotebook ref={embeddedEditor} key={editorEpoch} initialRef={{assetId:asset.id,revisionId:targetRevision}} onState={setEditorState} onDirty={dirty=>{editorDirty.current=dirty;}} onSaved={editorSaved} onRequest={()=>{setResearchHandoff(value=>value+1);setPanel("Assignments");setProjectPanelOpen(true);}}/>:editorUrl&&targetRevision?<EmbeddedEditor ref={embeddedEditor} onState={setEditorState} key={editorEpoch} projectId={projectId} initialRef={{assetId:asset.id,revisionId:targetRevision}} bundleUrl={editorUrl} name={app?.name??"Creative"} onSaved={editorSaved} onDirty={dirty=>{editorDirty.current=dirty;}}/>:opening?<p role="status" className="studio-empty">Opening the native package…</p>:<div className="asset-preview">{sourceMedia&&<div className="source-import-note"><strong>{asset.name}</strong><p>Saved as reusable source media. Use Place from studio in a compatible Craft to add it to your work.</p><a href={savedFileUrl(revisionId!,packageData?.files.find(file=>file.role==="master")?.path??preview?.path??"")}>Download original</a></div>}{preview?.mimeType.startsWith("image/")?<SavedMedia key={`${revisionId}:${preview.path}`} revisionId={revisionId!} file={preview} name={asset.name}/>:preview&&(preview.mimeType.startsWith("video/")||preview.mimeType.startsWith("audio/"))?<SavedMedia key={`${revisionId}:${preview.path}`} revisionId={revisionId!} file={preview} name={asset.name}/>:<div className="asset-native-placeholder"><AppIcon app={app}/><h2>{asset.name}</h2><p>{packageData?"Your native package is saved.":"Import the native master to create its first saved revision."}</p><p className="studio-muted">{app?.editor.status==="verified"?"The browser editor is ready to connect.":`${app?.name}'s browser integration is being prepared.`}</p></div>}</div>}
+      {app?.kind==="research"&&targetRevision?<ResearchNotebook ref={embeddedEditor} key={editorEpoch} initialRef={{assetId:asset.id,revisionId:targetRevision}} onState={setEditorState} onDirty={dirty=>{editorDirty.current=dirty;}} onSaved={editorSaved} onRequest={()=>{setResearchHandoff(value=>value+1);setPanel("Assignments");setProjectPanelOpen(true);}}/>:editorUrl&&targetRevision?<EmbeddedEditor ref={embeddedEditor} onLibraryChanged={()=>{void reload().catch(error=>setError(error.message));}} onState={setEditorState} key={editorEpoch} projectId={projectId} initialRef={{assetId:asset.id,revisionId:targetRevision}} bundleUrl={editorUrl} name={app?.name??"Creative"} onSaved={editorSaved} onDirty={dirty=>{editorDirty.current=dirty;}}/>:opening?<p role="status" className="studio-empty">Opening the native package…</p>:<div className="asset-preview">{sourceMedia&&<div className="source-import-note"><strong>{asset.name}</strong><p>Saved as reusable source media. Use Place from studio in a compatible Craft to add it to your work.</p><a href={savedFileUrl(revisionId!,packageData?.files.find(file=>file.role==="master")?.path??preview?.path??"")}>Download original</a></div>}{preview?.mimeType.startsWith("image/")?<SavedMedia key={`${revisionId}:${preview.path}`} revisionId={revisionId!} file={preview} name={asset.name}/>:preview&&(preview.mimeType.startsWith("video/")||preview.mimeType.startsWith("audio/"))?<SavedMedia key={`${revisionId}:${preview.path}`} revisionId={revisionId!} file={preview} name={asset.name}/>:<div className="asset-native-placeholder"><AppIcon app={app}/><h2>{asset.name}</h2><p>{packageData?"Your native package is saved.":"Import the native master to create its first saved revision."}</p><p className="studio-muted">{app?.editor.status==="verified"?"The browser editor is ready to connect.":`${app?.name}'s browser integration is being prepared.`}</p></div>}</div>}
       {fileDetails&&<StudioDialog title="Files & revisions." eyebrow={asset.name} close={()=>{setFileDetails(false);setHistory(false);}} returnFocusRef={documentMenuButton}>{assetDetails}</StudioDialog>}
     </>}</section>
     {projectPanelOpen&&projectDetails}</div>

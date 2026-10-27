@@ -35,12 +35,17 @@ function uploadFile(file:Blob,transfer:Transfer,endpoint:string,bucket:string,si
   });
 }
 
+/** Check the complete selection before creating an asset or freezing a retry. */
+export async function describeLocalPackage(input:{files:LocalPackageFile[];dependencies:AssetRef[];message:string;signal?:AbortSignal;onProgress?:(message:string,percent:number)=>void}):Promise<RevisionPackage>{
+  const files=[];
+  for(const file of input.files){input.onProgress?.(`Checking ${file.path}…`,0);files.push({path:file.path,role:file.role,bytes:file.file.size,mimeType:file.file.type||"application/octet-stream",sha256:await digestFile(file.file,input.signal)});}
+  return validateRevisionPackage({files,dependencies:input.dependencies,message:input.message});
+}
+
 /** File bytes go straight from the browser to private Storage. Local resume
  * state contains a revision ID, never a credential or a copy of the media. */
 export async function savePackage(input:{assetId:string;expectedBaseRevisionId:string|null;files:LocalPackageFile[];dependencies:AssetRef[];message:string;sourceImport?:{projectId:string;name:string};blankStart?:{projectId:string;templateId:string};signal?:AbortSignal;onProgress?:(message:string,percent:number)=>void}):Promise<SaveResult> {
-  const files=[];
-  for(const file of input.files){input.onProgress?.(`Checking ${file.path}…`,0);files.push({path:file.path,role:file.role,bytes:file.file.size,mimeType:file.file.type||"application/octet-stream",sha256:await digestFile(file.file,input.signal)});}
-  const pkg:RevisionPackage=validateRevisionPackage({files,dependencies:input.dependencies,message:input.message});
+  const pkg=await describeLocalPackage(input),files=pkg.files;
   const fingerprint=sha256(new TextEncoder().encode(JSON.stringify({base:input.expectedBaseRevisionId,pkg})));
   const key=`robyn-save:${input.assetId}:${Array.from(fingerprint,b=>b.toString(16).padStart(2,"0")).join("")}`;
   let revisionId:string|null=null;

@@ -25,9 +25,9 @@
     "publication"
   ],
   "editor": {
-    "adapterVersion": "0.1.2",
-    "release": "designcraft-v0.11.0-robyn-0.1.2",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/designcraft/v0.11.0-0.1.2/?robyn&webgl",
+    "adapterVersion": "0.2.2",
+    "release": "designcraft-v0.11.0-robyn-0.2.2",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/designcraft/v0.11.0-0.2.2/?robyn",
     "status": "verified"
   },
   "workstation": {

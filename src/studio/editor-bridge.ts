@@ -16,6 +16,7 @@ export interface EditorBridge {
   saveAsset(input: { assetId: string; expectedBaseRevisionId: string | null; mode?: EditorSaveMode; creationId?: string; name?: string; files: Array<{path:string;role:PackageFileRole;file:Blob}>; dependencies:AssetRef[]; message:string }): Promise<{ ref: AssetRef; status: "committed" | "conflict" }>;
   listProjectAssets(): Promise<AssetSummary[]>;
   insertAsset(ref: AssetRef): Promise<OpenAssetResult>;
+  importAsset(input:{creationId:string;name:string;file:Blob}):Promise<{ref:AssetRef;status:"committed"}>;
   notifyChanges(input: { dirty: boolean; assetId: string }): void;
   /** Keep requestId when retrying after a lost acknowledgement. */
   requestAgentEdit(input: { ref: AssetRef; instruction: string; requestId?: string }): Promise<{ assignmentId: string }>;
@@ -36,7 +37,7 @@ export function isEditorMessage(value: unknown, channel: string): value is Edito
   const message = value as Record<string, unknown>;
   return message.protocol === EDITOR_BRIDGE_PROTOCOL && message.channel === channel
     && typeof message.requestId === "string" && /^[a-zA-Z0-9_-]{1,100}$/.test(message.requestId)
-    && ["openAsset", "saveAsset", "listProjectAssets", "insertAsset", "notifyChanges", "requestAgentEdit"].includes(String(message.operation));
+    && ["openAsset", "saveAsset", "listProjectAssets", "insertAsset", "importAsset", "notifyChanges", "requestAgentEdit"].includes(String(message.operation));
 }
 
 export function isTrustedEditorEvent(event: Pick<MessageEvent, "source" | "origin" | "data">, source: MessageEventSource | null, origin: string, channel: string): boolean {
