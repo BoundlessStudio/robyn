@@ -23,7 +23,7 @@ export function createEditorHost(options:{projectId:string;initialRef:AssetRef;s
   let saving=false;
   let dirty=false;
   let importing=false;
-  const imports=new Map<string,string>();
+  const imports=new Map<string,{fingerprint:string;result?:{ref:AssetRef;status:"committed"}}>();
   const requests=new Map<string,{operation:string;result:Promise<unknown>;settled:boolean}>();
   async function assets(previews=false) {
     const endpoint=previews?`/api/studio/assets?projectId=${encodeURIComponent(options.projectId)}`:`/api/studio/projects/${options.projectId}`;
@@ -60,10 +60,11 @@ export function createEditorHost(options:{projectId:string;initialRef:AssetRef;s
         try{
           const file=new File([input.file],name,{type:input.file.type}),format=sourceFormat(name),app=nativeImportApp(name);
           if(!format&&!app)throw Error("Choose a supported image, audio, video or native document.");
-          const fingerprint=`${name}:${await digestFile(file,options.signal)}`;
-          if(imports.has(creationId)&&imports.get(creationId)!==fingerprint)throw Error("This import request already belongs to different files.");
-          if(!imports.has(creationId)&&imports.size>=100)throw Error("Reopen the saved editor before importing more files.");
-          imports.set(creationId,fingerprint);
+          const fingerprint=JSON.stringify([name,file.type,await digestFile(file,options.signal)]),prior=imports.get(creationId);
+          if(prior&&prior.fingerprint!==fingerprint)throw Error("This import request already belongs to different files.");
+          if(prior?.result)return prior.result;
+          if(!prior&&imports.size>=100)throw Error("Reopen the saved editor before importing more files.");
+          const attempt=prior??{fingerprint};imports.set(creationId,attempt);
           const files=format?await sourceImportFiles(file):await checkNativeImport(app!.id,[{path:name,role:"master" as const,file}]);
           const title=importedDocumentName(name);
           if(!format){
@@ -72,8 +73,9 @@ export function createEditorHost(options:{projectId:string;initialRef:AssetRef;s
           }
           const result=await savePackage({assetId:creationId,expectedBaseRevisionId:null,files,dependencies:[],message:"Imported from a Craft",...(format?{sourceImport:{projectId:options.projectId,name:title}}:{}),signal:options.signal});
           if(result.status!=="committed")throw Error("This import has a preserved conflict. Open it in Assets before continuing.");
+          attempt.result={ref:{assetId:result.assetId,revisionId:result.revisionId},status:result.status};
           options.onImported?.();
-          return {ref:{assetId:result.assetId,revisionId:result.revisionId},status:result.status};
+          return attempt.result;
         }finally{importing=false;}
       }
       // Published editor pickers use this legacy field solely for their label

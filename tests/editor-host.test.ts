@@ -43,7 +43,11 @@ test("Craft imports save an original through the project BFF, preserve editor bi
     assert.deepEqual(result,{ref:{assetId:imported,revisionId:revision},status:'committed'});
     assert.equal(requests[0].body.projectId,'owned-project');assert.equal(requests[0].body.creationId,imported);
     assert.equal(requests[0].body.package.files[0].role,'master');assert.equal(requests[0].body.package.files[0].mimeType,'image/svg+xml');
+    const count=requests.length;
+    assert.deepEqual(await host.handle(message('lost-bridge-reply','importAsset',input)),result);
+    assert.equal(requests.length,count,'a lost bridge reply reuses the confirmed import without another revision');
     await assert.rejects(host.handle(message('changed','importAsset',{...input,file:new Blob(['<svg>different</svg>'])})),/different files/);
+    await assert.rejects(host.handle(message('changed-type','importAsset',{...input,file:new Blob([file],{type:'text/plain'})})),/different files/);
     assert.deepEqual(changes,[true]);assert.equal(notices,1);
     await host.handle(message('still-original','notifyChanges',{assetId:initialRef.assetId,dirty:false}));
     await assert.rejects(host.handle(message('invalid','importAsset',{...input,name:'../escape.svg'})),/relative/);
