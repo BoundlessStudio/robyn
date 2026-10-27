@@ -577,3 +577,54 @@
 .open-canvas button:focus-visible,.project-name button:focus-visible { outline:2px solid #d5e8ab; outline-offset:4px; }
 .open-canvas button:disabled { opacity:.5; cursor:default; }
 @media(max-width:1350px) { .open-canvas{padding:35px 28px}.canvas-choices>button{padding:19px}.canvas-choices strong{font-size:15px}.canvas-crafts button{padding:13px;gap:9px} }
+
+/* Applications lead the project; files and employees are supporting panels. */
+.project-mode .project-start { overflow:auto; min-height:0; }
+.application-launcher { width:100%; max-width:1460px; padding:36px clamp(28px,4vw,64px); margin:auto; }
+.application-launcher header { margin-bottom:26px; }
+.application-launcher h2 { margin:10px 0 12px; font-size:42px; font-weight:450; letter-spacing:-1.8px; line-height:1.15; }
+.application-launcher h2 em { font-family:"Instrument Serif",serif; font-weight:400; color:#d5c7ab; }
+.application-launcher header p { color:#bdb6a6; font-size:13px; line-height:1.7; }
+.application-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+.application-grid>button,.application-grid>a { display:flex; align-items:center; gap:13px; min-width:0; min-height:94px; padding:18px 15px; border:1px solid #48473e; border-radius:8px; background:#22221f; text-align:left; transition:border-color .15s,background .15s; }
+.application-grid>button:hover:not(:disabled),.application-grid>a:hover { border-color:#aebc95; background:#2c2e26; }
+.application-icon { display:grid; place-items:center; width:40px; height:44px; flex:none; border-radius:7px; font-size:16px; font-weight:600; color:#11120e; }
+.application-grid>button>span:nth-child(2),.application-grid>a>span:nth-child(2) { min-width:0; flex:1; }
+.application-grid strong { display:block; font-size:14px; font-weight:500; letter-spacing:-.2px; }
+.application-grid small { display:block; color:#bfb9aa; font-size:10px; line-height:1.5; margin-top:5px; }
+.application-grid>button>svg,.application-grid>a>svg { flex:none; color:#a7ae96; }
+.application-research .application-icon { background:#ccd6b8; }
+.application-launcher footer { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px; border-top:1px solid #3b3b33; padding-top:22px; margin-top:25px; color:#bdb6a6; font-size:11px; line-height:1.6; }
+.application-launcher footer>div { display:flex; flex-wrap:wrap; align-items:center; gap:20px; }
+.application-launcher footer button { display:flex; align-items:center; gap:6px; color:#d1dac2; }
+.application-launcher :is(button,a):focus-visible,.document-name button:focus-visible { outline:2px solid #d5e8ab; outline-offset:4px; }
+.application-launcher button:disabled { opacity:.45; cursor:default; }
+.application-launch-progress { padding:14px 18px; margin:0 0 20px; border-left:2px solid #c5d5a7; background:#292d24; font-size:13px; line-height:1.6; }
+.application-launch-progress .studio-button { margin-top:10px; }
+.project-launch-recovery { flex:none; max-height:180px; overflow:auto; }
+.project-launch-recovery .application-launch-progress { margin:0; }
+.studio-modal:has(.application-launcher) { max-width:1040px; }
+.application-launcher.compact { padding:8px 0 0; }
+.application-launcher.compact .application-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.application-launcher.compact .application-grid>button,.application-launcher.compact .application-grid>a { min-height:78px; padding:12px; }
+.project-new-file { display:flex; align-items:center; border:1px solid #4d5341; border-radius:5px; }
+.project-new-file .new-file-types { border-left:1px solid #4d5341; border-radius:0 4px 4px 0; padding:0 4px; }
+.new-file-app { margin-left:auto; padding-left:24px; color:#b8b7aa; font-size:10px; }
+.project-mode .project-header .application-launch-button { color:#e1edcc; }
+.project-mode .project-header-actions { margin-left:auto; flex:none; }
+.project-mode .project-name { min-width:60px; flex:1; }
+.project-mode .project-name input { width:min(160px,12vw); }
+.project-mode .project-name form { gap:2px; }
+.project-mode .project-document-tools { min-width:0; max-width:70%; }
+.document-name { position:relative; min-width:0; max-width:230px; margin-right:8px; font-size:11px; }
+.document-name>button,.document-name form { display:flex; align-items:center; gap:8px; min-width:0; max-width:100%; }
+.document-name>button>span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.document-name svg { flex:none; }
+.document-name input { min-width:50px; width:150px; max-width:100%; border:1px solid #72735e; border-radius:3px; background:#24251f; padding:4px 7px; color:inherit; }
+.document-name .studio-error { position:absolute; right:0; top:28px; z-index:15; width:280px; background:#271d1b; padding:12px; }
+.application-project-search { margin:22px 0 12px; }
+.application-project-list { display:grid; margin:0 0 24px; max-height:300px; overflow:auto; }
+.application-project-list a { display:flex; justify-content:space-between; gap:14px; border-bottom:1px solid #45473d; padding:16px 0; font-size:14px; }
+.application-project-list a:hover { color:#d3e7b1; }
+@media(min-width:1500px) { .application-grid { grid-template-columns:repeat(5,minmax(0,1fr)); } }
+@media(max-width:1250px) { .project-mode .project-header{gap:8px}.project-mode .project-header-actions{gap:1px}.project-mode .project-header-actions .studio-tool-button{font-size:10px;padding:0 7px}.application-launcher{padding:26px 28px}.application-grid{gap:10px}.application-grid>button,.application-grid>a{padding:14px 12px;gap:9px} }
