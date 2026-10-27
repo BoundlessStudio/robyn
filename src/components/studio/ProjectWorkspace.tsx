@@ -7,12 +7,11 @@ import { AssignmentPanel } from "./AssignmentPanel";
 import {ApplicationLauncher, LaunchProgress} from "./ApplicationLauncher";
 import {useApplicationLaunch} from "./useApplicationLaunch";
 import {DocumentName} from "./DocumentName";
-import {commonFileTypes, launchableApps} from "@/studio/application-launch";
 import {ProjectName} from "./ProjectName";
 import { Markdown } from "@/components/Markdown";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Plus, File, X, History, Upload, ArrowUpRight, RefreshCw, MoreHorizontal, Maximize2, PanelLeft, Info, Shapes, Users, ChevronDown } from "lucide-react";
+import { ArrowLeft, Plus, File, X, History, Upload, ArrowUpRight, RefreshCw, MoreHorizontal, Maximize2, PanelLeft, Info, Shapes, Users } from "lucide-react";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
 import { apiFetch, readApiError } from "@/lib/api";
 import { studioTools as studioApps } from "@/studio/tools";
@@ -177,10 +176,6 @@ export function ProjectWorkspace({projectId,initialAssetId,initialAppId,initialL
       {project?.status==="archived"&&<span className="project-archive-label">Archived</span>}
       <div className="project-header-actions">
         <button ref={applicationsButton} className="studio-tool-button application-launch-button" onClick={()=>setApplicationsOpen(true)} disabled={!project||launch.busy} aria-expanded={applicationsOpen}><Shapes size={16}/><span>Applications</span></button>
-        <div className="project-new-file">
-          <button className="studio-tool-button" onClick={()=>app&&launchableApps.some(item=>item.id===app.id)?launchApplication(app.id):setApplicationsOpen(true)} disabled={project?.status!=="active"||launch.busy||Boolean(launch.pending)} title={app&&app.kind!=="research"?`New ${app.name} file`:"Choose an application"}><Plus size={15}/><span>New</span></button>
-          <DropdownMenu><DropdownMenuTrigger asChild><button className="studio-tool-button new-file-types" aria-label="New file types" disabled={project?.status!=="active"||launch.busy||Boolean(launch.pending)}><ChevronDown size={14}/></button></DropdownMenuTrigger><DropdownMenuContent className="studio-tool-menu" align="start"><DropdownMenuLabel>New file</DropdownMenuLabel>{commonFileTypes.map(type=><DropdownMenuItem key={type.appId} onSelect={()=>launchApplication(type.appId)}>{type.label}<small className="new-file-app">{launchableApps.find(app=>app.id===type.appId)?.name}</small></DropdownMenuItem>)}<DropdownMenuSeparator/><DropdownMenuItem onSelect={()=>setApplicationsOpen(true)}>All applications…</DropdownMenuItem></DropdownMenuContent></DropdownMenu>
-        </div>
         <button ref={importButton} className="studio-tool-button" onClick={()=>filePicker.current?.click()} disabled={!project||launch.busy}><Upload size={15}/><span>Open existing</span></button>
         <button className="studio-tool-button" aria-label="Files" aria-expanded={!assetsCollapsed} onClick={()=>setAssetsCollapsed(value=>!value)}><PanelLeft size={16}/><span>Files</span></button>
         <button className="studio-tool-button" aria-label="AI Employees" aria-expanded={projectPanelOpen&&!projectInformation} onClick={()=>{if(projectPanelOpen&&!projectInformation)setProjectPanelOpen(false);else showEmployees();}}><Users size={16}/><span>AI Employees</span></button>

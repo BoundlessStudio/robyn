@@ -606,9 +606,6 @@
 .application-launcher.compact { padding:8px 0 0; }
 .application-launcher.compact .application-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
 .application-launcher.compact .application-grid>button,.application-launcher.compact .application-grid>a { min-height:78px; padding:12px; }
-.project-new-file { display:flex; align-items:center; border:1px solid #4d5341; border-radius:5px; }
-.project-new-file .new-file-types { border-left:1px solid #4d5341; border-radius:0 4px 4px 0; padding:0 4px; }
-.new-file-app { margin-left:auto; padding-left:24px; color:#b8b7aa; font-size:10px; }
 .project-mode .project-header .application-launch-button { color:#e1edcc; }
 .project-mode .project-header-actions { margin-left:auto; flex:none; }
 .project-mode .project-name { min-width:60px; flex:1; }
