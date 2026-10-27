@@ -25,9 +25,9 @@
     "prototypes"
   ],
   "editor": {
-    "adapterVersion": "0.1.3",
-    "release": "figcraft-v0.9.0-robyn-0.1.3",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/figcraft/v0.9.0-0.1.3/?robyn&webgl",
+    "adapterVersion": "0.2.2",
+    "release": "figcraft-v0.9.0-robyn-0.2.2",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/figcraft/v0.9.0-0.2.2/?robyn",
     "status": "verified"
   },
   "workstation": {

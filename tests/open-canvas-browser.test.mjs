@@ -119,7 +119,7 @@ test('manual starts cover all thirteen Crafts, validate bytes before writes, and
     await page.getByRole('button',{name:'Applications',exact:true}).click();
     assert.equal(await page.getByRole('dialog').locator('.application-grid button').count(),13);assert.equal(state.assignments.size,0);
     await page.waitForLoadState('networkidle');await page.goto(origin+'/dashboard/library');
-    await page.getByRole('link').filter({has:page.getByRole('heading',{name:'Untitled document',exact:true})}).click();await editor.getByText('Ready',{exact:true}).waitFor();
+    await page.getByRole('link').filter({has:page.getByRole('heading',{name:'Untitled document',exact:true})}).click();await page.getByRole('link',{name:'Open in WordCraft',exact:true}).click();await editor.getByText('Ready',{exact:true}).waitFor();
     assert.equal(await editor.getByLabel('Document text').inputValue(),'A first manual edit.');assert.equal(state.assets.size,1);assert.equal(state.revisions.size,2);assert.deepEqual(state.errors,[]);
   }finally{await browser.close();}
 });

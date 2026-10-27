@@ -20,15 +20,18 @@ async function bundle() {
       import {WorkspaceProvider} from './src/components/WorkspaceProvider';
       import {ProjectWorkspace} from './src/components/studio/ProjectWorkspace';
       import {StudioLibrary} from './src/components/studio/StudioLibrary';
+      import {LibraryAsset} from './src/components/studio/LibraryAsset';
+      import {StudioShell} from './src/components/studio/StudioShell';
       import {StudioApplications} from './src/components/studio/StudioApplications';
       import {DesktopStudioGate} from './src/components/studio/DesktopStudioGate';
-      createRoot(document.getElementById('root')).render(<StrictMode><WorkspaceProvider initialWorkspaces={[]} userEmail="fixture@example.test"><DesktopStudioGate><div className="studio-shell project-mode"><main className="studio-main">{location.pathname==='/dashboard/library'?<StudioLibrary/>:location.pathname==='/dashboard/applications'?<StudioApplications/>:<ProjectWorkspace projectId="${projectId}" initialAssetId={new URLSearchParams(location.search).get('asset')??undefined} initialAppId={new URLSearchParams(location.search).get('app')??undefined} initialLaunchId={new URLSearchParams(location.search).get('launch')??undefined}/>}</main></div></DesktopStudioGate></WorkspaceProvider></StrictMode>);
+      createRoot(document.getElementById('root')).render(<StrictMode><WorkspaceProvider initialWorkspaces={[]} userEmail="fixture@example.test"><DesktopStudioGate><StudioShell>{location.pathname==='/dashboard/library'?<StudioLibrary initialProjectId={new URLSearchParams(location.search).get('projectId')??undefined}/>:location.pathname.startsWith('/dashboard/library/')?<LibraryAsset assetId={location.pathname.split('/').pop()} initialRevisionId={new URLSearchParams(location.search).get('revision')??undefined}/>:location.pathname==='/dashboard/applications'?<StudioApplications/>:<ProjectWorkspace projectId="${projectId}" initialAssetId={new URLSearchParams(location.search).get('asset')??undefined} initialRevisionId={new URLSearchParams(location.search).get('revision')??undefined} initialAppId={new URLSearchParams(location.search).get('app')??undefined} initialLaunchId={new URLSearchParams(location.search).get('launch')??undefined}/>}</StudioShell></DesktopStudioGate></WorkspaceProvider></StrictMode>);
     `, resolveDir:root, sourcefile:'native-import-fixture.tsx', loader:'tsx'},
     jsx:'automatic', bundle:true, write:false, platform:'browser', format:'iife', tsconfig:root+'tsconfig.json',
-    define:{'process.env.NODE_ENV':'"development"', 'process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY':'"isolated-fixture"'},
+    define:{'process.env.NODE_ENV':'"development"', 'process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY':'"isolated-fixture"','process.env.NEXT_PUBLIC_EDITOR_PREVIEW_URLS':JSON.stringify(process.env.NEXT_PUBLIC_EDITOR_PREVIEW_URLS??'{}')},
     plugins:[{name:'next-link',setup(b){
       b.onResolve({filter:/^next\/link$/},()=>({path:'link',namespace:'fixture'}));
-      b.onLoad({filter:/.*/,namespace:'fixture'},()=>({contents:'import React from "react";export default function Link(props){return React.createElement("a",props)}',loader:'js',resolveDir:root}));
+      b.onResolve({filter:/^next\/navigation$/},()=>({path:'navigation',namespace:'fixture'}));
+      b.onLoad({filter:/.*/,namespace:'fixture'},args=>({contents:args.path==='navigation'?'export function usePathname(){return location.pathname} export function useRouter(){return {push:url=>location.assign(url)}}':'import React from "react";export default function Link(props){return React.createElement("a",props)}',loader:'js',resolveDir:root}));
     }}],
   });
   return (await bundlePromise).outputFiles[0].text;
@@ -139,13 +142,8 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
         if(state.failCreationReply){state.failCreationReply=false;return route.abort('failed');}
         return route.fulfill({json:{revisionId:revision.id}});
       }
-      const fileMatch=url.pathname.match(/^\/api\/studio\/revisions\/([^/]+)\/file$/);
-      if(fileMatch){
-        const revision=state.revisions.get(fileMatch[1]),file=revision.package.files.find(file=>file.path===url.searchParams.get('path'));
-        return route.fulfill({contentType:file.mimeType,headers:cors,body:state.bytes.get(revision.id+'/'+file.path)});
-      }
       if(url.pathname==='/api/studio/assets'){
-        if(method==='GET')return route.fulfill({json:{assets:[...state.assets.values()].map(asset=>({...asset,project:{name:project.name}})),nextCursor:null}});
+        if(method==='GET')return route.fulfill({json:{assets:[...state.assets.values()].filter(asset=>(!url.searchParams.get('kind')||asset.asset_kind===url.searchParams.get('kind'))&&(!url.searchParams.get('appId')||asset.app_id===url.searchParams.get('appId'))&&asset.name.toLowerCase().includes((url.searchParams.get('q')??'').toLowerCase())).map(asset=>({...asset,project:{name:project.name}})),nextCursor:null}});
         assert.equal(input.projectId,projectId);
         const id=input.creationId??randomUUID();
         if(!state.assets.has(id))state.assets.set(id,{id,project_id:projectId,app_id:input.appId,name:input.name,asset_kind:'native',current_revision_id:null,created_at:project.created_at});
@@ -160,9 +158,14 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
         const id=randomUUID();state.revisions.set(id,{id,assetId:asset.id,state:'uploading',revision_number:state.revisions.size+1,created_at:project.created_at,...input});
         return route.fulfill({json:{revisionId:id}});
       }
-      const revisionMatch=url.pathname.match(/^\/api\/studio\/revisions\/([^/]+)(\/(transfers|commit))?$/);
+      const revisionMatch=url.pathname.match(/^\/api\/studio\/revisions\/([^/]+)(\/(transfers|commit|file))?$/);
       if(revisionMatch){
         const revision=state.revisions.get(revisionMatch[1]),asset=state.assets.get(revision.assetId);
+        if(revisionMatch[3]==='file'){
+          const file=revision.package.files.find(file=>file.path===url.searchParams.get('path'));
+          if(!file)return route.fulfill({status:404});
+          return route.fulfill({contentType:file.mimeType,headers:{'Content-Disposition':`${url.searchParams.get('inline')?'inline':'attachment'}; filename="${file.path.split('/').pop()}"`},body:state.bytes.get(revision.id+'/'+file.path)});
+        }
         if(revisionMatch[3]==='transfers'){
           if(state.holdTransfers)await new Promise(resolve=>{state.releaseTransfers=()=>{state.holdTransfers=false;resolve();};});
           return route.fulfill({json:{bucket:'isolated',resumableEndpoint:transferOrigin+'/storage/upload/resumable',transfers:revision.package.files.map(file=>({...file,uploaded:state.bytes.has(revision.id+'/'+file.path),token:'isolated-token',storageKey:revision.id+'/'+file.path}))}});

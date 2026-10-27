@@ -14,7 +14,9 @@
     "instructions": "Produce editable audio sessions with organized tracks, source media, routing, automation, and intentional gain staging. Package all samples and note plugin dependencies. Export a preview and appropriate delivery stems. Work only within the assigned project. Read the exact supplied asset revisions. Save a new immutable revision with its expected base; never overwrite another editor's work. Use studio-mcp for library access, preserve dependency references, and report completion only after the library confirms the save."
   },
   "formats": {
-    "native": [".scraft"],
+    "native": [
+      ".scraft"
+    ],
     "verification": "verified"
   },
   "capabilities": [
@@ -23,9 +25,9 @@
     "sound-design"
   ],
   "editor": {
-    "adapterVersion": "0.1.4",
-    "release": "soundcraft-v0.11.0-robyn-0.1.4",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/soundcraft/v0.11.0-0.1.4/?robyn&webgl",
+    "adapterVersion": "0.2.2",
+    "release": "soundcraft-v0.11.0-robyn-0.2.2",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/soundcraft/v0.11.0-0.2.2/?robyn",
     "status": "verified"
   },
   "workstation": {

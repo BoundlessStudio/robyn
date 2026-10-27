@@ -5,11 +5,18 @@ import { readPage, pageFilter, finishPage, literalSearch } from "@/studio/pagina
 export async function GET(request: Request) {
   try {
     const { db, workspaceId } = await requireStudio();
-    const projectId = new URL(request.url).searchParams.get("projectId");
+    const params = new URL(request.url).searchParams;
+    const projectId = params.get("projectId");
     if (projectId) await ownedProject(db, workspaceId, id(projectId));
     const page = readPage(request.url);
     let query = db.from("studio_assets").select("*,project:studio_projects(name)").eq("workspace_id", workspaceId);
     if (projectId) query = query.eq("project_id", projectId);
+    const kind = params.get("kind"), appId = params.get("appId");
+    if (kind) {
+      if (!["native", "image", "audio", "video"].includes(kind)) throw new ApiError(400,"invalid_kind","Choose a supported asset type.");
+      query = query.eq("asset_kind",kind);
+    }
+    if (appId) query = query.eq("app_id",appFor(appId).id);
     if (page.search) query = query.ilike("name", literalSearch(page.search));
     const visible = "asset_kind.eq.native,current_revision_id.not.is.null";
     query = query.or(page.after ? `and(or(${visible}),or(${pageFilter(page.after)}))` : visible);

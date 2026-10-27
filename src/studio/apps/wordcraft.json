@@ -14,7 +14,9 @@
     "instructions": "Write and edit clear, purposeful documents grounded in the creator's brief and supplied sources. Preserve editable text and semantic paragraph styles, tables, citations, and layout. Flag unsupported factual claims. Work only within the assigned project. Read the exact supplied asset revisions. Save a new immutable revision with its expected base; never overwrite another editor's work. Use studio-mcp for library access, preserve dependency references, and report completion only after the library confirms the save."
   },
   "formats": {
-    "native": [".docx"],
+    "native": [
+      ".docx"
+    ],
     "verification": "verified"
   },
   "capabilities": [
@@ -23,9 +25,9 @@
     "document-styles"
   ],
   "editor": {
-    "adapterVersion": "0.1.2",
-    "release": "wordcraft-v0.9.0-robyn-0.1.2",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/wordcraft/v0.9.0-0.1.2/?robyn&webgl",
+    "adapterVersion": "0.2.2",
+    "release": "wordcraft-v0.9.0-robyn-0.2.2",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/wordcraft/v0.9.0-0.2.2/?robyn",
     "status": "verified"
   },
   "workstation": {

@@ -14,7 +14,9 @@
     "instructions": "Develop photographic images non-destructively. Preserve original RAW files and edit metadata. Maintain a consistent color treatment across a series, and create export copies without replacing originals. Work only within the assigned project. Read the exact supplied asset revisions. Save a new immutable revision with its expected base; never overwrite another editor's work. Use studio-mcp for library access, preserve dependency references, and report completion only after the library confirms the save."
   },
   "formats": {
-    "native": [".snap"],
+    "native": [
+      ".snap"
+    ],
     "verification": "verified"
   },
   "capabilities": [
@@ -23,9 +25,9 @@
     "color-grading"
   ],
   "editor": {
-    "adapterVersion": "0.1.4",
-    "release": "lightcraft-v0.11.0-robyn-0.1.4",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/lightcraft/v0.11.0-0.1.4/?robyn&webgl",
+    "adapterVersion": "0.2.2",
+    "release": "lightcraft-v0.11.0-robyn-0.2.2",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/lightcraft/v0.11.0-0.2.2/?robyn",
     "status": "verified"
   },
   "workstation": {

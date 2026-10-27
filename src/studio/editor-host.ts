@@ -1,6 +1,8 @@
 import { apiFetch } from "@/lib/api";
 import { requireUuid, validatePackagePath, type AssetRef, type AssetSummary, type PackageFileRole } from "./assets";
-import { savePackage, type SaveResult, type LocalPackageFile } from "./transfer-client";
+import { digestFile, savePackage, type SaveResult, type LocalPackageFile } from "./transfer-client";
+import {sourceFormat,sourceImportFiles} from "./source-import";
+import {nativeImportApp,checkNativeImport,importedDocumentName} from "./native-import";
 import type { EditorMessage, EditorSaveMode, OpenAssetResult } from "./editor-bridge";
 
 export interface EditorSaveResult extends SaveResult { mode: EditorSaveMode }
@@ -11,7 +13,7 @@ function object(value: unknown): Record<string, unknown> {
 }
 function assetRef(value:unknown):AssetRef {const input=object(value);return{assetId:requireUuid(input.assetId),revisionId:requireUuid(input.revisionId)};}
 
-export function createEditorHost(options:{projectId:string;initialRef:AssetRef;signal:AbortSignal;onDirty:(dirty:boolean)=>void;onStatus:(message:string)=>void;onSaved:(result:EditorSaveResult)=>void}) {
+export function createEditorHost(options:{projectId:string;initialRef:AssetRef;signal:AbortSignal;onDirty:(dirty:boolean)=>void;onStatus:(message:string)=>void;onSaved:(result:EditorSaveResult)=>void;onImported?:()=>void}) {
   let assetId=options.initialRef.assetId;
   let base=options.initialRef.revisionId;
   // Save As adds the source here, after the editor froze its dependency list.
@@ -20,11 +22,23 @@ export function createEditorHost(options:{projectId:string;initialRef:AssetRef;s
   let adoptedDependencies:AssetRef[]=[];
   let saving=false;
   let dirty=false;
+  let importing=false;
+  const imports=new Map<string,{fingerprint:string;result?:{ref:AssetRef;status:"committed"}}>();
   const requests=new Map<string,{operation:string;result:Promise<unknown>;settled:boolean}>();
   async function assets(previews=false) {
     const endpoint=previews?`/api/studio/assets?projectId=${encodeURIComponent(options.projectId)}`:`/api/studio/projects/${options.projectId}`;
-    const data=await apiFetch<{assets:AssetSummary[]}>(endpoint,{signal:options.signal});
-    return data.assets;
+    const data=await apiFetch<{assets:AssetSummary[];nextCursor?:string|null;nextAssetCursor?:string|null}>(endpoint,{signal:options.signal});
+    const rows=new Map(data.assets.map(asset=>[asset.id,asset]));
+    let cursor=previews?data.nextCursor:data.nextAssetCursor;
+    const seen=new Set<string>();
+    while(cursor){
+      if(seen.has(cursor))throw Error("The project asset list could not finish loading. Try again.");
+      seen.add(cursor);
+      const page=await apiFetch<{assets:AssetSummary[];nextCursor?:string|null}>(`/api/studio/assets?projectId=${encodeURIComponent(options.projectId)}&cursor=${encodeURIComponent(cursor)}`,{signal:options.signal});
+      for(const asset of page.assets)rows.set(asset.id,asset);
+      cursor=page.nextCursor;
+    }
+    return [...rows.values()];
   }
   async function open(ref:AssetRef) {
     if(!(await assets()).some(asset=>asset.id===ref.assetId))throw Error("This asset is outside the open project.");
@@ -37,6 +51,33 @@ export function createEditorHost(options:{projectId:string;initialRef:AssetRef;s
     switch(message.operation){
       case "openAsset": return open(assetRef(message.payload));
       case "insertAsset": return open(assetRef(message.payload));
+      case "importAsset": {
+        const input=object(message.payload),creationId=requireUuid(input.creationId,"import request ID");
+        const name=validatePackagePath(input.name);
+        if(name.includes("/")||!(input.file instanceof Blob)||!input.file.size||input.file.size>256*1024**2)throw Error("Choose a single supported file up to 256 MiB.");
+        if(importing)throw Error("Another library import is still being confirmed.");
+        importing=true;
+        try{
+          const file=new File([input.file],name,{type:input.file.type}),format=sourceFormat(name),app=nativeImportApp(name);
+          if(!format&&!app)throw Error("Choose a supported image, audio, video or native document.");
+          const fingerprint=JSON.stringify([name,file.type,await digestFile(file,options.signal)]),prior=imports.get(creationId);
+          if(prior&&prior.fingerprint!==fingerprint)throw Error("This import request already belongs to different files.");
+          if(prior?.result)return prior.result;
+          if(!prior&&imports.size>=100)throw Error("Reopen the saved editor before importing more files.");
+          const attempt=prior??{fingerprint};imports.set(creationId,attempt);
+          const files=format?await sourceImportFiles(file):await checkNativeImport(app!.id,[{path:name,role:"master" as const,file}]);
+          const title=importedDocumentName(name);
+          if(!format){
+            const created=await apiFetch<{asset:AssetSummary}>("/api/studio/assets",{method:"POST",body:JSON.stringify({creationId,projectId:options.projectId,appId:app!.id,name:title}),signal:options.signal});
+            if(created.asset.id!==creationId)throw Error("The import could not be confirmed. Retry this import.");
+          }
+          const result=await savePackage({assetId:creationId,expectedBaseRevisionId:null,files,dependencies:[],message:"Imported from a Craft",...(format?{sourceImport:{projectId:options.projectId,name:title}}:{}),signal:options.signal});
+          if(result.status!=="committed")throw Error("This import has a preserved conflict. Open it in Assets before continuing.");
+          attempt.result={ref:{assetId:result.assetId,revisionId:result.revisionId},status:result.status};
+          options.onImported?.();
+          return attempt.result;
+        }finally{importing=false;}
+      }
       // Published editor pickers use this legacy field solely for their label
       // and skip null values. Give source media its kind label on the bridge;
       // canonical API/database assets still have app_id=null and no owning Craft.

@@ -25,9 +25,9 @@
     "animation"
   ],
   "editor": {
-    "adapterVersion": "0.1.2",
-    "release": "effectcraft-v0.14.0-robyn-0.1.2",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/effectcraft/v0.14.0-0.1.2/?robyn",
+    "adapterVersion": "0.2.2",
+    "release": "effectcraft-v0.14.0-robyn-0.2.2",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/effectcraft/v0.14.0-0.2.2/?robyn",
     "status": "verified"
   },
   "workstation": {

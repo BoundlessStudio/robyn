@@ -14,7 +14,9 @@
     "instructions": "Build transparent, editable spreadsheets with clear labels, formulas, assumptions, units, and source references. Check totals, references, missing values, and error cells. Do not invent source data or replace formulas with unexplained values. Work only within the assigned project. Read the exact supplied asset revisions. Save a new immutable revision with its expected base; never overwrite another editor's work. Use studio-mcp for library access, preserve dependency references, and report completion only after the library confirms the save."
   },
   "formats": {
-    "native": [".xlsx"],
+    "native": [
+      ".xlsx"
+    ],
     "verification": "verified"
   },
   "capabilities": [
@@ -23,9 +25,9 @@
     "data-layout"
   ],
   "editor": {
-    "adapterVersion": "0.1.2",
-    "release": "gridcraft-v0.10.0-robyn-0.1.2",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/gridcraft/v0.10.0-0.1.2/?robyn&webgl",
+    "adapterVersion": "0.2.2",
+    "release": "gridcraft-v0.10.0-robyn-0.2.2",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/gridcraft/v0.10.0-0.2.2/?robyn",
     "status": "verified"
   },
   "workstation": {
