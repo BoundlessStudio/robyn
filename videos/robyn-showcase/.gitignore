@@ -1,0 +1,9 @@
+/node_modules/
+/dist/
+/build/
+.DS_Store
+.env
+
+# Local renders, posters, QA frames, logs and export receipts are reproducible.
+# Keep source assets in public/ and the editable project under version control.
+/out/
