@@ -6,6 +6,10 @@ import {nativeImportFixture,origin,projectId} from './fixtures/native-import.mjs
 const browserType=({chromium,firefox,webkit})[process.env.NATIVE_IMPORT_BROWSER??'chromium'];
 const apps=['PhotoCraft','VectorCraft','LightCraft','FilmCraft','EffectCraft','SoundCraft','DesignCraft','PdfCraft','WordCraft','DeckCraft','GridCraft','FigCraft','CADCraft'];
 const ready=(page,app)=>page.frameLocator(`iframe[title="${app} editor"]`).getByText('Ready',{exact:true}).waitFor();
+async function chooseApplication(page,app){
+  await page.getByRole('button',{name:'Applications',exact:true}).click();
+  await page.getByRole('dialog',{name:'Your applications.'}).getByRole('button',{name:app,exact:false}).click();
+}
 
 test('empty and populated projects lead with all thirteen applications and launch without AI allowance',async()=>{
   const browser=await browserType.launch({headless:true});
@@ -25,7 +29,7 @@ test('empty and populated projects lead with all thirteen applications and launc
   }finally{await browser.close();}
 });
 
-test('application chooser, supporting panels, cancelled New and narrowing preserve the live unsaved editor',async()=>{
+test('application chooser, supporting panels, cancelled launch and narrowing preserve the live unsaved editor',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
     const {page,state}=await nativeImportFixture(browser);
@@ -43,7 +47,8 @@ test('application chooser, supporting panels, cancelled New and narrowing preser
       await button.click();assert.equal(await button.getAttribute('aria-expanded'),'true');
       await button.click();assert.equal(await button.getAttribute('aria-expanded'),'false');
     }
-    page.once('dialog',dialog=>dialog.dismiss());await page.getByRole('button',{name:'New',exact:true}).click();
+    page.once('dialog',dialog=>dialog.dismiss());await chooseApplication(page,'WordCraft');
+    await page.keyboard.press('Escape');
     await page.setViewportSize({width:900,height:850});
     await page.getByRole('dialog',{name:/Open on.*desktop/}).waitFor();
     assert.equal(await page.locator('iframe').count(),1);
@@ -54,12 +59,11 @@ test('application chooser, supporting panels, cancelled New and narrowing preser
   }finally{await browser.close();}
 });
 
-test('common types and in-application New create separate saved files; rename preserves native paths and editor state',async()=>{
+test('application chooser creates separate saved files; rename preserves native paths and editor state',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
     const {page,state}=await nativeImportFixture(browser);
-    await page.getByRole('button',{name:'New file types',exact:true}).click();
-    await page.getByRole('menuitem',{name:/Document.*WordCraft/}).click();await ready(page,'WordCraft');
+    await chooseApplication(page,'WordCraft');await ready(page,'WordCraft');
     const asset=[...state.assets.values()][0],revision=state.revisions.get(asset.current_revision_id),paths=revision.package.files.map(file=>file.path);
     const source=await page.locator('iframe').getAttribute('src');
     await page.getByRole('button',{name:'Rename file: Untitled document'}).click();
@@ -67,14 +71,13 @@ test('common types and in-application New create separate saved files; rename pr
     await page.getByRole('button',{name:'Rename file: My new document'}).waitFor();
     assert.equal(state.assets.size,1);assert.equal(state.revisions.size,1);assert.equal(asset.name,'My new document');assert.deepEqual(revision.package.files.map(file=>file.path),paths);
     assert.equal(await page.locator('iframe').getAttribute('src'),source);
-    await page.getByRole('button',{name:'New',exact:true}).click();
+    await chooseApplication(page,'WordCraft');
     await page.waitForFunction(old=>document.querySelector('iframe')?.src!==old,source);await ready(page,'WordCraft');
     assert.equal(state.assets.size,2);assert.equal(state.revisions.size,2);
-    await page.getByRole('button',{name:'New file types',exact:true}).click();await page.getByRole('menuitem',{name:/Spreadsheet.*GridCraft/}).click();await ready(page,'GridCraft');
+    await chooseApplication(page,'GridCraft');await ready(page,'GridCraft');
     assert.equal(state.assets.size,3);
-    for(const [type,craft] of [['Presentation','DeckCraft'],['Image','PhotoCraft'],['PDF','PdfCraft'],['Audio','SoundCraft'],['Video','FilmCraft']]){
-      await page.getByRole('button',{name:'New file types',exact:true}).click();
-      await page.getByRole('menuitem',{name:new RegExp(`${type}.*${craft}`)}).click();await ready(page,craft);
+    for(const craft of ['DeckCraft','PhotoCraft','PdfCraft','SoundCraft','FilmCraft']){
+      await chooseApplication(page,craft);await ready(page,craft);
     }
     await page.goto(`${origin}/dashboard/projects/${projectId}?asset=${asset.id}`);await ready(page,'WordCraft');
     await page.getByRole('button',{name:'Rename file: My new document'}).waitFor();
@@ -110,7 +113,8 @@ test('an uncertain start cannot be repurposed, and archived projects cannot star
     await page.getByRole('button',{name:'Continue opening WordCraft',exact:true}).click();await ready(page,'WordCraft');
     const archived=await nativeImportFixture(browser,{archived:true});
     assert.equal(await archived.page.getByRole('button',{name:'WordCraft',exact:false}).isDisabled(),true);
-    assert.equal(await archived.page.getByRole('button',{name:'New',exact:true}).isDisabled(),true);
+    await archived.page.getByRole('button',{name:'Applications',exact:true}).click();
+    assert.equal(await archived.page.getByRole('dialog',{name:'Your applications.'}).getByRole('button',{name:'WordCraft',exact:false}).isDisabled(),true);
     assert.equal(archived.state.assets.size,0);assert.deepEqual(state.errors,[]);
   }finally{await browser.close();}
 });
@@ -121,7 +125,7 @@ test('resuming a failed launch protects edits made after closing its recovery di
     const {page,state}=await nativeImportFixture(browser);
     await page.getByRole('button',{name:'WordCraft',exact:false}).click();await ready(page,'WordCraft');
     state.failCreationReply=true;
-    await page.getByRole('button',{name:'New file types',exact:true}).click();await page.getByRole('menuitem',{name:/Spreadsheet.*GridCraft/}).click();
+    await chooseApplication(page,'GridCraft');
     await page.getByRole('button',{name:'Continue opening GridCraft',exact:true}).waitFor();
     await page.getByRole('dialog').getByRole('button',{name:'Close dialog',exact:true}).click();
     await page.getByRole('dialog').waitFor({state:'hidden'});

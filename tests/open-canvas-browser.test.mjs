@@ -111,7 +111,9 @@ test('manual starts cover all thirteen Crafts, validate bytes before writes, and
     const requests=state.requests.filter(req=>req.path==='/api/studio/starters');assert.equal(requests.length,2);assert.deepEqual(requests[0].input,requests[1].input);
     assert.equal(await page.evaluate(key=>localStorage.getItem(key),`robyn-blank:${projectId}`),null);
     await editor.getByLabel('Document text').fill('A first manual edit.');
-    page.once('dialog',dialog=>dialog.dismiss());await page.getByRole('button',{name:'New',exact:true}).click();
+    await page.getByRole('button',{name:'Applications',exact:true}).click();
+    page.once('dialog',dialog=>dialog.dismiss());await page.getByRole('dialog',{name:'Your applications.'}).getByRole('button',{name:'WordCraft',exact:false}).click();
+    await page.keyboard.press('Escape');
     assert.equal(await editor.getByLabel('Document text').inputValue(),'A first manual edit.','cancel keeps unsaved work in the editor');
     await editor.getByRole('button',{name:'Save document',exact:true}).click();await editor.getByText('Saved',{exact:true}).waitFor();
     await page.getByRole('button',{name:'Applications',exact:true}).click();
