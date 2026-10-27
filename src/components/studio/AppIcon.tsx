@@ -5,6 +5,7 @@ import type { StudioAppManifest } from "@/studio/manifest";
 const applicationIds = new Set([...studioApps, research].map(app => app.id));
 const illustratedBackgrounds: Record<string, string> = {
   research: "#7472e8", wordcraft: "#3c59dd", deckcraft: "#ff731b", gridcraft: "#209d59",
+  cadcraft: "#16a8c2",
 };
 
 /** Shared application artwork; adjacent text supplies the accessible name. */
