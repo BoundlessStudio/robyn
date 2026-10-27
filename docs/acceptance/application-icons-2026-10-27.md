@@ -25,3 +25,9 @@ Screenshots and detailed logs remain in ignored local QA storage. Native/editor 
 Authenticated, read-only checks confirmed fourteen loaded launcher images, thirteen catalogue icons, the Research browser icon and three existing project file badges, with zero page errors. All fourteen production image byte counts and SHA-256 hashes match the asset manifest. No employee work or saved document changes were requested.
 
 The live migration ledger still exactly matches the earlier application-workspace release: 25 entries through 0024, SHA-256 `508945e29e3ac0dbcf0d084b0d65e17a0222d6c5afe9535664cb74eb94fc46fa`. No migration was executed. Later documentation-only commits may rebuild the same application bytes.
+
+## CADCraft animal follow-up
+
+The owner also requested an animal version of CADCraft. Its drafting-tool icon is replaced by an engraved orb-weaver spider on turquoise, using the same shared icon rendering as the other applications. The asset manifest records the built-in image generation prompt, source hash and optimized 256 × 256 WebP hash. The set now contains nine unchanged ArtCraft originals and five custom animal illustrations.
+
+Fresh local checks passed typecheck, all 109 web tests and the production build. CADCraft's image loaded and its editor launched in Chromium, Firefox and WebKit. Cancelled replacement preserved unsaved edits in the Firefox and WebKit transport fixtures. Visual review covered the launcher at 1200, 1440 and 1920 pixels, the application catalogue and small project file badges; no clipping or horizontal overflow was found. Runtime, native/editor pins, starters and database migrations are unchanged. Deployment verification follows separately.

@@ -1,7 +1,7 @@
 {
   "retrieved": "2026-10-27",
   "catalogue": "https://getartcraft.com/apps",
-  "note": "Ten unchanged ArtCraft originals plus four Robyn animal illustrations requested by the owner.",
+  "note": "Nine unchanged ArtCraft originals plus five Robyn animal illustrations requested by the owner.",
   "icons": [
     {
       "id": "photocraft",
@@ -59,9 +59,15 @@
     },
     {
       "id": "cadcraft",
-      "source": "https://getartcraft.com/images/apps/cadcraft/icon.webp",
-      "bytes": 9256,
-      "sha256": "6e5031366dfc3b01abd92496767483f7311cf126f3f8c6c5453f2464fb1e54ef"
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-10-27",
+      "prompt": "Create one production application icon for CADCraft, matching the engraved animal icons for Robyn / ArtCraft shown in this conversation. A precise antique natural-history wood engraving of an orb-weaver spider, viewed from above with a subtly angled oval abdomen, compact head and exactly eight elegantly jointed legs arranged clearly around it. The spider is a graceful natural architect: calm, balanced, beautiful, anatomically plausible, not frightening, not cartoonish. Black ink crosshatching with warm ivory highlights, fine engraved texture, clean strong silhouette legible at 48 pixels. The spider fills most of the square with adequate space for the eight legs to remain recognizable and inside the tile. Background is a uniform vivid turquoise #16A8C2 rounded square filling the canvas, large smooth rounded corners, true transparency only outside the corners. Match the flat coloured tile and monochrome natural-history illustration style of the fox, owl, lion, elephant, peacock, beaver and raven icons. One icon only, 1024x1024 square. No lettering, no tools, no ruler, no drafting triangle, no web or scenery, no gradients, no shadows, no sticker rim, no outer margin. Full-bleed solid colour tile, crisp isolated detailed engraving.",
+      "width": 256,
+      "height": 256,
+      "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved.",
+      "sourceSha256": "08c66fb2ef378be7dd0ac1672d18844e9c3c1de0da3292db98f2df0d5f3697f4",
+      "bytes": 46960,
+      "sha256": "0fb06b48bafefe5cc2e4371836aed6db7907d5953f9df9c4711a7f77de5f45d2"
     },
     {
       "id": "research",
