@@ -1,2 +1,2 @@
 import { ProjectWorkspace } from "@/components/studio/ProjectWorkspace";
-export default async function Page({params,searchParams}:{params:Promise<{id:string}>;searchParams:Promise<{asset?:string}>}){const {id}=await params;const {asset}=await searchParams;return <ProjectWorkspace projectId={id} initialAssetId={asset}/>;}
+export default async function Page({params,searchParams}:{params:Promise<{id:string}>;searchParams:Promise<{asset?:string;app?:string;launch?:string}>}){const {id}=await params;const {asset,app,launch}=await searchParams;return <ProjectWorkspace projectId={id} initialAssetId={asset} initialAppId={app} initialLaunchId={launch}/>;}

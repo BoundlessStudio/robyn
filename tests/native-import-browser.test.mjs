@@ -49,7 +49,7 @@ test('file-picker import retries lost creation and commit replies without duplic
     const {page,state}=await nativeImportFixture(browser);
     state.failCreationReply=true;
     const chooser=page.waitForEvent('filechooser');
-    await page.locator('.project-blank').getByRole('button',{name:'Bring existing files',exact:true}).click();
+    await page.locator('.project-start').getByRole('button',{name:'Open existing files',exact:true}).click();
     await (await chooser).setFiles({name:'Budget.xlsx',mimeType:'application/octet-stream',buffer:Buffer.from('Spreadsheet transport fixture')});
     await page.getByRole('alert').waitFor();assert.equal(state.assets.size,1);
     state.failCommitReply=true;
@@ -77,7 +77,7 @@ test('unrecognised and mixed files stay editable in the detailed import without 
     assert.equal(await page.getByRole('button',{name:'Save native package'}).isDisabled(),true);
     assert.equal(state.assets.size,0);
     await page.keyboard.press('Escape');
-    assert.equal(await page.locator('.project-header').getByRole('button',{name:'Bring existing files'}).evaluate(button=>button===document.activeElement),true);
+    assert.equal(await page.locator('.project-header').getByRole('button',{name:'Open existing'}).evaluate(button=>button===document.activeElement),true);
     await dropDocument(page,'Film.fcproj',JSON.stringify({format:'filmcraft.project',schema_version:15,project:{items:{a:{kind:{Media:{media:{File:{path:'clip.mp4'}}}}}}}}));
     await page.getByRole('dialog').waitFor();
     await page.getByRole('alert').waitFor();
@@ -94,7 +94,7 @@ test('unrecognised and mixed files stay editable in the detailed import without 
     assert.equal(await page.getByLabel('Project to open',{exact:true}).locator('option').count(),3);
     assert.equal(state.assets.size,0);
     await page.getByRole('button',{name:'Close dialog'}).click();
-    await page.getByRole('button',{name:'Import a folder or linked files',exact:true}).click();
+    await page.getByRole('button',{name:'Folder or linked files',exact:true}).click();
     assert.equal(await page.getByLabel('Choose project folder').count(),1);
     assert.deepEqual(state.errors,[]);
   }finally{await browser.close();}
@@ -121,6 +121,7 @@ test('an import can pause and resume, and dropping a second file respects unsave
     await editor.getByLabel('Document text').pressSequentially('Keep this unsaved edit');
     await page.getByRole('status',{name:/Unsaved/}).waitFor();
     page.once('dialog',dialog=>dialog.dismiss());
+    await page.getByRole('button',{name:'Files',exact:true}).click();
     await dropDocument(page,'Print.pdf','Another transport fixture','.project-assets');
     assert.equal(state.assets.size,1);
     assert.equal(await editor.getByLabel('Document text').inputValue(),'Keep this unsaved edit');
@@ -138,7 +139,7 @@ test('the folder path still preserves a native master and its linked files with 
     await writeFile(join(folder,'unrelated-private.txt'),'Do not upload unrelated folder files');
     await writeFile(join(folder,'images','cover.png'),'Linked transport fixture');
     const {page,state}=await nativeImportFixture(browser);
-    await page.getByRole('button',{name:'Import a folder or linked files',exact:true}).click();
+    await page.getByRole('button',{name:'Folder or linked files',exact:true}).click();
     await page.getByLabel('Choose project folder').setInputFiles(folder);
     await page.frameLocator('iframe[title="SoundCraft editor"]').getByText('Ready',{exact:true}).waitFor();
     const revision=[...state.revisions.values()][0];
@@ -205,7 +206,7 @@ test('common source files save without a Craft, preview, retry uncertain replies
       {name:'Voice.wav',mimeType:'audio/wav',buffer:Buffer.from('RIFF1234WAVEfixture')},
       {name:'Clip.mp4',mimeType:'video/mp4',buffer:Buffer.concat([Buffer.from([0,0,0,24]),Buffer.from('ftypisom')])},
     ]);
-    await page.getByText('Clip',{exact:true}).first().waitFor();
+    await page.locator('.source-import-note').getByText('Clip',{exact:true}).waitFor();
     assert.equal(state.assets.size,3);assert.equal(state.revisions.size,3);
     assert.deepEqual([...state.assets.values()].map(a=>a.app_id),[null,null,null]);
     await page.locator('video').waitFor();

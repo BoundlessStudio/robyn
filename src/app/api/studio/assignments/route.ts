@@ -42,7 +42,7 @@ export async function GET(request: Request) {
         browserPaused: job.browser_paused,
         recovering: ["dispatching", "uncertain"].includes(job.dispatch_state) || job.error_code === "workstation_recovering",
         reviewDecision: reviews.data?.find(review => review.assignment_id === job.id)?.decision ?? null,
-        purpose: job.purpose,
+        purpose: job.purpose, startMode: job.start_mode,
         campaign: campaign ? { id: campaign.id, state: campaign.state, steps: campaignSteps.length, finishedSteps: campaignSteps.filter(step => step.output_refs !== null).length } : null,
         deliverables: deliverables.filter(revision => assets.data?.some(asset => asset.id === revision.asset_id)).map(revision => ({ assetId: revision.asset_id, revisionId: revision.id, name: assets.data?.find(asset => asset.id === revision.asset_id)?.name ?? "Saved work", state: revision.state as "committed" | "conflict" })),
       };
@@ -65,6 +65,9 @@ export async function POST(request: Request) {
     const { data, error } = await query.maybeSingle(); dbFailure(error);
     if (!data) throw new ApiError(404, "not_found", "Employee not found.");
     const employee = data as StudioEmployee;
+    const startMode=input.startMode??"work";
+    if(typeof startMode!=="string"||!["work","draft","plan"].includes(startMode))throw new ApiError(400,"invalid_start_mode","Choose how you want to begin.");
+    if(startMode!=="work"&&employee.kind!=="director")throw new ApiError(400,"director_required","Start this idea with the Director.");
     if (employee.kind === "specialist" && !studioApps.some(app => app.id === employee.app_id && isEmployeeReady(app))) throw new ApiError(409, "integration_pending", "This employee's application is still being verified.");
     const brief = textField(input.brief, 20000, "Assignment brief");
     const requestId = id(input.requestId, "request ID");
@@ -76,7 +79,7 @@ export async function POST(request: Request) {
       return { assetId: id(ref.assetId, "asset ID"), revisionId: id(ref.revisionId, "revision ID") };
     });
     if (new Set(inputs.map(ref => ref.revisionId)).size !== inputs.length) throw new ApiError(400, "invalid_inputs", "Each saved revision may appear once.");
-    const assignment = await assignmentRpc<Assignment>(db, "create_studio_assignment", { p_workspace: workspaceId, p_user: user.id, p_project: projectId, p_employee: employee.id, p_request: requestId, p_brief: brief, p_inputs: inputs });
+    const assignment = await assignmentRpc<Assignment>(db, "create_studio_start_assignment", { p_workspace: workspaceId, p_user: user.id, p_project: projectId, p_employee: employee.id, p_request: requestId, p_brief: brief, p_inputs: inputs, p_mode:startMode });
     await launchAssignment(db, { workspaceId, userId: user.id, assignmentId: assignment.id }, assignment);
     return json({ assignmentId: assignment.id, state: assignment.state }, 202);
   } catch (error) { return handleError(error); }

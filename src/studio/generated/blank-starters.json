@@ -1,0 +1,210 @@
+[
+  {
+    "id": "wordcraft:1",
+    "appId": "wordcraft",
+    "name": "Untitled document",
+    "description": "Blank document",
+    "files": [
+      {
+        "path": "Untitled document.docx",
+        "role": "master",
+        "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "bytes": 6490,
+        "sha256": "4a00f315ae573c76db491c2bd99929581345aabaa667d5bc24e18c1f46c191af",
+        "url": "/studio/starters/1/wordcraft/Untitled%20document.docx"
+      }
+    ]
+  },
+  {
+    "id": "deckcraft:1",
+    "appId": "deckcraft",
+    "name": "Untitled presentation",
+    "description": "Blank presentation",
+    "files": [
+      {
+        "path": "Untitled presentation.deckcraft",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 4592,
+        "sha256": "c1eabc895761e375e7516389cd7f4b029d29fef0da9382effbb831b0453b42d9",
+        "url": "/studio/starters/1/deckcraft/Untitled%20presentation.deckcraft"
+      }
+    ]
+  },
+  {
+    "id": "vectorcraft:1",
+    "appId": "vectorcraft",
+    "name": "Untitled illustration",
+    "description": "Blank illustration",
+    "files": [
+      {
+        "path": "Untitled illustration.vectorcraft",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 21651,
+        "sha256": "73788b29360bd1e3b179cc6c377556e6072d57f0663bcf8dcb91fbd70ecbda41",
+        "url": "/studio/starters/1/vectorcraft/Untitled%20illustration.vectorcraft"
+      }
+    ]
+  },
+  {
+    "id": "photocraft:1",
+    "appId": "photocraft",
+    "name": "Untitled image",
+    "description": "Transparent image · 1920 × 1080",
+    "files": [
+      {
+        "path": "Untitled image.pcraft",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 6972,
+        "sha256": "9c51335e5484367188fb00f12f73fa7ca8be0adaa7438354c706034cffc01127",
+        "url": "/studio/starters/1/photocraft/Untitled%20image.pcraft"
+      }
+    ]
+  },
+  {
+    "id": "lightcraft:1",
+    "appId": "lightcraft",
+    "name": "Untitled photo library",
+    "description": "Empty photo library",
+    "files": [
+      {
+        "path": "catalog.snap",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 133,
+        "sha256": "4240ef0b863a4fda5355f701e0288ad7066132bfc0bd285f2f3ab7f20d8f3d15",
+        "url": "/studio/starters/1/lightcraft/catalog.snap"
+      }
+    ]
+  },
+  {
+    "id": "designcraft:1",
+    "appId": "designcraft",
+    "name": "Untitled layout",
+    "description": "Blank A4 layout",
+    "files": [
+      {
+        "path": "Untitled layout.designcraft",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 4951,
+        "sha256": "e3f06f0e1f2f0bd18f48c4bf2b00d6816e1252fb3ec0f51e9755eecb66578914",
+        "url": "/studio/starters/1/designcraft/Untitled%20layout.designcraft"
+      }
+    ]
+  },
+  {
+    "id": "figcraft:1",
+    "appId": "figcraft",
+    "name": "Untitled design",
+    "description": "Blank design canvas",
+    "files": [
+      {
+        "path": "Untitled design.figcraft",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 401,
+        "sha256": "d948972c9b609a189e1e7ca156f136ac3fa61f3ffa4e2a3feec6b801346c3971",
+        "url": "/studio/starters/1/figcraft/Untitled%20design.figcraft"
+      }
+    ]
+  },
+  {
+    "id": "filmcraft:1",
+    "appId": "filmcraft",
+    "name": "Untitled film",
+    "description": "Empty video timeline · 1080p",
+    "files": [
+      {
+        "path": "Untitled film.fcproj",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 3282,
+        "sha256": "ea65afbb979843138c9f41811f68128b99bef74c0a1ec1f32979207434413155",
+        "url": "/studio/starters/1/filmcraft/Untitled%20film.fcproj"
+      }
+    ]
+  },
+  {
+    "id": "effectcraft:1",
+    "appId": "effectcraft",
+    "name": "Untitled composition",
+    "description": "Blank composition · 1080p",
+    "files": [
+      {
+        "path": "Untitled composition.ecproj",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 2476,
+        "sha256": "b360b6ec7b76f83e95fa39fe4995b40244a8049e69b1df6038d02664102d7ebc",
+        "url": "/studio/starters/1/effectcraft/Untitled%20composition.ecproj"
+      }
+    ]
+  },
+  {
+    "id": "soundcraft:1",
+    "appId": "soundcraft",
+    "name": "Untitled audio",
+    "description": "Empty audio session",
+    "files": [
+      {
+        "path": "Untitled audio.scraft",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 2387,
+        "sha256": "a42597ebf3aed6eb66e52ad1c9be08d0a94c0e077ad438f9b2962c8f97dcae14",
+        "url": "/studio/starters/1/soundcraft/Untitled%20audio.scraft"
+      }
+    ]
+  },
+  {
+    "id": "pdfcraft:1",
+    "appId": "pdfcraft",
+    "name": "Untitled PDF",
+    "description": "Blank PDF page",
+    "files": [
+      {
+        "path": "Untitled PDF.pdf",
+        "role": "master",
+        "mimeType": "application/pdf",
+        "bytes": 564,
+        "sha256": "c7084e01e5113a63186adf328df355992d1b9959359e236869e477b3f1b6c95d",
+        "url": "/studio/starters/1/pdfcraft/Untitled%20PDF.pdf"
+      }
+    ]
+  },
+  {
+    "id": "gridcraft:1",
+    "appId": "gridcraft",
+    "name": "Untitled spreadsheet",
+    "description": "Blank spreadsheet",
+    "files": [
+      {
+        "path": "Untitled spreadsheet.xlsx",
+        "role": "master",
+        "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "bytes": 3990,
+        "sha256": "6690e1424fca3695b95b483195b455febc0cbebe6c527bf88607836f2eb5a44d",
+        "url": "/studio/starters/1/gridcraft/Untitled%20spreadsheet.xlsx"
+      }
+    ]
+  },
+  {
+    "id": "cadcraft:1",
+    "appId": "cadcraft",
+    "name": "Untitled drawing",
+    "description": "Blank CAD drawing",
+    "files": [
+      {
+        "path": "Untitled drawing.dxf",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 18218,
+        "sha256": "2447ad3870e8fe321f01324c0e2ec0503f229606ed8f1dd9e131a6e00f50d6de",
+        "url": "/studio/starters/1/cadcraft/Untitled%20drawing.dxf"
+      }
+    ]
+  }
+]

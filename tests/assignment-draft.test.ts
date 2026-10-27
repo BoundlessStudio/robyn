@@ -10,7 +10,7 @@ test("assignment drafts recover exact requests and acknowledged drafts cannot re
   entries.set(`robyn-brief:${project}:${mode}`, "Legacy brief");
   const draft = readAssignmentDraft(storage, project, mode);
   assert.equal(draft.brief, "Legacy brief");
-  const request = { projectId: project, employeeId: randomUUID(), brief: draft.brief, inputs: [{assetId:randomUUID(),revisionId:randomUUID()}], requestId:randomUUID() };
+  const request = { projectId: project, employeeId: randomUUID(), brief: draft.brief, inputs: [{assetId:randomUUID(),revisionId:randomUUID()}], requestId:randomUUID(), startMode:"plan" as const };
   saveAssignmentDraft(storage, project, mode, { ...draft, pending: request });
   const restored = readAssignmentDraft(storage, project, mode);
   assert.deepEqual(restored.pending, request);

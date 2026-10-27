@@ -7,6 +7,7 @@ import { ensureEmployeeInstance, prepareEmployeeAssignment, WorkstationConfigura
 import { launchCampaign } from "@/studio/campaign-launch";
 import { dbFailure } from "@/studio/server";
 import {paidCapacity} from "@/studio/paid-capacity";
+import {startInstructions} from "@/studio/start-mode";
 
 export async function launchAssignmentCampaign(identity:AssignmentIdentity){
   "use step";
@@ -88,7 +89,7 @@ export async function dispatchAssignment(fence: AssignmentFence) {
     const browserReturn = assignment.browser_turns?.length ? "\nThe creator has returned control after using your browser. Inspect the CURRENT browser state and existing files in this assignment's workRoot before acting. Continue this same brief from what is already done. Do not repeat completed external actions; verify their outcome and ask if uncertain.\n" : "";
     const continuation=assignment.budget_turns?.length?"\nThis assignment paused when AI allowance ran out. Inspect existing workRoot files, saved revisions, and media job records. Continue from that progress. Never repeat a paid or external action with an unknown outcome.\n":"";
     const prompt = `${assignmentMarker(assignment.id)}\nYou are ${employee.role}.\n${employee.instructions}\nAssignment purpose: ${assignment.purpose}.\n\nRead studio_context first. The assigned brief and exact input revisions there are authoritative. Complete only this assignment. Preserve native editability and use confirmed library saves. Never read credential files.\nFor stock images, audio and video, use search_media and import_media. For generation, use generate_media through the shared studio service, never direct provider payments. Keep each operationId when retrying; poll get_media_job and consume only its completed exact AssetRef. Source masters are original media, not native Craft documents. Import them into your application, preserve exact dependency revisions, and include source attribution/license notices in delivery. Your reasoning and paid tools share your employee allocation; generation uses the Creative Director's allocation. Robyn estimates and reserves generation cost. Never ask the creator to price each request or bypass budget pauses. Uncertain payment outcomes must not be repeated with a new ID.${browserReturn}${continuation}\n\nCreator's brief:\n${assignment.brief}`;
-    const response = await agent37.submitAssignmentTurn(employee.instance_id, prompt, assignment.session_id, AbortSignal.timeout(185_000));
+    const response = await agent37.submitAssignmentTurn(employee.instance_id, `${prompt}\n\n${startInstructions(assignment.start_mode)}`, assignment.session_id, AbortSignal.timeout(185_000));
     const observed = await readTurnStream(response, true, { sessionId: assignment.session_id });
     if (observed?.kind === "created") {
       await assignmentRpc<boolean>(db, "record_studio_assignment_response", { ...args, p_session: observed.sessionId, p_response: observed.responseId });

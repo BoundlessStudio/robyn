@@ -8,6 +8,8 @@ import {build} from 'esbuild';
 export const projectId = '11111111-1111-4111-8111-111111111111';
 export const origin = 'http://127.0.0.1:3000';
 const root = fileURLToPath(new URL('../../', import.meta.url));
+const starters=JSON.parse(await readFile(root+'src/studio/generated/blank-starters.json','utf8'));
+const director='bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb';
 let bundlePromise;
 
 async function bundle() {
@@ -18,7 +20,9 @@ async function bundle() {
       import {WorkspaceProvider} from './src/components/WorkspaceProvider';
       import {ProjectWorkspace} from './src/components/studio/ProjectWorkspace';
       import {StudioLibrary} from './src/components/studio/StudioLibrary';
-      createRoot(document.getElementById('root')).render(<StrictMode><WorkspaceProvider initialWorkspaces={[]} userEmail="fixture@example.test"><div className="studio-shell project-mode"><main className="studio-main">{location.pathname==='/dashboard/library'?<StudioLibrary/>:<ProjectWorkspace projectId="${projectId}" initialAssetId={new URLSearchParams(location.search).get('asset')??undefined}/>}</main></div></WorkspaceProvider></StrictMode>);
+      import {StudioApplications} from './src/components/studio/StudioApplications';
+      import {DesktopStudioGate} from './src/components/studio/DesktopStudioGate';
+      createRoot(document.getElementById('root')).render(<StrictMode><WorkspaceProvider initialWorkspaces={[]} userEmail="fixture@example.test"><DesktopStudioGate><div className="studio-shell project-mode"><main className="studio-main">{location.pathname==='/dashboard/library'?<StudioLibrary/>:location.pathname==='/dashboard/applications'?<StudioApplications/>:<ProjectWorkspace projectId="${projectId}" initialAssetId={new URLSearchParams(location.search).get('asset')??undefined} initialAppId={new URLSearchParams(location.search).get('app')??undefined} initialLaunchId={new URLSearchParams(location.search).get('launch')??undefined}/>}</main></div></DesktopStudioGate></WorkspaceProvider></StrictMode>);
     `, resolveDir:root, sourcefile:'native-import-fixture.tsx', loader:'tsx'},
     jsx:'automatic', bundle:true, write:false, platform:'browser', format:'iife', tsconfig:root+'tsconfig.json',
     define:{'process.env.NODE_ENV':'"development"', 'process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY':'"isolated-fixture"'},
@@ -44,7 +48,7 @@ const editor = `<!doctype html><html lang="en"><head><title>Isolated editor peer
     document.getElementById('save').onclick=async()=>{const result=await request('saveAsset',{assetId:ref.assetId,expectedBaseRevisionId:ref.revisionId,files:[{path,role:'master',file:new Blob([document.getElementById('text').value],{type:'application/octet-stream'})}],dependencies:[],message:'Edited transport fixture'});ref=result.ref;await request('notifyChanges',{assetId:ref.assetId,dirty:false});document.getElementById('state').textContent='Saved';};
   </script></body></html>`;
 
-export async function nativeImportFixture(browser, {realEditor=false, viewport={width:1440,height:960}, workspaceOrigin=origin, fileOrigin='https://native-import-files.test'}={}) {
+export async function nativeImportFixture(browser, {realEditor=false, viewport={width:1440,height:960}, workspaceOrigin=origin, fileOrigin='https://native-import-files.test', initialPath, archived=false}={}) {
   const script=await bundle();
   const css=await readFile(root+'node_modules/tailwindcss/preflight.css','utf8')+'\n'+
     '@font-face{font-family:"Space Grotesk Variable";font-style:normal;font-weight:300 700;src:url(/space.woff2)}@font-face{font-family:"Instrument Serif";font-style:italic;font-weight:400;src:url(/serif.woff2)}\n'+
@@ -52,7 +56,7 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
   // Only this isolated QA context may reach its temporary loopback TUS server.
   const context=await browser.newContext({viewport,permissions:browser.browserType().name()==='chromium'?['local-network-access']:[]});
   const page=await context.newPage();page.setDefaultTimeout(realEditor?60000:10000);
-  const state={assets:new Map(),revisions:new Map(),bytes:new Map(),requests:[],errors:[],failCreationReply:false,failCommitReply:false,holdTransfers:false,releaseTransfers:null};
+  const state={assets:new Map(),revisions:new Map(),bytes:new Map(),requests:[],errors:[],assignments:new Map(),allowance:5000000,failAllowance:false,failAssignmentReply:false,failStarterDownload:false,failCreationReply:false,failCommitReply:false,holdTransfers:false,releaseTransfers:null};
   // WebKit's interception API omits Blob request bodies. Receive real TUS bytes
   // on loopback for every engine instead of substituting the selected input.
   const transferServer=createServer(async(req,res)=>{
@@ -71,7 +75,8 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
   const transferOrigin=`http://127.0.0.1:${transferServer.address().port}`;
   context.once('close',()=>{transferServer.closeAllConnections();transferServer.close();});
   page.on('pageerror',error=>state.errors.push(error.message));
-  const project={id:projectId,name:'First project',brief:'',status:'active',created_at:'2026-10-26T12:00:00Z',updated_at:'2026-10-26T12:00:00Z'};
+  const project={id:projectId,name:'First project',brief:'',status:archived?'archived':'active',created_at:'2026-10-26T12:00:00Z',updated_at:'2026-10-26T12:00:00Z'};
+  state.project=project;
   const cors={'access-control-allow-origin':'*'};
   await context.route('**/*',async route=>{
     const req=route.request(),url=new URL(req.url()),method=req.method();
@@ -89,10 +94,37 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
     if(url.pathname==='/studio.css')return route.fulfill({contentType:'text/css',body:css});
     if(url.pathname==='/space.woff2')return route.fulfill({contentType:'font/woff2',body:await readFile(root+'node_modules/@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2')});
     if(url.pathname==='/serif.woff2')return route.fulfill({contentType:'font/woff2',body:await readFile(root+'node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2')});
+    if(url.pathname.startsWith('/studio/starters/')){
+      const file=starters.flatMap(item=>item.files).find(file=>file.url===url.pathname);
+      if(!file)return route.fulfill({status:404,body:'Unknown starter'});
+      return route.fulfill({contentType:file.mimeType,body:state.failStarterDownload?Buffer.from('Corrupt download'):await readFile(root+'public'+decodeURIComponent(file.url))});
+    }
     if(url.pathname.startsWith('/api/')){
-      const input=method==='POST'?req.postDataJSON():null;
+      const input=['POST','PATCH'].includes(method)?req.postDataJSON():null;
       state.requests.push({path:url.pathname,method,input});
-      if(url.pathname===`/api/studio/projects/${projectId}`)return route.fulfill({json:{project,assets:[...state.assets.values()],activity:[],nextAssetCursor:null}});
+      if(url.pathname==='/api/studio/projects')return route.fulfill({json:{projects:project.status==='active'?[project]:[],nextCursor:null}});
+      if(url.pathname===`/api/studio/projects/${projectId}`){if(method==='PATCH')Object.assign(project,input);return route.fulfill({json:{project,assets:[...state.assets.values()],activity:[],nextAssetCursor:null}});}
+      if(url.pathname.startsWith('/api/studio/budgets/'))return route.fulfill(state.failAllowance?{status:503,json:{error:{message:'Unavailable'}}}:{json:{availableMicros:state.allowance,reason:state.allowance?null:'No AI allowance remains.'}});
+      if(url.pathname==='/api/studio/assignments'){
+        if(method==='POST'){
+          assert.equal(input.projectId,projectId);assert.equal(input.employeeId,director);
+          const prior=state.assignments.get(input.requestId);if(prior)assert.deepEqual(prior.input,input);
+          else state.assignments.set(input.requestId,{input,id:randomUUID(),employeeId:director,appId:null,role:'Creative Director',brief:input.brief,startMode:input.startMode,state:'queued',result:null,deliverables:[],createdAt:project.created_at});
+          if(state.failAssignmentReply)return route.fulfill({status:503,json:{error:{message:'Reconnect the saved request.'}}});
+          return route.fulfill({json:{assignmentId:state.assignments.get(input.requestId).id,state:'queued'}});
+        }
+        return route.fulfill({json:{employees:[{id:director,role:'Creative Director',appId:null,ready:true}],assignments:[...state.assignments.values()]}});
+      }
+      if(url.pathname==='/api/studio/starters'){
+        const starter=starters.find(item=>item.id===input.templateId);assert.ok(starter);assert.equal(input.projectId,projectId);
+        const id=input.creationId;let revision=[...state.revisions.values()].find(row=>row.assetId===id);
+        if(!revision){
+          state.assets.set(id,{id,project_id:projectId,app_id:starter.appId,name:starter.name,asset_kind:'native',current_revision_id:null,created_at:project.created_at});
+          revision={id:randomUUID(),assetId:id,state:'uploading',revision_number:1,created_at:project.created_at,package:input.package};state.revisions.set(revision.id,revision);
+        }else assert.deepEqual(revision.package,input.package);
+        if(state.failCreationReply){state.failCreationReply=false;return route.abort('failed');}
+        return route.fulfill({json:{revisionId:revision.id}});
+      }
       if(url.pathname==='/api/studio/sources'){
         assert.equal(input.projectId,projectId);
         const id=input.creationId;
@@ -122,7 +154,7 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
       const assetMatch=url.pathname.match(/^\/api\/studio\/assets\/([^/]+)(\/revisions)?$/);
       if(assetMatch){
         const asset=state.assets.get(assetMatch[1]);
-        if(!assetMatch[2])return route.fulfill({json:{asset}});
+        if(!assetMatch[2]){if(method==='PATCH')asset.name=input.name;return route.fulfill({json:{asset}});}
         if(method==='GET')return route.fulfill({json:{revisions:[...state.revisions.values()].filter(row=>row.assetId===asset.id),nextCursor:null}});
         const id=randomUUID();state.revisions.set(id,{id,assetId:asset.id,state:'uploading',revision_number:state.revisions.size+1,created_at:project.created_at,...input});
         return route.fulfill({json:{revisionId:id}});
@@ -147,12 +179,12 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
     if(url.pathname.startsWith('/dashboard'))return route.fulfill({contentType:'text/html',body:`<!doctype html><html lang="en"><head><title>Import workspace fixture</title><style>*,*::before,*::after{box-sizing:border-box}body,h1,h2,h3,p{margin:0}button{border:0;background:none;color:inherit;cursor:pointer}a{color:inherit}.studio-shell.project-mode{display:block}</style><link rel="stylesheet" href="/studio.css"></head><body><div id="root"></div><script>window.process={env:{NODE_ENV:'development'}};</script><script src="/fixture.js"></script></body></html>`});
     return route.fulfill({status:404,body:'Isolated fixture'});
   });
-  await page.goto(`${workspaceOrigin}/dashboard/projects/${projectId}`);
-  try{await page.getByRole('heading',{name:'First project',exact:true}).waitFor();}catch(error){if(state.errors.length)throw Error(state.errors.join('\n'));throw error;}
+  await page.goto(workspaceOrigin+(initialPath??`/dashboard/projects/${projectId}`));
+  try{if(!initialPath||initialPath.includes('/projects/'))await page.getByRole('heading',{name:'First project',exact:true}).waitFor();}catch(error){if(state.errors.length)throw Error(state.errors.join('\n'));throw error;}
   return {page,context,state};
 }
 
-export async function dropDocument(page, filename, content, target='.project-blank') {
+export async function dropDocument(page, filename, content, target='.project-start') {
   const transfer=await page.evaluateHandle(({filename,content})=>{const data=new DataTransfer();data.items.add(new File([content],filename));return data;},{filename,content});
   await page.locator(target).dispatchEvent('dragover',{dataTransfer:transfer});
   await page.locator(target).dispatchEvent('drop',{dataTransfer:transfer});

@@ -14,6 +14,7 @@ export interface Assignment {
   browser_turns?: Array<{sessionId:string;responseId:string|null;returnedAt:string;controlId:string}>;
   result_text: string | null; error_code: string | null;
   purpose: "independent" | "campaign_step" | "campaign_final";
+  start_mode?: import("./start-mode").StartMode;
   created_at: string; started_at: string | null; finished_at: string | null;
 }
 export interface StudioEmployee {
@@ -35,6 +36,7 @@ export interface AssignmentSummary {
   browserPaused?: boolean;
   reviewDecision?: "approved" | "changes_requested" | null;
   purpose?: Assignment["purpose"];
+  startMode?: Assignment["start_mode"];
   campaign?: {id:string;state:import("./campaigns").CampaignState;steps:number;finishedSteps:number} | null;
 }
 export const assignmentIsActive = (a: Pick<Assignment, "state">) => ["queued", "running", "cancelling"].includes(a.state);
