@@ -1,6 +1,6 @@
 # Application-led workspace acceptance — October 27, 2026
 
-Fresh local acceptance. Production deployment, migration and matching source commits are recorded separately in the release record. The earlier [Open canvas acceptance](open-canvas-2026-10-26.md) remains historical evidence for the foundation.
+Fresh local acceptance. Production deployment, migration and matching source commits are recorded separately in the [October 27 release record](../RELEASE-2026-10-27.md). The earlier [Open canvas acceptance](open-canvas-2026-10-26.md) remains historical evidence for the foundation.
 
 Projects open to thirteen Crafts in registry order plus the existing Research browser entry. Clicking a Craft saves an untitled native starter and its initial revision before mounting the editor. `/dashboard` remains the project collection for empty and populated studios. Existing `?asset=` links open the saved file.
 

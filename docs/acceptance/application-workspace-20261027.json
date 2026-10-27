@@ -487,5 +487,6 @@
     "This is fresh local acceptance, separate from the historical Open canvas checkpoint and the production release record.",
     "Actual all-Craft native round trips ran in Chromium; Firefox and WebKit checks cover the workspace transitions and transport peer.",
     "No paid employee work, editor publication, workstation activation or physical-device validation was performed."
-  ]
+  ],
+  "productionRecord": "production-application-workspace-20261027.json"
 }
