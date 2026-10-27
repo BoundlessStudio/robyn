@@ -588,12 +588,11 @@
 .application-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
 .application-grid>button,.application-grid>a { display:flex; align-items:center; gap:13px; min-width:0; min-height:94px; padding:18px 15px; border:1px solid #48473e; border-radius:8px; background:#22221f; text-align:left; transition:border-color .15s,background .15s; }
 .application-grid>button:hover:not(:disabled),.application-grid>a:hover { border-color:#aebc95; background:#2c2e26; }
-.application-icon { display:grid; place-items:center; width:40px; height:44px; flex:none; border-radius:7px; font-size:16px; font-weight:600; color:#11120e; }
+.application-icon { display:grid; place-items:center; width:48px; height:48px; flex:none; border-radius:7px; font-size:16px; font-weight:600; color:#11120e; }
 .application-grid>button>span:nth-child(2),.application-grid>a>span:nth-child(2) { min-width:0; flex:1; }
 .application-grid strong { display:block; font-size:14px; font-weight:500; letter-spacing:-.2px; }
 .application-grid small { display:block; color:#bfb9aa; font-size:10px; line-height:1.5; margin-top:5px; }
 .application-grid>button>svg,.application-grid>a>svg { flex:none; color:#a7ae96; }
-.application-research .application-icon { background:#ccd6b8; }
 .application-launcher footer { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px; border-top:1px solid #3b3b33; padding-top:22px; margin-top:25px; color:#bdb6a6; font-size:11px; line-height:1.6; }
 .application-launcher footer>div { display:flex; flex-wrap:wrap; align-items:center; gap:20px; }
 .application-launcher footer button { display:flex; align-items:center; gap:6px; color:#d1dac2; }
@@ -626,5 +625,12 @@
 .application-project-list { display:grid; margin:0 0 24px; max-height:300px; overflow:auto; }
 .application-project-list a { display:flex; justify-content:space-between; gap:14px; border-bottom:1px solid #45473d; padding:16px 0; font-size:14px; }
 .application-project-list a:hover { color:#d3e7b1; }
+.studio-app-icon { display:inline-grid; place-items:center; width:40px; height:40px; flex:none; border-radius:7px; vertical-align:middle; color:#11120e; font-size:14px; font-style:normal; }
+.studio-app-icon>img { display:block; width:100%; height:100%; object-fit:contain; }
+.studio-app-icon.application-icon,.studio-craft-caption>.studio-app-icon { width:48px; height:48px; }
+.studio-app-icon.asset-mini { width:28px; height:28px; border-radius:4px; font-size:10px; }
+.studio-app-icon.library-app-icon,.asset-native-placeholder>.studio-app-icon { width:96px; height:96px; border-radius:16px; font-size:32px; }
+.studio-app-icon.illustrated { overflow:hidden; border-radius:22%; }
+.studio-app-icon.research-button-icon { width:24px; height:24px; }
 @media(min-width:1500px) { .application-grid { grid-template-columns:repeat(5,minmax(0,1fr)); } }
 @media(max-width:1250px) { .project-mode .project-header{gap:8px}.project-mode .project-header-actions{gap:1px}.project-mode .project-header-actions .studio-tool-button{font-size:10px;padding:0 7px}.application-launcher{padding:26px 28px}.application-grid{gap:10px}.application-grid>button,.application-grid>a{padding:14px 12px;gap:9px} }

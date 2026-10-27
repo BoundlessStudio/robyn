@@ -1,3 +1,4 @@
 import Link from "next/link";
-import {Globe} from "lucide-react";
-export function ResearchBrowserButton(){return <Link className="studio-button" href="/dashboard/research"><Globe size={14}/>Research’s browser ↗</Link>;}
+import { research } from "@/studio/specialists/research";
+import { AppIcon } from "./AppIcon";
+export function ResearchBrowserButton(){return <Link className="studio-button" href="/dashboard/research"><AppIcon app={research} className="research-button-icon"/>Research’s browser ↗</Link>;}

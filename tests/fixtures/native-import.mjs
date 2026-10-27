@@ -90,6 +90,7 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
       return route.fulfill({contentType:'application/octet-stream',headers:cors,body:state.bytes.get(key)??Buffer.alloc(0)});
     }
     if(url.origin!==workspaceOrigin)return route.fulfill({status:404,body:'No external fixture requests'});
+    if(/^\/brand\/apps\/[a-z]+\.webp$/.test(url.pathname))return route.fulfill({contentType:'image/webp',body:await readFile(root+'public'+url.pathname)});
     if(url.pathname==='/fixture.js')return route.fulfill({contentType:'text/javascript',body:script});
     if(url.pathname==='/studio.css')return route.fulfill({contentType:'text/css',body:css});
     if(url.pathname==='/space.woff2')return route.fulfill({contentType:'font/woff2',body:await readFile(root+'node_modules/@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2')});
