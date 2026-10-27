@@ -175,7 +175,7 @@ export function ProjectWorkspace({projectId,initialAssetId,initialAppId,initialL
       {project?<ProjectName id={projectId} name={project.name} onSaved={reload}/>:<h1>Opening project…</h1>}
       {project?.status==="archived"&&<span className="project-archive-label">Archived</span>}
       <div className="project-header-actions">
-        <button ref={applicationsButton} className="studio-tool-button application-launch-button" onClick={()=>setApplicationsOpen(true)} disabled={!project||launch.busy} aria-expanded={applicationsOpen}><Shapes size={16}/><span>Applications</span></button>
+        {asset&&<button ref={applicationsButton} className="studio-tool-button application-launch-button" onClick={()=>setApplicationsOpen(true)} disabled={!project||launch.busy} aria-expanded={applicationsOpen}><Shapes size={16}/><span>Applications</span></button>}
         <button ref={importButton} className="studio-tool-button" onClick={()=>filePicker.current?.click()} disabled={!project||launch.busy}><Upload size={15}/><span>Open existing</span></button>
         <button className="studio-tool-button" aria-label="Files" aria-expanded={!assetsCollapsed} onClick={()=>setAssetsCollapsed(value=>!value)}><PanelLeft size={16}/><span>Files</span></button>
         <button className="studio-tool-button" aria-label="AI Employees" aria-expanded={projectPanelOpen&&!projectInformation} onClick={()=>{if(projectPanelOpen&&!projectInformation)setProjectPanelOpen(false);else showEmployees();}}><Users size={16}/><span>AI Employees</span></button>
@@ -206,7 +206,7 @@ export function ProjectWorkspace({projectId,initialAssetId,initialAppId,initialL
       {fileDetails&&<StudioDialog title="Files & revisions." eyebrow={asset.name} close={()=>{setFileDetails(false);setHistory(false);}} returnFocusRef={documentMenuButton}>{assetDetails}</StudioDialog>}
     </>}</section>
     {projectPanelOpen&&projectDetails}</div>
-    {applicationsOpen&&<StudioDialog title="Your applications." eyebrow={project?.name??"PROJECT"} close={()=>setApplicationsOpen(false)} busy={launch.busy} returnFocusRef={applicationsButton}>{launcher}</StudioDialog>}
+    {asset&&applicationsOpen&&<StudioDialog title="Your applications." eyebrow={project?.name??"PROJECT"} close={()=>setApplicationsOpen(false)} busy={launch.busy} returnFocusRef={applicationsButton}>{launcher}</StudioDialog>}
     {mediaOpen&&<MediaPanel key={projectId} projectId={projectId} assets={assets} close={()=>setMediaOpen(false)} onSaved={reload} onOpen={openAssignmentAsset}/>}
     {upload&&<UploadPackageDialog projectId={projectId} asset={upload==="revision"?asset:undefined} close={()=>setUpload(null)} saved={saved} returnFocusRef={upload==="revision"?documentMenuButton:importButton}/>}
     {intake&&(simpleImport?<ImportDocumentDialog projectId={projectId} initialFiles={intake.files} folder={intake.folder} close={()=>{setIntake(null);void reload().catch(error=>setError(error.message));}} saved={saved} returnFocusRef={importButton}/>:<UploadPackageDialog projectId={projectId} initialFiles={intake.files} explanation="These files weren’t recognised. Choose an application only for its supported native project format. Export other documents from their original application first." close={()=>setIntake(null)} saved={saved} returnFocusRef={importButton}/>)}

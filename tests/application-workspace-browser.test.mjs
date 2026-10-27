@@ -16,9 +16,15 @@ test('empty and populated projects lead with all thirteen applications and launc
   try{
     const {page,state}=await nativeImportFixture(browser);state.allowance=0;
     assert.deepEqual(await page.locator('.application-grid button').evaluateAll(nodes=>nodes.map(node=>node.querySelector('strong').textContent)),apps);
+    const applications=page.getByRole('button',{name:'Applications',exact:true});
+    assert.equal(await applications.count(),0);
     for(const app of apps){
       await page.getByRole('button',{name:app,exact:false}).click();await ready(page,app);
+      assert.equal(await applications.isVisible(),true);
       assert.equal(await page.getByRole('button',{name:'Files',exact:true}).getAttribute('aria-expanded'),'false');
+      await page.locator('.project-tabs .close-tab').click();
+      await page.getByRole('button',{name:app,exact:false}).waitFor();
+      assert.equal(await applications.count(),0);
       await page.goto(`${origin}/dashboard/projects/${projectId}`);
       await page.getByRole('button',{name:app,exact:false}).waitFor();
       assert.equal(await page.locator('iframe').count(),0);
@@ -63,7 +69,7 @@ test('application chooser creates separate saved files; rename preserves native 
   const browser=await browserType.launch({headless:true});
   try{
     const {page,state}=await nativeImportFixture(browser);
-    await chooseApplication(page,'WordCraft');await ready(page,'WordCraft');
+    await page.getByRole('button',{name:'WordCraft',exact:false}).click();await ready(page,'WordCraft');
     const asset=[...state.assets.values()][0],revision=state.revisions.get(asset.current_revision_id),paths=revision.package.files.map(file=>file.path);
     const source=await page.locator('iframe').getAttribute('src');
     await page.getByRole('button',{name:'Rename file: Untitled document'}).click();
@@ -113,8 +119,6 @@ test('an uncertain start cannot be repurposed, and archived projects cannot star
     await page.getByRole('button',{name:'Continue opening WordCraft',exact:true}).click();await ready(page,'WordCraft');
     const archived=await nativeImportFixture(browser,{archived:true});
     assert.equal(await archived.page.getByRole('button',{name:'WordCraft',exact:false}).isDisabled(),true);
-    await archived.page.getByRole('button',{name:'Applications',exact:true}).click();
-    assert.equal(await archived.page.getByRole('dialog',{name:'Your applications.'}).getByRole('button',{name:'WordCraft',exact:false}).isDisabled(),true);
     assert.equal(archived.state.assets.size,0);assert.deepEqual(state.errors,[]);
   }finally{await browser.close();}
 });
