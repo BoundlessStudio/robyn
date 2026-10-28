@@ -27,7 +27,7 @@
   "editor": {
     "adapterVersion": "0.2.3",
     "release": "filmcraft-v0.10.0-robyn-0.2.3",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/filmcraft/v0.10.0-0.2.3/?robyn",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/filmcraft/v0.10.0-0.2.3/?robyn&policy=20261028",
     "status": "verified"
   },
   "workstation": {
