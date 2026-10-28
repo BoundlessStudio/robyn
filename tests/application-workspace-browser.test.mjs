@@ -7,7 +7,7 @@ const browserType=({chromium,firefox,webkit})[process.env.NATIVE_IMPORT_BROWSER?
 const apps=['PhotoCraft','VectorCraft','LightCraft','FilmCraft','EffectCraft','SoundCraft','DesignCraft','PdfCraft','WordCraft','DeckCraft','GridCraft','FigCraft','CADCraft'];
 const ready=(page,app)=>page.frameLocator(`iframe[title="${app} editor"]`).getByText('Ready',{exact:true}).waitFor();
 async function chooseApplication(page,app){
-  await page.getByRole('button',{name:'Applications',exact:true}).click();
+  await page.getByRole('button',{name:'New file',exact:true}).click();
   await page.getByRole('dialog',{name:'Your applications.'}).getByRole('button',{name:app,exact:false}).click();
 }
 
@@ -16,7 +16,7 @@ test('empty and populated projects lead with all thirteen applications and launc
   try{
     const {page,state}=await nativeImportFixture(browser);state.allowance=0;
     assert.deepEqual(await page.locator('.application-grid button').evaluateAll(nodes=>nodes.map(node=>node.querySelector('strong').textContent)),apps);
-    const applications=page.getByRole('button',{name:'Applications',exact:true});
+    const applications=page.getByRole('button',{name:'New file',exact:true});
     assert.equal(await applications.count(),0);
     for(const app of apps){
       await page.getByRole('button',{name:app,exact:false}).click();await ready(page,app);
@@ -42,14 +42,14 @@ test('application chooser, supporting panels, cancelled launch and narrowing pre
     await page.getByRole('button',{name:'WordCraft',exact:false}).click();await ready(page,'WordCraft');
     const editor=page.frameLocator('iframe'),src=await page.locator('iframe').getAttribute('src');
     await editor.getByLabel('Document text').fill('Keep these unsaved words.');
-    await page.getByRole('button',{name:'Applications',exact:true}).click();
+    await page.getByRole('button',{name:'New file',exact:true}).click();
     await page.getByRole('dialog',{name:'Your applications.'}).waitFor();
     assert.equal(await page.locator('iframe').getAttribute('src'),src);
     page.once('dialog',dialog=>dialog.dismiss());
     await page.getByRole('dialog').getByRole('button',{name:'GridCraft',exact:false}).click();
     await page.keyboard.press('Escape');
     for(const label of ['Files','Project details']){
-      const button=page.locator('.project-header').getByRole('button',{name:label,exact:true});
+      const button=page.getByRole('group',{name:'Workspace tools',exact:true}).getByRole('button',{name:label,exact:true});
       await button.click();assert.equal(await button.getAttribute('aria-expanded'),'true');
       await button.click();assert.equal(await button.getAttribute('aria-expanded'),'false');
     }

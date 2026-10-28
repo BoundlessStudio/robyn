@@ -10,7 +10,7 @@ import {ProjectName} from "./ProjectName";
 import { Markdown } from "@/components/Markdown";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Plus, File, X, History, Upload, ArrowUpRight, RefreshCw, MoreHorizontal, Maximize2, PanelLeft, Info, Shapes, Users, Images, Globe, Settings } from "lucide-react";
+import { Plus, File, X, History, Upload, ArrowUpRight, RefreshCw, MoreHorizontal, Maximize2, PanelLeft, Info, Images } from "lucide-react";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
 import { apiFetch, readApiError } from "@/lib/api";
 import { studioTools as studioApps } from "@/studio/tools";
@@ -23,7 +23,7 @@ import { nativeImportApp } from "@/studio/native-import";
 import { sourceFormat } from "@/studio/source-import";
 import { StudioDialog } from "./StudioDialog";
 import { EmbeddedEditor, type EmbeddedEditorHandle, type EditorViewState } from "./EmbeddedEditor";
-import { StudioNavigationMenu } from "./StudioNavigationMenu";
+import { ProjectHeader } from "./ProjectHeader";
 import { MediaPanel } from "./MediaPanel";
 import { SourceProvenance, SourceCredits, type SourceCredit } from "./SourceProvenance";
 
@@ -154,6 +154,9 @@ export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,ini
     void launch.launch(initialAppId,initialLaunchId);
   },[project,launch.storageReady,initialAppId,initialLaunchId,initialAssetId]);
   function showProjectDetails(){setPanel("Brief");setProjectPanelOpen(value=>!value);}
+  // Dashboard shares this route with the editor. Clear its local selection even
+  // when Next keeps the component mounted during a same-route navigation.
+  function showDashboard(){setSelected("");setFocusedRevision(null);setApplicationsOpen(false);setHistory(false);setFileDetails(false);setError("");}
   function chooseFiles(folder=false){setApplicationsOpen(false);if(folder)receiveFiles([],true);else filePicker.current?.click();}
   const employeeParams=new URLSearchParams();
   if(asset&&targetRevision){employeeParams.set("asset",asset.id);employeeParams.set("revision",targetRevision);}
@@ -170,26 +173,16 @@ export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,ini
   const statusLabel=editorState.error?"Needs attention":/conflict/i.test(editorState.status)?"Conflict preserved":/opening/i.test(editorState.status)?"Opening…":editorState.dirty?(/upload|hash|confirm|prepar|saving/i.test(editorState.status)?"Saving…":"Unsaved"):"Saved";
   return <div className={`project-workspace${hasEditor?" has-editor":""}${assetsCollapsed?" assets-collapsed":""}${projectPanelOpen?" panels-open":""}`} style={{"--project-panel-width":`${panelWidth}px`} as React.CSSProperties}>
     <input ref={filePicker} type="file" multiple hidden aria-label="Choose documents to import" onChange={event=>{receiveFiles(Array.from(event.currentTarget.files??[]));event.currentTarget.value="";}}/>
-    <header className="project-header">
-      <StudioNavigationMenu projectId={projectId}/>
-      <Link className="project-back" href="/dashboard" aria-label="Back to projects" title="Back to projects"><ArrowLeft size={15}/></Link>
-      {project?<ProjectName id={projectId} name={project.name} onSaved={reload}/>:<h1>Opening project…</h1>}
-      {project?.status==="archived"&&<span className="project-archive-label">Archived</span>}
-      <div className="project-header-actions">
-        <nav className="project-page-links" aria-label="Project navigation">
-          <Link className="studio-tool-button" href={`/dashboard/projects/${projectId}/library`}><Images size={16}/><span>Assets</span></Link>
-          <Link className="studio-tool-button" href={employeesHref}><Users size={16}/><span>AI Employees</span></Link>
-          <Link className="studio-tool-button" href={`/dashboard/projects/${projectId}/research`}><Globe size={16}/><span>Research</span></Link>
-          <Link className="studio-tool-button" href={`/dashboard/projects/${projectId}/settings`}><Settings size={16}/><span>Settings</span></Link>
-        </nav>
-        <div className="project-panel-actions" role="group" aria-label="Project actions">
-          {asset&&<button ref={applicationsButton} className="studio-tool-button application-launch-button" onClick={()=>setApplicationsOpen(true)} disabled={!project||launch.busy} aria-expanded={applicationsOpen}><Shapes size={16}/><span>Applications</span></button>}
+    <ProjectHeader projectId={projectId} project={project} title={project?<ProjectName id={projectId} name={project.name} onSaved={reload}/>:<h1>Opening project…</h1>} savedRevision={asset&&targetRevision?{assetId:asset.id,revisionId:targetRevision}:undefined} onDashboard={showDashboard}/>
+    <div className="project-workspace-toolbar" role="group" aria-label="Workspace tools">
+      <span>WORKSPACE</span>
+      <div className="project-panel-actions">
+          {asset&&<button ref={applicationsButton} className="studio-tool-button application-launch-button" onClick={()=>setApplicationsOpen(true)} disabled={!project||launch.busy} aria-expanded={applicationsOpen}><Plus size={16}/><span>New file</span></button>}
           <button ref={importButton} className="studio-tool-button" onClick={()=>filePicker.current?.click()} disabled={!project||launch.busy}><Upload size={15}/><span>Open existing</span></button>
           <button className="studio-tool-button" aria-label="Files" aria-expanded={!assetsCollapsed} onClick={()=>setAssetsCollapsed(value=>!value)}><PanelLeft size={16}/><span>Files</span></button>
           <button className="studio-tool-button" aria-label="Project details" aria-expanded={projectPanelOpen} onClick={showProjectDetails}><Info size={16}/><span>Project details</span></button>
-        </div>
       </div>
-    </header>
+    </div>
     {(error||notice)&&<div className="project-messages">{error&&<p className="studio-error project-message" role="alert">{error}</p>}{notice&&<div className="studio-success project-message" role="status">{notice}<button className="studio-icon-button" aria-label="Dismiss notice" onClick={()=>setNotice("")}><X size={14}/></button></div>}</div>}
     {asset&&!applicationsOpen&&(launch.pending||launch.error)&&<div className="project-launch-recovery"><LaunchProgress launch={launch} ready={project?.status==="active"} onResume={()=>{if(launch.pendingApp)launchApplication(launch.pendingApp.id);}}/></div>}
     <div className="project-columns">{assetBrowser}

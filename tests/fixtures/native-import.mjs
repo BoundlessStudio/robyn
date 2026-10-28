@@ -42,7 +42,9 @@ async function bundle() {
       b.onLoad({filter:/.*/,namespace:'rfb-fixture'},()=>({contents:'export default class RFB extends EventTarget {constructor(target){super();this.target=target;target.textContent="Isolated Research browser";queueMicrotask(()=>this.dispatchEvent(new Event("connect")))} focus(){} disconnect(){this.target.textContent="";this.dispatchEvent(new Event("disconnect"))}}',loader:'js'}));
       b.onResolve({filter:/^next\/link$/},()=>({path:'link',namespace:'fixture'}));
       b.onResolve({filter:/^next\/navigation$/},()=>({path:'navigation',namespace:'fixture'}));
-      b.onLoad({filter:/.*/,namespace:'fixture'},args=>({contents:args.path==='navigation'?'export function usePathname(){return location.pathname} export function useRouter(){return {push:url=>location.assign(url),replace:url=>location.replace(url)}}':'import React from "react";export default function Link(props){return React.createElement("a",props)}',loader:'js',resolveDir:root}));
+      // Like Next, retain the mounted page for a same-path link. This catches
+      // local editor state that would otherwise be hidden by a full reload.
+      b.onLoad({filter:/.*/,namespace:'fixture'},args=>({contents:args.path==='navigation'?'export function usePathname(){return location.pathname} export function useRouter(){return {push:url=>location.assign(url),replace:url=>location.replace(url)}}':`import React from "react";export default function Link({onClick,href,...props}){return React.createElement("a",{...props,href,onClick:event=>{onClick?.(event);if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||event.currentTarget.target==="_blank"||event.currentTarget.hasAttribute("download"))return;const url=new URL(href,location.href);if(url.origin===location.origin&&url.pathname===location.pathname){event.preventDefault();history.pushState(null,"",url);}}})}`,loader:'js',resolveDir:root}));
     }}],
   });
   return (await bundlePromise).outputFiles[0].text;
@@ -62,7 +64,7 @@ const editor = `<!doctype html><html lang="en"><head><title>Isolated editor peer
     document.getElementById('save').onclick=async()=>{const result=await request('saveAsset',{assetId:ref.assetId,expectedBaseRevisionId:ref.revisionId,files:[{path,role:'master',file:new Blob([document.getElementById('text').value],{type:'application/octet-stream'})}],dependencies:[],message:'Edited transport fixture'});ref=result.ref;await request('notifyChanges',{assetId:ref.assetId,dirty:false});document.getElementById('state').textContent='Saved';};
   </script></body></html>`;
 
-export async function nativeImportFixture(browser, {realEditor=false, viewport={width:1440,height:960}, workspaceOrigin=origin, fileOrigin='https://native-import-files.test', initialPath, archived=false}={}) {
+export async function nativeImportFixture(browser, {realEditor=false, viewport={width:1440,height:960}, workspaceOrigin=origin, fileOrigin='https://native-import-files.test', initialPath, archived=false, allowance=5000000}={}) {
   const script=await bundle();
   const css=await readFile(root+'node_modules/tailwindcss/preflight.css','utf8')+'\n'+
     '@font-face{font-family:"Space Grotesk Variable";font-style:normal;font-weight:300 700;src:url(/space.woff2)}@font-face{font-family:"Instrument Serif";font-style:italic;font-weight:400;src:url(/serif.woff2)}\n'+
@@ -70,7 +72,7 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
   // Only this isolated QA context may reach its temporary loopback TUS server.
   const context=await browser.newContext({viewport,permissions:browser.browserType().name()==='chromium'?['local-network-access']:[]});
   const page=await context.newPage();page.setDefaultTimeout(realEditor?60000:10000);
-  const state={assets:new Map(),revisions:new Map(),bytes:new Map(),requests:[],errors:[],assignments:new Map(),allowance:5000000,failAllowance:false,failAssignmentReply:false,failStarterDownload:false,failCreationReply:false,failCommitReply:false,holdTransfers:false,releaseTransfers:null};
+  const state={assets:new Map(),revisions:new Map(),bytes:new Map(),requests:[],errors:[],assignments:new Map(),allowance,failAllowance:false,failAssignmentReply:false,failStarterDownload:false,failCreationReply:false,failCommitReply:false,holdTransfers:false,releaseTransfers:null};
   // WebKit's interception API omits Blob request bodies. Receive real TUS bytes
   // on loopback for every engine instead of substituting the selected input.
   const transferServer=createServer(async(req,res)=>{

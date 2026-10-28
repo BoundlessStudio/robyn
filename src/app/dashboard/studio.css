@@ -403,12 +403,13 @@
 .research-tools-intro h2 { font-size:32px; letter-spacing:-1px; margin:16px 0; }.research-tools-intro h2 em { font-family:"Instrument Serif",serif; font-weight:400; }.research-tools-intro p { max-width:700px; color:var(--studio-muted); line-height:1.8; margin:12px 0; }.research-tools-intro>div:last-child { display:grid; gap:18px; justify-items:start; }
 .studio-setting-section p { overflow-wrap:anywhere; }
 
-/* Every creative application shares two compact rows above its native tools. */
+/* Every project page shares the same header; workspace controls sit below it. */
 .studio-shell.project-mode { height:100dvh; min-height:0; overflow:hidden; }
 .project-mode .studio-main { height:100%; min-height:0; }
 .project-section { height:100%; display:flex; flex-direction:column; min-height:0; }
 .project-section-content { min-height:0; overflow:auto; flex:1; }
-.project-header .project-section-name { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:13px; }
+.project-header-name { flex:1; min-width:0; }
+.project-header .project-section-name { display:block; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:13px; color:#b6c2aa; }
 .project-header-actions [aria-current=page] { color:#e1edcc; background:#30322b; }
 .project-mode .project-workspace { height:100dvh; min-height:0; }
 .project-mode .project-messages { position:fixed; z-index:30; right:20px; bottom:54px; display:grid; gap:8px; max-width:min(440px,calc(100vw - 40px)); pointer-events:none; }
@@ -423,15 +424,17 @@
 .studio-project-menu>svg:last-child { margin-left:3px; color:#aaa69e; }
 .project-archive-label { font-size:10px; color:#b8ae99; }
 .project-mode .project-header-actions { gap:4px; }
-.project-page-links,.project-panel-actions { display:flex; align-items:center; gap:inherit; }
-.project-panel-actions { border-left:1px solid var(--studio-line); margin-left:4px; padding-left:8px; }
+.project-workspace-toolbar { display:flex; flex:none; align-items:center; justify-content:space-between; gap:12px; height:40px; padding:0 12px; border-bottom:1px solid var(--studio-line); background:#1b1b19; }
+.project-workspace-toolbar>span { color:#aaa69e; font-size:9px; letter-spacing:1.4px; }
+.project-panel-actions { display:flex; align-items:center; gap:4px; }
 .studio-tool-button { display:inline-flex; align-items:center; justify-content:center; gap:6px; min-width:32px; height:32px; padding:0 8px; border:0; border-radius:4px; color:#bcb7ab; font-size:11px!important; white-space:nowrap; flex:none; }
 .studio-tool-button:hover,.studio-project-menu:hover { background:#ffffff09; color:#f1ebdd; }
 .studio-tool-button[aria-expanded=true] { background:#33332e; color:#f1ebdd; }
 .studio-tool-button:disabled { opacity:.45; }
 .studio-tool-menu { background:#252522; border:1px solid #4a4840; color:#ece6d8; min-width:218px; max-width:calc(100vw - 24px); padding:5px; border-radius:7px; box-shadow:0 12px 45px #0007; font-family:"Space Grotesk Variable",sans-serif; color-scheme:dark; }
-.studio-tool-menu [role=menuitem] { gap:10px; min-height:36px; padding:8px 10px; font-size:12px; border-radius:3px; }
+.studio-tool-menu [role=menuitem] { display:flex; align-items:center; gap:10px; min-height:36px; padding:8px 10px; font-size:12px; border-radius:3px; }
 .studio-tool-menu [role=menuitem][data-highlighted] { background:#45433b; color:#fff6df; }
+.studio-tool-menu [role=menuitem][aria-current=page] { background:#30322b; color:#e1edcc; }
 .studio-tool-menu [role=separator] { background:#45433b; margin:4px 0; }
 .studio-tool-menu>div:not([role]) { color:#aaa394; font-size:10px; font-weight:400; overflow-wrap:anywhere; }
 .project-mode .project-columns { --asset-rail-width:184px; --detail-panel-width:0px; grid-template-columns:var(--asset-rail-width) minmax(0,1fr) var(--detail-panel-width); min-height:0; overflow:hidden; }
@@ -659,7 +662,7 @@
 .application-launcher.compact { padding:8px 0 0; }
 .application-launcher.compact .application-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
 .application-launcher.compact .application-grid>button,.application-launcher.compact .application-grid>a { min-height:78px; padding:12px; }
-.project-mode .project-header .application-launch-button { color:#e1edcc; }
+.project-mode .project-workspace-toolbar .application-launch-button { color:#e1edcc; }
 .project-mode .project-header-actions { margin-left:auto; flex:none; }
 .project-mode .project-name { min-width:60px; flex:1; }
 .project-mode .project-name input { width:min(160px,12vw); }

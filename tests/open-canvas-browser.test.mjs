@@ -61,7 +61,7 @@ test('idea planning shows allowance, freezes the choice across lost replies and 
 test('zero and unverifiable AI allowance preserve the idea and prevent both paid starting actions',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
-    const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/projects/${projectId}/employees`});state.allowance=0;await page.getByLabel('Your idea',{exact:true}).fill('A small poster.');
+    const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/projects/${projectId}/employees`,allowance:0});await page.getByLabel('Your idea',{exact:true}).fill('A small poster.');
     await page.getByText('AI allowance needed',{exact:true}).waitFor();
     for(const name of ['Make a first draft','Help me plan'])assert.equal(await page.getByRole('button',{name,exact:true}).isDisabled(),true);
     state.failAllowance=true;await page.getByRole('button',{name:'Assignments',exact:true}).click();await page.getByRole('button',{name:'Conversation',exact:true}).click();
@@ -109,12 +109,12 @@ test('manual starts cover all thirteen Crafts, validate bytes before writes, and
     const requests=state.requests.filter(req=>req.path==='/api/studio/starters');assert.equal(requests.length,2);assert.deepEqual(requests[0].input,requests[1].input);
     assert.equal(await page.evaluate(key=>localStorage.getItem(key),`robyn-blank:${projectId}`),null);
     await editor.getByLabel('Document text').fill('A first manual edit.');
-    await page.getByRole('button',{name:'Applications',exact:true}).click();
+    await page.getByRole('button',{name:'New file',exact:true}).click();
     page.once('dialog',dialog=>dialog.dismiss());await page.getByRole('dialog',{name:'Your applications.'}).getByRole('button',{name:'WordCraft',exact:false}).click();
     await page.keyboard.press('Escape');
     assert.equal(await editor.getByLabel('Document text').inputValue(),'A first manual edit.','cancel keeps unsaved work in the editor');
     await editor.getByRole('button',{name:'Save document',exact:true}).click();await editor.getByText('Saved',{exact:true}).waitFor();
-    await page.getByRole('button',{name:'Applications',exact:true}).click();
+    await page.getByRole('button',{name:'New file',exact:true}).click();
     assert.equal(await page.getByRole('dialog').locator('.application-grid button').count(),13);assert.equal(state.assignments.size,0);
     await page.waitForLoadState('networkidle');await page.goto(`${origin}/dashboard/projects/${projectId}/library`);
     await page.getByRole('link').filter({has:page.getByRole('heading',{name:'Untitled document',exact:true})}).click();await page.getByRole('link',{name:'Open in WordCraft',exact:true}).click();await editor.getByText('Ready',{exact:true}).waitFor();
