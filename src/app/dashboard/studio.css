@@ -625,7 +625,7 @@
 .open-canvas button:disabled { opacity:.5; cursor:default; }
 @media(max-width:1350px) { .open-canvas{padding:35px 28px}.canvas-choices>button{padding:19px}.canvas-choices strong{font-size:15px}.canvas-crafts button{padding:13px;gap:9px} }
 
-/* Applications lead the project; files and employees are supporting panels. */
+/* Applications lead the project; team work has its own page. */
 .project-mode .project-start { overflow:auto; min-height:0; }
 .application-launcher { width:100%; max-width:1460px; padding:36px clamp(28px,4vw,64px); margin:auto; }
 .application-launcher header { margin-bottom:26px; }
@@ -642,7 +642,7 @@
 .application-grid>button>svg,.application-grid>a>svg { flex:none; color:#a7ae96; }
 .application-launcher footer { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px; border-top:1px solid #3b3b33; padding-top:22px; margin-top:25px; color:#bdb6a6; font-size:11px; line-height:1.6; }
 .application-launcher footer>div { display:flex; flex-wrap:wrap; align-items:center; gap:20px; }
-.application-launcher footer button { display:flex; align-items:center; gap:6px; color:#d1dac2; }
+.application-launcher footer button,.application-launcher footer a { display:flex; align-items:center; gap:6px; color:#d1dac2; }
 .application-launcher :is(button,a):focus-visible,.document-name button:focus-visible { outline:2px solid #d5e8ab; outline-offset:4px; }
 .application-launcher button:disabled { opacity:.45; cursor:default; }
 .application-launch-progress { padding:14px 18px; margin:0 0 20px; border-left:2px solid #c5d5a7; background:#292d24; font-size:13px; line-height:1.6; }
@@ -678,3 +678,34 @@
 .studio-app-icon.research-button-icon { width:24px; height:24px; }
 @media(min-width:1500px) { .application-grid { grid-template-columns:repeat(5,minmax(0,1fr)); } }
 @media(max-width:1250px) { .project-mode .project-header{gap:8px}.project-mode .project-header-actions{gap:1px}.project-mode .project-header-actions .studio-tool-button{font-size:10px;padding:0 7px}.application-launcher{padding:26px 28px}.application-grid{gap:10px}.application-grid>button,.application-grid>a{padding:14px 12px;gap:9px} }
+
+/* AI Employees uses the same page shell as the asset library and applications. */
+.employees-page { padding-top:44px; }
+.employees-page .studio-page-heading { margin-bottom:32px; }
+.employees-page .studio-page-heading h1 { font-size:clamp(48px,4.5vw,64px); letter-spacing:-3px; margin:16px 0 14px; }
+.employees-toolbar { display:flex; align-items:flex-end; flex-wrap:wrap; gap:24px; padding-bottom:24px; margin-bottom:30px; border-bottom:1px solid var(--studio-line); }
+.employees-toolbar>label { display:flex; flex-direction:column; gap:8px; width:300px; color:var(--studio-muted); font-size:11px; }
+.employees-toolbar select { width:100%; min-width:0; padding:12px; color:#f1f0e8; background:#222221; border:1px solid #555347; border-radius:5px; font:inherit; }
+.employees-views { display:flex; flex-wrap:wrap; align-items:center; gap:6px; }
+.employees-views button { padding:12px 18px; border:1px solid transparent; border-radius:5px; color:#bdb6a6; font-size:12px; }
+.employees-views button:hover { color:#eee9d8; background:#2c2c27; }
+.employees-views button[aria-pressed=true] { color:#e1edcc; border-color:#62694f; background:#30352a; }
+.employees-page :is(button,select,a):focus-visible { outline:2px solid #d5e8ab; outline-offset:4px; }
+.employees-workspace { max-width:1120px; }
+.employees-input p { color:#bdb6a6; font-size:12px; line-height:1.7; margin-top:8px; }
+.employees-input { display:flex; align-items:center; flex-wrap:wrap; gap:16px; padding:20px; margin-bottom:30px; border:1px solid #555347; border-radius:6px; background:#262820; }
+.employees-input>svg { flex:none; color:#c5d5a7; }
+.employees-input>div { flex:1; min-width:200px; }
+.employees-input strong { font-size:13px; font-weight:500; overflow-wrap:anywhere; }
+.employees-workspace .assignment-panel>h2 { font-size:36px; line-height:1.15; letter-spacing:-.8px; margin:14px 0 18px; }
+.employees-workspace .assignment-panel>h2 br { display:none; }
+.employees-workspace .assignment-panel>h2 em { color:#d5c7ab; }
+.employees-workspace .assignment-panel>.studio-muted { max-width:650px; }
+.employees-workspace .studio-form { max-width:720px; margin:26px 0 38px; }
+.employees-workspace .assignment-composer textarea { min-height:140px; font-size:14px; }
+.employees-workspace .assignment-list { max-width:880px; margin-top:34px; }
+.employees-workspace .assignment-entry { padding-top:26px; padding-bottom:30px; }
+.employees-empty { padding:55px 0 80px; max-width:620px; color:#c5d5a7; }
+.employees-empty h2 { margin:22px 0 14px; font-size:30px; line-height:1.2; color:#eee9d8; font-weight:450; letter-spacing:-.5px; }
+.employees-empty p { margin:10px 0; color:#bdb6a6; font-size:13px; line-height:1.7; }
+.employees-empty .studio-button { margin-top:20px; }

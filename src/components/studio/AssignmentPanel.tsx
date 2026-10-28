@@ -19,12 +19,12 @@ const campaignLabels = { planning: "Planning", running: "In production", cancell
 const campaignNotes = { planning: "Final work returns here for your review.", running: "Final work returns here for your review.", cancelling: "Stopping the remaining work.", cancelled: "This plan was stopped. Delivered files remain in your project.", awaiting_review: "Final work is ready for your review.", completed: "Final work has been reviewed.", failed: "This plan needs attention. Any delivered files remain in your project." };
 const stopping = (job: AssignmentSummary) => job.state === "cancelling" || job.campaign?.state === "cancelling";
 
-type PanelProps = { projectId: string; mode: PanelMode; canvas?: boolean; preferredAppId?: string; selectedRef?: AssetRef; onOpen: (ref: AssetRef) => void };
+type PanelProps = { projectId: string; mode: PanelMode; canvas?: boolean; canAssign?: boolean; preferredAppId?: string; selectedRef?: AssetRef; onOpen: (ref: AssetRef) => void };
 export function AssignmentPanel(props: PanelProps) {
   return <AssignmentComposer key={`${props.projectId}:${props.mode}`} {...props}/>;
 }
 
-function AssignmentComposer({ projectId, mode, canvas=false, preferredAppId, selectedRef, onOpen }: PanelProps) {
+function AssignmentComposer({ projectId, mode, canvas=false, canAssign=true, preferredAppId, selectedRef, onOpen }: PanelProps) {
   const [assignments, setAssignments] = useState<AssignmentSummary[]>([]);
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [draft, setDraft] = useState<AssignmentDraft>(emptyAssignmentDraft);
@@ -81,7 +81,7 @@ function AssignmentComposer({ projectId, mode, canvas=false, preferredAppId, sel
     catch { setError("The previous request is still saved. Restore browser storage before starting a different brief."); }
   }
   async function submit(event: React.FormEvent, startMode:StartMode=canvas?"draft":"work") {
-    event.preventDefault(); if (submitting.current || !draftReady) return;
+    event.preventDefault(); if (submitting.current || !draftReady || !canAssign) return;
     submitting.current = true;
     setBusy("new"); setError(""); setNotice("");
     try {
@@ -134,17 +134,17 @@ function AssignmentComposer({ projectId, mode, canvas=false, preferredAppId, sel
   }
   return <div className="assignment-panel">
     <span className="studio-eyebrow">{canvas?"DESCRIBE AN IDEA":mode === "review" ? "YOUR EYE. YOUR FINAL SAY." : mode === "director" ? "A CONVERSATION ABOUT POSSIBILITY" : "WORK IN PROGRESS"}</span>
-    <h2>{canvas?<>What would you like<br/>to <em>make?</em></>:mode === "review" ? <>Take a closer <em>look.</em></> : mode === "director" ? <>A little direction.<br/><em>A world of ideas.</em></> : <>From a thought<br/>to <em>a thing.</em></>}</h2>
+    <h2>{canvas?<>What would you like<br/> to <em>make?</em></>:mode === "review" ? <>Take a closer <em>look.</em></> : mode === "director" ? <>A little direction.<br/> <em>A world of ideas.</em></> : <>From a thought<br/> to <em>a thing.</em></>}</h2>
     {canvas&&<p className="studio-muted">Describe the result you want. Your Director chooses the Crafts, coordinates the work and brings back an editable first draft.</p>}
     {mode !== "review" && <form className="studio-form assignment-composer" onSubmit={event=>void submit(event)}>
       {mode === "assignments" && <label>Who is this for?<select value={chosen?.id ?? ""} disabled={!draftReady || Boolean(pending) || Boolean(busy)} onChange={event => updateDraft({ ...draft, employeeId: event.target.value })}>{employees.map(employee => <option key={employee.id} value={employee.id} disabled={!employee.ready}>{employee.role}{employee.ready ? "" : " · being verified"}</option>)}</select></label>}
       <label>{canvas?"Your idea":mode === "director" ? "Tell your Director what you have in mind" : "The brief"}<textarea ref={ideaInput} aria-label={canvas?"Your idea":mode==="director"?"Tell your Director what you have in mind":"The brief"} rows={5} maxLength={20000} value={brief} disabled={!draftReady} readOnly={Boolean(pending) || Boolean(busy)} onChange={event => updateDraft({ ...draft, brief: event.target.value })} placeholder={canvas?"A welcoming one-page guide for people visiting our community garden…":"What are we making, and what should it feel like?"} required/></label>
-      {pending ? pending.inputs.map(ref => <button key={ref.revisionId} type="button" className="studio-button" onClick={() => onOpen(ref)}>Open included revision <ArrowUpRight size={14}/></button>) : selectedRef && <label className="assignment-input-check"><input type="checkbox" checked={includeOpen} disabled={!draftReady || Boolean(busy)} onChange={event => updateDraft({ ...draft, includeOpen: event.target.checked })}/> Include the open saved revision</label>}
+      {pending ? pending.inputs.map(ref => <button key={ref.revisionId} type="button" className="studio-button" onClick={() => onOpen(ref)}>Open included revision <ArrowUpRight size={14}/></button>) : selectedRef && <label className="assignment-input-check"><input type="checkbox" checked={includeOpen} disabled={!draftReady || Boolean(busy)} onChange={event => updateDraft({ ...draft, includeOpen: event.target.checked })}/> Include this saved revision</label>}
       {pending && <p role="status" className="studio-muted">This brief may already be underway. Reconnect to the same request with its original employee and saved inputs.</p>}
       {capacity&&!capacity.availableMicros&&<p role="status" className="studio-note">{capacity.reason} <a href="/dashboard/settings#studio-budget" target="_blank" rel="noreferrer">Manage budget ↗</a></p>}
       {canvas&&<div className="canvas-allowance" role="status"><strong>{capacity?.availableMicros?`${new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:2}).format(capacity.availableMicros/1_000_000)} available to your Director`:capacity?"AI allowance needed":"Checking AI allowance…"}</strong><p>Planning uses the Director’s allowance. A first draft also uses the chosen specialists’ allowances. Work pauses when an allowance runs out.</p><a href="/dashboard/settings#studio-budget" target="_blank" rel="noreferrer">View and manage AI allowances ↗</a></div>}
-      <div className="studio-action-row"><button className="studio-button primary" disabled={Boolean(busy) || !draftReady || (!pending && (!chosen?.ready || !brief.trim() || !capacity?.availableMicros))}><Send size={14}/>{busy === "new" ? "Sending…" : pending ? "Reconnect this brief" : canvas?"Make a first draft":"Send the brief"}</button>
-      {canvas&&!pending&&<button type="button" className="studio-button" disabled={Boolean(busy)||!draftReady||!chosen?.ready||!brief.trim()||!capacity?.availableMicros} onClick={event=>void submit(event,"plan")}>Help me plan</button>}</div>
+      <div className="studio-action-row"><button className="studio-button primary" disabled={!canAssign || Boolean(busy) || !draftReady || (!pending && (!chosen?.ready || !brief.trim() || !capacity?.availableMicros))}><Send size={14}/>{busy === "new" ? "Sending…" : pending ? "Reconnect this brief" : canvas?"Make a first draft":"Send the brief"}</button>
+      {canvas&&!pending&&<button type="button" className="studio-button" disabled={!canAssign||Boolean(busy)||!draftReady||!chosen?.ready||!brief.trim()||!capacity?.availableMicros} onClick={event=>void submit(event,"plan")}>Help me plan</button>}</div>
       {canvas&&pending&&<p className="studio-muted">Saved choice: {pending.startMode==="plan"?"Help me plan":pending.startMode==="draft"?"Make a first draft":"Send the brief"}.</p>}
       {pending && <div className="studio-muted"><p>Starting a different brief creates separate work. It does not stop the previous request.</p><button type="button" className="studio-button" disabled={Boolean(busy)} onClick={newBrief}>Start a different brief</button></div>}
     </form>}
