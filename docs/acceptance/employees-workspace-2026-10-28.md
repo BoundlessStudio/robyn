@@ -1,6 +1,6 @@
 # AI Employees page acceptance — October 28, 2026
 
-This records local acceptance on top of web commit `284beb3d6a414c578599be1572a483a934a9555c`. The change is not deployed.
+This records local acceptance on top of web commit `284beb3d6a414c578599be1572a483a934a9555c`. The feature is now deployed; [the release record](../RELEASE-EMPLOYEES-2026-10-28.md) and its production evidence distinguish live checks from the local fixtures below.
 
 ## Creator workflow
 
@@ -22,4 +22,4 @@ There is no active-work migration. Existing assignment and review components and
 
 The release checks also exposed a timing error in the existing Assets browser scenario: a list refresh can display a new asset while its import dialog is still running. A controlled transfer/list-response check reproduced the test starting a second hidden picker operation before the first import completed. The scenario now waits for the import dialog to close before starting another import or changing filters; its assertions and timeouts are unchanged.
 
-Screenshots remain ignored under `artifacts/qa/employees-workspace/`. The [sanitized evidence](employees-workspace-20261028.json) retains source and screenshot hashes. These checks do not certify a deployed release, a new native integration or an upstream employee dispatch. No production data or paid services were used.
+Screenshots remain ignored under `artifacts/qa/employees-workspace/`. The [sanitized evidence](employees-workspace-20261028.json) retains source and screenshot hashes. These local checks are separate from the authenticated production observations in the release record. They do not certify a new native integration or an upstream employee dispatch. The local checks used no production data or paid services.

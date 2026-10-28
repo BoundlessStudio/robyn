@@ -1,6 +1,6 @@
 {
   "date": "2026-10-28",
-  "scope": "local acceptance only; not deployed",
+  "scope": "local acceptance only; production verification recorded separately",
   "baseWebCommit": "284beb3d6a414c578599be1572a483a934a9555c",
   "node": "24.18.0",
   "python": "3.14.6",
@@ -62,5 +62,6 @@
     "invalid-input-1200.png": "620c1506f1f69910464971833cbd2ab928646110003c05cc4126fadc98f42a43",
     "review-1200.png": "64382169a956ce8ae5b776651af784106a97d61277ebd09717a7172997bc6fcd",
     "team-1440.png": "137b57b033d0d091026e3a5b3eda9a5f09500b76d26eaa9a01c6eb8288a0adf0"
-  }
+  },
+  "productionRecord": "production-employees-workspace-20261028.json"
 }
