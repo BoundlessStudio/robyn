@@ -4,6 +4,7 @@ import {readFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import {createServer} from 'node:http';
 import {build} from 'esbuild';
+import {studioTools} from '../../src/studio/tools.ts';
 
 export const projectId = '11111111-1111-4111-8111-111111111111';
 export const origin = 'http://127.0.0.1:3000';
@@ -23,8 +24,9 @@ async function bundle() {
       import {LibraryAsset} from './src/components/studio/LibraryAsset';
       import {StudioShell} from './src/components/studio/StudioShell';
       import {StudioApplications} from './src/components/studio/StudioApplications';
+      import {StudioEmployees} from './src/components/studio/StudioEmployees';
       import {DesktopStudioGate} from './src/components/studio/DesktopStudioGate';
-      createRoot(document.getElementById('root')).render(<StrictMode><WorkspaceProvider initialWorkspaces={[]} userEmail="fixture@example.test"><DesktopStudioGate><StudioShell>{location.pathname==='/dashboard/library'?<StudioLibrary initialProjectId={new URLSearchParams(location.search).get('projectId')??undefined}/>:location.pathname.startsWith('/dashboard/library/')?<LibraryAsset assetId={location.pathname.split('/').pop()} initialRevisionId={new URLSearchParams(location.search).get('revision')??undefined}/>:location.pathname==='/dashboard/applications'?<StudioApplications/>:<ProjectWorkspace projectId="${projectId}" initialAssetId={new URLSearchParams(location.search).get('asset')??undefined} initialRevisionId={new URLSearchParams(location.search).get('revision')??undefined} initialAppId={new URLSearchParams(location.search).get('app')??undefined} initialLaunchId={new URLSearchParams(location.search).get('launch')??undefined}/>}</StudioShell></DesktopStudioGate></WorkspaceProvider></StrictMode>);
+      createRoot(document.getElementById('root')).render(<StrictMode><WorkspaceProvider initialWorkspaces={[]} userEmail="fixture@example.test"><DesktopStudioGate><StudioShell>{location.pathname==='/dashboard/library'?<StudioLibrary initialProjectId={new URLSearchParams(location.search).get('projectId')??undefined}/>:location.pathname.startsWith('/dashboard/library/')?<LibraryAsset assetId={location.pathname.split('/').pop()} initialRevisionId={new URLSearchParams(location.search).get('revision')??undefined}/>:location.pathname==='/dashboard/employees'?<StudioEmployees initialProjectId={new URLSearchParams(location.search).get('projectId')??undefined} initialAssetId={new URLSearchParams(location.search).get('asset')??undefined} initialRevisionId={new URLSearchParams(location.search).get('revision')??undefined} initialView={new URLSearchParams(location.search).get('view')??undefined}/>:location.pathname==='/dashboard/applications'?<StudioApplications/>:<ProjectWorkspace projectId="${projectId}" initialAssetId={new URLSearchParams(location.search).get('asset')??undefined} initialRevisionId={new URLSearchParams(location.search).get('revision')??undefined} initialAppId={new URLSearchParams(location.search).get('app')??undefined} initialLaunchId={new URLSearchParams(location.search).get('launch')??undefined}/>}</StudioShell></DesktopStudioGate></WorkspaceProvider></StrictMode>);
     `, resolveDir:root, sourcefile:'native-import-fixture.tsx', loader:'tsx'},
     jsx:'automatic', bundle:true, write:false, platform:'browser', format:'iife', tsconfig:root+'tsconfig.json',
     define:{'process.env.NODE_ENV':'"development"', 'process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY':'"isolated-fixture"','process.env.NEXT_PUBLIC_EDITOR_PREVIEW_URLS':JSON.stringify(process.env.NEXT_PUBLIC_EDITOR_PREVIEW_URLS??'{}')},
@@ -78,8 +80,10 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
   const transferOrigin=`http://127.0.0.1:${transferServer.address().port}`;
   context.once('close',()=>{transferServer.closeAllConnections();transferServer.close();});
   page.on('pageerror',error=>state.errors.push(error.message));
+  context.on('page',opened=>{opened.setDefaultTimeout(10000);opened.on('pageerror',error=>state.errors.push(error.message));});
   const project={id:projectId,name:'First project',brief:'',status:archived?'archived':'active',created_at:'2026-10-26T12:00:00Z',updated_at:'2026-10-26T12:00:00Z'};
-  state.project=project;
+  state.project=project;state.projects=new Map([[projectId,project]]);
+  const employees=[{id:director,role:'Creative Director',appId:null,ready:true},...studioTools.map(app=>({id:randomUUID(),role:app.employee.role,appId:app.id,ready:true}))];
   const cors={'access-control-allow-origin':'*'};
   await context.route('**/*',async route=>{
     const req=route.request(),url=new URL(req.url()),method=req.method();
@@ -93,6 +97,7 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
       return route.fulfill({contentType:'application/octet-stream',headers:cors,body:state.bytes.get(key)??Buffer.alloc(0)});
     }
     if(url.origin!==workspaceOrigin)return route.fulfill({status:404,body:'No external fixture requests'});
+    if(url.pathname==='/artwork/offscript-bloom.png'||(url.pathname==='/_next/image'&&url.searchParams.get('url')==='/artwork/offscript-bloom.png'))return route.fulfill({contentType:'image/png',body:await readFile(root+'public/artwork/offscript-bloom.png')});
     if(/^\/brand\/apps\/[a-z]+\.webp$/.test(url.pathname))return route.fulfill({contentType:'image/webp',body:await readFile(root+'public'+url.pathname)});
     if(url.pathname==='/fixture.js')return route.fulfill({contentType:'text/javascript',body:script});
     if(url.pathname==='/studio.css')return route.fulfill({contentType:'text/css',body:css});
@@ -105,19 +110,23 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
     }
     if(url.pathname.startsWith('/api/')){
       const input=['POST','PATCH'].includes(method)?req.postDataJSON():null;
-      state.requests.push({path:url.pathname,method,input});
-      if(url.pathname==='/api/studio/projects')return route.fulfill({json:{projects:project.status==='active'?[project]:[],nextCursor:null}});
-      if(url.pathname===`/api/studio/projects/${projectId}`){if(method==='PATCH')Object.assign(project,input);return route.fulfill({json:{project,assets:[...state.assets.values()],activity:[],nextAssetCursor:null}});}
+      state.requests.push({path:url.pathname,search:url.search,method,input});
+      if(url.pathname==='/api/studio/projects')return route.fulfill({json:{projects:[...state.projects.values()].filter(row=>row.status==='active'),nextCursor:null}});
+      if(url.pathname==='/api/studio/bootstrap')return route.fulfill({json:{employees:employees.map(employee=>({...employee,kind:employee.appId?'specialist':'director',app_id:employee.appId,provision_state:'pending'}))}});
+      if(url.pathname.startsWith('/api/studio/projects/')){const selected=state.projects.get(url.pathname.split('/').pop());if(!selected)return route.fulfill({status:404,json:{error:{message:'Project not found.'}}});if(method==='PATCH')Object.assign(selected,input);return route.fulfill({json:{project:selected,assets:[...state.assets.values()].filter(row=>row.project_id===selected.id),activity:[],nextAssetCursor:null}});}
       if(url.pathname.startsWith('/api/studio/budgets/'))return route.fulfill(state.failAllowance?{status:503,json:{error:{message:'Unavailable'}}}:{json:{availableMicros:state.allowance,reason:state.allowance?null:'No AI allowance remains.'}});
       if(url.pathname==='/api/studio/assignments'){
         if(method==='POST'){
-          assert.equal(input.projectId,projectId);assert.equal(input.employeeId,director);
+          assert.ok(state.projects.has(input.projectId));assert.ok(employees.some(employee=>employee.id===input.employeeId));
           const prior=state.assignments.get(input.requestId);if(prior)assert.deepEqual(prior.input,input);
-          else state.assignments.set(input.requestId,{input,id:randomUUID(),employeeId:director,appId:null,role:'Creative Director',brief:input.brief,startMode:input.startMode,state:'queued',result:null,deliverables:[],createdAt:project.created_at});
+          else state.assignments.set(input.requestId,{input,id:randomUUID(),employeeId:input.employeeId,appId:employees.find(employee=>employee.id===input.employeeId).appId,role:employees.find(employee=>employee.id===input.employeeId).role,brief:input.brief,startMode:input.startMode,state:'queued',result:null,deliverables:[],createdAt:project.created_at});
           if(state.failAssignmentReply)return route.fulfill({status:503,json:{error:{message:'Reconnect the saved request.'}}});
           return route.fulfill({json:{assignmentId:state.assignments.get(input.requestId).id,state:'queued'}});
         }
-        return route.fulfill({json:{employees:[{id:director,role:'Creative Director',appId:null,ready:true}],assignments:[...state.assignments.values()]}});
+        return route.fulfill({json:{employees,assignments:[...state.assignments.values()].filter(job=>job.input.projectId===url.searchParams.get('projectId'))}});
+      }
+      if(/^\/api\/studio\/assignments\/[^/]+\/review$/.test(url.pathname)){
+        const job=[...state.assignments.values()].find(job=>job.id===url.pathname.split('/')[4]);assert.ok(job);job.state='completed';job.reviewDecision=input.decision;return route.fulfill({json:{ok:true}});
       }
       if(url.pathname==='/api/studio/starters'){
         const starter=starters.find(item=>item.id===input.templateId);assert.ok(starter);assert.equal(input.projectId,projectId);
@@ -193,4 +202,10 @@ export async function dropDocument(page, filename, content, target='.project-sta
   await page.locator(target).dispatchEvent('dragover',{dataTransfer:transfer});
   await page.locator(target).dispatchEvent('drop',{dataTransfer:transfer});
   await transfer.dispose();
+}
+
+export async function openEmployeeWorkspace(page) {
+  const [employees]=await Promise.all([page.context().waitForEvent('page'),page.locator('.project-header').getByRole('link',{name:'AI Employees',exact:true}).click()]);
+  await employees.getByRole('heading',{name:'AI Employees.',exact:true}).waitFor();
+  return employees;
 }

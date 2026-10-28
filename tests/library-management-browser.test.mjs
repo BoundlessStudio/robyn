@@ -23,9 +23,13 @@ test('the dedicated library imports, filters and manages exact assets without op
     await page.getByLabel('Filter by project').selectOption(projectId);
     await page.getByLabel('Import assets',{exact:true}).setInputFiles(image);
     await page.getByRole('heading',{name:'Cover',exact:true}).waitFor();assert.equal(state.assets.size,1);
+    // A list refresh can expose the new asset before its import is committed.
+    // Finish that dialog before opening the next picker or changing filters.
+    await page.getByRole('dialog').waitFor({state:'hidden'});
     assert.equal(await page.locator('iframe').count(),0);
     await page.getByLabel('Import assets',{exact:true}).setInputFiles({name:'Autumn film.fcproj',mimeType:'application/json',buffer:await readFile(new URL('../public/studio/starters/1/filmcraft/Untitled film.fcproj',import.meta.url))});
     await page.getByRole('heading',{name:'Autumn film',exact:true}).waitFor();
+    await page.getByRole('dialog').waitFor({state:'hidden'});
     await page.getByLabel('Filter by asset type').selectOption('image');
     await page.waitForFunction(()=>document.querySelectorAll('.studio-library-piece').length===1);
     assert.equal(await page.getByRole('heading',{name:'Cover',exact:true}).count(),1);

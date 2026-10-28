@@ -1,6 +1,6 @@
 # Current pilot status
 
-Updated October 27, 2026. This is the current index; [PLAN.md](PLAN.md) retains the complete scope and dated implementation history. [The review report](PROJECT-REVIEW-2026-10-25.md) tracks remediation and remaining acceptance work.
+Updated October 28, 2026. This is the current index; [PLAN.md](PLAN.md) retains the complete scope and dated implementation history. [The review report](PROJECT-REVIEW-2026-10-25.md) tracks remediation and remaining acceptance work.
 
 Robyn is an invitation-only, passwordless, solo-creator studio at **https://robyn.academy**. Its Creative Director, thirteen Craft specialists and Research work with private native files and exact saved revisions. The authenticated studio is desktop-only. Public signup and commercial subscriptions are disabled. The public homepage supports small screens.
 
@@ -21,6 +21,8 @@ The owner authorized this rollout after the earlier deferral. Database recovery-
 Use [the Assets release record](RELEASE-ASSETS-2026-10-27.md) for current source commits, editor pins and rollback boundaries; [the earlier October 27 record](RELEASE-2026-10-27.md), [October 26 import record](RELEASE-2026-10-26.md) and [October 25 record](RELEASE-2026-10-25.md) retain historical evidence. Never replay the historical migration files to reconstruct an existing database. [SETUP.md](../SETUP.md) documents explicit baselining and checksummed incremental setup.
 
 ## Application workspace and imports
+
+**AI Employees page — local acceptance October 28; not deployed.** Conversation, Assignments, Review and the team directory now share `/dashboard/employees`, with a project selector. Project and Research handoffs open this page in a separate tab with the exact saved revision, preserving the open editor. Project details retains Brief and Activity. All private operations reuse the existing Studio BFF. [Local acceptance](acceptance/employees-workspace-2026-10-28.md) records 122 passing tests, three-engine browser coverage and desktop visual/accessibility checks. The deployed application described below retains the earlier employee side panel until this change is released.
 
 **Asset management and all-Craft import/export — live October 27.** Assets has a full management page, file/folder import, filters, exact-version previews, export attachment, native-package ZIP downloads and version history. All thirteen Craft adapters can save a compatible original before placement, select one rendition and retain its exact source revision. FilmCraft 0.2.3 additionally connects its native Import and Source controls to Robyn's saved project library and opens the selected clip in Source; the other twelve Crafts remain on 0.2.2. The original thirteen round trips, authenticated WordCraft save/export checks and subsequent live FilmCraft library-selection/save/native-continuation checks are recorded separately. Web checks pass 116 tests; the runtime's thumbnail-policy follow-up passes 79. [Acceptance](acceptance/assets-library-2026-10-27.md) and [the release record](RELEASE-ASSETS-2026-10-27.md) retain exact deployment, bundle and verification scope.
 

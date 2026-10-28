@@ -48,7 +48,7 @@ test('application chooser, supporting panels, cancelled launch and narrowing pre
     page.once('dialog',dialog=>dialog.dismiss());
     await page.getByRole('dialog').getByRole('button',{name:'GridCraft',exact:false}).click();
     await page.keyboard.press('Escape');
-    for(const label of ['Files','AI Employees','Project details']){
+    for(const label of ['Files','Project details']){
       const button=page.locator('.project-header').getByRole('button',{name:label,exact:true});
       await button.click();assert.equal(await button.getAttribute('aria-expanded'),'true');
       await button.click();assert.equal(await button.getAttribute('aria-expanded'),'false');
