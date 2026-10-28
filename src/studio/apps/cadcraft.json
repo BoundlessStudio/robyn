@@ -27,7 +27,7 @@
   "editor": {
     "adapterVersion": "0.2.2",
     "release": "cadcraft-v0.10.0-robyn-0.2.2",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/cadcraft/v0.10.0-0.2.2/?robyn",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/cadcraft/v0.10.0-0.2.2/?robyn&policy=20261028",
     "status": "verified"
   },
   "workstation": {

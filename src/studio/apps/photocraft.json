@@ -27,7 +27,7 @@
   "editor": {
     "adapterVersion": "0.2.2",
     "release": "photocraft-v0.12.0-robyn-0.2.2",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/photocraft/v0.12.0-0.2.2/?robyn",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/photocraft/v0.12.0-0.2.2/?robyn&policy=20261028",
     "status": "verified"
   },
   "workstation": {
