@@ -669,10 +669,6 @@
 .document-name svg { flex:none; }
 .document-name input { min-width:50px; width:150px; max-width:100%; border:1px solid #72735e; border-radius:3px; background:#24251f; padding:4px 7px; color:inherit; }
 .document-name .studio-error { position:absolute; right:0; top:28px; z-index:15; width:280px; background:#271d1b; padding:12px; }
-.application-project-search { margin:22px 0 12px; }
-.application-project-list { display:grid; margin:0 0 24px; max-height:300px; overflow:auto; }
-.application-project-list a { display:flex; justify-content:space-between; gap:14px; border-bottom:1px solid #45473d; padding:16px 0; font-size:14px; }
-.application-project-list a:hover { color:#d3e7b1; }
 .studio-app-icon { display:inline-grid; place-items:center; width:40px; height:40px; flex:none; border-radius:7px; vertical-align:middle; color:#11120e; font-size:14px; font-style:normal; }
 .studio-app-icon>img { display:block; width:100%; height:100%; object-fit:contain; }
 .studio-app-icon.application-icon,.studio-craft-caption>.studio-app-icon { width:48px; height:48px; }

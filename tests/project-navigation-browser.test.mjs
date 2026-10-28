@@ -11,8 +11,11 @@ test('project tools stay inside the selected project, including Research control
     const {page,state}=await nativeImportFixture(browser,{initialPath:'/dashboard'});
     const navigation=page.getByRole('navigation',{name:'Studio navigation'});
     await navigation.waitFor();
-    for(const name of ['Asset Library','AI Employees','Research'])assert.equal(await navigation.getByRole('link',{name,exact:true}).count(),0);
+    for(const name of ['Asset Library','AI Employees','Research','Applications','Settings'])assert.equal(await navigation.getByRole('link',{name,exact:true}).count(),0);
     await page.getByRole('link').filter({has:page.getByRole('heading',{name:'First project',exact:true})}).click();
+    await page.getByRole('button',{name:'Robyn studio menu',exact:true}).click();
+    for(const name of ['Asset Library','AI Employees','Research','Applications','Settings'])assert.match(await page.getByRole('menuitem',{name,exact:true}).getAttribute('href'),new RegExp(`/dashboard/projects/${projectId}/`));
+    await page.keyboard.press('Escape');
     await page.getByRole('button',{name:'WordCraft',exact:false}).click();
     const editor=page.frameLocator('iframe[title="WordCraft editor"]');await editor.getByText('Ready',{exact:true}).waitFor();
     await editor.getByLabel('Document text').fill('Keep this unsaved draft open.');
@@ -33,6 +36,19 @@ test('project tools stay inside the selected project, including Research control
     const requests=state.requests.filter(row=>['/api/studio/research/browser','/api/studio/assets','/api/studio/assignments'].includes(row.path));
     assert.ok(requests.length>4);assert.ok(requests.every(row=>new URLSearchParams(row.search).get('projectId')===projectId));
     const controls=requests.filter(row=>['take','return'].includes(row.input?.action));assert.equal(controls.length,2);assert.equal(controls[0].input.controlId,controls[1].input.controlId);
+    await tools.getByRole('navigation',{name:'Project navigation'}).getByRole('link',{name:'Applications',exact:true}).click();
+    await tools.getByRole('button',{name:'Open GridCraft in project',exact:true}).waitFor();
+    assert.equal(await tools.getByRole('navigation',{name:'Choose a project for application'}).count(),0);
+    await tools.getByRole('navigation',{name:'Project navigation'}).getByRole('link',{name:'Settings',exact:true}).click();
+    await tools.getByLabel('Studio name',{exact:true}).waitFor();
+    for(const width of [1440,1200]){
+      await tools.setViewportSize({width,height:960});
+      assert.equal(await tools.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+      for(const name of ['Asset Library','AI Employees','Research','Applications','Settings'])assert.match(await tools.getByRole('navigation',{name:'Project navigation'}).getByRole('link',{name,exact:true}).getAttribute('href'),new RegExp(`/dashboard/projects/${projectId}/`));
+    }
+    await tools.getByRole('navigation',{name:'Project navigation'}).getByRole('link',{name:'AI Employees',exact:true}).click();
+    await tools.getByLabel('Your idea',{exact:true}).waitFor();
+    assert.equal(await tools.getByRole('link',{name:'Manage AI budget',exact:false}).getAttribute('href'),`/dashboard/projects/${projectId}/settings#studio-budget`);
     assert.equal(state.assignments.size,0);
     assert.equal(await editor.getByLabel('Document text').inputValue(),'Keep this unsaved draft open.');
     await tools.close();assert.deepEqual(state.errors,[]);
@@ -72,7 +88,7 @@ test('unavailable projects do not load assets, employees or Research',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
     const {page,state}=await nativeImportFixture(browser,{initialPath:'/dashboard'});
-    for(const section of ['library','employees','research']){
+    for(const section of ['library','employees','research','applications','settings']){
       const count=state.requests.length;
       await page.goto(`${origin}/dashboard/projects/${randomUUID()}/${section}`);
       await page.getByRole('alert').filter({hasText:'Project not found.'}).waitFor();

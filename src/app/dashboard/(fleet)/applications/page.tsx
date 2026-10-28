@@ -1,2 +1,6 @@
-import { StudioApplications } from "@/components/studio/StudioApplications";
-export default function Page(){return <StudioApplications/>;}
+import {redirect} from "next/navigation";
+
+export default async function Page({searchParams}:{searchParams:Promise<{projectId?:string}>}){
+  const {projectId}=await searchParams;
+  redirect(projectId?`/dashboard/projects/${encodeURIComponent(projectId)}/applications`:"/dashboard");
+}

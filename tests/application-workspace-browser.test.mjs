@@ -91,15 +91,15 @@ test('application chooser creates separate saved files; rename preserves native 
   }finally{await browser.close();}
 });
 
-test('catalogue retains the chosen application and its identity through project selection and refresh',async()=>{
+test('project catalogue opens the chosen application directly and preserves its launch identity through refresh',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
-    const {page,state}=await nativeImportFixture(browser,{initialPath:'/dashboard/applications'});
-    await page.getByRole('button',{name:'Open GridCraft in project',exact:true}).click();
-    const project=page.getByRole('navigation',{name:'Choose a project for application'}).getByRole('link',{name:'First project'});
-    const href=await project.getAttribute('href');assert.equal(new URL(href,origin).searchParams.get('app'),'gridcraft');
-    state.failCreationReply=true;await project.click();await page.getByRole('button',{name:'Continue opening GridCraft',exact:true}).waitFor();
-    const creation=[...state.assets.keys()][0];assert.equal(creation,new URL(href,origin).searchParams.get('launch'));
+    const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/projects/${projectId}/applications`});
+    const open=page.getByRole('button',{name:'Open GridCraft in project',exact:true});await open.waitFor();
+    assert.equal(await page.getByRole('navigation',{name:'Choose a project for application'}).count(),0);
+    state.failCreationReply=true;await open.click();await page.getByRole('button',{name:'Continue opening GridCraft',exact:true}).waitFor();
+    const launchUrl=new URL(page.url());assert.equal(launchUrl.pathname,`/dashboard/projects/${projectId}`);assert.equal(launchUrl.searchParams.get('app'),'gridcraft');
+    const creation=[...state.assets.keys()][0];assert.equal(creation,launchUrl.searchParams.get('launch'));
     await page.reload();await ready(page,'GridCraft');
     assert.equal(state.assets.size,1);assert.equal(state.revisions.size,1);assert.equal(new URL(page.url()).searchParams.get('asset'),creation);
     assert.equal(new URL(page.url()).searchParams.has('launch'),false);

@@ -6,7 +6,7 @@ import {loadModule} from './helpers/module.mjs';
 test('legacy project-tool URLs preserve known project context or return to projects',async()=>{
   const projectId=randomUUID(),asset=randomUUID(),revision=randomUUID();
   const mocks={'next/navigation':'export function redirect(location){throw Object.assign(new Error("Redirect"),{location})}'};
-  for(const section of ['library','employees','research']){
+  for(const section of ['library','employees','research','applications','settings']){
     const {default:page}=await loadModule(`../../src/app/dashboard/(fleet)/${section}/page.tsx`,mocks);
     await assert.rejects(page({searchParams:Promise.resolve({})}),{location:'/dashboard'});
     const searchParams=Promise.resolve({projectId,asset,revision,view:'review'});

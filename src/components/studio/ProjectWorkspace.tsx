@@ -10,7 +10,7 @@ import {ProjectName} from "./ProjectName";
 import { Markdown } from "@/components/Markdown";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Plus, File, X, History, Upload, ArrowUpRight, RefreshCw, MoreHorizontal, Maximize2, PanelLeft, Info, Shapes, Users, Images, Globe } from "lucide-react";
+import { ArrowLeft, Plus, File, X, History, Upload, ArrowUpRight, RefreshCw, MoreHorizontal, Maximize2, PanelLeft, Info, Shapes, Users, Images, Globe, Settings } from "lucide-react";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
 import { apiFetch, readApiError } from "@/lib/api";
 import { studioTools as studioApps } from "@/studio/tools";
@@ -171,7 +171,7 @@ export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,ini
   return <div className={`project-workspace${hasEditor?" has-editor":""}${assetsCollapsed?" assets-collapsed":""}${projectPanelOpen?" panels-open":""}`} style={{"--project-panel-width":`${panelWidth}px`} as React.CSSProperties}>
     <input ref={filePicker} type="file" multiple hidden aria-label="Choose documents to import" onChange={event=>{receiveFiles(Array.from(event.currentTarget.files??[]));event.currentTarget.value="";}}/>
     <header className="project-header">
-      <StudioNavigationMenu/>
+      <StudioNavigationMenu projectId={projectId} preserveEditor/>
       <Link className="project-back" href="/dashboard" aria-label="Back to projects" title="Back to projects"><ArrowLeft size={15}/></Link>
       {project?<ProjectName id={projectId} name={project.name} onSaved={reload}/>:<h1>Opening project…</h1>}
       {project?.status==="archived"&&<span className="project-archive-label">Archived</span>}
@@ -182,6 +182,7 @@ export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,ini
         <button className="studio-tool-button" aria-label="Files" aria-expanded={!assetsCollapsed} onClick={()=>setAssetsCollapsed(value=>!value)}><PanelLeft size={16}/><span>Files</span></button>
         <Link className="studio-tool-button" href={employeesHref} target="_blank" rel="noopener" title="Open your team in a new tab; your editor stays open"><Users size={16}/><span>AI Employees</span><ArrowUpRight size={12}/></Link>
         <Link className="studio-tool-button" href={`/dashboard/projects/${projectId}/research`} target="_blank" rel="noopener" title="Open Research in a new tab; your editor stays open"><Globe size={16}/><span>Research</span><ArrowUpRight size={12}/></Link>
+        <Link className="studio-tool-button" href={`/dashboard/projects/${projectId}/settings`} target="_blank" rel="noopener" title="Open settings in a new tab; your editor stays open"><Settings size={16}/><span>Settings</span></Link>
         <button className="studio-tool-button" aria-label="Project details" aria-expanded={projectPanelOpen} onClick={showProjectDetails}><Info size={16}/><span>Project details</span></button>
       </div>
     </header>
