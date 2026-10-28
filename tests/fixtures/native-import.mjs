@@ -25,15 +25,23 @@ async function bundle() {
       import {StudioShell} from './src/components/studio/StudioShell';
       import {StudioApplications} from './src/components/studio/StudioApplications';
       import {StudioEmployees} from './src/components/studio/StudioEmployees';
+      import {StudioProjects} from './src/components/studio/StudioProjects';
+      import {ResearchBrowser} from './src/components/studio/ResearchBrowser';
+      import {LibraryAssetRedirect} from './src/components/studio/LibraryAssetRedirect';
       import {DesktopStudioGate} from './src/components/studio/DesktopStudioGate';
-      createRoot(document.getElementById('root')).render(<StrictMode><WorkspaceProvider initialWorkspaces={[]} userEmail="fixture@example.test"><DesktopStudioGate><StudioShell>{location.pathname==='/dashboard/library'?<StudioLibrary initialProjectId={new URLSearchParams(location.search).get('projectId')??undefined}/>:location.pathname.startsWith('/dashboard/library/')?<LibraryAsset assetId={location.pathname.split('/').pop()} initialRevisionId={new URLSearchParams(location.search).get('revision')??undefined}/>:location.pathname==='/dashboard/employees'?<StudioEmployees initialProjectId={new URLSearchParams(location.search).get('projectId')??undefined} initialAssetId={new URLSearchParams(location.search).get('asset')??undefined} initialRevisionId={new URLSearchParams(location.search).get('revision')??undefined} initialView={new URLSearchParams(location.search).get('view')??undefined}/>:location.pathname==='/dashboard/applications'?<StudioApplications/>:<ProjectWorkspace projectId="${projectId}" initialAssetId={new URLSearchParams(location.search).get('asset')??undefined} initialRevisionId={new URLSearchParams(location.search).get('revision')??undefined} initialAppId={new URLSearchParams(location.search).get('app')??undefined} initialLaunchId={new URLSearchParams(location.search).get('launch')??undefined}/>}</StudioShell></DesktopStudioGate></WorkspaceProvider></StrictMode>);
+      const params=new URLSearchParams(location.search),parts=location.pathname.split('/'),currentProjectId=parts[3],section=parts[4];
+      const selected={initialAssetId:params.get('asset')??undefined,initialRevisionId:params.get('revision')??undefined};
+      const content=location.pathname==='/dashboard'?<StudioProjects/>:location.pathname.startsWith('/dashboard/library/')?<LibraryAssetRedirect assetId={parts[3]} revisionId={params.get('revision')??undefined}/>:location.pathname==='/dashboard/applications'?<StudioApplications/>:section==='library'?(parts[5]?<LibraryAsset projectId={currentProjectId} assetId={parts[5]} initialRevisionId={params.get('revision')??undefined}/>:<StudioLibrary projectId={currentProjectId}/>):section==='employees'?<StudioEmployees projectId={currentProjectId} {...selected} initialView={params.get('view')??undefined}/>:section==='research'?<ResearchBrowser projectId={currentProjectId}/>:<ProjectWorkspace projectId={currentProjectId??"${projectId}"} {...selected} initialAppId={params.get('app')??undefined} initialLaunchId={params.get('launch')??undefined}/>;
+      createRoot(document.getElementById('root')).render(<StrictMode><WorkspaceProvider initialWorkspaces={[]} userEmail="fixture@example.test"><DesktopStudioGate><StudioShell>{content}</StudioShell></DesktopStudioGate></WorkspaceProvider></StrictMode>);
     `, resolveDir:root, sourcefile:'native-import-fixture.tsx', loader:'tsx'},
     jsx:'automatic', bundle:true, write:false, platform:'browser', format:'iife', tsconfig:root+'tsconfig.json',
     define:{'process.env.NODE_ENV':'"development"', 'process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY':'"isolated-fixture"','process.env.NEXT_PUBLIC_EDITOR_PREVIEW_URLS':JSON.stringify(process.env.NEXT_PUBLIC_EDITOR_PREVIEW_URLS??'{}')},
     plugins:[{name:'next-link',setup(b){
+      b.onResolve({filter:/^@novnc\/novnc$/},()=>({path:'rfb',namespace:'rfb-fixture'}));
+      b.onLoad({filter:/.*/,namespace:'rfb-fixture'},()=>({contents:'export default class RFB extends EventTarget {constructor(target){super();this.target=target;target.textContent="Isolated Research browser";queueMicrotask(()=>this.dispatchEvent(new Event("connect")))} focus(){} disconnect(){this.target.textContent="";this.dispatchEvent(new Event("disconnect"))}}',loader:'js'}));
       b.onResolve({filter:/^next\/link$/},()=>({path:'link',namespace:'fixture'}));
       b.onResolve({filter:/^next\/navigation$/},()=>({path:'navigation',namespace:'fixture'}));
-      b.onLoad({filter:/.*/,namespace:'fixture'},args=>({contents:args.path==='navigation'?'export function usePathname(){return location.pathname} export function useRouter(){return {push:url=>location.assign(url)}}':'import React from "react";export default function Link(props){return React.createElement("a",props)}',loader:'js',resolveDir:root}));
+      b.onLoad({filter:/.*/,namespace:'fixture'},args=>({contents:args.path==='navigation'?'export function usePathname(){return location.pathname} export function useRouter(){return {push:url=>location.assign(url),replace:url=>location.replace(url)}}':'import React from "react";export default function Link(props){return React.createElement("a",props)}',loader:'js',resolveDir:root}));
     }}],
   });
   return (await bundlePromise).outputFiles[0].text;
@@ -112,6 +120,7 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
       const input=['POST','PATCH'].includes(method)?req.postDataJSON():null;
       state.requests.push({path:url.pathname,search:url.search,method,input});
       if(url.pathname==='/api/studio/projects')return route.fulfill({json:{projects:[...state.projects.values()].filter(row=>row.status==='active'),nextCursor:null}});
+      if(url.pathname==='/api/studio/research/browser'){assert.ok(state.projects.has(url.searchParams.get('projectId')));state.researchControl??={control:'agent',controlId:null};if(input?.action==='take')state.researchControl={control:'human',controlId:input.controlId};if(input?.action==='return'){assert.equal(input.controlId,state.researchControl.controlId);state.researchControl={control:'agent',controlId:null};}return route.fulfill({json:{...state.researchControl,...(input?.action==='connect'?{ws:'wss://isolated-research.test'}:{})}});}
       if(url.pathname==='/api/studio/bootstrap')return route.fulfill({json:{employees:employees.map(employee=>({...employee,kind:employee.appId?'specialist':'director',app_id:employee.appId,provision_state:'pending'}))}});
       if(url.pathname.startsWith('/api/studio/projects/')){const selected=state.projects.get(url.pathname.split('/').pop());if(!selected)return route.fulfill({status:404,json:{error:{message:'Project not found.'}}});if(method==='PATCH')Object.assign(selected,input);return route.fulfill({json:{project:selected,assets:[...state.assets.values()].filter(row=>row.project_id===selected.id),activity:[],nextAssetCursor:null}});}
       if(url.pathname.startsWith('/api/studio/budgets/'))return route.fulfill(state.failAllowance?{status:503,json:{error:{message:'Unavailable'}}}:{json:{availableMicros:state.allowance,reason:state.allowance?null:'No AI allowance remains.'}});
@@ -152,7 +161,7 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
         return route.fulfill({json:{revisionId:revision.id}});
       }
       if(url.pathname==='/api/studio/assets'){
-        if(method==='GET')return route.fulfill({json:{assets:[...state.assets.values()].filter(asset=>(!url.searchParams.get('kind')||asset.asset_kind===url.searchParams.get('kind'))&&(!url.searchParams.get('appId')||asset.app_id===url.searchParams.get('appId'))&&asset.name.toLowerCase().includes((url.searchParams.get('q')??'').toLowerCase())).map(asset=>({...asset,project:{name:project.name}})),nextCursor:null}});
+        if(method==='GET')return route.fulfill({json:{assets:[...state.assets.values()].filter(asset=>(!url.searchParams.get('projectId')||asset.project_id===url.searchParams.get('projectId'))&&(!url.searchParams.get('kind')||asset.asset_kind===url.searchParams.get('kind'))&&(!url.searchParams.get('appId')||asset.app_id===url.searchParams.get('appId'))&&asset.name.toLowerCase().includes((url.searchParams.get('q')??'').toLowerCase())).map(asset=>({...asset,project:{name:state.projects.get(asset.project_id)?.name}})),nextCursor:null}});
         assert.equal(input.projectId,projectId);
         const id=input.creationId??randomUUID();
         if(!state.assets.has(id))state.assets.set(id,{id,project_id:projectId,app_id:input.appId,name:input.name,asset_kind:'native',current_revision_id:null,created_at:project.created_at});
@@ -193,7 +202,7 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
     return route.fulfill({status:404,body:'Isolated fixture'});
   });
   await page.goto(workspaceOrigin+(initialPath??`/dashboard/projects/${projectId}`));
-  try{if(!initialPath||initialPath.includes('/projects/'))await page.getByRole('heading',{name:'First project',exact:true}).waitFor();}catch(error){if(state.errors.length)throw Error(state.errors.join('\n'));throw error;}
+  try{if(!initialPath||new URL(initialPath,origin).pathname===`/dashboard/projects/${projectId}`)await page.getByRole('heading',{name:'First project',exact:true}).waitFor();}catch(error){if(state.errors.length)throw Error(state.errors.join('\n'));throw error;}
   return {page,context,state};
 }
 

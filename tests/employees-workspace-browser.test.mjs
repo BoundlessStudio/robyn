@@ -16,7 +16,7 @@ test('AI Employees opens a project and exact saved revision on its own page whil
     await editor.getByLabel('Document text').fill('Keep writing while the team page is open.');
     const page=await openEmployeeWorkspace(workspace);
     await page.getByRole('button',{name:'Open saved revision',exact:true}).waitFor();
-    const url=new URL(page.url());assert.equal(url.pathname,'/dashboard/employees');assert.equal(url.searchParams.get('projectId'),projectId);assert.equal(url.searchParams.get('asset'),asset.id);assert.equal(url.searchParams.get('revision'),revisionId);
+    const url=new URL(page.url());assert.equal(url.pathname,`/dashboard/projects/${projectId}/employees`);assert.equal(url.searchParams.has('projectId'),false);assert.equal(url.searchParams.get('asset'),asset.id);assert.equal(url.searchParams.get('revision'),revisionId);
     assert.equal(await page.locator('iframe').count(),0);assert.equal(await workspace.locator('.project-details').count(),0);
     assert.equal(await workspace.locator('iframe').getAttribute('src'),source);assert.equal(await editor.getByLabel('Document text').inputValue(),'Keep writing while the team page is open.');
     await page.getByLabel('Your idea',{exact:true}).fill('Continue from this saved version.');
@@ -48,16 +48,17 @@ test('Research continues from its clean saved notebook on the employee assignmen
   }finally{await browser.close();}
 });
 
-test('project selection scopes briefs and assignments; all four views remain usable without automatic AI work',async()=>{
+test('project routes scope briefs and assignments; all four views remain usable without automatic AI work',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
-    const {page,state}=await nativeImportFixture(browser,{initialPath:'/dashboard/employees'});
-    await page.getByRole('heading',{name:'A shared place for your next idea.',exact:true}).waitFor();
-    assert.equal(state.requests.some(row=>row.path==='/api/studio/assignments'),false);
+    const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/projects/${projectId}/employees`});
+    await page.getByLabel('Your idea',{exact:true}).waitFor();
+    assert.equal(await page.getByLabel('Employee project').count(),0);
+    assert.equal(state.assignments.size,0);
     const second=randomUUID();state.projects.set(second,{...state.project,id:second,name:'Second project'});
-    await page.reload();await page.getByLabel('Employee project').selectOption(projectId);
+    await page.getByLabel('Your idea',{exact:true}).waitFor();
     await page.getByLabel('Your idea',{exact:true}).fill('A brief for the first project.');
-    await page.getByLabel('Employee project').selectOption(second);
+    await page.goto(`${origin}/dashboard/projects/${second}/employees`);
     await page.getByLabel('Your idea',{exact:true}).waitFor();assert.equal(await page.getByLabel('Your idea',{exact:true}).inputValue(),'');
     await page.getByRole('button',{name:'Assignments',exact:true}).click();await page.getByLabel('The brief',{exact:true}).fill('Ask Research about the second project.');
     const employees=page.getByLabel('Who is this for?');await employees.selectOption({label:'Research'});
@@ -66,9 +67,10 @@ test('project selection scopes briefs and assignments; all four views remain usa
     await page.getByRole('button',{name:'Review',exact:true}).click();await page.getByText('Finished work will arrive here.',{exact:false}).waitFor();
     await page.getByRole('button',{name:'Team',exact:true}).click();await page.getByRole('heading',{name:'Creative Director',exact:true}).waitFor();assert.equal(await page.locator('.studio-app-card').count(),15);
     assert.equal(new URL(page.url()).searchParams.get('view'),'team');await page.reload();await page.getByRole('heading',{name:'Creative Director',exact:true}).waitFor();
-    await page.getByRole('button',{name:'Conversation',exact:true}).click();await page.getByLabel('Employee project').selectOption(projectId);
+    await page.goto(`${origin}/dashboard/projects/${projectId}/employees`);
     await page.waitForFunction(()=>document.querySelector('textarea')?.value==='A brief for the first project.');
     await page.getByRole('button',{name:'Assignments',exact:true}).click();await page.getByText('The next idea starts here.',{exact:false}).waitFor();
+    assert.ok(state.requests.filter(row=>row.path==='/api/studio/assignments'&&row.method==='GET').every(row=>[projectId,second].includes(new URLSearchParams(row.search).get('projectId'))));
     assert.equal(state.assignments.size,1);assert.deepEqual(state.errors,[]);
   }finally{await browser.close();}
 });
@@ -76,7 +78,7 @@ test('project selection scopes briefs and assignments; all four views remain usa
 test('the employee review page opens the exact deliverable and records the review',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
-    const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/employees?projectId=${projectId}&view=review`});
+    const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/projects/${projectId}/employees?view=review`});
     const id=randomUUID(),assetId=randomUUID(),revisionId=randomUUID();
     state.assignments.set(id,{id,input:{projectId},role:'Creative Director',appId:null,state:'awaiting_review',brief:'Review this saved draft.',result:'Ready for a closer look.',deliverables:[{assetId,revisionId,name:'Saved first draft',state:'committed'}]});
     await page.reload();await page.getByRole('button',{name:'Saved first draft',exact:true}).waitFor();
@@ -91,7 +93,7 @@ test('the employee review page opens the exact deliverable and records the revie
 test('invalid saved-file context blocks a brief until removed, and archived projects cannot send work',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
-    const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/employees?projectId=${projectId}&asset=invalid&revision=invalid`});
+    const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/projects/${projectId}/employees?asset=invalid&revision=invalid`});
     await page.getByRole('alert').filter({hasText:'Invalid asset ID.'}).waitFor();assert.equal(await page.getByLabel('Your idea',{exact:true}).count(),0);
     await page.getByRole('button',{name:'Continue without the included file',exact:true}).click();await page.getByLabel('Your idea',{exact:true}).waitFor();
     assert.equal(new URL(page.url()).searchParams.has('asset'),false);
@@ -105,7 +107,7 @@ test('invalid saved-file context blocks a brief until removed, and archived proj
 test('employee page controls fit the supported desktop widths and pass accessibility checks',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
-    const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/employees?projectId=${projectId}`});
+    const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/projects/${projectId}/employees`});
     await page.getByLabel('Your idea',{exact:true}).waitFor();
     for(const width of [1440,1200]){
       await page.setViewportSize({width,height:960});

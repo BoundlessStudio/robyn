@@ -17,10 +17,10 @@ async function checkLayout(page){
 test('the dedicated library imports, filters and manages exact assets without opening an editor',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
-    const {page,state}=await nativeImportFixture(browser,{initialPath:'/dashboard/library'});
+    const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/projects/${projectId}/library`});
     await page.getByRole('heading',{name:'Assets.',exact:true}).waitFor();
-    assert.equal(await page.getByRole('button',{name:'Import files',exact:true}).isDisabled(),true);
-    await page.getByLabel('Filter by project').selectOption(projectId);
+    assert.equal(await page.getByLabel('Filter by project').count(),0);
+    assert.equal(await page.getByRole('button',{name:'Import files',exact:true}).isEnabled(),true);
     await page.getByLabel('Import assets',{exact:true}).setInputFiles(image);
     await page.getByRole('heading',{name:'Cover',exact:true}).waitFor();assert.equal(state.assets.size,1);
     // A list refresh can expose the new asset before its import is committed.
@@ -62,7 +62,7 @@ test('the dedicated library imports, filters and manages exact assets without op
 test('exports attach to a new native revision, preserve the original, and download as a complete package',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
-    const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/library?projectId=${projectId}`});
+    const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/projects/${projectId}/library`});
     await page.getByRole('heading',{name:'Assets.',exact:true}).waitFor();
     await page.getByLabel('Import assets',{exact:true}).setInputFiles({name:'Film.fcproj',mimeType:'application/json',buffer:await readFile(new URL('../public/studio/starters/1/filmcraft/Untitled film.fcproj',import.meta.url))});
     await page.getByRole('link').filter({has:page.getByRole('heading',{name:'Film',exact:true})}).click();
@@ -96,7 +96,7 @@ test('exports attach to a new native revision, preserve the original, and downlo
 test('native revision import rejects mismatched projects and missing files before writing, and freezes a retry',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
-    const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/library?projectId=${projectId}`});
+    const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/projects/${projectId}/library`});
     const film={name:'Film.fcproj',mimeType:'application/json',buffer:await readFile(new URL('../public/studio/starters/1/filmcraft/Untitled film.fcproj',import.meta.url))};
     await page.getByLabel('Import assets',{exact:true}).setInputFiles(film);
     await page.getByRole('link').filter({has:page.getByRole('heading',{name:'Film',exact:true})}).click();

@@ -5,7 +5,7 @@ import {tmpdir} from 'node:os';
 import {join,resolve,sep} from 'node:path';
 import {chromium,firefox,webkit} from 'playwright';
 const browserType=({chromium,firefox,webkit})[process.env.NATIVE_IMPORT_BROWSER??'chromium'];
-import {nativeImportFixture, dropDocument, origin} from './fixtures/native-import.mjs';
+import {nativeImportFixture, dropDocument, origin, projectId} from './fixtures/native-import.mjs';
 
 test('a dropped native document opens, edits, saves and reopens from the library with its original revision intact',async()=>{
   const browser=await browserType.launch({headless:true});
@@ -32,7 +32,7 @@ test('a dropped native document opens, edits, saves and reopens from the library
     const edited=state.revisions.get(asset.current_revision_id);
     assert.equal(edited.expectedBaseRevisionId,original.id);
     await page.waitForLoadState('networkidle'); // Let this fixture's finite refresh requests finish before navigation.
-    await page.goto(origin+'/dashboard/library');
+    await page.goto(`${origin}/dashboard/projects/${projectId}/library`);
     await page.getByRole('link').filter({has:page.getByRole('heading',{name:'Autumn brief',exact:true})}).click();
     await page.getByRole('link',{name:'Open in WordCraft'}).click();
     await editor.getByText('Ready',{exact:true}).waitFor();
@@ -200,7 +200,7 @@ test('common source files save without a Craft, preview, retry uncertain replies
     assert.deepEqual(state.bytes.get(revision.id+'/Shared artwork.svg'),svg);
     assert.equal(await page.locator('iframe').count(),0);
     assert.match(await page.locator('.source-import-note').innerText(),/reusable source media/);
-    await page.goto(origin+'/dashboard/library');
+    await page.goto(`${origin}/dashboard/projects/${projectId}/library`);
     await page.getByRole('link').filter({has:page.getByRole('heading',{name:'Shared artwork',exact:true})}).click();
     await preview.waitFor();await preview.evaluate(img=>img.decode());
     await page.getByRole('link',{name:'Open in project',exact:true}).click();

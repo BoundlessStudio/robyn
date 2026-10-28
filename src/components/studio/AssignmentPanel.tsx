@@ -148,7 +148,7 @@ function AssignmentComposer({ projectId, mode, canvas=false, canAssign=true, pre
       {canvas&&pending&&<p className="studio-muted">Saved choice: {pending.startMode==="plan"?"Help me plan":pending.startMode==="draft"?"Make a first draft":"Send the brief"}.</p>}
       {pending && <div className="studio-muted"><p>Starting a different brief creates separate work. It does not stop the previous request.</p><button type="button" className="studio-button" disabled={Boolean(busy)} onClick={newBrief}>Start a different brief</button></div>}
     </form>}
-    {mode === "assignments" && chosen?.appId === "research" && <div className="research-assignment-context"><p className="studio-muted">Source-linked research and browser automation. Include the open notebook to continue from that exact saved revision.</p><ResearchBrowserButton/></div>}
+    {mode === "assignments" && chosen?.appId === "research" && <div className="research-assignment-context"><p className="studio-muted">Source-linked research and browser automation. Include the open notebook to continue from that exact saved revision.</p><ResearchBrowserButton projectId={projectId}/></div>}
     {error && <p className="studio-error" role="alert">{error}</p>}
     {notice && <p className="assignment-notice" role="status">{notice}</p>}
     <div className="assignment-list" aria-live="polite">

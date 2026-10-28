@@ -1,5 +1,5 @@
-import { StudioLibrary } from "@/components/studio/StudioLibrary";
+import {redirect} from "next/navigation";
 export default async function Page({searchParams}:{searchParams:Promise<{projectId?:string}>}){
   const {projectId}=await searchParams;
-  return <StudioLibrary initialProjectId={projectId}/>;
+  redirect(projectId?`/dashboard/projects/${encodeURIComponent(projectId)}/library`:"/dashboard");
 }

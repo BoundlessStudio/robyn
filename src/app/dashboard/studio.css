@@ -23,7 +23,7 @@
 .studio-sidebar-bottom>a { display:flex; align-items:center; gap:5px; font-size:10px; color:var(--studio-muted); margin:22px 0; }
 .studio-sidebar-bottom>span { display:block; border-top:1px solid var(--studio-line); padding-top:18px; font-size:9px; color:#aaa9a3; overflow:hidden; text-overflow:ellipsis; }
 .studio-main { min-width:0; }
-.library-filters { display:grid; grid-template-columns:1.2fr 1fr 1fr 1.3fr; gap:16px; margin-bottom:24px; }
+.library-filters { display:grid; grid-template-columns:1fr 1fr 1.3fr; gap:16px; margin-bottom:24px; }
 .library-filters>label { display:flex; flex-direction:column; gap:8px; color:var(--studio-muted); font-size:11px; }
 .library-filters select,.library-filters .studio-search { min-width:0; width:100%; padding:12px; color:#f1f0e8; background:#222221; border:1px solid #44443d; border-radius:5px; }
 .library-filters .studio-search { flex-direction:row; align-items:center; align-self:end; }
@@ -406,6 +406,10 @@
 /* Every creative application shares two compact rows above its native tools. */
 .studio-shell.project-mode { height:100dvh; min-height:0; overflow:hidden; }
 .project-mode .studio-main { height:100%; min-height:0; }
+.project-section { height:100%; display:flex; flex-direction:column; min-height:0; }
+.project-section-content { min-height:0; overflow:auto; flex:1; }
+.project-header .project-section-name { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:13px; }
+.project-header-actions [aria-current=page] { color:#e1edcc; background:#30322b; }
 .project-mode .project-workspace { height:100dvh; min-height:0; }
 .project-mode .project-messages { position:fixed; z-index:30; right:20px; bottom:54px; display:grid; gap:8px; max-width:min(440px,calc(100vw - 40px)); pointer-events:none; }
 .project-mode .project-messages>.project-message { margin:0; padding:12px 14px; border:1px solid #57574c; border-radius:8px; background:#282a24; box-shadow:0 8px 30px #0005; pointer-events:auto; }
@@ -679,13 +683,11 @@
 @media(min-width:1500px) { .application-grid { grid-template-columns:repeat(5,minmax(0,1fr)); } }
 @media(max-width:1250px) { .project-mode .project-header{gap:8px}.project-mode .project-header-actions{gap:1px}.project-mode .project-header-actions .studio-tool-button{font-size:10px;padding:0 7px}.application-launcher{padding:26px 28px}.application-grid{gap:10px}.application-grid>button,.application-grid>a{padding:14px 12px;gap:9px} }
 
-/* AI Employees uses the same page shell as the asset library and applications. */
+/* AI Employees keeps its project context across conversation, assignments and review. */
 .employees-page { padding-top:44px; }
 .employees-page .studio-page-heading { margin-bottom:32px; }
 .employees-page .studio-page-heading h1 { font-size:clamp(48px,4.5vw,64px); letter-spacing:-3px; margin:16px 0 14px; }
 .employees-toolbar { display:flex; align-items:flex-end; flex-wrap:wrap; gap:24px; padding-bottom:24px; margin-bottom:30px; border-bottom:1px solid var(--studio-line); }
-.employees-toolbar>label { display:flex; flex-direction:column; gap:8px; width:300px; color:var(--studio-muted); font-size:11px; }
-.employees-toolbar select { width:100%; min-width:0; padding:12px; color:#f1f0e8; background:#222221; border:1px solid #555347; border-radius:5px; font:inherit; }
 .employees-views { display:flex; flex-wrap:wrap; align-items:center; gap:6px; }
 .employees-views button { padding:12px 18px; border:1px solid transparent; border-radius:5px; color:#bdb6a6; font-size:12px; }
 .employees-views button:hover { color:#eee9d8; background:#2c2c27; }
@@ -705,7 +707,3 @@
 .employees-workspace .assignment-composer textarea { min-height:140px; font-size:14px; }
 .employees-workspace .assignment-list { max-width:880px; margin-top:34px; }
 .employees-workspace .assignment-entry { padding-top:26px; padding-bottom:30px; }
-.employees-empty { padding:55px 0 80px; max-width:620px; color:#c5d5a7; }
-.employees-empty h2 { margin:22px 0 14px; font-size:30px; line-height:1.2; color:#eee9d8; font-weight:450; letter-spacing:-.5px; }
-.employees-empty p { margin:10px 0; color:#bdb6a6; font-size:13px; line-height:1.7; }
-.employees-empty .studio-button { margin-top:20px; }

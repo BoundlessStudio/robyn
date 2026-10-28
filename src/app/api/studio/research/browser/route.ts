@@ -3,12 +3,12 @@ import {ApiError,handleError,json} from "@/lib/http";
 import {readStudioBody,id} from "@/studio/server";
 import {researchBrowserOwner,changeResearchControl} from "@/studio/research-browser";
 const privateJson=(value:unknown)=>{const response=json(value);response.headers.set("Cache-Control","no-store");response.headers.set("Referrer-Policy","no-referrer");return response;};
-export async function GET(){
-  try{const {employee}=await researchBrowserOwner();return privateJson({control:employee.browser_control,controlId:employee.browser_control_id});}catch(error){return handleError(error);}
+export async function GET(request:Request){
+  try{const {employee}=await researchBrowserOwner(new URL(request.url).searchParams.get("projectId"));return privateJson({control:employee.browser_control,controlId:employee.browser_control_id});}catch(error){return handleError(error);}
 }
 export async function POST(request:Request){
   try{
-    const input=await readStudioBody(request),owner=await researchBrowserOwner();
+    const input=await readStudioBody(request),owner=await researchBrowserOwner(new URL(request.url).searchParams.get("projectId"));
     if(input.action==="take"||input.action==="return"){
       const employee=await changeResearchControl(owner,id(input.controlId,"control ID"),input.action);
       return privateJson({control:employee.browser_control,controlId:employee.browser_control_id});

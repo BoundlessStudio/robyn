@@ -1,16 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { FolderOpen, Images, Users, Shapes, Settings, ChevronDown, ArrowUpRight, Globe } from "lucide-react";
+import { FolderOpen, Shapes, Settings, ChevronDown, ArrowUpRight } from "lucide-react";
 import { useWorkspace } from "@/components/WorkspaceProvider";
 import { RobinMark } from "@/components/brand/RobinMark";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
 
 export const studioNavigation = [
   { href: "/dashboard", label: "Projects", icon: FolderOpen },
-  { href: "/dashboard/library", label: "Asset Library", icon: Images },
-  { href: "/dashboard/employees", label: "AI Employees", icon: Users },
-  { href: "/dashboard/research", label: "Research", icon: Globe },
   { href: "/dashboard/applications", label: "Applications", icon: Shapes },
   { href: "/dashboard/settings", label: "Settings", icon: Settings },
 ];

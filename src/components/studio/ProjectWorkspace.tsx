@@ -10,7 +10,7 @@ import {ProjectName} from "./ProjectName";
 import { Markdown } from "@/components/Markdown";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Plus, File, X, History, Upload, ArrowUpRight, RefreshCw, MoreHorizontal, Maximize2, PanelLeft, Info, Shapes, Users, Images } from "lucide-react";
+import { ArrowLeft, Plus, File, X, History, Upload, ArrowUpRight, RefreshCw, MoreHorizontal, Maximize2, PanelLeft, Info, Shapes, Users, Images, Globe } from "lucide-react";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
 import { apiFetch, readApiError } from "@/lib/api";
 import { studioTools as studioApps } from "@/studio/tools";
@@ -155,10 +155,10 @@ export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,ini
   },[project,launch.storageReady,initialAppId,initialLaunchId,initialAssetId]);
   function showProjectDetails(){setPanel("Brief");setProjectPanelOpen(value=>!value);}
   function chooseFiles(folder=false){setApplicationsOpen(false);if(folder)receiveFiles([],true);else filePicker.current?.click();}
-  const employeeParams=new URLSearchParams({projectId});
+  const employeeParams=new URLSearchParams();
   if(asset&&targetRevision){employeeParams.set("asset",asset.id);employeeParams.set("revision",targetRevision);}
-  const employeesHref=`/dashboard/employees?${employeeParams}`;
-  const launcher=<ApplicationLauncher launch={launch} ready={project?.status==="active"} onLaunch={launchApplication} onFiles={()=>chooseFiles()} onFolder={()=>chooseFiles(true)} employeesHref={employeesHref} compact={Boolean(asset)}/>;
+  const employeesHref=`/dashboard/projects/${projectId}/employees${employeeParams.size?`?${employeeParams}`:""}`;
+  const launcher=<ApplicationLauncher projectId={projectId} launch={launch} ready={project?.status==="active"} onLaunch={launchApplication} onFiles={()=>chooseFiles()} onFolder={()=>chooseFiles(true)} employeesHref={employeesHref} compact={Boolean(asset)}/>;
   const sourceMedia=Boolean(asset?.asset_kind&&asset.asset_kind!=="native");
   const preview=sourceMedia?(packageData?.files.find(file=>file.role==="preview")??packageData?.files.find(file=>file.role==="export"&&file.mimeType.startsWith(`${asset?.asset_kind}/`))??packageData?.files.find(file=>file.role==="master")):packageData?.files.find(file=>file.role==="preview");
   const assetDetails = asset&&<>{packageData&&<div className="asset-package"><SourceProvenance provenance={packageData.provenance}/><SourceCredits credits={packageData.sourceCredits}/><h3>{sourceMedia?"SOURCE MEDIA":"NATIVE PACKAGE"} <span>{packageData.files.length} {packageData.files.length===1?"file":"files"}</span></h3>{packageData.files.map(file=><a href={savedFileUrl(packageData.ref.revisionId,file.path)} download key={file.path}><File size={14}/><span>{file.path}</span><small>{file.role} · {(file.bytes/1024).toFixed(1)} KB</small><ArrowUpRight size={13}/></a>)}{packageData.dependencies.length>0&&<p className="studio-muted">{packageData.dependencies.length} exact saved {packageData.dependencies.length===1?"revision":"revisions"} linked to this package.</p>}{packageData.revision.state==="conflict"&&<div className="studio-note"><p>This save is preserved separately because the asset changed while you were working.</p><div className="studio-action-row"><button className="studio-button primary" onClick={()=>{setFileDetails(false);setFork(revisionId);}}>Save as new asset</button><button className="studio-button" onClick={()=>asset.current_revision_id&&openRevision(asset.current_revision_id)}><RefreshCw size={13}/> Reload current</button></div></div>}</div>}
@@ -178,9 +178,10 @@ export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,ini
       <div className="project-header-actions">
         {asset&&<button ref={applicationsButton} className="studio-tool-button application-launch-button" onClick={()=>setApplicationsOpen(true)} disabled={!project||launch.busy} aria-expanded={applicationsOpen}><Shapes size={16}/><span>Applications</span></button>}
         <button ref={importButton} className="studio-tool-button" onClick={()=>filePicker.current?.click()} disabled={!project||launch.busy}><Upload size={15}/><span>Open existing</span></button>
-        <Link className="studio-tool-button" href={`/dashboard/library?projectId=${projectId}`} target="_blank" rel="noopener" title="Manage assets in a new tab; your editor stays open"><Images size={16}/><span>Assets</span><ArrowUpRight size={12}/></Link>
+        <Link className="studio-tool-button" href={`/dashboard/projects/${projectId}/library`} target="_blank" rel="noopener" title="Manage assets in a new tab; your editor stays open"><Images size={16}/><span>Assets</span><ArrowUpRight size={12}/></Link>
         <button className="studio-tool-button" aria-label="Files" aria-expanded={!assetsCollapsed} onClick={()=>setAssetsCollapsed(value=>!value)}><PanelLeft size={16}/><span>Files</span></button>
         <Link className="studio-tool-button" href={employeesHref} target="_blank" rel="noopener" title="Open your team in a new tab; your editor stays open"><Users size={16}/><span>AI Employees</span><ArrowUpRight size={12}/></Link>
+        <Link className="studio-tool-button" href={`/dashboard/projects/${projectId}/research`} target="_blank" rel="noopener" title="Open Research in a new tab; your editor stays open"><Globe size={16}/><span>Research</span><ArrowUpRight size={12}/></Link>
         <button className="studio-tool-button" aria-label="Project details" aria-expanded={projectPanelOpen} onClick={showProjectDetails}><Info size={16}/><span>Project details</span></button>
       </div>
     </header>
@@ -197,7 +198,7 @@ export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,ini
             <DropdownMenuLabel>{app?.name??`${asset.asset_kind} source`} · {packageData?.revision.revision_number?`Revision ${packageData.revision.revision_number}`:packageData?.revision.state==="conflict"?"Preserved conflict":targetRevision?"Saved native file":"No saved revision"}</DropdownMenuLabel><DropdownMenuSeparator/>
             <DropdownMenuItem onSelect={()=>{setHistory(false);setFileDetails(true);}}><Info size={15}/>File details</DropdownMenuItem>
             <DropdownMenuItem onSelect={()=>{setHistory(true);setFileDetails(true);}}><History size={15}/>Revision history</DropdownMenuItem>
-            <DropdownMenuItem asChild><Link href={`/dashboard/library/${asset.id}${targetRevision?`?revision=${targetRevision}`:""}`} target="_blank" rel="noopener"><ArrowUpRight size={15}/>Exports & downloads</Link></DropdownMenuItem>
+            <DropdownMenuItem asChild><Link href={`/dashboard/projects/${projectId}/library/${asset.id}${targetRevision?`?revision=${targetRevision}`:""}`} target="_blank" rel="noopener"><ArrowUpRight size={15}/>Exports & downloads</Link></DropdownMenuItem>
             {!sourceMedia&&<DropdownMenuItem onSelect={()=>importPackage("revision")}><Upload size={15}/>Import revision</DropdownMenuItem>}
             {hasEditor&&<DropdownMenuItem asChild><a href="/support#supported-setup" target="_blank" rel="noreferrer"><Info size={15}/>Browser & accessibility help ↗</a></DropdownMenuItem>}
           </DropdownMenuContent></DropdownMenu>

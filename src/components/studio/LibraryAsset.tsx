@@ -17,17 +17,22 @@ import {SourceCredits,SourceProvenance,type SourceCredit} from "./SourceProvenan
 import {usePagedStudioList} from "./usePagedStudioList";
 import {AddExportsDialog} from "./AddExportsDialog";
 import {UploadPackageDialog} from "./UploadPackageDialog";
+import {ProjectSection} from "./ProjectSection";
 
 interface Revision {id:string;state:string;revision_number:number|null;message:string;created_at:string}
 interface SavedPackage extends OpenAssetResult {revision:Revision;sourceCredits?:SourceCredit[]}
 
-export function LibraryAsset({assetId,initialRevisionId}:{assetId:string;initialRevisionId?:string}){
+export function LibraryAsset(props:{projectId:string;assetId:string;initialRevisionId?:string}){
+  return <ProjectSection projectId={props.projectId}>{()=> <ProjectAsset key={props.assetId} {...props}/>}</ProjectSection>;
+}
+
+function ProjectAsset({projectId,assetId,initialRevisionId}:{projectId:string;assetId:string;initialRevisionId?:string}){
   const [asset,setAsset]=useState<AssetSummary|null>(null),[selectedRevision,setSelectedRevision]=useState<string|null>(initialRevisionId??null);
   const [loadedPackage,setPackage]=useState<SavedPackage|null>(null),[error,setError]=useState(""),[notice,setNotice]=useState(""),[busy,setBusy]=useState(false),[status,setStatus]=useState("");
   const [addingExports,setAddingExports]=useState(false),[importing,setImporting]=useState(false);
   const importButton=useRef<HTMLButtonElement>(null),download=useRef<AbortController|null>(null);
-  const history=usePagedStudioList<Revision>(`/api/studio/assets/${assetId}/revisions`,"revisions");
-  const reload=useCallback(async()=>{const result=await apiFetch<{asset:AssetSummary}>(`/api/studio/assets/${assetId}`);setAsset(result.asset);},[assetId]);
+  const history=usePagedStudioList<Revision>(asset?`/api/studio/assets/${assetId}/revisions`:null,"revisions");
+  const reload=useCallback(async()=>{const result=await apiFetch<{asset:AssetSummary}>(`/api/studio/assets/${assetId}`);if(result.asset.id!==assetId||result.asset.project_id!==projectId)throw Error("This asset does not belong to this project.");setAsset(result.asset);},[assetId,projectId]);
   useEffect(()=>{void reload().catch(reason=>setError(reason.message));return()=>download.current?.abort();},[reload]);
   const revisionId=selectedRevision??asset?.current_revision_id;
   useEffect(()=>{
@@ -37,7 +42,7 @@ export function LibraryAsset({assetId,initialRevisionId}:{assetId:string;initial
   },[selectedRevision]);
   const pkg=loadedPackage&&loadedPackage.ref.revisionId===revisionId&&loadedPackage.ref.assetId===assetId?loadedPackage:null;
   useEffect(()=>{
-    setPackage(null);if(!revisionId)return;
+    setPackage(null);if(!asset||!revisionId)return;
     const controller=new AbortController();
     apiFetch<SavedPackage>(`/api/studio/revisions/${revisionId}`,{signal:controller.signal}).then(result=>{
       if(controller.signal.aborted)return;
@@ -45,7 +50,7 @@ export function LibraryAsset({assetId,initialRevisionId}:{assetId:string;initial
       setPackage(result);
     }).catch(reason=>{if(!controller.signal.aborted)setError(reason.message);});
     return()=>controller.abort();
-  },[assetId,revisionId]);
+  },[asset,assetId,revisionId]);
   async function saved(result:SaveResult){
     setAddingExports(false);setImporting(false);setSelectedRevision(result.revisionId);
     setNotice(result.status==="conflict"?"Another revision was saved first. Your files are preserved as a conflicting revision. Open it in the project to continue or save a copy.":"Your new revision is saved.");
@@ -73,10 +78,10 @@ export function LibraryAsset({assetId,initialRevisionId}:{assetId:string;initial
   const preview=pkg?.files.find(file=>file.role==="preview"&&/^(image|audio|video)\//.test(file.mimeType))??pkg?.files.find(file=>file.role==="export"&&/^(image|audio|video)\//.test(file.mimeType))??(!native?pkg?.files.find(file=>file.role==="master"):undefined);
   const exports=pkg?.files.filter(file=>file.role==="export")??[];
   return <div className="studio-page library-asset-page">
-    <Link className="library-back" href={asset?`/dashboard/library?projectId=${asset.project_id}`:"/dashboard/library"}><ArrowLeft size={15}/>Back to assets</Link>
+    <Link className="library-back" href={`/dashboard/projects/${projectId}/library`}><ArrowLeft size={15}/>Back to assets</Link>
     {error&&<p role="alert" className="studio-error">{error}</p>}
     {notice&&<p role="status" className="studio-success">{notice}</p>}
-    {!asset?<p role="status">Loading asset…</p>:<>
+    {!asset?(!error&&<p role="status">Loading asset…</p>):<>
       <header className="studio-page-heading"><div><span className="studio-eyebrow">{app?.name??`${asset.asset_kind} SOURCE`}</span><h1>{asset.name}</h1><DocumentName asset={asset} onSaved={setAsset}/></div><Link className="studio-button primary" href={`/dashboard/projects/${asset.project_id}?${new URLSearchParams({asset:asset.id,...(revisionId?{revision:revisionId}:{})})}`}>Open {app?`in ${app.name}`:"in project"}<ArrowUpRight size={16}/></Link></header>
       <div className="library-asset-layout">
         <section className="library-asset-main" aria-label="Asset files">

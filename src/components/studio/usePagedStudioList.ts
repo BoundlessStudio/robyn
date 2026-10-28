@@ -2,13 +2,14 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { apiFetch } from "@/lib/api";
 
-export function usePagedStudioList<T extends {id:string}>(url: string, field: string) {
+export function usePagedStudioList<T extends {id:string}>(url: string|null, field: string) {
   const [rows, setRows] = useState<T[]>([]);
   const [nextCursor, setNextCursor] = useState<string|null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const generation = useRef(0);
   const load = useCallback(async (cursor: string|null = null, signal?: AbortSignal) => {
+    if(!url)return;
     const requestGeneration = ++generation.current;
     setLoading(true); setError("");
     try {
@@ -25,6 +26,7 @@ export function usePagedStudioList<T extends {id:string}>(url: string, field: st
   useEffect(() => {
     const abort = new AbortController();
     setRows([]);setNextCursor(null);
+    if(!url){setLoading(false);return()=>abort.abort();}
     const timer = setTimeout(() => void load(null, abort.signal), 200);
     return () => { clearTimeout(timer);abort.abort();generation.current++; };
   }, [load]);
