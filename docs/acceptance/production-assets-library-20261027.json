@@ -1,0 +1,104 @@
+{
+  "recordedAt": "2026-10-28T00:28:02.663Z",
+  "localReleaseDate": "2026-10-27",
+  "timezone": "America/Toronto",
+  "status": "Initial Assets release deployed; FilmCraft native Source import follow-up recorded separately",
+  "canonicalUrl": "https://robyn.academy",
+  "webMergeCommit": "ea8cc568a0e0793d1a77ccf32329d8800cbe78b9",
+  "runtimeMergeCommit": "737eaa0934a93ea57073d20243bceeea875c2516",
+  "pullRequests": {
+    "web": "https://github.com/BoundlessStudio/robyn/pull/27",
+    "runtime": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/4"
+  },
+  "applicationDeployment": {
+    "id": "dpl_DrK3s72G2FcpojDVJ4XLaTMHqKnZ",
+    "url": "robyn-creative-studio-nppz861j6-venatio-studios.vercel.app",
+    "branch": "main",
+    "commit": "ea8cc568a0e0793d1a77ccf32329d8800cbe78b9",
+    "state": "READY",
+    "productionAlias": "robyn.academy",
+    "source": "Vercel authenticated deployment UI"
+  },
+  "ci": {
+    "web": {
+      "id": 40605411445,
+      "conclusion": "success"
+    },
+    "runtime": {
+      "id": 40605404093,
+      "conclusion": "success"
+    }
+  },
+  "publication": {
+    "checkedAt": "2026-10-27T23:43:56.390Z",
+    "origin": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev",
+    "accountId": "ad511085f517f4740591851cad7686eb",
+    "bucket": "robyn-editor-artifacts",
+    "releases": 50,
+    "files": 21431,
+    "uniqueObjects": 705,
+    "bytes": 977690643,
+    "catalogSha256": "ae757b1ff311a951acf115a00782413918bf208c985d6eb65539d777cfcc6193",
+    "uploaded": 305,
+    "existing": 400,
+    "allHostedBytesVerified": true,
+    "sourceBaseline": false,
+    "uploadOnly": false,
+    "privateBucket": true,
+    "readOnlyServingWorker": true,
+    "workerVersion": "7a2c7c9f-22de-417d-a691-eb84f3225b30",
+    "retainedReleases": 37,
+    "newReleases": 13
+  },
+  "database": {
+    "changed": false,
+    "liveLedgerRead": false,
+    "lastRecordedMigration": "0024_open_canvas.sql",
+    "lastRecordedEntries": 25,
+    "lastRecordedLedgerSha256": "508945e29e3ac0dbcf0d084b0d65e17a0222d6c5afe9535664cb74eb94fc46fa"
+  },
+  "workstation": {
+    "version": "0.1.23",
+    "changed": false,
+    "mcpSha256": "6e7b4525b249cfdd81b00fccceec7ee4ca537663d4493fe1ef8ad6d0559a3b32"
+  },
+  "editorPins": {
+    "allThirteen": "0.2.2"
+  },
+  "productionChecks": {
+    "scope": "Authenticated Chrome and actual Studio BFF/storage in a separate labelled QA project; synthetic image/video fixtures; no original creator project modified",
+    "sourceImageImport": true,
+    "separateAssetsTabPreservesEditor": true,
+    "wordcraftPlacement": true,
+    "confirmedNativeSave": true,
+    "exactSourceLinked": true,
+    "nativeCLIContinuation": true,
+    "addPdfExport": true,
+    "downloadPackage": true,
+    "byteProof": {
+      "checkedAt": "2026-10-28T00:27:06.782648+00:00",
+      "nativeMasterPreservedAfterExport": true,
+      "exportBytesMatch": true,
+      "embeddedImages": 1,
+      "files": [
+        {
+          "path": "exports/c3641395a0383463-wordcraft-export.pdf",
+          "bytes": 2870,
+          "sha256": "c3641395a038346398ad00e6bb144c2f0c7295f7a6b9e46c4646bf36cdde1d0b"
+        },
+        {
+          "path": "Untitled document.docx",
+          "bytes": 7184,
+          "sha256": "e49b975790573ca20c21771c8f7d57328644274624d35cd448ce33f7187345bc"
+        }
+      ],
+      "nativeContinuedSha256": "62b71de7d9f0f916dde3a54e8e13b5be99d16476adf83929457434cb72c5db5f",
+      "packageSha256": "d448e7ca4466c115ae18fafab00f8684dc9e16f4316d56560c0ce03674c354ba"
+    }
+  },
+  "limitations": [
+    "These live checks cover WordCraft import/save/export; the thirteen-Craft round trips remain isolated-BFF acceptance.",
+    "The user reported FilmCraft native import still failed after this initial release; 0.2.3 corrects the native Source and Browse controls.",
+    "No migration, employee activation or paid AI turn."
+  ]
+}

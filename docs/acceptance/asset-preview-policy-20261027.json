@@ -1,0 +1,531 @@
+{
+  "recordedAt": "2026-10-28T00:50:22.764Z",
+  "status": "Deployed to production; authenticated image preview decoded successfully",
+  "webImplementationCommit": "1fb135008bb1e02e8c8a0e2a7841b9c000a69ce8",
+  "webMergeCommit": "ee03b4b862d8f6aa3dbce42c15f6a9423d652fee",
+  "runtimeImplementationCommit": "2034503392ab639ba4a96e8039f309dbb46b8850",
+  "runtimeMergeCommit": "fe1b155754c592bd73702eb106e74f093a0929de",
+  "pullRequests": {
+    "web": "https://github.com/BoundlessStudio/robyn/pull/29",
+    "runtime": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/6"
+  },
+  "ci": {
+    "webPR": {
+      "id": 40610612582,
+      "conclusion": "success"
+    },
+    "runtimePR": {
+      "id": 40610136635,
+      "conclusion": "success"
+    },
+    "runtimeMain": {
+      "id": 40610311251,
+      "conclusion": "success"
+    }
+  },
+  "checksPassed": {
+    "webTests": 116,
+    "runtimeTests": 79,
+    "typecheck": true,
+    "webBuild": true,
+    "actualThumbnailDecoded": true,
+    "unrelatedImageHostBlocked": true,
+    "cachedResponsePolicyUpdated": true
+  },
+  "publication": {
+    "checkedAt": "2026-10-28T00:40:14.632Z",
+    "workerVersion": "ae61f2ea-19f1-4522-9367-f3761b860c6e",
+    "runtimeImplementationCommit": "2034503392ab639ba4a96e8039f309dbb46b8850",
+    "releasesChecked": 51,
+    "allHtmlBytesUnchanged": true,
+    "allImagePoliciesCorrect": true,
+    "checks": [
+      {
+        "release": "cadcraft/v0.10.0-0.1.0/",
+        "htmlSha256": "4272c617aa3be00206db7948754bbcebf29ced26b9f565a3de944233577592c8",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "cadcraft/v0.10.0-0.1.2/",
+        "htmlSha256": "4272c617aa3be00206db7948754bbcebf29ced26b9f565a3de944233577592c8",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "cadcraft/v0.10.0-0.2.2/",
+        "htmlSha256": "4272c617aa3be00206db7948754bbcebf29ced26b9f565a3de944233577592c8",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "deckcraft/v0.9.0-0.1.0/",
+        "htmlSha256": "2f4ed9b6e07384841a57c7d489af717057f5348a95388cf4b022f89be5eeafc9",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "deckcraft/v0.9.0-0.1.2/",
+        "htmlSha256": "2f4ed9b6e07384841a57c7d489af717057f5348a95388cf4b022f89be5eeafc9",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "deckcraft/v0.9.0-0.2.2/",
+        "htmlSha256": "2f4ed9b6e07384841a57c7d489af717057f5348a95388cf4b022f89be5eeafc9",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "designcraft/v0.11.0-0.1.0/",
+        "htmlSha256": "5e9f48b10278de53da5b2810df058dc544184fc349ef6baad77c762bdff4baa4",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "designcraft/v0.11.0-0.1.2/",
+        "htmlSha256": "5e9f48b10278de53da5b2810df058dc544184fc349ef6baad77c762bdff4baa4",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "designcraft/v0.11.0-0.2.2/",
+        "htmlSha256": "5e9f48b10278de53da5b2810df058dc544184fc349ef6baad77c762bdff4baa4",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "effectcraft/v0.14.0-0.1.0/",
+        "htmlSha256": "e0c6bb219258134b050851fb039c362927ed36beb539cb0f96d3c80f19fc719a",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "effectcraft/v0.14.0-0.1.2/",
+        "htmlSha256": "93d5a5ea232c9636dc9b1e1ca838a6c0762780fc7714e9a0d510055f1fcae59d",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "effectcraft/v0.14.0-0.2.2/",
+        "htmlSha256": "613de1d0b7f81068fff9a734b2572ec4009d03e30330a28cfcd4cc2f28e8e9fb",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "figcraft/v0.9.0-0.1.0/",
+        "htmlSha256": "518104f91ca07561f572d772957e48bf80088ca0891730eb8a690f749a4fc0f3",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "figcraft/v0.9.0-0.1.3/",
+        "htmlSha256": "518104f91ca07561f572d772957e48bf80088ca0891730eb8a690f749a4fc0f3",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "figcraft/v0.9.0-0.2.2/",
+        "htmlSha256": "518104f91ca07561f572d772957e48bf80088ca0891730eb8a690f749a4fc0f3",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "filmcraft/v0.10.0-0.1.0/",
+        "htmlSha256": "7aaf2e3b97db8184d74e412a6bf74fd862a45fe8ab64253e568ae4bf232ce803",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "filmcraft/v0.10.0-0.1.1/",
+        "htmlSha256": "cc65e2eb83d1e6551b0d6c1437bc36e158a0c93628a9a34c44c77690c0cf977a",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "filmcraft/v0.10.0-0.1.2/",
+        "htmlSha256": "6f741197caec8ed8eed8f45089bf211a34658602bc384f61a9f3fd58c5a5fa22",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "filmcraft/v0.10.0-0.1.4/",
+        "htmlSha256": "1642e06bd6500869afcfb6480f9fafd58200efa6b89c1ea19f604f07d227e95a",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "filmcraft/v0.10.0-0.2.2/",
+        "htmlSha256": "09724b42763121b3257b5bf0fd029dfb17a4402aaabd4a0f65319463a429b96a",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "filmcraft/v0.10.0-0.2.3/",
+        "htmlSha256": "ba34aa8768911ceec2993a195881e510b2ae6de970f79d0502d481cbbc1b6c2b",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "gridcraft/v0.10.0-0.1.0/",
+        "htmlSha256": "52cc302a47fe6b6e9140ec80a181c9e0086e125317f994b8251858045f41a739",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "gridcraft/v0.10.0-0.1.2/",
+        "htmlSha256": "52cc302a47fe6b6e9140ec80a181c9e0086e125317f994b8251858045f41a739",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "gridcraft/v0.10.0-0.2.2/",
+        "htmlSha256": "52cc302a47fe6b6e9140ec80a181c9e0086e125317f994b8251858045f41a739",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "lightcraft/v0.11.0-0.1.0/",
+        "htmlSha256": "fdbe121f00c8a9570862c935f2fe154b36a482e1ed18686a9ba05e454f35c6ab",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "lightcraft/v0.11.0-0.1.1/",
+        "htmlSha256": "6001c0bc0d58d872ee31fc600d79ee4941cf3b339ebbd72af2f334baea82ef2e",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "lightcraft/v0.11.0-0.1.2/",
+        "htmlSha256": "0307532341a18575e9281eaf2c4173f071ed464d544b0b21f7e1927fdf04eea8",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "lightcraft/v0.11.0-0.1.4/",
+        "htmlSha256": "861a6287616a63ab79e076b8ca067e5f6158e588c941d2c2e40d5537097b2cd2",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "lightcraft/v0.11.0-0.2.2/",
+        "htmlSha256": "41315fe4e615ebd0f7c0cdb98b359d43fa0349598be6175fc61b54ec3c4256dd",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "pdfcraft/v0.11.0-0.1.0/",
+        "htmlSha256": "8e229a26193c6c0165d634261f51f119bc5056b2a4f14e9eeb42b7e5dc83dc69",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "pdfcraft/v0.11.0-0.1.2/",
+        "htmlSha256": "8e229a26193c6c0165d634261f51f119bc5056b2a4f14e9eeb42b7e5dc83dc69",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "pdfcraft/v0.11.0-0.1.3/",
+        "htmlSha256": "8e229a26193c6c0165d634261f51f119bc5056b2a4f14e9eeb42b7e5dc83dc69",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "pdfcraft/v0.11.0-0.1.4/",
+        "htmlSha256": "8e229a26193c6c0165d634261f51f119bc5056b2a4f14e9eeb42b7e5dc83dc69",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "pdfcraft/v0.11.0-0.2.2/",
+        "htmlSha256": "8e229a26193c6c0165d634261f51f119bc5056b2a4f14e9eeb42b7e5dc83dc69",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "photocraft/v0.12.0-0.1.0/",
+        "htmlSha256": "9a74e105df58cdcbf634cf4c4c7e05dc91be58d3cf07f1abccddcdc492e10be0",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "photocraft/v0.12.0-0.1.2/",
+        "htmlSha256": "35c09a8912476dc1ca90cbdeac181f3127c2afdb0381512aa324f4346972e0a9",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "photocraft/v0.12.0-0.1.4/",
+        "htmlSha256": "17d87bad9c13889bf51cf9b54e1bb62cb875d2df175c4a36beb2aeb44604eb6b",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "photocraft/v0.12.0-0.2.2/",
+        "htmlSha256": "b5f5d7dac952bdc764ad5038c0f8bea5ca142635b0a6383d70182b848e0b0b37",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "soundcraft/v0.11.0-0.1.0/",
+        "htmlSha256": "cc689b9e0768132377d3aa94ffbaa5d40e6cb40addc1b4ca171419e1cfe01a38",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "soundcraft/v0.11.0-0.1.1/",
+        "htmlSha256": "cc689b9e0768132377d3aa94ffbaa5d40e6cb40addc1b4ca171419e1cfe01a38",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "soundcraft/v0.11.0-0.1.2/",
+        "htmlSha256": "cc689b9e0768132377d3aa94ffbaa5d40e6cb40addc1b4ca171419e1cfe01a38",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "soundcraft/v0.11.0-0.1.4/",
+        "htmlSha256": "cc689b9e0768132377d3aa94ffbaa5d40e6cb40addc1b4ca171419e1cfe01a38",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "soundcraft/v0.11.0-0.2.2/",
+        "htmlSha256": "cc689b9e0768132377d3aa94ffbaa5d40e6cb40addc1b4ca171419e1cfe01a38",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "vectorcraft/v0.14.0-0.1.0/",
+        "htmlSha256": "d65dab200ab537847139a76f532d52010d01936a05b5425102ce851cac224f36",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "vectorcraft/v0.14.0-0.1.1/",
+        "htmlSha256": "fba973720813c7221869a2e147cb7d2dee6e373ef1616132f3af839db0a7866b",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "vectorcraft/v0.14.0-0.1.2/",
+        "htmlSha256": "cb6397b06d1bc9fb8b81b596d1946a2ba36cb1d984b03e09df19d31846217097",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "vectorcraft/v0.14.0-0.1.4/",
+        "htmlSha256": "6d2226d1f80275a1b4f0bc8ff044f7b0fb354395382b2ed7fe394677162b23d8",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "vectorcraft/v0.14.0-0.2.2/",
+        "htmlSha256": "2ba0eefad207fa40ce09124ed051d849e10c518918f078d029355d852b0e5ca5",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "wordcraft/v0.9.0-0.1.0/",
+        "htmlSha256": "321b138df38412fd21ce926292032c5903841171a3d32f0315e4e3ab8d792cd5",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "wordcraft/v0.9.0-0.1.2/",
+        "htmlSha256": "321b138df38412fd21ce926292032c5903841171a3d32f0315e4e3ab8d792cd5",
+        "exactStorageImageOriginAllowed": true
+      },
+      {
+        "release": "wordcraft/v0.9.0-0.2.2/",
+        "htmlSha256": "321b138df38412fd21ce926292032c5903841171a3d32f0315e4e3ab8d792cd5",
+        "exactStorageImageOriginAllowed": true
+      }
+    ]
+  },
+  "hosted": {
+    "checkedAt": "2026-10-28T00:44:22.791Z",
+    "scope": "Actual published FilmCraft iframe and serving headers with isolated BFF/storage fixture",
+    "imageDimensions": [
+      96,
+      64
+    ],
+    "actualPolicyAllowsExactStorageOrigin": true,
+    "thumbnailSha256": "839abdda53402a50ce008096ca9abc1abb6d546bd9003e07484df78fbcc484c1"
+  },
+  "editorPins": [
+    {
+      "id": "cadcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "cadcraft-v0.10.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/cadcraft/v0.10.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-cadcraft-0-10-0@1",
+        "release": "sha256:bca46321dc438354d1b169a91e4f5075d0bad5afc70052b6e6fa0fbcf0f1e488",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "deckcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "deckcraft-v0.9.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/deckcraft/v0.9.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-deckcraft-0-9-0@1",
+        "release": "sha256:3dfcd2d3dd5333c261a3800b3d66acae6be286813f921e384dcfce9e816104d5",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "designcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "designcraft-v0.11.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/designcraft/v0.11.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-designcraft-0-11-0@1",
+        "release": "sha256:eb7ef35e69d14ed050f718199979820091a5265bb9c55742c33ff26022bdd6cc",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "effectcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "effectcraft-v0.14.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/effectcraft/v0.14.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-effectcraft-0-14-0@1",
+        "release": "sha256:56228ad33996ff68f4abe5fe0388ea33eb4adee24a5ea9916dbe5536d284f12b",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "figcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "figcraft-v0.9.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/figcraft/v0.9.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-figcraft-0-9-0@1",
+        "release": "sha256:1f6bcfdd286c2fe49d0ab53a11449a00760bec8071099bd372738a6fc1d527c2",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "filmcraft",
+      "editor": {
+        "adapterVersion": "0.2.3",
+        "release": "filmcraft-v0.10.0-robyn-0.2.3",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/filmcraft/v0.10.0-0.2.3/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-filmcraft-0-10-0@1",
+        "release": "sha256:9af6580357fc0f559d2dc63d0fab876003f7de816cdcda4d0f666b5ccc438d43",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "gridcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "gridcraft-v0.10.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/gridcraft/v0.10.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-gridcraft-0-10-0@1",
+        "release": "sha256:7a74c01ecc0599d9a6c67a000c0a2245cfb6641d9e0d641c5167d99a295a8149",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "lightcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "lightcraft-v0.11.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/lightcraft/v0.11.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-lightcraft-0-11-0@1",
+        "release": "sha256:5f4570949853ff085bbb06035bb3071224357f2119a8bec65010a763979f749c",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "pdfcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "pdfcraft-v0.11.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/pdfcraft/v0.11.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-pdfcraft-0-11-0@1",
+        "release": "sha256:165fb8dc380c404f670a5e09b092ede8b0991aa3003ca9f7ea5c1c9133cd9881",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "photocraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "photocraft-v0.12.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/photocraft/v0.12.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-photocraft-0-12-0@1",
+        "release": "sha256:b56cb9749d2f3dc88c9f50a12803d57bfa29d359635d0999575055876944c849",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "soundcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "soundcraft-v0.11.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/soundcraft/v0.11.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-soundcraft-0-11-0@1",
+        "release": "sha256:8d7030eff81589c4a267a2ecd3f039338e8c690e8703a358e4c8846bc8375e22",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "vectorcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "vectorcraft-v0.14.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/vectorcraft/v0.14.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-vectorcraft-0-14-0@1",
+        "release": "sha256:b04d54cf9231cbb76f9d929395f0735ead37a326ecb33299ba2947636150ad76",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "wordcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "wordcraft-v0.9.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/wordcraft/v0.9.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-wordcraft-0-9-0@1",
+        "release": "sha256:08ce901c9c0bff1c38bd1334bbcda226ef1b31e7c5678916a8adc9c957e525f2",
+        "status": "verified"
+      }
+    }
+  ],
+  "database": {
+    "changed": false,
+    "liveLedgerRead": false,
+    "lastRecordedMigration": "0024_open_canvas.sql",
+    "lastRecordedEntries": 25,
+    "lastRecordedLedgerSha256": "508945e29e3ac0dbcf0d084b0d65e17a0222d6c5afe9535664cb74eb94fc46fa"
+  },
+  "workstation": {
+    "version": "0.1.23",
+    "changed": false,
+    "mcpSha256": "6e7b4525b249cfdd81b00fccceec7ee4ca537663d4493fe1ef8ad6d0559a3b32"
+  },
+  "limits": [
+    "The serving policy only adds the existing private Storage host to image sources. Auth, BFF ownership checks and private bucket permissions are unchanged.",
+    "Native assets without saved image previews retain their existing type badges. No video poster or document-preview generator was added."
+  ],
+  "applicationDeployment": {
+    "id": "dpl_2ZBWE5jbvB4fBJQ1WxcP3uNi7orj",
+    "url": "robyn-creative-studio-ho4lojfqs-venatio-studios.vercel.app",
+    "commit": "ee03b4b862d8f6aa3dbce42c15f6a9423d652fee",
+    "branch": "main",
+    "state": "READY",
+    "productionAlias": "robyn.academy",
+    "readyAt": "2026-10-28T00:48:08Z",
+    "source": "Vercel authenticated deployment UI"
+  },
+  "production": {
+    "checkedAt": "2026-10-28T00:49:50.357Z",
+    "scope": "Authenticated production Chrome, actual Studio BFF and private Storage",
+    "imageDimensions": [
+      96,
+      64
+    ],
+    "imageComplete": true,
+    "policyQuery": "policy=20261028",
+    "savedClipRetainedAfterReopen": true
+  }
+}

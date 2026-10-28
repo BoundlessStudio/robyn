@@ -2,6 +2,8 @@
 
 This records the feature branch's local acceptance. The [release record](../RELEASE-ASSETS-2026-10-27.md) distinguishes published editor artifacts from deployment of the web application.
 
+The original feature is now deployed. [Production evidence](production-assets-library-20261027.json) records the paired merges, Vercel deployment and authenticated WordCraft import/save/export checks. The subsequent FilmCraft 0.2.3 correction covers its native Source/Browse entry points; the 0.2.2 tests below entered through Place from studio and did not prove those native controls.
+
 ## Creator workflow
 
 Assets has a full management page with project, type and Craft filters, search, grid/list views, file/folder import and the existing media acquisition dialog. Each asset has its own page for naming, previewing, exact versions, native and linked files, original sources, exports and complete ZIP downloads. The project toolbar opens Assets in a separate tab so a native editor can remain open with unsaved work. Version links survive a reload and open that exact revision in the Craft.

@@ -1,0 +1,388 @@
+{
+  "recordedAt": "2026-10-28T00:40:40.190Z",
+  "localReleaseDate": "2026-10-27",
+  "timezone": "America/Toronto",
+  "status": "Deployed to production; authenticated saved-library placement and native continuation passed",
+  "webImplementationCommit": "72a5e1e78eefc42ffe98107dddcb0d67eb656271",
+  "webMergeCommit": "b80cf89cd5e3da5a0abd55f970eb17bab45a8ea9",
+  "runtimeImplementationCommit": "aafbc760c062d869757ce5843158a49c5ac9ba37",
+  "runtimeMergeCommit": "30acb6e659358f5adb07626a8286826339e37b53",
+  "pullRequests": {
+    "web": "https://github.com/BoundlessStudio/robyn/pull/28",
+    "runtime": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/5"
+  },
+  "ci": {
+    "webPR": {
+      "id": 40608882033,
+      "conclusion": "success"
+    },
+    "runtimePR": {
+      "id": 40608714851,
+      "conclusion": "success"
+    },
+    "webMain": {
+      "id": 40609381842,
+      "conclusion": "success"
+    },
+    "runtimeMain": {
+      "id": 40608968417,
+      "conclusion": "success"
+    }
+  },
+  "checksPassed": {
+    "webTests": 116,
+    "runtimeTests": 77,
+    "typecheck": true,
+    "webBuild": true,
+    "runtimeAudit": true,
+    "unchangedWorkstationBuild": true
+  },
+  "publication": {
+    "checkedAt": "2026-10-28T00:31:44.238Z",
+    "origin": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev",
+    "accountId": "ad511085f517f4740591851cad7686eb",
+    "bucket": "robyn-editor-artifacts",
+    "releases": 51,
+    "files": 21446,
+    "uniqueObjects": 710,
+    "bytes": 1015033890,
+    "catalogSha256": "537fd37944ccd742cec554e07c891cfd5d194f371b000105c5b09ed3e3769798",
+    "uploaded": 310,
+    "existing": 400,
+    "allHostedBytesVerified": true,
+    "sourceBaseline": false,
+    "uploadOnly": false,
+    "privateBucket": true,
+    "readOnlyServingWorker": true,
+    "workerVersion": "33562b2c-bf06-4493-8993-32f6a568d9cd",
+    "retainedReleases": 50,
+    "newReleases": 1
+  },
+  "editorPins": [
+    {
+      "id": "cadcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "cadcraft-v0.10.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/cadcraft/v0.10.0-0.2.2/?robyn",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-cadcraft-0-10-0@1",
+        "release": "sha256:bca46321dc438354d1b169a91e4f5075d0bad5afc70052b6e6fa0fbcf0f1e488",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "deckcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "deckcraft-v0.9.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/deckcraft/v0.9.0-0.2.2/?robyn",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-deckcraft-0-9-0@1",
+        "release": "sha256:3dfcd2d3dd5333c261a3800b3d66acae6be286813f921e384dcfce9e816104d5",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "designcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "designcraft-v0.11.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/designcraft/v0.11.0-0.2.2/?robyn",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-designcraft-0-11-0@1",
+        "release": "sha256:eb7ef35e69d14ed050f718199979820091a5265bb9c55742c33ff26022bdd6cc",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "effectcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "effectcraft-v0.14.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/effectcraft/v0.14.0-0.2.2/?robyn",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-effectcraft-0-14-0@1",
+        "release": "sha256:56228ad33996ff68f4abe5fe0388ea33eb4adee24a5ea9916dbe5536d284f12b",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "figcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "figcraft-v0.9.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/figcraft/v0.9.0-0.2.2/?robyn",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-figcraft-0-9-0@1",
+        "release": "sha256:1f6bcfdd286c2fe49d0ab53a11449a00760bec8071099bd372738a6fc1d527c2",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "filmcraft",
+      "editor": {
+        "adapterVersion": "0.2.3",
+        "release": "filmcraft-v0.10.0-robyn-0.2.3",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/filmcraft/v0.10.0-0.2.3/?robyn",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-filmcraft-0-10-0@1",
+        "release": "sha256:9af6580357fc0f559d2dc63d0fab876003f7de816cdcda4d0f666b5ccc438d43",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "gridcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "gridcraft-v0.10.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/gridcraft/v0.10.0-0.2.2/?robyn",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-gridcraft-0-10-0@1",
+        "release": "sha256:7a74c01ecc0599d9a6c67a000c0a2245cfb6641d9e0d641c5167d99a295a8149",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "lightcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "lightcraft-v0.11.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/lightcraft/v0.11.0-0.2.2/?robyn",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-lightcraft-0-11-0@1",
+        "release": "sha256:5f4570949853ff085bbb06035bb3071224357f2119a8bec65010a763979f749c",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "pdfcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "pdfcraft-v0.11.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/pdfcraft/v0.11.0-0.2.2/?robyn",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-pdfcraft-0-11-0@1",
+        "release": "sha256:165fb8dc380c404f670a5e09b092ede8b0991aa3003ca9f7ea5c1c9133cd9881",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "photocraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "photocraft-v0.12.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/photocraft/v0.12.0-0.2.2/?robyn",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-photocraft-0-12-0@1",
+        "release": "sha256:b56cb9749d2f3dc88c9f50a12803d57bfa29d359635d0999575055876944c849",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "soundcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "soundcraft-v0.11.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/soundcraft/v0.11.0-0.2.2/?robyn",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-soundcraft-0-11-0@1",
+        "release": "sha256:8d7030eff81589c4a267a2ecd3f039338e8c690e8703a358e4c8846bc8375e22",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "vectorcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "vectorcraft-v0.14.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/vectorcraft/v0.14.0-0.2.2/?robyn",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-vectorcraft-0-14-0@1",
+        "release": "sha256:b04d54cf9231cbb76f9d929395f0735ead37a326ecb33299ba2947636150ad76",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "wordcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "wordcraft-v0.9.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/wordcraft/v0.9.0-0.2.2/?robyn",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-wordcraft-0-9-0@1",
+        "release": "sha256:08ce901c9c0bff1c38bd1334bbcda226ef1b31e7c5678916a8adc9c957e525f2",
+        "status": "verified"
+      }
+    }
+  ],
+  "database": {
+    "changed": false,
+    "liveLedgerRead": false,
+    "lastRecordedMigration": "0024_open_canvas.sql",
+    "lastRecordedEntries": 25,
+    "lastRecordedLedgerSha256": "508945e29e3ac0dbcf0d084b0d65e17a0222d6c5afe9535664cb74eb94fc46fa"
+  },
+  "workstation": {
+    "version": "0.1.23",
+    "changed": false,
+    "mcpSha256": "6e7b4525b249cfdd81b00fccceec7ee4ca537663d4493fe1ef8ad6d0559a3b32"
+  },
+  "local": {
+    "checkedAt": "2026-10-28T00:24:59.539Z",
+    "scope": "Actual native CLI → real Source/Browse clicks and browser file chooser → isolated BFF/TUS confirmed save → browser reload → independent native continuation. No employee turn or live creator writes.",
+    "adapterVersion": "0.2.3",
+    "upstream": "v0.10.0",
+    "sourceCommit": "cdf43fd366e378da266cb6d3c94549a45244be1f",
+    "browserBundleSha256": "ef46e920dcc167efe39ed0f586ba9983ee1bd29d66f9cc6f5be803b859488fbd",
+    "nativeParent": {
+      "adapterVersion": "0.1.4",
+      "sha256": "5946dd1092bd9380860884dcc4beb31172624be319503815bdf0229544ecf528"
+    },
+    "checks": {
+      "sourceImportedAndPlaced": true,
+      "exactDependencyRetained": true,
+      "separateAssetPageKeptEditorOpen": true,
+      "browserSaved": true,
+      "browserReloaded": true,
+      "nativeContinued": true,
+      "singleChosenBinItem": true,
+      "nativeBrowseEntry": true,
+      "emptySourceImportEntry": true,
+      "realFileChooserInCrossOriginFrame": true,
+      "sourceMonitorOpened": true
+    },
+    "sourceFiles": [
+      {
+        "path": "accepted-Untitled film.fcproj",
+        "role": "master",
+        "mimeType": "application/json",
+        "bytes": 3518,
+        "sha256": "85d8e36f76cabf55200e7d632825fb3c9fd7c22778a306b4fce7f67aaad699fe"
+      }
+    ],
+    "savedFiles": [
+      {
+        "path": "media/1138825492777123864e05f61686b8ca4a9e6b0e691cf70d7244a2cdb614fe62-Clip.mp4",
+        "role": "dependency",
+        "mimeType": "video/mp4",
+        "bytes": 2241,
+        "sha256": "1138825492777123864e05f61686b8ca4a9e6b0e691cf70d7244a2cdb614fe62"
+      },
+      {
+        "path": "accepted-Untitled film.fcproj",
+        "role": "master",
+        "mimeType": "application/json",
+        "bytes": 4346,
+        "sha256": "d23e79df0f1f42ff00d59b4af46a5bea2777b81da7f79acc952e189a1fb1bd09"
+      }
+    ],
+    "nativeContinuedSha256": "5e34fff7e24b2b91f6e2c934e1a1d23b58f14f8fd637caefab4496c5236d3511",
+    "rawProofSha256": "1684af3b06e1dbf1cfad2988fa9f9c9ea94ccd3a5e21dba678acb96efb54f387",
+    "errors": []
+  },
+  "hosted": {
+    "scope": "Published immutable FilmCraft bytes with isolated authenticated BFF/TUS transport; not live Studio writes",
+    "nativeEntryPoints": [
+      "Import → Browse files",
+      "Source → Import media",
+      "Source panel menu → Import media"
+    ],
+    "opensProjectAssetLibrary": true,
+    "optionalLocalUploadRealFileChooser": true,
+    "sourceMonitorOpened": true,
+    "oneImportedMediaItem": true,
+    "confirmedLibrarySave": true,
+    "browserReload": true,
+    "independentNativeContinuation": true,
+    "savedFiles": [
+      {
+        "path": "media/1138825492777123864e05f61686b8ca4a9e6b0e691cf70d7244a2cdb614fe62-Clip.mp4",
+        "role": "dependency",
+        "mimeType": "video/mp4",
+        "bytes": 2241,
+        "sha256": "1138825492777123864e05f61686b8ca4a9e6b0e691cf70d7244a2cdb614fe62"
+      },
+      {
+        "path": "accepted-Untitled film.fcproj",
+        "role": "master",
+        "mimeType": "application/json",
+        "bytes": 4346,
+        "sha256": "d23e79df0f1f42ff00d59b4af46a5bea2777b81da7f79acc952e189a1fb1bd09"
+      }
+    ],
+    "nativeContinuedSha256": "5e34fff7e24b2b91f6e2c934e1a1d23b58f14f8fd637caefab4496c5236d3511",
+    "errors": []
+  },
+  "limits": [
+    "Source opens the existing project asset library. A local file chooser is optional inside that picker.",
+    "No native workstation, database schema, employee activation or paid AI turn changed.",
+    "Automated live launches sometimes required the existing Open FilmCraft retry; this change did not alter launch recovery."
+  ],
+  "applicationDeployment": {
+    "id": "dpl_5STgGJDNM1GSStVDbWYTgErGGERZ",
+    "url": "robyn-creative-studio-32voeblat-venatio-studios.vercel.app",
+    "commit": "b80cf89cd5e3da5a0abd55f970eb17bab45a8ea9",
+    "branch": "main",
+    "state": "READY",
+    "productionAlias": "robyn.academy",
+    "readyAt": "2026-10-28T00:32:39Z",
+    "source": "Vercel authenticated deployment UI"
+  },
+  "production": {
+    "scope": "Authenticated Chrome with actual Studio BFF/storage in the labelled QA project",
+    "sourceOpensSavedProjectLibrary": true,
+    "existingClipSelectedWithoutFileChooser": true,
+    "sourceMonitorDisplaysClip": true,
+    "confirmedRevisionNumber": 2,
+    "exactSourceRevisionLinked": true,
+    "nativePackageDownloaded": true,
+    "nativeContinuation": {
+      "checkedAt": "2026-10-28T00:36:57.407513+00:00",
+      "oneImportedMediaItem": true,
+      "sourceBytesMatch": true,
+      "savedFiles": [
+        {
+          "path": "media/1138825492777123864e05f61686b8ca4a9e6b0e691cf70d7244a2cdb614fe62-Clip.mp4",
+          "bytes": 2241,
+          "sha256": "1138825492777123864e05f61686b8ca4a9e6b0e691cf70d7244a2cdb614fe62"
+        },
+        {
+          "path": "Untitled film.fcproj",
+          "bytes": 4240,
+          "sha256": "9e7afdb8bb42b42762139373901009520497e6e6bbed0b6dae926569c5c1042b"
+        }
+      ],
+      "nativeContinuedSha256": "ecf2122c40d0f20d71b789749a6cf88db0d48563a7515281adc8b69928712b11",
+      "packageSha256": "54a890ccfb388618ac47649a5ebb08693f269e3ffd724436cf39ddacc4b0749d"
+    },
+    "userConfirmedAfterRefresh": true,
+    "savedClipRetainedAfterBrowserReopen": true
+  }
+}
