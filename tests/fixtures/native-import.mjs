@@ -216,7 +216,7 @@ export async function dropDocument(page, filename, content, target='.project-sta
 }
 
 export async function openEmployeeWorkspace(page) {
-  const [employees]=await Promise.all([page.context().waitForEvent('page'),page.locator('.project-header').getByRole('link',{name:'AI Employees',exact:true}).click()]);
-  await employees.getByRole('heading',{name:'AI Employees.',exact:true}).waitFor();
-  return employees;
+  await page.locator('.project-header').getByRole('link',{name:'AI Employees',exact:true}).click();
+  await page.getByRole('heading',{name:'AI Employees.',exact:true}).waitFor();
+  return page;
 }

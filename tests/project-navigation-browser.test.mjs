@@ -5,7 +5,7 @@ import {chromium,firefox,webkit} from 'playwright';
 import {nativeImportFixture,origin,projectId} from './fixtures/native-import.mjs';
 const browserType=({chromium,firefox,webkit})[process.env.NATIVE_IMPORT_BROWSER??'chromium'];
 
-test('project tools stay inside the selected project, including Research control requests',async()=>{
+test('project page links precede panel actions and navigate in the same tab with unsaved-work protection',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
     const {page,state}=await nativeImportFixture(browser,{initialPath:'/dashboard'});
@@ -14,12 +14,30 @@ test('project tools stay inside the selected project, including Research control
     for(const name of ['Asset Library','AI Employees','Research','Applications','Settings'])assert.equal(await navigation.getByRole('link',{name,exact:true}).count(),0);
     await page.getByRole('link').filter({has:page.getByRole('heading',{name:'First project',exact:true})}).click();
     await page.getByRole('button',{name:'Robyn studio menu',exact:true}).click();
-    for(const name of ['Asset Library','AI Employees','Research','Applications','Settings'])assert.match(await page.getByRole('menuitem',{name,exact:true}).getAttribute('href'),new RegExp(`/dashboard/projects/${projectId}/`));
-    await page.keyboard.press('Escape');
+    for(const name of ['Asset Library','AI Employees','Research','Applications','Settings']){
+      const item=page.getByRole('menuitem',{name,exact:true});
+      assert.match(await item.getAttribute('href'),new RegExp(`/dashboard/projects/${projectId}/`));assert.equal(await item.getAttribute('target'),null);
+    }
+    await page.getByRole('menuitem',{name:'Applications',exact:true}).click();
+    await page.getByRole('button',{name:'Open GridCraft in project',exact:true}).waitFor();
+    assert.equal(page.context().pages().length,1);
+    await page.getByRole('link',{name:'First project',exact:true}).click();
+    const header=page.locator('.project-header-actions');
+    await header.getByRole('link',{name:'Assets',exact:true}).waitFor();
+    assert.deepEqual(await header.locator('a,button').allTextContents(),['Assets','AI Employees','Research','Settings','Open existing','Files','Project details']);
+    for(const target of await header.locator('a').evaluateAll(links=>links.map(link=>link.target)))assert.equal(target,'');
     await page.getByRole('button',{name:'WordCraft',exact:false}).click();
     const editor=page.frameLocator('iframe[title="WordCraft editor"]');await editor.getByText('Ready',{exact:true}).waitFor();
     await editor.getByLabel('Document text').fill('Keep this unsaved draft open.');
-    const [tools]=await Promise.all([page.context().waitForEvent('page'),page.locator('.project-header').getByRole('link',{name:'Assets',exact:true}).click()]);
+    await page.locator('.project-save-state[data-state="dirty"]').waitFor();
+    assert.deepEqual(await header.locator('a,button').allTextContents(),['Assets','AI Employees','Research','Settings','Applications','Open existing','Files','Project details']);
+    let blocked=false;page.once('dialog',async dialog=>{blocked=true;assert.match(dialog.message(),/unsaved work/);await dialog.dismiss();});
+    await header.getByRole('link',{name:'Assets',exact:true}).click();
+    assert.equal(blocked,true);assert.equal(new URL(page.url()).pathname,`/dashboard/projects/${projectId}`);
+    assert.equal(await editor.getByLabel('Document text').inputValue(),'Keep this unsaved draft open.');
+    await editor.getByRole('button',{name:'Save document',exact:true}).click();await editor.getByText('Saved',{exact:true}).waitFor();
+    await header.getByRole('link',{name:'Assets',exact:true}).click();
+    const tools=page;
     await tools.getByRole('heading',{name:'Assets.',exact:true}).waitFor();
     assert.equal(await tools.getByLabel('Filter by project').count(),0);
     await tools.getByRole('navigation',{name:'Project navigation'}).getByRole('link',{name:'AI Employees',exact:true}).click();
@@ -50,8 +68,7 @@ test('project tools stay inside the selected project, including Research control
     await tools.getByLabel('Your idea',{exact:true}).waitFor();
     assert.equal(await tools.getByRole('link',{name:'Manage AI budget',exact:false}).getAttribute('href'),`/dashboard/projects/${projectId}/settings#studio-budget`);
     assert.equal(state.assignments.size,0);
-    assert.equal(await editor.getByLabel('Document text').inputValue(),'Keep this unsaved draft open.');
-    await tools.close();assert.deepEqual(state.errors,[]);
+    assert.equal(page.context().pages().length,1);assert.deepEqual(state.errors,[]);
   }finally{await browser.close();}
 });
 

@@ -18,7 +18,7 @@ export const projectNavigation = (projectId:string) => [
   { href: `/dashboard/projects/${projectId}/settings`, label: "Settings", icon: Settings },
 ];
 
-export function StudioNavigationMenu({projectId,preserveEditor=false}:{projectId:string;preserveEditor?:boolean}) {
+export function StudioNavigationMenu({projectId}:{projectId:string}) {
   const { current } = useWorkspace();
   return <DropdownMenu>
     <DropdownMenuTrigger asChild><button className="studio-project-menu" aria-label="Robyn studio menu"><RobinMark/><span>robyn</span><ChevronDown size={12}/></button></DropdownMenuTrigger>
@@ -27,7 +27,7 @@ export function StudioNavigationMenu({projectId,preserveEditor=false}:{projectId
       <DropdownMenuSeparator/>
       {studioNavigation.map(({href,label,icon:Icon})=><DropdownMenuItem asChild key={href}><Link href={href}><Icon size={15}/>{label}</Link></DropdownMenuItem>)}
       <DropdownMenuSeparator/>
-      {projectNavigation(projectId).map(({href,label,icon:Icon})=><DropdownMenuItem asChild key={href}><Link href={href} target={preserveEditor?"_blank":undefined} rel={preserveEditor?"noopener":undefined}><Icon size={15}/>{label}</Link></DropdownMenuItem>)}
+      {projectNavigation(projectId).map(({href,label,icon:Icon})=><DropdownMenuItem asChild key={href}><Link href={href}><Icon size={15}/>{label}</Link></DropdownMenuItem>)}
       <DropdownMenuSeparator/>
       <DropdownMenuItem asChild><Link href="/"><ArrowUpRight size={15}/>Visit the creative studio</Link></DropdownMenuItem>
     </DropdownMenuContent>
