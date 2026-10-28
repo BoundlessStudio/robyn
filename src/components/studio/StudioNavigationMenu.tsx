@@ -1,24 +1,38 @@
 "use client";
 
 import Link from "next/link";
-import { FolderOpen, Images, Users, Globe, Shapes, Settings, ChevronDown, ArrowUpRight } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { FolderOpen, LayoutDashboard, Images, Users, Globe, Shapes, Settings, ChevronDown, ArrowUpRight } from "lucide-react";
 import { useWorkspace } from "@/components/WorkspaceProvider";
 import { RobinMark } from "@/components/brand/RobinMark";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
+import type { AssetRef } from "@/studio/assets";
 
 export const studioNavigation = [
   { href: "/dashboard", label: "Projects", icon: FolderOpen },
 ];
 
-export const projectNavigation = (projectId:string) => [
-  { href: `/dashboard/projects/${projectId}/library`, label: "Asset Library", icon: Images },
-  { href: `/dashboard/projects/${projectId}/employees`, label: "AI Employees", icon: Users },
+export const projectNavigation = (projectId:string,savedRevision?:AssetRef) => [
+  { href: `/dashboard/projects/${projectId}`, label: "Dashboard", icon: LayoutDashboard },
+  { href: `/dashboard/projects/${projectId}/library`, label: "Assets", icon: Images },
+  { href: `/dashboard/projects/${projectId}/employees${savedRevision?`?${new URLSearchParams({asset:savedRevision.assetId,revision:savedRevision.revisionId})}`:""}`, label: "AI Employees", icon: Users },
   { href: `/dashboard/projects/${projectId}/research`, label: "Research", icon: Globe },
   { href: `/dashboard/projects/${projectId}/applications`, label: "Applications", icon: Shapes },
   { href: `/dashboard/projects/${projectId}/settings`, label: "Settings", icon: Settings },
 ];
 
-export function StudioNavigationMenu({projectId}:{projectId:string}) {
+export function ProjectNavigationLinks({projectId,savedRevision,onDashboard,menu=false}:{projectId:string;savedRevision?:AssetRef;onDashboard?:()=>void;menu?:boolean}) {
+  const path=usePathname(),home=`/dashboard/projects/${projectId}`;
+  const links=projectNavigation(projectId,savedRevision).map(({href,label,icon:Icon})=>{
+    const destination=href.split("?")[0];
+    const current=path===destination||(destination!==home&&path.startsWith(`${destination}/`));
+    const link=<Link key={href} className={menu?undefined:"studio-tool-button"} href={href} aria-current={current?"page":undefined} title={label} onClick={destination===home?event=>{if(!event.defaultPrevented&&event.button===0&&!event.metaKey&&!event.ctrlKey&&!event.shiftKey&&!event.altKey)onDashboard?.();}:undefined}><Icon size={menu?15:16} aria-hidden="true"/><span>{label}</span></Link>;
+    return menu?<DropdownMenuItem asChild key={href}>{link}</DropdownMenuItem>:link;
+  });
+  return menu?<>{links}</>:<nav className="project-header-actions" aria-label="Project navigation">{links}</nav>;
+}
+
+export function StudioNavigationMenu({projectId,savedRevision,onDashboard}:{projectId:string;savedRevision?:AssetRef;onDashboard?:()=>void}) {
   const { current } = useWorkspace();
   return <DropdownMenu>
     <DropdownMenuTrigger asChild><button className="studio-project-menu" aria-label="Robyn studio menu"><RobinMark/><span>robyn</span><ChevronDown size={12}/></button></DropdownMenuTrigger>
@@ -27,7 +41,7 @@ export function StudioNavigationMenu({projectId}:{projectId:string}) {
       <DropdownMenuSeparator/>
       {studioNavigation.map(({href,label,icon:Icon})=><DropdownMenuItem asChild key={href}><Link href={href}><Icon size={15}/>{label}</Link></DropdownMenuItem>)}
       <DropdownMenuSeparator/>
-      {projectNavigation(projectId).map(({href,label,icon:Icon})=><DropdownMenuItem asChild key={href}><Link href={href}><Icon size={15}/>{label}</Link></DropdownMenuItem>)}
+      <ProjectNavigationLinks projectId={projectId} savedRevision={savedRevision} onDashboard={onDashboard} menu/>
       <DropdownMenuSeparator/>
       <DropdownMenuItem asChild><Link href="/"><ArrowUpRight size={15}/>Visit the creative studio</Link></DropdownMenuItem>
     </DropdownMenuContent>
