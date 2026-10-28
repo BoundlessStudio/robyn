@@ -129,7 +129,9 @@ test('every project section and asset detail keeps menu positions, active state 
         const menu=page.getByRole('menu');await menu.waitFor();
         assert.deepEqual((await menu.getByRole('menuitem').allTextContents()).slice(1,-1),menuNames);
         assert.deepEqual(await menu.locator('[aria-current="page"]').allTextContents(),[active]);
-        await page.keyboard.press('Escape');assert.equal(await trigger.evaluate(element=>element===document.activeElement),true);
+        await page.keyboard.press('Escape');await menu.waitFor({state:'hidden'});
+        await page.locator('.studio-project-menu:focus').waitFor();
+        assert.equal(await trigger.evaluate(element=>element===document.activeElement),true);
       }
     }
     await page.getByRole('navigation',{name:'Project navigation'}).getByRole('link',{name:'Dashboard',exact:true}).focus();
