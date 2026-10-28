@@ -6,24 +6,29 @@ import AxeBuilder from '@axe-core/playwright';
 import {nativeImportFixture,openEmployeeWorkspace,origin,projectId} from './fixtures/native-import.mjs';
 const browserType=({chromium,firefox,webkit})[process.env.NATIVE_IMPORT_BROWSER??'chromium'];
 
-test('AI Employees opens a project and exact saved revision on its own page while unsaved editing continues',async()=>{
+test('AI Employees stays in the same tab and keeps the exact saved revision after protecting unsaved work',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
     const {page:workspace,state}=await nativeImportFixture(browser);
     await workspace.getByRole('button',{name:'WordCraft',exact:false}).click();
     const editor=workspace.frameLocator('iframe[title="WordCraft editor"]');await editor.getByText('Ready',{exact:true}).waitFor();
-    const source=await workspace.locator('iframe').getAttribute('src'),asset=[...state.assets.values()][0],revisionId=asset.current_revision_id;
-    await editor.getByLabel('Document text').fill('Keep writing while the team page is open.');
+    const source=await workspace.locator('iframe').getAttribute('src'),asset=[...state.assets.values()][0];
+    await editor.getByLabel('Document text').fill('Save these words before opening the team page.');
+    await workspace.locator('.project-save-state[data-state="dirty"]').waitFor();
+    workspace.once('dialog',dialog=>dialog.dismiss());
+    await workspace.locator('.project-header').getByRole('link',{name:'AI Employees',exact:true}).click();
+    assert.equal(await workspace.locator('iframe').getAttribute('src'),source);assert.equal(await editor.getByLabel('Document text').inputValue(),'Save these words before opening the team page.');
+    await editor.getByRole('button',{name:'Save document',exact:true}).click();await editor.getByText('Saved',{exact:true}).waitFor();
+    const revisionId=asset.current_revision_id;
     const page=await openEmployeeWorkspace(workspace);
     await page.getByRole('button',{name:'Open saved revision',exact:true}).waitFor();
     const url=new URL(page.url());assert.equal(url.pathname,`/dashboard/projects/${projectId}/employees`);assert.equal(url.searchParams.has('projectId'),false);assert.equal(url.searchParams.get('asset'),asset.id);assert.equal(url.searchParams.get('revision'),revisionId);
     assert.equal(await page.locator('iframe').count(),0);assert.equal(await workspace.locator('.project-details').count(),0);
-    assert.equal(await workspace.locator('iframe').getAttribute('src'),source);assert.equal(await editor.getByLabel('Document text').inputValue(),'Keep writing while the team page is open.');
+    assert.equal(page,workspace);assert.equal(page.context().pages().length,1);
     await page.getByLabel('Your idea',{exact:true}).fill('Continue from this saved version.');
     await page.getByRole('button',{name:'Make a first draft',exact:true}).click();
     await page.getByRole('status').filter({hasText:'Your Director is taking it'}).waitFor();
     assert.deepEqual([...state.assignments.values()][0].input.inputs,[{assetId:asset.id,revisionId}]);
-    await page.close();await editor.getByRole('button',{name:'Save document',exact:true}).click();await editor.getByText('Saved',{exact:true}).waitFor();
     assert.equal(state.revisions.size,2);assert.deepEqual(state.errors,[]);
   }finally{await browser.close();}
 });
