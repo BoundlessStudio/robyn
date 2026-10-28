@@ -1,5 +1,6 @@
-import { StudioSettings } from "@/components/studio/StudioSettings";
+import {redirect} from "next/navigation";
 
-export default function Page() {
-  return <StudioSettings />;
+export default async function Page({searchParams}:{searchParams:Promise<{projectId?:string}>}){
+  const {projectId}=await searchParams;
+  redirect(projectId?`/dashboard/projects/${encodeURIComponent(projectId)}/settings`:"/dashboard");
 }

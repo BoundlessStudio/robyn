@@ -18,8 +18,8 @@ export function LaunchProgress({ launch, ready, onResume }: { launch: Applicatio
   </>;
 }
 
-export function ApplicationLauncher({ launch, ready, onLaunch, onFiles, onFolder, employeesHref, compact = false }: {
-  launch: ApplicationLaunch; ready: boolean; onLaunch: (appId: string) => void;
+export function ApplicationLauncher({ projectId, launch, ready, onLaunch, onFiles, onFolder, employeesHref, compact = false }: {
+  projectId: string; launch: ApplicationLaunch; ready: boolean; onLaunch: (appId: string) => void;
   onFiles: () => void; onFolder: () => void; employeesHref: string; compact?: boolean;
 }) {
   return <div className={`application-launcher${compact ? " compact" : ""}`}>
@@ -31,7 +31,7 @@ export function ApplicationLauncher({ launch, ready, onLaunch, onFiles, onFolder
         <AppIcon app={app} className="application-icon"/>
         <span><strong>{app.name}</strong><small>{currentBlankStarters.find(item => item.appId === app.id)?.description}</small></span><ArrowUpRight size={15} aria-hidden="true"/>
       </button>)}
-      <Link href="/dashboard/research" className="application-research"><AppIcon app={research} className="application-icon"/><span><strong>Research</strong><small>Open your research browser</small></span><ArrowUpRight size={15}/></Link>
+      <Link href={`/dashboard/projects/${projectId}/research`} target="_blank" rel="noopener" title="Open Research in a new tab; your editor stays open" className="application-research"><AppIcon app={research} className="application-icon"/><span><strong>Research</strong><small>Open your research browser</small></span><ArrowUpRight size={15}/></Link>
     </div>
     <footer><span>Manual editing uses no AI allowance.</span><div><button onClick={onFiles} disabled={launch.busy}><Upload size={14}/>Open existing files</button><button onClick={onFolder} disabled={launch.busy}>Folder or linked files</button><Link href={employeesHref} target="_blank" rel="noopener" title="Open your team in a new tab; your editor stays open"><Users size={14}/>AI Employees <ArrowUpRight size={12}/></Link></div></footer>
   </div>;

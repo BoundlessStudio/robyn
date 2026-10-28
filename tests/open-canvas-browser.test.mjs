@@ -32,7 +32,7 @@ test('application workspace renames its project and opens its dedicated employee
 test('idea planning shows allowance, freezes the choice across lost replies and reload, then accepts a new draft',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
-    const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/employees?projectId=${projectId}`});state.failAssignmentReply=true;
+    const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/projects/${projectId}/employees`});state.failAssignmentReply=true;
     await page.getByLabel('Your idea',{exact:true}).fill('A garden guide. Help me find a direction.');
     await page.getByText('$5.00 available to your Director',{exact:true}).waitFor();
     await page.getByRole('button',{name:'Help me plan',exact:true}).click();
@@ -61,7 +61,7 @@ test('idea planning shows allowance, freezes the choice across lost replies and 
 test('zero and unverifiable AI allowance preserve the idea and prevent both paid starting actions',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
-    const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/employees?projectId=${projectId}`});state.allowance=0;await page.getByLabel('Your idea',{exact:true}).fill('A small poster.');
+    const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/projects/${projectId}/employees`});state.allowance=0;await page.getByLabel('Your idea',{exact:true}).fill('A small poster.');
     await page.getByText('AI allowance needed',{exact:true}).waitFor();
     for(const name of ['Make a first draft','Help me plan'])assert.equal(await page.getByRole('button',{name,exact:true}).isDisabled(),true);
     state.failAllowance=true;await page.getByRole('button',{name:'Assignments',exact:true}).click();await page.getByRole('button',{name:'Conversation',exact:true}).click();
@@ -116,7 +116,7 @@ test('manual starts cover all thirteen Crafts, validate bytes before writes, and
     await editor.getByRole('button',{name:'Save document',exact:true}).click();await editor.getByText('Saved',{exact:true}).waitFor();
     await page.getByRole('button',{name:'Applications',exact:true}).click();
     assert.equal(await page.getByRole('dialog').locator('.application-grid button').count(),13);assert.equal(state.assignments.size,0);
-    await page.waitForLoadState('networkidle');await page.goto(origin+'/dashboard/library');
+    await page.waitForLoadState('networkidle');await page.goto(`${origin}/dashboard/projects/${projectId}/library`);
     await page.getByRole('link').filter({has:page.getByRole('heading',{name:'Untitled document',exact:true})}).click();await page.getByRole('link',{name:'Open in WordCraft',exact:true}).click();await editor.getByText('Ready',{exact:true}).waitFor();
     assert.equal(await editor.getByLabel('Document text').inputValue(),'A first manual edit.');assert.equal(state.assets.size,1);assert.equal(state.revisions.size,2);assert.deepEqual(state.errors,[]);
   }finally{await browser.close();}

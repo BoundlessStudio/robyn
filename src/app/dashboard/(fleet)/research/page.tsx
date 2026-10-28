@@ -1,2 +1,6 @@
-import {ResearchBrowser} from "@/components/studio/ResearchBrowser";
-export default function ResearchPage(){return <ResearchBrowser/>;}
+import {redirect} from "next/navigation";
+
+export default async function Page({searchParams}:{searchParams:Promise<{projectId?:string}>}){
+  const {projectId}=await searchParams;
+  redirect(projectId?`/dashboard/projects/${encodeURIComponent(projectId)}/research`:"/dashboard");
+}

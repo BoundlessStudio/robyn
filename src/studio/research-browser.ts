@@ -1,14 +1,15 @@
 import "server-only";
 import {agent37} from "@/lib/agent37";
 import {ApiError} from "@/lib/http";
-import {requireStudio,dbFailure} from "./server";
+import {requireStudio,ownedProject,id,dbFailure} from "./server";
 import {assignmentRpc,assignmentFenceArgs,ownedAssignment} from "./assignment-server";
 import {finishedAssignmentHistory} from "./assignment-protocol";
 import {launchAssignment} from "./assignment-launch";
 import type {StudioEmployee} from "./assignments";
 
-export async function researchBrowserOwner(){
+export async function researchBrowserOwner(projectId:unknown){
   const studio=await requireStudio();
+  await ownedProject(studio.db,studio.workspaceId,id(projectId,"project ID"));
   const {data,error}=await studio.db.from("studio_employees").select("*").eq("workspace_id",studio.workspaceId).eq("employee_key","research").eq("app_id","research").maybeSingle();dbFailure(error);
   const employee=data as StudioEmployee|null;
   if(!employee?.instance_id||employee.provision_state!=="ready")throw new ApiError(409,"research_not_started","Give Research a brief in a project first. Its private browser opens once the workstation is ready.");

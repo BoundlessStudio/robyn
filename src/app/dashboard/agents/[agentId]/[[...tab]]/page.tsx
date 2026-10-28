@@ -26,7 +26,7 @@ export default async function AgentWorkspacePage({
   if (!row) notFound();
   const role = await requireMember(db, row.workspace_id, user.id).catch(() => null);
   if (!role) notFound();
-  if (await isStudioInstance(db, row.workspace_id, agentId)) redirect("/dashboard/employees");
+  if (await isStudioInstance(db, row.workspace_id, agentId)) redirect("/dashboard");
 
   return (
     <AgentWorkspace
