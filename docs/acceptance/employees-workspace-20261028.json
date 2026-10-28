@@ -49,7 +49,8 @@
     "tests/employees-workspace-browser.test.mjs": "0a7f2b22d5e0e61ba822ce26d4471bd75a544632ac4b67803dc575f1ab238219",
     "tests/fixtures/native-import.mjs": "a63432039a72af1462cdd059426747101839019e0fe3c2d8d83e8bbd7f69dade",
     "tests/open-canvas-browser.test.mjs": "6dd38e9684f79a6b2b8d7afc1e53b4ddaeb9d26d2b1723203dc6352b425eab57",
-    "tests/application-workspace-browser.test.mjs": "80a4191c94217b04f1604b5ac21a28591fd37cabdcfce818495cf69283886b92"
+    "tests/application-workspace-browser.test.mjs": "80a4191c94217b04f1604b5ac21a28591fd37cabdcfce818495cf69283886b92",
+    "tests/library-management-browser.test.mjs": "7a275580fcce0886e0aba7759558b1b2f35d7de18baa8430de366f175e142624"
   },
   "screenshotsSha256": {
     "archived-project-1200.png": "b86317b5746558017de80336e734a9cc406bca4ccfc70ebe65b23740345dd1fa",
