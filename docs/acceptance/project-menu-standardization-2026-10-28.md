@@ -1,6 +1,6 @@
 # Standard project menu — October 28, 2026
 
-Local follow-up based on web `c090f0f`. This is local acceptance, not a deployment record. The existing [production menu record](../RELEASE-PROJECT-NAVIGATION-2026-10-28.md#menu-behavior-follow-up) remains the release checkpoint.
+Local follow-up based on web `c090f0f`. This document records local acceptance. The subsequent [release record](../RELEASE-STANDARD-PROJECT-MENU-2026-10-28.md) and [sanitized production evidence](production-standard-project-menu-20261028.json) separately record deployment and authenticated live checks.
 
 ## Behavior
 
@@ -16,6 +16,7 @@ Local follow-up based on web `c090f0f`. This is local acceptance, not a deployme
 - `npm test`: **128 passing tests**, comprising 124 standard tests and four React rendering tests.
 - Chromium, Firefox and WebKit each pass all **28 affected browser scenarios** across project navigation, employee pages, application launches, native/source imports and the application workspace.
 - The initial Firefox run exposed an allowance-fixture race. The fixture now sets its initial allowance before mounting the employee page, rather than racing its first request. All 28 Firefox scenarios pass on rerun; the corrected zero-allowance case also passes independently in Chromium and WebKit.
+- The post-merge Linux run exposed an immediate focus assertion while the dropdown was still closing. The check now waits for the menu to close and focus to return naturally to its trigger before asserting it. Application code and keyboard behavior are unchanged by that test correction.
 - At 1200 × 960 and 1440 × 960, browser assertions verify identical menu-item bounds across every project section and asset details, including a long project name, with no overlap or horizontal overflow. The header passes axe at both widths. Keyboard checks cover the dropdown, return of focus and Dashboard navigation.
 - Chromium visual review covers all six sections and the editor at 1200 and 1440 pixels, plus the dashboard, library and editor at 1880 pixels. The dropdown review confirms matching entries and active-section styling. Eighteen screenshots and test logs remain ignored under `artifacts/qa/project-menu-standardization/`.
 - Public layout/axe verification passes **18 page/viewport/engine cases**. Keyboard focus passes 14; the existing four Windows WebKit platform cases remain explicitly unverified.
