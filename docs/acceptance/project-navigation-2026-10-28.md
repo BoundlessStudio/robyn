@@ -1,6 +1,6 @@
 # Project-scoped navigation — October 28, 2026
 
-Local implementation on `codex/project-scoped-navigation`, based on web main `a623a5d`. This is not a deployed-release record.
+Local implementation on `codex/project-scoped-navigation`, based on web main `a623a5d`. This document records local acceptance. The subsequent [deployed-release record](../RELEASE-PROJECT-NAVIGATION-2026-10-28.md) and [sanitized production evidence](production-project-navigation-20261028.json) separately record the live checks.
 
 ## Behavior
 
@@ -15,7 +15,7 @@ Local implementation on `codex/project-scoped-navigation`, based on web main `a6
 - Node 24.18.0, Python 3.14.6; `npm run typecheck` and `git diff --check` pass.
 - `npm test`: 127 passing tests (123 standard tests and four React rendering tests).
 - The new route and browser tests cover ownership rejection before provider access, project-specific list results and request identities, switching projects without mixing drafts or assignments, mismatched asset links, legacy redirects, Research takeover/return identity, and preservation of an unsaved editor.
-- Existing employee, asset import/export, revision download and accessibility checks pass with the project routes. Chromium visual review covers the project home and library at 1200 × 900 and the employee page at 1440 × 960. Existing layout/accessibility tests also cover both supported widths.
+- Existing employee, asset import/export, revision download and accessibility checks pass with the project routes. Chromium visual review covers the project home, library, catalogue and Settings at 1200 × 900 and the employee page at 1440 × 960. Existing layout/accessibility tests also cover both supported widths.
 - `npm run build` passes with all six new project routes.
 - `npm run test:public` with Chromium, Firefox and WebKit passes 18 page/viewport/engine combinations. Keyboard focus passes 14; four existing Windows WebKit platform cases remain explicitly unverified by the gate.
 
