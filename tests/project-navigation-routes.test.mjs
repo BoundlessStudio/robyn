@@ -11,11 +11,13 @@ test('legacy project-tool URLs preserve known project context or return to proje
     await assert.rejects(page({searchParams:Promise.resolve({})}),{location:'/dashboard'});
     const searchParams=Promise.resolve({projectId,asset,revision,view:'review'});
     await assert.rejects(page({searchParams}),error=>{
-      const url=new URL(error.location,'https://studio.test');assert.equal(url.pathname,`/dashboard/projects/${projectId}/${section}`);
+      const url=new URL(error.location,'https://studio.test');assert.equal(url.pathname,`/dashboard/projects/${projectId}${section==='applications'?'':`/${section}`}`);
       if(section==='employees'){assert.equal(url.searchParams.get('asset'),asset);assert.equal(url.searchParams.get('revision'),revision);assert.equal(url.searchParams.get('view'),'review');}
       return true;
     });
   }
+  const {default:applications}=await loadModule('../../src/app/dashboard/(fleet)/projects/[id]/applications/page.tsx',mocks);
+  await assert.rejects(applications({params:Promise.resolve({id:projectId})}),{location:`/dashboard/projects/${projectId}`});
 });
 
 test('Research verifies project ownership before providing a browser connection or changing control',async()=>{

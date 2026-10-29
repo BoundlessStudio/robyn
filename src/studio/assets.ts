@@ -24,6 +24,7 @@ export interface AssetSummary {
   project?: { name: string } | null;
 }
 export interface ProjectSummary { id: string; name: string; brief: string; status: "active" | "archived"; created_at: string; updated_at: string; preview_url?: string | null }
+export interface ProjectActivity { id: string; kind: string; created_at: string; details: Record<string, unknown> }
 
 export const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 export function requireUuid(value: unknown, label = "ID"): string {

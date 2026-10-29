@@ -44,7 +44,13 @@ test('the dedicated library imports, filters and manages exact assets without op
     await page.getByRole('heading',{name:'Find the missing piece.',exact:true}).waitFor();
     await page.getByRole('button',{name:'Close dialog',exact:true}).click();
     await page.getByLabel('Filter by application').selectOption('');await page.getByRole('heading',{name:'Cover',exact:true}).waitFor();
+    const gridIcon=await page.locator('.studio-library-grid .library-app-icon').boundingBox();
+    assert.equal(gridIcon.width,48);assert.equal(gridIcon.height,48);
+    assert.equal((await page.locator('.studio-library-grid .library-art').first().boundingBox()).height,96);
+    assert.ok((await page.locator('.studio-library-grid .library-art').first().boundingBox()).width<260);
     await page.getByRole('button',{name:'List view',exact:true}).click();
+    const listIcon=await page.locator('.library-list .library-app-icon').boundingBox();
+    assert.equal(listIcon.width,gridIcon.width);assert.equal(listIcon.height,gridIcon.height);
     await checkLayout(page);
     if(process.env.LIBRARY_SCREENSHOT_DIR){await mkdir(process.env.LIBRARY_SCREENSHOT_DIR,{recursive:true});await page.screenshot({path:join(process.env.LIBRARY_SCREENSHOT_DIR,'library-list.png'),fullPage:true});await page.getByRole('button',{name:'Grid view',exact:true}).click();await page.screenshot({path:join(process.env.LIBRARY_SCREENSHOT_DIR,'library-grid.png'),fullPage:true});}
     await page.getByRole('link').filter({has:page.getByRole('heading',{name:'Cover',exact:true})}).click();

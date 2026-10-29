@@ -78,7 +78,7 @@ test('unrecognised and mixed files stay editable in the detailed import without 
     assert.equal(await page.getByRole('button',{name:'Save native package'}).isDisabled(),true);
     assert.equal(state.assets.size,0);
     await page.keyboard.press('Escape');
-    assert.equal(await page.getByRole('group',{name:'Workspace tools',exact:true}).getByRole('button',{name:'Open existing'}).evaluate(button=>button===document.activeElement),true);
+    await page.getByRole('button',{name:'Open existing files',exact:true}).and(page.locator(':focus')).waitFor();
     await dropDocument(page,'Film.fcproj',JSON.stringify({format:'filmcraft.project',schema_version:15,project:{items:{a:{kind:{Media:{media:{File:{path:'clip.mp4'}}}}}}}}));
     await page.getByRole('dialog').waitFor();
     await page.getByRole('alert').waitFor();
@@ -122,8 +122,7 @@ test('an import can pause and resume, and dropping a second file respects unsave
     await editor.getByLabel('Document text').pressSequentially('Keep this unsaved edit');
     await page.getByRole('status',{name:/Unsaved/}).waitFor();
     page.once('dialog',dialog=>dialog.dismiss());
-    await page.getByRole('button',{name:'Files',exact:true}).click();
-    await dropDocument(page,'Print.pdf','Another transport fixture','.project-assets');
+    await dropDocument(page,'Print.pdf','Another transport fixture','.project-canvas');
     assert.equal(state.assets.size,1);
     assert.equal(await editor.getByLabel('Document text').inputValue(),'Keep this unsaved edit');
     assert.equal(await page.getByRole('dialog').count(),0);

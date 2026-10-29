@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {randomUUID} from 'node:crypto';
 import {chromium,firefox,webkit} from 'playwright';
 import {nativeImportFixture,origin,projectId} from './fixtures/native-import.mjs';
+import {applicationLaunchUrl} from '../src/studio/application-launch.ts';
 const browserType=({chromium,firefox,webkit})[process.env.NATIVE_IMPORT_BROWSER??'chromium'];
 const apps=['PhotoCraft','VectorCraft','LightCraft','FilmCraft','EffectCraft','SoundCraft','DesignCraft','PdfCraft','WordCraft','DeckCraft','GridCraft','FigCraft','CADCraft'];
 const ready=(page,app)=>page.frameLocator(`iframe[title="${app} editor"]`).getByText('Ready',{exact:true}).waitFor();
@@ -21,7 +22,7 @@ test('empty and populated projects lead with all thirteen applications and launc
     for(const app of apps){
       await page.getByRole('button',{name:app,exact:false}).click();await ready(page,app);
       assert.equal(await applications.isVisible(),true);
-      assert.equal(await page.getByRole('button',{name:'Files',exact:true}).getAttribute('aria-expanded'),'false');
+      assert.equal(await page.getByRole('button',{name:'Files',exact:true}).count(),0);
       await page.locator('.project-tabs .close-tab').click();
       await page.getByRole('button',{name:app,exact:false}).waitFor();
       assert.equal(await applications.count(),0);
@@ -35,7 +36,7 @@ test('empty and populated projects lead with all thirteen applications and launc
   }finally{await browser.close();}
 });
 
-test('application chooser, supporting panels, cancelled launch and narrowing preserve the live unsaved editor',async()=>{
+test('application chooser, cancelled launch and narrowing preserve the live unsaved editor',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
     const {page,state}=await nativeImportFixture(browser);
@@ -48,11 +49,9 @@ test('application chooser, supporting panels, cancelled launch and narrowing pre
     page.once('dialog',dialog=>dialog.dismiss());
     await page.getByRole('dialog').getByRole('button',{name:'GridCraft',exact:false}).click();
     await page.keyboard.press('Escape');
-    for(const label of ['Files','Project details']){
-      const button=page.getByRole('group',{name:'Workspace tools',exact:true}).getByRole('button',{name:label,exact:true});
-      await button.click();assert.equal(await button.getAttribute('aria-expanded'),'true');
-      await button.click();assert.equal(await button.getAttribute('aria-expanded'),'false');
-    }
+    assert.equal(await page.getByRole('group',{name:'Workspace tools',exact:true}).count(),0);
+    assert.equal(await page.getByRole('complementary',{name:'Project files',exact:true}).count(),0);
+    assert.equal(await page.getByRole('button',{name:'Project details',exact:true}).count(),0);
     page.once('dialog',dialog=>dialog.dismiss());await chooseApplication(page,'WordCraft');
     await page.keyboard.press('Escape');
     await page.setViewportSize({width:900,height:850});
@@ -91,13 +90,11 @@ test('application chooser creates separate saved files; rename preserves native 
   }finally{await browser.close();}
 });
 
-test('project catalogue opens the chosen application directly and preserves its launch identity through refresh',async()=>{
+test('application launch links preserve the chosen application and launch identity through refresh',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
-    const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/projects/${projectId}/applications`});
-    const open=page.getByRole('button',{name:'Open GridCraft in project',exact:true});await open.waitFor();
-    assert.equal(await page.getByRole('navigation',{name:'Choose a project for application'}).count(),0);
-    state.failCreationReply=true;await open.click();await page.getByRole('button',{name:'Continue opening GridCraft',exact:true}).waitFor();
+    const {page,state}=await nativeImportFixture(browser);
+    state.failCreationReply=true;await page.goto(origin+applicationLaunchUrl(projectId,'gridcraft',randomUUID()));await page.getByRole('button',{name:'Continue opening GridCraft',exact:true}).waitFor();
     const launchUrl=new URL(page.url());assert.equal(launchUrl.pathname,`/dashboard/projects/${projectId}`);assert.equal(launchUrl.searchParams.get('app'),'gridcraft');
     const creation=[...state.assets.keys()][0];assert.equal(creation,launchUrl.searchParams.get('launch'));
     await page.reload();await ready(page,'GridCraft');
