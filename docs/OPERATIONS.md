@@ -4,6 +4,16 @@
 
 Owner: the Robyn pilot operator, reached at **support@robyn.academy**. Mail forwards to **developer@venatiostudios.com**. Access to Supabase, Vercel, Agent37, Cloudflare and Resend remains with their existing account owners; the web application does not grant creators provider-admin access. No guaranteed response or recovery time is offered during the pilot.
 
+## Beta administration
+
+The October 29 beta administration checkpoint applies migrations **0025–0026** through the existing checksummed runner, bringing the private ledger to **27 entries**. The single `admin` account is configured. The new web page is verified locally and awaits web deployment; this schema/account checkpoint does not change the deployed web release listed above. [Acceptance details](acceptance/beta-administration-2026-10-29.md) distinguish these scopes.
+
+Open `/admin/login`, then `/admin/beta-requests`. This account has its own revocable eight-hour session; creator accounts and workspace roles cannot use it. Use `npm run admin:create -- admin` from a trusted, configured terminal to replace the password and revoke every previous admin session. The command reads a hidden password and stores only a salted hash. Never put a password, hash, session cookie or service key in source control, logs or an acceptance artifact.
+
+Review requests by status or email. Invite sends the configured Supabase invitation; Resend sends a fresh invitation to an unconfirmed account, or an existing-account sign-in link where appropriate. A one-minute resend interval and persisted attempt identity prevent accidental duplicate emails. Decline/reopen applies to pending requests. Joined records have no send control. Joining means a confirmed Auth account actually signed in, not merely that an invitation created a user. Existing matching accounts are backfilled from their last known sign-in; that historical timestamp is not a newly observed first sign-in.
+
+For **Checking email** or **Email outcome uncertain**, use **Check status**. This reads Auth's committed sent-at fields and never sends email. Keep the original request/attempt while its outcome is unknown. If Auth has no confirming receipt, inspect the provider logs for that address and attempt time. Only after definite evidence that the original send failed may an operator with server/database access record that exact attempt as `failed` through `finish_beta_invitation` and allow a new explicit attempt. Elapsed time alone must not release the fence. These records describe provider email submission, not inbox delivery.
+
 ## Identify a stalled job
 
 Open **Settings → Studio health** in the owning studio. It reports the safe job reference, state, last successful observation, last meaningful progress, retry category and next scheduled error retry. Media also shows an actionable status in its project panel. Health is owner-scoped and contains no prompts, signed links, credentials or provider response bodies. It currently lists the latest 200 observations and says when that view is truncated; use the exact project/job reference for older work.

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "setup": "node scripts/setup.mjs",
+    "admin:create": "node --import tsx scripts/create-beta-admin.ts",
     "registry": "node scripts/generate-registry.mjs",
     "predev": "npm run registry",
     "dev": "next dev",

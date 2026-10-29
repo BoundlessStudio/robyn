@@ -8,7 +8,7 @@ test('Studio budget synchronization is private, fenced, recoverable and cannot r
   const db=new PGlite();const scalar=async(sql,args=[])=>(await db.query(sql,args)).rows[0]?.result;
   try{
     await db.exec(`create role anon;create role authenticated;create role service_role bypassrls;
-      create schema auth;create table auth.users(id uuid primary key,email text);
+      create schema auth;create table auth.users(id uuid primary key,email text,email_confirmed_at timestamptz,last_sign_in_at timestamptz,invited_at timestamptz,confirmation_sent_at timestamptz,recovery_sent_at timestamptz);
       create function auth.uid() returns uuid language sql stable as 'select null::uuid';
       grant usage on schema auth to service_role;grant select on auth.users to service_role;
       alter default privileges in schema public grant all on tables to anon,authenticated,service_role;

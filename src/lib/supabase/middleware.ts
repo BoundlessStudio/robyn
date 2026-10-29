@@ -5,6 +5,9 @@ export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({ request });
 
   const { pathname } = request.nextUrl;
+  // Beta administration has its own single-account, revocable server session.
+  // Its pages and BFF handlers verify that session independently of creator Auth.
+  if (pathname === "/admin" || pathname.startsWith("/admin/") || pathname.startsWith("/api/admin/")) return response;
   // The public creative site does not need an auth round trip. This also lets
   // the site render before the pilot's private services have been configured.
   if (pathname === "/" || pathname === "/privacy" || pathname === "/support" || pathname === "/robots.txt" || pathname === "/sitemap.xml" || pathname === "/api/invite-requests") return response;
