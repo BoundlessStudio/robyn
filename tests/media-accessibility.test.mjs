@@ -28,7 +28,10 @@ for(const engine of [chromium,firefox,webkit])test(`${engine.name()}: media keyb
     assert.equal(await page.evaluate(()=>document.querySelector('iframe')===window.originalFrame),true);
     assert.equal(await page.frameLocator('iframe').getByLabel('Unsaved title').inputValue(),'Unfinished native edit');
     fixture.setBudget(0);
+    const retry=page.waitForResponse(response=>new URL(response.url()).pathname==='/api/studio/media/jobs'&&response.request().method()==='POST'&&response.status()===200);
     await page.keyboard.press('Enter');await page.getByRole('button',{name:'Retry saved request'}).click();
+    await retry;
+    await page.getByRole('button',{name:'Close dialog',exact:true,disabled:false}).waitFor();
     assert.equal(requests.length,2);assert.deepEqual(requests[0],requests[1]);
     await page.keyboard.press('Escape');await page.getByRole('dialog').waitFor({state:'hidden'});
     await page.emulateMedia({forcedColors:'active'});await page.keyboard.press('Enter');await page.getByRole('dialog').waitFor();

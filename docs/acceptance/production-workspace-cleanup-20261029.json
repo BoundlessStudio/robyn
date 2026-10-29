@@ -928,5 +928,12 @@
   "editorAndNativePinsChanged": false,
   "unchangedPinSource": "production-standard-project-menu-20261028.json; source diff from 7cb569c confirms no manifest, workstation, generated-pin or migration changes. Runtime origin/main independently fetched and confirmed unchanged.",
   "nativeRoundTripClaim": "No new native integration or native round trip claimed. Live verification opens an existing saved native asset, confirms its exact revision and checks the chooser and Dashboard transition without authoring or saving. Local transport-peer checks cover dirty-editor and retry protection.",
-  "documentationFollowUps": "Documentation-only follow-up commits may rebuild identical application source; the production observations above identify the verified application merge."
+  "documentationFollowUps": "Documentation-only follow-up commits may rebuild identical application source; the production observations above identify the verified application merge.",
+  "initialReleaseRecordCI": {
+    "id": 40886212848,
+    "conclusion": "failure",
+    "cause": "The existing Firefox media test checked its retry request count before the second request reached the fixture.",
+    "testOnlyFollowUp": "Wait for the successful retry response and enabled dialog close control before checking the same two requests and their exact identities.",
+    "applicationSourceChanged": false
+  }
 }
