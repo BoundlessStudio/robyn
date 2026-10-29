@@ -2,6 +2,8 @@
 
 October 29, 2026. Local changes based on web commit `7cb569c`; not a deployed release.
 
+The subsequent production rollout and its independent checks are recorded in [the release record](../RELEASE-WORKSPACE-CLEANUP-2026-10-29.md) and [sanitized production evidence](production-workspace-cleanup-20261029.json).
+
 ## Accepted behavior
 
 - Header and dropdown share five destinations: Dashboard, Assets, AI Employees, Research and Settings. Legacy project and studio Applications URLs redirect to the project dashboard when its identity is known.

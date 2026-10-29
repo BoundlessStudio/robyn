@@ -1,0 +1,932 @@
+{
+  "recordedAt": "2026-10-29T13:52:56.709993+00:00",
+  "localReleaseDate": "2026-10-29",
+  "timezone": "America/Toronto",
+  "status": "Deployed; authenticated canonical workspace cleanup verified",
+  "canonicalUrl": "https://robyn.academy/dashboard",
+  "webMergeCommit": "8134e07d0aa0b74a491a2e7365c29584f26af3bd",
+  "implementationCommit": "d2c9730be0f39bcd9d1a2be093f3b782fd28c6a0",
+  "pullRequest": "https://github.com/BoundlessStudio/robyn/pull/34",
+  "previousWebCommit": "7cb569c77310f0d31fd970940841b065b9344173",
+  "deployment": {
+    "sha": "8134e07d0aa0b74a491a2e7365c29584f26af3bd",
+    "state": "success",
+    "statuses": [
+      {
+        "context": "Vercel",
+        "state": "success",
+        "target_url": "https://vercel.com/venatio-studios/robyn-creative-studio/6UZak49sGafj6jMQUh3xGFhyLFvs",
+        "description": "Deployment has completed"
+      }
+    ],
+    "checkedAt": "2026-10-29T13:52:56.710016+00:00",
+    "source": "Vercel GitHub commit status; authenticated canonical UI independently verified"
+  },
+  "ci": {
+    "pullRequest": {
+      "id": 40884405402,
+      "conclusion": "success",
+      "headSha": "d2c9730be0f39bcd9d1a2be093f3b782fd28c6a0",
+      "url": "https://github.com/BoundlessStudio/robyn/actions/runs/40884405402"
+    },
+    "branchPush": {
+      "id": 40884367972,
+      "conclusion": "success",
+      "headSha": "d2c9730be0f39bcd9d1a2be093f3b782fd28c6a0",
+      "url": "https://github.com/BoundlessStudio/robyn/actions/runs/40884367972"
+    },
+    "mainPush": {
+      "id": 40885208492,
+      "conclusion": "success",
+      "headSha": "8134e07d0aa0b74a491a2e7365c29584f26af3bd",
+      "url": "https://github.com/BoundlessStudio/robyn/actions/runs/40885208492"
+    }
+  },
+  "previouslyReleasedRuntimeCommit": "fe1b155754c592bd73702eb106e74f093a0929de",
+  "runtimeMainConfirmed": true,
+  "runtimeChanged": false,
+  "localChecks": {
+    "node": "24.18.0",
+    "python": "3.14.6",
+    "typecheck": "passed",
+    "tests": 129,
+    "build": "passed",
+    "affectedScenariosPerEngine": 26,
+    "engines": [
+      "chromium",
+      "firefox",
+      "webkit"
+    ],
+    "publicPageViewportEngineCases": 18,
+    "publicKeyboardChecksPassed": 14,
+    "existingWindowsWebKitKeyboardCasesUnverified": 4,
+    "desktopWidths": [
+      1200,
+      1440
+    ]
+  },
+  "authenticatedVerification": {
+    "checkedAt": "2026-10-29T13:51:36.505Z",
+    "canonicalUrl": "https://robyn.academy",
+    "verified": true,
+    "menu": [
+      "Dashboard",
+      "Assets",
+      "AI Employees",
+      "Research",
+      "Settings"
+    ],
+    "observations": [
+      {
+        "label": "Dashboard",
+        "width": 1440,
+        "menuOrder": [
+          "Dashboard",
+          "Assets",
+          "AI Employees",
+          "Research",
+          "Settings"
+        ],
+        "active": "Dashboard",
+        "positions": [
+          {
+            "x": 965.203125,
+            "y": 7.5,
+            "width": 95.359375,
+            "height": 32
+          },
+          {
+            "x": 1064.5625,
+            "y": 7.5,
+            "width": 73.6875,
+            "height": 32
+          },
+          {
+            "x": 1142.25,
+            "y": 7.5,
+            "width": 108.234375,
+            "height": 32
+          },
+          {
+            "x": 1254.484375,
+            "y": 7.5,
+            "width": 87.359375,
+            "height": 32
+          },
+          {
+            "x": 1345.84375,
+            "y": 7.5,
+            "width": 82.15625,
+            "height": 32
+          }
+        ],
+        "overflow": false,
+        "sameTab": true
+      },
+      {
+        "label": "Assets",
+        "width": 1440,
+        "menuOrder": [
+          "Dashboard",
+          "Assets",
+          "AI Employees",
+          "Research",
+          "Settings"
+        ],
+        "active": "Assets",
+        "positions": [
+          {
+            "x": 965.203125,
+            "y": 7.5,
+            "width": 95.359375,
+            "height": 32
+          },
+          {
+            "x": 1064.5625,
+            "y": 7.5,
+            "width": 73.6875,
+            "height": 32
+          },
+          {
+            "x": 1142.25,
+            "y": 7.5,
+            "width": 108.234375,
+            "height": 32
+          },
+          {
+            "x": 1254.484375,
+            "y": 7.5,
+            "width": 87.359375,
+            "height": 32
+          },
+          {
+            "x": 1345.84375,
+            "y": 7.5,
+            "width": 82.15625,
+            "height": 32
+          }
+        ],
+        "overflow": false,
+        "sameTab": true
+      },
+      {
+        "label": "AI Employees",
+        "width": 1440,
+        "menuOrder": [
+          "Dashboard",
+          "Assets",
+          "AI Employees",
+          "Research",
+          "Settings"
+        ],
+        "active": "AI Employees",
+        "positions": [
+          {
+            "x": 965.203125,
+            "y": 7.5,
+            "width": 95.359375,
+            "height": 32
+          },
+          {
+            "x": 1064.5625,
+            "y": 7.5,
+            "width": 73.6875,
+            "height": 32
+          },
+          {
+            "x": 1142.25,
+            "y": 7.5,
+            "width": 108.234375,
+            "height": 32
+          },
+          {
+            "x": 1254.484375,
+            "y": 7.5,
+            "width": 87.359375,
+            "height": 32
+          },
+          {
+            "x": 1345.84375,
+            "y": 7.5,
+            "width": 82.15625,
+            "height": 32
+          }
+        ],
+        "overflow": false,
+        "sameTab": true
+      },
+      {
+        "label": "Research",
+        "width": 1440,
+        "menuOrder": [
+          "Dashboard",
+          "Assets",
+          "AI Employees",
+          "Research",
+          "Settings"
+        ],
+        "active": "Research",
+        "positions": [
+          {
+            "x": 965.203125,
+            "y": 7.5,
+            "width": 95.359375,
+            "height": 32
+          },
+          {
+            "x": 1064.5625,
+            "y": 7.5,
+            "width": 73.6875,
+            "height": 32
+          },
+          {
+            "x": 1142.25,
+            "y": 7.5,
+            "width": 108.234375,
+            "height": 32
+          },
+          {
+            "x": 1254.484375,
+            "y": 7.5,
+            "width": 87.359375,
+            "height": 32
+          },
+          {
+            "x": 1345.84375,
+            "y": 7.5,
+            "width": 82.15625,
+            "height": 32
+          }
+        ],
+        "overflow": false,
+        "sameTab": true
+      },
+      {
+        "label": "Settings",
+        "width": 1440,
+        "menuOrder": [
+          "Dashboard",
+          "Assets",
+          "AI Employees",
+          "Research",
+          "Settings"
+        ],
+        "active": "Settings",
+        "positions": [
+          {
+            "x": 965.203125,
+            "y": 7.5,
+            "width": 95.359375,
+            "height": 32
+          },
+          {
+            "x": 1064.5625,
+            "y": 7.5,
+            "width": 73.6875,
+            "height": 32
+          },
+          {
+            "x": 1142.25,
+            "y": 7.5,
+            "width": 108.234375,
+            "height": 32
+          },
+          {
+            "x": 1254.484375,
+            "y": 7.5,
+            "width": 87.359375,
+            "height": 32
+          },
+          {
+            "x": 1345.84375,
+            "y": 7.5,
+            "width": 82.15625,
+            "height": 32
+          }
+        ],
+        "overflow": false,
+        "sameTab": true
+      },
+      {
+        "label": "Dashboard",
+        "width": 1200,
+        "menuOrder": [
+          "Dashboard",
+          "Assets",
+          "AI Employees",
+          "Research",
+          "Settings"
+        ],
+        "active": "Dashboard",
+        "positions": [
+          {
+            "x": 747.203125,
+            "y": 7.5,
+            "width": 93.359375,
+            "height": 32
+          },
+          {
+            "x": 841.5625,
+            "y": 7.5,
+            "width": 71.6875,
+            "height": 32
+          },
+          {
+            "x": 914.25,
+            "y": 7.5,
+            "width": 106.234375,
+            "height": 32
+          },
+          {
+            "x": 1021.484375,
+            "y": 7.5,
+            "width": 85.359375,
+            "height": 32
+          },
+          {
+            "x": 1107.84375,
+            "y": 7.5,
+            "width": 80.15625,
+            "height": 32
+          }
+        ],
+        "overflow": false,
+        "sameTab": true
+      },
+      {
+        "label": "Assets",
+        "width": 1200,
+        "menuOrder": [
+          "Dashboard",
+          "Assets",
+          "AI Employees",
+          "Research",
+          "Settings"
+        ],
+        "active": "Assets",
+        "positions": [
+          {
+            "x": 747.203125,
+            "y": 7.5,
+            "width": 93.359375,
+            "height": 32
+          },
+          {
+            "x": 841.5625,
+            "y": 7.5,
+            "width": 71.6875,
+            "height": 32
+          },
+          {
+            "x": 914.25,
+            "y": 7.5,
+            "width": 106.234375,
+            "height": 32
+          },
+          {
+            "x": 1021.484375,
+            "y": 7.5,
+            "width": 85.359375,
+            "height": 32
+          },
+          {
+            "x": 1107.84375,
+            "y": 7.5,
+            "width": 80.15625,
+            "height": 32
+          }
+        ],
+        "overflow": false,
+        "sameTab": true
+      },
+      {
+        "label": "AI Employees",
+        "width": 1200,
+        "menuOrder": [
+          "Dashboard",
+          "Assets",
+          "AI Employees",
+          "Research",
+          "Settings"
+        ],
+        "active": "AI Employees",
+        "positions": [
+          {
+            "x": 747.203125,
+            "y": 7.5,
+            "width": 93.359375,
+            "height": 32
+          },
+          {
+            "x": 841.5625,
+            "y": 7.5,
+            "width": 71.6875,
+            "height": 32
+          },
+          {
+            "x": 914.25,
+            "y": 7.5,
+            "width": 106.234375,
+            "height": 32
+          },
+          {
+            "x": 1021.484375,
+            "y": 7.5,
+            "width": 85.359375,
+            "height": 32
+          },
+          {
+            "x": 1107.84375,
+            "y": 7.5,
+            "width": 80.15625,
+            "height": 32
+          }
+        ],
+        "overflow": false,
+        "sameTab": true
+      },
+      {
+        "label": "Research",
+        "width": 1200,
+        "menuOrder": [
+          "Dashboard",
+          "Assets",
+          "AI Employees",
+          "Research",
+          "Settings"
+        ],
+        "active": "Research",
+        "positions": [
+          {
+            "x": 747.203125,
+            "y": 7.5,
+            "width": 93.359375,
+            "height": 32
+          },
+          {
+            "x": 841.5625,
+            "y": 7.5,
+            "width": 71.6875,
+            "height": 32
+          },
+          {
+            "x": 914.25,
+            "y": 7.5,
+            "width": 106.234375,
+            "height": 32
+          },
+          {
+            "x": 1021.484375,
+            "y": 7.5,
+            "width": 85.359375,
+            "height": 32
+          },
+          {
+            "x": 1107.84375,
+            "y": 7.5,
+            "width": 80.15625,
+            "height": 32
+          }
+        ],
+        "overflow": false,
+        "sameTab": true
+      },
+      {
+        "label": "Settings",
+        "width": 1200,
+        "menuOrder": [
+          "Dashboard",
+          "Assets",
+          "AI Employees",
+          "Research",
+          "Settings"
+        ],
+        "active": "Settings",
+        "positions": [
+          {
+            "x": 747.203125,
+            "y": 7.5,
+            "width": 93.359375,
+            "height": 32
+          },
+          {
+            "x": 841.5625,
+            "y": 7.5,
+            "width": 71.6875,
+            "height": 32
+          },
+          {
+            "x": 914.25,
+            "y": 7.5,
+            "width": 106.234375,
+            "height": 32
+          },
+          {
+            "x": 1021.484375,
+            "y": 7.5,
+            "width": 85.359375,
+            "height": 32
+          },
+          {
+            "x": 1107.84375,
+            "y": 7.5,
+            "width": 80.15625,
+            "height": 32
+          }
+        ],
+        "overflow": false,
+        "sameTab": true
+      },
+      {
+        "label": "Assets",
+        "width": 1200,
+        "menuOrder": [
+          "Dashboard",
+          "Assets",
+          "AI Employees",
+          "Research",
+          "Settings"
+        ],
+        "active": "Assets",
+        "positions": [
+          {
+            "x": 747.203125,
+            "y": 7.5,
+            "width": 93.359375,
+            "height": 32
+          },
+          {
+            "x": 841.5625,
+            "y": 7.5,
+            "width": 71.6875,
+            "height": 32
+          },
+          {
+            "x": 914.25,
+            "y": 7.5,
+            "width": 106.234375,
+            "height": 32
+          },
+          {
+            "x": 1021.484375,
+            "y": 7.5,
+            "width": 85.359375,
+            "height": 32
+          },
+          {
+            "x": 1107.84375,
+            "y": 7.5,
+            "width": 80.15625,
+            "height": 32
+          }
+        ],
+        "overflow": false,
+        "sameTab": true
+      },
+      {
+        "label": "Dashboard",
+        "width": 1200,
+        "menuOrder": [
+          "Dashboard",
+          "Assets",
+          "AI Employees",
+          "Research",
+          "Settings"
+        ],
+        "active": "Dashboard",
+        "positions": [
+          {
+            "x": 747.203125,
+            "y": 7.5,
+            "width": 93.359375,
+            "height": 32
+          },
+          {
+            "x": 841.5625,
+            "y": 7.5,
+            "width": 71.6875,
+            "height": 32
+          },
+          {
+            "x": 914.25,
+            "y": 7.5,
+            "width": 106.234375,
+            "height": 32
+          },
+          {
+            "x": 1021.484375,
+            "y": 7.5,
+            "width": 85.359375,
+            "height": 32
+          },
+          {
+            "x": 1107.84375,
+            "y": 7.5,
+            "width": 80.15625,
+            "height": 32
+          }
+        ],
+        "overflow": false,
+        "sameTab": true
+      },
+      {
+        "label": "Dashboard",
+        "width": 1440,
+        "menuOrder": [
+          "Dashboard",
+          "Assets",
+          "AI Employees",
+          "Research",
+          "Settings"
+        ],
+        "active": "Dashboard",
+        "positions": [
+          {
+            "x": 965.203125,
+            "y": 7.5,
+            "width": 95.359375,
+            "height": 32
+          },
+          {
+            "x": 1064.5625,
+            "y": 7.5,
+            "width": 73.6875,
+            "height": 32
+          },
+          {
+            "x": 1142.25,
+            "y": 7.5,
+            "width": 108.234375,
+            "height": 32
+          },
+          {
+            "x": 1254.484375,
+            "y": 7.5,
+            "width": 87.359375,
+            "height": 32
+          },
+          {
+            "x": 1345.84375,
+            "y": 7.5,
+            "width": 82.15625,
+            "height": 32
+          }
+        ],
+        "overflow": false,
+        "sameTab": true
+      }
+    ],
+    "gridObservations": [
+      {
+        "width": 1440,
+        "gridColumns": 6,
+        "previewWidth": 202.65625,
+        "previewHeight": 96,
+        "gridIconSize": 48,
+        "listIconSize": 48
+      },
+      {
+        "width": 1200,
+        "gridColumns": 5,
+        "previewWidth": 208,
+        "previewHeight": 96,
+        "gridIconSize": 48,
+        "listIconSize": 48
+      }
+    ],
+    "projectDropdownSameTab": true,
+    "removedWorkspaceToolbar": true,
+    "removedFilesRail": true,
+    "projectDetailsInSettings": true,
+    "projectActivityVisible": true,
+    "legacyApplicationRedirectsChecked": 3,
+    "existingEditorMenuChecked": true,
+    "editorFrameTop": 88,
+    "chooserPreservedEditor": true,
+    "editorSelectionClearedByDashboard": true,
+    "privateAuthoringMutations": 0,
+    "viewOnlyResearchConnects": 2,
+    "failedPrivateApiRequests": 0,
+    "pageJavaScriptErrors": 0,
+    "projectReferenceSha256": "91e6d881c1114620fee2a827291854342010c9b711f33269d376625be475c2b4",
+    "screenshotHashes": {
+      "production-1200-0.private.png": "adc01df3825581ccb06b38a5d04fa825835d8e68d40ff00478ad62d93f8fa29d",
+      "production-1200-1.private.png": "215b955690f69969ad8c6bfb28899c1bb3f49edf51deef19dd258ff6f720807c",
+      "production-1200-2.private.png": "eab33675e1b0ca9e75a070787962a583123a0dcdbd310b79e0454bb7f3b9a65b",
+      "production-1200-3.private.png": "1e7019db70de2824568619f3fad6beaa734e80efc37113e85dada73e2762a9a5",
+      "production-1200-4.private.png": "914d12428b852043c3cd11b96a238bc19e8f6f2333cc1d0d17f60eff5a1c3b5b",
+      "production-1200-editor.private.png": "a7e349f2769b4c9a847df9d2b7febf014cf0133d569f370b3feabfe5918bc2d2",
+      "production-1200-grid.private.png": "760867cd22f9ad0974152e8fc049348d252f53cea39d2af5771547e97b42761e",
+      "production-1200-list.private.png": "6c57eda44a05f79fec698bfc82c3e0e6e4d551cde5aec461ef54cfd23c9af2c0",
+      "production-1440-0.private.png": "a5c73aaf65cf8507abeb1fdf101e75c492762866750a201e97934d724b97d5f5",
+      "production-1440-1.private.png": "0b9881e439fc380d17a1cbcaf1de2dbcad4a097fe9f044b6dabf5f47f7964d4b",
+      "production-1440-2.private.png": "e69092e1581d14f8884bb491815369dbeb3c4261b1855ff54ac4b5bb0175a3ac",
+      "production-1440-3.private.png": "d433ed6200333cf9bb82ea46ae1829f65cae69ae0a2c4f1e7a0da84bb03517f5",
+      "production-1440-4.private.png": "ce1cd191a6e284d43284e1b6045a9efcae27e9a8b6cb8cdaaa0556e7f08eb5f6",
+      "production-1440-editor.private.png": "165bca10d8f86dcfa11635d133c2a132041257070cff44d7b06d664044e64a05",
+      "production-1440-grid.private.png": "647ac73c4c8e4ce6f77511aa1189656996a87361086c0f7ca3ef847ad653a0fe",
+      "production-1440-list.private.png": "eebb40b13e02a18936dd0f1400b8e2be365dc2f3c0321c0975b934cce12afdb6"
+    }
+  },
+  "database": {
+    "changed": false,
+    "liveLedgerRead": false,
+    "lastRecordedMigration": "0024_open_canvas.sql",
+    "lastRecordedEntries": 25,
+    "lastRecordedLedgerSha256": "508945e29e3ac0dbcf0d084b0d65e17a0222d6c5afe9535664cb74eb94fc46fa"
+  },
+  "workstation": {
+    "version": "0.1.23",
+    "changed": false,
+    "fingerprint": "463adbe8641bb2b9f9c232027e4a1edcc5af9bc2c210581cce68af4bfc8ea58d",
+    "mcpSha256": "6e7b4525b249cfdd81b00fccceec7ee4ca537663d4493fe1ef8ad6d0559a3b32"
+  },
+  "editorAndNativePins": [
+    {
+      "id": "cadcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "cadcraft-v0.10.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/cadcraft/v0.10.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-cadcraft-0-10-0@1",
+        "release": "sha256:bca46321dc438354d1b169a91e4f5075d0bad5afc70052b6e6fa0fbcf0f1e488",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "deckcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "deckcraft-v0.9.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/deckcraft/v0.9.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-deckcraft-0-9-0@1",
+        "release": "sha256:3dfcd2d3dd5333c261a3800b3d66acae6be286813f921e384dcfce9e816104d5",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "designcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "designcraft-v0.11.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/designcraft/v0.11.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-designcraft-0-11-0@1",
+        "release": "sha256:eb7ef35e69d14ed050f718199979820091a5265bb9c55742c33ff26022bdd6cc",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "effectcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "effectcraft-v0.14.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/effectcraft/v0.14.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-effectcraft-0-14-0@1",
+        "release": "sha256:56228ad33996ff68f4abe5fe0388ea33eb4adee24a5ea9916dbe5536d284f12b",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "figcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "figcraft-v0.9.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/figcraft/v0.9.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-figcraft-0-9-0@1",
+        "release": "sha256:1f6bcfdd286c2fe49d0ab53a11449a00760bec8071099bd372738a6fc1d527c2",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "filmcraft",
+      "editor": {
+        "adapterVersion": "0.2.3",
+        "release": "filmcraft-v0.10.0-robyn-0.2.3",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/filmcraft/v0.10.0-0.2.3/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-filmcraft-0-10-0@1",
+        "release": "sha256:9af6580357fc0f559d2dc63d0fab876003f7de816cdcda4d0f666b5ccc438d43",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "gridcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "gridcraft-v0.10.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/gridcraft/v0.10.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-gridcraft-0-10-0@1",
+        "release": "sha256:7a74c01ecc0599d9a6c67a000c0a2245cfb6641d9e0d641c5167d99a295a8149",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "lightcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "lightcraft-v0.11.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/lightcraft/v0.11.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-lightcraft-0-11-0@1",
+        "release": "sha256:5f4570949853ff085bbb06035bb3071224357f2119a8bec65010a763979f749c",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "pdfcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "pdfcraft-v0.11.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/pdfcraft/v0.11.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-pdfcraft-0-11-0@1",
+        "release": "sha256:165fb8dc380c404f670a5e09b092ede8b0991aa3003ca9f7ea5c1c9133cd9881",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "photocraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "photocraft-v0.12.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/photocraft/v0.12.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-photocraft-0-12-0@1",
+        "release": "sha256:b56cb9749d2f3dc88c9f50a12803d57bfa29d359635d0999575055876944c849",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "soundcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "soundcraft-v0.11.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/soundcraft/v0.11.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-soundcraft-0-11-0@1",
+        "release": "sha256:8d7030eff81589c4a267a2ecd3f039338e8c690e8703a358e4c8846bc8375e22",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "vectorcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "vectorcraft-v0.14.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/vectorcraft/v0.14.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-vectorcraft-0-14-0@1",
+        "release": "sha256:b04d54cf9231cbb76f9d929395f0735ead37a326ecb33299ba2947636150ad76",
+        "status": "verified"
+      }
+    },
+    {
+      "id": "wordcraft",
+      "editor": {
+        "adapterVersion": "0.2.2",
+        "release": "wordcraft-v0.9.0-robyn-0.2.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/wordcraft/v0.9.0-0.2.2/?robyn&policy=20261028",
+        "status": "verified"
+      },
+      "workstation": {
+        "template": "robyn-wordcraft-0-9-0@1",
+        "release": "sha256:08ce901c9c0bff1c38bd1334bbcda226ef1b31e7c5678916a8adc9c957e525f2",
+        "status": "verified"
+      }
+    }
+  ],
+  "editorAndNativePinsChanged": false,
+  "unchangedPinSource": "production-standard-project-menu-20261028.json; source diff from 7cb569c confirms no manifest, workstation, generated-pin or migration changes. Runtime origin/main independently fetched and confirmed unchanged.",
+  "nativeRoundTripClaim": "No new native integration or native round trip claimed. Live verification opens an existing saved native asset, confirms its exact revision and checks the chooser and Dashboard transition without authoring or saving. Local transport-peer checks cover dirty-editor and retry protection.",
+  "documentationFollowUps": "Documentation-only follow-up commits may rebuild identical application source; the production observations above identify the verified application merge."
+}
