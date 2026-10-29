@@ -5,8 +5,8 @@ import {chromium,firefox,webkit} from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
 import {nativeImportFixture,origin,projectId} from './fixtures/native-import.mjs';
 const browserType=({chromium,firefox,webkit})[process.env.NATIVE_IMPORT_BROWSER??'chromium'];
-const menuNames=['Dashboard','Assets','AI Employees','Research','Applications','Settings'];
-const menuPaths=['','/library','/employees','/research','/applications','/settings'];
+const menuNames=['Dashboard','Assets','AI Employees','Research','Settings'];
+const menuPaths=['','/library','/employees','/research','/settings'];
 
 async function assertProjectMenu(page,active){
   const navigation=page.getByRole('navigation',{name:'Project navigation',exact:true});
@@ -31,22 +31,26 @@ test('the standard project menu navigates in the same tab with unsaved-work prot
       const item=page.getByRole('menuitem',{name,exact:true});
       assert.equal(new URL(await item.getAttribute('href'),origin).pathname,`/dashboard/projects/${projectId}${menuPaths[menuNames.indexOf(name)]}`);assert.equal(await item.getAttribute('target'),null);
     }
-    await page.getByRole('menuitem',{name:'Applications',exact:true}).click();
-    await page.getByRole('button',{name:'Open GridCraft in project',exact:true}).waitFor();
+    assert.equal(await page.getByRole('menuitem',{name:'Applications',exact:true}).count(),0);
+    await page.getByRole('menuitem',{name:'Dashboard',exact:true}).click();
+    await page.getByRole('button',{name:'GridCraft',exact:false}).waitFor();
     assert.equal(page.context().pages().length,1);
-    await page.getByRole('link',{name:'First project',exact:true}).click();
     const header=page.getByRole('navigation',{name:'Project navigation',exact:true});
     await header.getByRole('link',{name:'Assets',exact:true}).waitFor();
     await assertProjectMenu(page,'Dashboard');
-    const toolbar=page.getByRole('group',{name:'Workspace tools',exact:true});
-    assert.deepEqual(await toolbar.getByRole('button').allTextContents(),['Open existing','Files','Project details']);
+    assert.equal(await page.getByRole('group',{name:'Workspace tools',exact:true}).count(),0);
+    assert.equal(await page.locator('.project-document-bar').count(),0);
+    const headerBounds=await page.locator('.project-header').boundingBox(),canvasBounds=await page.locator('.project-start').boundingBox();
+    assert.equal(canvasBounds.y,headerBounds.y+headerBounds.height);
     for(const target of await header.locator('a').evaluateAll(links=>links.map(link=>link.target)))assert.equal(target,'');
     await page.getByRole('button',{name:'WordCraft',exact:false}).click();
     const editor=page.frameLocator('iframe[title="WordCraft editor"]');await editor.getByText('Ready',{exact:true}).waitFor();
     await editor.getByLabel('Document text').fill('Keep this unsaved draft open.');
     await page.locator('.project-save-state[data-state="dirty"]').waitFor();
     await assertProjectMenu(page,'Dashboard');
-    assert.deepEqual(await toolbar.getByRole('button').allTextContents(),['New file','Open existing','Files','Project details']);
+    assert.equal(await page.getByRole('group',{name:'Workspace tools',exact:true}).count(),0);
+    assert.equal(await page.locator('.project-document-tools').getByRole('button',{name:'New file',exact:true}).isVisible(),true);
+    assert.equal((await page.locator('iframe').boundingBox()).y,88);
     page.once('dialog',dialog=>dialog.dismiss());
     await header.getByRole('link',{name:'Dashboard',exact:true}).click();
     assert.equal(await editor.getByLabel('Document text').inputValue(),'Keep this unsaved draft open.');
@@ -79,10 +83,6 @@ test('the standard project menu navigates in the same tab with unsaved-work prot
     const requests=state.requests.filter(row=>['/api/studio/research/browser','/api/studio/assets','/api/studio/assignments'].includes(row.path));
     assert.ok(requests.length>4);assert.ok(requests.every(row=>new URLSearchParams(row.search).get('projectId')===projectId));
     const controls=requests.filter(row=>['take','return'].includes(row.input?.action));assert.equal(controls.length,2);assert.equal(controls[0].input.controlId,controls[1].input.controlId);
-    await tools.getByRole('navigation',{name:'Project navigation'}).getByRole('link',{name:'Applications',exact:true}).click();
-    await tools.getByRole('button',{name:'Open GridCraft in project',exact:true}).waitFor();
-    await assertProjectMenu(page,'Applications');
-    assert.equal(await tools.getByRole('navigation',{name:'Choose a project for application'}).count(),0);
     await tools.getByRole('navigation',{name:'Project navigation'}).getByRole('link',{name:'Settings',exact:true}).click();
     await tools.getByLabel('Studio name',{exact:true}).waitFor();
     await assertProjectMenu(page,'Settings');
@@ -174,7 +174,7 @@ test('unavailable projects do not load assets, employees or Research',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
     const {page,state}=await nativeImportFixture(browser,{initialPath:'/dashboard'});
-    for(const section of ['library','employees','research','applications','settings']){
+    for(const section of ['library','employees','research','settings']){
       const count=state.requests.length;
       await page.goto(`${origin}/dashboard/projects/${randomUUID()}/${section}`);
       await page.getByRole('alert').filter({hasText:'Project not found.'}).waitFor();

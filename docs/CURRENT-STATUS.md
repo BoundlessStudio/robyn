@@ -1,10 +1,12 @@
 # Current pilot status
 
-Updated October 28, 2026. This is the current index; [PLAN.md](PLAN.md) retains the complete scope and dated implementation history. [The review report](PROJECT-REVIEW-2026-10-25.md) tracks remediation and remaining acceptance work.
+Updated October 29, 2026. This is the current index; [PLAN.md](PLAN.md) retains the complete scope and dated implementation history. [The review report](PROJECT-REVIEW-2026-10-25.md) tracks remediation and remaining acceptance work.
 
 Robyn is an invitation-only, passwordless, solo-creator studio at **https://robyn.academy**. Its Creative Director, thirteen Craft specialists and Research work with private native files and exact saved revisions. The authenticated studio is desktop-only. Public signup and commercial subscriptions are disabled. The public homepage supports small screens.
 
 ## Release boundary
+
+**Workspace cleanup — local, not released.** The project menu now contains Dashboard, Assets, AI Employees, Research and Settings. Dashboard retains all thirteen Crafts and Research; old Applications URLs redirect to Dashboard. Settings now includes project name, brief, archive/reactivation and activity. The Files rail, Project details panel and workspace toolbar are removed; New file stays in the editor's document row, and Assets retains file management. Grid cards now use short previews and the same 48-pixel application icons as list view. [Local acceptance](acceptance/project-workspace-cleanup-2026-10-29.md) records the checks and their limits. This does not change the production release, runtime, migration state, manifests or editor/workstation pins.
 
 **Standard project menu is live** in web merge `410cb6813bcc8dca84a51a4c6c34d5677dd80e5e` ([PR #33](https://github.com/BoundlessStudio/robyn/pull/33)). Dashboard, Assets, AI Employees, Research, Applications and Settings share one header and dropdown across every project section and the editor. File creation/import and panel controls sit in a separate workspace toolbar. Authenticated production checks passed all six destinations, matching menu positions, asset details, the existing editor, the dropdown and Dashboard return. [The release record](RELEASE-STANDARD-PROJECT-MENU-2026-10-28.md) and [sanitized production evidence](acceptance/production-standard-project-menu-20261028.json) distinguish these live checks from local acceptance. Runtime, migrations and editor/workstation pins are unchanged.
 

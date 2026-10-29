@@ -73,7 +73,7 @@ function EmployeeProject({project,selection,view,clearInput}:{project:ProjectSum
   const openRevision=(ref:AssetRef)=>window.open(`/dashboard/projects/${projectId}?${new URLSearchParams({asset:ref.assetId,revision:ref.revisionId})}`,"_blank","noopener");
   return <section className="employees-workspace" aria-label={`${context.project.name} employees`}>
     {context.ref&&context.asset&&<div className="employees-input"><FileText size={18}/><div><strong>{context.asset.name}</strong><p>This exact saved revision is available to include in your brief. Save any newer editor changes before sharing them.</p></div><button className="studio-button" onClick={()=>openRevision(context.ref!)}>Open saved revision <ArrowUpRight size={14}/></button><button className="studio-button" onClick={clearInput}>Remove file</button></div>}
-    {context.project.status==="archived"&&<p className="studio-note">This project is archived. Reactivate it in Project details before sending a brief.</p>}
+    {context.project.status==="archived"&&<p className="studio-note">This project is archived. Reactivate it in <Link href={`/dashboard/projects/${projectId}/settings#project-details`}>Settings</Link> before sending a brief.</p>}
     <AssignmentPanel projectId={projectId} mode={view==="Conversation"?"director":view==="Assignments"?"assignments":"review"} canvas={view==="Conversation"} preferredAppId={context.asset?.app_id??undefined} selectedRef={context.ref} canAssign={context.project.status==="active"} onOpen={openRevision}/>
   </section>;
 }

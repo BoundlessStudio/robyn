@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FolderOpen, LayoutDashboard, Images, Users, Globe, Shapes, Settings, ChevronDown, ArrowUpRight } from "lucide-react";
+import { FolderOpen, LayoutDashboard, Images, Users, Globe, Settings, ChevronDown, ArrowUpRight } from "lucide-react";
 import { useWorkspace } from "@/components/WorkspaceProvider";
 import { RobinMark } from "@/components/brand/RobinMark";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
@@ -17,7 +17,6 @@ export const projectNavigation = (projectId:string,savedRevision?:AssetRef) => [
   { href: `/dashboard/projects/${projectId}/library`, label: "Assets", icon: Images },
   { href: `/dashboard/projects/${projectId}/employees${savedRevision?`?${new URLSearchParams({asset:savedRevision.assetId,revision:savedRevision.revisionId})}`:""}`, label: "AI Employees", icon: Users },
   { href: `/dashboard/projects/${projectId}/research`, label: "Research", icon: Globe },
-  { href: `/dashboard/projects/${projectId}/applications`, label: "Applications", icon: Shapes },
   { href: `/dashboard/projects/${projectId}/settings`, label: "Settings", icon: Settings },
 ];
 

@@ -84,8 +84,7 @@ test('a delivered first draft appears in its project and opens from the employee
     await page.locator('.assignment-deliverables').getByRole('button',{name:'Garden guide',exact:true}).waitFor({timeout:15000});
     const [opened]=await Promise.all([page.context().waitForEvent('page'),page.locator('.assignment-deliverables').getByRole('button',{name:'Garden guide',exact:true}).click()]);
     const editor=opened.frameLocator('iframe[title="WordCraft editor"]');await editor.getByText('Ready',{exact:true}).waitFor();assert.equal(await editor.getByLabel('Document text').inputValue(),'An editable first draft.');
-    await opened.getByRole('button',{name:'Files',exact:true}).click();
-    await opened.getByRole('navigation',{name:'Project files',exact:true}).getByRole('button',{name:'Garden guide Saved native file'}).waitFor();
+    await opened.locator('.project-tabs').getByRole('button',{name:'Garden guide',exact:true}).waitFor();
     assert.ok(state.requests.some(req=>req.path===`/api/studio/revisions/${revisionId}`));assert.deepEqual(state.errors,[]);
   }finally{await browser.close();}
 });
