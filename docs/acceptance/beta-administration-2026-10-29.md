@@ -2,7 +2,7 @@
 
 ## Scope and release boundary
 
-Local web implementation on base `2c248f6adfb9a90c6d5b3b4c2039f9e1215b2f45`. The new admin page has not been deployed. Runtime sources, native editors, Craft manifests and workstation 0.1.23 are unchanged.
+Implementation `564dee3a60186006d2889151711d85c3e77866b9` on base `2c248f6adfb9a90c6d5b3b4c2039f9e1215b2f45` is deployed in web merge `a0a9cdd5a38d6613f42da09a0d76e58d30e81553` ([PR #35](https://github.com/BoundlessStudio/robyn/pull/35)). Runtime sources, native editors, Craft manifests and workstation 0.1.23 are unchanged. [The release record](../RELEASE-BETA-ADMINISTRATION-2026-10-29.md) records the production deployment and paired runtime commit.
 
 The configured Supabase database has migrations `0025_beta_administration.sql` and `0026_beta_admin_session_reset.sql` applied, and its sole `admin` account is configured. Account passwords/hashes, session cookies, request emails and provider credentials are excluded from this record.
 
@@ -39,3 +39,9 @@ Ledger summaries, using MD5 only as a compact digest of the ordered filename/SHA
 The hosted safeupdate rule rejected unqualified session deletion during initial account configuration. That transaction rolled back. Migration 0026 scopes deletion to the single admin account; migration 0025 was not edited after application. Account creation then succeeded.
 
 A local production build using the configured database passed real admin API and Chromium login/logout, private list access, cross-origin rejection, creator-auth separation, revoked-cookie rejection and anonymous denial on all three admin tables. The public Auth settings reported `disable_signup: true`. These checks sent no invitation or sign-in emails to creators and did not certify a hosted admin web deployment or an actual recipient's email acceptance.
+
+## Canonical production verification
+
+After Vercel deployed web merge `a0a9cdd5a38d6613f42da09a0d76e58d30e81553`, all **25 checks** passed at `https://robyn.academy`. Real admin API and Chromium login/logout loaded the private request list; revoked sessions, anonymous access, cross-origin mutations and oversized metadata were rejected. Filters and email search returned matching pages. The admin session did not grant creator studio access. The three admin tables remained inaccessible through anonymous Supabase REST, and public Auth settings still reported signup disabled.
+
+The canonical management page passed axe, desktop and compact overflow checks and had no browser page errors. Request controls rendered. Private screenshots stay ignored; only their hashes and sanitized check results are committed in [production evidence](production-beta-administration-20261029.json). No creator invitation/sign-in email, request status change or actual recipient email acceptance was performed during this deployment check. The earlier local-only boundary above is retained as historical test scope.

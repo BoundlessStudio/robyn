@@ -6,7 +6,7 @@ Owner: the Robyn pilot operator, reached at **support@robyn.academy**. Mail forw
 
 ## Beta administration
 
-The October 29 beta administration checkpoint applies migrations **0025–0026** through the existing checksummed runner, bringing the private ledger to **27 entries**. The single `admin` account is configured. The new web page is verified locally and awaits web deployment; this schema/account checkpoint does not change the deployed web release listed above. [Acceptance details](acceptance/beta-administration-2026-10-29.md) distinguish these scopes.
+The October 29 beta administration release is live in web merge `a0a9cdd5a38d6613f42da09a0d76e58d30e81553` ([PR #35](https://github.com/BoundlessStudio/robyn/pull/35)). Migrations **0025–0026** were applied through the existing checksummed runner before web deployment, bringing the private ledger to **27 entries**. The single `admin` account is configured. Twenty-five canonical production checks passed API/browser login and logout, access boundaries and the signup-disabled setting. [The release record](RELEASE-BETA-ADMINISTRATION-2026-10-29.md) and [acceptance details](acceptance/beta-administration-2026-10-29.md) distinguish hosted verification from local tests. Runtime/editor pins remain unchanged.
 
 Open `/admin/login`, then `/admin/beta-requests`. This account has its own revocable eight-hour session; creator accounts and workspace roles cannot use it. Use `npm run admin:create -- admin` from a trusted, configured terminal to replace the password and revoke every previous admin session. The command reads a hidden password and stores only a salted hash. Never put a password, hash, session cookie or service key in source control, logs or an acceptance artifact.
 

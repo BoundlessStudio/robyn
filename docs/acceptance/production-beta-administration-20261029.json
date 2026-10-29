@@ -1,0 +1,346 @@
+{
+  "recordedAt": "2026-10-29T15:09:55.967Z",
+  "localReleaseDate": "2026-10-29",
+  "timezone": "America/Toronto",
+  "status": "Deployed; canonical private beta administration verified",
+  "canonicalUrl": "https://robyn.academy/admin/login",
+  "webMergeCommit": "a0a9cdd5a38d6613f42da09a0d76e58d30e81553",
+  "implementationCommit": "564dee3a60186006d2889151711d85c3e77866b9",
+  "previousWebCommit": "2c248f6adfb9a90c6d5b3b4c2039f9e1215b2f45",
+  "pullRequest": "https://github.com/BoundlessStudio/robyn/pull/35",
+  "deployment": {
+    "sha": "a0a9cdd5a38d6613f42da09a0d76e58d30e81553",
+    "state": "success",
+    "url": "https://vercel.com/venatio-studios/robyn-creative-studio/x6CyBR5sXtunfjhCHX8ijUkLHUNk",
+    "description": "Deployment has completed",
+    "source": "Vercel GitHub commit status; canonical API/browser checks independently passed"
+  },
+  "ci": {
+    "pullRequest": {
+      "attempt": 2,
+      "conclusion": "success",
+      "databaseId": 40896595858,
+      "headSha": "564dee3a60186006d2889151711d85c3e77866b9",
+      "status": "completed",
+      "url": "https://github.com/BoundlessStudio/robyn/actions/runs/40896595858"
+    },
+    "branchPush": {
+      "attempt": 1,
+      "conclusion": "success",
+      "databaseId": 40896562690,
+      "headSha": "564dee3a60186006d2889151711d85c3e77866b9",
+      "status": "completed",
+      "url": "https://github.com/BoundlessStudio/robyn/actions/runs/40896562690"
+    },
+    "mainPush": {
+      "attempt": 1,
+      "conclusion": "success",
+      "databaseId": 40898077299,
+      "headSha": "a0a9cdd5a38d6613f42da09a0d76e58d30e81553",
+      "status": "completed",
+      "url": "https://github.com/BoundlessStudio/robyn/actions/runs/40898077299"
+    }
+  },
+  "initialPrAttempt": {
+    "conclusion": "failure",
+    "cause": "Native Node/V8 WebAssembly allocation abort; no application assertion identified",
+    "retryAttempt": 2,
+    "retryConclusion": "success"
+  },
+  "runtimeCommit": "fe1b155754c592bd73702eb106e74f093a0929de",
+  "runtimeMainConfirmed": true,
+  "runtimeChanged": false,
+  "editorPinsChanged": false,
+  "migrations": {
+    "entries": 27,
+    "latest": "0026_beta_admin_session_reset.sql",
+    "orderedFilenameChecksumSummaryMd5": "482d81958ab7c376e438ab247eb3f80c",
+    "orderedFilenameChecksumSha256": "22d2f3789c045cbeb88bc773ca6eebd718ebf8b781a9a1a905652e0561d66633",
+    "added": [
+      {
+        "filename": "0025_beta_administration.sql",
+        "sha256": "a6c1d8ce52fb17f515f44364e3cae4c5216fb65288d495b2d05eeecff9233df2"
+      },
+      {
+        "filename": "0026_beta_admin_session_reset.sql",
+        "sha256": "9a5fa1488db137b2d622d6ee786bf46e2e26074a569ad90b5c472687ec143a5d"
+      }
+    ],
+    "appliedBeforeWebDeployment": true,
+    "reappliedDuringWebDeployment": false,
+    "liveLedgerRereadDuringWebDeployment": false
+  },
+  "workstation": {
+    "version": "0.1.23",
+    "fingerprint": "463adbe8641bb2b9f9c232027e4a1edcc5af9bc2c210581cce68af4bfc8ea58d",
+    "mcpSha256": "6e7b4525b249cfdd81b00fccceec7ee4ca537663d4493fe1ef8ad6d0559a3b32"
+  },
+  "editorPins": [
+    {
+      "appId": "cadcraft",
+      "manifestVersion": "0.1.0",
+      "manifestSha256": "7056ffc0211e19554906cf2e38474aa45e77e5221c58e698c5d5300814ba1d70",
+      "adapterVersion": "0.2.2",
+      "editorRelease": "cadcraft-v0.10.0-robyn-0.2.2",
+      "editorBundle": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/cadcraft/v0.10.0-0.2.2/?robyn&policy=20261028",
+      "workstationTemplate": "robyn-cadcraft-0-10-0@1",
+      "workstationImage": "sha256:bca46321dc438354d1b169a91e4f5075d0bad5afc70052b6e6fa0fbcf0f1e488"
+    },
+    {
+      "appId": "deckcraft",
+      "manifestVersion": "0.1.2",
+      "manifestSha256": "796ee98070b558b373446e9bc65a8321c08858713a0ee2b687004cc66c58e7e6",
+      "adapterVersion": "0.2.2",
+      "editorRelease": "deckcraft-v0.9.0-robyn-0.2.2",
+      "editorBundle": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/deckcraft/v0.9.0-0.2.2/?robyn&policy=20261028",
+      "workstationTemplate": "robyn-deckcraft-0-9-0@1",
+      "workstationImage": "sha256:3dfcd2d3dd5333c261a3800b3d66acae6be286813f921e384dcfce9e816104d5"
+    },
+    {
+      "appId": "designcraft",
+      "manifestVersion": "0.1.2",
+      "manifestSha256": "daa871c2329fe8df9aa0ca824449615d4de94315e166c972a35468f17639a706",
+      "adapterVersion": "0.2.2",
+      "editorRelease": "designcraft-v0.11.0-robyn-0.2.2",
+      "editorBundle": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/designcraft/v0.11.0-0.2.2/?robyn&policy=20261028",
+      "workstationTemplate": "robyn-designcraft-0-11-0@1",
+      "workstationImage": "sha256:eb7ef35e69d14ed050f718199979820091a5265bb9c55742c33ff26022bdd6cc"
+    },
+    {
+      "appId": "effectcraft",
+      "manifestVersion": "0.1.0",
+      "manifestSha256": "19a12b44944aa945c5fcd78f374ced39e8859f84549f69fcc50fd0be6a6c5181",
+      "adapterVersion": "0.2.2",
+      "editorRelease": "effectcraft-v0.14.0-robyn-0.2.2",
+      "editorBundle": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/effectcraft/v0.14.0-0.2.2/?robyn&policy=20261028",
+      "workstationTemplate": "robyn-effectcraft-0-14-0@1",
+      "workstationImage": "sha256:56228ad33996ff68f4abe5fe0388ea33eb4adee24a5ea9916dbe5536d284f12b"
+    },
+    {
+      "appId": "figcraft",
+      "manifestVersion": "0.1.3",
+      "manifestSha256": "30e51144333e77100ed97e135217ed18155f330af9c92abdb403ec47a5c8c5bf",
+      "adapterVersion": "0.2.2",
+      "editorRelease": "figcraft-v0.9.0-robyn-0.2.2",
+      "editorBundle": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/figcraft/v0.9.0-0.2.2/?robyn&policy=20261028",
+      "workstationTemplate": "robyn-figcraft-0-9-0@1",
+      "workstationImage": "sha256:1f6bcfdd286c2fe49d0ab53a11449a00760bec8071099bd372738a6fc1d527c2"
+    },
+    {
+      "appId": "filmcraft",
+      "manifestVersion": "0.1.0",
+      "manifestSha256": "6fc5e53e00e6e0b6e1b198d659ddfe7a682ddd3a59d1ab31f77972215581f2d8",
+      "adapterVersion": "0.2.3",
+      "editorRelease": "filmcraft-v0.10.0-robyn-0.2.3",
+      "editorBundle": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/filmcraft/v0.10.0-0.2.3/?robyn&policy=20261028",
+      "workstationTemplate": "robyn-filmcraft-0-10-0@1",
+      "workstationImage": "sha256:9af6580357fc0f559d2dc63d0fab876003f7de816cdcda4d0f666b5ccc438d43"
+    },
+    {
+      "appId": "gridcraft",
+      "manifestVersion": "0.1.2",
+      "manifestSha256": "41336a435662bae88b1a7561e8e4f412720c34889ee697564b9740e6f25850c4",
+      "adapterVersion": "0.2.2",
+      "editorRelease": "gridcraft-v0.10.0-robyn-0.2.2",
+      "editorBundle": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/gridcraft/v0.10.0-0.2.2/?robyn&policy=20261028",
+      "workstationTemplate": "robyn-gridcraft-0-10-0@1",
+      "workstationImage": "sha256:7a74c01ecc0599d9a6c67a000c0a2245cfb6641d9e0d641c5167d99a295a8149"
+    },
+    {
+      "appId": "lightcraft",
+      "manifestVersion": "0.1.4",
+      "manifestSha256": "4fb448a061170f0b4d1b0ca3f0aa02a0389a4632b88643f0f5a189bb30527bfc",
+      "adapterVersion": "0.2.2",
+      "editorRelease": "lightcraft-v0.11.0-robyn-0.2.2",
+      "editorBundle": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/lightcraft/v0.11.0-0.2.2/?robyn&policy=20261028",
+      "workstationTemplate": "robyn-lightcraft-0-11-0@1",
+      "workstationImage": "sha256:5f4570949853ff085bbb06035bb3071224357f2119a8bec65010a763979f749c"
+    },
+    {
+      "appId": "pdfcraft",
+      "manifestVersion": "0.1.4",
+      "manifestSha256": "91222926d30a81713c9dbca19d1a8011cede2116b093f73237d0ac180e4fd70a",
+      "adapterVersion": "0.2.2",
+      "editorRelease": "pdfcraft-v0.11.0-robyn-0.2.2",
+      "editorBundle": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/pdfcraft/v0.11.0-0.2.2/?robyn&policy=20261028",
+      "workstationTemplate": "robyn-pdfcraft-0-11-0@1",
+      "workstationImage": "sha256:165fb8dc380c404f670a5e09b092ede8b0991aa3003ca9f7ea5c1c9133cd9881"
+    },
+    {
+      "appId": "photocraft",
+      "manifestVersion": "0.1.4",
+      "manifestSha256": "993302e1bda27b097bcc22b813207572b4bd1e6a923a1b8406935cb94760d266",
+      "adapterVersion": "0.2.2",
+      "editorRelease": "photocraft-v0.12.0-robyn-0.2.2",
+      "editorBundle": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/photocraft/v0.12.0-0.2.2/?robyn&policy=20261028",
+      "workstationTemplate": "robyn-photocraft-0-12-0@1",
+      "workstationImage": "sha256:b56cb9749d2f3dc88c9f50a12803d57bfa29d359635d0999575055876944c849"
+    },
+    {
+      "appId": "soundcraft",
+      "manifestVersion": "0.1.4",
+      "manifestSha256": "eb9018e5e293150c60cd9e0c7d64852cff2ba28a7c261a25e585b6bdd4a2556b",
+      "adapterVersion": "0.2.2",
+      "editorRelease": "soundcraft-v0.11.0-robyn-0.2.2",
+      "editorBundle": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/soundcraft/v0.11.0-0.2.2/?robyn&policy=20261028",
+      "workstationTemplate": "robyn-soundcraft-0-11-0@1",
+      "workstationImage": "sha256:8d7030eff81589c4a267a2ecd3f039338e8c690e8703a358e4c8846bc8375e22"
+    },
+    {
+      "appId": "vectorcraft",
+      "manifestVersion": "0.1.4",
+      "manifestSha256": "c7d994d0c61d5d90f8a3ccb0cbe2f0a642dbb40f1e75169ae240415b5de14324",
+      "adapterVersion": "0.2.2",
+      "editorRelease": "vectorcraft-v0.14.0-robyn-0.2.2",
+      "editorBundle": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/vectorcraft/v0.14.0-0.2.2/?robyn&policy=20261028",
+      "workstationTemplate": "robyn-vectorcraft-0-14-0@1",
+      "workstationImage": "sha256:b04d54cf9231cbb76f9d929395f0735ead37a326ecb33299ba2947636150ad76"
+    },
+    {
+      "appId": "wordcraft",
+      "manifestVersion": "0.1.2",
+      "manifestSha256": "f23f659bb1be5a4f7fca648dcee50723e33af284b8479d4296d55fabcc4052cf",
+      "adapterVersion": "0.2.2",
+      "editorRelease": "wordcraft-v0.9.0-robyn-0.2.2",
+      "editorBundle": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/wordcraft/v0.9.0-0.2.2/?robyn&policy=20261028",
+      "workstationTemplate": "robyn-wordcraft-0-9-0@1",
+      "workstationImage": "sha256:08ce901c9c0bff1c38bd1334bbcda226ef1b31e7c5678916a8adc9c957e525f2"
+    }
+  ],
+  "localChecks": {
+    "tests": 137,
+    "typecheck": "passed",
+    "build": "passed",
+    "adminBrowserEngines": [
+      "chromium",
+      "firefox",
+      "webkit"
+    ],
+    "publicPageViewportCombinations": 6
+  },
+  "productionChecks": [
+    {
+      "name": "Anonymous admin page redirects to its private login",
+      "passed": true
+    },
+    {
+      "name": "Anonymous beta BFF is denied without caching",
+      "passed": true
+    },
+    {
+      "name": "Configured admin account authenticates",
+      "passed": true
+    },
+    {
+      "name": "Admin cookie has production security attributes",
+      "passed": true
+    },
+    {
+      "name": "Authenticated beta list and status counts load",
+      "passed": true
+    },
+    {
+      "name": "Joined filter returns only joined requests",
+      "passed": true
+    },
+    {
+      "name": "Email search returns an empty matching page",
+      "passed": true
+    },
+    {
+      "name": "Admin session does not grant creator studio access",
+      "passed": true
+    },
+    {
+      "name": "Cross-origin admin mutations are denied",
+      "passed": true
+    },
+    {
+      "name": "Oversized metadata is denied",
+      "passed": true
+    },
+    {
+      "name": "API logout succeeds",
+      "passed": true
+    },
+    {
+      "name": "Revoked cookie cannot read beta requests",
+      "passed": true
+    },
+    {
+      "name": "Public Supabase signup remains disabled",
+      "passed": true
+    },
+    {
+      "name": "Anonymous direct access to studio_beta_admin is denied",
+      "passed": true
+    },
+    {
+      "name": "Anonymous direct access to studio_beta_admin_sessions is denied",
+      "passed": true
+    },
+    {
+      "name": "Anonymous direct access to studio_beta_admin_limits is denied",
+      "passed": true
+    },
+    {
+      "name": "Robots excludes the private admin path",
+      "passed": true
+    },
+    {
+      "name": "Admin login is noindex",
+      "passed": true
+    },
+    {
+      "name": "Canonical browser login loads authenticated requests",
+      "passed": true
+    },
+    {
+      "name": "Request action controls render",
+      "passed": true
+    },
+    {
+      "name": "Canonical admin accessibility scan passes",
+      "passed": true
+    },
+    {
+      "name": "Desktop layout has no page overflow",
+      "passed": true
+    },
+    {
+      "name": "Compact layout has no page overflow",
+      "passed": true
+    },
+    {
+      "name": "Browser logout returns to admin login",
+      "passed": true
+    },
+    {
+      "name": "Canonical browser has no page errors",
+      "passed": true
+    }
+  ],
+  "productionScreenshots": [
+    {
+      "file": "login.png",
+      "sha256": "3a4fc3d60838de22de7e18afde99242f52db86aa63d0368d0ad6d48939323e0b"
+    },
+    {
+      "file": "admin-desktop.png",
+      "sha256": "040873b10d4634712d7af76b1d128004619dc06a93d563415d7760aab376e9dd"
+    },
+    {
+      "file": "admin-compact.png",
+      "sha256": "31262dbfc9e336113b63a33fa2cf453060c39beff030854ccf93f074c75d7a5e"
+    }
+  ],
+  "invitationEmailsSent": false,
+  "actualRecipientEmailAcceptanceVerified": false,
+  "privateMaterialExcluded": [
+    "admin password and password hash",
+    "admin and creator session cookies",
+    "request emails and creative interests",
+    "provider keys",
+    "raw private screenshots"
+  ]
+}
