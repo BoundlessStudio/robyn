@@ -3,7 +3,7 @@ import { PGlite } from "@electric-sql/pglite";
 export async function studioDatabase() {
   const db = new PGlite();
   await db.exec(`create role anon; create role authenticated; create role service_role bypassrls;
-    create schema auth; create table auth.users(id uuid primary key,email text);
+    create schema auth; create table auth.users(id uuid primary key,email text,email_confirmed_at timestamptz,last_sign_in_at timestamptz,invited_at timestamptz,confirmation_sent_at timestamptz,recovery_sent_at timestamptz);
     create function auth.uid() returns uuid language sql stable as 'select null::uuid';
     grant usage on schema auth to service_role; grant select on auth.users to service_role;
     alter default privileges in schema public grant all on tables to anon,authenticated,service_role;

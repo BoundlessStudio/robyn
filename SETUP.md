@@ -105,6 +105,28 @@ database passwords out of the browser and deployment environment. Complete the s
 checks before granting access. See [current status](docs/CURRENT-STATUS.md) for the pilot flow.
 </details>
 
+## Private beta administrator
+
+Beta administration uses one separate username/password account at `/admin/login`.
+Creator sign-in and workspace admin roles do not grant access. After applying the
+checked migration suffix through `0026_beta_admin_session_reset.sql`, configure
+the account from a trusted terminal with the server's Supabase environment:
+
+```bash
+npm run admin:create -- admin
+```
+
+Enter the password at the hidden prompt. There is no built-in default password.
+Only a salted scrypt hash is stored in the private database. The same command
+replaces the sole account's credentials and revokes its existing sessions; do not
+run it as a routine deployment step. Sessions expire after eight hours, and login
+attempt limits are shared across server instances. Public Supabase signup stays
+disabled; invited creators continue to use passwordless email links.
+
+The account manages `/admin/beta-requests`: status filters, email search, paginated
+requests, invite/resend, decline/reopen and confirmed join tracking. See
+[the operator runbook](docs/OPERATIONS.md#beta-administration) for email recovery.
+
 ## Deploy to production (Vercel)
 
 The Vercel button alone is **not** enough — it deploys the app but can't create your Supabase
