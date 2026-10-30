@@ -6,7 +6,7 @@ import AxeBuilder from '@axe-core/playwright';
 import {nativeImportFixture,projectId} from './fixtures/native-import.mjs';
 const browserType=({chromium,firefox,webkit})[process.env.NATIVE_IMPORT_BROWSER??'chromium'];
 
-test('Settings saves project details, retains activity and archives or reactivates the same project',async()=>{
+test('Settings saves project details, hides activity and archives or reactivates the same project',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
     const {page,state}=await nativeImportFixture(browser);
@@ -14,8 +14,9 @@ test('Settings saves project details, retains activity and archives or reactivat
     state.activity.push({id:randomUUID(),kind:'revision.committed',created_at:state.project.created_at,details:{}});
     await page.getByRole('navigation',{name:'Project navigation'}).getByRole('link',{name:'Settings',exact:true}).click();
     await page.getByRole('heading',{name:'Project details',exact:true}).waitFor();
-    await page.getByRole('heading',{name:'Project activity',exact:true}).waitFor();
-    await page.getByText('A new revision was saved',{exact:true}).waitFor();
+    assert.equal(await page.getByRole('heading',{name:'Project activity',exact:true,includeHidden:true}).count(),0);
+    assert.equal(await page.getByText('A new revision was saved',{exact:true}).count(),0);
+    assert.equal(state.activity.length,1);
     assert.equal(await page.getByLabel('Studio name',{exact:true}).isVisible(),true);
     await page.getByLabel('Project name',{exact:true}).fill('Autumn launch');
     await page.getByRole('textbox',{name:'Project brief',exact:true}).fill('Warm colours. A film and a poster for the exhibition.');

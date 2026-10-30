@@ -145,14 +145,14 @@
 .studio-setting-section h2 { font-size:18px; margin-bottom:18px; letter-spacing:-.5px; }
 .studio-setting-section p { font-size:12px; line-height:1.7; color:#aebca0; }
 .studio-setting-section .studio-button { margin-top:16px; }
-.studio-settings-layout { display:grid; grid-template-columns:minmax(0,1fr) 320px; gap:40px; align-items:start; }
+.studio-settings-layout { display:block; }
 .studio-settings-main { min-width:0; }
 .studio-settings-main .studio-setting-section { max-width:none; }
 .studio-settings-main .studio-form,.studio-settings-main .studio-setting-section > p { max-width:700px; }
 .studio-settings-activity { position:sticky; top:110px; display:flex; flex-direction:column; min-width:0; max-height:min(640px,calc(100dvh - 340px)); margin:0; }
 .studio-settings-activity h2 { flex:none; }
 .studio-settings-activity .project-activity { min-height:0; overflow-y:auto; overscroll-behavior:contain; margin:0; padding-right:12px; scrollbar-gutter:stable; }
-@media(max-width:1300px) { .studio-settings-layout { gap:24px; grid-template-columns:minmax(0,1fr) 250px; } .studio-settings-main .studio-budget-totals { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:1300px) { .studio-settings-main .studio-budget-totals { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 .studio-table-wrap { overflow:auto; }
 .studio-action-row { display:flex; flex-wrap:wrap; gap:9px; margin-top:15px; }
 .studio-upload-progress progress { width:100%; accent-color:#ece7db; }
@@ -527,6 +527,7 @@
 .studio-budget { scroll-margin-top: 110px; }
 .studio-budget .studio-form { max-width: none; }
 .studio-budget .studio-form > label { max-width: 480px; }
+.studio-budget .studio-form > .studio-button { justify-self: start; }
 .studio-budget-totals { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; margin: 24px 0 14px; }
 .studio-budget-totals > div { border: 1px solid var(--studio-line,#d9d5c9); padding: 16px; border-radius: 8px; }
 .studio-budget-totals span,.studio-budget-totals strong { display: block; }
