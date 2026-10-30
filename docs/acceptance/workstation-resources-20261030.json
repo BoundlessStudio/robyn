@@ -1,0 +1,75 @@
+{
+  "checkedAt": "2026-10-30T19:00:37.873Z",
+  "passed": true,
+  "scope": "Owner-authorized default settings and idle in-place resize of the primary shared workstation. An undispatched maintenance assignment held the workspace; no AI turn or managed purchase was made.",
+  "target": {
+    "resources": {
+      "cpu": 4,
+      "memory": 16,
+      "disk": 10
+    },
+    "type": "default",
+    "region": "us",
+    "auto_sleep": true,
+    "idle_timeout_seconds": 3600
+  },
+  "instanceIdentitySha256": "e6ed8bc1c9bb6255ffc8fe636b5d612baa3fa0b379aecc8fa2e24edf5f375d96",
+  "verification": {
+    "sameInstanceAndOwner": true,
+    "samePublishedImage": true,
+    "metadataUnchanged": true,
+    "resourceMirrorConfirmed": true,
+    "healthyAfterResize": true,
+    "preservedFiles": 8,
+    "preservedFileHashesMatch": true,
+    "allowanceAndUsageUnchanged": true,
+    "browserReturnedToAgent": true,
+    "maintenanceCancelledBeforeAi": true,
+    "maintenanceCredentialNeverIssued": true,
+    "resizePosts": 2,
+    "sleepPatches": 1,
+    "initialFileHashesAlsoPreserved": true
+  },
+  "image": {
+    "template": "robyn-studio-0-1-1@1",
+    "digest": "sha256:23622a922f2ab7df9a45d6cfe64f42247954b31843e228ded96619ccefbbea0d"
+  },
+  "runtimeSource": "833e70ab99480f3d6c779591b44fa10e6a031af6",
+  "workstationClient": "0.2.0",
+  "migrations": {
+    "entries": 30,
+    "last": "0029_studio_budget_default.sql",
+    "changedByResourceUpdate": false,
+    "ledgerSha256": "b3758e5eef831bb334baeb143768b9f53f15b362e679afa2386be3f6445a36fe",
+    "verifiedBy": "docs/acceptance/settings-budget-release-20261030.json"
+  },
+  "editorPinsChanged": false,
+  "sources": [
+    "https://www.agent37.com/docs/agents-api/instances/create",
+    "https://www.agent37.com/docs/agents-api/instances/resize",
+    "https://www.agent37.com/docs/agents-api/instances/edit",
+    "https://www.agent37.com/docs/agents-api/instance-sizing"
+  ],
+  "resizeSequence": [
+    {
+      "cpu": 2,
+      "memory": 4,
+      "disk": 6
+    },
+    {
+      "cpu": 4,
+      "memory": 8,
+      "disk": 10
+    },
+    {
+      "cpu": 4,
+      "memory": 16,
+      "disk": 10
+    }
+  ],
+  "defaultPolicy": {
+    "file": "src/config/agents.ts",
+    "sha256Lf": "8930cb28f579493428bcaa161b1d1f040a288fc09d8a06eed77e4a631bbf881e"
+  },
+  "webBaseline": "0a9b16c2205a207b893998745c163c0d1e2bef95"
+}

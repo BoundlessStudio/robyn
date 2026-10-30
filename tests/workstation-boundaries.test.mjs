@@ -115,7 +115,7 @@ test("one claimed Robyn creation uses the shared image and server resources with
     employee.instance_id=null;employee.provision_attempt="attempt";instance.metadata.studio_provision_attempt="attempt";
     assert.equal(await ensureEmployeeInstance(db,identity,employee),instance);
     const created=writes.find(write=>write.create).create;
-    assert.deepEqual(created,{template:image.template,name:"Robyn",user:"owner",resources:image.resources,budget:{monthly_cap_micros:5000000},auto_sleep:true,idle_timeout_seconds:900,metadata:{app_workspace:"studio",studio_employee:"employee",studio_provision_attempt:"attempt"}});
+    assert.deepEqual(created,{template:image.template,name:"Robyn",user:"owner",resources:{cpu:4,memory:16,disk:10},type:"default",region:"us",budget:{monthly_cap_micros:5000000},auto_sleep:true,idle_timeout_seconds:3600,metadata:{app_workspace:"studio",studio_employee:"employee",studio_provision_attempt:"attempt"}});
     assert.deepEqual(calls,["create","budget:persistent","health:persistent"]);
     assert.deepEqual(writes.filter(write=>write.rpc).map(write=>write.rpc),["claim_studio_employee_provision","claim_studio_employee_creation","bind_studio_employee_instance","ready_studio_employee"]);
   });
