@@ -1,0 +1,330 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-30T06:19:45.401Z",
+  "status": "complete-production",
+  "scope": "One visible Robyn per creator, one shared native workstation provisioned on demand, fourteen Craft applications, browser/research tools and saved Notes. Primary test account replacement and authorized retirement of all seventeen original owned instances are complete.",
+  "source": {
+    "web": {
+      "repository": "https://github.com/BoundlessStudio/robyn",
+      "implementationCommit": "2459805694711db6cd1a3117cfb3979babe5e2eb",
+      "pullRequests": [
+        36,
+        37,
+        38
+      ],
+      "ci": {
+        "runId": 41011227345,
+        "conclusion": "success",
+        "webTests": 225,
+        "typecheck": true,
+        "productionBuild": true,
+        "audit": "no findings",
+        "publicPageBrowserViewportChecks": 18
+      }
+    },
+    "runtime": {
+      "repository": "https://github.com/BoundlessStudio/robyn-artcraft-runtime",
+      "implementationCommit": "833e70ab99480f3d6c779591b44fa10e6a031af6",
+      "pullRequests": [
+        7,
+        8
+      ],
+      "ci": {
+        "runId": 41011178823,
+        "conclusion": "success",
+        "runtimeTests": 104,
+        "linuxPythonProfileTests": 4,
+        "productionBundleMatchesInstalledSha256": true
+      }
+    }
+  },
+  "deployed": {
+    "url": "https://robyn.academy",
+    "webCommit": "2459805694711db6cd1a3117cfb3979babe5e2eb",
+    "vercelStatus": "success",
+    "deploymentDashboard": "https://vercel.com/venatio-studios/robyn-creative-studio/FCCnx9cfDmV2YqiJ4vp8wwwVt6im",
+    "authenticatedProductionUiPassed": true,
+    "ordinaryProductionWorkflowPassed": true,
+    "publicSignupDisabled": true,
+    "publicSignupVerifiedAt": "2026-10-30T05:33:59.241Z"
+  },
+  "database": {
+    "migration": "0028_single_robyn_workstation.sql",
+    "sha256Lf": "7c93f8260519af154363e02cc7147b7630e0e55e0e1d8f38300b1c06ebb93d7a",
+    "ledgerEntries": 29,
+    "ledgerSha256": "24ebf18c44d5e7de3e3cb325ce075449897cc9ec0c4c673ea38ecd0e8289fbd7",
+    "previous28EntriesUnchanged": true,
+    "baselineChanged": false,
+    "historicalDataAndFinancialValuesPreserved": true,
+    "privateBffAndServiceOnlyTableAccess": true
+  },
+  "workstation": {
+    "version": "0.1.1",
+    "template": "robyn-studio-0-1-1@1",
+    "release": "sha256:23622a922f2ab7df9a45d6cfe64f42247954b31843e228ded96619ccefbbea0d",
+    "resources": {
+      "cpu": 2,
+      "memory": 4,
+      "disk": 6
+    },
+    "applications": 14,
+    "instanceIdentitySha256": "e6ed8bc1c9bb6255ffc8fe636b5d612baa3fa0b379aecc8fa2e24edf5f375d96",
+    "primaryTestAccountLinked": true,
+    "client": {
+      "version": "0.2.0",
+      "directory": "vendor/robyn-workstation/0.2.0-97a41d837b66",
+      "fingerprint": "97a41d837b667d9d544083614c9cf8fe23a627ce8187818518da616cbe063c0c",
+      "mcpSha256": "09a5f30e962361d2e0f1120270bfbb753d6aa84fe42a5718bf228bd32c42686d",
+      "configureHermesSha256": "b6da72e4aba53700b3ad0afeaa588a1be6aae672d518ca66361e916342bf1b71"
+    },
+    "imageContext": {
+      "sourceFingerprint": "1899f3cf6ec697b2d15773ffb75383aecc2223825ef2557b281c0337d4c409e5",
+      "sha256": "9801d83ab0d39c2cca3b71d3ea41b9fe5c9ef2d86003ad6239139826d7bfc21c",
+      "bytes": 6385,
+      "allowlistedFiles": [
+        "Dockerfile",
+        "desktop-entrypoint.sh",
+        "release.json"
+      ]
+    },
+    "maximumConcurrentProductionJobs": 1,
+    "taskCredentialsAndFoldersIsolated": true,
+    "taskProfilesImmutable": true,
+    "oldProcessCannotAdoptNextTask": true
+  },
+  "editorPins": {
+    "cadcraft": {
+      "upstream": "v0.14.0",
+      "sourceCommit": "fbd97d432cdf36a566c0c53739481bd6f0c32b0d",
+      "editorRelease": "cadcraft-v0.14.0-robyn-0.3.1",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/cadcraft/v0.14.0-0.3.1/?robyn",
+      "adapterVersion": "0.3.1",
+      "browserBundleSha256": "1d5f50bc9f34cc6a02bfc0225171cc6939c56d803f1410ae321e53b8a926ff48",
+      "nativeArchiveSha256": "95067c849f82305648249299bb86e645b730275aa8c5f19965d81990f83aea9b"
+    },
+    "deckcraft": {
+      "upstream": "v0.12.0",
+      "sourceCommit": "29f0f7772c47aa2bfb74fcbb0c4d3b1503300849",
+      "editorRelease": "deckcraft-v0.12.0-robyn-0.3.1",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/deckcraft/v0.12.0-0.3.1/?robyn",
+      "adapterVersion": "0.3.1",
+      "browserBundleSha256": "c33c575308a54b2eb86efaa421bb65d98db237957c1db2697d06bd5827039ae4",
+      "nativeArchiveSha256": "4a410d3caa423e873d0dcab51c98e06588f55bdfcf03e9c1e91409a86c08de3e"
+    },
+    "designcraft": {
+      "upstream": "v0.14.0",
+      "sourceCommit": "7da69c16ce221f46e8f27cb41e0c88167c8be416",
+      "editorRelease": "designcraft-v0.14.0-robyn-0.3.1",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/designcraft/v0.14.0-0.3.1/?robyn",
+      "adapterVersion": "0.3.1",
+      "browserBundleSha256": "56c014384891c5886aecfa4e019953abff3f06a59648f417410535c221420741",
+      "nativeArchiveSha256": "25c87be759d35a81ca44e1f625ed4304b16e5aab6a03a1051bca498a81bfc547"
+    },
+    "effectcraft": {
+      "upstream": "v0.18.0",
+      "sourceCommit": "c3600f9b59b109da97871a43a6898683a0163cb1",
+      "editorRelease": "effectcraft-v0.18.0-robyn-0.3.1",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/effectcraft/v0.18.0-0.3.1/?robyn",
+      "adapterVersion": "0.3.1",
+      "browserBundleSha256": "68a10e0e8e0203a8125870f1e25f597c588901daa6f6d60089f4c11d6b367ca3",
+      "nativeArchiveSha256": "94d1d85691d54ba57fa86e04872fbcc426c33d1bd364f1fc976b1f607344880b"
+    },
+    "figcraft": {
+      "upstream": "v0.12.1",
+      "sourceCommit": "ef9721c5b9d0f1cc19a74449cbe175fc06bf8efa",
+      "editorRelease": "figcraft-v0.12.1-robyn-0.3.1",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/figcraft/v0.12.1-0.3.1/?robyn",
+      "adapterVersion": "0.3.1",
+      "browserBundleSha256": "473c3b652bf5567e0efc3129cda0191004213d7f24e6120e3ae251c0defa2797",
+      "nativeArchiveSha256": "00a29f4cc382807d840f5d3e9b59f4c8829356789afbb956a0964918295e49dd"
+    },
+    "filmcraft": {
+      "upstream": "v0.14.0",
+      "sourceCommit": "a2d8e9ce269aba9c399e36262522e11456df6fbf",
+      "editorRelease": "filmcraft-v0.14.0-robyn-0.3.1",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/filmcraft/v0.14.0-0.3.1/?robyn",
+      "adapterVersion": "0.3.1",
+      "browserBundleSha256": "60520fc8ad2b63a8475b2d33a6dda2723e2b173ec27a2925ea4e1c3326d2a679",
+      "nativeArchiveSha256": "d2aa213cc08abd21e05ab511a78cc38f157caf2226992f3fc8a5e0496a3f7e7d"
+    },
+    "gridcraft": {
+      "upstream": "v0.13.0",
+      "sourceCommit": "43284377d2466037628e57d8ad0c891778fdb45c",
+      "editorRelease": "gridcraft-v0.13.0-robyn-0.3.1",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/gridcraft/v0.13.0-0.3.1/?robyn",
+      "adapterVersion": "0.3.1",
+      "browserBundleSha256": "ba3bee285c7f5a34748db81174aaf0749b15dd1eb05bf85362a6770e3c4af299",
+      "nativeArchiveSha256": "20c6c56ec1ffd6bbcffee6cdee58cf6b5cadd2f4a04a4360dd7cc64d53ad97e5"
+    },
+    "lightcraft": {
+      "upstream": "v0.15.0",
+      "sourceCommit": "e381c1ae6b2006ce627b243fe41697ce0d9608e0",
+      "editorRelease": "lightcraft-v0.15.0-robyn-0.3.1",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/lightcraft/v0.15.0-0.3.1/?robyn",
+      "adapterVersion": "0.3.1",
+      "browserBundleSha256": "5fba23da7e5aacb5c9a5f6b6fd3efa5b921f2a7d8171ea82bea75ff6e423d0a0",
+      "nativeArchiveSha256": "0b1acdefc085babb334b9add290dd1a69b50e96efbdad2ec15d44bd6d64bfd3d"
+    },
+    "pdfcraft": {
+      "upstream": "v0.15.0",
+      "sourceCommit": "75360d1d7db06fed974f48c914d4c04132757187",
+      "editorRelease": "pdfcraft-v0.15.0-robyn-0.3.1",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/pdfcraft/v0.15.0-0.3.1/?robyn",
+      "adapterVersion": "0.3.1",
+      "browserBundleSha256": "9fa384eadb994854e724acf4ddaad63366e486be638b3300cd2a82e181ce3d40",
+      "nativeArchiveSha256": "b167a18c60a7b329f05a5bbf97e32dc678aad3f8d5866d8e4378ff24273f8313"
+    },
+    "photocraft": {
+      "upstream": "v0.17.0",
+      "sourceCommit": "b8c3f3aa8e2918032cadc0e042664414a03be333",
+      "editorRelease": "photocraft-v0.17.0-robyn-0.3.1",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/photocraft/v0.17.0-0.3.1/?robyn",
+      "adapterVersion": "0.3.1",
+      "browserBundleSha256": "8151b86b3c9cc39fa664b1533bdc12b13841b18746340ab1d7fe83cc703347bb",
+      "nativeArchiveSha256": "5259f9c428c8ee3478c35500ece98713561cafc050e4c9eb354a5050f36eb2b8"
+    },
+    "solidcraft": {
+      "upstream": "v0.27.1",
+      "sourceCommit": "aa1fe28ddff42cac2990a312765a1a6c50d97dfe",
+      "editorRelease": "solidcraft-v0.27.1-robyn-0.1.2",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/solidcraft/v0.27.1-0.1.2/?robyn",
+      "adapterVersion": "0.1.2",
+      "browserBundleSha256": "999248f664e3d02edfb3376ef0cdbf9863e9682311c908a054972a3654e5c394",
+      "nativeArchiveSha256": "bd4358dedee6d662dc7565eb84f978810b8940612bf156100b97cb46d01368ea"
+    },
+    "soundcraft": {
+      "upstream": "v0.14.0",
+      "sourceCommit": "c6befe57afd0dc35fc4b86a01b2a19011ae1df1e",
+      "editorRelease": "soundcraft-v0.14.0-robyn-0.3.1",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/soundcraft/v0.14.0-0.3.1/?robyn",
+      "adapterVersion": "0.3.1",
+      "browserBundleSha256": "19c17ad4ca79ab25bdbfc78fe7873310536f8737ab22f2a3bd67cddb8bf33f76",
+      "nativeArchiveSha256": "2f83503feda6aa2c8d4bc12c44f571422c4389fc664a92bbed092d2bf1d500ad"
+    },
+    "vectorcraft": {
+      "upstream": "v0.18.0",
+      "sourceCommit": "68b68a30acad9b3d8a72802b35f43b82e2bd7d3a",
+      "editorRelease": "vectorcraft-v0.18.0-robyn-0.3.1",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/vectorcraft/v0.18.0-0.3.1/?robyn",
+      "adapterVersion": "0.3.1",
+      "browserBundleSha256": "6d12aca0af97d4b357c9eacf812b2f51ad2d704554a9288bccaafe4c150e100a",
+      "nativeArchiveSha256": "76948b50ef78dd482a6ece06f10b7047937bbc0c05f5cf6bc43d88b07f74d826"
+    },
+    "wordcraft": {
+      "upstream": "v0.12.0",
+      "sourceCommit": "3de6ff95af86c19d67030cd96dba15cd6a45a25e",
+      "editorRelease": "wordcraft-v0.12.0-robyn-0.3.1",
+      "editorUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/wordcraft/v0.12.0-0.3.1/?robyn",
+      "adapterVersion": "0.3.1",
+      "browserBundleSha256": "ca5390b82e6ddb82bcaceaf8ab73e7c4b5ec1bc7313392b169c47bcb7ada46d5",
+      "nativeArchiveSha256": "cd9abd0ee7a11b985af1c1571653332c96077e5dcc48b5e187b55c82f475a33e"
+    }
+  },
+  "upstreamStableCutoff": "2026-10-30T05:12:39Z",
+  "editorDelivery": {
+    "worker": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev",
+    "workerVersion": "c91d6411-1fea-4dd5-8cf5-1d4d7b635396",
+    "catalogSha256": "38ffa0851a4a80e847c39c113c7a67b8b335c7919a56f933436cb14f1214fa96",
+    "releases": 80,
+    "paths": 36023,
+    "verifiedUniqueObjects": 925,
+    "uniqueObjectBytes": 2082156827,
+    "existing79ReleasesUnchanged": true,
+    "newSolidObjects": 5
+  },
+  "acceptance": {
+    "hostedBrowserConfirmedSaveNativeRoundTrips": 14,
+    "combinedImageNativeEditSaveReopenContinuations": 14,
+    "latestNativeOwnershipFenceChecks": 116,
+    "retainedFilesSurvivedImageUpdate": 35,
+    "crossApplicationMcpConfirmedOutputs": 3,
+    "oldProcessDeniedAfterNextTask": true,
+    "normalProductionTaskGeneration": 4,
+    "normalProductionTaskState": "completed",
+    "normalProductionTaskSingleSubmittedTurn": true,
+    "normalProductionVersions": {
+      "cadcraft": "0.14.0",
+      "solidcraft": "0.27.1"
+    },
+    "allCanaryCredentialsRevoked": true,
+    "allQueuesIdle": true,
+    "browserReturnedToAgentAndDisconnected": true
+  },
+  "allowance": {
+    "monthlyLimitMicros": 75000000,
+    "spentMicros": 1850361,
+    "retiredSpentMicros": 1844882,
+    "reservedMicros": 0,
+    "availableMicros": 73149639,
+    "originalMonthlyCeilingPreserved": true,
+    "archivedSpendingPreserved": true,
+    "realQaAiTurns": 2,
+    "totalQaAiSpendMicros": 5479,
+    "firstQaTurnSpendMicros": 2339,
+    "paidMediaAcquisitions": 0
+  },
+  "retirement": {
+    "oldInstances": 17,
+    "privateArchivesVerified": 17,
+    "archiveBytes": 557160094,
+    "providerDeletionsConfirmed": 17,
+    "oldBindingsCleared": 17,
+    "oldMirrorsRemoved": 17,
+    "remainingProviderInstances": 1,
+    "historicalEmployeesAndJobsPreserved": true,
+    "immutableSpendingRecordsPreserved": true
+  },
+  "evidence": [
+    {
+      "path": "docs/acceptance/shared-workstation-migration-20261030.json",
+      "sha256Lf": "a31f0ec9c1c6bc6fd0cc781cb1fdbc4afc7598f23cb28e89a0dec48ce0b51322"
+    },
+    {
+      "path": "docs/acceptance/craft-refresh-upstream-cutoff-20261030.json",
+      "sha256Lf": "5ca7b32dca5e854f90177fbda8ecb15cafb756ff380eb532456890e382c608ac"
+    },
+    {
+      "path": "docs/acceptance/craft-refresh-hosted-20261030.json",
+      "sha256Lf": "c5e927b451aade89299818de18caf8b0fddeb11e688ecba7b42960ddbb49724a"
+    },
+    {
+      "path": "docs/acceptance/solidcraft-0271-20261030.json",
+      "sha256Lf": "a16ec696ebf5170c649d80b929e6575a6580f33b0a25c54195034b1656197a60"
+    },
+    {
+      "path": "docs/acceptance/shared-workstation-build-0.1.1-20261030.json",
+      "sha256Lf": "1a6300a7b1ab1494117a075c65413cdd518e7d6816531c520abbc1790fb8b3c6"
+    },
+    {
+      "path": "docs/acceptance/shared-workstation-image-update-20261030.json",
+      "sha256Lf": "a8401c2f99654dd83adfe1d70136f2318a599bba982c65b8894f3ab3441fa07d"
+    },
+    {
+      "path": "docs/acceptance/shared-workstation-native-0.1.1-20261030.json",
+      "sha256Lf": "4bffa428fa88b8c5596ea622dcd1013a30ef1ef2ecd677fa081037f4aab2521d"
+    },
+    {
+      "path": "docs/acceptance/shared-workstation-profile-20261030.json",
+      "sha256Lf": "f999b86891198c04f4ffd22b48818e55dc3feed36c33360d029b0b56e67681d4"
+    },
+    {
+      "path": "docs/acceptance/authenticated-studio-one-robyn-20261030.json",
+      "sha256Lf": "f2408be8e4624a31a6cacfadba3010522d3a77e9b584df04b62f271b1da61028"
+    },
+    {
+      "path": "docs/acceptance/shared-workstation-production-20261030.json",
+      "sha256Lf": "c742be1fa3c0bcba881a46142c5da0c6d0ba87ebbb4fba6c3cee86e8bb268720"
+    },
+    {
+      "path": "docs/acceptance/production-studio-one-robyn-20261030.json",
+      "sha256Lf": "9a72e00730cdd2061eaf61ac8aa3c6822ae5e11b4bb5eeff54f5eaac0bd9c81e"
+    }
+  ],
+  "pending": [],
+  "limits": [
+    "One production job per workspace; parallel production is not enabled.",
+    "Native and browser checks cover recorded representative editable fixtures, not every feature, format or physical device.",
+    "Earlier dated receipts retain their original local, recorded or deployment-pending status; this paired release record supplies the final production boundary.",
+    "This accepted idle consolidation does not establish general self-service workstation replacement, database recovery or Storage-file backups. Previously deferred provider and recovery acceptance remains separate."
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-10-30T06:19:45.113Z",
+  "passed": true,
+  "productionWebCommit": "2459805694711db6cd1a3117cfb3979babe5e2eb",
+  "runtimeCommit": "833e70ab99480f3d6c779591b44fa10e6a031af6",
+  "replacement": {
+    "instanceIdentitySha256": "e6ed8bc1c9bb6255ffc8fe636b5d612baa3fa0b379aecc8fa2e24edf5f375d96",
+    "primaryTestAccountLinked": true,
+    "template": "robyn-studio-0-1-1@1",
+    "imageDigest": "sha256:23622a922f2ab7df9a45d6cfe64f42247954b31843e228ded96619ccefbbea0d",
+    "resources": {
+      "cpu": 2,
+      "memory": 4,
+      "disk": 6
+    },
+    "canonicalEmployeeCount": 1
+  },
+  "retirement": {
+    "oldInstances": 17,
+    "privateArchivesVerified": 17,
+    "archiveBytes": 557160094,
+    "providerDeletionsConfirmed": 17,
+    "oldBindingsCleared": 17,
+    "oldMirrorsRemoved": 17,
+    "remainingProviderInstances": 1,
+    "historicalEmployeesAndJobsPreserved": true,
+    "immutableSpendingRecordsPreserved": true
+  },
+  "allowance": {
+    "monthlyLimitMicros": 75000000,
+    "spentMicros": 1850361,
+    "retiredSpentMicros": 1844882,
+    "reservedMicros": 0,
+    "availableMicros": 73149639
+  },
+  "verification": {
+    "normalProductionWorkflowCompleted": true,
+    "productionCreatedEventAcceptedWithoutEcho": true,
+    "allCanaryCredentialsRevoked": true,
+    "noQueuedRunningOrUncertainJobs": true,
+    "noActiveOrUnsettledMedia": true,
+    "browserControlAgent": true,
+    "monthlyCeilingPreserved": true,
+    "noPaidMediaAcquisitions": true
+  },
+  "retiredIdentitySetSha256": "c5e3c2f7d679cad6002c59753aa8d92e3c36d6e175ca4c637df8906e8a843ea0"
+}
