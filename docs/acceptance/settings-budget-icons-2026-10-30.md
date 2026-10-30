@@ -20,4 +20,4 @@ Icon SHA-256: `edc580363fde8607c97e931370d907c548f90fa4992d35011484d0ea898e1ebd`
 - `npm run build` passed after the final code and layout changes.
 - Desktop visual review at 1600 × 1000 and 1200 × 900 covered default/zero budget states, project editing, keyboard activity scrolling, 1,000-event history and the SolidCraft launcher icon. No horizontal overflow or browser errors were observed.
 
-Browser evidence uses isolated fixtures with synthetic data. Runtime and editor pins are unchanged. Migration 0029 has been tested locally; it has not been applied to production, and these changes have not been deployed in this task.
+Browser evidence uses isolated fixtures with synthetic data. Runtime and editor pins are unchanged. Migration 0029 is now applied in production, with 30 matching ledger entries, unchanged prior receipts and preserved existing owner budgets. The [release manifest](settings-budget-release-20261030.json) records matching source and runtime pins; [PR #40](https://github.com/BoundlessStudio/robyn/pull/40) tracks the web rollout.

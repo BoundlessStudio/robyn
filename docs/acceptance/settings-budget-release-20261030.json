@@ -1,0 +1,191 @@
+{
+  "recordedAt": "2026-10-30T15:32:07.485Z",
+  "scope": "Studio budget defaults and limits, explicit zero-budget AI opt-out, right activity sidebar and SolidCraft animal icon",
+  "source": {
+    "web": {
+      "repository": "https://github.com/BoundlessStudio/robyn",
+      "implementationCommit": "41fc0b6e18866e391a61aef5d3ac204008a27131",
+      "pullRequest": 40
+    },
+    "runtime": {
+      "repository": "https://github.com/BoundlessStudio/robyn-artcraft-runtime",
+      "implementationCommit": "833e70ab99480f3d6c779591b44fa10e6a031af6",
+      "pullRequests": [
+        7,
+        8
+      ],
+      "ci": {
+        "runId": 41011178823,
+        "conclusion": "success",
+        "runtimeTests": 104,
+        "linuxPythonProfileTests": 4,
+        "productionBundleMatchesInstalledSha256": true
+      }
+    }
+  },
+  "database": {
+    "checkedAt": "2026-10-30T15:28:48.787Z",
+    "migration": "0029_studio_budget_default.sql",
+    "sha256Lf": "7b7a2079f8c2377552233a8b297403a3eb24849803cbfb535674a8b401f89c56",
+    "ledgerEntries": 30,
+    "ledgerSha256": "b3758e5eef831bb334baeb143768b9f53f15b362e679afa2386be3f6445a36fe",
+    "priorEntriesUnchanged": true,
+    "initializerMatches": true,
+    "functionOwnershipAndGrantsPreserved": true,
+    "existingOwnerBudgetsPreserved": true,
+    "existingStudios": 3,
+    "idempotentReplay": true,
+    "defaultUsd": 20
+  },
+  "workstation": {
+    "image": {
+      "version": "0.1.1",
+      "template": "robyn-studio-0-1-1@1",
+      "release": "sha256:23622a922f2ab7df9a45d6cfe64f42247954b31843e228ded96619ccefbbea0d",
+      "resources": {
+        "cpu": 2,
+        "memory": 4,
+        "disk": 6
+      },
+      "applications": 14
+    },
+    "clientVersion": "0.2.0",
+    "clientFingerprint": "97a41d837b667d9d544083614c9cf8fe23a627ce8187818518da616cbe063c0c"
+  },
+  "editors": [
+    {
+      "id": "cadcraft",
+      "manifestVersion": "0.1.0",
+      "editorRelease": "cadcraft-v0.14.0-robyn-0.3.1",
+      "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/cadcraft/v0.14.0-0.3.1/?robyn",
+      "workstationTemplate": "robyn-cadcraft-0-14-0@1",
+      "workstationRelease": "sha256:df65088c9551376db050ab257e43fd1d07855b2bac7a384fb008e8bdc2253e16"
+    },
+    {
+      "id": "deckcraft",
+      "manifestVersion": "0.1.2",
+      "editorRelease": "deckcraft-v0.12.0-robyn-0.3.1",
+      "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/deckcraft/v0.12.0-0.3.1/?robyn",
+      "workstationTemplate": "robyn-deckcraft-0-12-0@1",
+      "workstationRelease": "sha256:0d74f4a4f5311bb6e6580a3354d3f762e88eae4ce8536e86a3569c82d9fca450"
+    },
+    {
+      "id": "designcraft",
+      "manifestVersion": "0.1.2",
+      "editorRelease": "designcraft-v0.14.0-robyn-0.3.1",
+      "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/designcraft/v0.14.0-0.3.1/?robyn",
+      "workstationTemplate": "robyn-designcraft-0-14-0@1",
+      "workstationRelease": "sha256:6bd3bc17de676fccd12bad4f56446e06649cc60332976a4798b8e80e50de9453"
+    },
+    {
+      "id": "effectcraft",
+      "manifestVersion": "0.1.0",
+      "editorRelease": "effectcraft-v0.18.0-robyn-0.3.1",
+      "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/effectcraft/v0.18.0-0.3.1/?robyn",
+      "workstationTemplate": "robyn-effectcraft-0-18-0@1",
+      "workstationRelease": "sha256:4f5a0082fb05334f039bf0e039ec900d384927564cb82a939ae8b60a544bd8e8"
+    },
+    {
+      "id": "figcraft",
+      "manifestVersion": "0.1.3",
+      "editorRelease": "figcraft-v0.12.1-robyn-0.3.1",
+      "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/figcraft/v0.12.1-0.3.1/?robyn",
+      "workstationTemplate": "robyn-figcraft-0-12-1@1",
+      "workstationRelease": "sha256:d5e1e5e91ecab08b24839cd1e6dbe5005903edb5bc2b3e56b3bba55e196be3f9"
+    },
+    {
+      "id": "filmcraft",
+      "manifestVersion": "0.1.0",
+      "editorRelease": "filmcraft-v0.14.0-robyn-0.3.1",
+      "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/filmcraft/v0.14.0-0.3.1/?robyn",
+      "workstationTemplate": "robyn-filmcraft-0-14-0@1",
+      "workstationRelease": "sha256:a0928499237173ae502b3d2f0782bb0ec53d3d60f199d947eb198e291b9a7a66"
+    },
+    {
+      "id": "gridcraft",
+      "manifestVersion": "0.1.2",
+      "editorRelease": "gridcraft-v0.13.0-robyn-0.3.1",
+      "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/gridcraft/v0.13.0-0.3.1/?robyn",
+      "workstationTemplate": "robyn-gridcraft-0-13-0@1",
+      "workstationRelease": "sha256:df4eac4d419406428dab897efdb27ae993782bf0e5a998f438f04e5d790638dd"
+    },
+    {
+      "id": "lightcraft",
+      "manifestVersion": "0.1.4",
+      "editorRelease": "lightcraft-v0.15.0-robyn-0.3.1",
+      "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/lightcraft/v0.15.0-0.3.1/?robyn",
+      "workstationTemplate": "robyn-lightcraft-0-15-0@1",
+      "workstationRelease": "sha256:ba0e6fcb9d332a7f942a6f7f541716d7d45a48f849dbe846fa0992415211606b"
+    },
+    {
+      "id": "pdfcraft",
+      "manifestVersion": "0.1.4",
+      "editorRelease": "pdfcraft-v0.15.0-robyn-0.3.1",
+      "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/pdfcraft/v0.15.0-0.3.1/?robyn",
+      "workstationTemplate": "robyn-pdfcraft-0-15-0@1",
+      "workstationRelease": "sha256:4c5026a56b8a8b76cb051b9b665c11a3e8893cf770b7e7b9425be143a6dc2627"
+    },
+    {
+      "id": "photocraft",
+      "manifestVersion": "0.1.4",
+      "editorRelease": "photocraft-v0.17.0-robyn-0.3.1",
+      "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/photocraft/v0.17.0-0.3.1/?robyn",
+      "workstationTemplate": "robyn-photocraft-0-17-0@1",
+      "workstationRelease": "sha256:f039f03822aa77afa7342fc0828f0c7cdbb50e414a1690c71ee867a352134233"
+    },
+    {
+      "id": "solidcraft",
+      "manifestVersion": "0.1.0",
+      "editorRelease": "solidcraft-v0.27.1-robyn-0.1.2",
+      "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/solidcraft/v0.27.1-0.1.2/?robyn",
+      "workstationTemplate": "robyn-studio-0-1-1@1",
+      "workstationRelease": "sha256:23622a922f2ab7df9a45d6cfe64f42247954b31843e228ded96619ccefbbea0d"
+    },
+    {
+      "id": "soundcraft",
+      "manifestVersion": "0.1.4",
+      "editorRelease": "soundcraft-v0.14.0-robyn-0.3.1",
+      "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/soundcraft/v0.14.0-0.3.1/?robyn",
+      "workstationTemplate": "robyn-soundcraft-0-14-0@1",
+      "workstationRelease": "sha256:0af82abd3391a5c6df60b1e5d1a95b31f20402855864637172b62ac7b53f08aa"
+    },
+    {
+      "id": "vectorcraft",
+      "manifestVersion": "0.1.4",
+      "editorRelease": "vectorcraft-v0.18.0-robyn-0.3.1",
+      "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/vectorcraft/v0.18.0-0.3.1/?robyn",
+      "workstationTemplate": "robyn-vectorcraft-0-18-0@1",
+      "workstationRelease": "sha256:346e9ef26bcbfe54aad48d8516a468fdf964f9c02032e73e7552abddde0fe9a5"
+    },
+    {
+      "id": "wordcraft",
+      "manifestVersion": "0.1.2",
+      "editorRelease": "wordcraft-v0.12.0-robyn-0.3.1",
+      "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/wordcraft/v0.12.0-0.3.1/?robyn",
+      "workstationTemplate": "robyn-wordcraft-0-12-0@1",
+      "workstationRelease": "sha256:223fcb7f752ad1e2edec5d68eb21c213ecd7c6ac176529eda653c025d5c0b6bb"
+    }
+  ],
+  "validation": {
+    "standardTests": 229,
+    "tsxTests": 4,
+    "typecheck": true,
+    "productionBuild": true,
+    "settingsBrowsers": [
+      "Chromium",
+      "Firefox",
+      "WebKit"
+    ],
+    "settingsTestsPerBrowser": 5,
+    "localAcceptance": "settings-budget-icons-2026-10-30.md"
+  },
+  "production": {
+    "url": "https://robyn.academy",
+    "releaseTracking": "https://github.com/BoundlessStudio/robyn/pull/40"
+  },
+  "notes": [
+    "Existing owner budgets and initializer permissions were preserved by migration 0029.",
+    "Runtime, native editors and workstation pins match the existing released configuration.",
+    "Hosted verification receipts remain in ignored artifacts/qa/settings-budget-release-20261030."
+  ]
+}
