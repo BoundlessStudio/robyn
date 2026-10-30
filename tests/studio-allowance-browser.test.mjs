@@ -35,7 +35,7 @@ test('settings support the $20 default, enforce $0–$100 and preserve a saved A
   }finally{await browser.close();}
 });
 
-test('settings hide project activity and use the available width while project editing remains usable',async()=>{
+test('settings hide project activity and keep project and budget controls usable',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
     const {page,state}=await nativeImportFixture(browser,{initialPath:settings,viewport:{width:1600,height:1000}});
@@ -46,6 +46,10 @@ test('settings hide project activity and use the available width while project e
     assert.equal(await page.getByRole('heading',{name:'Project activity',includeHidden:true}).count(),0);
     const main=await details.boundingBox(),layout=await page.locator('.studio-settings-layout').boundingBox();
     assert.ok(Math.abs(main.width-layout.width)<1);
+    const budgetSave=await page.getByRole('button',{name:'Save Studio budget',exact:true}).boundingBox();
+    const studioSave=await page.getByRole('button',{name:'Save changes',exact:true}).boundingBox();
+    const allowance=await page.getByLabel('Monthly AI allowance (USD)').boundingBox();
+    assert.equal(budgetSave.height,studioSave.height);assert.ok(budgetSave.width<allowance.width);
     await page.getByLabel('Project name',{exact:true}).fill('Settings still work');
     await page.getByRole('button',{name:'Save project details',exact:true}).click();
     await page.getByRole('status').filter({hasText:'Project details saved.'}).waitFor();

@@ -527,6 +527,7 @@
 .studio-budget { scroll-margin-top: 110px; }
 .studio-budget .studio-form { max-width: none; }
 .studio-budget .studio-form > label { max-width: 480px; }
+.studio-budget .studio-form > .studio-button { justify-self: start; }
 .studio-budget-totals { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; margin: 24px 0 14px; }
 .studio-budget-totals > div { border: 1px solid var(--studio-line,#d9d5c9); padding: 16px; border-radius: 8px; }
 .studio-budget-totals span,.studio-budget-totals strong { display: block; }
