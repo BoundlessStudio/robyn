@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-10-30T04:22:33.002Z",
+  "migration": "0028_single_robyn_workstation.sql",
+  "sha256": "7c93f8260519af154363e02cc7147b7630e0e55e0e1d8f38300b1c06ebb93d7a",
+  "ledgerEntries": 29,
+  "previous28LedgerEntriesUnchanged": true,
+  "allChecksumsMatch": true,
+  "baselineChanged": false,
+  "historicalDataAndFinancialValuesPreserved": true,
+  "oneZeroFundedUnprovisionedRobynPerStudio": true,
+  "roster": {
+    "current_count": 3,
+    "studios": 3,
+    "zero_funded_new_rows": 3,
+    "historical_rows": 46
+  },
+  "anonymousAndAuthenticatedDenied": true,
+  "privateTableRls": true,
+  "serviceOnlyFunctions": [
+    "claim_studio_budget_cap_sync",
+    "claim_studio_budget_provider_write",
+    "create_robyn_assignment",
+    "employee_create_asset",
+    "employee_create_asset",
+    "finish_studio_budget_cap_sync",
+    "finish_studio_budget_provider_write",
+    "studio_media_admission_available"
+  ],
+  "idempotentRerun": true,
+  "ledgerSha256": "24ebf18c44d5e7de3e3cb325ce075449897cc9ec0c4c673ea38ecd0e8289fbd7"
+}

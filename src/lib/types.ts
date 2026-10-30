@@ -181,6 +181,7 @@ export interface ChatHistoryMessage {
 export interface SessionDetail {
   id: string;
   agent: string;
+  profile?: string | null;
   /** The response currently running on the session, or null when idle. The harness persists a
    *  turn's messages at turn end, so while this is set the running turn is not in `history` yet —
    *  follow it via GET /v1/responses/{id}/stream. Null means the transcript is complete. */

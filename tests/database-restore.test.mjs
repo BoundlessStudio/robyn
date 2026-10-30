@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 import {PGlite} from '@electric-sql/pglite';
 import {studioDatabase} from './helpers/database.mjs';
 import {readMigrations,migrationQuery} from '../scripts/migrations.mjs';
+import {craftIds} from './helpers/robyn-database.mjs';
 
 test('isolated database restore preserves exact references, ownership and uncertain external-action fences',async()=>{
   let db=await studioDatabase();const scalar=async(sql,args=[]) => (await db.query(sql,args)).rows[0]?.value;
@@ -12,7 +13,7 @@ test('isolated database restore preserves exact references, ownership and uncert
     const migrations=await readMigrations(fileURLToPath(new URL('../supabase/migrations',import.meta.url)));
     await db.exec(migrationQuery(migrations));
     const owner=randomUUID(),outsider=randomUUID();await db.query('insert into auth.users(id) values($1),($2)',[owner,outsider]);
-    const workspace=await scalar('select initialize_studio($1,$2) as value',[owner,JSON.stringify([{key:'research',kind:'specialist',appId:'research',role:'Researcher',version:'1',instructions:'Research'}])]);
+    const workspace=await scalar('select initialize_studio($1,$2) as value',[owner,JSON.stringify([{key:'robyn',kind:'director',role:'Robyn',version:'1',instructions:'Create and research'}])]);
     const project=await scalar("insert into studio_projects(workspace_id,created_by,name) values($1,$2,'Isolated restore') returning id as value",[workspace,owner]);
     const research=await scalar("insert into studio_assets(workspace_id,project_id,app_id,name,created_by) values($1,$2,'research','Cited notebook',$3) returning id as value",[workspace,project,owner]);
     const native=await scalar("insert into studio_assets(workspace_id,project_id,app_id,name,created_by) values($1,$2,'vectorcraft','Native fixture',$3) returning id as value",[workspace,project,owner]);
@@ -27,7 +28,7 @@ test('isolated database restore preserves exact references, ownership and uncert
     await commit(revision);assert.equal((await commit(conflict)).status,'conflict');
     await db.query("insert into agents(workspace_id,agent37_id) values($1,'restore-instance')",[workspace]);
     const employee=await scalar("update studio_employees set instance_id='restore-instance',provision_state='ready' where workspace_id=$1 returning id as value",[workspace]);
-    const assignment=await scalar("select to_jsonb(create_studio_assignment($1,$2,$3,$4,$5,'Continue the exact notebook',$6)) as value",[workspace,owner,project,employee,randomUUID(),JSON.stringify([exact])]);
+    const assignment=await scalar("select create_robyn_assignment($1,$2,$3,$4,$5,'Continue the exact notebook',$6,null,$7,'work') as value",[workspace,owner,project,employee,randomUUID(),JSON.stringify([exact]),JSON.stringify(craftIds)]);
     await scalar("select bind_studio_assignment_workflow($1,$2,$3,'restore-workflow') as value",[workspace,owner,assignment.id]);
     const claimed=await scalar('select claim_studio_assignment($1,$2,$3) as value',[workspace,owner,assignment.id]);
     const fence=[workspace,owner,assignment.id,'restore-workflow',claimed.assignment.run_attempt];

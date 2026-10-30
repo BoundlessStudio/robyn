@@ -4,8 +4,7 @@ import {readFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import {createServer} from 'node:http';
 import {build} from 'esbuild';
-import {studioTools} from '../../src/studio/tools.ts';
-import {isEmployeeReady} from '../../src/studio/manifest.ts';
+import {studioApps} from '../../src/studio/apps/registry.ts';
 
 export const projectId = '11111111-1111-4111-8111-111111111111';
 export const origin = 'http://127.0.0.1:3000';
@@ -72,7 +71,7 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
   // Only this isolated QA context may reach its temporary loopback TUS server.
   const context=await browser.newContext({viewport,permissions:browser.browserType().name()==='chromium'?['local-network-access']:[]});
   const page=await context.newPage();page.setDefaultTimeout(realEditor?60000:10000);
-  const state={assets:new Map(),revisions:new Map(),bytes:new Map(),requests:[],errors:[],activity:[],assignments:new Map(),allowance,failAllowance:false,failAssignmentReply:false,failStarterDownload:false,failCreationReply:false,failCommitReply:false,holdTransfers:false,releaseTransfers:null};
+  const state={assets:new Map(),revisions:new Map(),bytes:new Map(),requests:[],errors:[],activity:[],assignments:new Map(),allowance,failAllowance:false,failAssignmentReply:false,failBudgetReply:false,budgetChanges:new Map(),failStarterDownload:false,failCreationReply:false,failCommitReply:false,holdTransfers:false,releaseTransfers:null};
   // WebKit's interception API omits Blob request bodies. Receive real TUS bytes
   // on loopback for every engine instead of substituting the selected input.
   const transferServer=createServer(async(req,res)=>{
@@ -94,7 +93,9 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
   context.on('page',opened=>{opened.setDefaultTimeout(10000);opened.on('pageerror',error=>state.errors.push(error.message));});
   const project={id:projectId,name:'First project',brief:'',status:archived?'archived':'active',created_at:'2026-10-26T12:00:00Z',updated_at:'2026-10-26T12:00:00Z'};
   state.project=project;state.projects=new Map([[projectId,project]]);
-  const employees=[{id:director,role:'Creative Director',appId:null,ready:true},...studioTools.map(app=>({id:randomUUID(),role:app.employee.role,appId:app.id,ready:isEmployeeReady(app)}))];
+  const employees=[{id:director,employeeKey:'robyn',role:'Robyn',appId:null,ready:true}];
+  state.employeeId=director;
+  state.budget={workspaceId:'22222222-2222-4222-8222-222222222222',employees:employees.map(row=>({...row,name:'Robyn',monthlyCapMicros:0,provisioned:false,budget:null,usage:null,availableMicros:0,error:null})),configured:false,policy:null,summary:{monthlyLimitMicros:0,spentMicros:0,reservedMicros:0,availableMicros:0},period:'2026-10'};
   const cors={'access-control-allow-origin':'*'};
   await context.route('**/*',async route=>{
     const req=route.request(),url=new URL(req.url()),method=req.method();
@@ -124,15 +125,25 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
       state.requests.push({path:url.pathname,search:url.search,method,input});
       if(url.pathname==='/api/studio/projects')return route.fulfill({json:{projects:[...state.projects.values()].filter(row=>row.status==='active'),nextCursor:null}});
       if(url.pathname==='/api/studio/research/browser'){assert.ok(state.projects.has(url.searchParams.get('projectId')));state.researchControl??={control:'agent',controlId:null};if(input?.action==='take')state.researchControl={control:'human',controlId:input.controlId};if(input?.action==='return'){assert.equal(input.controlId,state.researchControl.controlId);state.researchControl={control:'agent',controlId:null};}return route.fulfill({json:{...state.researchControl,...(input?.action==='connect'?{ws:'wss://isolated-research.test'}:{})}});}
-      if(url.pathname==='/api/studio/bootstrap')return route.fulfill({json:{employees:employees.map(employee=>({...employee,kind:employee.appId?'specialist':'director',app_id:employee.appId,provision_state:'pending'}))}});
+      if(url.pathname==='/api/studio/bootstrap')return route.fulfill({json:{apps:studioApps,employees:employees.map(employee=>({...employee,employee_key:'robyn',kind:'director',app_id:null,provision_state:'pending'}))}});
       if(url.pathname.startsWith('/api/studio/projects/')){const selected=state.projects.get(url.pathname.split('/').pop());if(!selected)return route.fulfill({status:404,json:{error:{message:'Project not found.'}}});if(method==='PATCH')Object.assign(selected,input);return route.fulfill({json:{project:selected,assets:[...state.assets.values()].filter(row=>row.project_id===selected.id),activity:state.activity,nextAssetCursor:null}});}
-      if(url.pathname==='/api/studio/budgets')return route.fulfill({json:{workspaceId:'22222222-2222-4222-8222-222222222222',employees:employees.map(row=>({...row,name:row.role,monthlyCapMicros:0,provisioned:false,budget:null,usage:null,availableMicros:0,error:null})),configured:false,policy:null,summary:{monthlyLimitMicros:0,spentMicros:0,reservedMicros:0,availableMicros:0},period:'2026-10'}});
+      if(url.pathname==='/api/studio/budgets'){
+        if(method==='PATCH'){
+          if(input.mode!=='automatic')return route.fulfill({status:409,json:{error:{message:'This saved allowance change needs recovery before a new change.'}}});
+          const prior=state.budgetChanges.get(input.operationId);
+          if(prior)assert.deepEqual(input,prior);else state.budgetChanges.set(input.operationId,input);
+          state.budget={...state.budget,configured:true,employees:state.budget.employees.map(employee=>({...employee,monthlyCapMicros:input.monthlyLimitMicros,availableMicros:input.monthlyLimitMicros})),policy:{state:'synced',operationId:input.operationId,pendingRequest:input,mode:'automatic'},summary:{...state.budget.summary,monthlyLimitMicros:input.monthlyLimitMicros,availableMicros:input.monthlyLimitMicros}};
+          if(state.failBudgetReply)return route.fulfill({status:503,json:{error:{message:'The allowance acknowledgement was lost.'}}});
+        }
+        return route.fulfill({json:state.budget});
+      }
       if(url.pathname.startsWith('/api/studio/budgets/'))return route.fulfill(state.failAllowance?{status:503,json:{error:{message:'Unavailable'}}}:{json:{availableMicros:state.allowance,reason:state.allowance?null:'No AI allowance remains.'}});
       if(url.pathname==='/api/studio/assignments'){
         if(method==='POST'){
-          assert.ok(state.projects.has(input.projectId));assert.ok(employees.some(employee=>employee.id===input.employeeId));
+          assert.ok(state.projects.has(input.projectId));
           const prior=state.assignments.get(input.requestId);if(prior)assert.deepEqual(prior.input,input);
-          else state.assignments.set(input.requestId,{input,id:randomUUID(),employeeId:input.employeeId,appId:employees.find(employee=>employee.id===input.employeeId).appId,role:employees.find(employee=>employee.id===input.employeeId).role,brief:input.brief,startMode:input.startMode,state:'queued',result:null,deliverables:[],createdAt:project.created_at});
+          else if(input.employeeId!==director)return route.fulfill({status:409,json:{error:{message:'The saved employee has retired. Your original brief is preserved.'}}});
+          else state.assignments.set(input.requestId,{input,id:randomUUID(),employeeId:director,appId:input.appId??null,role:'Robyn',brief:input.brief,startMode:input.startMode,state:'queued',result:null,deliverables:[],createdAt:project.created_at});
           if(state.failAssignmentReply)return route.fulfill({status:503,json:{error:{message:'Reconnect the saved request.'}}});
           return route.fulfill({json:{assignmentId:state.assignments.get(input.requestId).id,state:'queued'}});
         }
@@ -218,7 +229,7 @@ export async function dropDocument(page, filename, content, target='.project-sta
 }
 
 export async function openEmployeeWorkspace(page) {
-  await page.locator('.project-header').getByRole('link',{name:'AI Employees',exact:true}).click();
-  await page.getByRole('heading',{name:'AI Employees.',exact:true}).waitFor();
+  await page.locator('.project-header').getByRole('link',{name:'Robyn',exact:true}).click();
+  await page.getByRole('heading',{name:'Robyn.',exact:true}).waitFor();
   return page;
 }

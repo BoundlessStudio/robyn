@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-10-30T03:48:41.424Z",
+  "status": "registered-awaiting-instance-acceptance",
+  "template": "robyn-studio-0-1-0@1",
+  "imageDigest": "sha256:ab0a9abd34d33f471df2f06a6f5bddbdd59651cd7030d3652e2fdde85932b0fc",
+  "defaultPort": 3737,
+  "sourceFingerprint": "4ff550b5e776dc3055217df0fda650cc4f1b59c8b761b6726fabccb7c493985e",
+  "contextSha256": "778b786bb09a83b205257cf3a193d6ba75b546384729ebd53a47a76d0bb1e371",
+  "contextBytes": 5502,
+  "allowlistedContextFiles": [
+    {
+      "name": "Dockerfile",
+      "bytes": 13296,
+      "sha256": "af053e6e34f646442be258da69a38c5ac1de0789c20ac5ec780bc805551b4b8c"
+    },
+    {
+      "name": "desktop-entrypoint.sh",
+      "bytes": 2256,
+      "sha256": "48ed032a2a34ef5675475dfaffcf4050c65b2092ecebef992b63d409cc345601"
+    },
+    {
+      "name": "release.json",
+      "bytes": 7339,
+      "sha256": "0eb0209f66fd11a0dff7909981a8c8580cca4762d1bc74d237c49c8f03b23bb5"
+    }
+  ],
+  "nativeApplicationCount": 14,
+  "nativeArchivesVerifiedAtBuild": true,
+  "nativeCliVersionsVerifiedAtBuild": true,
+  "nativeArchiveBytes": 1333550598,
+  "credentialsInBuildContext": false,
+  "providerImageBuildSucceeded": true,
+  "liveWorkstationAcceptance": false,
+  "workstationClient": "0.2.0",
+  "resources": {
+    "cpu": 2,
+    "memory": 4,
+    "disk": 6
+  }
+}

@@ -147,6 +147,21 @@ export interface ResizeInput {
   disk?: number;
 }
 
+export interface TemplateBuild {
+  id: string;
+  status: "created" | "building" | "ingesting" | "succeeded" | "failed";
+  name?: string;
+  template?: Template | null;
+  error?: { code: string; message: string } | null;
+  offset?: number;
+  data?: string;
+}
+
+function assignmentProfile(profile?: string | null) {
+  if (profile && !/^[a-z0-9_-]{1,100}$/.test(profile)) throw new Error("Invalid workstation profile");
+  return profile ? `&profile=${encodeURIComponent(profile)}` : "";
+}
+
 export const agent37 = {
   listAgents: () => call<{ data: Agent[] }>("/instances"),
   getAgent: (id: string) => call<Agent>(`/instances/${id}`),
@@ -198,6 +213,11 @@ export const agent37 = {
     call<Usage>(`/instances/${id}/usage${month ? `?month=${encodeURIComponent(month)}` : ""}`,{signal:AbortSignal.timeout(10_000)}),
 
   listTemplates: () => call<{ data: Template[] }>("/templates"),
+  getTemplate: (name: string) => call<Template>(`/templates/${encodeURIComponent(name)}`),
+  createTemplateBuild: (body: { name: string; size_bytes: number; default_port: number; description: string }) =>
+    call<TemplateBuild & { upload_url: string; expires_at: number; max_bytes: number }>("/template-builds", { method: "POST", body: JSON.stringify(body), signal: AbortSignal.timeout(90_000) }),
+  startTemplateBuild: (id: string) => call<TemplateBuild>(`/template-builds/${encodeURIComponent(id)}/start`, { method: "POST", body: "{}", signal: AbortSignal.timeout(90_000) }),
+  templateBuild: (id: string, offset?: number) => call<TemplateBuild>(`/template-builds/${encodeURIComponent(id)}${offset === undefined ? "" : `/logs?offset=${offset}`}`, { signal: AbortSignal.timeout(90_000) }),
 
   getBilling: () => call<{
     balance_usd: number;
@@ -239,15 +259,17 @@ export const agent37 = {
     ),
   // Durable assignment workers consume only the first identity, then recover
   // through this same response/session. Never retry POST after an unknown reply.
-  submitAssignmentTurn: (id: string, input: string, sessionId: string, signal: AbortSignal) =>
-    instanceFetch(id, "/v1/responses", {
+  submitAssignmentTurn: (id: string, input: string, sessionId: string, signal: AbortSignal, profile?: string | null) => {
+    assignmentProfile(profile);
+    return instanceFetch(id, "/v1/responses", {
       method: "POST", signal, headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ input, session_id: sessionId, stream: true, agent: "hermes", model: "default", provider: "custom:Agent37" }),
-    }),
+      body: JSON.stringify({ input, session_id: sessionId, stream: true, agent: "hermes", model: "default", provider: "custom:Agent37", ...(profile ? { profile } : {}) }),
+    });
+  },
   assignmentResponseStream: (id: string, responseId: string, signal: AbortSignal) =>
     instanceFetch(id, `/v1/responses/${encodeURIComponent(responseId)}/stream`, { signal }),
-  assignmentSession: (id: string, sessionId: string) =>
-    instanceCall<SessionDetail>(id, `/v1/sessions/${encodeURIComponent(sessionId)}?agent=hermes`, { signal: AbortSignal.timeout(185_000) }),
+  assignmentSession: (id: string, sessionId: string, profile?: string | null) =>
+    instanceCall<SessionDetail>(id, `/v1/sessions/${encodeURIComponent(sessionId)}?agent=hermes${assignmentProfile(profile)}`, { signal: AbortSignal.timeout(185_000) }),
   writeWorkstationFile: async (id: string, path: string, bytes: Uint8Array) => {
     const response = await instanceFetch(id, `/v1/files/content?path=${encodeURIComponent(path)}`, {
       method: "PUT", headers: { "Content-Type": "application/octet-stream" },
@@ -256,6 +278,7 @@ export const agent37 = {
     await response.body?.cancel();
     if (!response.ok) throw new Agent37Error(response.status, "workstation_file_write_failed", "Could not prepare the employee's workstation.");
   },
+  readWorkstationFile: (id: string, path: string) => instanceFetch(id, `/v1/files/content?path=${encodeURIComponent(path)}`, {headers:{"Accept-Encoding":"identity"},signal:AbortSignal.timeout(185_000)}),
 
   // ---- Per-instance file browser (Agents API /v1/files) — JSON surfaces only. The byte surfaces
   // (GET/PUT /v1/files/content, GET /v1/files/archive) stream and so go through instanceFetch. ----

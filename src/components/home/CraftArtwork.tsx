@@ -46,7 +46,7 @@ export function CraftArtwork({ appId, name, number, nearby, onInspect }: { appId
       {open && <div className="craft-lightbox-paper">
         <header><div><span className="flight-kicker">{String(number).padStart(2, "0")} / {name}</span><h2 id={`${appId}-preview-title`}>{artwork.title}</h2></div><button type="button" className="craft-lightbox-close" onClick={close} aria-label="Close interface preview" autoFocus><X size={22} /></button></header>
         <div className="craft-lightbox-art">{screen(true)}</div>
-        <footer><p id={`${appId}-preview-note`}>{appId === "research" ? "Actual Research notebook · Example brief" : `Actual ${name} editor · Example project`}</p><button type="button" className="craft-colour-toggle" aria-pressed={original} onClick={() => setOriginal(value => !value)}>{original ? "Paper & ink" : "Original colour"}<span aria-hidden="true"> ↗</span></button></footer>
+        <footer><p id={`${appId}-preview-note`}>{`Actual ${name} editor · Example project`}</p><button type="button" className="craft-colour-toggle" aria-pressed={original} onClick={() => setOriginal(value => !value)}>{original ? "Paper & ink" : "Original colour"}<span aria-hidden="true"> ↗</span></button></footer>
       </div>}
     </dialog>
   </>;

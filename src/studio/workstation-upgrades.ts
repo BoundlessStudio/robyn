@@ -19,7 +19,7 @@ export function matchingWorkstationTemplate(instance: Agent, template: string) {
       : instance.image_ref?.endsWith(`:${revision}`)));
 }
 
-export function ownedWorkstation(instance: Agent, identity: AssignmentIdentity, employee: StudioEmployee) {
+export function ownedWorkstation(instance: Agent, identity: Pick<AssignmentIdentity,"workspaceId">, employee: StudioEmployee) {
   if (employee.workspace_id !== identity.workspaceId
     || employee.instance_id && employee.instance_id !== instance.id
     || instance.metadata?.app_workspace !== identity.workspaceId || instance.metadata?.studio_employee !== employee.id) {
@@ -27,7 +27,7 @@ export function ownedWorkstation(instance: Agent, identity: AssignmentIdentity, 
   }
 }
 
-export function ownedWorkstationMirror(instance: Agent, identity: AssignmentIdentity, employee: StudioEmployee, mirror: WorkstationMirror | null) {
+export function ownedWorkstationMirror(instance: Agent, identity: Pick<AssignmentIdentity,"workspaceId">, employee: StudioEmployee, mirror: WorkstationMirror | null) {
   ownedWorkstation(instance, identity, employee);
   if (employee.instance_id !== instance.id || !mirror || mirror.agent37_id !== instance.id
     || mirror.workspace_id !== identity.workspaceId) {

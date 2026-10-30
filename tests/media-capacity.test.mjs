@@ -9,7 +9,10 @@ test("budget waits release media slots for Commons and reacquire capacity atomic
   const db = await studioDatabase();
   const scalar = async (sql, values = []) => (await db.query(sql, values)).rows[0]?.result;
   try {
-    await db.exec(migrationQuery(await readMigrations(fileURLToPath(new URL("../supabase/migrations", import.meta.url)))));
+    // Historical three-worker admission. Current one-workstation serialization
+    // and same-assignment media children are covered by robyn-workstation-database.
+    const migrations=await readMigrations(fileURLToPath(new URL("../supabase/migrations", import.meta.url)));
+    await db.exec(migrationQuery(migrations.filter(m=>m.filename<="0027_workstation_release_upgrades.sql")));
     const owner = randomUUID(), outsider = randomUUID();
     await db.query("insert into auth.users(id) values($1),($2)", [owner, outsider]);
     await db.exec("set role service_role");

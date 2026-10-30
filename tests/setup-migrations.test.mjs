@@ -16,6 +16,20 @@ const snapshot = async db => ({
   budgets: (await db.query("select * from studio_managed_budgets order by workspace_id")).rows,
   projects: (await db.query("select * from studio_projects order by id")).rows,
 });
+function retainedRows(before,after) {
+  for(const row of before){
+    const retained=after.find(next=>next.id?next.id===row.id:next.workspace_id===row.workspace_id);
+    assert.ok(retained,"A historical row must remain present");
+    assert.deepEqual(Object.fromEntries(Object.keys(row).map(key=>[key,retained[key]])),row);
+  }
+}
+function canonicalCutover(before,after) {
+  retainedRows(before,after);
+  for(const old of before)assert.ok(after.find(row=>row.id===old.id).retired_at);
+  const current=after.filter(row=>!row.retired_at);
+  assert.equal(current.length,1);assert.equal(current[0].employee_key,"robyn");assert.equal(current[0].monthly_cap_micros,0);
+  assert.ok(!before.some(old=>old.id===current[0].id));
+}
 async function seed(db) {
   const owner = randomUUID();
   await db.query("insert into auth.users(id) values($1)", [owner]);
@@ -34,11 +48,11 @@ test("setup applies only a checked suffix, preserves upgraded functions/data/gra
     await seed(db);
     const beforeUpgrade = await snapshot(db);
     await db.exec(migrationQuery(migrations));
-    assert.deepEqual((await snapshot(db)).employees, beforeUpgrade.employees);
+    canonicalCutover(beforeUpgrade.employees,(await snapshot(db)).employees);
     const beforeReplay = await snapshot(db);
     await db.exec(migrationQuery(migrations));
     assert.deepEqual(await snapshot(db), beforeReplay);
-    assert.match(beforeReplay.functions.find(f => f.name === "claim_studio_assignment(uuid,uuid,uuid)").definition, /budget_paused/);
+    assert.match(beforeReplay.functions.find(f => f.name === "claim_studio_assignment(uuid,uuid,uuid)").definition, /execution_model/);
     const ledger = (await db.query("select * from robyn_setup.migrations order by filename")).rows;
     assert.equal(ledger.length, migrations.length);
     assert.equal(ledger.filter(row => row.filename.startsWith("0007_")).length, 2);
@@ -81,10 +95,10 @@ test("legacy baselining never replays SQL and a committed setup with a lost ackn
     }, "test", { directory, baseline, sleep: async () => {} });
     assert.equal(calls, 2);
     const after = await snapshot(db);
-    assert.deepEqual(after.budgets, before.budgets);
+    retainedRows(before.budgets,after.budgets);
     assert.deepEqual(after.projects, before.projects);
-    assert.deepEqual(after.employees, before.employees);
-    assert.deepEqual(after.functions.find(f => f.name === "claim_studio_assignment(uuid,uuid,uuid)"), before.functions.find(f => f.name === "claim_studio_assignment(uuid,uuid,uuid)"));
+    canonicalCutover(before.employees,after.employees);
+    assert.match(after.functions.find(f => f.name === "claim_studio_assignment(uuid,uuid,uuid)").definition,/execution_model/);
     const ledger = (await db.query("select filename,baselined from robyn_setup.migrations order by filename")).rows;
     assert.equal(ledger.filter(row => row.baselined).length, prefix.length);
     assert.equal(ledger.length, migrations.length);

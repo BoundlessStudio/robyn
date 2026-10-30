@@ -4,9 +4,11 @@
 
 This repository implements **Robyn Creative Studio**. [docs/PLAN.md](docs/PLAN.md) is the complete scope; [docs/CURRENT-STATUS.md](docs/CURRENT-STATUS.md) is the current acceptance index. The dated starter guidance in docs/UPSTREAM-STARTER.md is historical. CLAUDE.md imports this file, so keep the instructions here.
 
-The pilot is invitation-only and passwordless. Public signup must remain disabled. The authenticated studio, all registered Crafts and Research are **desktop-only**. Compact/mobile editor work is outside the pilot and must not block completion. The public homepage supports mobile presentation. Explain the desktop requirement on unsupported first entry and preserve an already-open native editor when the window is temporarily narrowed. Do not restart speculative homepage performance work without a concrete reported issue or new request.
+The pilot is invitation-only and passwordless. Public signup must remain disabled. The authenticated studio, all registered Crafts and Robyn’s browser/Notes tools are **desktop-only**. Compact/mobile editor work is outside the pilot and must not block completion. The public homepage supports mobile presentation. Explain the desktop requirement on unsupported first entry and preserve an already-open native editor when the window is temporarily narrowed. Do not restart speculative homepage performance work without a concrete reported issue or new request.
 
 Independent app integrations live in src/studio/apps/*.json. Native images, browser adapter patches and workstation client sources belong in the companion ../robyn-artcraft-runtime, not a Dockerfile here. Never mark a manifest verified before its actual native → browser edit → confirmed save → native continuation passes. Do not overwrite a published release version with changed bytes.
+
+The current architecture is one visible Robyn and one shared workstation per creator, with all registered Craft applications installed. Application instructions load as skills when needed. Browsing and research are tools; saved notebooks remain Notes. Do not recreate the retired Director/specialist/Researcher roster. Run one production job per workspace and preserve task-specific credentials, working folders, internal profiles and uncertain-operation fences. Historical employee rows retain attribution only.
 
 ## Authorization and provider boundaries
 

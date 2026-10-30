@@ -1,6 +1,6 @@
 import { studioApps } from "./apps/registry";
-import { research } from "./specialists/research";
+import { notebook } from "./notebook";
 
-// Craft modules stay independent; non-Craft workspaces join the same scoped
-// assignments and asset service without changing the ArtCraft catalogue.
-export const studioTools = [research, ...studioApps];
+// Private saved-format lookup includes old notebooks. Public applications and
+// Robyn's application skills are the independent Craft registry only.
+export const studioTools = [notebook, ...studioApps];

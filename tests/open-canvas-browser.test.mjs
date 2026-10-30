@@ -22,7 +22,7 @@ test('application workspace renames its project and opens its dedicated employee
     assert.equal(await page.getByRole('heading',{name:'Garden guide',exact:true}).count(),1);
     page=await openEmployeeWorkspace(workspace);
     await page.getByLabel('Your idea',{exact:true}).fill('A welcoming guide to our garden.');
-    await page.getByRole('button',{name:'Assignments',exact:true}).click();
+    await page.getByRole('button',{name:'Jobs',exact:true}).click();
     await page.getByRole('button',{name:'Conversation',exact:true}).click();
     await page.waitForFunction(()=>document.querySelector('textarea')?.value==='A welcoming guide to our garden.');
     assert.equal(await page.getByLabel('Your idea',{exact:true}).inputValue(),'A welcoming guide to our garden.');
@@ -35,7 +35,7 @@ test('idea planning shows allowance, freezes the choice across lost replies and 
   try{
     const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/projects/${projectId}/employees`});state.failAssignmentReply=true;
     await page.getByLabel('Your idea',{exact:true}).fill('A garden guide. Help me find a direction.');
-    await page.getByText('$5.00 available to your Director',{exact:true}).waitFor();
+    await page.getByText('$5.00 available to Robyn',{exact:true}).waitFor();
     await page.getByRole('button',{name:'Help me plan',exact:true}).click();
     await page.getByRole('alert').waitFor();
     const first=state.requests.find(req=>req.path==='/api/studio/assignments'&&req.method==='POST').input;
@@ -45,15 +45,15 @@ test('idea planning shows allowance, freezes the choice across lost replies and 
     assert.ok(await page.getByLabel('Your idea',{exact:true}).getAttribute('readonly')!==null);
     state.failAssignmentReply=false;state.allowance=0;
     await page.getByRole('button',{name:'Reconnect this brief',exact:true}).click();
-    await page.getByRole('status').filter({hasText:'Your Director is exploring'}).waitFor();
+    await page.getByRole('status').filter({hasText:'Robyn is exploring'}).waitFor();
     assert.deepEqual(state.requests.filter(req=>req.path==='/api/studio/assignments'&&req.method==='POST').map(req=>req.input),[first,first]);
     assert.equal(state.assignments.size,1);
     const job=state.assignments.get(first.requestId);job.state='awaiting_review';job.result='A concise illustrated guide for first-time visitors.';state.allowance=5000000;
-    await page.getByRole('button',{name:'Assignments',exact:true}).click();await page.getByRole('button',{name:'Conversation',exact:true}).click();
+    await page.getByRole('button',{name:'Jobs',exact:true}).click();await page.getByRole('button',{name:'Conversation',exact:true}).click();
     await page.getByRole('button',{name:'Use this plan for a first draft',exact:true}).click();
     assert.match(await page.getByLabel('Your idea',{exact:true}).inputValue(),/first-time visitors/);
     await page.getByRole('button',{name:'Make a first draft',exact:true}).click();
-    await page.getByRole('status').filter({hasText:'Your Director is taking it'}).waitFor();
+    await page.getByRole('status').filter({hasText:'Robyn is taking it'}).waitFor();
     const second=[...state.assignments.values()].find(row=>row.id!==job.id);assert.equal(second.startMode,'draft');assert.notEqual(second.input.requestId,first.requestId);
     assert.deepEqual(state.errors,[]);
   }finally{await browser.close();}
@@ -65,8 +65,8 @@ test('zero and unverifiable AI allowance preserve the idea and prevent both paid
     const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/projects/${projectId}/employees`,allowance:0});await page.getByLabel('Your idea',{exact:true}).fill('A small poster.');
     await page.getByText('AI allowance needed',{exact:true}).waitFor();
     for(const name of ['Make a first draft','Help me plan'])assert.equal(await page.getByRole('button',{name,exact:true}).isDisabled(),true);
-    state.failAllowance=true;await page.getByRole('button',{name:'Assignments',exact:true}).click();await page.getByRole('button',{name:'Conversation',exact:true}).click();
-    await page.getByText('The employee’s allowance could not be checked.',{exact:false}).waitFor();
+    state.failAllowance=true;await page.getByRole('button',{name:'Jobs',exact:true}).click();await page.getByRole('button',{name:'Conversation',exact:true}).click();
+    await page.getByText('Robyn’s allowance could not be checked.',{exact:false}).waitFor();
     assert.equal(await page.getByLabel('Your idea',{exact:true}).inputValue(),'A small poster.');assert.equal(state.assignments.size,0);
   }finally{await browser.close();}
 });
@@ -76,8 +76,8 @@ test('a delivered first draft appears in its project and opens from the employee
   try{
     const {page:workspace,state}=await nativeImportFixture(browser);
     const page=await openEmployeeWorkspace(workspace);await page.getByLabel('Your idea',{exact:true}).fill('A welcoming garden guide.');
-    await page.getByText('$5.00 available to your Director',{exact:true}).waitFor();await page.getByRole('button',{name:'Make a first draft',exact:true}).click();
-    await page.getByRole('status').filter({hasText:'Your Director is taking it'}).waitFor();
+    await page.getByText('$5.00 available to Robyn',{exact:true}).waitFor();await page.getByRole('button',{name:'Make a first draft',exact:true}).click();
+    await page.getByRole('status').filter({hasText:'Robyn is taking it'}).waitFor();
     const job=[...state.assignments.values()][0],assetId=randomUUID(),revisionId=randomUUID(),path='Garden guide.docx',bytes=Buffer.from('An editable first draft.');
     state.assets.set(assetId,{id:assetId,project_id:projectId,app_id:'wordcraft',name:'Garden guide',asset_kind:'native',current_revision_id:revisionId,created_at:'2026-10-26T12:00:00Z'});
     state.revisions.set(revisionId,{id:revisionId,assetId,state:'committed',revision_number:1,created_at:'2026-10-26T12:00:00Z',package:{files:[{path,role:'master',mimeType:'application/octet-stream',bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')}],dependencies:[]}});

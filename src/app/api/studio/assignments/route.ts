@@ -1,6 +1,6 @@
 import { json, handleError, ApiError } from "@/lib/http";
 import { requireStudio, readStudioBody, ownedProject, dbFailure, id, textField } from "@/studio/server";
-import { studioTools as studioApps } from "@/studio/tools";
+import { studioApps } from "@/studio/apps/registry";
 import { isEmployeeReady } from "@/studio/manifest";
 import { assignmentRpc } from "@/studio/assignment-server";
 import { launchAssignment } from "@/studio/assignment-launch";
@@ -16,7 +16,7 @@ export async function GET(request: Request) {
     await ownedProject(db, workspaceId, projectId);
     const [jobs, employees, campaigns] = await Promise.all([
       db.from("studio_assignments").select("*").eq("workspace_id", workspaceId).eq("project_id", projectId).order("created_at", { ascending: false }).limit(100),
-      db.from("studio_employees").select("id,role,app_id,kind").eq("workspace_id", workspaceId),
+      db.from("studio_employees").select("id,employee_key,role,app_id,kind,retired_at").eq("workspace_id", workspaceId),
       db.from("studio_campaigns").select("id,root_assignment_id,state").eq("workspace_id", workspaceId).eq("project_id", projectId),
     ]);
     for (const result of [jobs, employees, campaigns]) dbFailure(result.error);
@@ -37,7 +37,7 @@ export async function GET(request: Request) {
       const campaign = campaigns.data?.find(campaign => campaign.root_assignment_id === job.id);
       const campaignSteps = steps.data?.filter(step => step.campaign_id === campaign?.id) ?? [];
       const deliverables = [...new Map(outputs.filter(ref => ref.assignment_id === job.id).map(ref => [ref.id, ref])).values()];
-      return { id: job.id, employeeId: job.employee_id, role: employee?.role ?? "Creative employee", appId: employee?.app_id ?? null,
+      return { id: job.id, employeeId: job.employee_id, role: employee?.retired_at ? "Saved job" : employee?.role ?? "Robyn", appId: job.app_id ?? employee?.app_id ?? null,
         brief: job.brief, state: job.state, result: job.result_text, errorCode: job.error_code, createdAt: job.created_at, finishedAt: job.finished_at,
         browserPaused: job.browser_paused,
         recovering: ["dispatching", "uncertain"].includes(job.dispatch_state) || job.error_code === "workstation_recovering",
@@ -47,7 +47,7 @@ export async function GET(request: Request) {
         deliverables: deliverables.filter(revision => assets.data?.some(asset => asset.id === revision.asset_id)).map(revision => ({ assetId: revision.asset_id, revisionId: revision.id, name: assets.data?.find(asset => asset.id === revision.asset_id)?.name ?? "Saved work", state: revision.state as "committed" | "conflict" })),
       };
     });
-    return json({ assignments, employees: (employees.data ?? []).map(employee => ({ id: employee.id, role: employee.role, appId: employee.app_id, ready: employee.kind === "director" || studioApps.some(app => app.id === employee.app_id && isEmployeeReady(app)) })) });
+    return json({ assignments, employees: (employees.data ?? []).filter(employee => employee.employee_key === "robyn" && !employee.retired_at).map(employee => ({ id: employee.id, role: "Robyn", appId: null, ready: true })) });
   } catch (error) { return handleError(error); }
 }
 
@@ -58,28 +58,37 @@ export async function POST(request: Request) {
     const projectId = id(input.projectId, "project ID");
     const project = await ownedProject(db, workspaceId, projectId);
     if (project.status !== "active") throw new ApiError(409, "project_archived", "Reactivate this project before assigning new work.");
-    let query = db.from("studio_employees").select("*").eq("workspace_id", workspaceId);
-    if (input.employeeId !== undefined) query = query.eq("id", id(input.employeeId, "employee ID"));
-    else if (typeof input.appId === "string") query = query.eq("app_id", input.appId).eq("kind", "specialist");
-    else throw new ApiError(400, "employee_required", "Choose a creative employee.");
-    const { data, error } = await query.maybeSingle(); dbFailure(error);
-    if (!data) throw new ApiError(404, "not_found", "Employee not found.");
-    const employee = data as StudioEmployee;
     const startMode=input.startMode??"work";
     if(typeof startMode!=="string"||!["work","draft","plan"].includes(startMode))throw new ApiError(400,"invalid_start_mode","Choose how you want to begin.");
-    if(startMode!=="work"&&employee.kind!=="director")throw new ApiError(400,"director_required","Start this idea with the Director.");
-    if (employee.kind === "specialist" && !studioApps.some(app => app.id === employee.app_id && isEmployeeReady(app))) throw new ApiError(409, "integration_pending", "This employee's application is still being verified.");
     const brief = textField(input.brief, 20000, "Assignment brief");
     const requestId = id(input.requestId, "request ID");
-    const {data:existing,error:existingError}=await db.from("studio_assignments").select("id").eq("workspace_id",workspaceId).eq("project_id",projectId).eq("request_key",requestId).maybeSingle();dbFailure(existingError);
-    if(!existing){const capacity=await paidCapacity(db,employee);if(!capacity.availableMicros)throw new ApiError(409,capacity.code??"employee_budget_required",`${capacity.reason} Manage budget in Studio settings; your draft is preserved.`);}
+    const {data:prior,error:existingError}=await db.from("studio_assignments").select("*").eq("workspace_id",workspaceId).eq("request_key",requestId).maybeSingle();dbFailure(existingError);
+    const existing=prior as Assignment|null;
     if (!Array.isArray(input.inputs) || input.inputs.length > 100) throw new ApiError(400, "invalid_inputs", "Supply up to 100 exact saved revisions.");
     const inputs = input.inputs.map(ref => {
       if (!ref || typeof ref !== "object" || Array.isArray(ref)) throw new ApiError(400, "invalid_inputs", "Choose an exact saved revision.");
       return { assetId: id(ref.assetId, "asset ID"), revisionId: id(ref.revisionId, "revision ID") };
     });
     if (new Set(inputs.map(ref => ref.revisionId)).size !== inputs.length) throw new ApiError(400, "invalid_inputs", "Each saved revision may appear once.");
-    const assignment = await assignmentRpc<Assignment>(db, "create_studio_start_assignment", { p_workspace: workspaceId, p_user: user.id, p_project: projectId, p_employee: employee.id, p_request: requestId, p_brief: brief, p_inputs: inputs, p_mode:startMode });
+    const requestedEmployee=input.employeeId===undefined?null:id(input.employeeId,"employee ID");
+    if(existing&&existing.execution_model!=="robyn"){
+      const {data:refs,error:refsError}=await db.from("studio_assignment_inputs").select("asset_id,revision_id").eq("workspace_id",workspaceId).eq("assignment_id",existing.id);dbFailure(refsError);
+      const exact=(rows:Array<{assetId:string;revisionId:string}>)=>JSON.stringify([...rows].sort((a,b)=>a.revisionId.localeCompare(b.revisionId)));
+      if(existing.project_id!==projectId||existing.employee_id!==requestedEmployee||existing.brief!==brief||(existing.start_mode??"work")!==startMode||input.appId!==undefined||exact(inputs)!==exact((refs??[]).map(r=>({assetId:r.asset_id,revisionId:r.revision_id}))))throw new ApiError(409,"operation_key_reused","Retry the saved request without changing it.");
+      // A lost acknowledgement of a historical request is still its original
+      // operation. Never retarget it to the new agent or issue a second job.
+      return json({assignmentId:existing.id,state:existing.state},202);
+    }
+    const {data,error}=await db.from("studio_employees").select("*").eq("workspace_id",workspaceId).eq("employee_key","robyn").is("retired_at",null).maybeSingle();dbFailure(error);
+    if(!data)throw new ApiError(503,"robyn_unavailable","Robyn is being prepared. Your draft is preserved.");
+    const employee=data as StudioEmployee;
+    if(requestedEmployee&&requestedEmployee!==employee.id)throw new ApiError(409,"employee_retired","This saved request targets a previous employee. Your brief is preserved; start a new request with Robyn.");
+    const appId=input.appId??null;
+    const app=studioApps.find(app=>app.id===appId);
+    if(appId!==null&&!app)throw new ApiError(400,"invalid_application","Choose a Craft tool in this Studio.");
+    if(app&&!existing&&!isEmployeeReady(app))throw new ApiError(409,"integration_pending","This application is still being verified. Your draft is preserved.");
+    if(!existing){const capacity=await paidCapacity(db,employee);if(!capacity.availableMicros)throw new ApiError(409,capacity.code??"employee_budget_required",`${capacity.reason} Manage budget in Studio settings; your draft is preserved.`);}
+    const assignment = await assignmentRpc<Assignment>(db, "create_robyn_assignment", { p_workspace: workspaceId, p_user: user.id, p_project: projectId, p_employee: employee.id, p_request: requestId, p_brief: brief, p_inputs: inputs, p_app:appId,p_allowed_apps:existing?.allowed_app_ids??studioApps.filter(isEmployeeReady).map(app=>app.id),p_mode:startMode });
     await launchAssignment(db, { workspaceId, userId: user.id, assignmentId: assignment.id }, assignment);
     return json({ assignmentId: assignment.id, state: assignment.state }, 202);
   } catch (error) { return handleError(error); }

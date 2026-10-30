@@ -1,3 +1,5 @@
+// Historical multi-employee regression fixture: the forward migration 0028 and
+// current canonical contracts are covered in robyn-workstation-database.test.mjs.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readdir,readFile} from 'node:fs/promises';
@@ -8,7 +10,7 @@ test('starting intent is owned, immutable on retry, planning cannot produce, and
   const db=await studioDatabase();
   const scalar=async(sql,args=[])=>(await db.query(sql,args)).rows[0]?.result;
   try{
-    for(const file of (await readdir(new URL('../supabase/migrations/',import.meta.url))).filter(file=>file.endsWith('.sql')).sort())await db.exec(await readFile(new URL('../supabase/migrations/'+file,import.meta.url),'utf8'));
+    for(const file of (await readdir(new URL('../supabase/migrations/',import.meta.url))).filter(file=>file.endsWith('.sql') && file<'0028_').sort())await db.exec(await readFile(new URL('../supabase/migrations/'+file,import.meta.url),'utf8'));
     const owner=randomUUID(),other=randomUUID();await db.query('insert into auth.users(id) values($1),($2)',[owner,other]);await db.exec('set role service_role');
     const profiles=[{key:'director',kind:'director',role:'Director',version:'1',instructions:'Plan.'},{key:'wordcraft',kind:'specialist',appId:'wordcraft',role:'Writer',version:'1',instructions:'Write.'}];
     const workspace=await scalar('select initialize_studio($1,$2) as result',[owner,JSON.stringify(profiles)]);

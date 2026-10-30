@@ -1,3 +1,5 @@
+// Historical multi-employee regression fixture: the forward migration 0028 and
+// current canonical contracts are covered in robyn-workstation-database.test.mjs.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -17,7 +19,7 @@ test('workflow retries cannot redispatch, replace a response, bypass cancellatio
       create table storage.objects(id uuid primary key default gen_random_uuid(),bucket_id text references storage.buckets(id),name text);
       alter table storage.objects enable row level security; grant usage on schema storage to anon,authenticated,service_role;
       grant all on storage.objects to anon,authenticated,service_role;`);
-    const migrations=(await fs.readdir(new URL('../supabase/migrations',import.meta.url))).filter(x=>x.endsWith('.sql')).sort();
+    const migrations=(await fs.readdir(new URL('../supabase/migrations',import.meta.url))).filter(x=>x.endsWith('.sql') && x<'0028_').sort();
     for(const name of migrations)await db.exec(await fs.readFile(new URL('../supabase/migrations/'+name,import.meta.url),'utf8'));
     const functions=['bind_studio_assignment_workflow','claim_studio_assignment_dispatch','record_studio_assignment_response','mark_studio_dispatch_uncertain','finish_studio_assignment','record_studio_assignment_terminal_history','claim_studio_employee_provision','claim_studio_employee_creation','bind_studio_employee_instance','ready_studio_employee','review_studio_assignment','replace_studio_assignment_workflow'];
     for(const role of ['anon','authenticated']){

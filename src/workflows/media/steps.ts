@@ -15,10 +15,21 @@ import { validateRevisionPackage, type PackageFile } from "@/studio/assets";
 import { preparePackageTransfers, readSavedPackage } from "@/studio/package-store";
 import { revisionFiles, verifyStoredFiles, dbFailure, ownedAsset } from "@/studio/server";
 import { mediaNeedsSettlement, mediaTerminal as terminal, mediaCanCancelUnpaid } from "@/studio/media-recovery";
+import {ownedWorkstationMirror} from "@/studio/workstation-upgrades";
 
 interface Observation { phase: string; needsRequest?: boolean; files?: PackageFile[]; actualMicros?: number; paymentSubmitted?: boolean; providerJobId?: string; providerModel?: string; receipt?: Record<string, unknown>; errorCode?: string; metadata?: Record<string, unknown> }
 const allowedMediaHosts = ["commons.wikimedia.org", "upload.wikimedia.org", "thumb.wikimedia.org", "blockrun.ai", "storage.blockrun.ai", "cdn.blockrun.ai", "trezalabs.com", "www.trezalabs.com", "cdn.trezalabs.com", "storage.googleapis.com", "fal.media"];
 const workerRoot = (job: MediaJob) => `/home/node/.robyn/media/${job.id}`;
+
+async function ownedMediaInstance(db:DB,workspaceId:string,job:MediaJob){
+  if(!job.instance_id)throw new ApiError(409,"media_workstation_ownership","The media workstation binding is missing.");
+  const {data:worker,error:workerError}=await db.from("studio_employees").select("*").eq("workspace_id",workspaceId).eq("instance_id",job.instance_id).maybeSingle();dbFailure(workerError);
+  const {data:mirror,error:mirrorError}=await db.from("agents").select("agent37_id,workspace_id,template").eq("workspace_id",workspaceId).eq("agent37_id",job.instance_id).maybeSingle();dbFailure(mirrorError);
+  if(!worker||job.budget_employee_id&&worker.id!==job.budget_employee_id)throw new ApiError(409,"media_workstation_ownership","The media workstation's employee binding could not be verified.");
+  const instance=await agent37.getAgent(job.instance_id);
+  ownedWorkstationMirror(instance,{workspaceId},worker as StudioEmployee,mirror);
+  return instance;
+}
 
 async function updateJob(db: DB, identity: MediaIdentity, job: MediaJob, values: Record<string, unknown>) {
   let query = db.from("studio_media_jobs").update({ ...values, updated_at: new Date().toISOString() }).eq("id", job.id).eq("workspace_id", identity.workspaceId).eq("created_by", identity.userId).eq("workflow_id", job.workflow_id);
@@ -114,8 +125,7 @@ async function settleJob(db: DB, identity: MediaIdentity, job: MediaJob): Promis
     await updateJob(db, identity, job, { error_code: "payment_workstation_missing" });
     return "done";
   }
-  const instance = await agent37.getAgent(job.instance_id);
-  if (instance.metadata?.app_workspace !== identity.workspaceId) throw new ApiError(409, "media_workstation_ownership", "The payment workstation is not owned by this studio.");
+  const instance = await ownedMediaInstance(db,identity.workspaceId,job);
   if (["sleeping", "stopped"].includes(instance.status)) { await agent37.start(instance.id); return "wait"; }
   if (instance.status !== "running") return "wait";
   const observed = await remoteJob(instance.id, job, {
@@ -135,10 +145,11 @@ async function settleJob(db: DB, identity: MediaIdentity, job: MediaJob): Promis
   return observed.phase === "uncertain" ? "done" : "wait";
 }
 
-async function cleanupCompletedJob(job: MediaJob, workspaceId: string): Promise<"wait" | "done"> {
+async function cleanupCompletedJob(db:DB,job: MediaJob, workspaceId: string): Promise<"wait" | "done"> {
   if (job.state !== "completed" || !job.billing_settled || !job.instance_id || !job.revision_id) return "done";
-  const instance = await agent37.getAgent(job.instance_id);
-  if (instance.metadata?.app_workspace !== workspaceId) throw new ApiError(409,"media_workstation_ownership","The media workstation is not owned by this studio.");
+  const {data:retired,error}=await db.from("studio_retired_workstations").select("deleted_at").eq("workspace_id",workspaceId).eq("instance_id",job.instance_id).maybeSingle();dbFailure(error);
+  if(retired?.deleted_at)return "done"; // Checked retirement already removed its local working copy.
+  const instance = await ownedMediaInstance(db,workspaceId,job);
   // Housekeeping does not wake a stopped workstation. It can run on reconnect.
   if (instance.status !== "running") return "done";
   const result = await remoteJob(instance.id,job,null,undefined,false,true);
@@ -151,11 +162,12 @@ export async function processMediaJob(identity: MediaIdentity, jobId: string, wo
   const { data: workspace, error: ownerError } = await db.from("workspaces").select("id").eq("id", identity.workspaceId).eq("owner_id", identity.userId).maybeSingle(); dbFailure(ownerError);
   if (!workspace) return "done";
   let job = await ownedMediaJob(db, identity, jobId);
-  if (terminal(job) && !mediaNeedsSettlement(job)) return cleanupCompletedJob(job, identity.workspaceId);
+  if (terminal(job) && !mediaNeedsSettlement(job)) return cleanupCompletedJob(db,job, identity.workspaceId);
   const { data: claimed, error: claimError } = await db.rpc("claim_media_job", { p_workspace: identity.workspaceId, p_user: identity.userId, p_job: jobId, p_workflow: workflowId }); mediaDbFailure(claimError);
   if (!claimed) return "done";
   job = await ownedMediaJob(db, identity, jobId);
   if (terminal(job)) return settleJob(db, identity, job);
+  if(job.state==="waiting_capacity")return "wait";
   // Revocation after external submission prevents late publication. A paid
   // outcome remains reserved until its charge is actually known.
   const { data: project,error:projectError } = await db.from("studio_projects").select("status").eq("workspace_id", identity.workspaceId).eq("id", identity.projectId).maybeSingle();dbFailure(projectError);
@@ -169,10 +181,10 @@ export async function processMediaJob(identity: MediaIdentity, jobId: string, wo
   }
   try {
     const initial=["preparing","queued","waiting_budget","waiting_capacity"].includes(job.state);
-    // The Director buys generation for the whole team. The requesting employee
+    // Robyn uses the same Studio allowance for media. The requesting employee
     // remains on the job for authorization and provenance.
     if(initial){
-      const {data:director,error}=await db.from("studio_employees").select("*").eq("workspace_id",identity.workspaceId).eq("kind","director").single();dbFailure(error);
+      const {data:director,error}=await db.from("studio_employees").select("*").eq("workspace_id",identity.workspaceId).eq("employee_key","robyn").is("retired_at",null).single();dbFailure(error);
       const payer=director as StudioEmployee;
       if(job.operation==="generate"){
         const capacity=await paidCapacity(db,payer,job.id);
@@ -188,7 +200,7 @@ export async function processMediaJob(identity: MediaIdentity, jobId: string, wo
       if(job.operation==="generate"){
         // Read gross headroom here; the serialized SQL reservation deducts all
         // other unsettled jobs, including holds from previous calendar months.
-        const instance=await verifyBudgetInstance(payer);
+        const instance=await verifyBudgetInstance(db,payer);
         const {data:amount,error}=await db.rpc("reserve_media_charge",{p_workspace:identity.workspaceId,p_user:identity.userId,p_job:job.id,p_workflow:workflowId,p_available:managedHeadroom(await agent37.getBudget(instance!.id)),p_required:estimatedMediaCost(job.request)});mediaDbFailure(error);
         if(!amount)return "wait";
         job.reserved_micros=Number(amount);job.state="preparing";
@@ -196,15 +208,14 @@ export async function processMediaJob(identity: MediaIdentity, jobId: string, wo
     }
     if (!job.instance_id) {
       const query = db.from("studio_employees").select("*").eq("workspace_id", identity.workspaceId);
-      const { data: employee, error } = job.employee_id ? await query.eq("id", job.employee_id).single() : await query.eq("kind", "director").single(); dbFailure(error);
+      const { data: employee, error } = job.employee_id ? await query.eq("id", job.employee_id).single() : await query.eq("employee_key", "robyn").is("retired_at",null).single(); dbFailure(error);
       // Legacy paid jobs may still be bound to a specialist's previous known
       // image. Recover their result without authorizing an image change here.
       const instance = await ensureEmployeeInstance(db, { workspaceId: identity.workspaceId, userId: identity.userId, assignmentId: job.id }, employee as StudioEmployee, { allowPreviousForMediaRecovery: true });
       if (!instance) return "wait";
       await updateJob(db, identity, job, { instance_id: instance.id }); job.instance_id = instance.id;
     }
-    const instance = await agent37.getAgent(job.instance_id);
-    if (instance.metadata?.app_workspace !== identity.workspaceId) throw new ApiError(409, "media_workstation_ownership", "The media workstation is not owned by this studio.");
+    const instance = await ownedMediaInstance(db,identity.workspaceId,job);
     if (["sleeping", "stopped"].includes(instance.status)) { await agent37.start(instance.id); return "wait"; }
     if (instance.status !== "running") return "wait";
     const request = job.state === "preparing" || job.state === "queued" ? await workerRequest(db, identity, job) : null;

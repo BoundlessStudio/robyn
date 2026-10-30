@@ -71,7 +71,7 @@ export async function listMediaJobs(db: DB, identity: MediaIdentity, url = "http
   return {jobs:result.items.map(publicMediaJob),nextCursor:result.nextCursor};
 }
 export async function mediaBudget(db: DB, workspaceId: string) {
-  const {data,error}=await db.from("studio_employees").select("id").eq("workspace_id",workspaceId).eq("kind","director").single();mediaDbFailure(error);
-  if(!data)throw new ApiError(503,"director_unavailable","The Creative Director is unavailable.");
+  const {data,error}=await db.from("studio_employees").select("id").eq("workspace_id",workspaceId).eq("employee_key","robyn").is("retired_at",null).single();mediaDbFailure(error);
+  if(!data)throw new ApiError(503,"director_unavailable","Robyn is unavailable.");
   return paidCapacity(db,await ownedBudgetEmployee(db,workspaceId,data.id));
 }

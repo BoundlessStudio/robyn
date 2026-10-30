@@ -7,6 +7,7 @@ export interface PendingAssignment {
   inputs: AssetRef[];
   requestId: string;
   startMode?: import("./start-mode").StartMode;
+  appId?: string;
 }
 export interface AssignmentDraft {
   version: 1;
@@ -29,6 +30,7 @@ export function readAssignmentDraft(storage: Pick<Storage, "getItem">, projectId
   if (request !== null && (typeof request !== "object" || request.projectId !== projectId || !uuid(request.requestId) || !uuid(request.employeeId)
     || typeof request.brief !== "string" || !request.brief.trim() || !Array.isArray(request.inputs) || request.inputs.length > 100
     || (request.startMode !== undefined && !["work", "draft", "plan"].includes(request.startMode))
+    || (request.appId !== undefined && (typeof request.appId !== "string" || !/^[a-z]+craft$/.test(request.appId)))
     || request.inputs.some(ref => !ref || !uuid(ref.assetId) || !uuid(ref.revisionId)))) throw new Error("Invalid saved assignment request");
   // The frozen payload is authoritative, even if another editor is now open.
   return request ? { ...draft, brief: request.brief, employeeId: request.employeeId, includeOpen: request.inputs.length > 0 } : draft;

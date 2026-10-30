@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import type {RefObject} from "react";
-import { ArrowUpRight, Upload, Users } from "lucide-react";
-import { research } from "@/studio/specialists/research";
+import { ArrowUpRight, Upload, MessageCircle } from "lucide-react";
 import { launchableApps } from "@/studio/application-launch";
 import { studioApps } from "@/studio/apps/registry";
 import { currentBlankStarters } from "@/studio/blank-starters";
@@ -33,8 +32,7 @@ export function ApplicationLauncher({ projectId, launch, ready, onLaunch, onFile
         <AppIcon app={app} className="application-icon"/>
         <span><strong>{app.name}</strong><small>{launchableApps.some(item=>item.id===app.id)?currentBlankStarters.find(item => item.appId === app.id)?.description:"Application being connected"}</small></span><ArrowUpRight size={15} aria-hidden="true"/>
       </button>)}
-      <Link href={`/dashboard/projects/${projectId}/research`} className="application-research"><AppIcon app={research} className="application-icon"/><span><strong>Research</strong><small>Open your research browser</small></span><ArrowUpRight size={15}/></Link>
     </div>
-    <footer><span>Manual editing uses no AI allowance.</span><div><button ref={importButtonRef} onClick={onFiles} disabled={launch.busy}><Upload size={14}/>Open existing files</button><button onClick={onFolder} disabled={launch.busy}>Folder or linked files</button><Link href={employeesHref}><Users size={14}/>AI Employees</Link></div></footer>
+    <footer><span>Manual editing uses no AI allowance.</span><div><button ref={importButtonRef} onClick={onFiles} disabled={launch.busy}><Upload size={14}/>Open existing files</button><button onClick={onFolder} disabled={launch.busy}>Folder or linked files</button><Link href={employeesHref}><MessageCircle size={14}/>Talk to Robyn</Link></div></footer>
   </div>;
 }

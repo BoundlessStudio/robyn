@@ -1,20 +1,21 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import {randomUUID} from "node:crypto";
 import { chromium } from "playwright";
-import { assignmentBrowserFixture, specialist, originalRef, journalKey } from "./helpers/assignment-browser.mjs";
+import { assignmentBrowserFixture, director, specialist, project, originalRef, journalKey } from "./helpers/assignment-browser.mjs";
 
-test("lost assignment acknowledgements survive reloads and panel changes with the original identity, employee and inputs", async () => {
+test("lost assignment acknowledgements preserve Robyn, the Craft hint and original inputs across reloads", async () => {
   const browser = await chromium.launch({headless:true});
   try {
     const {page,state} = await assignmentBrowserFixture(browser);
     await page.goto("https://assignment.robyn.test/");
     const brief = page.getByRole("textbox", {name:"The brief",exact:true});
-    await page.getByRole("combobox", {name:"Who is this for?"}).selectOption(specialist);
+    assert.equal(await page.getByRole("combobox").count(),0);
     await brief.fill("Preserve this single brief and its original saved revision");
     await page.getByRole("button", {name:"Send the brief",exact:true}).click();
     await page.getByRole("alert").waitFor();
     assert.deepEqual(state.persisted[0], state.calls[0], "the full request is durable before POST");
-    assert.equal(state.calls[0].employeeId, specialist);
+    assert.equal(state.calls[0].employeeId, director);assert.equal(state.calls[0].appId,"wordcraft");
     assert.deepEqual(state.calls[0].inputs, [originalRef]);
     await page.getByRole("button", {name:"Change open revision"}).click();
     state.allowance = 0;
@@ -22,7 +23,7 @@ test("lost assignment acknowledgements survive reloads and panel changes with th
     await page.getByText("No AI allowance remains.", {exact:false}).waitFor();
     assert.equal(await brief.inputValue(), state.calls[0].brief);
     assert.equal(await brief.getAttribute("readonly"), "");
-    assert.equal(await page.getByRole("combobox").isDisabled(), true);
+    assert.equal(await page.getByRole("combobox").count(), 0);
     await page.getByRole("button", {name:"Open included revision"}).click();
     assert.equal(await page.getByLabel("Opened revision").textContent(), originalRef.revisionId);
     await page.getByRole("button", {name:"Reconnect this brief"}).click();
@@ -30,7 +31,7 @@ test("lost assignment acknowledgements survive reloads and panel changes with th
     await page.getByRole("button", {name:"Close composer"}).click();
     await page.getByRole("button", {name:"Open composer"}).click();
     await page.getByRole("button", {name:"Switch panel"}).click();
-    await page.getByRole("textbox", {name:"Tell your Director what you have in mind"}).waitFor();
+    await page.getByRole("textbox", {name:"Tell Robyn what you have in mind"}).waitFor();
     await page.getByRole("button", {name:"Switch panel"}).click();
     state.acknowledge = true;
     await page.getByRole("button", {name:"Reconnect this brief"}).click();
@@ -45,6 +46,22 @@ test("lost assignment acknowledgements survive reloads and panel changes with th
     assert.equal(await page.evaluate(key => JSON.parse(localStorage.getItem(key)).pending, journalKey), null);
     assert.deepEqual(state.errors, []);
   } finally { await browser.close(); }
+});
+
+test("a frozen legacy recipient is never silently changed to Robyn",async()=>{
+  const browser=await chromium.launch({headless:true});
+  try{
+    const {page,state}=await assignmentBrowserFixture(browser);
+    await page.goto("https://assignment.robyn.test/");
+    const pending={projectId:project,employeeId:specialist,brief:"Preserve this historical request",inputs:[originalRef],requestId:randomUUID(),startMode:"work"};
+    await page.evaluate(({key,pending})=>localStorage.setItem(key,JSON.stringify({version:1,brief:pending.brief,employeeId:pending.employeeId,includeOpen:true,pending})),{key:journalKey,pending});
+    await page.reload();await page.getByRole("button",{name:"Reconnect this brief"}).click();
+    await page.getByRole("alert").filter({hasText:"saved employee has retired"}).waitFor();
+    assert.deepEqual(state.calls,[pending]);assert.equal(state.accepted.size,0);
+    assert.deepEqual(await page.evaluate(key=>JSON.parse(localStorage.getItem(key)).pending,journalKey),pending);
+    assert.equal(await page.getByRole("textbox",{name:"The brief",exact:true}).inputValue(),pending.brief);
+    assert.deepEqual(state.errors,[]);
+  }finally{await browser.close();}
 });
 
 test("storage failures prevent sending and a different brief requires explicit new intent", async () => {

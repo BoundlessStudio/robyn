@@ -56,33 +56,33 @@ export function FlightStory() {
         <div className="flight-ring ring-one" aria-hidden="true" /><div className="flight-ring ring-two" aria-hidden="true" />
         <AsciiRobin flight={flight} />
       </div>
-      <div className="bird-caption" aria-hidden="true"><span className="bird-caption-number">{String(Math.min(chapter, studioTour.length)).padStart(2, "0")}</span><div><span>{currentApp ? `${currentApp.employee.role} × ${currentApp.name}` : chapter === 0 ? "YOUR IMAGINATION. AN ENTIRE CREATIVE TEAM." : "A LITTLE ROOM FOR YOUR NEXT BIG IDEA."}</span><small>{currentApp ? currentApp.tagline : "AI employees. Real creative tools. Your direction."}</small></div></div>
+      <div className="bird-caption" aria-hidden="true"><span className="bird-caption-number">{String(Math.min(chapter, studioTour.length)).padStart(2, "0")}</span><div><span>{currentApp ? `ROBYN × ${currentApp.name}` : chapter === 0 ? "YOUR IMAGINATION. ONE CREATIVE COLLABORATOR." : "A LITTLE ROOM FOR YOUR NEXT BIG IDEA."}</span><small>{currentApp ? currentApp.tagline : "One Robyn. Real creative tools. Your direction."}</small></div></div>
       <div className="flight-controls">
-        <nav aria-label="Research and the creative crafts">{chapters.map((item, i) => <a key={item.id} href={`#${item.id}`} aria-label={`${String(i).padStart(2, "0")} ${item.label}`} aria-current={chapter === i ? "step" : undefined} title={item.label}><span>{i === chapters.length - 1 ? "↗" : String(i).padStart(2, "0")}</span></a>)}</nav>
+        <nav aria-label="Creative tools">{chapters.map((item, i) => <a key={item.id} href={`#${item.id}`} aria-label={`${String(i).padStart(2, "0")} ${item.label}`} aria-current={chapter === i ? "step" : undefined} title={item.label}><span>{i === chapters.length - 1 ? "↗" : String(i).padStart(2, "0")}</span></a>)}</nav>
         <label className="mobile-tour-select"><span>FOLLOW THE BIRD</span><select aria-label="Choose a studio chapter" value={chapters[chapter].id} onChange={event => {
           const target = document.getElementById(event.target.value);
           target?.scrollIntoView({ behavior: reduced ? "instant" : "smooth", block: "start" });
           window.history.replaceState(null, "", `#${event.target.value}`);
-        }}>{chapters.map((item, i) => <option key={item.id} value={item.id}>{String(i).padStart(2, "0")} / {item.id === "research" ? "Research" : item.label}</option>)}</select></label>
+        }}>{chapters.map((item, i) => <option key={item.id} value={item.id}>{String(i).padStart(2, "0")} / {item.label}</option>)}</select></label>
         <span className="tour-progress">{chapters[chapter].label}</span>
       </div>
     </div>
     <svg className="craft-ink-filter" width="0" height="0" aria-hidden="true"><defs><filter id="craft-paper-ink" colorInterpolationFilters="sRGB"><feColorMatrix type="saturate" values="0" /><feComponentTransfer><feFuncR type="linear" slope=".808" intercept=".106" /><feFuncG type="linear" slope=".745" intercept=".165" /><feFuncB type="linear" slope=".737" intercept=".125" /></feComponentTransfer></filter></defs></svg>
     <div className="flight-panels">
       <section className="flight-chapter chapter-idea" id="an-idea" aria-labelledby="idea-heading">
-        <div className="chapter-copy"><span className="flight-kicker">AN AI CREATIVE STUDIO WITH A MIND OF YOUR OWN.</span><h1 id="idea-heading">Ideas<br />have<br /><em>wings.</em><svg className="heading-star" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M20 0v40M0 20h40M6 6l28 28M6 34L34 6" /></svg></h1><p>Meet Robyn. One Creative Director.<br />Research. {craftTour.length} Craft specialists.<br />A world of your making.</p><a className="flight-link" href={`#${studioTour[0].id}`}>Follow the bird <ArrowDownRight size={21} /></a><a className="hero-invite" href="#invitation">Request an invite <ArrowUpRight size={14} /></a><span className="desktop-note"><Monitor size={14} aria-hidden="true" /> A desktop studio. Explore it anywhere.</span></div>
-        <span className="hero-marginal">INDEPENDENT MINDS / SHARED IMAGINATION</span>
+        <div className="chapter-copy"><span className="flight-kicker">AN AI CREATIVE STUDIO WITH A MIND OF YOUR OWN.</span><h1 id="idea-heading">Ideas<br />have<br /><em>wings.</em><svg className="heading-star" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M20 0v40M0 20h40M6 6l28 28M6 34L34 6" /></svg></h1><p>One Robyn. {craftTour.length} real creative tools.<br />Research with Chrome and Brave Search.<br />A world of your making.</p><a className="flight-link" href={`#${studioTour[0].id}`}>Follow the bird <ArrowDownRight size={21} /></a><a className="hero-invite" href="#invitation">Request an invite <ArrowUpRight size={14} /></a><span className="desktop-note"><Monitor size={14} aria-hidden="true" /> A desktop studio. Explore it anywhere.</span></div>
+        <span className="hero-marginal">ONE COLLABORATOR / EVERY CREATIVE TOOL</span>
       </section>
       {studioTour.map((app, i) => <section key={app.id} className="flight-chapter craft-chapter" id={app.id} aria-labelledby={`${app.id}-heading`}>
         <div className="chapter-copy">
-          <span className="flight-kicker">{String(i + 1).padStart(2, "0")} / {app.employee.role.toUpperCase()} <span>× {app.name}</span></span>
+          <span className="flight-kicker">{String(i + 1).padStart(2, "0")} / ROBYN <span>× {app.name}</span></span>
           <h2 id={`${app.id}-heading`}>{app.story.lines.join(" ")}<br /><em>{app.story.accent}</em></h2>
           <p>{app.story.copy}</p>
           <CraftArtwork appId={app.id} name={app.name} number={i + 1} nearby={Math.abs(i + 1 - chapter) <= 1} onInspect={open => { flight.current.paused = open; }} />
-          <a className="flight-link craft-next" href={`#${studioTour[i + 1]?.id ?? "invitation"}`}>{studioTour[i + 1] ? `Next, ${studioTour[i + 1].employee.role.toLowerCase()}` : "Make room for your imagination"}<ArrowDown size={16} /></a>
+          <a className="flight-link craft-next" href={`#${studioTour[i + 1]?.id ?? "invitation"}`}>{studioTour[i + 1] ? `Next, ${studioTour[i + 1].name}` : "Make room for your imagination"}<ArrowDown size={16} /></a>
         </div>
       </section>)}
-      <section className="flight-chapter chapter-invitation" id="invitation" aria-labelledby="invitation-heading"><div className="chapter-copy"><span className="flight-kicker">YOUR DIRECTOR BRINGS IT ALL TOGETHER.</span><h2 id="invitation-heading">Bring your<br /><em>strange ideas.</em></h2><InvitationForm /><p className="pilot-note">The private studio currently works only on desktop and laptop computers with a keyboard and mouse. Explore the tools and request your invitation on any device.</p></div></section>
+      <section className="flight-chapter chapter-invitation" id="invitation" aria-labelledby="invitation-heading"><div className="chapter-copy"><span className="flight-kicker">ROBYN BRINGS IT ALL TOGETHER.</span><h2 id="invitation-heading">Bring your<br /><em>strange ideas.</em></h2><InvitationForm /><p className="pilot-note">The private studio currently works only on desktop and laptop computers with a keyboard and mouse. Explore the tools and request your invitation on any device.</p></div></section>
     </div>
   </section>;
 }

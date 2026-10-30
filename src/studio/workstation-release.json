@@ -1,75 +1,75 @@
 {
-  "version": "0.1.24",
-  "directory": "vendor/robyn-workstation/0.1.24-99ff7446770a",
-  "fingerprint": "99ff7446770a3cce2a7b71cd33afbf2f456bef949b3472a00d53b4e8ede2b47e",
+  "version": "0.2.0",
+  "directory": "vendor/robyn-workstation/0.2.0-97a41d837b66",
+  "fingerprint": "97a41d837b667d9d544083614c9cf8fe23a627ce8187818518da616cbe063c0c",
   "files": {
     "studio-mcp.cjs": {
-      "bytes": 1856055,
-      "sha256": "a9e098b630c414704a3d0b6c6f074279fcf2afa4f48fb23c6423f7405b82852b"
+      "bytes": 1864194,
+      "sha256": "09a5f30e962361d2e0f1120270bfbb753d6aa84fe42a5718bf228bd32c42686d"
     },
     "configure-hermes.py": {
-      "bytes": 1989,
-      "sha256": "8adea77094c9caf7d6fa0c772a949d5c65ed063d91f07fef5ad70dda501c8a7a"
+      "bytes": 10489,
+      "sha256": "b6da72e4aba53700b3ad0afeaa588a1be6aae672d518ca66361e916342bf1b71"
     },
     "skills/cadcraft.md": {
-      "bytes": 1838,
-      "sha256": "2b1ca249dd4fd5f6b2950d33d42a530272563681b35eea6b0a0dc9f1b8f2a219"
+      "bytes": 2033,
+      "sha256": "f06797192538fa358eb18e02ca241d7dc54ed67f15f1e984f3e197a406a5f351"
     },
     "skills/deckcraft.md": {
-      "bytes": 2035,
-      "sha256": "f72308cf8882c6b56317027cbce042ca7abe6b9d7dfc037e02095212245da0e5"
+      "bytes": 2232,
+      "sha256": "0eca77621dcadf5a8138f56232898e21a1acfe787a26d19d50a10c986e88bc43"
     },
     "skills/designcraft.md": {
-      "bytes": 1785,
-      "sha256": "154a7046e27896e20de99bac5bfb5563a650217f24d445853c02f8dbf1a0a08d"
+      "bytes": 1986,
+      "sha256": "03c03624fb33855e0e1568536ed8756b8a0776eb25e56228f0a41667fb88eeec"
     },
     "skills/effectcraft.md": {
-      "bytes": 2040,
-      "sha256": "11539b89a13bb97be7df0a588d97b0ce647dc833728cf6651f21eb8593d07c26"
+      "bytes": 2241,
+      "sha256": "19e97607142561bade2ce226dd0d421229b76f989526fe2930f8a9062f3db247"
     },
     "skills/figcraft.md": {
-      "bytes": 1870,
-      "sha256": "847345f3a76ba38c139a5f4b4e9b20ca3ade96ada0f9d878df15178a55a56799"
+      "bytes": 2065,
+      "sha256": "5e3ed3becf2db79dbd828744d5d85dcd7874f7a7247d878f267ea7f278384127"
     },
     "skills/filmcraft.md": {
-      "bytes": 3041,
-      "sha256": "35335951b520e51688ad01d15a210d6132531dd7eec9dfb54617a69a3c877d39"
+      "bytes": 3238,
+      "sha256": "0e636265041381d189cfdf0d608c7d0d75ab0e4aa0ff4ff1fffefd9f5144f962"
     },
     "skills/gridcraft.md": {
-      "bytes": 2366,
-      "sha256": "ff3f61a8ddf0fe7974c65adddbcb27c8c9561a1c36caf495410828b784439676"
+      "bytes": 2563,
+      "sha256": "da3029fbb26ee0a6b0a4e5014ca0a19259405ef86ab5da33fbeeda56c9bb941b"
     },
     "skills/lightcraft.md": {
-      "bytes": 2433,
-      "sha256": "5526d9a69a644ca397bdd6d1c618086a670bfc600f7d29bce5dafe6dbd295d09"
+      "bytes": 2632,
+      "sha256": "5ce555cb1fb30e75ee51bdb6b6ab170e6b2076dfb9c6ab3e236a13cb8a50bf28"
     },
     "skills/pdfcraft.md": {
-      "bytes": 3550,
-      "sha256": "6b014fb2cb21db91e9b724a5084b3b1ed50c6c26bafe7746eaaf1da38db7a63d"
+      "bytes": 3745,
+      "sha256": "a83ed785dfe68c59085a8405ff96357ceccc6809de5809db2019651d9fe43106"
     },
     "skills/photocraft.md": {
-      "bytes": 3419,
-      "sha256": "1acb778d4954c859c8c6359b56728ca05409e70d0c11cb41982b004ee3ce3635"
+      "bytes": 3618,
+      "sha256": "bb12de1e9f2af34698c6804b23ec27fedae12d5110830b02bac039ad1aa12f66"
     },
     "skills/solidcraft.md": {
-      "bytes": 1612,
-      "sha256": "45f47f8f15c6db7932ba2531b4a311defad9a67d09d297c676d99347237ce9e9"
+      "bytes": 1811,
+      "sha256": "d88fddcaae2d67f6558af45ca5b5fd2443628d7891b25c5028c19e12a10265db"
     },
     "skills/soundcraft.md": {
-      "bytes": 2229,
-      "sha256": "9947d0cb8aa95b2aebad159c4b3337b496c6418ec408eb637922baa944e02db7"
+      "bytes": 2428,
+      "sha256": "30e7d0c75a7832952ae1971fdb857a03bda99a04538351b6251bd129fadea7bf"
     },
     "skills/vectorcraft.md": {
-      "bytes": 3253,
-      "sha256": "5bcaf89b9c45c8265293ab9e6d9f3687022740386e4b1fdade976ce49d3f760e"
+      "bytes": 3454,
+      "sha256": "0f0f7fbee79a3330d3701011a388ba54191ec1010b030e52490e4e8a70c2a73d"
     },
     "skills/wordcraft.md": {
-      "bytes": 1951,
-      "sha256": "20cf9722502f2963090a13197571e89eb56230c2db919823f0779a0657e70461"
+      "bytes": 2148,
+      "sha256": "49fed4362d7b2a9da7f8a0e974c1b46ff22e56ec3d8f9fdc1d0dbeb4a0e69672"
     },
     "skills/research.md": {
-      "bytes": 2171,
-      "sha256": "2fd0f6b2d7dec5a872a1063122c54f6102eaebac462fea3d0b6b15ee052793b1"
+      "bytes": 2255,
+      "sha256": "d42dd3e14a55b5756348a698528541f888fe529d25a04834ee4cbe4e008091cd"
     }
   }
 }

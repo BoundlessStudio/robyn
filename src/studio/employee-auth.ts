@@ -7,7 +7,9 @@ import { dbFailure } from "./server";
 
 export interface EmployeeScope {
   workspaceId: string; projectId: string; assignmentId: string; employeeId: string;
-  appId: string | null; kind: "director" | "specialist"; userId: string;
+  appId: string | null; kind: "director" | "specialist" | "robyn"; userId: string;
+  appIdHint?: string | null; allowedAppIds?: string[];
+  generation?: number; profile?: string | null;
   instanceId: string; brief: string; role: string;
   startMode?: import("./start-mode").StartMode;
 }
@@ -34,9 +36,9 @@ export async function requireEmployee(request: Request) {
 
 /** Trusted provisioning delivers this token only to its assigned workstation.
  * Never include it in a browser response, log, workflow output, or DB row. */
-export async function issueEmployeeToken(db:DB, assignmentId:string, instanceId:string) {
+export async function issueEmployeeToken(db:DB, assignmentId:string, instanceId:string, binding?: {generation:number;profile:string}) {
   const token=`rbs_${randomBytes(32).toString("base64url")}`;
-  const {error}=await db.from("studio_employee_tokens").insert({assignment_id:assignmentId,instance_id:instanceId,token_hash:hashEmployeeToken(token),expires_at:new Date(Date.now()+23*60*60*1000).toISOString()});
+  const {error}=await db.from("studio_employee_tokens").insert({assignment_id:assignmentId,instance_id:instanceId,token_hash:hashEmployeeToken(token),expires_at:new Date(Date.now()+23*60*60*1000).toISOString(),...(binding?{employee_generation:binding.generation,workstation_profile:binding.profile}:{})});
   employeeDbFailure(error);
   return token;
 }

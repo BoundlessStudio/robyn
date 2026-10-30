@@ -1,3 +1,5 @@
+// Historical multi-employee regression fixture: the forward migration 0028 and
+// current canonical contracts are covered in robyn-workstation-database.test.mjs.
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
@@ -17,7 +19,7 @@ test("workstation upgrades enforce ownership, idle generations, once-only dispat
       create table storage.objects(id uuid primary key default gen_random_uuid(),bucket_id text references storage.buckets(id),name text);
       alter table storage.objects enable row level security; grant usage on schema storage to anon,authenticated,service_role;
       grant all on storage.objects to anon,authenticated,service_role;`);
-    for (const name of (await fs.readdir(new URL("../supabase/migrations", import.meta.url))).filter(name => name.endsWith(".sql")).sort()) {
+    for (const name of (await fs.readdir(new URL("../supabase/migrations", import.meta.url))).filter(name=>name.endsWith(".sql") && name<"0028_").sort()) {
       await db.exec(await fs.readFile(new URL(`../supabase/migrations/${name}`, import.meta.url), "utf8"));
     }
     for (const role of ["anon", "authenticated"]) {
