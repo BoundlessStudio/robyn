@@ -1,5 +1,7 @@
 # Robyn Creative Studio Project Review
 
+> Historical record. Requirements, pause/resume directions, pending actions and release state below describe the recorded pass. Use the [documentation index](../../README.md) for current scope and acceptance.
+
 Reviewed October 25, 2026, America/Toronto.
 
 ## Completion status — October 25, 2026
@@ -39,11 +41,11 @@ Reviewed October 25, 2026, America/Toronto.
 | R17 · Data handling/support | **Partial** | Support/privacy pages and manual export, recovery, invitation-removal and closure procedures. support@robyn.academy forwarding is live with provider-reported delivery verified. | Review applicable terms and agree a concrete support/closed-account retention schedule before wider invitations. |
 | R18 · Browser/accessibility | **Partial** | Published baseline; three-engine Media-panel keyboard/axe/reflow tests and editor retention. Photo/Sound/Film startup passes in three engines; generated-media save/reopen passes in Chromium. | Fix native text-entry/canvas accessibility gaps and verify full keyboard/screen-reader use. Physical public-site devices, additional GPUs/engines and manual zoom remain unaccepted. |
 
-Application fixes are merged through [web PR #19](https://github.com/BoundlessStudio/robyn/pull/19) and [runtime PR #1](https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/1), at `99737202b6363fd6f584ea3a2b8045681fa27cdf` and `c15aa038fd22aa50c7d946d051b1a7e5756ed728`. Production deployment `dpl_CX1G2CV9gyAN55x9xY5D2dguoPMQ` is Ready at the canonical domain. [Web main CI](https://github.com/BoundlessStudio/robyn/actions/runs/40258313974) passes 81 tests, typecheck, audit, build and 18 public cross-engine checks. The paired runtime checkpoint reports 68 passing tests. [Sanitized production evidence](acceptance/production-rollout-20261025.json) records database preservation, the workstation canary and authenticated smoke checks separately from earlier isolated acceptance.
+Application fixes are merged through [web PR #19](https://github.com/BoundlessStudio/robyn/pull/19) and [runtime PR #1](https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/1), at `99737202b6363fd6f584ea3a2b8045681fa27cdf` and `c15aa038fd22aa50c7d946d051b1a7e5756ed728`. Production deployment `dpl_CX1G2CV9gyAN55x9xY5D2dguoPMQ` is Ready at the canonical domain. [Web main CI](https://github.com/BoundlessStudio/robyn/actions/runs/40258313974) passes 81 tests, typecheck, audit, build and 18 public cross-engine checks. The paired runtime checkpoint reports 68 passing tests. [Sanitized production evidence](../../acceptance/production-rollout-20261025.json) records database preservation, the workstation canary and authenticated smoke checks separately from earlier isolated acceptance.
 
-The initial checkpoint verification used clean Git exports with declared dependencies and public placeholder build configuration: **70 web tests and 67 runtime tests passed**, typecheck and production build passed, and both complete dependency audits reported zero vulnerabilities. The rebuilt workstation matched all 16 pinned files. The [release source record](acceptance/release-source.json) contains the exact commits, source-file hashes and verification scope. The later hosted CI results are recorded separately; application rollout and the explicitly open operating/acceptance checks remain separate.
+The initial checkpoint verification used clean Git exports with declared dependencies and public placeholder build configuration: **70 web tests and 67 runtime tests passed**, typecheck and production build passed, and both complete dependency audits reported zero vulnerabilities. The rebuilt workstation matched all 16 pinned files. The [release source record](../../acceptance/release-source.json) contains the exact commits, source-file hashes and verification scope. The later hosted CI results are recorded separately; application rollout and the explicitly open operating/acceptance checks remain separate.
 
-Follow-up work adds migration **0022_abandoned_upload_retention.sql**, workstation **0.1.23**, an actual desktop-entry/editor-retention regression, public browser/axe checks, and corrections to the remaining setup instructions. The earlier release-source record remains historical evidence for its named commits. [The follow-up record](acceptance/remediation-followup.json) contains exact paired commits, file/migration digests, 74 web and 68 runtime test results, clean runtime reproduction and successful hosted CI links.
+Follow-up work adds migration **0022_abandoned_upload_retention.sql**, workstation **0.1.23**, an actual desktop-entry/editor-retention regression, public browser/axe checks, and corrections to the remaining setup instructions. The earlier release-source record remains historical evidence for its named commits. [The follow-up record](../../acceptance/remediation-followup.json) contains exact paired commits, file/migration digests, 74 web and 68 runtime test results, clean runtime reproduction and successful hosted CI links.
 
 ## Work left to close the partial and deferred findings
 
@@ -56,7 +58,7 @@ Follow-up work adds migration **0022_abandoned_upload_retention.sql**, workstati
 | R17 | Review applicable terms and finalize the support/closed-account retention schedule and manual closure policy. | Still required before wider invitations; support forwarding already works. |
 | R18 | Address PhotoCraft's unnamed text input and native semantic/focus gaps in a new immutable runtime release; complete keyboard/screen-reader and additional device/engine/GPU acceptance. | Open. Retain the stated Chromium desktop baseline and current limitations until verified. |
 
-Production rollout is complete. [The release record](RELEASE-2026-10-25.md) documents the applied baseline/migrations, runtime activation policy, hosted checks and retained rollback reference. Database recovery and Storage-file backups remain deferred.
+Production rollout is complete. [The release record](../releases/RELEASE-2026-10-25.md) documents the applied baseline/migrations, runtime activation policy, hosted checks and retained rollback reference. Database recovery and Storage-file backups remain deferred.
 
 Both main branches currently permit merges without required checks. CI is running and passing; enabling required-check protection is a separate repository policy choice. Rollout created one labelled QA project, two free saved sources and three unsubmitted cancellation fixtures, all terminal. No database reset, new paid generation, AI turn or persistent-workstation deletion was performed. Working-copy cleanup retained the saved originals and recovery receipts.
 
@@ -76,7 +78,7 @@ The earlier acceptance record remains evidence of the scenarios it exercised. Pa
 
 ## Scope and evidence
 
-The governing scope is [PLAN.md](PLAN.md), especially its latest checkpoints and current device decision, together with [AGENTS.md](../AGENTS.md). The authenticated studio, thirteen Crafts and Research are desktop-only. The public homepage supports mobile presentation. Billing, compact editors and general native desktop takeover remain deferred; Research's implemented browser takeover is part of the accepted scope. Extra homepage performance investigation remains outside the current request.
+The governing scope is [PLAN.md](../checkpoints/PLAN-2026-10-30.md), especially its latest checkpoints and current device decision, together with [AGENTS.md](../../../AGENTS.md). The authenticated studio, thirteen Crafts and Research are desktop-only. The public homepage supports mobile presentation. Billing, compact editors and general native desktop takeover remain deferred; Research's implemented browser takeover is part of the accepted scope. Extra homepage performance investigation remains outside the current request.
 
 The review covered the web application, companion runtime, database migrations, workflow orchestration, application manifests, tests, release evidence, current public production pages and existing acceptance records. It includes the uncommitted budget/media work present at the start of this review.
 
@@ -111,7 +113,7 @@ Original review verification results (before remediation):
 | Known credential scan | Three configured private credential values absent from all 39 scanned client build files |
 | Production dependency audit | Web: 23 high-severity package entries. Runtime: one high-severity entry. See R04 for interpretation |
 
-New evidence is in [artifacts/qa/project-review-20261025](../artifacts/qa/project-review-20261025/). Its [verification summary](../artifacts/qa/project-review-20261025/verification-summary.json), [database probes](../artifacts/qa/project-review-20261025/database-probes.json), [assignment retry proof](../artifacts/qa/project-review-20261025/assignment-retry-proof.json), [release comparison](../artifacts/qa/project-review-20261025/release-evidence.json) and [browser summary](../artifacts/qa/project-review-20261025/browser-summary.json) are separate from historical acceptance. The probes used an isolated database or intercepted browser fixture. No paid calls, invitation emails, deployments or production data changes were made. Owned headless browsers were closed.
+New evidence is in [artifacts/qa/project-review-20261025](../../../artifacts/qa/project-review-20261025). Its [verification summary](../../../artifacts/qa/project-review-20261025/verification-summary.json), [database probes](../../../artifacts/qa/project-review-20261025/database-probes.json), [assignment retry proof](../../../artifacts/qa/project-review-20261025/assignment-retry-proof.json), [release comparison](../../../artifacts/qa/project-review-20261025/release-evidence.json) and [browser summary](../../../artifacts/qa/project-review-20261025/browser-summary.json) are separate from historical acceptance. The probes used an isolated database or intercepted browser fixture. No paid calls, invitation emails, deployments or production data changes were made. Owned headless browsers were closed.
 
 ## What is already delivered
 
@@ -153,7 +155,7 @@ Every Craft below has recorded creator edit/save/employee-continuation acceptanc
 | CADCraft | CAD Designer | 0.1.2 |
 | Research | Research | Notebook 0.1.0; separate specialist, outside the thirteen-Craft catalog |
 
-Sources: [Craft matrix](../artifacts/qa/project-review-20261025/craft-matrix.json), [pilot acceptance audit](../artifacts/qa/pilot-acceptance-audit.json), [Research manifest](../src/studio/specialists/research.ts), and each companion application's verification.json. Historical per-app notes such as a pending individual Director campaign or older startup recovery observation must be interpreted with the later, scoped acceptance records. The plan requires a cross-application campaign, not a separate Director campaign through every Craft.
+Sources: [Craft matrix](../../../artifacts/qa/project-review-20261025/craft-matrix.json), [pilot acceptance audit](../../../artifacts/qa/pilot-acceptance-audit.json), [Research manifest](../../../src/studio/specialists/research.ts), and each companion application's verification.json. Historical per-app notes such as a pending individual Director campaign or older startup recovery observation must be interpreted with the later, scoped acceptance records. The plan requires a cross-application campaign, not a separate Director campaign through every Craft.
 
 ## Original findings with current status
 
@@ -165,37 +167,37 @@ P1 means fix first because the finding can affect paid work, database correctnes
 
 **Status: Done and deployed. See the production release record for hosted checks and their scope.**
 
-**Remediation — October 25, 2026:** Fixed and deployed. A checksummed ledger, explicit legacy baseline and atomic migration suffix prevent replay regression. Fresh/rerun/upgrade, checksum, rollback, grants/data preservation and lost-response tests pass. See [operations](OPERATIONS.md) and [release evidence](RELEASE-2026-10-25.md).
+**Remediation — October 25, 2026:** Fixed and deployed. A checksummed ledger, explicit legacy baseline and atomic migration suffix prevent replay regression. Fresh/rerun/upgrade, checksum, rollback, grants/data preservation and lost-response tests pass. See [operations](../../OPERATIONS.md) and [release evidence](../releases/RELEASE-2026-10-25.md).
 
-**P1 · Reproduced defect.** [scripts/setup.mjs](../scripts/setup.mjs#L220) submits every migration on every run, with no applied-migration ledger. The older migrations are largely repeatable, but [0013_source_media.sql](../supabase/migrations/0013_source_media.sql#L3) unconditionally adds existing columns. A second run fails with “column asset_kind of relation studio_assets already exists.”
+**P1 · Reproduced defect.** [scripts/setup.mjs](../../../scripts/setup.mjs#L220) submits every migration on every run, with no applied-migration ledger. The older migrations are largely repeatable, but [0013_source_media.sql](../../../supabase/migrations/0013_source_media.sql#L3) unconditionally adds existing columns. A second run fails with “column asset_kind of relation studio_assets already exists.”
 
 The failure occurs after earlier files have successfully run. The isolated probe showed that claim_studio_assignment contained the current budget_paused logic before replay and lacked it afterward: an older function definition had replaced the version from migration 0017. Setup therefore violates its advertised idempotence and can leave an upgraded database partially regressed. No production setup rerun was performed during this review.
 
 **Original recommended action:** implement applied-migration tracking with checksums, a baseline for the existing database and safe incremental execution. Resolve the two 0007 filenames deliberately when adopting version-based tooling. Do not simply rerun the current setup script against production.
 
-**Original completion check:** fresh install, unchanged second run and incremental upgrade all pass; the second run leaves function definitions, grants, existing budgets and data unchanged. Evidence: [database-probes.json](../artifacts/qa/project-review-20261025/database-probes.json).
+**Original completion check:** fresh install, unchanged second run and incremental upgrade all pass; the second run leaves function definitions, grants, existing budgets and data unchanged. Evidence: [database-probes.json](../../../artifacts/qa/project-review-20261025/database-probes.json).
 
 ### R02 Reload loses the identity of a pending assignment
 
 **Status: Done and deployed. See the production release record for hosted checks and their scope.**
 
-**Remediation — October 25, 2026:** Fixed and deployed. Full frozen assignment identity survives reload/remount and zero allowance. Review notes and their decision/request ID also persist. Real-component recovery tests retain the original employee and exact inputs. See [operations](OPERATIONS.md) and [release evidence](RELEASE-2026-10-25.md).
+**Remediation — October 25, 2026:** Fixed and deployed. Full frozen assignment identity survives reload/remount and zero allowance. Review notes and their decision/request ID also persist. Real-component recovery tests retain the original employee and exact inputs. See [operations](../../OPERATIONS.md) and [release evidence](../releases/RELEASE-2026-10-25.md).
 
-**P1 · Reproduced defect.** [AssignmentPanel.tsx](../src/components/studio/AssignmentPanel.tsx#L23) persists the brief text, while pendingRequest is only a React ref. After an accepted POST returns an uncertain acknowledgement, reloading restores the text but generates a fresh request ID on the next submission. The server's idempotency check then sees a different request.
+**P1 · Reproduced defect.** [AssignmentPanel.tsx](../../../src/components/studio/AssignmentPanel.tsx#L23) persists the brief text, while pendingRequest is only a React ref. After an accepted POST returns an uncertain acknowledgement, reloading restores the text but generates a fresh request ID on the next submission. The server's idempotency check then sees a different request.
 
 The browser fixture used the real component, a 503 “assignment is saved” response, and a GET response listing the accepted assignment. After reload, the same brief produced two different request IDs. The SQL and editor handoff protections still work for callers that retain their IDs; the gap is this composer path. Employee selection, included inputs and review-note drafts also lack equivalent persistence.
 
 **Original recommended action:** persist the full frozen pending request before POST, including employee, exact input revisions, brief and request ID. Restore a clear retry/reconnect state after reload or panel changes. Require an explicit new intent before replacing an uncertain request. Recovery of an existing request should remain possible when new-work allowance is exhausted.
 
-**Original completion check:** lost response, reload, panel remount and retry produce one assignment and at most one initial paid turn, with the original employee and inputs. Evidence: [assignment-retry-proof.json](../artifacts/qa/project-review-20261025/assignment-retry-proof.json).
+**Original completion check:** lost response, reload, panel remount and retry produce one assignment and at most one initial paid turn, with the original employee and inputs. Evidence: [assignment-retry-proof.json](../../../artifacts/qa/project-review-20261025/assignment-retry-proof.json).
 
 ### R03 Cancellation can strand a paid media reservation
 
 **Status: Done and deployed. Paid cancellation/settlement evidence is isolated; no new paid cancellation was created during rollout.**
 
-**Remediation — October 25, 2026:** Fixed and deployed. Financial-only settlement preserves cancellation, records the final charge once, and never pays or publishes. A dry-run-first operator command handles provider-confirmed outcomes; unknowns remain held. Database/worker/operator regressions pass. See [operations](OPERATIONS.md) and [release evidence](RELEASE-2026-10-25.md).
+**Remediation — October 25, 2026:** Fixed and deployed. Financial-only settlement preserves cancellation, records the final charge once, and never pays or publishes. A dry-run-first operator command handles provider-confirmed outcomes; unknowns remain held. Database/worker/operator regressions pass. See [operations](../../OPERATIONS.md) and [release evidence](../releases/RELEASE-2026-10-25.md).
 
-**P1 · Code-based defect with supporting database probe.** [processMediaJob](../src/workflows/media/steps.ts#L123) cancels a job when its project or employee authorization becomes inactive. For work already submitted, it correctly avoids declaring an unknown charge to be zero. However, cancelled jobs are terminal in that processor, [launchMediaJob](../src/studio/media-launch.ts#L9) will not restart them, and claim_media_job refuses them. There is no separate application settlement path.
+**P1 · Code-based defect with supporting database probe.** [processMediaJob](../../../src/workflows/media/steps.ts#L123) cancels a job when its project or employee authorization becomes inactive. For work already submitted, it correctly avoids declaring an unknown charge to be zero. However, cancelled jobs are terminal in that processor, [launchMediaJob](../../../src/studio/media-launch.ts#L9) will not restart them, and claim_media_job refuses them. There is no separate application settlement path.
 
 A paid job cancelled before its receipt is observed can therefore keep an unsettled hold indefinitely, even if a known provider task could establish the final cost. The isolated fixture confirmed that a cancelled job retained a 420,000-micro reservation and could not be claimed. This was a synthetic database case, not a new payment.
 
@@ -207,7 +209,7 @@ A paid job cancelled before its receipt is observed can therefore keep an unsett
 
 **Status: Done and deployed, based on the recorded clean audits and passing gates.**
 
-**Remediation — October 25, 2026:** Fixed and deployed. Workflow stays 5.2.3; compatible overrides select Zod 4.6.7, Undici 7.30.1 and runtime body-parser 2.4.0. Both full audits report zero vulnerabilities. Web/runtime tests and production build pass. See [operations](OPERATIONS.md) and [release evidence](RELEASE-2026-10-25.md).
+**Remediation — October 25, 2026:** Fixed and deployed. Workflow stays 5.2.3; compatible overrides select Zod 4.6.7, Undici 7.30.1 and runtime body-parser 2.4.0. Both full audits report zero vulnerabilities. Web/runtime tests and production build pass. See [operations](../../OPERATIONS.md) and [release evidence](../releases/RELEASE-2026-10-25.md).
 
 **P1 · Confirmed dependency finding; application exploitability not established.** The production-only web audit reports 23 high-severity package entries, largely propagated through the Workflow dependency graph. These are not 23 independent demonstrated application vulnerabilities. The lockfile contains Zod 4.5.4 and Undici 7.30.0. Current advisories identify patched versions Zod 4.6.6 and Undici 7.30.1 for the relevant release lines. See the [Zod advisory](https://github.com/advisories/GHSA-mrhx-c7xc-m3w5) and [Undici advisory](https://github.com/advisories/GHSA-xjj6-f33q-929c).
 
@@ -215,29 +217,29 @@ The companion production-only audit reports one high-severity body-parser findin
 
 **Original recommended action:** trace reachable uses, select compatible dependency updates, and retest Workflow, MCP and editor boundaries. The web audit's suggested forced fix includes downgrading Workflow to 2.0.6; do not apply that automatically to this 5.2.3 application.
 
-**Original completion check:** reviewed lockfiles, documented disposition of any remaining advisories, passing web/runtime tests and a production build. Evidence: [web production audit](../artifacts/qa/project-review-20261025/npm-audit-production.json), [runtime production audit](../artifacts/qa/project-review-20261025/runtime-audit-production.json), [package-lock.json](../package-lock.json).
+**Original completion check:** reviewed lockfiles, documented disposition of any remaining advisories, passing web/runtime tests and a production build. Evidence: [web production audit](../../../artifacts/qa/project-review-20261025/npm-audit-production.json), [runtime production audit](../../../artifacts/qa/project-review-20261025/runtime-audit-production.json), [package-lock.json](../../../package-lock.json).
 
 ### R05 Budget waits block free media acquisition
 
 **Status: Done and deployed. See the production release record for hosted checks and their scope.**
 
-**Remediation — October 25, 2026:** Fixed and deployed. Budget waits no longer consume runnable media capacity. Atomic slot reacquisition and unpaid cancellation/dispatch fencing pass race regressions. See [operations](OPERATIONS.md) and [release evidence](RELEASE-2026-10-25.md).
+**Remediation — October 25, 2026:** Fixed and deployed. Budget waits no longer consume runnable media capacity. Atomic slot reacquisition and unpaid cancellation/dispatch fencing pass race regressions. See [operations](../../OPERATIONS.md) and [release evidence](../releases/RELEASE-2026-10-25.md).
 
-**P2 · Reproduced defect.** [Migration 0014](../supabase/migrations/0014_employee_budgets.sql#L42) counts waiting_budget jobs against the three-job media limit. Three such jobs with zero reservations prevented a free Commons import in the isolated test. The media UI exposes reconnect, but there is no creator cancellation action in [the job route](../src/app/api/studio/media/jobs/[id]/route.ts).
+**P2 · Reproduced defect.** [Migration 0014](../../../supabase/migrations/0014_employee_budgets.sql#L42) counts waiting_budget jobs against the three-job media limit. Three such jobs with zero reservations prevented a free Commons import in the isolated test. The media UI exposes reconnect, but there is no creator cancellation action in [the job route](../../../src/app/api/studio/media/jobs/[id]/route.ts).
 
 An owner who reduces allowance or has several unaffordable jobs can become unable to acquire free media until paid work progresses or someone intervenes in the database. Browsing still works, but acquisition is blocked by unrelated paid waits.
 
 **Original recommended action:** distinguish runnable capacity from budget-paused queue entries; allow safe cancellation of work that has not submitted a payment. Keep unknown-paid jobs in the reconciliation path described in R03.
 
-**Original completion check:** three budget waits do not prevent a free import, cancelling an unpaid wait releases its place, and racing requests cannot exceed the actual processing limit. Evidence: [database probes](../artifacts/qa/project-review-20261025/database-probes.json).
+**Original completion check:** three budget waits do not prevent a free import, cancelling an unpaid wait releases its place, and racing requests cannot exceed the actual processing limit. Evidence: [database probes](../../../artifacts/qa/project-review-20261025/database-probes.json).
 
 ### R06 Media limits exceed the default workstation capacity
 
 **Status: Partial. Deployed limits and a controlled hosted reservation probe pass; real space-failure and purchased-result recovery acceptance remain.**
 
-**Remediation — October 25, 2026:** Implemented and deployed. New packages allow 512 MiB/file and 1 GiB/revision; acquired originals/derivatives allow 256 MiB and ten-minute media. Locked media space reservations and runtime free-space checks pass tests. Workstation 0.1.23 activation and a controlled competing-reservation probe passed in production: insufficient future space was rejected and admission recovered after release. The disk was not filled and purchased-result recovery remains unaccepted. See [operations](OPERATIONS.md) and [release evidence](RELEASE-2026-10-25.md).
+**Remediation — October 25, 2026:** Implemented and deployed. New packages allow 512 MiB/file and 1 GiB/revision; acquired originals/derivatives allow 256 MiB and ten-minute media. Locked media space reservations and runtime free-space checks pass tests. Workstation 0.1.23 activation and a controlled competing-reservation probe passed in production: insufficient future space was rejected and admission recovered after release. The disk was not filled and purchased-result recovery remains unaccepted. See [operations](../../OPERATIONS.md) and [release evidence](../releases/RELEASE-2026-10-25.md).
 
-**P2 · Confirmed configuration mismatch; large-file failure not exercised live.** [DEFAULT_AGENT](../src/config/agents.ts#L16) provisions a disk value of 6 GB. The [media worker](../src/studio/media-worker.py#L26) permits a single 10 GiB original, while [package validation](../src/studio/assets.ts) permits 50 GiB across a revision. The worker also creates previews and potentially much larger WAV or MP4 derivatives. Multiple media jobs use the Director's workstation.
+**P2 · Confirmed configuration mismatch; large-file failure not exercised live.** [DEFAULT_AGENT](../../../src/config/agents.ts#L16) provisions a disk value of 6 GB. The [media worker](../../../src/studio/media-worker.py#L26) permits a single 10 GiB original, while [package validation](../../../src/studio/assets.ts) permits 50 GiB across a revision. The worker also creates previews and potentially much larger WAV or MP4 derivatives. Multiple media jobs use the Director's workstation.
 
 There is no free-space admission check or aggregate disk reservation. A valid acquisition can exhaust the Director's disk, potentially interrupting both media and creative coordination. Raising a per-file limit alone cannot make that workflow reliable.
 
@@ -249,23 +251,23 @@ There is no free-space admission check or aggregate disk reservation. A valid ac
 
 **Status: Done and deployed. See the production release record for hosted checks and their scope.**
 
-**Remediation — October 25, 2026:** Fixed and deployed. Stable cursor pagination, server search, load-more controls, Commons pages and direct recovery-revision lookup replace silent truncation. Tests discover the 301st asset and recover an older exact revision without another upload. See [operations](OPERATIONS.md) and [release evidence](RELEASE-2026-10-25.md).
+**Remediation — October 25, 2026:** Fixed and deployed. Stable cursor pagination, server search, load-more controls, Commons pages and direct recovery-revision lookup replace silent truncation. Tests discover the 301st asset and recover an older exact revision without another upload. See [operations](../../OPERATIONS.md) and [release evidence](../releases/RELEASE-2026-10-25.md).
 
 **P2 · Confirmed implementation limit.** Project listing stops at 100, assets at 300, revision history at 100 and media jobs at 50. The creator interfaces filter these already-limited arrays locally and do not offer a cursor or load-more control. Older content can disappear from discovery, and search can misleadingly report no match.
 
-The revision limit also affects [savePackage](../src/studio/transfer-client.ts), which searches the returned history to recover a previously stored revision ID. A known revision falling outside the returned page can be treated as absent.
+The revision limit also affects [savePackage](../../../src/studio/transfer-client.ts), which searches the returned history to recover a previously stored revision ID. A known revision falling outside the returned page can be treated as absent.
 
-**Original recommended action:** add server-side search and cursor pagination, plus direct lookup of a known recovery revision. Preserve stable sort order and exact revision identities. Commons search already supports pages in its server API, but [MediaPanel](../src/components/studio/MediaPanel.tsx) only exposes the first page of up to twelve candidates; add navigation there too.
+**Original recommended action:** add server-side search and cursor pagination, plus direct lookup of a known recovery revision. Preserve stable sort order and exact revision identities. Commons search already supports pages in its server API, but [MediaPanel](../../../src/components/studio/MediaPanel.tsx) only exposes the first page of up to twelve candidates; add navigation there too.
 
-**Original completion check:** the 301st asset, 101st project/revision and older active media jobs remain discoverable and recoverable. Sources: [asset listing](../src/app/api/studio/assets/route.ts#L11), [history](../src/app/api/studio/assets/[id]/revisions/route.ts#L9), [projects](../src/app/api/studio/projects/route.ts#L7), [media listing](../src/studio/media-server.ts#L54).
+**Original completion check:** the 301st asset, 101st project/revision and older active media jobs remain discoverable and recoverable. Sources: [asset listing](../../../src/app/api/studio/assets/route.ts#L11), [history](../../../src/app/api/studio/assets/[id]/revisions/route.ts#L9), [projects](../../../src/app/api/studio/projects/route.ts#L7), [media listing](../../../src/studio/media-server.ts#L54).
 
 ### R08 Download and media links can expire while the workspace stays open
 
 **Status: Done and deployed. See the production release record for hosted checks and their scope.**
 
-**Remediation — October 25, 2026:** Fixed and deployed. Exact-file requests renew private short-lived URLs. Playback renewal retains position and the existing editor. Route authorization and real-component expiry/error regressions pass. See [operations](OPERATIONS.md) and [release evidence](RELEASE-2026-10-25.md).
+**Remediation — October 25, 2026:** Fixed and deployed. Exact-file requests renew private short-lived URLs. Playback renewal retains position and the existing editor. Route authorization and real-component expiry/error regressions pass. See [operations](../../OPERATIONS.md) and [release evidence](../releases/RELEASE-2026-10-25.md).
 
-**P2 · Code-based usability risk.** [readSavedPackage](../src/studio/package-store.ts#L18) issues five-minute signed URLs. [ProjectWorkspace](../src/components/studio/ProjectWorkspace.tsx) retains them in packageData and renders direct download and media links without an expiry refresh path. A later click, playback request or seek can require a fresh URL even though the asset remains valid.
+**P2 · Code-based usability risk.** [readSavedPackage](../../../src/studio/package-store.ts#L18) issues five-minute signed URLs. [ProjectWorkspace](../../../src/components/studio/ProjectWorkspace.tsx) retains them in packageData and renders direct download and media links without an expiry refresh path. A later click, playback request or seek can require a fresh URL even though the asset remains valid.
 
 **Original recommended action:** authorize and renew the exact-file URL at download time, and refresh expired media sources while retaining playback position and the native editor session. Keep the short expiry and private authorization.
 
@@ -275,7 +277,7 @@ The revision limit also affects [savePackage](../src/studio/transfer-client.ts),
 
 **Status: Partial. Creator bypass is fixed; deliberate workstation replacement still needs recovery acceptance.**
 
-**Remediation — October 25, 2026:** Creator-facing bypass is closed in production. Legacy lifecycle/resize/delete routes reject Studio employees; tests prove no upstream mutation. Deliberate persistent-workstation replacement remains an operator acceptance gap. See [operations](OPERATIONS.md) and [release evidence](RELEASE-2026-10-25.md).
+**Remediation — October 25, 2026:** Creator-facing bypass is closed in production. Legacy lifecycle/resize/delete routes reject Studio employees; tests prove no upstream mutation. Deliberate persistent-workstation replacement remains an operator acceptance gap. See [operations](../../OPERATIONS.md) and [release evidence](../releases/RELEASE-2026-10-25.md).
 
 **P2 · Code-based risk.** The legacy per-agent workspace and authenticated stop/restart/update/delete/resize routes remain available. Ownership checks are present, but these operations do not coordinate with Studio assignment, media-job or provisioning state. The budget route now rejects independent employee cap edits; the lifecycle routes lack a comparable Studio guard.
 
@@ -283,25 +285,25 @@ An owner can interrupt a running employee, resize infrastructure outside the Stu
 
 **Original recommended action:** explicitly retire these controls for Studio employees or route them through an operator recovery workflow that understands active work, storage and provisioning. Keep owner authorization intact.
 
-**Original completion check:** a creator cannot accidentally delete, resize or update an active Studio employee through a legacy route; deliberate replacement has a tested recovery path. Sources: [legacy page](../src/app/dashboard/agents/[agentId]/[[...tab]]/page.tsx), [lifecycle actions](../src/app/api/agents/[id]/[action]/route.ts), [delete](../src/app/api/agents/[id]/route.ts), [resize](../src/app/api/agents/[id]/resize/route.ts), [provision recovery](../src/studio/workstation.ts#L39).
+**Original completion check:** a creator cannot accidentally delete, resize or update an active Studio employee through a legacy route; deliberate replacement has a tested recovery path. Sources: [legacy page](../../../src/app/dashboard/agents/[agentId]/[[...tab]]/page.tsx), [lifecycle actions](../../../src/app/api/agents/[id]/[action]/route.ts), [delete](../../../src/app/api/agents/[id]/route.ts), [resize](../../../src/app/api/agents/[id]/resize/route.ts), [provision recovery](../../../src/studio/workstation.ts#L39).
 
 ### R10 Recovery needs an operator view and clearer stopping conditions
 
 **Status: Done and deployed. The production health endpoint reports completed free-media workflows and rejects anonymous access.**
 
-**Remediation — October 25, 2026:** Implemented and deployed. Persistent private workflow health, progress timestamps, bounded error backoff, safe categories, Needs attention UI and recovery runbook preserve uncertain-action fences. Production health and two completed free-media workflows passed the rollout smoke checks. See [operations](OPERATIONS.md) and [release evidence](RELEASE-2026-10-25.md).
+**Remediation — October 25, 2026:** Implemented and deployed. Persistent private workflow health, progress timestamps, bounded error backoff, safe categories, Needs attention UI and recovery runbook preserve uncertain-action fences. Production health and two completed free-media workflows passed the rollout smoke checks. See [operations](../../OPERATIONS.md) and [release evidence](../releases/RELEASE-2026-10-25.md).
 
 **P2 · Operational gap.** Assignment, campaign and media workflows use persistent retry loops. That protects work from transient failures, but broad catches often retain little diagnostic detail and continue polling indefinitely. A permanently missing resource, an unrecoverable dispatch or an unknown payment can look much like a temporary outage. Media errors are mostly exposed as internal codes with underscores replaced.
 
 **Original recommended action:** persist last successful progress, retry category, next retry time and a safe diagnostic correlation ID. Add backoff and an explicit needs-attention state with an operator runbook. Distinguish budget wait, platform outage, expired authorization, missing local state and unknown payment. Never treat elapsed time as permission to repeat a payment or uncertain agent turn.
 
-**Original completion check:** an operator can identify and recover a stalled job without guessing, changing raw database rows or releasing an uncertain employee prematurely. Sources: [assignment workflow](../src/workflows/assignment/index.ts), [campaign workflow](../src/workflows/campaign/index.ts), [media workflow](../src/workflows/media/index.ts), [MediaPanel](../src/components/studio/MediaPanel.tsx).
+**Original completion check:** an operator can identify and recover a stalled job without guessing, changing raw database rows or releasing an uncertain employee prematurely. Sources: [assignment workflow](../../../src/workflows/assignment/index.ts), [campaign workflow](../../../src/workflows/campaign/index.ts), [media workflow](../../../src/workflows/media/index.ts), [MediaPanel](../../../src/components/studio/MediaPanel.tsx).
 
 ### R11 The deployed budget and media release is not captured by Git HEAD
 
 **Status: Done and deployed. Paired merges, the production deployment, migration ledger and runtime pin are recorded.**
 
-**Remediation — October 25, 2026:** Both PRs are merged and the application is deployed from web 9973720, paired with runtime c15aa03 (implementation b38019a). Hosted gates pass 81 web tests, 68 runtime tests, typecheck, audits and builds; web main passed after merge. A clean runtime export reproduces all 16 workstation 0.1.23 files exactly. Production deployment, source digests, migration ledger, editor/client pins and rollback boundaries are in [the release record](RELEASE-2026-10-25.md) and [sanitized production evidence](acceptance/production-rollout-20261025.json).
+**Remediation — October 25, 2026:** Both PRs are merged and the application is deployed from web 9973720, paired with runtime c15aa03 (implementation b38019a). Hosted gates pass 81 web tests, 68 runtime tests, typecheck, audits and builds; web main passed after merge. A clean runtime export reproduces all 16 workstation 0.1.23 files exactly. Production deployment, source digests, migration ledger, editor/client pins and rollback boundaries are in [the release record](../releases/RELEASE-2026-10-25.md) and [sanitized production evidence](../../acceptance/production-rollout-20261025.json).
 
 **P2 · Confirmed release-management gap.** The current release depends on modified and untracked application files, migrations 0013–0017, new tests and vendor releases. The companion runtime also has uncommitted client/media changes. Both HEAD commits describe the earlier R2 migration.
 
@@ -309,13 +311,13 @@ The saved deployment source manifest is valuable: all 407 compared regular files
 
 **Original recommended action:** review and commit the existing web/runtime changes, identify both commits in a release record, and retain a known compatible rollback target. Include source digests, migration state, editor pins and workstation client version. Do not indiscriminately add ignored QA artifacts or private configuration.
 
-**Original completion check:** clean checkouts of the recorded commits build and test the release with declared dependencies; production can be traced to them. Evidence: [release-evidence.json](../artifacts/qa/project-review-20261025/release-evidence.json).
+**Original completion check:** clean checkouts of the recorded commits build and test the release with declared dependencies; production can be traced to them. Evidence: [release-evidence.json](../../../artifacts/qa/project-review-20261025/release-evidence.json).
 
 ### R12 Automated gates do not cover the newly found failure paths
 
 **Status: Done and deployed. Maintained CI runs pass; branch-protection enforcement is a separate policy choice.**
 
-**Remediation — October 25, 2026:** Implemented and verified on hosted Linux CI in both repositories. Maintained tests cover the reproduced failures, provider contracts and lost budget synchronization acknowledgements. Web build plus all 18 public cross-engine checks and runtime tests/build pass. Both main branches currently have no required-check protection; CI execution is verified, merge enforcement is not enabled. See [operations](OPERATIONS.md) and [release evidence](RELEASE-2026-10-25.md).
+**Remediation — October 25, 2026:** Implemented and verified on hosted Linux CI in both repositories. Maintained tests cover the reproduced failures, provider contracts and lost budget synchronization acknowledgements. Web build plus all 18 public cross-engine checks and runtime tests/build pass. Both main branches currently have no required-check protection; CI execution is verified, merge enforcement is not enabled. See [operations](../../OPERATIONS.md) and [release evidence](../releases/RELEASE-2026-10-25.md).
 
 **P2 · Verification gap.** The repository has useful tests, but no checked-in CI workflow was found, and the build script does not run npm test. The passing suite did not exercise setup replay or the composer’s lost-acknowledgement reload. Important media-worker recovery checks currently live in ignored QA scripts rather than the regular test command.
 
@@ -327,7 +329,7 @@ The saved deployment source manifest is valuable: all 407 compared regular files
 
 **Status: Partial. Preview-service acquisitions, rights/provenance and editable-file acceptance remain; the $0.13 approval is pending.**
 
-**Remediation — October 25, 2026:** Exact-profile gating, all six provider request contracts and accurate per-size/character reservations are tested. Sound effects now send `text`; image editing pins Nano Banana instead of a changing provider default. The UI explains precise charges/ceilings and prevents submission when recovery identity cannot be persisted. Real pinned Photo/Sound/Film editors placed the existing paid outputs, saved and reopened native packages while retaining exact source exports and dependencies. Preview-service acquisitions remain pending the bounded $0.13 approval; no new generation was purchased. [Media acceptance](MEDIA-ACCEPTANCE.md) records scope, pricing sources and remaining rights/service checks.
+**Remediation — October 25, 2026:** Exact-profile gating, all six provider request contracts and accurate per-size/character reservations are tested. Sound effects now send `text`; image editing pins Nano Banana instead of a changing provider default. The UI explains precise charges/ceilings and prevents submission when recovery identity cannot be persisted. Real pinned Photo/Sound/Film editors placed the existing paid outputs, saved and reopened native packages while retaining exact source exports and dependencies. Preview-service acquisitions remain pending the bounded $0.13 approval; no new generation was purchased. [Media acceptance](../../MEDIA-ACCEPTANCE.md) records scope, pricing sources and remaining rights/service checks.
 
 **P2 · Known incomplete extension coverage.** The current service inventory distinguishes these states:
 
@@ -346,25 +348,25 @@ The recorded three paid checks total $0.439483. Commons image/audio/video placem
 
 **Original recommended action:** show service-specific readiness plainly, retain a deliberate preview policy, and verify each promoted service's request contract, output, cost reporting, rights/provenance and native/browser round trip. Improve estimate accuracy from verified pricing contracts; conservative reservations should be explained when they exceed likely actual cost.
 
-**Original completion check:** each newly promoted option has its own bounded acquisition and editable-file acceptance record. Sources: [PLAN media scope](PLAN.md#shared-source-media-and-provider-integration-authorized-2026-10-24), [service inventory](../src/studio/media-providers.ts), [request validation and estimates](../src/studio/media.ts), [existing media evidence](../artifacts/qa/commons-media-20261024/).
+**Original completion check:** each newly promoted option has its own bounded acquisition and editable-file acceptance record. Sources: [PLAN media scope](../checkpoints/PLAN-2026-10-30.md#shared-source-media-and-provider-integration-authorized-2026-10-24), [service inventory](../../../src/studio/media-providers.ts), [request validation and estimates](../../../src/studio/media.ts), [existing media evidence](../../../artifacts/qa/commons-media-20261024).
 
 ### R14 Temporary data and retained copies need lifecycle management
 
 **Status: Done and deployed. Hosted confirmed-media cleanup passed; no general Storage deletion batch was run.**
 
-**Remediation — October 25, 2026:** Deployed for expired searches, confirmed media copies, explicit creator-upload abandonment and native transfer snapshots. Seven-day quarantine, shared-key protection, fenced deletion retries and post-signing upload checks have regressions. Native retries keep uncertain snapshots and remove duplicates after confirmation. Hosted cleanup freed 6,234,003 working-copy bytes for the two confirmed QA imports; saved originals, request/commit evidence and uncertain working files remain retained. No general abandoned-upload or Storage-object deletion batch ran. See [operations](OPERATIONS.md) and [release evidence](RELEASE-2026-10-25.md).
+**Remediation — October 25, 2026:** Deployed for expired searches, confirmed media copies, explicit creator-upload abandonment and native transfer snapshots. Seven-day quarantine, shared-key protection, fenced deletion retries and post-signing upload checks have regressions. Native retries keep uncertain snapshots and remove duplicates after confirmation. Hosted cleanup freed 6,234,003 working-copy bytes for the two confirmed QA imports; saved originals, request/commit evidence and uncertain working files remain retained. No general abandoned-upload or Storage-object deletion batch ran. See [operations](../../OPERATIONS.md) and [release evidence](../releases/RELEASE-2026-10-25.md).
 
 **P2 · Operational gap.** Media originals, derivatives, receipts and transfer state accumulate in persistent workstation job directories. Search discoveries are inserted on each search and expire logically, but no deletion path for expired media discoveries/cache entries was found. There is no general application cleanup policy for abandoned uploads or no-longer-needed local working copies.
 
 **Original recommended action:** define retention for each data class and implement reference-aware cleanup. Preserve unresolved payment evidence, active uploads, committed originals and every dependency still reachable through a saved revision. Restores and forks can share Storage keys, so deleting by one asset's age is unsafe. Track disk/storage consumption for operators without adding the user-facing hosting/storage budgets excluded by the plan.
 
-**Original completion check:** cleanup frees expired and unreferenced data while saved assets, restored versions, exact dependencies and uncertain-payment recovery still work. Sources: [media worker](../src/studio/media-worker.py), [media search persistence](../src/studio/media-server.ts), [media schema](../supabase/migrations/0013_source_media.sql).
+**Original completion check:** cleanup frees expired and unreferenced data while saved assets, restored versions, exact dependencies and uncertain-payment recovery still work. Sources: [media worker](../../../src/studio/media-worker.py), [media search persistence](../../../src/studio/media-server.ts), [media schema](../../../supabase/migrations/0013_source_media.sql).
 
 ### R15 Recovery documentation needs a cross-service restore drill
 
 **Status: Deferred by owner. Runbook and isolated database regression exist; no hosted recovery drill or recovery time is established.**
 
-**Remediation — October 25, 2026:** Runbook and isolated database snapshot restore regression added. The owner deferred the recoverable database point, full cross-service restore drill and Storage-file backups. The later deployment authorization covered bounded rollout checks, not this restore drill. No hosted restore point or measured recovery time is established. See [operations](OPERATIONS.md) for the retained future procedure.
+**Remediation — October 25, 2026:** Runbook and isolated database snapshot restore regression added. The owner deferred the recoverable database point, full cross-service restore drill and Storage-file backups. The later deployment authorization covered bounded rollout checks, not this restore drill. No hosted restore point or measured recovery time is established. See [operations](../../OPERATIONS.md) for the retained future procedure.
 
 **Scope update, 2026-10-25:** the user later authorized deployment of all completed changes, superseding the earlier rollout deferral. The recoverable database point, full cross-service restore drill and Storage-file backups remain postponed. A verified schema baseline and row fingerprints used for safe incremental migration are not a recoverable database backup. The earlier Free-plan dashboard observation is retained.
 
@@ -378,9 +380,9 @@ The recorded three paid checks total $0.439483. Commons image/audio/video placem
 
 **Status: Done and deployed. Current status, historical evidence and remaining work are explicitly separated.**
 
-**Remediation — October 25, 2026:** Updated current-status/acceptance index, both READMEs, repository instructions and historical checkpoint labeling. Sanitized evidence summaries/hashes are maintained; private QA evidence stays ignored. See [operations](OPERATIONS.md) and [release evidence](RELEASE-2026-10-25.md).
+**Remediation — October 25, 2026:** Updated current-status/acceptance index, both READMEs, repository instructions and historical checkpoint labeling. Sanitized evidence summaries/hashes are maintained; private QA evidence stays ignored. See [operations](../../OPERATIONS.md) and [release evidence](../releases/RELEASE-2026-10-25.md).
 
-**P2 · Confirmed documentation gap.** The [README](../README.md) still describes movable prints, pending integrations, the older deployment URL and password-based sign-in. The lower starter sections of AGENTS.md still say there is no test suite and describe public signup. The companion README lists substantial work as pending after later acceptance completed it. Some per-Craft verification fields retain older startup conclusions while newer central evidence supersedes them.
+**P2 · Confirmed documentation gap.** The [README](../../../README.md) still describes movable prints, pending integrations, the older deployment URL and password-based sign-in. The lower starter sections of AGENTS.md still say there is no test suite and describe public signup. The companion README lists substantial work as pending after later acceptance completed it. Some per-Craft verification fields retain older startup conclusions while newer central evidence supersedes them.
 
 The top-level scope correctly overrides older text, but readers and automation must reconstruct the current state from a long chronological plan. The central acceptance index also predates the budget/media release. All 76 referenced pilot evidence paths exist locally, but artifacts are ignored by Git and some adjacent QA files contain private credentials.
 
@@ -392,9 +394,9 @@ The top-level scope correctly overrides older text, but readers and automation m
 
 **Status: Partial. Guidance and live support forwarding exist; terms and a concrete retention/closure policy remain before wider access.**
 
-**Remediation — October 25, 2026:** Support/privacy pages are deployed; manual export, account recovery, invitation removal and closure procedures are documented. support@robyn.academy forwarding is live and provider-reported delivery to developer@venatiostudios.com verified. Applicable terms and a fixed closure retention schedule still need review before wider access. See [operations](OPERATIONS.md) and [release evidence](RELEASE-2026-10-25.md).
+**Remediation — October 25, 2026:** Support/privacy pages are deployed; manual export, account recovery, invitation removal and closure procedures are documented. support@robyn.academy forwarding is live and provider-reported delivery to developer@venatiostudios.com verified. Applicable terms and a fixed closure retention schedule still need review before wider access. See [operations](../../OPERATIONS.md) and [release evidence](../releases/RELEASE-2026-10-25.md).
 
-**P2 before wider invitations · Product and operations gap.** The public [privacy page](../src/app/privacy/page.tsx) describes invitation-request data. The studio now processes native files, prompts, research browsing, connected-account access and provider media, with multiple hosting services. There is no similarly complete creator-facing explanation, maintained support route, or documented account/data export and deletion process. Workspace deletion is explicitly unavailable in the pilot API.
+**P2 before wider invitations · Product and operations gap.** The public [privacy page](../../../src/app/privacy/page.tsx) describes invitation-request data. The studio now processes native files, prompts, research browsing, connected-account access and provider media, with multiple hosting services. There is no similarly complete creator-facing explanation, maintained support route, or documented account/data export and deletion process. Workspace deletion is explicitly unavailable in the pilot API.
 
 **Original recommended action:** document the actual data flows, retention choices, account recovery, support contact, invitation removal and studio closure process. Explain how creators retrieve their files and credits. Have the applicable terms reviewed before broadening access or introducing commercial subscriptions. This is a documentation and operating-process recommendation, not a legal compliance determination.
 
@@ -404,7 +406,7 @@ The top-level scope correctly overrides older text, but readers and automation m
 
 **Status: Partial. Baseline and automated checks are documented; native accessibility and broader device/engine/GPU acceptance remain.**
 
-**Remediation — October 25, 2026:** Public checks remain maintained. New real-component Media-panel tests pass keyboard/axe/reflow, high contrast and exact retry/editor preservation in Chromium, Firefox and WebKit. Real Photo/Sound/Film packages opened in all three engines; generated-source native save/reopen passed in Chromium. Support and Document options expose browser/accessibility help without replacing the editor. A PhotoCraft native input lacks an accessible name and the canvas lacks individually named tools; full native keyboard/screen-reader support is not claimed. Physical devices, additional GPUs and broader native round trips remain open. [Browser baseline](BROWSER-SUPPORT.md) distinguishes each result and limitation.
+**Remediation — October 25, 2026:** Public checks remain maintained. New real-component Media-panel tests pass keyboard/axe/reflow, high contrast and exact retry/editor preservation in Chromium, Firefox and WebKit. Real Photo/Sound/Film packages opened in all three engines; generated-source native save/reopen passed in Chromium. Support and Document options expose browser/accessibility help without replacing the editor. A PhotoCraft native input lacks an accessible name and the canvas lacks individually named tools; full native keyboard/screen-reader support is not claimed. Physical devices, additional GPUs and broader native round trips remain open. [Browser baseline](../../BROWSER-SUPPORT.md) distinguishes each result and limitation.
 
 **P2 before broader browser support · Verification gap.** Existing acceptance is strongest in Chromium on desktop and Chromium mobile emulation for the public site. Physical phones and Safari were not covered by the recorded mobile acceptance. The desktop entry gate tests viewport, hover and pointer capability; it does not establish that every admitted browser supports every editor's required graphics/media features.
 

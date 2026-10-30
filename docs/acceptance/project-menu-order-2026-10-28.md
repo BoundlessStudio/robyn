@@ -1,6 +1,6 @@
 # Project menu order and same-tab navigation — October 28, 2026
 
-Local follow-up to the project navigation release at web `5271af1`. This records local verification. The subsequent [release record](../RELEASE-PROJECT-NAVIGATION-2026-10-28.md#menu-behavior-follow-up) and [production evidence](production-project-menu-order-20261028.json) separately record deployment and live checks.
+Local follow-up to the project navigation release at web `5271af1`. This records local verification. The subsequent [release record](../archive/releases/RELEASE-PROJECT-NAVIGATION-2026-10-28.md#menu-behavior-follow-up) and [production evidence](production-project-menu-order-20261028.json) separately record deployment and live checks.
 
 ## Behavior
 

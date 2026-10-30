@@ -1,6 +1,6 @@
 # AI Employees page acceptance — October 28, 2026
 
-This records local acceptance on top of web commit `284beb3d6a414c578599be1572a483a934a9555c`. The feature is now deployed; [the release record](../RELEASE-EMPLOYEES-2026-10-28.md) and its production evidence distinguish live checks from the local fixtures below.
+This records local acceptance on top of web commit `284beb3d6a414c578599be1572a483a934a9555c`. The feature is now deployed; [the release record](../archive/releases/RELEASE-EMPLOYEES-2026-10-28.md) and its production evidence distinguish live checks from the local fixtures below.
 
 ## Creator workflow
 

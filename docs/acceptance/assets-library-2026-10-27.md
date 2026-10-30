@@ -1,6 +1,6 @@
 # Asset library acceptance — October 27, 2026
 
-This records the feature branch's local acceptance. The [release record](../RELEASE-ASSETS-2026-10-27.md) distinguishes published editor artifacts from deployment of the web application.
+This records the feature branch's local acceptance. The [release record](../archive/releases/RELEASE-ASSETS-2026-10-27.md) distinguishes published editor artifacts from deployment of the web application.
 
 The original feature is now deployed. [Production evidence](production-assets-library-20261027.json) records the paired merges, Vercel deployment and authenticated WordCraft import/save/export checks. The subsequent FilmCraft 0.2.3 correction covers its native Source/Browse entry points; the 0.2.2 tests below entered through Place from studio and did not prove those native controls.
 

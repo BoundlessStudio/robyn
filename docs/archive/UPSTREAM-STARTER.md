@@ -1,9 +1,11 @@
 # Agent37 Starter Kit
 
+> Historical record. Requirements, pause/resume directions, pending actions and release state below describe the recorded pass. Use the [documentation index](../README.md) for current scope and acceptance.
+
 A full-stack starter for building your own agent app on the [Agent37](https://www.agent37.com) Cloud API: auth, chat, files, messaging apps (Telegram, WhatsApp, Slack, Discord), integrations, and fleet management, with your choice of Hermes or OpenClaw. Fork it, rebrand it, ship it.
 
 <p align="center">
-  <img src="screenshots/demo.gif" alt="Demo of the Agent37 Starter Kit dashboard and agent workspace" width="100%" />
+  <img src="../../screenshots/demo.gif" alt="Demo of the Agent37 Starter Kit dashboard and agent workspace" width="100%" />
 </p>
 
 ## Setup
@@ -21,4 +23,4 @@ login-gated keys it needs, then do everything else and tell me the local URL.
 ```
 
 It writes your keys, configures Supabase, and starts the app. Prefer to do it yourself?
-**[SETUP.md](SETUP.md)** has the four-command path and deploy steps too.
+**[SETUP.md](../../SETUP.md)** has the four-command path and deploy steps too.

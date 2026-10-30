@@ -1,6 +1,6 @@
 # Standard project menu — October 28, 2026
 
-Local follow-up based on web `c090f0f`. This document records local acceptance. The subsequent [release record](../RELEASE-STANDARD-PROJECT-MENU-2026-10-28.md) and [sanitized production evidence](production-standard-project-menu-20261028.json) separately record deployment and authenticated live checks.
+Local follow-up based on web `c090f0f`. This document records local acceptance. The subsequent [release record](../archive/releases/RELEASE-STANDARD-PROJECT-MENU-2026-10-28.md) and [sanitized production evidence](production-standard-project-menu-20261028.json) separately record deployment and authenticated live checks.
 
 ## Behavior
 
