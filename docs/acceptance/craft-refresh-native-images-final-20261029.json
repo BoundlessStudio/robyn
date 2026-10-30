@@ -1,0 +1,146 @@
+{
+  "checkedAt": "2026-10-30T02:46:34.885Z",
+  "scope": "Fourteen selected immutable native templates. SolidCraft0.27 supersedes its unpromoted0.26.1 checkpoint; the old image remains retained. Each image build checks the pinned native CLI version. Browser and employee acceptance are separate.",
+  "applications": [
+    {
+      "appId": "cadcraft",
+      "release": "v0.14.0",
+      "template": "robyn-cadcraft-0-14-0@1",
+      "imageDigest": "sha256:df65088c9551376db050ab257e43fd1d07855b2bac7a384fb008e8bdc2253e16",
+      "dockerfileSha256": "09becda1a204203c3ef502cd52ef752dc3b12d980717eb73d29749c1e83b0d63",
+      "nativeArchiveSha256": "95067c849f82305648249299bb86e645b730275aa8c5f19965d81990f83aea9b",
+      "buildStatus": "succeeded",
+      "versionCheckedInsideBuild": true
+    },
+    {
+      "appId": "deckcraft",
+      "release": "v0.12.0",
+      "template": "robyn-deckcraft-0-12-0@1",
+      "imageDigest": "sha256:0d74f4a4f5311bb6e6580a3354d3f762e88eae4ce8536e86a3569c82d9fca450",
+      "dockerfileSha256": "589e7397fbac7bbfc49c892b4f6ef38c74bf9cf0f3bf3e2b61f793a1eee20ed9",
+      "nativeArchiveSha256": "4a410d3caa423e873d0dcab51c98e06588f55bdfcf03e9c1e91409a86c08de3e",
+      "buildStatus": "succeeded",
+      "versionCheckedInsideBuild": true
+    },
+    {
+      "appId": "designcraft",
+      "release": "v0.14.0",
+      "template": "robyn-designcraft-0-14-0@1",
+      "imageDigest": "sha256:6bd3bc17de676fccd12bad4f56446e06649cc60332976a4798b8e80e50de9453",
+      "dockerfileSha256": "c31f2e685372b14a4601afa73366db9709609c569d2d37779aee546e75e575a9",
+      "nativeArchiveSha256": "25c87be759d35a81ca44e1f625ed4304b16e5aab6a03a1051bca498a81bfc547",
+      "buildStatus": "succeeded",
+      "versionCheckedInsideBuild": true
+    },
+    {
+      "appId": "effectcraft",
+      "release": "v0.18.0",
+      "template": "robyn-effectcraft-0-18-0@1",
+      "imageDigest": "sha256:4f5a0082fb05334f039bf0e039ec900d384927564cb82a939ae8b60a544bd8e8",
+      "dockerfileSha256": "1e5ecd67dc539e780a75d28ed0021cef08b89c700555b4cab549557dd229ef10",
+      "nativeArchiveSha256": "94d1d85691d54ba57fa86e04872fbcc426c33d1bd364f1fc976b1f607344880b",
+      "buildStatus": "succeeded",
+      "versionCheckedInsideBuild": true
+    },
+    {
+      "appId": "figcraft",
+      "release": "v0.12.1",
+      "template": "robyn-figcraft-0-12-1@1",
+      "imageDigest": "sha256:d5e1e5e91ecab08b24839cd1e6dbe5005903edb5bc2b3e56b3bba55e196be3f9",
+      "dockerfileSha256": "fd87ce6852947102169ad117137723fcbe9d58e3d2c4325c976dddc2c2a14975",
+      "nativeArchiveSha256": "00a29f4cc382807d840f5d3e9b59f4c8829356789afbb956a0964918295e49dd",
+      "buildStatus": "succeeded",
+      "versionCheckedInsideBuild": true
+    },
+    {
+      "appId": "filmcraft",
+      "release": "v0.14.0",
+      "template": "robyn-filmcraft-0-14-0@1",
+      "imageDigest": "sha256:a0928499237173ae502b3d2f0782bb0ec53d3d60f199d947eb198e291b9a7a66",
+      "dockerfileSha256": "446f946e36db4763daffffb2282e28b2fa136e469f51e8a729246b07709955e6",
+      "nativeArchiveSha256": "d2aa213cc08abd21e05ab511a78cc38f157caf2226992f3fc8a5e0496a3f7e7d",
+      "buildStatus": "succeeded",
+      "versionCheckedInsideBuild": true
+    },
+    {
+      "appId": "gridcraft",
+      "release": "v0.13.0",
+      "template": "robyn-gridcraft-0-13-0@1",
+      "imageDigest": "sha256:df4eac4d419406428dab897efdb27ae993782bf0e5a998f438f04e5d790638dd",
+      "dockerfileSha256": "e0ddbf992fe756023cb5573eaa302983043cbebb0fa26415954f7aec732e3d49",
+      "nativeArchiveSha256": "20c6c56ec1ffd6bbcffee6cdee58cf6b5cadd2f4a04a4360dd7cc64d53ad97e5",
+      "buildStatus": "succeeded",
+      "versionCheckedInsideBuild": true
+    },
+    {
+      "appId": "lightcraft",
+      "release": "v0.15.0",
+      "template": "robyn-lightcraft-0-15-0@1",
+      "imageDigest": "sha256:ba0e6fcb9d332a7f942a6f7f541716d7d45a48f849dbe846fa0992415211606b",
+      "dockerfileSha256": "b2155ba65e5667249bc1ca3e36cc18d736aa7b59252382abc73a4b909622cb3b",
+      "nativeArchiveSha256": "0b1acdefc085babb334b9add290dd1a69b50e96efbdad2ec15d44bd6d64bfd3d",
+      "buildStatus": "succeeded",
+      "versionCheckedInsideBuild": true
+    },
+    {
+      "appId": "pdfcraft",
+      "release": "v0.15.0",
+      "template": "robyn-pdfcraft-0-15-0@1",
+      "imageDigest": "sha256:4c5026a56b8a8b76cb051b9b665c11a3e8893cf770b7e7b9425be143a6dc2627",
+      "dockerfileSha256": "5ccf60be2b37778d01c29c98d04f1016a720ab917668a4fa0ae15b964a6d5313",
+      "nativeArchiveSha256": "b167a18c60a7b329f05a5bbf97e32dc678aad3f8d5866d8e4378ff24273f8313",
+      "buildStatus": "succeeded",
+      "versionCheckedInsideBuild": true
+    },
+    {
+      "appId": "photocraft",
+      "release": "v0.17.0",
+      "template": "robyn-photocraft-0-17-0@1",
+      "imageDigest": "sha256:f039f03822aa77afa7342fc0828f0c7cdbb50e414a1690c71ee867a352134233",
+      "dockerfileSha256": "d9ec03465a49a8f7681f063ef22b24508eea431ee178682c6896e68c26d7a982",
+      "nativeArchiveSha256": "5259f9c428c8ee3478c35500ece98713561cafc050e4c9eb354a5050f36eb2b8",
+      "buildStatus": "succeeded",
+      "versionCheckedInsideBuild": true
+    },
+    {
+      "appId": "solidcraft",
+      "release": "v0.27.0",
+      "template": "robyn-solidcraft-0-27-0@1",
+      "imageDigest": "sha256:2ec95df623e62566bd151d05eeebcf8826301f73d078e84405af62e19780c8e9",
+      "dockerfileSha256": "d867a8befa6d3fbfceae703cdf21f3dc98fb41510e6243fbc0513d9d41342f1f",
+      "nativeArchiveSha256": "eb5b8eb5447d5443be9b5e094cb1a7ec2c7d08393fc49bb31ccae595562e9175",
+      "buildStatus": "succeeded",
+      "versionCheckedInsideBuild": true
+    },
+    {
+      "appId": "soundcraft",
+      "release": "v0.14.0",
+      "template": "robyn-soundcraft-0-14-0@1",
+      "imageDigest": "sha256:0af82abd3391a5c6df60b1e5d1a95b31f20402855864637172b62ac7b53f08aa",
+      "dockerfileSha256": "c3f19ede0a50eb3330c2354bfd774637c96280afdd55af4f7dc7b394445b71aa",
+      "nativeArchiveSha256": "2f83503feda6aa2c8d4bc12c44f571422c4389fc664a92bbed092d2bf1d500ad",
+      "buildStatus": "succeeded",
+      "versionCheckedInsideBuild": true
+    },
+    {
+      "appId": "vectorcraft",
+      "release": "v0.18.0",
+      "template": "robyn-vectorcraft-0-18-0@1",
+      "imageDigest": "sha256:346e9ef26bcbfe54aad48d8516a468fdf964f9c02032e73e7552abddde0fe9a5",
+      "dockerfileSha256": "e7764950d09c2a50c07cd510994dad13601dc6b2a145faced4f9e3bda3682f22",
+      "nativeArchiveSha256": "76948b50ef78dd482a6ece06f10b7047937bbc0c05f5cf6bc43d88b07f74d826",
+      "buildStatus": "succeeded",
+      "versionCheckedInsideBuild": true
+    },
+    {
+      "appId": "wordcraft",
+      "release": "v0.12.0",
+      "template": "robyn-wordcraft-0-12-0@1",
+      "imageDigest": "sha256:223fcb7f752ad1e2edec5d68eb21c213ecd7c6ac176529eda653c025d5c0b6bb",
+      "dockerfileSha256": "069aab395c5206a713552e110f9dc6759e8bb0b909fdbf8db0f4a363e3632a6b",
+      "nativeArchiveSha256": "cd9abd0ee7a11b985af1c1571653332c96077e5dcc48b5e187b55c82f475a33e",
+      "buildStatus": "succeeded",
+      "versionCheckedInsideBuild": true
+    }
+  ]
+}

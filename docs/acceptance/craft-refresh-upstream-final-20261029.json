@@ -1,0 +1,2204 @@
+{
+  "checkedAt": "2026-10-30T02:37:29.870Z",
+  "source": "Official GitHub releases/latest API via connected GitHub integration",
+  "scope": "Release freeze on resumed refresh. Original thirteen versions remain current; SolidCraft0.27.0 supersedes the checkpoint0.26.1 and introduces native format44.",
+  "applications": [
+    {
+      "id": "photocraft",
+      "release": "v0.17.0",
+      "publishedAt": "2026-10-28T17:39:12Z",
+      "sourceUrl": "https://github.com/storytold/photocraft/releases/tag/v0.17.0",
+      "assets": [
+        {
+          "name": "photocraft-0.17.0-freebsd-x86_64.tar.gz",
+          "bytes": 122520458,
+          "sha256": "9cf8e89ccebd0c7761caf818b9125231c2de9f4248a6d2a909a75d85dab0416f"
+        },
+        {
+          "name": "photocraft-0.17.0-linux-aarch64.AppImage",
+          "bytes": 112646664,
+          "sha256": "8f6f34dba1a68802a154139172d80e6a310759a78a75f02d39d5b26ccf3384eb"
+        },
+        {
+          "name": "photocraft-0.17.0-linux-aarch64.AppImage.zsync",
+          "bytes": 192766,
+          "sha256": "a287bb70b1b12963b02ad5078c3e12d3f45d664e7127743fb65981f217cea5bf"
+        },
+        {
+          "name": "photocraft-0.17.0-linux-aarch64.deb",
+          "bytes": 121185532,
+          "sha256": "ddeee58795246975fcafd22abe8e48554dba19440656cfd709df129af185e015"
+        },
+        {
+          "name": "photocraft-0.17.0-linux-aarch64.flatpak",
+          "bytes": 87111872,
+          "sha256": "d209f3ed0485d61f21eeba0b75b04f760c1aeb33ce33aaad2c3eb89276c77bc2"
+        },
+        {
+          "name": "photocraft-0.17.0-linux-aarch64.pkg.tar.zst",
+          "bytes": 96190980,
+          "sha256": "21a046955f794d7238dad244a98e208bcd8b6521423f76fe3662f6810d24511f"
+        },
+        {
+          "name": "photocraft-0.17.0-linux-aarch64.rpm",
+          "bytes": 120182137,
+          "sha256": "85d378ff258535dea9f89a0b4f7b0ac6856734abe11ab88b5b8d91bbb538bc80"
+        },
+        {
+          "name": "photocraft-0.17.0-linux-aarch64.tar.gz",
+          "bytes": 118208343,
+          "sha256": "a9478dee2b34f270a1f845a7d7f4da501c529d443680ee23c2c8b588867d61b8"
+        },
+        {
+          "name": "photocraft-0.17.0-linux-riscv64.deb",
+          "bytes": 122151872,
+          "sha256": "7ec15c1d4d60ea6efecb01a07f2f7367203ff7a3cc420ae9f460a53e0c6625f0"
+        },
+        {
+          "name": "photocraft-0.17.0-linux-riscv64.rpm",
+          "bytes": 121590040,
+          "sha256": "3ed57d7319a0c2913972d89820f2ee48de9f4d2c7b008e0440b2bceb4a64624b"
+        },
+        {
+          "name": "photocraft-0.17.0-linux-riscv64.tar.gz",
+          "bytes": 120575562,
+          "sha256": "c1d72fc6b6bc852047189b5a08a0fa3669f065dfa676b808ef1d490d7d20c14e"
+        },
+        {
+          "name": "photocraft-0.17.0-linux-x86_64.AppImage",
+          "bytes": 117254648,
+          "sha256": "ce77299f243534ac1d248aa81c9a9fd278ae407c024cb931e03931eb70be54af"
+        },
+        {
+          "name": "photocraft-0.17.0-linux-x86_64.AppImage.zsync",
+          "bytes": 200639,
+          "sha256": "5eedd8ed9a08ef465ffe768f4a30b6c54cec0cc40d2005f433b2843092ccae50"
+        },
+        {
+          "name": "photocraft-0.17.0-linux-x86_64.deb",
+          "bytes": 124975708,
+          "sha256": "7704bdc0104b765f7c2e1fe55eb57600dae2253e5aba1cf0acca95c29c4a9f49"
+        },
+        {
+          "name": "photocraft-0.17.0-linux-x86_64.flatpak",
+          "bytes": 92522072,
+          "sha256": "c96dc0cc10cb1db269daca20d4a2549bf6950c514be7d68b8dc26d5574401637"
+        },
+        {
+          "name": "photocraft-0.17.0-linux-x86_64.pkg.tar.zst",
+          "bytes": 99397370,
+          "sha256": "bfe115a299d0d36c0e43a5817e662b38b45fdf9ed46e72f08960faee394775eb"
+        },
+        {
+          "name": "photocraft-0.17.0-linux-x86_64.rpm",
+          "bytes": 124162704,
+          "sha256": "3f46c47427e8ccb1afaf1285f766cc4959b523ecbf5ba17d80d223d9eea89487"
+        },
+        {
+          "name": "photocraft-0.17.0-linux-x86_64.tar.gz",
+          "bytes": 123212747,
+          "sha256": "5259f9c428c8ee3478c35500ece98713561cafc050e4c9eb354a5050f36eb2b8"
+        },
+        {
+          "name": "photocraft-0.17.0-macos-universal.dmg",
+          "bytes": 136121117,
+          "sha256": "6e0903172a7440ce4e71002f5585ba4eff588fa3fc99b78cd9811180cabd5b80"
+        },
+        {
+          "name": "photocraft-0.17.0-windows-arm64-portable.zip",
+          "bytes": 120323577,
+          "sha256": "fe0f621702ee723d51d771f245aed2de2e5111349bce524afc04a66efa1c2627"
+        },
+        {
+          "name": "photocraft-0.17.0-windows-arm64.msi",
+          "bytes": 99975168,
+          "sha256": "cce2af0bda3e687290f7d61b55aec0a56aba39fd711c7caf948918aa8f79bc32"
+        },
+        {
+          "name": "photocraft-0.17.0-windows-x64-portable.zip",
+          "bytes": 126317468,
+          "sha256": "3453777af0a0b376bfea0d1ccf42bedcbe1c324e1836b50d6227b9e1d64a20ab"
+        },
+        {
+          "name": "photocraft-0.17.0-windows-x64.msi",
+          "bytes": 105615360,
+          "sha256": "e309e48d26049f7f2ec65401c5da1899922456bdb7eb312be154c9f1490415e0"
+        },
+        {
+          "name": "photocraft-0.17.0-windows-x86-portable.zip",
+          "bytes": 120451765,
+          "sha256": "6946358d2362fd9fabc4e325eff1e8f16c134734b8d8698d949db55e13335f9b"
+        },
+        {
+          "name": "photocraft-0.17.0-windows-x86.msi",
+          "bytes": 102191104,
+          "sha256": "758e5cbd58eb85377cf2dc84a372bef39d3c1f7dd157c37d81417958bc903837"
+        },
+        {
+          "name": "photocraft-cli-0.17.0-macos-universal.zip",
+          "bytes": 106003284,
+          "sha256": "6edff99cc1977508bea9b5566f551374e7b8ef42a21502ee084a1d969f0d54c0"
+        },
+        {
+          "name": "photocraft-web-0.17.0.zip",
+          "bytes": 12955028,
+          "sha256": "9dbc979e138e83136d5958acd0cf7d1832aeae5095409eb4691dca577db5fc99"
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 2833,
+          "sha256": "fc0081e36561ca06b8c438dde168a9764a640e50654f7422cadb0777be39aa36"
+        }
+      ]
+    },
+    {
+      "id": "vectorcraft",
+      "release": "v0.18.0",
+      "publishedAt": "2026-10-28T17:38:39Z",
+      "sourceUrl": "https://github.com/storytold/vectorcraft/releases/tag/v0.18.0",
+      "assets": [
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 2860,
+          "sha256": "fedb4a90f694abd28f913d633fd71ceee2504eeb2d1f422f9a023e7be1bfb65a"
+        },
+        {
+          "name": "vectorcraft-0.18.0-freebsd-x86_64.tar.gz",
+          "bytes": 135173363,
+          "sha256": "6308a2981dfd90a7e45abb181e2c4296fd527495b821eeaabcaa8b6bc270261a"
+        },
+        {
+          "name": "vectorcraft-0.18.0-linux-aarch64.AppImage",
+          "bytes": 122804744,
+          "sha256": "4312917dc0704d8967d1c3d37fc3854d5ae135631c17bb4ccb811ac1373ab2df"
+        },
+        {
+          "name": "vectorcraft-0.18.0-linux-aarch64.AppImage.zsync",
+          "bytes": 210128,
+          "sha256": "1715f15ab87a97c5aed710ae87a8835d96c8a303da3bef6a337d9e94fd041519"
+        },
+        {
+          "name": "vectorcraft-0.18.0-linux-aarch64.deb",
+          "bytes": 133454692,
+          "sha256": "165b5fe835fe5278d1ebdcbe3e01953d31217241ff83b56cbdb311b81311ebd7"
+        },
+        {
+          "name": "vectorcraft-0.18.0-linux-aarch64.flatpak",
+          "bytes": 87907256,
+          "sha256": "84cbc67122631e19ed2216240650bf14df1f13053d19b1b540dcd48d1125f14c"
+        },
+        {
+          "name": "vectorcraft-0.18.0-linux-aarch64.pkg.tar.zst",
+          "bytes": 97540541,
+          "sha256": "bf489b5cfe5acae35707b9168137b4a9b0416c1e362e1636c427c56b2c002f8d"
+        },
+        {
+          "name": "vectorcraft-0.18.0-linux-aarch64.rpm",
+          "bytes": 132301502,
+          "sha256": "13a7190d1c83c36136d7e3d68d78594880a72ebe71624e16a79ab821b6738875"
+        },
+        {
+          "name": "vectorcraft-0.18.0-linux-aarch64.tar.gz",
+          "bytes": 129989080,
+          "sha256": "191358b946897249f4a51dd8171060eb2867eda07f7d2eaf1b63c5c099c0e87e"
+        },
+        {
+          "name": "vectorcraft-0.18.0-linux-riscv64.deb",
+          "bytes": 134985848,
+          "sha256": "32180b19d510caf94bea78c6dbfa6ff2a0339eed9863553fe2ca17bf8b48bb9e"
+        },
+        {
+          "name": "vectorcraft-0.18.0-linux-riscv64.rpm",
+          "bytes": 134395503,
+          "sha256": "faf418e2a7934b10b617bc53f0afc9340c02ff9f0175bb32ec17981f7680585b"
+        },
+        {
+          "name": "vectorcraft-0.18.0-linux-riscv64.tar.gz",
+          "bytes": 133163373,
+          "sha256": "a767434e58b5d8a3e5105a35adff6dd4d6c960981803313e20c9afbdc1ca9662"
+        },
+        {
+          "name": "vectorcraft-0.18.0-linux-x86_64.AppImage",
+          "bytes": 127932920,
+          "sha256": "9e0d487fc71b122e96f19b136d3acdb385eaa409f6d4a8034557f23562f2108a"
+        },
+        {
+          "name": "vectorcraft-0.18.0-linux-x86_64.AppImage.zsync",
+          "bytes": 218890,
+          "sha256": "952ad63f36e0d9517d7ed918dd22c46208ca8bfa029b22fa3586e10134af71eb"
+        },
+        {
+          "name": "vectorcraft-0.18.0-linux-x86_64.deb",
+          "bytes": 137531678,
+          "sha256": "d3d449d0aeb5bf8b14e6951767d897b405b3469dbf2fc7801eca4bd5765ef072"
+        },
+        {
+          "name": "vectorcraft-0.18.0-linux-x86_64.flatpak",
+          "bytes": 93976808,
+          "sha256": "4581488b333e03be75a1ff0e68f2de9102e00b063a0d7db993f8ec2a94146dd6"
+        },
+        {
+          "name": "vectorcraft-0.18.0-linux-x86_64.pkg.tar.zst",
+          "bytes": 101221076,
+          "sha256": "269686ec20c9b79f91537a9e415a7530366aaf9c28cd67bdaa109f229a49708b"
+        },
+        {
+          "name": "vectorcraft-0.18.0-linux-x86_64.rpm",
+          "bytes": 136619822,
+          "sha256": "c31a8ee4cc1208d92c66f2efb6fc8d478f4933f862016311b5cc410444ee7cb0"
+        },
+        {
+          "name": "vectorcraft-0.18.0-linux-x86_64.tar.gz",
+          "bytes": 135504224,
+          "sha256": "76948b50ef78dd482a6ece06f10b7047937bbc0c05f5cf6bc43d88b07f74d826"
+        },
+        {
+          "name": "vectorcraft-0.18.0-macos-universal.dmg",
+          "bytes": 152886799,
+          "sha256": "6e873fb39eaeb2e8ec5ea82bad366707d6ee4f3080b6157a625c52ef74633874"
+        },
+        {
+          "name": "vectorcraft-0.18.0-windows-arm64-portable.zip",
+          "bytes": 132521341,
+          "sha256": "3e5dbaf68273a1574bf0dd759c25c57696597659dbd40c4806183e2e0abeec63"
+        },
+        {
+          "name": "vectorcraft-0.18.0-windows-arm64.msi",
+          "bytes": 105402368,
+          "sha256": "f56b743afc03c6880865a8c58170681eb42d2aa996d57151f819d840fc342542"
+        },
+        {
+          "name": "vectorcraft-0.18.0-windows-x64-portable.zip",
+          "bytes": 139091548,
+          "sha256": "136f8615765414792df628b0e94d4c955d912d21d6848226930f7bb856a2e677"
+        },
+        {
+          "name": "vectorcraft-0.18.0-windows-x64.msi",
+          "bytes": 112001024,
+          "sha256": "62267017a2aa30629a1112731e6e44a84bf5f9d13ee23c54a8ca18425bcc7e20"
+        },
+        {
+          "name": "vectorcraft-0.18.0-windows-x86-portable.zip",
+          "bytes": 133164458,
+          "sha256": "51e102d2c2f08723a3449f9f5ee3ff00383f974308f1e4cb81825911e0c3078b"
+        },
+        {
+          "name": "vectorcraft-0.18.0-windows-x86.msi",
+          "bytes": 108703744,
+          "sha256": "4743c39fd6b9b11897e4a0cd8eadfb6844055a365478a696b98d3069ea343808"
+        },
+        {
+          "name": "vectorcraft-cli-0.18.0-macos-universal.zip",
+          "bytes": 115481401,
+          "sha256": "694d216cc0ac8ff32dc1c32ffa318da9e5229d58bc821e378eef6f3739286744"
+        },
+        {
+          "name": "vectorcraft-web-0.18.0.zip",
+          "bytes": 30314340,
+          "sha256": "3eec3f90593b900ea364837dc0fbb8b2c855e4de54452b75a6426121c98f9b9e"
+        }
+      ]
+    },
+    {
+      "id": "lightcraft",
+      "release": "v0.15.0",
+      "publishedAt": "2026-10-28T17:36:29Z",
+      "sourceUrl": "https://github.com/storytold/lightcraft/releases/tag/v0.15.0",
+      "assets": [
+        {
+          "name": "lightcraft-0.15.0-freebsd-x86_64.tar.gz",
+          "bytes": 118085162,
+          "sha256": "b37a4ce4fb1b314a479da2eaa67cd8c270206e2b7e82f9d9d68511ddddf3ea8b"
+        },
+        {
+          "name": "lightcraft-0.15.0-linux-aarch64.AppImage",
+          "bytes": 107465224,
+          "sha256": "17b54138c11b47815580e19ea5128f41a81e33d98b7c97c29a8108b9fc8a2919"
+        },
+        {
+          "name": "lightcraft-0.15.0-linux-aarch64.AppImage.zsync",
+          "bytes": 183911,
+          "sha256": "bd33742e34a81844a39cd14cda2b02cebe436164c574030d9773299487228f27"
+        },
+        {
+          "name": "lightcraft-0.15.0-linux-aarch64.deb",
+          "bytes": 116361786,
+          "sha256": "82b3194eb2b49b24f29a0dd5ea2fd769e7306a51265aa6ba6b61a4f182288333"
+        },
+        {
+          "name": "lightcraft-0.15.0-linux-aarch64.flatpak",
+          "bytes": 80623864,
+          "sha256": "91319ceb99006fe9058daa8a5ceb64cc265d1391547fa9b58d3996ddaaad4096"
+        },
+        {
+          "name": "lightcraft-0.15.0-linux-aarch64.pkg.tar.zst",
+          "bytes": 89162428,
+          "sha256": "73cdfe8aac0e138998f8828b0029b419b89a98430ddf38f52802ed8d125ec512"
+        },
+        {
+          "name": "lightcraft-0.15.0-linux-aarch64.rpm",
+          "bytes": 115525740,
+          "sha256": "d13231eeee0b8ee2d357d676d25c68408eeeef88cd5b0083c1f7ca24bc3837fb"
+        },
+        {
+          "name": "lightcraft-0.15.0-linux-aarch64.tar.gz",
+          "bytes": 113587764,
+          "sha256": "3821538bfd8a23b2a5e824c4762d46b23a5f8f06f6e0a6c6dbd329accb49cd62"
+        },
+        {
+          "name": "lightcraft-0.15.0-linux-riscv64.deb",
+          "bytes": 116888808,
+          "sha256": "8aca99eedd2c1b130ed894bc447f8379ce32f03ac1ddc44fb8e4dbb498db8f3d"
+        },
+        {
+          "name": "lightcraft-0.15.0-linux-riscv64.rpm",
+          "bytes": 116450450,
+          "sha256": "98fbfd9a4430fe4d7ed4d9c918868bcece75aafa4cc5981d04420ffb1d8ec1ec"
+        },
+        {
+          "name": "lightcraft-0.15.0-linux-riscv64.tar.gz",
+          "bytes": 115381125,
+          "sha256": "36dea76a37b9e84620a958cc730843baeb938beb44d9f690e965f7370459b60e"
+        },
+        {
+          "name": "lightcraft-0.15.0-linux-x86_64.AppImage",
+          "bytes": 112097784,
+          "sha256": "851f1c1554fda928fe433e9cbe0e139a393231565561c2e5152b720bb059813b"
+        },
+        {
+          "name": "lightcraft-0.15.0-linux-x86_64.AppImage.zsync",
+          "bytes": 191826,
+          "sha256": "75eafe9f14000bf7078b3dc7fe35f989b113d5f499437e9c39b7253c63b32a3e"
+        },
+        {
+          "name": "lightcraft-0.15.0-linux-x86_64.deb",
+          "bytes": 120397574,
+          "sha256": "24c5dc46929c88adb856e6c08d8c41916612fa9d1c9151241295541b582a1a83"
+        },
+        {
+          "name": "lightcraft-0.15.0-linux-x86_64.flatpak",
+          "bytes": 85388672,
+          "sha256": "844ef73b90cedcf0c58e8f6ccc0397955001c85df798a75c52e1bf2cbbe59cf0"
+        },
+        {
+          "name": "lightcraft-0.15.0-linux-x86_64.pkg.tar.zst",
+          "bytes": 92159940,
+          "sha256": "968668051acf08ad06a226979be7518490cf92a0deb057199af469ac9453cdce"
+        },
+        {
+          "name": "lightcraft-0.15.0-linux-x86_64.rpm",
+          "bytes": 119702965,
+          "sha256": "b92bcfd81c012d0b8c9fa27929e4f110b52de4c3900a94ccab4af5b1405598fd"
+        },
+        {
+          "name": "lightcraft-0.15.0-linux-x86_64.tar.gz",
+          "bytes": 118686666,
+          "sha256": "0b1acdefc085babb334b9add290dd1a69b50e96efbdad2ec15d44bd6d64bfd3d"
+        },
+        {
+          "name": "lightcraft-0.15.0-macos-universal.dmg",
+          "bytes": 123120203,
+          "sha256": "175c1e68187d91cf90033a93015fb4cb450455755b78f41e394a9ea09e77cde9"
+        },
+        {
+          "name": "lightcraft-0.15.0-windows-arm64-portable.zip",
+          "bytes": 114019147,
+          "sha256": "ca69d9b66c1077f81a69bb18fb15a4c0c19c7727f8a89d8d670d04e8b96d3d93"
+        },
+        {
+          "name": "lightcraft-0.15.0-windows-arm64.msi",
+          "bytes": 93024256,
+          "sha256": "402df0f9aeee3ab8cf15b0a25259b8415be25825f357368c0f97c9be1d8eac8a"
+        },
+        {
+          "name": "lightcraft-0.15.0-windows-x64-portable.zip",
+          "bytes": 118919504,
+          "sha256": "94e70e9818bd0d108d661716d682e98aec8cdf0d3f3fb2560b2e6816f6779a11"
+        },
+        {
+          "name": "lightcraft-0.15.0-windows-x64.msi",
+          "bytes": 97173504,
+          "sha256": "fc0956fd18e338d9ed24977e03f93be4d91d0a54d02956f95ee9deb229cbe154"
+        },
+        {
+          "name": "lightcraft-0.15.0-windows-x86-portable.zip",
+          "bytes": 114175508,
+          "sha256": "046e501e9d3f1af73e17a3e1b7cc1697b78dc7db92c5e0677624feffb362a1cb"
+        },
+        {
+          "name": "lightcraft-0.15.0-windows-x86.msi",
+          "bytes": 94711808,
+          "sha256": "8480a11986bb85f2575416fc43522c74d06195b03d4e90988406453a657d4399"
+        },
+        {
+          "name": "lightcraft-cli-0.15.0-macos-universal.zip",
+          "bytes": 117204179,
+          "sha256": "6640a8c7296fe1b3bd443593a17d96c42f549da9df5eb6598c5260455d17f85c"
+        },
+        {
+          "name": "lightcraft-web-0.15.0.zip",
+          "bytes": 72556863,
+          "sha256": "fb46de80ad77814ea33efa3d2799edbaca3462c96da88347fb874f4d6fd15564"
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 2833,
+          "sha256": "fcc79fc157dd51cd1a30c81448ef923a9d1f46d58c803eaaa3193df3e42e93c1"
+        }
+      ]
+    },
+    {
+      "id": "filmcraft",
+      "release": "v0.14.0",
+      "publishedAt": "2026-10-28T16:40:33Z",
+      "sourceUrl": "https://github.com/storytold/filmcraft/releases/tag/v0.14.0",
+      "assets": [
+        {
+          "name": "filmcraft-0.14.0-freebsd-x86_64.tar.gz",
+          "bytes": 104799657,
+          "sha256": "f0bd26ca948ea42ce6420920dd0a885c9e8bb9f626584d2699bcd460f45b5c3c"
+        },
+        {
+          "name": "filmcraft-0.14.0-linux-aarch64.AppImage",
+          "bytes": 97638920,
+          "sha256": "b6e447df17efb3ade880d412a0c3855177320dc4b8cee90d395d343c9fb442c4"
+        },
+        {
+          "name": "filmcraft-0.14.0-linux-aarch64.AppImage.zsync",
+          "bytes": 333981,
+          "sha256": "7bcd8dd9a77b3e2fcbc381683be3f366b7b4f0f0bba9cd87ce22597ee7cd8ace"
+        },
+        {
+          "name": "filmcraft-0.14.0-linux-aarch64.deb",
+          "bytes": 104810264,
+          "sha256": "5f3cd1f62912abcca57052657e6033bfa8f71f150f4d854c315b8d8ad6cdfc30"
+        },
+        {
+          "name": "filmcraft-0.14.0-linux-aarch64.flatpak",
+          "bytes": 74478872,
+          "sha256": "5789c7dc179c9fffcd50dd4b5698c8854bd6297fef59aec0a2e1606c8d5c24c7"
+        },
+        {
+          "name": "filmcraft-0.14.0-linux-aarch64.pkg.tar.zst",
+          "bytes": 82180596,
+          "sha256": "49c7d552a33bee25fbc5630992a7000d600fe05a4c288baf52fc63706a027124"
+        },
+        {
+          "name": "filmcraft-0.14.0-linux-aarch64.rpm",
+          "bytes": 104023424,
+          "sha256": "7d02ef78aa0be3a4be7472c1660d5f13a676d34dd2c21e0581a6d548c3c508e7"
+        },
+        {
+          "name": "filmcraft-0.14.0-linux-aarch64.tar.gz",
+          "bytes": 102452117,
+          "sha256": "b887277df634854968e9bb20b42a5bf34c35103040a1cae03a6c14dc406e60fe"
+        },
+        {
+          "name": "filmcraft-0.14.0-linux-riscv64.deb",
+          "bytes": 105293318,
+          "sha256": "828f0054d0b82b391b9ece2eef6d658a30a12247cc1fe893d86485bd7761f193"
+        },
+        {
+          "name": "filmcraft-0.14.0-linux-riscv64.rpm",
+          "bytes": 104829971,
+          "sha256": "eb6d2eb634a3fb4655f5b67f086a0851b2387db083a5c3dd78156ff54beedd01"
+        },
+        {
+          "name": "filmcraft-0.14.0-linux-riscv64.tar.gz",
+          "bytes": 104012948,
+          "sha256": "9ae4b5edab43109e9bee1c93b4b1ee647f2a0bfeaaaf217f2701a0ca2660e95a"
+        },
+        {
+          "name": "filmcraft-0.14.0-linux-x86_64.AppImage",
+          "bytes": 100325880,
+          "sha256": "133b8b88db6dee3fa47dd39fc1c9dd9228283806a37b951587cc6365aec9a3d3"
+        },
+        {
+          "name": "filmcraft-0.14.0-linux-x86_64.AppImage.zsync",
+          "bytes": 171706,
+          "sha256": "2fef8c252aadd924ae8fac5c4933cda7ee8b5e377f50e223ecfd58b14a3ab4bb"
+        },
+        {
+          "name": "filmcraft-0.14.0-linux-x86_64.deb",
+          "bytes": 106918044,
+          "sha256": "14d826acf1d16093e436638930cedc5607295392d0adc791ac29d022a0a62a4c"
+        },
+        {
+          "name": "filmcraft-0.14.0-linux-x86_64.flatpak",
+          "bytes": 78006472,
+          "sha256": "7c76430f8bcd665c1c3f35dd64eb6c3a232ea285dcc6268d8a5ca58a554d56dc"
+        },
+        {
+          "name": "filmcraft-0.14.0-linux-x86_64.pkg.tar.zst",
+          "bytes": 84034998,
+          "sha256": "9b471327c34036fbaf30b4d86bff23d679e50f14a242a24afbe83eae98df4d5a"
+        },
+        {
+          "name": "filmcraft-0.14.0-linux-x86_64.rpm",
+          "bytes": 106273304,
+          "sha256": "7abe66fd7c6e867839b84377eaa6ac0a4abcb965dd800d2532f911fd3dc0ac0c"
+        },
+        {
+          "name": "filmcraft-0.14.0-linux-x86_64.tar.gz",
+          "bytes": 105541865,
+          "sha256": "d2aa213cc08abd21e05ab511a78cc38f157caf2226992f3fc8a5e0496a3f7e7d"
+        },
+        {
+          "name": "filmcraft-0.14.0-macos-universal.dmg",
+          "bytes": 112009329,
+          "sha256": "9f87564f83f55d9dea32ceeb73aa3cb74b15aec05347dd3e163fd0a6abef6b27"
+        },
+        {
+          "name": "filmcraft-0.14.0-windows-arm64-portable.zip",
+          "bytes": 103073941,
+          "sha256": "ac8e670c53cc7304b561b818b50018a2d853e4bdf2a83e8620d3ce0c8da4c3ca"
+        },
+        {
+          "name": "filmcraft-0.14.0-windows-arm64.msi",
+          "bytes": 84676608,
+          "sha256": "62420de54870e56cac996edd262bde218b96845c687dd93edf5704d54617a3fa"
+        },
+        {
+          "name": "filmcraft-0.14.0-windows-x64-portable.zip",
+          "bytes": 106607646,
+          "sha256": "7e0889e62399a19a0540cc4e8932d55c9b2710aebec2c392f0fcd7840eaf835e"
+        },
+        {
+          "name": "filmcraft-0.14.0-windows-x64.msi",
+          "bytes": 88502272,
+          "sha256": "47767e1f3e97c2a706c960335d887639ad7fb28eeef145ad921ed790ba3625e1"
+        },
+        {
+          "name": "filmcraft-0.14.0-windows-x86-portable.zip",
+          "bytes": 104946146,
+          "sha256": "ad040229c66aa54103abce95f237ba1a9bae1a80c2427110c8e64b4c83631733"
+        },
+        {
+          "name": "filmcraft-0.14.0-windows-x86.msi",
+          "bytes": 88186880,
+          "sha256": "3a50889f078c7b3dcc33268e052c8f5e44b66ec500284aed88e3fa35832746a9"
+        },
+        {
+          "name": "filmcraft-cli-0.14.0-macos-universal.zip",
+          "bytes": 93928472,
+          "sha256": "c9dc8dfd9c63edb2f793f0727dc9816e4432ea545fa8cd7331d242944d843087"
+        },
+        {
+          "name": "filmcraft-web-0.14.0.zip",
+          "bytes": 14300479,
+          "sha256": "58140e222600c3fbb8ab5fdb94b95abf31cf13d2ad057182b7a6b64843a7a330"
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 2806,
+          "sha256": "7de59f2e35b9e45bb5c901eeeb9a2da7fa121c2df2cc8b316a92e9e464eef718"
+        }
+      ]
+    },
+    {
+      "id": "effectcraft",
+      "release": "v0.18.0",
+      "publishedAt": "2026-10-28T17:38:55Z",
+      "sourceUrl": "https://github.com/storytold/effectcraft/releases/tag/v0.18.0",
+      "assets": [
+        {
+          "name": "effectcraft-0.18.0-freebsd-x86_64.tar.gz",
+          "bytes": 71212577,
+          "sha256": "c80f86b5266103412c63030f1f035507af3ce9e03d31da37f5b1a3eaf5b15920"
+        },
+        {
+          "name": "effectcraft-0.18.0-linux-aarch64.AppImage",
+          "bytes": 61995528,
+          "sha256": "bee3a7f8d720869df9f9276b3df2f8e7f54e8b9e961ab296665f24a7078b6d48"
+        },
+        {
+          "name": "effectcraft-0.18.0-linux-aarch64.AppImage.zsync",
+          "bytes": 212157,
+          "sha256": "bd1bda429c6fc5c3c9ec78b692e80dc626bb1e730ba801c4b3d5d154cfca4443"
+        },
+        {
+          "name": "effectcraft-0.18.0-linux-aarch64.deb",
+          "bytes": 70135638,
+          "sha256": "e23201bc927b33a6bbd1affc45baeebd097ab0d6a76b700f29c89e1e69e711a4"
+        },
+        {
+          "name": "effectcraft-0.18.0-linux-aarch64.flatpak",
+          "bytes": 41220632,
+          "sha256": "dcf7ac3e85167100838ee8d9091f416cf4f448f90411f9bcc70ba18a3dbc7ef8"
+        },
+        {
+          "name": "effectcraft-0.18.0-linux-aarch64.pkg.tar.zst",
+          "bytes": 47525115,
+          "sha256": "115e4e27b0265e4c93b27b82e80306fd7e93c6a9cc1e4248bb5e7cefb1bfb559"
+        },
+        {
+          "name": "effectcraft-0.18.0-linux-aarch64.rpm",
+          "bytes": 69442392,
+          "sha256": "c4d37f5a5902245b1091fede5e35ae997c446ee79156ce3140919dacdc4f896e"
+        },
+        {
+          "name": "effectcraft-0.18.0-linux-aarch64.tar.gz",
+          "bytes": 67013448,
+          "sha256": "16afef1cf2e8ff1e48712f462f7f9732696d81f7f81978c0a7ac0f7c092aa5a8"
+        },
+        {
+          "name": "effectcraft-0.18.0-linux-riscv64.deb",
+          "bytes": 71285954,
+          "sha256": "6c488ed32a15e10064d7681f2d159959934cd4d9a40473e047d6e72cec62aaca"
+        },
+        {
+          "name": "effectcraft-0.18.0-linux-riscv64.rpm",
+          "bytes": 71103591,
+          "sha256": "1c65675f3e95e72b5de435d718cf98c567e19729dced7bff8ffe068d39a30442"
+        },
+        {
+          "name": "effectcraft-0.18.0-linux-riscv64.tar.gz",
+          "bytes": 69813490,
+          "sha256": "f0700e5124a9ce4d09aed5047cd98d98de3ce69bc46ba44f7079dd31a9c2e1ad"
+        },
+        {
+          "name": "effectcraft-0.18.0-linux-x86_64.AppImage",
+          "bytes": 66267640,
+          "sha256": "071f8eb42be63a7862117d399f96d7ed4cc5b90ac1d06b6bab99370d0cd4ada3"
+        },
+        {
+          "name": "effectcraft-0.18.0-linux-x86_64.AppImage.zsync",
+          "bytes": 226757,
+          "sha256": "76df38f132151d3267154644e9f7a5b5687373fd589dcfb1e583673a48f4f8fd"
+        },
+        {
+          "name": "effectcraft-0.18.0-linux-x86_64.deb",
+          "bytes": 73290348,
+          "sha256": "20d8f076d9be954c7dd66b477488c56c68f1af49c683ce64b3caa7534adc6208"
+        },
+        {
+          "name": "effectcraft-0.18.0-linux-x86_64.flatpak",
+          "bytes": 46609096,
+          "sha256": "6da71e78759f02aa5c97b04728973eb334cd6070cd3c961d576ffa8664dcc45e"
+        },
+        {
+          "name": "effectcraft-0.18.0-linux-x86_64.pkg.tar.zst",
+          "bytes": 50309223,
+          "sha256": "7d040eec75d629fcd6552b0d7a80412bb972847e1586d14f4af33b0b87f1eef4"
+        },
+        {
+          "name": "effectcraft-0.18.0-linux-x86_64.rpm",
+          "bytes": 72834545,
+          "sha256": "4de4a6f48f4cbe3769e5e0bc82f6189bcf9937200e4273d34bed92facfc62e66"
+        },
+        {
+          "name": "effectcraft-0.18.0-linux-x86_64.tar.gz",
+          "bytes": 71639412,
+          "sha256": "94d1d85691d54ba57fa86e04872fbcc426c33d1bd364f1fc976b1f607344880b"
+        },
+        {
+          "name": "effectcraft-0.18.0-macos-universal.dmg",
+          "bytes": 73110355,
+          "sha256": "79a0c24a644018eb39b722eddb5a15a34280c86856171f6a6415a3541b182004"
+        },
+        {
+          "name": "effectcraft-0.18.0-windows-arm64-portable.zip",
+          "bytes": 68902777,
+          "sha256": "1a57e8eaf828b8fd3afd9114697da09bc111bb025ac594add11f3496db187e09"
+        },
+        {
+          "name": "effectcraft-0.18.0-windows-arm64.msi",
+          "bytes": 50434048,
+          "sha256": "21f3e48722b3a4f616088434e92eb36b72a3ce1ae6b37a546c0ffc49679fe467"
+        },
+        {
+          "name": "effectcraft-0.18.0-windows-x64-portable.zip",
+          "bytes": 74547336,
+          "sha256": "142d7c76400658edc192625464deadedc83e9bc11635d72c31660cb557881e91"
+        },
+        {
+          "name": "effectcraft-0.18.0-windows-x64.msi",
+          "bytes": 56475648,
+          "sha256": "dc9905b586734960078d749a7c6c27b055d3bf31d76c1e44d3af961c6340735f"
+        },
+        {
+          "name": "effectcraft-0.18.0-windows-x86-portable.zip",
+          "bytes": 70178615,
+          "sha256": "85fee61437c59d86e1ed573233640d240704293ef53dd42821e7d4f86ad43732"
+        },
+        {
+          "name": "effectcraft-0.18.0-windows-x86.msi",
+          "bytes": 54796288,
+          "sha256": "d13164cb76fa9dbadd78b2563ec83bb5ae2856cb784e8053c3ecda0586cb71e6"
+        },
+        {
+          "name": "effectcraft-cli-0.18.0-macos-universal.zip",
+          "bytes": 67216888,
+          "sha256": "e47937e21c060c1f7435669526e44ebb458ef3c762e904d701b733212bd8584d"
+        },
+        {
+          "name": "effectcraft-web-0.18.0.zip",
+          "bytes": 20687568,
+          "sha256": "cc3326670a37a62499b132d20773016d20f576714aaf6b4946744ae6876fa2aa"
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 2860,
+          "sha256": "e83948fce5adc55d17380e9a45c292baab6864e83dfd2049b43dcf2ec0179599"
+        }
+      ]
+    },
+    {
+      "id": "soundcraft",
+      "release": "v0.14.0",
+      "publishedAt": "2026-10-28T16:08:49Z",
+      "sourceUrl": "https://github.com/storytold/soundcraft/releases/tag/v0.14.0",
+      "assets": [
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 2833,
+          "sha256": "be67490a004eab520fd0daea12821c33828d78448ccc84f5cf5e04d32c7efb98"
+        },
+        {
+          "name": "soundcraft-0.14.0-freebsd-x86_64.tar.gz",
+          "bytes": 20024803,
+          "sha256": "927aaf41533d12341fed2a3f26da57ba6979b16d8a685535c03e6cda791f48f4"
+        },
+        {
+          "name": "soundcraft-0.14.0-linux-aarch64.AppImage",
+          "bytes": 18029064,
+          "sha256": "498826a8315e46c4862f049d705ecc7c849fcb155db5cd0d5048cb2bbdc58049"
+        },
+        {
+          "name": "soundcraft-0.14.0-linux-aarch64.AppImage.zsync",
+          "bytes": 61879,
+          "sha256": "5d2487fb1788c75304c5fc6d88f15b6c4e0ebd078643219351a7101173b25cb0"
+        },
+        {
+          "name": "soundcraft-0.14.0-linux-aarch64.deb",
+          "bytes": 19754456,
+          "sha256": "e16db0b92dbd7e895c4d687b9e056944b90bd6ba5d719fb078deed1e28d7dcd0"
+        },
+        {
+          "name": "soundcraft-0.14.0-linux-aarch64.flatpak",
+          "bytes": 12129152,
+          "sha256": "edc12e8b16f8fdb6a5ab369f6cdd8b96bffda24ab7ecc5a07b05bf145f2e1557"
+        },
+        {
+          "name": "soundcraft-0.14.0-linux-aarch64.pkg.tar.zst",
+          "bytes": 12044314,
+          "sha256": "dc62e9b2d4f1cb4cf9ca2e310dee29278647826148476a4986630ff6b026977f"
+        },
+        {
+          "name": "soundcraft-0.14.0-linux-aarch64.rpm",
+          "bytes": 19550698,
+          "sha256": "07f58d5c1311d41b9e295014b95264523cb6fb16a2cf7fef9f37ade179c992e6"
+        },
+        {
+          "name": "soundcraft-0.14.0-linux-aarch64.tar.gz",
+          "bytes": 18845952,
+          "sha256": "912ef157833753c5ec87c79fe76ef42a7f68c746fd117882cbc2c8d6e1eb357d"
+        },
+        {
+          "name": "soundcraft-0.14.0-linux-riscv64.deb",
+          "bytes": 19926752,
+          "sha256": "9ad545ff060ccd60c48e6a1f51ca6040c0b5090e7342cb7b36d4b29473295176"
+        },
+        {
+          "name": "soundcraft-0.14.0-linux-riscv64.rpm",
+          "bytes": 19887846,
+          "sha256": "b23b3aaca0ee512e8a54bcf7a691b0995ee13d663d8b618c348449d666b6eb4b"
+        },
+        {
+          "name": "soundcraft-0.14.0-linux-riscv64.tar.gz",
+          "bytes": 19492403,
+          "sha256": "eecc5eac85d9c87221f80210e5cf2dee77a19ab7fee4cd8401be93502a5aedb6"
+        },
+        {
+          "name": "soundcraft-0.14.0-linux-x86_64.AppImage",
+          "bytes": 19556856,
+          "sha256": "e1f2eee16c6da59db23c0724e97992029bdc3a19a8e64704753d398db7832387"
+        },
+        {
+          "name": "soundcraft-0.14.0-linux-x86_64.AppImage.zsync",
+          "bytes": 67099,
+          "sha256": "4adf90c750fa860f9e20f14a523870e3ce98975f08bbf53e6c8f75bc259d081e"
+        },
+        {
+          "name": "soundcraft-0.14.0-linux-x86_64.deb",
+          "bytes": 20993460,
+          "sha256": "82499c4ad1b1af7e6295ee3b5c92670cb9e16a75ea140a6b8d73b69cb110f159"
+        },
+        {
+          "name": "soundcraft-0.14.0-linux-x86_64.flatpak",
+          "bytes": 13889168,
+          "sha256": "9d31ec597fca8e64662553b2e378a844fde354b49d2e89ca61ada1e72a52597b"
+        },
+        {
+          "name": "soundcraft-0.14.0-linux-x86_64.pkg.tar.zst",
+          "bytes": 13093423,
+          "sha256": "41a2518ae4bdb979720934a11ad035d8b809e11cb4ef5512f4c39ea6e53ccf88"
+        },
+        {
+          "name": "soundcraft-0.14.0-linux-x86_64.rpm",
+          "bytes": 20842751,
+          "sha256": "a14de7704e709c88b3e7ff39aa37cc49adf1343dab40b9cbcfa8058f58f160d0"
+        },
+        {
+          "name": "soundcraft-0.14.0-linux-x86_64.tar.gz",
+          "bytes": 20460821,
+          "sha256": "2f83503feda6aa2c8d4bc12c44f571422c4389fc664a92bbed092d2bf1d500ad"
+        },
+        {
+          "name": "soundcraft-0.14.0-macos-universal.dmg",
+          "bytes": 28954783,
+          "sha256": "9377e164670ecb76a4610868ac24f7804415d82cf0016c27f24cc3cc5baa41df"
+        },
+        {
+          "name": "soundcraft-0.14.0-windows-arm64-portable.zip",
+          "bytes": 17034735,
+          "sha256": "d13cde794d930052239f407643f143f5a11524c276e5444927b81783cae2ca7a"
+        },
+        {
+          "name": "soundcraft-0.14.0-windows-arm64.msi",
+          "bytes": 12865536,
+          "sha256": "b11c3dd170badcc40b08736810f53b58360cde84eff00d4a733fb7bb1afe6298"
+        },
+        {
+          "name": "soundcraft-0.14.0-windows-x64-portable.zip",
+          "bytes": 18561955,
+          "sha256": "c54601aaf20c55e2a7e30fad20f08ca56d0b8913f0182f15665413c89fe88904"
+        },
+        {
+          "name": "soundcraft-0.14.0-windows-x64.msi",
+          "bytes": 14381056,
+          "sha256": "a37cb70fb7c93c61391e2e7cb0898e9984ccaac2cc9b693bbdee15bcdbdfc51b"
+        },
+        {
+          "name": "soundcraft-0.14.0-windows-x86-portable.zip",
+          "bytes": 16950479,
+          "sha256": "ff34e026d7617c9b1bc09153303edc397d9404f63c094a5edc5cbab6b132516e"
+        },
+        {
+          "name": "soundcraft-0.14.0-windows-x86.msi",
+          "bytes": 13549568,
+          "sha256": "b3adce0482e391d0a17ee59045051612a1e4b4cbe8ee5aae7ffe784aea111657"
+        },
+        {
+          "name": "soundcraft-cli-0.14.0-macos-universal.zip",
+          "bytes": 8037258,
+          "sha256": "104e5674cf741e3579166b84fd7a687332f0de885165f50a05e46cc502660b75"
+        },
+        {
+          "name": "soundcraft-web-0.14.0.zip",
+          "bytes": 6741547,
+          "sha256": "76290a220377d80aa62a3a196c8bcc8b28e01eaf5b0aad912fabf7eb5a9a767d"
+        }
+      ]
+    },
+    {
+      "id": "designcraft",
+      "release": "v0.14.0",
+      "publishedAt": "2026-10-28T16:25:36Z",
+      "sourceUrl": "https://github.com/storytold/designcraft/releases/tag/v0.14.0",
+      "assets": [
+        {
+          "name": "designcraft-0.14.0-freebsd-x86_64.tar.gz",
+          "bytes": 122234038,
+          "sha256": "ca5f4503a57a0ffde5cb213b02492b7e63f361e2d98698f75df0af97190b810e"
+        },
+        {
+          "name": "designcraft-0.14.0-linux-aarch64.AppImage",
+          "bytes": 111880712,
+          "sha256": "aa342edb6543487290e81a63d61fd3c31fc038875f77e2c786d84419cb45d045"
+        },
+        {
+          "name": "designcraft-0.14.0-linux-aarch64.AppImage.zsync",
+          "bytes": 191459,
+          "sha256": "708c8d393aca09fa7d0822d51ca86a8bfbbb98b9d09606b9a6f9600349d2683f"
+        },
+        {
+          "name": "designcraft-0.14.0-linux-aarch64.deb",
+          "bytes": 121017174,
+          "sha256": "42cbac249626517afd567d8e5dff9739dcd7ea3a2f2bc9977dba654af9019822"
+        },
+        {
+          "name": "designcraft-0.14.0-linux-aarch64.flatpak",
+          "bytes": 81497584,
+          "sha256": "85f78ee1aec7cbe210b1099aa78322f79439112c36308862e60366da72e7fce5"
+        },
+        {
+          "name": "designcraft-0.14.0-linux-aarch64.pkg.tar.zst",
+          "bytes": 115050655,
+          "sha256": "92c6ab5c7fbd7adb95e0ddc047bc2f0ecbdf995b4bf53bb47b67f7f27b12f807"
+        },
+        {
+          "name": "designcraft-0.14.0-linux-aarch64.rpm",
+          "bytes": 120262808,
+          "sha256": "991c39dea60a2448edaf9d483b288c115a8180f6570ea01bffea18bb130bd1a1"
+        },
+        {
+          "name": "designcraft-0.14.0-linux-aarch64.tar.gz",
+          "bytes": 118401111,
+          "sha256": "81bfc265d5e353ca5fe6be3dc18db0383526c3cdbc7328f4c85a44f2c3d0d046"
+        },
+        {
+          "name": "designcraft-0.14.0-linux-riscv64.deb",
+          "bytes": 122065704,
+          "sha256": "1868297d1ee0a30a40fd8d7bfbb1a29dad3f1eca0e2426d00b6386410d02c3aa"
+        },
+        {
+          "name": "designcraft-0.14.0-linux-riscv64.rpm",
+          "bytes": 121677515,
+          "sha256": "b555413c46797129415ff5d9e015499faadacd097bcf123cd257e3fb35024a15"
+        },
+        {
+          "name": "designcraft-0.14.0-linux-riscv64.tar.gz",
+          "bytes": 120621512,
+          "sha256": "9e310646920d136fc741c7af403624bdd783b0e28e2f0af105ba005ec4925bbd"
+        },
+        {
+          "name": "designcraft-0.14.0-linux-x86_64.AppImage",
+          "bytes": 115743224,
+          "sha256": "c7b9a4b760e4c94b05fde4cd1c266823a736bc3fa507150cff0dc1920edfc28e"
+        },
+        {
+          "name": "designcraft-0.14.0-linux-x86_64.AppImage.zsync",
+          "bytes": 198058,
+          "sha256": "585fe0c937dada58f2bc49356e8933af4e12c27f030e7dda8deeb65bb0b5289f"
+        },
+        {
+          "name": "designcraft-0.14.0-linux-x86_64.deb",
+          "bytes": 124097184,
+          "sha256": "ca03e4d4aa662844fa6ecaee1ec8f8d72940c576b90503777c761d34b930ebb7"
+        },
+        {
+          "name": "designcraft-0.14.0-linux-x86_64.flatpak",
+          "bytes": 85805960,
+          "sha256": "e50028fdbe23dd7ec8406c070361a6d1c33fd6ccebda4e116837021bdb43bd03"
+        },
+        {
+          "name": "designcraft-0.14.0-linux-x86_64.pkg.tar.zst",
+          "bytes": 118731682,
+          "sha256": "76770d5b0794fe6415e3181067af61dbbb4ad8228868b5bc65dcc4554f91e49a"
+        },
+        {
+          "name": "designcraft-0.14.0-linux-x86_64.rpm",
+          "bytes": 123474188,
+          "sha256": "249c94bab639583c215a0efe695af3642600a58ffb0366d766c398f62b72c49d"
+        },
+        {
+          "name": "designcraft-0.14.0-linux-x86_64.tar.gz",
+          "bytes": 122469409,
+          "sha256": "25c87be759d35a81ca44e1f625ed4304b16e5aab6a03a1051bca498a81bfc547"
+        },
+        {
+          "name": "designcraft-0.14.0-macos-universal.dmg",
+          "bytes": 135497702,
+          "sha256": "9392fb563de06da2eca48791a40f812f721103697362015659b3ff7577e7b081"
+        },
+        {
+          "name": "designcraft-0.14.0-windows-arm64-portable.zip",
+          "bytes": 118112227,
+          "sha256": "da3cfc290be9a35adc849c5eae634e93285524adf8f197d5e8d107c9531d3ea6"
+        },
+        {
+          "name": "designcraft-0.14.0-windows-arm64.msi",
+          "bytes": 92950528,
+          "sha256": "a98db5fb9059f9c6f7e951a656b2ed778b502fca418fb9b813547b2b2608a2d5"
+        },
+        {
+          "name": "designcraft-0.14.0-windows-x64-portable.zip",
+          "bytes": 122655407,
+          "sha256": "4e06b9f60fa98326902994cc76945f1cd0c331b64f66b2a685b05da5db120eed"
+        },
+        {
+          "name": "designcraft-0.14.0-windows-x64.msi",
+          "bytes": 97345536,
+          "sha256": "d55165f6adada74a5129b824132bbb516803cb1d04ad6d8b9e65f6d0b1cfd2f1"
+        },
+        {
+          "name": "designcraft-0.14.0-windows-x86-portable.zip",
+          "bytes": 118462858,
+          "sha256": "eecac1ddee926028a07d46459970b6b9727fa92a6ddc804ade15e2fdd89c8556"
+        },
+        {
+          "name": "designcraft-0.14.0-windows-x86.msi",
+          "bytes": 95293440,
+          "sha256": "a59368f0c843014877c123dcc88fc17e6efc47db02adb3019056fa4729b93d97"
+        },
+        {
+          "name": "designcraft-cli-0.14.0-macos-universal.zip",
+          "bytes": 108694997,
+          "sha256": "6e35a9e2661349b32f1e3f76bc0f98deb22d2fe71d82ae15105451e4f50bc78b"
+        },
+        {
+          "name": "designcraft-web-0.14.0.zip",
+          "bytes": 26346214,
+          "sha256": "7d7e5f24d49b07be6c21d9b571f7edd3763bc9f9dd72a9a1dcc61ebd63bcc6bb"
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 2860,
+          "sha256": "038eeb4cef2395f3e150bb67b0470cd938b9afff7a26e4c7ec7701fce538d1a5"
+        }
+      ]
+    },
+    {
+      "id": "pdfcraft",
+      "release": "v0.15.0",
+      "publishedAt": "2026-10-28T17:38:25Z",
+      "sourceUrl": "https://github.com/storytold/pdfcraft/releases/tag/v0.15.0",
+      "assets": [
+        {
+          "name": "pdfcraft-0.15.0-freebsd-x86_64.tar.gz",
+          "bytes": 109661964,
+          "sha256": "c4d4b9b471ef2c0c2b69951db86f112d55efdf155592b719debfe8b1512ec8bd"
+        },
+        {
+          "name": "pdfcraft-0.15.0-linux-aarch64.AppImage",
+          "bytes": 101194248,
+          "sha256": "c43010378f9180887644eaa5ad8cc9ff9168714e0a108f49e62a2c1b7be012a0"
+        },
+        {
+          "name": "pdfcraft-0.15.0-linux-aarch64.AppImage.zsync",
+          "bytes": 173190,
+          "sha256": "661b83dd377efb596a578f03701990cad67f6a6f78fdbcdc18c8732b734e919e"
+        },
+        {
+          "name": "pdfcraft-0.15.0-linux-aarch64.deb",
+          "bytes": 108463960,
+          "sha256": "56ae8ab3919bea768753477725c2dbc8a5b2e590d27fd0d8ee5d31b9911eea25"
+        },
+        {
+          "name": "pdfcraft-0.15.0-linux-aarch64.flatpak",
+          "bytes": 77676616,
+          "sha256": "9d6adbd71ad59a31c7183ba76a9ef101da466d2761455c467550f642d6c0fc2a"
+        },
+        {
+          "name": "pdfcraft-0.15.0-linux-aarch64.pkg.tar.zst",
+          "bytes": 83596336,
+          "sha256": "dfb17f2e03022c4428945fe5058ab180a7204fad7f33ab686c6106a01962985e"
+        },
+        {
+          "name": "pdfcraft-0.15.0-linux-aarch64.rpm",
+          "bytes": 107813729,
+          "sha256": "5a3d8b3968ceb13f8ff50a3a70399e809356b7aba5e6dc8c71751b238b5548bc"
+        },
+        {
+          "name": "pdfcraft-0.15.0-linux-aarch64.tar.gz",
+          "bytes": 106482640,
+          "sha256": "b380bc7a4c28d05d7ea95eb23085ca322c49ca1a21b8bb79389a8e083ae92b9d"
+        },
+        {
+          "name": "pdfcraft-0.15.0-linux-riscv64.deb",
+          "bytes": 108730032,
+          "sha256": "9a5598f7200e4ba2cf98b800d5d2ca39e455d205131e613e99a623e52c3ac83d"
+        },
+        {
+          "name": "pdfcraft-0.15.0-linux-riscv64.rpm",
+          "bytes": 108405703,
+          "sha256": "44b03427b5756caed4a6a82db1992238c66e5acc69e40f0b5e5b7fb5a275de5b"
+        },
+        {
+          "name": "pdfcraft-0.15.0-linux-riscv64.tar.gz",
+          "bytes": 107840874,
+          "sha256": "7ce1d1aa196d53dca8f7e7fcf4b96adea65a31d5b8ebe83378d9025d077a0921"
+        },
+        {
+          "name": "pdfcraft-0.15.0-linux-x86_64.AppImage",
+          "bytes": 104888824,
+          "sha256": "7d7771a62a9c81e35b1de286ad38110c85a59a040c12b961f024ee972338d2fe"
+        },
+        {
+          "name": "pdfcraft-0.15.0-linux-x86_64.AppImage.zsync",
+          "bytes": 179502,
+          "sha256": "26ba01176db27e2de749d0c38bb5fc2ea1a68482a3c21559fdd7fded901f9bf8"
+        },
+        {
+          "name": "pdfcraft-0.15.0-linux-x86_64.deb",
+          "bytes": 111357584,
+          "sha256": "45cf7cd20b7345e1d34b37d82298702d105d5cb0b416c04ebd9bac6812da9ddf"
+        },
+        {
+          "name": "pdfcraft-0.15.0-linux-x86_64.flatpak",
+          "bytes": 81767256,
+          "sha256": "46f281c7db7c9a4223503ed49b01371bd2eced6f9cc97c9c1517dc41d05029e6"
+        },
+        {
+          "name": "pdfcraft-0.15.0-linux-x86_64.pkg.tar.zst",
+          "bytes": 86070824,
+          "sha256": "8ce9a68374339bc518c7e75af9130d300993518647a2b39bc28a448cd32ea8b0"
+        },
+        {
+          "name": "pdfcraft-0.15.0-linux-x86_64.rpm",
+          "bytes": 110835011,
+          "sha256": "252ec255a10271dcb9ad93fb0ab72498ee9123fe0e99398d2f896884f8b9d828"
+        },
+        {
+          "name": "pdfcraft-0.15.0-linux-x86_64.tar.gz",
+          "bytes": 110282445,
+          "sha256": "b167a18c60a7b329f05a5bbf97e32dc678aad3f8d5866d8e4378ff24273f8313"
+        },
+        {
+          "name": "pdfcraft-0.15.0-macos-universal.dmg",
+          "bytes": 121853135,
+          "sha256": "c124fc2ed512765943fb2e8e764bc14c079dc5b7d7a5439ccdb3401df78fd472"
+        },
+        {
+          "name": "pdfcraft-0.15.0-windows-arm64-portable.zip",
+          "bytes": 106920324,
+          "sha256": "12207c2a822c92a80b126835c57e57ed2270ae2944db471f0a19bdb70e2cfa8d"
+        },
+        {
+          "name": "pdfcraft-0.15.0-windows-arm64.msi",
+          "bytes": 87134208,
+          "sha256": "87f30abff122ef9c568d026343e517a8e62a9ca0ddcba023c975b347e96252a8"
+        },
+        {
+          "name": "pdfcraft-0.15.0-windows-x64-portable.zip",
+          "bytes": 111449825,
+          "sha256": "92df7bef0b4c1eb7a59d0410716903e69fe4d2c4ea0074c6b53780096c3e20f9"
+        },
+        {
+          "name": "pdfcraft-0.15.0-windows-x64.msi",
+          "bytes": 91316224,
+          "sha256": "de7ad1ca86f6527ec357deba0182e8c596b7895e9638b1ca3b61f0adbc3e5d62"
+        },
+        {
+          "name": "pdfcraft-0.15.0-windows-x86-portable.zip",
+          "bytes": 106570690,
+          "sha256": "f6f800c98f15957ba0dd2364dab7643a1022570822059a4cc1650d45ce5f94db"
+        },
+        {
+          "name": "pdfcraft-0.15.0-windows-x86.msi",
+          "bytes": 89370624,
+          "sha256": "83cc44719cacfcdfca911b3ebaaebb4207c7dd1eecc75e9db7f2c6bd90144dc6"
+        },
+        {
+          "name": "pdfcraft-cli-0.15.0-linux-aarch64.tar.gz",
+          "bytes": 40165735,
+          "sha256": "c29f5fc4e8fec0e806cae330dd634089b5aaae2328beeac94db42aa3583834e8"
+        },
+        {
+          "name": "pdfcraft-cli-0.15.0-linux-x86_64.tar.gz",
+          "bytes": 41735244,
+          "sha256": "a5705977e616852929eb08e7ba6de1e0781289fcc52dab1356215ae644d5973d"
+        },
+        {
+          "name": "pdfcraft-cli-0.15.0-macos-universal.zip",
+          "bytes": 83973078,
+          "sha256": "0304db20f3597e4e9ad3044d67f79cb89bdad49833c6ad7a60c0d0d6a7afaa50"
+        },
+        {
+          "name": "pdfcraft-web-0.15.0.zip",
+          "bytes": 17051971,
+          "sha256": "fdb2508030d7668cb5164db3b7d05baa1011a87497c95ef043844d90cbbc4da2"
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 2992,
+          "sha256": "1be8262201ab5f2d5234d63f728fe6dcb34e999d57f25bd26d48c101dc8549fb"
+        }
+      ]
+    },
+    {
+      "id": "wordcraft",
+      "release": "v0.12.0",
+      "publishedAt": "2026-10-28T16:22:15Z",
+      "sourceUrl": "https://github.com/storytold/wordcraft/releases/tag/v0.12.0",
+      "assets": [
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 2806,
+          "sha256": "de2b7da3bd31ba16c4fbadcd40e88c67b75b5dab19a89d9960658a95b97e4b1e"
+        },
+        {
+          "name": "wordcraft-0.12.0-freebsd-x86_64.tar.gz",
+          "bytes": 113171604,
+          "sha256": "f9a29dd2a88de2f4c67d3647e4f4c1e313d83f0de6a854175673f27c1e800179"
+        },
+        {
+          "name": "wordcraft-0.12.0-linux-aarch64.AppImage",
+          "bytes": 101091848,
+          "sha256": "4b01993f624eddfc90fab8a75ca93b9d3c22427597f0338044d11ba7efb61cc5"
+        },
+        {
+          "name": "wordcraft-0.12.0-linux-aarch64.AppImage.zsync",
+          "bytes": 173017,
+          "sha256": "398f3d07fa5fd6f39cdbfc7e9017c73a4a62fcb1487431699f7262377d465449"
+        },
+        {
+          "name": "wordcraft-0.12.0-linux-aarch64.deb",
+          "bytes": 108926622,
+          "sha256": "62aa028c6cafedd61f3e984d1c2000d15ad2799f012597db9bac8a15e0950063"
+        },
+        {
+          "name": "wordcraft-0.12.0-linux-aarch64.flatpak",
+          "bytes": 74301632,
+          "sha256": "bb0ee6e75b740c36dd9279dfff9f8eff7c339e8e186dc579b3c74b054af573e3"
+        },
+        {
+          "name": "wordcraft-0.12.0-linux-aarch64.pkg.tar.zst",
+          "bytes": 81995434,
+          "sha256": "004f155d3acd707cf4a08386ef33cc2beaa518c4f904acef8493337d8c2d5563"
+        },
+        {
+          "name": "wordcraft-0.12.0-linux-aarch64.rpm",
+          "bytes": 108184608,
+          "sha256": "eac7157fd5a14568ab57ca147024065ee568e35fb18c2a5a44960538752f9f00"
+        },
+        {
+          "name": "wordcraft-0.12.0-linux-aarch64.tar.gz",
+          "bytes": 106613508,
+          "sha256": "8fcc2644acef7b43c3e46626e47e92e5542a43288e8e0bebf4b9f79c22a66d0b"
+        },
+        {
+          "name": "wordcraft-0.12.0-linux-riscv64.deb",
+          "bytes": 109713674,
+          "sha256": "c6c119223bd1b71a75218c8f7f92325815273acef9b192cdc743780c238e648b"
+        },
+        {
+          "name": "wordcraft-0.12.0-linux-riscv64.rpm",
+          "bytes": 109313192,
+          "sha256": "82b675562d7503eae697f762b5b01e049ccb2afd98fb5a6ca275453f733c9fc1"
+        },
+        {
+          "name": "wordcraft-0.12.0-linux-riscv64.tar.gz",
+          "bytes": 108379652,
+          "sha256": "8078d9daafe6035038bbf3f99416c9baa1aace788b1d2e7651a575f179954b09"
+        },
+        {
+          "name": "wordcraft-0.12.0-linux-x86_64.AppImage",
+          "bytes": 104028664,
+          "sha256": "d0730024db6c969e79ebaa9cc9abcdfbb198ea9b29c9bd0a2a04f9834e7656cb"
+        },
+        {
+          "name": "wordcraft-0.12.0-linux-x86_64.AppImage.zsync",
+          "bytes": 178034,
+          "sha256": "cebed20dcb4ccb6ccd1f86a6fd81d31cf9d55b21c3be5bfa1cde398efb12df12"
+        },
+        {
+          "name": "wordcraft-0.12.0-linux-x86_64.deb",
+          "bytes": 111162782,
+          "sha256": "88ffe1aef947ac167ce2017da955af2d66c34ef445d8a1fcd3dad050551b9561"
+        },
+        {
+          "name": "wordcraft-0.12.0-linux-x86_64.flatpak",
+          "bytes": 77688336,
+          "sha256": "19a7edd004fadec8ee085e6b99db99238c7ac1604e98f02293e04b1ecd38eb51"
+        },
+        {
+          "name": "wordcraft-0.12.0-linux-x86_64.pkg.tar.zst",
+          "bytes": 83929849,
+          "sha256": "1e8302d218af7ce3b52dbc58397dc412a1222b0294191dcbc7083d1d5fa59208"
+        },
+        {
+          "name": "wordcraft-0.12.0-linux-x86_64.rpm",
+          "bytes": 110552100,
+          "sha256": "650747d70064431172fcde734b81aee0f40ec74d552deeacc6b59fa50f6bd1a5"
+        },
+        {
+          "name": "wordcraft-0.12.0-linux-x86_64.tar.gz",
+          "bytes": 109629951,
+          "sha256": "cd9abd0ee7a11b985af1c1571653332c96077e5dcc48b5e187b55c82f475a33e"
+        },
+        {
+          "name": "wordcraft-0.12.0-macos-universal.dmg",
+          "bytes": 122626612,
+          "sha256": "2444eb9ca2755f4655c55e97d9de63876f338a1588ab35e912ac76f38cea7709"
+        },
+        {
+          "name": "wordcraft-0.12.0-windows-arm64-portable.zip",
+          "bytes": 106028967,
+          "sha256": "b573433b970a8bc0745283e3cd1e0c2e3eca41e11fd1d9651100a4730c593fde"
+        },
+        {
+          "name": "wordcraft-0.12.0-windows-arm64.msi",
+          "bytes": 85671936,
+          "sha256": "e41f23da9c10e1030f84a1d57c043c9f0086484ed0d1f796f342cef48435aff9"
+        },
+        {
+          "name": "wordcraft-0.12.0-windows-x64-portable.zip",
+          "bytes": 108926800,
+          "sha256": "60d2da7dce7ee219300e50968297df63730f9407f8b5daf01da9109f0a64e67e"
+        },
+        {
+          "name": "wordcraft-0.12.0-windows-x64.msi",
+          "bytes": 88657920,
+          "sha256": "034271e22d7a6a78bb1dfee827df48dbcd9d86526be0890c694e58172eef3aac"
+        },
+        {
+          "name": "wordcraft-0.12.0-windows-x86-portable.zip",
+          "bytes": 105412885,
+          "sha256": "9305b572f784af29231c134d9cd610997d76364e621269eceaa576eed1780c8a"
+        },
+        {
+          "name": "wordcraft-0.12.0-windows-x86.msi",
+          "bytes": 87191552,
+          "sha256": "3a4e43b20cfdee3b7e3e50dc855b0a2ee7c2df563a60898f7ccb0bd6edf1b69d"
+        },
+        {
+          "name": "wordcraft-cli-0.12.0-macos-universal.zip",
+          "bytes": 94748190,
+          "sha256": "dc030590fdd9cb5971c38bc79cadecf30f68f6d46b67a456a8f53a46990b6de4"
+        },
+        {
+          "name": "wordcraft-web-0.12.0.zip",
+          "bytes": 18599981,
+          "sha256": "4cf6808b762e6d1211a569dd0cac831b7f1e7eb1a41f70cae90bceeb2c6a6acf"
+        }
+      ]
+    },
+    {
+      "id": "deckcraft",
+      "release": "v0.12.0",
+      "publishedAt": "2026-10-28T16:18:32Z",
+      "sourceUrl": "https://github.com/storytold/deckcraft/releases/tag/v0.12.0",
+      "assets": [
+        {
+          "name": "deckcraft-0.12.0-freebsd-x86_64.tar.gz",
+          "bytes": 103179910,
+          "sha256": "ec1a66e6c35514bb86d4b0642f3719a61c5663a4bbc265122fac965f8197eeb7"
+        },
+        {
+          "name": "deckcraft-0.12.0-linux-aarch64.AppImage",
+          "bytes": 95197704,
+          "sha256": "7d24a225a515d969952500543fe91367a9560f488fb327c86b42f3ef690cb61c"
+        },
+        {
+          "name": "deckcraft-0.12.0-linux-aarch64.AppImage.zsync",
+          "bytes": 325637,
+          "sha256": "9f552c3d5fec5d3bae19c13cca6bb3f3bc39e831204b36ce1034553c9d869d40"
+        },
+        {
+          "name": "deckcraft-0.12.0-linux-aarch64.deb",
+          "bytes": 102678720,
+          "sha256": "b6ffde3350923f9776e1f950ef2edb0c95627728c10411b90e1ded092e9afa57"
+        },
+        {
+          "name": "deckcraft-0.12.0-linux-aarch64.flatpak",
+          "bytes": 69322800,
+          "sha256": "5c429fede0138480554791f26f12e15d16a21c10f2e0a7fc3088fec8095777e7"
+        },
+        {
+          "name": "deckcraft-0.12.0-linux-aarch64.pkg.tar.zst",
+          "bytes": 75475170,
+          "sha256": "b3c33447b575d96baf50acbe926222e195fd0e7ea4ef28dae7344d1ecbbd51b5"
+        },
+        {
+          "name": "deckcraft-0.12.0-linux-aarch64.rpm",
+          "bytes": 102146204,
+          "sha256": "f4a990f15d0812194aa7782a0dc0a9e2b6d1f4d32533073fcb999efbde2a8fa1"
+        },
+        {
+          "name": "deckcraft-0.12.0-linux-aarch64.tar.gz",
+          "bytes": 100851368,
+          "sha256": "2312f1c0e0bf131faa525d71d265ba07734227fd2d174afbea00e95bcf93d353"
+        },
+        {
+          "name": "deckcraft-0.12.0-linux-riscv64.deb",
+          "bytes": 103373626,
+          "sha256": "1a04fd0650352cc41c8b02780846339289bf11dec058fdeb00f40f130730d691"
+        },
+        {
+          "name": "deckcraft-0.12.0-linux-riscv64.rpm",
+          "bytes": 103096175,
+          "sha256": "007cb2baa9afb51bf8c77067d8ba41863f06c67fe3a15420ff6abef15cfd908f"
+        },
+        {
+          "name": "deckcraft-0.12.0-linux-riscv64.tar.gz",
+          "bytes": 102369763,
+          "sha256": "b8a622a7da5707981bf4e5e44cf6d78baba7ea8fb18e5de78ab8842ad752a255"
+        },
+        {
+          "name": "deckcraft-0.12.0-linux-x86_64.AppImage",
+          "bytes": 97565176,
+          "sha256": "296d3e6afc51667a863cb189c2c3972fee6b9c6416484cbe09b0de7f3876ea3a"
+        },
+        {
+          "name": "deckcraft-0.12.0-linux-x86_64.AppImage.zsync",
+          "bytes": 333727,
+          "sha256": "0e61f9837286305e588f3f145b29d9295ebd8c9ab5696387db09e80ff424b30a"
+        },
+        {
+          "name": "deckcraft-0.12.0-linux-x86_64.deb",
+          "bytes": 104499910,
+          "sha256": "320e5bef41fdb10410d2166c419ac6b2dfabcba171c637a26dc5b3747e29b8d4"
+        },
+        {
+          "name": "deckcraft-0.12.0-linux-x86_64.flatpak",
+          "bytes": 72155768,
+          "sha256": "4f4fb811588bcb51fd20f2b275f7957478447be967ffb238ab90f7a6f73dd104"
+        },
+        {
+          "name": "deckcraft-0.12.0-linux-x86_64.pkg.tar.zst",
+          "bytes": 77241610,
+          "sha256": "03b2a5cef2ddfa84a899a46e72aaf583d9902e448e952e460ad747f7381cf972"
+        },
+        {
+          "name": "deckcraft-0.12.0-linux-x86_64.rpm",
+          "bytes": 104068063,
+          "sha256": "3d784fc4b2b56b570ab5bb5c293a8a85357020236f29e1223ef177b4f65939ef"
+        },
+        {
+          "name": "deckcraft-0.12.0-linux-x86_64.tar.gz",
+          "bytes": 103376245,
+          "sha256": "4a410d3caa423e873d0dcab51c98e06588f55bdfcf03e9c1e91409a86c08de3e"
+        },
+        {
+          "name": "deckcraft-0.12.0-macos-universal.dmg",
+          "bytes": 111298665,
+          "sha256": "feb7e54543c136b349479746b60779cc5bf3e5d8b3d15838156ed16005d253d5"
+        },
+        {
+          "name": "deckcraft-0.12.0-windows-arm64-portable.zip",
+          "bytes": 100452823,
+          "sha256": "d30dcb9375d9f32e1a251768f5cf21117714f71912572514b8245f31ce940110"
+        },
+        {
+          "name": "deckcraft-0.12.0-windows-arm64.msi",
+          "bytes": 79544320,
+          "sha256": "e2137458a3deddc76ebac89e59cd6ebebc1bd465b0649e3654fe3d661abbaa0f"
+        },
+        {
+          "name": "deckcraft-0.12.0-windows-x64-portable.zip",
+          "bytes": 103438594,
+          "sha256": "3cffd4abee0b7f330ae406bc6fd33a74e3b7b5e7919ebc5d20faa77cef5b3bea"
+        },
+        {
+          "name": "deckcraft-0.12.0-windows-x64.msi",
+          "bytes": 82370560,
+          "sha256": "3bd12f8a0e351d2b4ec86378da2b5ba4082bfa9b37e52e43ef9e40e7ca2fc313"
+        },
+        {
+          "name": "deckcraft-0.12.0-windows-x86-portable.zip",
+          "bytes": 100908938,
+          "sha256": "fdd6d6261650b88f715a1a5ec009b81f8ce506a04833e3b331709798869fd778"
+        },
+        {
+          "name": "deckcraft-0.12.0-windows-x86.msi",
+          "bytes": 81571840,
+          "sha256": "df54653a1ce1ecc4b5aff82f3b9e4ba4474e1ec0f41a74f4af3a4646fcacf838"
+        },
+        {
+          "name": "deckcraft-cli-0.12.0-macos-universal.zip",
+          "bytes": 93735843,
+          "sha256": "dfd374a5af7139344bf06fbb52beb6f0f255e54276ae20b5d457ce4f958a8322"
+        },
+        {
+          "name": "deckcraft-web-0.12.0.zip",
+          "bytes": 11522095,
+          "sha256": "4625fc2b66f0a0065b1cd549d94dd51f4e0f4f6082638d399c530ffdc56ebab5"
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 2806,
+          "sha256": "9405f265cec8a996fe755a3eb624e39872487d21185056a880eb8d434e6e6a11"
+        }
+      ]
+    },
+    {
+      "id": "gridcraft",
+      "release": "v0.13.0",
+      "publishedAt": "2026-10-28T16:10:33Z",
+      "sourceUrl": "https://github.com/storytold/gridcraft/releases/tag/v0.13.0",
+      "assets": [
+        {
+          "name": "gridcraft-0.13.0-freebsd-x86_64.tar.gz",
+          "bytes": 47659839,
+          "sha256": "7b7b044d93fbe52927be640543401b60283c58ba27f04e8ac13d5b5293f89026"
+        },
+        {
+          "name": "gridcraft-0.13.0-linux-aarch64.AppImage",
+          "bytes": 44206600,
+          "sha256": "33f3d28a237bea204203ef0576f835facfa7e10910ce502886bf8f5b434cbb7b"
+        },
+        {
+          "name": "gridcraft-0.13.0-linux-aarch64.AppImage.zsync",
+          "bytes": 151351,
+          "sha256": "38fcee952c46b2fbd0b755e552351f824239f778fc3ec2cf95e62898d0966782"
+        },
+        {
+          "name": "gridcraft-0.13.0-linux-aarch64.deb",
+          "bytes": 47345856,
+          "sha256": "9c43b7c868f5bf177c1979062e00f5b02e47749da8258ce1d08d163b50851993"
+        },
+        {
+          "name": "gridcraft-0.13.0-linux-aarch64.flatpak",
+          "bytes": 32478760,
+          "sha256": "73775940c8a4f36e71660e34a4d3839901817d08156c70507682783b386473d8"
+        },
+        {
+          "name": "gridcraft-0.13.0-linux-aarch64.pkg.tar.zst",
+          "bytes": 35137829,
+          "sha256": "6f71af44f5d9671cf631483fadbb871631e59fb1cdf206a107b88674c7f80621"
+        },
+        {
+          "name": "gridcraft-0.13.0-linux-aarch64.rpm",
+          "bytes": 47032204,
+          "sha256": "1abde4eb6baf818a534a1b06c4e1de7f43f43e05fe33de448e6ebfb379606af2"
+        },
+        {
+          "name": "gridcraft-0.13.0-linux-aarch64.tar.gz",
+          "bytes": 46345526,
+          "sha256": "ecbef0d833caea65f6879714e037753578344bbc3ad7ad71da0f59449fc2aa6d"
+        },
+        {
+          "name": "gridcraft-0.13.0-linux-riscv64.deb",
+          "bytes": 47533022,
+          "sha256": "44b13bd698da0e0788306dc1bb0c979fdac07683dfce27235f5e132fd1aa37d0"
+        },
+        {
+          "name": "gridcraft-0.13.0-linux-riscv64.rpm",
+          "bytes": 47399911,
+          "sha256": "de5850aab39797ec4342c8f1a4da772af9c86c293c2242fdae5d0d80fef1f3bb"
+        },
+        {
+          "name": "gridcraft-0.13.0-linux-riscv64.tar.gz",
+          "bytes": 47058658,
+          "sha256": "bec5a465c22e4b1f11d4d279e03378f99b53af939d2251576220d7127f5a704b"
+        },
+        {
+          "name": "gridcraft-0.13.0-linux-x86_64.AppImage",
+          "bytes": 45763064,
+          "sha256": "2a87c3794cb2a7d0242a51c7695883b8beae51a7c5fac589a7d58dde1958b385"
+        },
+        {
+          "name": "gridcraft-0.13.0-linux-x86_64.AppImage.zsync",
+          "bytes": 156669,
+          "sha256": "0ab3f1fc51e4fe25cbe934b9fe3214e3bd7808b74de554c31b41b5953e70d09d"
+        },
+        {
+          "name": "gridcraft-0.13.0-linux-x86_64.deb",
+          "bytes": 48546016,
+          "sha256": "8fd9afde8f9bc2d18bb49934d295fea2d8465cb92f912ad652b2362615fcdd72"
+        },
+        {
+          "name": "gridcraft-0.13.0-linux-x86_64.flatpak",
+          "bytes": 34491024,
+          "sha256": "f40412d5bc4f39c577d2a7b202ac5707e0648150f019697649d4031d4db02db8"
+        },
+        {
+          "name": "gridcraft-0.13.0-linux-x86_64.pkg.tar.zst",
+          "bytes": 33997643,
+          "sha256": "74bcce809f037ed88ba044ac0bed3aff5903872ce96d25e6e3ac21f99bf0b62d"
+        },
+        {
+          "name": "gridcraft-0.13.0-linux-x86_64.rpm",
+          "bytes": 48293467,
+          "sha256": "1d33d39e2bd0906d5e38a07206d23cb7411f126cd031df2fed0d545506603274"
+        },
+        {
+          "name": "gridcraft-0.13.0-linux-x86_64.tar.gz",
+          "bytes": 47964351,
+          "sha256": "20c6c56ec1ffd6bbcffee6cdee58cf6b5cadd2f4a04a4360dd7cc64d53ad97e5"
+        },
+        {
+          "name": "gridcraft-0.13.0-macos-universal.dmg",
+          "bytes": 80860142,
+          "sha256": "67b6a023b465edf85ef5a309d49a6b00a085e3ea3dc9dddc0060996b38515168"
+        },
+        {
+          "name": "gridcraft-0.13.0-windows-arm64-portable.zip",
+          "bytes": 45550522,
+          "sha256": "dfad485e8eef819a649c39f0ba0223c5315a9194ed8bbed113ae02547a0341df"
+        },
+        {
+          "name": "gridcraft-0.13.0-windows-arm64.msi",
+          "bytes": 36364288,
+          "sha256": "970ecf0816eb4b9f0cf5dcb031ccd41fb31ad7720a3d58e7e0f6eed52d4e0ea6"
+        },
+        {
+          "name": "gridcraft-0.13.0-windows-x64-portable.zip",
+          "bytes": 47026979,
+          "sha256": "ff184e31ceb9284cbbb6c7ade71ac968d930c0dab1ca9de1147a1358a83bd8fd"
+        },
+        {
+          "name": "gridcraft-0.13.0-windows-x64.msi",
+          "bytes": 38047744,
+          "sha256": "48acede0009eaf15ddced187c2143043d87e8e882d1ee0eb1e52e9ac7ecab1b2"
+        },
+        {
+          "name": "gridcraft-0.13.0-windows-x86-portable.zip",
+          "bytes": 45079868,
+          "sha256": "769879eb79b193df02436215146f1c1fcacd82439358657b28e98565da13fb3d"
+        },
+        {
+          "name": "gridcraft-0.13.0-windows-x86.msi",
+          "bytes": 37056512,
+          "sha256": "f84bcac2ebcd36a8bcf3916f0e4e64c494b247a8fff76a8705f06fc8f88fa9af"
+        },
+        {
+          "name": "gridcraft-cli-0.13.0-macos-universal.zip",
+          "bytes": 11835794,
+          "sha256": "3db52969cf7621fdfdaebd123f72d5b1de343f63d3b52ec5a4a964f5605986ac"
+        },
+        {
+          "name": "gridcraft-web-0.13.0.zip",
+          "bytes": 7974995,
+          "sha256": "e232edde1898459f13568ca7b1f3feecb4037f0cbb8f6aec86de1a3c096af5dc"
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 2806,
+          "sha256": "48a0ae27b67429862c7a89ded6e961ffee3917e3ab587ac1470c9f887f6a1121"
+        }
+      ]
+    },
+    {
+      "id": "figcraft",
+      "release": "v0.12.1",
+      "publishedAt": "2026-10-28T17:58:10Z",
+      "sourceUrl": "https://github.com/storytold/figcraft/releases/tag/v0.12.1",
+      "assets": [
+        {
+          "name": "figcraft-0.12.1-freebsd-x86_64.tar.gz",
+          "bytes": 93729311,
+          "sha256": "746160f6f8d1b84c54233c31b848a53e248cadea2f07073b40141e81cc4b27e7"
+        },
+        {
+          "name": "figcraft-0.12.1-linux-aarch64.AppImage",
+          "bytes": 85559816,
+          "sha256": "376bfefe6e596775287ca29df1e437d43891d954559a5b6ed372e60cf28ffa60"
+        },
+        {
+          "name": "figcraft-0.12.1-linux-aarch64.AppImage.zsync",
+          "bytes": 292693,
+          "sha256": "4f77822857660d2c06ec9814df7e0508f00d6f319826470033dcf41130abd9e3"
+        },
+        {
+          "name": "figcraft-0.12.1-linux-aarch64.deb",
+          "bytes": 93316844,
+          "sha256": "986744ed741f831b7f13b6acab59bddaf912f0b2e072857dee9e2bfbbc23a0cc"
+        },
+        {
+          "name": "figcraft-0.12.1-linux-aarch64.flatpak",
+          "bytes": 62319952,
+          "sha256": "abea34b726d857a415847fa2af41a18704c19067d7b74524801f224135cd164f"
+        },
+        {
+          "name": "figcraft-0.12.1-linux-aarch64.pkg.tar.zst",
+          "bytes": 68604454,
+          "sha256": "8cb1543dfe0d6332db2bb117323a6e7edb42d4b81c9cdd2f10e7fa9386adc893"
+        },
+        {
+          "name": "figcraft-0.12.1-linux-aarch64.rpm",
+          "bytes": 92718940,
+          "sha256": "401fa399c4bc36ab6cf96ac304f366bc6da3805fbc8ffc9f02fe157285799348"
+        },
+        {
+          "name": "figcraft-0.12.1-linux-aarch64.tar.gz",
+          "bytes": 91085297,
+          "sha256": "72269287aafcfd681100a30e0ec80619a383c75f8e1b845ff73973754d5d1e59"
+        },
+        {
+          "name": "figcraft-0.12.1-linux-riscv64.deb",
+          "bytes": 93758128,
+          "sha256": "c0c4c061c344de6b8a09aaa0262046e164efc9bf601047e54f772c94dd779c2a"
+        },
+        {
+          "name": "figcraft-0.12.1-linux-riscv64.rpm",
+          "bytes": 93481536,
+          "sha256": "50047bf0e182ec96908730f113a1138af6a8d81384ae2a612368ae172f925f33"
+        },
+        {
+          "name": "figcraft-0.12.1-linux-riscv64.tar.gz",
+          "bytes": 92521387,
+          "sha256": "1669704df859ebe5156c7154e42d0919934566ea6dc3ba01663fb5340555ca1e"
+        },
+        {
+          "name": "figcraft-0.12.1-linux-x86_64.AppImage",
+          "bytes": 88361464,
+          "sha256": "c52be046d7bea73790f3584ffca6ec7935df229adce8f8e483b03242ee2aab1f"
+        },
+        {
+          "name": "figcraft-0.12.1-linux-x86_64.AppImage.zsync",
+          "bytes": 302267,
+          "sha256": "6a617b80c26d9202bb7b04ad1f50b5117026f5b56ff910c7be561c108e67a634"
+        },
+        {
+          "name": "figcraft-0.12.1-linux-x86_64.deb",
+          "bytes": 95478090,
+          "sha256": "5248497cc437eae617df3151553b700d59db6ef5de58d4c5ebbd182cfc9e7283"
+        },
+        {
+          "name": "figcraft-0.12.1-linux-x86_64.flatpak",
+          "bytes": 66037792,
+          "sha256": "cfedd4ee2a878791721864063ffaaf0b50d51298fc62e32de16fc6daacc3b48b"
+        },
+        {
+          "name": "figcraft-0.12.1-linux-x86_64.pkg.tar.zst",
+          "bytes": 70799511,
+          "sha256": "49e6310393b2a2f0f7a942fa5045a05ca549739884cd3d7b86cb6590ca0532ca"
+        },
+        {
+          "name": "figcraft-0.12.1-linux-x86_64.rpm",
+          "bytes": 95021524,
+          "sha256": "2937059bef68c58409db6685f813195d6e00a8eb224761c7b89a5e3de31c81d9"
+        },
+        {
+          "name": "figcraft-0.12.1-linux-x86_64.tar.gz",
+          "bytes": 94094269,
+          "sha256": "00a29f4cc382807d840f5d3e9b59f4c8829356789afbb956a0964918295e49dd"
+        },
+        {
+          "name": "figcraft-0.12.1-macos-universal.dmg",
+          "bytes": 102859403,
+          "sha256": "e843212fb1b4c6ed565bcf954dce7ac5ca6038daa430f58e232e628045e841f9"
+        },
+        {
+          "name": "figcraft-0.12.1-windows-arm64-portable.zip",
+          "bytes": 90396859,
+          "sha256": "d4f317d68c9887e38e048c974ecc65679345186f28689b19c3b3d161c157326e"
+        },
+        {
+          "name": "figcraft-0.12.1-windows-arm64.msi",
+          "bytes": 71114752,
+          "sha256": "690a579470866d59dd933e6a705fb780f9ccd0f71c5ed563c5bf5d5fc4682978"
+        },
+        {
+          "name": "figcraft-0.12.1-windows-x64-portable.zip",
+          "bytes": 93709983,
+          "sha256": "d6a8c2f0e7a4ad1f82493ebc6acfbc9cf9c296dac14787fbfb2878d012a8670d"
+        },
+        {
+          "name": "figcraft-0.12.1-windows-x64.msi",
+          "bytes": 74936320,
+          "sha256": "0538b5044b215a19df8fa880607f104f4653b4c0cbc850de1e69eca856f5f8f1"
+        },
+        {
+          "name": "figcraft-0.12.1-windows-x86-portable.zip",
+          "bytes": 90041062,
+          "sha256": "bec15c8d9141377cb270c20b55411fc3e7e9c076377222d09c20d2298dc12e1a"
+        },
+        {
+          "name": "figcraft-0.12.1-windows-x86.msi",
+          "bytes": 72876032,
+          "sha256": "7bf2c8d4e6b426a6f9d70ee37070df20badf05dd5326ca6ebd8a2dff56b574eb"
+        },
+        {
+          "name": "figcraft-cli-0.12.1-macos-universal.zip",
+          "bytes": 82277376,
+          "sha256": "14b24c7e1e8ca257fb4df04b4b261cda7fce75bbce00d4580046836626d9e3c9"
+        },
+        {
+          "name": "figcraft-server-0.12.1-linux-aarch64.tar.gz",
+          "bytes": 3973699,
+          "sha256": "83e83e3dc59801573bae0faff7034da7a01569ac8767351a930bb22ec5b5ede9"
+        },
+        {
+          "name": "figcraft-server-0.12.1-linux-x86_64.tar.gz",
+          "bytes": 4336809,
+          "sha256": "425c1335d5c665045bbf2417ae2f2cc388c4061cfdf80fea51b03fc1e8f0025d"
+        },
+        {
+          "name": "figcraft-web-0.12.1.zip",
+          "bytes": 9913496,
+          "sha256": "8f52f52d4897d35b14c2a347c44ab6362b60b93d6a2f54a17d218111b9006c37"
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 2998,
+          "sha256": "5099e734533fbd962708e84c02f1bf0f69bf43d65e00dfa8f49b1c91a67068a7"
+        }
+      ]
+    },
+    {
+      "id": "cadcraft",
+      "release": "v0.14.0",
+      "publishedAt": "2026-10-28T16:34:10Z",
+      "sourceUrl": "https://github.com/storytold/cadcraft/releases/tag/v0.14.0",
+      "assets": [
+        {
+          "name": "cadcraft-0.14.0-freebsd-x86_64.tar.gz",
+          "bytes": 74661996,
+          "sha256": "89a440ba35e377b535b6bbfe65fe27c441cde96bcff35bb691289407493c4ba3"
+        },
+        {
+          "name": "cadcraft-0.14.0-linux-aarch64.AppImage",
+          "bytes": 65006088,
+          "sha256": "1c09e2f8db7bbe6b709d0a5eca607e753fcb266b54e8fa83b7e7c03f9ac94bfc"
+        },
+        {
+          "name": "cadcraft-0.14.0-linux-aarch64.AppImage.zsync",
+          "bytes": 222441,
+          "sha256": "ce8ad6f005201b8eb75eb0b773cd3d2ab2a0523d07f45cd4cbb605213ceb07c5"
+        },
+        {
+          "name": "cadcraft-0.14.0-linux-aarch64.deb",
+          "bytes": 70614676,
+          "sha256": "3b63c99114ee279fd51211d4cb4d1757416fd6a8e9aa1fd4c5d4dd0629b6b5c3"
+        },
+        {
+          "name": "cadcraft-0.14.0-linux-aarch64.flatpak",
+          "bytes": 47497880,
+          "sha256": "ac5bdde44d33fa224241cf4e73b4d14c6d533aa5c351ef4ea165c03d674f7147"
+        },
+        {
+          "name": "cadcraft-0.14.0-linux-aarch64.pkg.tar.zst",
+          "bytes": 52255930,
+          "sha256": "57b175acdc52fced7bb3d6fe5025355c2057972df211defd6f29e3998b13f51f"
+        },
+        {
+          "name": "cadcraft-0.14.0-linux-aarch64.rpm",
+          "bytes": 70053386,
+          "sha256": "2cc9aa435dd5c457331aec1c7c19af5e335924eab4b2d0f7034e4fb518f66ce1"
+        },
+        {
+          "name": "cadcraft-0.14.0-linux-aarch64.tar.gz",
+          "bytes": 68771694,
+          "sha256": "7b0d181105da6f14f13ef1098fabb7b9317c1e97a2e8c0a9075c4c743c42d63a"
+        },
+        {
+          "name": "cadcraft-0.14.0-linux-riscv64.deb",
+          "bytes": 71483528,
+          "sha256": "8b1145d5b220ba1ad4d0fccb9050f7b2d43e3118cfbf0e3d6b182d25476c8bf9"
+        },
+        {
+          "name": "cadcraft-0.14.0-linux-riscv64.rpm",
+          "bytes": 71222501,
+          "sha256": "b580d28170ddfbe67ccc6cb94ed28400b0c4f6a707e3969d3b8aa788fe44c030"
+        },
+        {
+          "name": "cadcraft-0.14.0-linux-riscv64.tar.gz",
+          "bytes": 70521540,
+          "sha256": "4948c8f7fba587d871e9da54587b5802e29be5d4827392eab6253e631793aeba"
+        },
+        {
+          "name": "cadcraft-0.14.0-linux-x86_64.AppImage",
+          "bytes": 67709432,
+          "sha256": "d054e5769ee18134698d0773476871cadd89491a91523c3eb258a82626bb99e7"
+        },
+        {
+          "name": "cadcraft-0.14.0-linux-x86_64.AppImage.zsync",
+          "bytes": 231679,
+          "sha256": "0352c4755da5d802d7a9ef7886a64a4c4786542b60aa035e32c72e41dbecae8d"
+        },
+        {
+          "name": "cadcraft-0.14.0-linux-x86_64.deb",
+          "bytes": 72688190,
+          "sha256": "e595fb5abbeee7df3a0004fb7a366ce067d7c754e92d43a948bd9dc8ff893aee"
+        },
+        {
+          "name": "cadcraft-0.14.0-linux-x86_64.flatpak",
+          "bytes": 50788440,
+          "sha256": "8963febb85571f3d449a82b91890a6c01dec2a4c3b809f5fbaed43fc69d9cdad"
+        },
+        {
+          "name": "cadcraft-0.14.0-linux-x86_64.pkg.tar.zst",
+          "bytes": 54147918,
+          "sha256": "bf4c05e4e2c21a51e5b2ae644ba8ce88304d573fe36e067090931cf3b770d9e8"
+        },
+        {
+          "name": "cadcraft-0.14.0-linux-x86_64.rpm",
+          "bytes": 72244126,
+          "sha256": "35bf93af055b98c3af428ce1c0b02adbaa7212c18298b7a8059716aa483ad662"
+        },
+        {
+          "name": "cadcraft-0.14.0-linux-x86_64.tar.gz",
+          "bytes": 71629845,
+          "sha256": "95067c849f82305648249299bb86e645b730275aa8c5f19965d81990f83aea9b"
+        },
+        {
+          "name": "cadcraft-0.14.0-macos-universal.dmg",
+          "bytes": 81130228,
+          "sha256": "05aae1cc33745c0cd4171e74e05971d625b29884bb49e007031a42ae1adc02d2"
+        },
+        {
+          "name": "cadcraft-0.14.0-windows-arm64-portable.zip",
+          "bytes": 67986162,
+          "sha256": "f2e97d1e42dc9ce521ec3ca9ed38e0a04ca730b07634ffb61e3e1ebca98821d2"
+        },
+        {
+          "name": "cadcraft-0.14.0-windows-arm64.msi",
+          "bytes": 53579776,
+          "sha256": "2326bf1d17636713fb9ed4fd4c0bf7c9bd77be6ff1909a6bfe45fa0c2b5040fd"
+        },
+        {
+          "name": "cadcraft-0.14.0-windows-x64-portable.zip",
+          "bytes": 70963071,
+          "sha256": "f6f2b874358f3062dfbaf354b706be334c6a7a3eff49c38861c79c8a8efbea7c"
+        },
+        {
+          "name": "cadcraft-0.14.0-windows-x64.msi",
+          "bytes": 56770560,
+          "sha256": "881567e17ee4481d3fc195e5003592ac9045fe88d4887c7bf5eb105e045eb193"
+        },
+        {
+          "name": "cadcraft-0.14.0-windows-x86-portable.zip",
+          "bytes": 68473576,
+          "sha256": "9da2939f7847e02b1172bdba7753eacfddb9db0a48d82af10d7363dafd9c092a"
+        },
+        {
+          "name": "cadcraft-0.14.0-windows-x86.msi",
+          "bytes": 55730176,
+          "sha256": "def6a481253ba2d4e60e877e3432734c57c852c55d6097a97fdab66cff2586f4"
+        },
+        {
+          "name": "cadcraft-cli-0.14.0-macos-universal.zip",
+          "bytes": 59804072,
+          "sha256": "d6f8687f8966fc28e17fedb85ca672bb96ecba0c5497781dd2e7b5319762c4a4"
+        },
+        {
+          "name": "cadcraft-web-0.14.0.zip",
+          "bytes": 10278462,
+          "sha256": "f2fbfb80388dc0315a469d65cf7c966b742f86b6b4d3d405752bdee7428d94e8"
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 2779,
+          "sha256": "489a98013f6f50ad05ff56b8ce7e2316810471862657cef8b5986a8fdcc3a493"
+        }
+      ]
+    },
+    {
+      "id": "solidcraft",
+      "release": "v0.27.0",
+      "publishedAt": "2026-10-30T00:54:39Z",
+      "sourceUrl": "https://github.com/tangency-labs/solidcraft/releases/tag/v0.27.0",
+      "assets": [
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 4910,
+          "sha256": "e6eee4b8a699c475dda1f4f1c54457510f25fe9b890ad7a522594753b361e589"
+        },
+        {
+          "name": "solidcraft-0.27.0-freebsd-x86_64.tar.gz",
+          "bytes": 98587430,
+          "sha256": "a3aa1577adaed15691242a9d4391d93486098b7ca5c61adb61fa1b61a83f25e4"
+        },
+        {
+          "name": "solidcraft-0.27.0-linux-aarch64.AppImage",
+          "bytes": 86067720,
+          "sha256": "a7d2cfb0576541a258b483c2eb0cd7aaa29839d8686d0ad0e5c24e1ab298870c"
+        },
+        {
+          "name": "solidcraft-0.27.0-linux-aarch64.AppImage.zsync",
+          "bytes": 294433,
+          "sha256": "0a3bb216c7ac1404ae94eed978d9b2e6eb94c3e363e9143a371c436216aeaa8a"
+        },
+        {
+          "name": "solidcraft-0.27.0-linux-aarch64.deb",
+          "bytes": 95657996,
+          "sha256": "a5a329c91bccdaac8bcddb5d1c5efbec5a53500fc9cb853440b4e15fb163e740"
+        },
+        {
+          "name": "solidcraft-0.27.0-linux-aarch64.flatpak",
+          "bytes": 62624288,
+          "sha256": "cf9733277faf2c0e790ea99fae5fef47fa2e2995840034cd5a2fe2b20cd34fa8"
+        },
+        {
+          "name": "solidcraft-0.27.0-linux-aarch64.pkg.tar.zst",
+          "bytes": 69812713,
+          "sha256": "1a77d32f92e80ad07924ad91d8e9cb4f1d53d1a4acae57ac03273ca3afa2de7c"
+        },
+        {
+          "name": "solidcraft-0.27.0-linux-aarch64.rpm",
+          "bytes": 94749112,
+          "sha256": "e327ae48b9fd6da0ceab2c53380623041d28c2d8d330e52edd21027d2cfdd528"
+        },
+        {
+          "name": "solidcraft-0.27.0-linux-aarch64.snap",
+          "bytes": 99467264,
+          "sha256": "bb2ce9a76bf82b40d95e65b88b6f4c7c274e06c895d4a3c406342ab3476c52a4"
+        },
+        {
+          "name": "solidcraft-0.27.0-linux-aarch64.tar.gz",
+          "bytes": 92092414,
+          "sha256": "e48fb743e3e6344cfdcb593191898fdff6426b7154018708640533d7706a43f8"
+        },
+        {
+          "name": "solidcraft-0.27.0-linux-x86_64.AppImage",
+          "bytes": 92203512,
+          "sha256": "1f0cc8f69e0f3acc978a9e37e2d0825ccaa2e4dfdba171681890ea03b363372c"
+        },
+        {
+          "name": "solidcraft-0.27.0-linux-x86_64.AppImage.zsync",
+          "bytes": 315403,
+          "sha256": "3b2ab96efa6ee645042108245977174749d6d14e1c9a42f5c4624821b3bc6185"
+        },
+        {
+          "name": "solidcraft-0.27.0-linux-x86_64.deb",
+          "bytes": 100889948,
+          "sha256": "6e02ed5331651386c16d807a9d2051c92e51c558dc38018e59d167f7cf3f6059"
+        },
+        {
+          "name": "solidcraft-0.27.0-linux-x86_64.flatpak",
+          "bytes": 69902952,
+          "sha256": "a60d5f5f1746c696d30c810f1b31d66b1001a7c3e41b98bf161b5f5b7d3a28d3"
+        },
+        {
+          "name": "solidcraft-0.27.0-linux-x86_64.pkg.tar.zst",
+          "bytes": 74233928,
+          "sha256": "0ce25c9d6e973b78f7594892e38a7e2e990c8602baac988e4924e87d3f7a40c0"
+        },
+        {
+          "name": "solidcraft-0.27.0-linux-x86_64.rpm",
+          "bytes": 100256369,
+          "sha256": "5df3104cd06ac84b1c4b44d75a5aabd1102a1213fc6aaa74d378a4f7f34a5c8a"
+        },
+        {
+          "name": "solidcraft-0.27.0-linux-x86_64.snap",
+          "bytes": 106106880,
+          "sha256": "945ea5570291f9ad663a73ec0db9b558e0cec663564dd7f4fd122d00d84e47f5"
+        },
+        {
+          "name": "solidcraft-0.27.0-linux-x86_64.tar.gz",
+          "bytes": 99058348,
+          "sha256": "eb5b8eb5447d5443be9b5e094cb1a7ec2c7d08393fc49bb31ccae595562e9175"
+        },
+        {
+          "name": "solidcraft-0.27.0-macos-universal.dmg",
+          "bytes": 220607632,
+          "sha256": "f22d6b4c6440d43572edb93b03f0e4d3cd92ffd532caf730205176b4a08efa93"
+        },
+        {
+          "name": "solidcraft-0.27.0-windows-arm64-portable.zip",
+          "bytes": 94949389,
+          "sha256": "95279f05fa14555fde2d3fbee6c6a60177c45d6e9115551991509e25f37aee55"
+        },
+        {
+          "name": "solidcraft-0.27.0-windows-arm64.msi",
+          "bytes": 74178560,
+          "sha256": "a471b8ac8693a3c662513bc8c3b48cde003f0aa81229fcdfef21c6fb9710da38"
+        },
+        {
+          "name": "solidcraft-0.27.0-windows-x64-portable.zip",
+          "bytes": 102146917,
+          "sha256": "bf361fc9b10e618624548c82171f098c7b2c527823a80b71fe0b02e5ad3f4602"
+        },
+        {
+          "name": "SolidCraft-0.27.0-windows-x64.exe",
+          "bytes": 162066120,
+          "sha256": "c5a4e5baf0f97c1095032db9a34e43cff4a03dfe0695b49f01d1019ce31ee480"
+        },
+        {
+          "name": "solidcraft-0.27.0-windows-x64.msi",
+          "bytes": 81281024,
+          "sha256": "e465ec404fe2a3d90e35ee89c9b44757cccedd00a67f6e4841349cb6734580ce"
+        },
+        {
+          "name": "solidcraft-0.27.0-windows-x86-portable.zip",
+          "bytes": 94586397,
+          "sha256": "2b7e63e1e6a33ca5479499c4c0fffb80f2183db8f4253cbd0e3264c6d2f8ef9e"
+        },
+        {
+          "name": "solidcraft-0.27.0-windows-x86.msi",
+          "bytes": 77283328,
+          "sha256": "d69f93ef299263196249ef2413e774b71eb888d2feb564ae880711653751e387"
+        },
+        {
+          "name": "solidcraft-cli-0.27.0-macos-universal.zip",
+          "bytes": 82643581,
+          "sha256": "ad1cdb69ef1fa62a27b20202431dacd9a13eafce5b9254574791d728abd4f26b"
+        },
+        {
+          "name": "solidcraft-linux-aarch64.AppImage",
+          "bytes": 86067720,
+          "sha256": "a7d2cfb0576541a258b483c2eb0cd7aaa29839d8686d0ad0e5c24e1ab298870c"
+        },
+        {
+          "name": "solidcraft-linux-aarch64.deb",
+          "bytes": 95657996,
+          "sha256": "a5a329c91bccdaac8bcddb5d1c5efbec5a53500fc9cb853440b4e15fb163e740"
+        },
+        {
+          "name": "solidcraft-linux-aarch64.flatpak",
+          "bytes": 62624288,
+          "sha256": "cf9733277faf2c0e790ea99fae5fef47fa2e2995840034cd5a2fe2b20cd34fa8"
+        },
+        {
+          "name": "solidcraft-linux-aarch64.pkg.tar.zst",
+          "bytes": 69812713,
+          "sha256": "1a77d32f92e80ad07924ad91d8e9cb4f1d53d1a4acae57ac03273ca3afa2de7c"
+        },
+        {
+          "name": "solidcraft-linux-aarch64.rpm",
+          "bytes": 94749112,
+          "sha256": "e327ae48b9fd6da0ceab2c53380623041d28c2d8d330e52edd21027d2cfdd528"
+        },
+        {
+          "name": "solidcraft-linux-aarch64.snap",
+          "bytes": 99467264,
+          "sha256": "bb2ce9a76bf82b40d95e65b88b6f4c7c274e06c895d4a3c406342ab3476c52a4"
+        },
+        {
+          "name": "solidcraft-linux-x86_64.AppImage",
+          "bytes": 92203512,
+          "sha256": "1f0cc8f69e0f3acc978a9e37e2d0825ccaa2e4dfdba171681890ea03b363372c"
+        },
+        {
+          "name": "solidcraft-linux-x86_64.deb",
+          "bytes": 100889948,
+          "sha256": "6e02ed5331651386c16d807a9d2051c92e51c558dc38018e59d167f7cf3f6059"
+        },
+        {
+          "name": "solidcraft-linux-x86_64.flatpak",
+          "bytes": 69902952,
+          "sha256": "a60d5f5f1746c696d30c810f1b31d66b1001a7c3e41b98bf161b5f5b7d3a28d3"
+        },
+        {
+          "name": "solidcraft-linux-x86_64.pkg.tar.zst",
+          "bytes": 74233928,
+          "sha256": "0ce25c9d6e973b78f7594892e38a7e2e990c8602baac988e4924e87d3f7a40c0"
+        },
+        {
+          "name": "solidcraft-linux-x86_64.rpm",
+          "bytes": 100256369,
+          "sha256": "5df3104cd06ac84b1c4b44d75a5aabd1102a1213fc6aaa74d378a4f7f34a5c8a"
+        },
+        {
+          "name": "solidcraft-linux-x86_64.snap",
+          "bytes": 106106880,
+          "sha256": "945ea5570291f9ad663a73ec0db9b558e0cec663564dd7f4fd122d00d84e47f5"
+        },
+        {
+          "name": "solidcraft-macos-universal.dmg",
+          "bytes": 220607632,
+          "sha256": "f22d6b4c6440d43572edb93b03f0e4d3cd92ffd532caf730205176b4a08efa93"
+        },
+        {
+          "name": "solidcraft-web-0.27.0.zip",
+          "bytes": 32939890,
+          "sha256": "8e38faa6616d758c310c4c58ed8352f9cbb5946abd99ac8e1999ddf5ddc4a306"
+        },
+        {
+          "name": "solidcraft-windows-arm64-portable.zip",
+          "bytes": 94949389,
+          "sha256": "95279f05fa14555fde2d3fbee6c6a60177c45d6e9115551991509e25f37aee55"
+        },
+        {
+          "name": "solidcraft-windows-arm64.msi",
+          "bytes": 74178560,
+          "sha256": "a471b8ac8693a3c662513bc8c3b48cde003f0aa81229fcdfef21c6fb9710da38"
+        },
+        {
+          "name": "solidcraft-windows-x64-portable.zip",
+          "bytes": 102146917,
+          "sha256": "bf361fc9b10e618624548c82171f098c7b2c527823a80b71fe0b02e5ad3f4602"
+        },
+        {
+          "name": "solidcraft-windows-x64.msi",
+          "bytes": 81281024,
+          "sha256": "e465ec404fe2a3d90e35ee89c9b44757cccedd00a67f6e4841349cb6734580ce"
+        },
+        {
+          "name": "solidcraft-windows-x86-portable.zip",
+          "bytes": 94586397,
+          "sha256": "2b7e63e1e6a33ca5479499c4c0fffb80f2183db8f4253cbd0e3264c6d2f8ef9e"
+        },
+        {
+          "name": "solidcraft-windows-x86.msi",
+          "bytes": 77283328,
+          "sha256": "d69f93ef299263196249ef2413e774b71eb888d2feb564ae880711653751e387"
+        },
+        {
+          "name": "solvecraft-0.27.0-linux-aarch64.AppImage.zsync",
+          "bytes": 294433,
+          "sha256": "0a3bb216c7ac1404ae94eed978d9b2e6eb94c3e363e9143a371c436216aeaa8a"
+        },
+        {
+          "name": "solvecraft-0.27.0-linux-x86_64.AppImage.zsync",
+          "bytes": 315403,
+          "sha256": "3b2ab96efa6ee645042108245977174749d6d14e1c9a42f5c4624821b3bc6185"
+        }
+      ]
+    }
+  ]
+}

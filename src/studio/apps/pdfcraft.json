@@ -25,9 +25,9 @@
     "pdf-assembly"
   ],
   "editor": {
-    "adapterVersion": "0.3.0",
-    "release": "pdfcraft-v0.15.0-robyn-0.3.0",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/pdfcraft/v0.15.0-0.3.0/?robyn",
+    "adapterVersion": "0.3.1",
+    "release": "pdfcraft-v0.15.0-robyn-0.3.1",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/pdfcraft/v0.15.0-0.3.1/?robyn",
     "status": "verified"
   },
   "workstation": {

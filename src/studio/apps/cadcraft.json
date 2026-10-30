@@ -25,9 +25,9 @@
     "dimensioning"
   ],
   "editor": {
-    "adapterVersion": "0.3.0",
-    "release": "cadcraft-v0.14.0-robyn-0.3.0",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/cadcraft/v0.14.0-0.3.0/?robyn",
+    "adapterVersion": "0.3.1",
+    "release": "cadcraft-v0.14.0-robyn-0.3.1",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/cadcraft/v0.14.0-0.3.1/?robyn",
     "status": "verified"
   },
   "workstation": {

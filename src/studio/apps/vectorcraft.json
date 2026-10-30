@@ -26,9 +26,9 @@
     "icons"
   ],
   "editor": {
-    "adapterVersion": "0.3.0",
-    "release": "vectorcraft-v0.18.0-robyn-0.3.0",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/vectorcraft/v0.18.0-0.3.0/?robyn",
+    "adapterVersion": "0.3.1",
+    "release": "vectorcraft-v0.18.0-robyn-0.3.1",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/vectorcraft/v0.18.0-0.3.1/?robyn",
     "status": "verified"
   },
   "workstation": {

@@ -1,0 +1,50 @@
+{
+  "checkedAt": "2026-10-30T02:57:49.968Z",
+  "upstream": "v0.27.0",
+  "candidate": "4aad6a1d3f72686c914a3727b426a866ad1c80e961e24f4b2eddb5b3486f194b",
+  "scope": "Actual final0.27 native CLI → actual patched WASM → unmodified createEditorHost and local BFF/private Storage → confirmed save, exact signed-download SHA-256 and native continuation. Six intended saves, lost Save As acknowledgement recovery, Copy, saved STEP placement and actual format44 import inspection. Isolated QA project; no employee AI turn or production web promotion.",
+  "passed": true,
+  "exactAsset": true,
+  "browserVolume": 8000,
+  "nativeContinuationVolume": 11000,
+  "saveAsRetryDeduplicated": true,
+  "laterEditsPreserved": true,
+  "copyPreservesOpenAsset": true,
+  "confirmedSaves": 6,
+  "placementChecks": {
+    "nativeFormat": 44,
+    "vendoredInspectorAcceptsActualSavedBytes": true,
+    "actualPicker": true,
+    "savedExactSourceRevision": true,
+    "downloadSha256": "064fa04721c7d5650c51420d413feb725bb88cc4730b895d73b51d9c1604c12c",
+    "browserSavedNativeVolume": 16000,
+    "nativeContinuationVolume": 19000
+  },
+  "packageChecks": [
+    {
+      "mode": "save-as",
+      "sha256": "61c266e01ae3c4001666d3658418bbf6640484dbff6c9d927fa897b1e837c255",
+      "volume": 9000
+    },
+    {
+      "mode": "adopted-revision",
+      "sha256": "177e561487bb9c0bf883f7608be4219a1a32b53ef3c1a96f654bc53e4329dbe5",
+      "volume": 9400
+    },
+    {
+      "mode": "copy",
+      "sha256": "3e2cc5280a8261a46e5960de2c493fad63982b3dca84071d9d1e08b1eefd6059",
+      "volume": 10000
+    },
+    {
+      "mode": "final",
+      "sha256": "3e2cc5280a8261a46e5960de2c493fad63982b3dca84071d9d1e08b1eefd6059",
+      "volume": 10000
+    }
+  ],
+  "masterSha256": "a7c3ae90cefc7beebba8c8efb865a16312a73646973e2906b3dea625091ac639",
+  "editorDelivery": "local candidate",
+  "adapterVersion": "0.1.1",
+  "assetErrors": [],
+  "errors": []
+}
