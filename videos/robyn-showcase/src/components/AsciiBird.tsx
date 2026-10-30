@@ -205,10 +205,10 @@ export const BirdGuide = ({ chapter }: { chapter?: number }) => {
   const t = frame / fps;
   const stops = [
     [1080, 165, 780],
-    [1490, 610, 350],
+    [1450, 105, 350],
     [420, 610, 350],
     [1440, 630, 370],
-    [430, 630, 390],
+    [470, 630, 350],
     [1390, 108, 420],
     [1500, 585, 350],
     [1080, 165, 780],
@@ -245,7 +245,7 @@ export const BirdGuide = ({ chapter }: { chapter?: number }) => {
     ease,
   );
   // Carry clean paper through a flight too: real editor pixels and the dark
-  // director card can otherwise swallow the original ink during a wipe.
+  // Robyn card can otherwise swallow the original ink during a wipe.
   const paperOpacity = Math.max(
     darkPaper,
     interpolate(energy, [0.015, 0.12], [0, 1], ease),

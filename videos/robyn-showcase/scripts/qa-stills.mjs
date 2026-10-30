@@ -36,6 +36,7 @@ try {
     100,
     350,
     550,
+    610,
     680,
     860,
     1100,
@@ -70,10 +71,10 @@ try {
   }
   const chapters = [
     ["IdeasHaveWings", 100, 100],
-    ["ThirteenCrafts", 125, 350],
+    ["FourteenCrafts", 125, 350],
     ["RealTools", 100, 550],
-    ["CreativeTeam", 110, 860],
-    ["Research", 125, 1100],
+    ["OneRobyn", 110, 860],
+    ["BrowserAndNotes", 125, 1100],
     ["Media", 120, 1320],
     ["SavedRevisions", 115, 1540],
     ["Invitation", 90, 1740],

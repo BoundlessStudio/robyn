@@ -80,10 +80,10 @@
       "sha256": "0fb06b48bafefe5cc2e4371836aed6db7907d5953f9df9c4711a7f77de5f45d2"
     },
     {
-      "source": "public/brand/apps/research.webp",
-      "destination": "apps/research.webp",
-      "bytes": 31634,
-      "sha256": "c82cb6a3f60f318fbc28b3013d39f57888fc776aeb83987e4b7f1f4218c43e26"
+      "source": "public/brand/apps/solidcraft.webp",
+      "destination": "apps/solidcraft.webp",
+      "bytes": 45148,
+      "sha256": "edc580363fde8607c97e931370d907c548f90fa4992d35011484d0ea898e1ebd"
     },
     {
       "source": "public/artwork/editors/photocraft.png",
@@ -98,10 +98,22 @@
       "sha256": "ae558d79900923ffc5ecbf0183c9a23da8955f08b4b9516146ab6887fe197de4"
     },
     {
+      "source": "public/artwork/editors/solidcraft.png",
+      "destination": "editors/solidcraft.png",
+      "bytes": 198647,
+      "sha256": "64d1f797cd6cb46496ec5f6f67a8b430646a142fc6ae3ae3f63ed83617cb6ade"
+    },
+    {
       "source": "public/artwork/editors/research.jpg",
-      "destination": "editors/research.jpg",
+      "destination": "editors/notes.jpg",
       "bytes": 148964,
       "sha256": "61b81767cae59cf0efe8e81b166b7c7a76743b97e1cfc336c5b768a5b1b655ce"
+    },
+    {
+      "source": "public/brand/apps/SolidCraft-LICENSE.txt",
+      "destination": "apps/SolidCraft-LICENSE.txt",
+      "bytes": 1101,
+      "sha256": "44cca886556f909c92e8856945be1c55371698d06d052c6fe7cee7c6fb8e316f"
     },
     {
       "source": "public/artwork/offscript-bloom.png",

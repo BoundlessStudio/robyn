@@ -103,7 +103,7 @@ export const Opening = () => {
           lineHeight: 1.35,
         }}
       >
-        AI collaborators. Real creative tools.
+        One Robyn. Fourteen creative tools.
         <br />
         Your imagination, in the making.
       </Reveal>

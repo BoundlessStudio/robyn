@@ -102,7 +102,7 @@ export const Media = () => {
             marginTop: 20,
           }}
         >
-          02 / Audio
+          02 / Audio + speech
         </div>
       </Reveal>
       <Reveal
@@ -161,9 +161,21 @@ export const Media = () => {
       </Reveal>
       <Reveal
         delay={1.6}
-        style={{ position: "absolute", left: 112, top: 895, fontSize: 35 }}
+        style={{ position: "absolute", left: 112, top: 882, fontSize: 32 }}
       >
-        Import your files. Find media in Commons. Keep the sources.
+        Your files. Commons media. Generated images, speech and video.
+      </Reveal>
+      <Reveal
+        delay={2.1}
+        style={{
+          position: "absolute",
+          left: 112,
+          top: 931,
+          fontSize: 24,
+          color: C.muted,
+        }}
+      >
+        Sources and credits stay with the work.
       </Reveal>
     </Stage>
   );

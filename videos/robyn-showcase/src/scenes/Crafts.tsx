@@ -16,12 +16,13 @@ const crafts = [
   ["deckcraft", "DeckCraft", "Presentations"],
   ["gridcraft", "GridCraft", "Spreadsheets"],
   ["cadcraft", "CADCraft", "CAD"],
+  ["solidcraft", "SolidCraft", "Parametric 3D"],
 ];
 export const Crafts = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   return (
-    <Stage chapter="Thirteen ways to make" number="02">
+    <Stage chapter="Dashboard / Fourteen ways to make" number="02">
       <Reveal
         delay={0.15}
         style={{
@@ -33,7 +34,7 @@ export const Crafts = () => {
           letterSpacing: "-6px",
         }}
       >
-        13 Crafts.{" "}
+        14 Crafts.{" "}
         <span style={{ fontFamily: serif, fontStyle: "italic", color: C.rust }}>
           One studio.
         </span>
@@ -43,10 +44,10 @@ export const Crafts = () => {
           position: "absolute",
           left: 104,
           right: 104,
-          top: 392,
+          top: 420,
           display: "grid",
           gridTemplateColumns: "repeat(7, 1fr)",
-          rowGap: 65,
+          rowGap: 46,
         }}
       >
         {crafts.map(([id, name, discipline], i) => (
