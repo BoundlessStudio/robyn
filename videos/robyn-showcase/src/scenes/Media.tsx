@@ -12,7 +12,7 @@ export const Media = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   return (
-    <Stage chapter="Your creative ingredients" number="06">
+    <Stage chapter="Your creative ingredients" number="05">
       <Reveal
         delay={0.15}
         style={{
@@ -51,7 +51,7 @@ export const Media = () => {
               height: "100%",
               objectFit: "cover",
               objectPosition: "50% 42%",
-              scale: interpolate(frame, [0, 8 * fps], [1.08, 1], ease),
+              scale: interpolate(frame, [0, 9 * fps], [1.08, 1], ease),
             }}
           />
         </div>

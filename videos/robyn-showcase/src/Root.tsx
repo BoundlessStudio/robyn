@@ -4,7 +4,6 @@ import { Opening } from "./scenes/Opening";
 import { Crafts } from "./scenes/Crafts";
 import { RealTools } from "./scenes/RealTools";
 import { Robyn } from "./scenes/Robyn";
-import { BrowserNotes } from "./scenes/BrowserNotes";
 import { Media } from "./scenes/Media";
 import { Revisions } from "./scenes/Revisions";
 import { Closing } from "./scenes/Closing";
@@ -28,7 +27,7 @@ export const RemotionRoot: React.FC = () => {
           width={1920}
           height={1080}
           fps={30}
-          durationInFrames={240}
+          durationInFrames={270}
         />
         <Composition
           id="RealTools"
@@ -36,7 +35,7 @@ export const RemotionRoot: React.FC = () => {
           width={1920}
           height={1080}
           fps={30}
-          durationInFrames={315}
+          durationInFrames={420}
         />
         <Composition
           id="OneRobyn"
@@ -44,15 +43,7 @@ export const RemotionRoot: React.FC = () => {
           width={1920}
           height={1080}
           fps={30}
-          durationInFrames={240}
-        />
-        <Composition
-          id="BrowserAndNotes"
-          component={BrowserNotes}
-          width={1920}
-          height={1080}
-          fps={30}
-          durationInFrames={240}
+          durationInFrames={300}
         />
         <Composition
           id="Media"
@@ -60,7 +51,7 @@ export const RemotionRoot: React.FC = () => {
           width={1920}
           height={1080}
           fps={30}
-          durationInFrames={240}
+          durationInFrames={270}
         />
         <Composition
           id="SavedRevisions"

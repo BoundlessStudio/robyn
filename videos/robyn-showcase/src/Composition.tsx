@@ -16,7 +16,6 @@ import { Opening } from "./scenes/Opening";
 import { Crafts } from "./scenes/Crafts";
 import { RealTools } from "./scenes/RealTools";
 import { Robyn } from "./scenes/Robyn";
-import { BrowserNotes } from "./scenes/BrowserNotes";
 import { Media } from "./scenes/Media";
 import { Revisions } from "./scenes/Revisions";
 import { Closing } from "./scenes/Closing";
@@ -44,7 +43,7 @@ export const Showcase = ({ music }: ShowcaseProps) => {
           />
           <TransitionSeries.Sequence
             name="02 — Fourteen Crafts"
-            durationInFrames={8 * fps}
+            durationInFrames={9 * fps}
             premountFor={fps}
           >
             <Crafts />
@@ -55,7 +54,7 @@ export const Showcase = ({ music }: ShowcaseProps) => {
           />
           <TransitionSeries.Sequence
             name="03 — Real tools, your touch"
-            durationInFrames={10.5 * fps}
+            durationInFrames={14 * fps}
             premountFor={fps}
           >
             <RealTools />
@@ -66,7 +65,7 @@ export const Showcase = ({ music }: ShowcaseProps) => {
           />
           <TransitionSeries.Sequence
             name="04 — One Robyn, every Craft"
-            durationInFrames={8 * fps}
+            durationInFrames={10 * fps}
             premountFor={fps}
           >
             <Robyn />
@@ -76,19 +75,8 @@ export const Showcase = ({ music }: ShowcaseProps) => {
             timing={linearTiming({ durationInFrames: 0.5 * fps })}
           />
           <TransitionSeries.Sequence
-            name="05 — Browser tools and Notes"
-            durationInFrames={8 * fps}
-            premountFor={fps}
-          >
-            <BrowserNotes />
-          </TransitionSeries.Sequence>
-          <TransitionSeries.Transition
-            presentation={wipe({ direction: "from-left" })}
-            timing={linearTiming({ durationInFrames: 0.5 * fps })}
-          />
-          <TransitionSeries.Sequence
-            name="06 — Creative ingredients"
-            durationInFrames={8 * fps}
+            name="05 — Creative ingredients"
+            durationInFrames={9 * fps}
             premountFor={fps}
           >
             <Media />
@@ -98,7 +86,7 @@ export const Showcase = ({ music }: ShowcaseProps) => {
             timing={linearTiming({ durationInFrames: 0.5 * fps })}
           />
           <TransitionSeries.Sequence
-            name="07 — Save and continue"
+            name="06 — Save and continue"
             durationInFrames={8 * fps}
             premountFor={fps}
           >
@@ -109,7 +97,7 @@ export const Showcase = ({ music }: ShowcaseProps) => {
             timing={linearTiming({ durationInFrames: 0.5 * fps })}
           />
           <TransitionSeries.Sequence
-            name="08 — Invitation"
+            name="07 — Invitation"
             durationInFrames={5 * fps}
             premountFor={fps}
           >
@@ -158,7 +146,7 @@ export const Poster = () => {
   );
 };
 
-// Six 8s scenes + 10.5s tools + 5s close − seven 0.5s overlaps = 60s.
+// 8 + 9 + 14 + 10 + 9 + 8 + 5 seconds − six 0.5s overlaps = 60s.
 export const ShowcaseCompositions = () => (
   <>
     <Composition

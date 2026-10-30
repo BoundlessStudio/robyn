@@ -2,7 +2,7 @@ import { C, mono, serif } from "../theme";
 import { EditorCapture, Reveal, Stage } from "../components/Stage";
 
 export const Revisions = () => (
-  <Stage dark chapter="Assets / Save and continue" number="07">
+  <Stage dark chapter="Assets / Save and continue" number="06">
     <Reveal
       delay={0.15}
       style={{
@@ -121,8 +121,6 @@ export const Revisions = () => (
       <span>.docx</span>
       <span> / </span>
       <span>.sc</span>
-      <span> / </span>
-      <span>.md</span>
     </Reveal>
     <Reveal
       delay={1.2}

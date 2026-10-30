@@ -17,7 +17,7 @@ import { C, ease } from "../theme";
 const points = makeRobin();
 const ramp = ROBIN_RAMP;
 const clamp = (n: number) => Math.max(0, Math.min(1, n));
-const cuts = [7.5, 15, 25, 32.5, 40, 47.5, 55];
+const cuts = [7.5, 16, 29.5, 39, 47.5, 55];
 export const ContinuousBirdContext = createContext(false);
 
 type BirdProps = {
@@ -208,7 +208,6 @@ export const BirdGuide = ({ chapter }: { chapter?: number }) => {
     [1450, 105, 350],
     [420, 610, 350],
     [1440, 630, 370],
-    [470, 630, 350],
     [1390, 108, 420],
     [1500, 585, 350],
     [1080, 165, 780],
@@ -219,7 +218,7 @@ export const BirdGuide = ({ chapter }: { chapter?: number }) => {
   const values = [
     stops[0],
     ...cuts.flatMap((_, i) => [stops[i], stops[i + 1]]),
-    stops[7],
+    stops[6],
   ];
   const energy = Math.min(
     1,
@@ -240,7 +239,7 @@ export const BirdGuide = ({ chapter }: { chapter?: number }) => {
   );
   const darkPaper = interpolate(
     t,
-    [0, 14.25, 15, 25.5, 26, 46.75, 47.5, 55.5, 56, 60],
+    [0, 15.25, 16, 30, 30.5, 46.75, 47.5, 55.5, 56, 60],
     [0, 0, 1, 1, 0, 0, 1, 1, 0, 0],
     ease,
   );

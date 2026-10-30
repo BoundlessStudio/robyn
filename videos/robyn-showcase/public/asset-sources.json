@@ -104,12 +104,6 @@
       "sha256": "64d1f797cd6cb46496ec5f6f67a8b430646a142fc6ae3ae3f63ed83617cb6ade"
     },
     {
-      "source": "public/artwork/editors/research.jpg",
-      "destination": "editors/notes.jpg",
-      "bytes": 148964,
-      "sha256": "61b81767cae59cf0efe8e81b166b7c7a76743b97e1cfc336c5b768a5b1b655ce"
-    },
-    {
       "source": "public/brand/apps/SolidCraft-LICENSE.txt",
       "destination": "apps/SolidCraft-LICENSE.txt",
       "bytes": 1101,

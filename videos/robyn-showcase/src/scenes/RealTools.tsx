@@ -54,7 +54,7 @@ export const RealTools = () => {
           top: 163,
           opacity: interpolate(
             frame,
-            [0.5 * fps, 1.2 * fps, 3.4 * fps, 3.75 * fps],
+            [0.5 * fps, 1.2 * fps, 4.5 * fps, 4.9 * fps],
             [0, 1, 1, 0],
             ease,
           ),
@@ -78,7 +78,7 @@ export const RealTools = () => {
           top: 163,
           opacity: interpolate(
             frame,
-            [3.5 * fps, 4.1 * fps, 6.55 * fps, 6.9 * fps],
+            [4.65 * fps, 5.25 * fps, 8.95 * fps, 9.35 * fps],
             [0, 1, 1, 0],
             ease,
           ),
@@ -101,7 +101,7 @@ export const RealTools = () => {
           position: "absolute",
           left: 794,
           top: 163,
-          opacity: interpolate(frame, [6.65 * fps, 7.25 * fps], [0, 1], ease),
+          opacity: interpolate(frame, [9.1 * fps, 9.7 * fps], [0, 1], ease),
         }}
       >
         <div style={{ fontSize: 27, marginBottom: 18 }}>

@@ -2,7 +2,7 @@ import { C, serif } from "../theme";
 import { Kicker, Reveal, Stage } from "../components/Stage";
 
 export const Closing = () => (
-  <Stage chapter="Ideas have wings." number="08">
+  <Stage chapter="Ideas have wings." number="07">
     <div
       style={{
         position: "absolute",

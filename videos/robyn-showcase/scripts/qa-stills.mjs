@@ -7,7 +7,7 @@ import {
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-const output = path.resolve("out/qa");
+const output = path.resolve("out/qa-without-notes");
 const chaptersOnly = process.argv.includes("--chapters-only");
 await mkdir(output, { recursive: true });
 const serveUrl = await bundle({
@@ -35,23 +35,21 @@ try {
   const frames = [
     100,
     350,
-    550,
-    610,
-    680,
-    860,
-    1100,
-    1320,
+    580,
+    700,
+    840,
+    995,
+    1290,
     1540,
     1740,
     1799,
     225,
-    450,
-    750,
-    975,
-    1200,
+    480,
+    885,
+    1170,
     1425,
     1650,
-    ...[225, 450, 750, 975, 1200, 1425, 1650].flatMap((cut) => [
+    ...[225, 480, 885, 1170, 1425, 1650].flatMap((cut) => [
       cut - 15,
       cut + 7,
       cut + 21,
@@ -72,10 +70,9 @@ try {
   const chapters = [
     ["IdeasHaveWings", 100, 100],
     ["FourteenCrafts", 125, 350],
-    ["RealTools", 100, 550],
-    ["OneRobyn", 110, 860],
-    ["BrowserAndNotes", 125, 1100],
-    ["Media", 120, 1320],
+    ["RealTools", 100, 580],
+    ["OneRobyn", 110, 995],
+    ["Media", 120, 1290],
     ["SavedRevisions", 115, 1540],
     ["Invitation", 90, 1740],
   ];
