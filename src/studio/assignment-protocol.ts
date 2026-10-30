@@ -32,7 +32,9 @@ export async function readTurnStream(response: Response, stopAfterCreated: boole
         if (event === "response.created") {
           if (typeof data.id !== "string" || typeof data.session_id !== "string" || data.id.length > 200 || data.session_id.length > 200) throw new Error("Invalid response identity");
           if (expected && (data.session_id !== expected.sessionId || (expected.responseId && data.id !== expected.responseId))) throw new Error("Agent response identity changed");
-          if (expected?.profile && data.profile !== expected.profile) throw new Error("Agent response profile changed");
+          // Agent37 routes the POST with profile, but its documented created
+          // payload is only {id, session_id}. Reject conflicting optional echoes.
+          if (expected?.profile && data.profile !== undefined && data.profile !== expected.profile) throw new Error("Agent response profile changed");
           created = true;
           if (stopAfterCreated) return { kind: "created", responseId: data.id, sessionId: data.session_id };
         } else {

@@ -18,13 +18,15 @@ test("durable turn parsing survives split UTF-8/CRLF and never returns private t
   await assert.rejects(readTurnStream(new Response('event: response.completed\ndata: {"output_text":"wrong"}\n\n'), false), /no identity/);
 });
 
-test("a new profiled turn requires the exact response.created profile on dispatch and replay",async()=>{
+test("profile-routed turns accept documented created payloads and reject conflicting profile echoes",async()=>{
   const profile="robyn-job-7",sessionId="session-one",responseId="response-one";
   const stream=(echo:Record<string,unknown>)=>new Response(`event: response.created\ndata: ${JSON.stringify({id:responseId,session_id:sessionId,...echo})}\n\nevent: response.completed\ndata: {"output_text":"Saved work is ready."}\n\n`);
   const expected={sessionId,responseId,profile};
   assert.deepEqual(await readTurnStream(stream({profile}),true,expected),{kind:"created",responseId,sessionId});
   assert.deepEqual(await readTurnStream(stream({profile}),false,expected),{kind:"completed",text:"Saved work is ready."});
-  for(const echo of [{},{profile:null},{profile:"robyn-other-job"}]){
+  assert.deepEqual(await readTurnStream(stream({}),true,expected),{kind:"created",responseId,sessionId});
+  assert.deepEqual(await readTurnStream(stream({}),false,expected),{kind:"completed",text:"Saved work is ready."});
+  for(const echo of [{profile:null},{profile:"robyn-other-job"}]){
     await assert.rejects(readTurnStream(stream(echo),true,expected),/profile changed/);
     await assert.rejects(readTurnStream(stream(echo),false,expected),/profile changed/);
   }
