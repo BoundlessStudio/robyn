@@ -1,5 +1,11 @@
 export interface BudgetSlot {id:string;monthlyCapMicros:number;monthlyConsumedMicros:number;spentMicros:number;creditMicros:number}
 export interface StudioBudgetRequest {monthlyLimitMicros:number;mode:"automatic"|"custom";allocations?:Record<string,number>;expectedPolicyOperationId?:string|null}
+export const DEFAULT_STUDIO_BUDGET_MICROS=20_000_000;
+export const MAX_STUDIO_BUDGET_MICROS=100_000_000;
+export function studioBudgetLimit(value:unknown):number {
+  if(typeof value!=="number"||!Number.isSafeInteger(value)||value<0||value>MAX_STUDIO_BUDGET_MICROS)throw Error("Choose a monthly AI allowance from $0 to $100.");
+  return value;
+}
 const money=(n:number)=>{if(!Number.isSafeInteger(n)||n<0)throw Error("Budgets must be non-negative whole USD micros.");return n;};
 const sum=(values:number[])=>money(values.reduce((a,b)=>a+money(b),0));
 
@@ -34,7 +40,9 @@ export function planSharedStudioBudget(request:StudioBudgetRequest,slot:BudgetSl
   const limit=money(request.monthlyLimitMicros),retired=money(retiredSpentMicros);
   money(slot.monthlyCapMicros);money(slot.monthlyConsumedMicros);
   const spent=sum([retired,slot.spentMicros]),credits=money(slot.creditMicros);
-  if(credits>Math.max(0,limit-spent))throw Error("Existing one-time headroom cannot fit this Studio budget. It remains spendable in Agent37.");
+  // Zero is an explicit AI opt-out. Keep the credit receipt, but grant no
+  // provider monthly headroom; paidCapacity also refuses credit-funded work.
+  if(limit>0&&credits>Math.max(0,limit-spent))throw Error("Existing one-time headroom cannot fit this Studio budget. It remains spendable in Agent37.");
   const headroom=Math.max(0,limit-spent-credits),providerCap=Math.min(limit,money(slot.monthlyConsumedMicros+headroom));
   const allocatedHeadroom=Math.max(0,providerCap-slot.monthlyConsumedMicros);
   return {monthlyLimitMicros:limit,mode:"automatic" as const,allocations:{[slot.id]:limit},providerCapMicros:providerCap,

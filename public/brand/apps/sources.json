@@ -1,7 +1,7 @@
 {
   "retrieved": "2026-10-27",
   "catalogue": "https://getartcraft.com/apps",
-  "note": "Nine unchanged ArtCraft originals, five owner-requested Robyn illustrations, and the original SolidCraft application icon.",
+  "note": "Nine unchanged ArtCraft originals plus six Robyn animal illustrations requested by the owner.",
   "icons": [
     {
       "id": "photocraft",
@@ -119,13 +119,15 @@
     },
     {
       "id": "solidcraft",
-      "source": "https://github.com/tangency-labs/solidcraft/blob/9df8837d43409c0ec61b071f3803805ebe5a9463/assets/icons/app/linux/exports/hicolor/256x256/apps/io.tangencylabs.solidcraft.png",
-      "retrieved": "2026-10-29",
-      "author": "SolidCraft contributors",
-      "license": "MIT",
-      "transformation": "Lossless PNG to WebP, original 256×256 pixels",
-      "bytes": 5652,
-      "sha256": "8c07f54b29dc2bfb534c70c894cb11a74c917ae5d06644e96c2e65ce7b60f6f8"
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-10-30",
+      "prompt": "Redesign the attached SolidCraft application icon (the first reference, a blue geometric cube) into a matching animal icon. The remaining three images are STYLE REFERENCES only, not edit targets: CADCraft spider, GridCraft beaver, Research raven. Create one single square production application icon for SolidCraft. Subject: a handsome armadillo, head and upper body in a confident three-quarter pose, distinctive domed segmented armor and small pointed ears, gentle intelligent expression. The armadillo's curved plates should suggest sculptural solid modeling while remaining a natural animal. Match the reference family closely: intricate antique natural-history wood engraving, dense fine black cross-hatching, warm ivory highlights, strong clear silhouette that reads at 32px, centered close crop filling the tile. Warm black-and-ivory animal on a saturated azure-blue rounded square tile (#3487e8), with transparent pixels outside the rounded tile. The animal may subtly overlap the tile edge like the reference beaver and raven. One animal only. No tools, no cube, no lettering, no words, no logo text, no border, no watermark, no 3D render, no glossy treatment. Preserve true alpha transparency around the tile and animal; do not draw a checkerboard.",
+      "width": 256,
+      "height": 256,
+      "processing": "Resized to 256 x 256 and encoded as WebP; alpha preserved.",
+      "sourceSha256": "a2be763c34f784f53b4ba50d846e7d0bdc609be3914edbd971b449fb07dc44f1",
+      "bytes": 45148,
+      "sha256": "edc580363fde8607c97e931370d907c548f90fa4992d35011484d0ea898e1ebd"
     }
   ]
 }

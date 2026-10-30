@@ -3,6 +3,39 @@ import assert from 'node:assert/strict';
 import {randomUUID} from 'node:crypto';
 import {sharedBudgetFixture} from './helpers/shared-budget.mjs';
 
+test('saving zero switches the helper off despite one-time credit and can be re-enabled',async()=>{
+  const f=await sharedBudgetFixture({credit:50});
+  try{
+    const snapshot=await f.updateStudioBudget(f.db,f.workspace,f.owner,{operationId:randomUUID(),monthlyLimitMicros:0,mode:'automatic',expectedPolicyOperationId:f.state.policy.operation_id});
+    assert.equal(snapshot.summary.monthlyLimitMicros,0);assert.equal(snapshot.summary.availableMicros,0);
+    assert.equal(f.state.credit,50);assert.deepEqual(f.state.capWrites,[0]);
+    f.state.providerCalls.length=0;
+    const capacity=await f.paidCapacity(f.db,f.employee);
+    assert.equal(capacity.availableMicros,0);assert.equal(capacity.code,'ai_helper_disabled');
+    assert.deepEqual(f.state.providerCalls,[],'disabled AI does not contact the provider');
+    await f.updateStudioBudget(f.db,f.workspace,f.owner,{operationId:randomUUID(),monthlyLimitMicros:20_000_000,mode:'automatic',expectedPolicyOperationId:f.state.policy.operation_id});
+    assert.ok((await f.paidCapacity(f.db,f.employee)).availableMicros>0);
+  }finally{f.close();}
+});
+
+test('out-of-range owner budgets are rejected before any provider or policy writes',async()=>{
+  const f=await sharedBudgetFixture();
+  try{
+    for(const limit of [-1,100_000_001])await assert.rejects(f.updateStudioBudget(f.db,f.workspace,f.owner,{operationId:randomUUID(),monthlyLimitMicros:limit,mode:'automatic',expectedPolicyOperationId:f.state.policy.operation_id}),error=>error.status===400&&error.code==='invalid_studio_budget');
+    assert.deepEqual(f.state.capWrites,[]);assert.deepEqual(f.state.rpcCalls,[]);assert.deepEqual(f.state.providerCalls,[]);
+  }finally{f.close();}
+});
+
+test('zero allowance can reconcile its existing provider receipt without enabling AI or replaying a write',async()=>{
+  const f=await sharedBudgetFixture({limit:0,cap:0,spent:0,consumed:0,retired:0,credit:50});
+  try{
+    f.state.policy.cap_sync={employeeId:f.employee.id,instanceId:f.employee.instance_id,period:f.period,monthlyLimitMicros:0,observedCapMicros:100,targetCapMicros:0,leaseId:randomUUID()};
+    const result=await f.paidCapacity(f.db,f.employee);
+    assert.equal(result.availableMicros,0);assert.equal(result.code,'ai_helper_disabled');
+    assert.equal(f.state.policy.cap_sync,null);assert.deepEqual(f.state.capWrites,[]);
+  }finally{f.close();}
+});
+
 test('one budget includes deleted workstation spending and every unsettled media hold without retired provider reads',async()=>{
   const f=await sharedBudgetFixture();
   try{

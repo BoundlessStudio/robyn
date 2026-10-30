@@ -1,7 +1,19 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {planStudioBudget,planSharedStudioBudget,retiredBudgetSpend} from '../src/studio/budget-plan';
+import {DEFAULT_STUDIO_BUDGET_MICROS,MAX_STUDIO_BUDGET_MICROS,planStudioBudget,planSharedStudioBudget,retiredBudgetSpend,studioBudgetLimit} from '../src/studio/budget-plan';
 const slots=[{id:'director',monthlyCapMicros:5000000,monthlyConsumedMicros:800000,spentMicros:800000,creditMicros:0},{id:'research',monthlyCapMicros:5000000,monthlyConsumedMicros:100000,spentMicros:200000,creditMicros:100000}];
+
+test('Studio budget drafts default to $20 and accept only $0 through $100',()=>{
+  assert.equal(DEFAULT_STUDIO_BUDGET_MICROS,20_000_000);
+  for(const limit of [0,1,DEFAULT_STUDIO_BUDGET_MICROS,MAX_STUDIO_BUDGET_MICROS])assert.equal(studioBudgetLimit(limit),limit);
+  for(const limit of [-1,0.1,100_000_001,NaN,Infinity,null,'20'])assert.throws(()=>studioBudgetLimit(limit),/\$0 to \$100/);
+});
+
+test('zero disables the shared allowance even with past spending and remaining one-time credit',()=>{
+  const plan=planSharedStudioBudget({monthlyLimitMicros:0,mode:'automatic'},{id:'robyn',monthlyCapMicros:1000,monthlyConsumedMicros:150,spentMicros:200,creditMicros:50},300);
+  assert.equal(plan.providerCapMicros,0);assert.equal(plan.allocatedHeadroomMicros,0);assert.equal(plan.unallocatedMicros,0);
+  assert.equal(plan.creditMicros,50);assert.equal(plan.spentMicros,500);assert.equal(plan.exhausted,true);
+});
 test('one Studio allowance bounds spent money, monthly headroom and one-time headroom across employees',()=>{
   const plan=planStudioBudget({monthlyLimitMicros:2000000,mode:'automatic'},slots);
   assert.deepEqual(plan.allocations,{director:1250000,research:550000});assert.equal(plan.unallocatedMicros,0);

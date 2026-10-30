@@ -5,7 +5,7 @@ import type {DB} from "@/lib/auth";
 import {ApiError} from "@/lib/http";
 import {dbFailure,id} from "./server";
 import {employeeBudget,ownedBudgetEmployee,verifyBudgetInstance} from "./employee-budgets";
-import {planSharedStudioBudget,type BudgetSlot,type StudioBudgetRequest} from "./budget-plan";
+import {planSharedStudioBudget,studioBudgetLimit,type BudgetSlot,type StudioBudgetRequest} from "./budget-plan";
 import {budgetMicros,budgetPeriod,retiredStudioSpend,sumBudgetMicros,unsettledMediaHolds,verifyCurrentBudget} from "./shared-budget";
 import type {StudioEmployee} from "./assignments";
 
@@ -34,8 +34,10 @@ export function budgetSlots(snapshot:StudioBudgetSnapshot):BudgetSlot[] {
   return snapshot.employees.map(row=>({id:row.id,monthlyCapMicros:row.monthlyCapMicros,monthlyConsumedMicros:budgetMicros(row.budget?.monthly_consumed_micros??0),spentMicros:budgetMicros(row.usage?.total_micros??0),creditMicros:budgetMicros(row.budget?.credit_remaining_micros??0)}));
 }
 function requestPlan(input:Record<string,unknown>):StudioBudgetRequest {
-  if(!Number.isSafeInteger(input.monthlyLimitMicros)||Number(input.monthlyLimitMicros)<0||input.mode!=="automatic"||input.allocations!==undefined)throw new ApiError(400,"invalid_studio_budget","Set one overall monthly AI allowance for Robyn.");
-  return {monthlyLimitMicros:Number(input.monthlyLimitMicros),mode:"automatic",...(input.expectedPolicyOperationId!==undefined?{expectedPolicyOperationId:input.expectedPolicyOperationId as string|null}:{})};
+  if(input.mode!=="automatic"||input.allocations!==undefined)throw new ApiError(400,"invalid_studio_budget","Set one overall monthly AI allowance for Robyn.");
+  let monthlyLimitMicros:number;
+  try{monthlyLimitMicros=studioBudgetLimit(input.monthlyLimitMicros);}catch(error){throw new ApiError(400,"invalid_studio_budget",(error as Error).message);}
+  return {monthlyLimitMicros,mode:"automatic",...(input.expectedPolicyOperationId!==undefined?{expectedPolicyOperationId:input.expectedPolicyOperationId as string|null}:{})};
 }
 const requestIdentity=(input:Record<string,unknown>)=>JSON.stringify({monthlyLimitMicros:input.monthlyLimitMicros,mode:input.mode,...(input.expectedPolicyOperationId!==undefined?{expectedPolicyOperationId:input.expectedPolicyOperationId}:{}),...(input.allocations!==undefined?{allocations:input.allocations&&typeof input.allocations==="object"&&!Array.isArray(input.allocations)?Object.fromEntries(Object.entries(input.allocations).sort(([a],[b])=>a.localeCompare(b))):input.allocations}:{})});
 async function budgetRpc(db:DB,name:string,args:Record<string,unknown>) {
