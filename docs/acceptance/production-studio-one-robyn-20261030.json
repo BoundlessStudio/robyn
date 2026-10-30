@@ -1,0 +1,194 @@
+{
+  "checkedAt": "2026-10-30T06:17:26.510Z",
+  "scope": "Actual authenticated production UI at https://robyn.academy using a separate isolated QA owner session. Real deployed BFF responses and immutable hosted editors; saved files opened read-only. Cloud-browser control exercised only after the final AI job was confirmed terminal. Private screenshots, exact references, signed URLs and WS credentials remain outside version control.",
+  "passed": true,
+  "productionWebCommit": "2459805694711db6cd1a3117cfb3979babe5e2eb",
+  "runtimeCommit": "833e70ab99480f3d6c779591b44fa10e6a031af6",
+  "sharedWorkstation": {
+    "template": "robyn-studio-0-1-1@1",
+    "imageDigest": "sha256:23622a922f2ab7df9a45d6cfe64f42247954b31843e228ded96619ccefbbea0d",
+    "clientVersion": "0.2.0"
+  },
+  "bootstrap": {
+    "ownerMatches": true,
+    "canonicalRobynMatches": true,
+    "visibleEmployees": 1,
+    "applications": 14,
+    "allReady": true,
+    "maxConcurrentJobs": 1
+  },
+  "workspaceViews": [
+    {
+      "view": "Conversation",
+      "selected": true,
+      "employeePicker": false,
+      "researcherPersona": false
+    },
+    {
+      "view": "Jobs",
+      "selected": true,
+      "employeePicker": false,
+      "researcherPersona": false
+    },
+    {
+      "view": "Review",
+      "selected": true,
+      "employeePicker": false,
+      "researcherPersona": false
+    },
+    {
+      "view": "Skills",
+      "selected": true,
+      "employeePicker": false,
+      "researcherPersona": false,
+      "skills": 14
+    }
+  ],
+  "noEmployeePicker": true,
+  "noResearcherPersona": true,
+  "notes": {
+    "legacyAppId": "research",
+    "visibleFormat": "Notes",
+    "exactSavedRevision": true,
+    "bytes": 4869,
+    "sha256": "ff7f89bc41fee885fcc454949d31c1d99c602b6fdb18fcd50896ce5569d6a537",
+    "readEditRead": true,
+    "unchanged": true
+  },
+  "wordcraft": {
+    "exactSavedRevision": true,
+    "preservedMasterSha256": "f4a5536c9408ede34e5c0c22f9eb7ceae6877ace1d3b79635ceb2b5b329f0701",
+    "storedFilesChecked": 1,
+    "editorPath": "/wordcraft/v0.12.0-0.3.1/",
+    "cleanNativeState": true
+  },
+  "solidcraft": {
+    "source": "Original cross-app MCP saved output",
+    "exactSavedRevision": true,
+    "editorPath": "/solidcraft/v0.27.1-0.1.2/",
+    "cleanNativeState": true,
+    "storedFilesChecked": 2,
+    "masterPath": "solid/initial.sc",
+    "masterSha256": "66dd3c6210831ecce1227a3f56d11e956dee2c952e98b8e759371ca9d478145e",
+    "linkedChildPath": "solid/parts/Child.sc",
+    "linkedChildSha256": "d95bc3ca43277929f7aebd9085ce10416def5f829c92f70d1ee2fcaf1a15e953",
+    "linkedChildFound": true,
+    "narrowPreservedSameFrame": true,
+    "timeOriginUnchanged": true
+  },
+  "browserControl": {
+    "ownerOnlyConnect": true,
+    "canonicalInstanceMatches": true,
+    "watchConnected": true,
+    "takeControl": true,
+    "returnControl": true,
+    "finalControl": "agent",
+    "disconnectedOnLeave": true,
+    "allWebSocketsClosed": true,
+    "websocketConnections": 2,
+    "events": [
+      {
+        "action": "connect",
+        "status": 200,
+        "control": "agent"
+      },
+      {
+        "action": "take",
+        "status": 200,
+        "control": "human"
+      },
+      {
+        "action": "return",
+        "status": 200,
+        "control": "agent"
+      },
+      {
+        "action": "connect",
+        "status": 200,
+        "control": "agent"
+      }
+    ],
+    "afterAiTerminalAuthorization": true,
+    "privateUrlsAndControlIdsOmitted": true,
+    "playwrightSessionClosed": true,
+    "actualRemoteChromeVisible": true
+  },
+  "readOnly": {
+    "savedFileWrites": 0,
+    "aiSubmissions": 0,
+    "budgetWrites": 0,
+    "lifecycleWrites": 0,
+    "allowedMutations": "Only explicit BFF browser connect/take/return after terminal authorization",
+    "initialLocalGuardBlockedConnect": 1
+  },
+  "visualReview": {
+    "desktop": {
+      "width": 1600,
+      "height": 1000
+    },
+    "temporaryNarrow": {
+      "width": 900,
+      "height": 1000
+    },
+    "notesToolbarHoverReadable": true,
+    "solidModelAndLinkedChildVisible": true,
+    "solidSkillCardVisible": true,
+    "screenshotsPrivate": true,
+    "noInjectedStyles": true,
+    "actualRemoteChromeFrameReviewed": true
+  },
+  "pageErrors": [],
+  "screenshots": [
+    {
+      "label": "conversation-production.png",
+      "sha256": "05a942dae10171075fb6e331a0cba2f96a788e5cb032692a99e6c0d6b720dca2"
+    },
+    {
+      "label": "jobs-production.png",
+      "sha256": "79ef4b2ac66b2ce6d7acdb609b015c31c452b5c066c4a80c131c3faa2c068543"
+    },
+    {
+      "label": "review-production.png",
+      "sha256": "d3d4d185e1cd5586af8f20df4f41144df30850c9b8475edfb50487293da82376"
+    },
+    {
+      "label": "skills-production.png",
+      "sha256": "c76a929a28fac46065169737c1d90ac4fd7881855a9bcf9becb0a6873a3b50b9"
+    },
+    {
+      "label": "skills-solid-production.png",
+      "sha256": "9c88773234fe79e7c4c87cff4afe800055343a32ef4f471a89994495828be5bb"
+    },
+    {
+      "label": "notes-production.png",
+      "sha256": "2fbbc411a54492466c1965f31f58c0257d7b1a6e6152997b1ad013dbb18bec8c"
+    },
+    {
+      "label": "wordcraft-production.png",
+      "sha256": "cd038011f69bc3494a5a019eddf32ebc4ecbdd94488426c9bbbd46e015e31c85"
+    },
+    {
+      "label": "solidcraft-production.png",
+      "sha256": "04abf4f25af25965c17cc1f5142eb4d98eb609bb0da00e97def2aed4ff1fa585"
+    },
+    {
+      "label": "solidcraft-narrow-preserved-production.png",
+      "sha256": "dc5b01c5ae7fee54353c8a42bf941ddb6936936bd688cfef9074e1ec87534eb4"
+    },
+    {
+      "label": "browser-watch-production.png",
+      "sha256": "40397cae286ef0d9d8dd316b21388cf53caa3defba5f874df221ff6729365d5d"
+    },
+    {
+      "label": "browser-human-production.png",
+      "sha256": "87df87620c00e498e0508ca1dc13c4d50e304bf6b21c883d9681a2e2dc9c1957"
+    },
+    {
+      "label": "browser-returned-production.png",
+      "sha256": "531092b74fd222f3e20d32b650db0c01e183979ca68f0c811b93fcc83a3373e1"
+    }
+  ],
+  "limits": [
+    "Bounded owner QA verification of the requested UI and read-only saved revisions; this does not claim every native editor operation or browser."
+  ]
+}
