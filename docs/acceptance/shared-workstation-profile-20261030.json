@@ -1,0 +1,115 @@
+{
+  "checkedAt": "2026-10-30T05:23:43.827Z",
+  "passed": true,
+  "scope": "Actual production BFF with one owned shared workstation and immutable MCP0.2.0. Operator-controlled durable dispatch/observe functions, one real bounded AI turn, three confirmed cross-application saves and an existing old MCP process tested after a new profile activated. Private receipts remain outside version control.",
+  "productionWeb": {
+    "mergeCommit": "17c53fc6a4d40ace07b397840f090701d6aeada5",
+    "vercelStatus": "success",
+    "deploymentDashboard": "https://vercel.com/venatio-studios/robyn-creative-studio/B81RX5dQHnCFp7EkrT2N89GARQBk",
+    "canonicalBootstrap": true,
+    "applications": 14,
+    "maxConcurrentJobs": 1,
+    "unauthenticatedMcpStatus": 401
+  },
+  "workstation": {
+    "instanceIdentitySha256": "e6ed8bc1c9bb6255ffc8fe636b5d612baa3fa0b379aecc8fa2e24edf5f375d96",
+    "template": "robyn-studio-0-1-0@1",
+    "digest": "sha256:ab0a9abd34d33f471df2f06a6f5bddbdd59651cd7030d3652e2fdde85932b0fc",
+    "clientVersion": "0.2.0",
+    "clientSha256": "09a5f30e962361d2e0f1120270bfbb753d6aa84fe42a5718bf228bd32c42686d"
+  },
+  "verification": {
+    "ownerMetadataMirrorAgree": true,
+    "legacyTeamToolsAbsent": true,
+    "explicitNativeApplicationRequired": true,
+    "threeSavedPackagesDownloadedAndHashed": true,
+    "oneTaskUsedCadAndSolidAndNotes": true,
+    "secondJobBlockedWhileFirstRunning": true,
+    "newTaskProfileAndGenerationDistinct": true,
+    "newProfileContextAccepted": true,
+    "oldRunningProcessDeniedAfterNewTask": true,
+    "allCanaryCredentialsRevoked": true,
+    "secondTaskCancelledBeforeAiDispatch": true,
+    "noActiveOrUncertainAssignments": true,
+    "browserControlReturnedToAgent": true
+  },
+  "ai": {
+    "submittedTurns": 1,
+    "sessionUserMessages": 1,
+    "versions": {
+      "cadcraft": "0.14.0",
+      "solidcraft": "0.27.0"
+    },
+    "allowedApplications": 14,
+    "ownerReview": "approved",
+    "providerSpendMicros": 2339,
+    "paidMediaGenerations": 0,
+    "unknownDispatchReconciledWithoutAnotherPost": true
+  },
+  "protocolCompatibility": {
+    "liveCreatedPayloadOmitsProfile": true,
+    "documentedPayload": "{id, session_id}",
+    "profileIsSentOnRequest": true,
+    "exactSessionAndResponseRequired": true,
+    "conflictingOptionalEchoRejected": true,
+    "actualTerminalReplayAcceptedByCorrectedSource": true,
+    "correctedSourceSha256": "488be2057a1ddd31b78fc482dd51ded01589ed49804d0834ff1de4be5b20c641",
+    "deploymentPending": true,
+    "authoritativeDocs": "https://www.agent37.com/docs/agents-api/responses"
+  },
+  "allowance": {
+    "monthlyLimitMicros": 75000000,
+    "spentMicros": 1847221,
+    "retiredSpentMicros": 1844882,
+    "reservedMicros": 0,
+    "availableMicros": 73152779
+  },
+  "outputs": [
+    {
+      "appId": "cadcraft",
+      "committed": true,
+      "revisionIdentitySha256": "402c6959e1ebc8c899b1dec140338f5fb675639443d5d67d357b856dc6d7c76d",
+      "files": [
+        {
+          "path": "edited.dxf",
+          "role": "master",
+          "bytes": 17167,
+          "sha256": "fa6f1edb9c0530981190af54ac4a3953809959247841671cf523c1e60158a0c3"
+        }
+      ]
+    },
+    {
+      "appId": "solidcraft",
+      "committed": true,
+      "revisionIdentitySha256": "8ca8f78833f8fdc665b865549a1ab090334a1ea5eda2717a842a2dfea99435f5",
+      "files": [
+        {
+          "path": "solid/initial.sc",
+          "role": "master",
+          "bytes": 7621,
+          "sha256": "66dd3c6210831ecce1227a3f56d11e956dee2c952e98b8e759371ca9d478145e"
+        },
+        {
+          "path": "solid/parts/Child.sc",
+          "role": "dependency",
+          "bytes": 535,
+          "sha256": "d95bc3ca43277929f7aebd9085ce10416def5f829c92f70d1ee2fcaf1a15e953"
+        }
+      ]
+    },
+    {
+      "appId": "research",
+      "committed": true,
+      "revisionIdentitySha256": "05db25ada3c1ad737513219a1118e724ecb986ac769f8d37be5465f3b241d489",
+      "files": [
+        {
+          "path": "notes.md",
+          "role": "master",
+          "bytes": 141,
+          "sha256": "e3580232a822e33e2e9d5ab7bb515f9ef4bfab067c44f9b8773ee7c10f6161ba"
+        }
+      ]
+    }
+  ],
+  "gaps": []
+}

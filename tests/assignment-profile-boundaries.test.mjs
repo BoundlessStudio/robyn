@@ -38,15 +38,25 @@ test('observer rejects a replay with the wrong profile without accepting termina
   });
 });
 
-test('dispatch persists only a matching created profile and never retries an uncertain POST',async()=>{
-  for(const profile of ['robyn-job-one','robyn-other-job',undefined])await assignmentBoundary(async({dispatchAssignment,state,fence})=>{
+test('dispatch accepts omitted or matching profile echoes and never retries an uncertain POST',async()=>{
+  for(const profile of ['robyn-job-one','robyn-other-job',null,undefined])await assignmentBoundary(async({dispatchAssignment,state,fence})=>{
     state.assignment.dispatch_state='idle';state.streamProfile=profile;
     assert.equal(await dispatchAssignment(fence),'sent');
     assert.equal(await dispatchAssignment(fence),'sent');
     assert.equal(state.calls.filter(call=>call.name==='submit').length,1);
     const sent=state.calls.find(call=>call.name==='submit');assert.equal(sent.args[4],'robyn-job-one');
-    assert.equal(state.calls.some(call=>call.name==='record_studio_assignment_response'),profile==='robyn-job-one');
-    assert.equal(state.calls.some(call=>call.name==='mark_studio_dispatch_uncertain'),profile!=='robyn-job-one');
+    const matches=profile===undefined||profile==='robyn-job-one';
+    assert.equal(state.calls.some(call=>call.name==='record_studio_assignment_response'),matches);
+    assert.equal(state.calls.some(call=>call.name==='mark_studio_dispatch_uncertain'),!matches);
+  });
+});
+
+test('observer finishes the exact recorded response when created omits its optional profile echo',async()=>{
+  await assignmentBoundary(async({observeAssignment,state,fence})=>{
+    state.assignment.response_id='response-one';state.session.active_response_id=null;delete state.session.profile;state.streamProfile=undefined;
+    assert.equal(await observeAssignment(fence),'done');
+    const finish=state.calls.find(call=>call.name==='finish_studio_assignment');assert.equal(finish.args.p_response,'response-one');assert.equal(finish.args.p_text,'Saved work is ready.');
+    assert.equal(state.calls.some(call=>call.name==='submit'||call.name==='cancel'),false);
   });
 });
 
