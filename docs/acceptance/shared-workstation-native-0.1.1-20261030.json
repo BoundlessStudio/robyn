@@ -1,0 +1,480 @@
+{
+  "checkedAt": "2026-10-30T05:53:14.473Z",
+  "scope": "Live canonical shared workstation after the separately versioned SolidCraft patch image update. Genuine hosted-browser/BFF packages were transferred through the actual server Agent37 Files client, checked before and after raw transfer, edited/saved/reopened by installed native CLIs, then continued outputs were downloaded and hashed. Isolated UUID QA folder only. Before each call, fresh ownership checks required the exact owner-created maintenance assignment to remain running and undispatched with no response or token, and confirmed no other active/uncertain assignment or active/unsettled media. This validation made no AI/model, paid-media, lifecycle, allowance, profile, mirror, database or deployment writes.",
+  "passed": true,
+  "applicationsVerified": 14,
+  "gaps": [],
+  "image": {
+    "template": "robyn-studio-0-1-1@1",
+    "digest": "sha256:23622a922f2ab7df9a45d6cfe64f42247954b31843e228ded96619ccefbbea0d",
+    "resources": {
+      "cpu": 2,
+      "memory": 4,
+      "disk": 6
+    },
+    "sourceManifestSha256": "c69af8232263a9a83c953b66cc035eb7809f03e3f15cf7981554a4a1ff450178",
+    "dockerfileSha256": "a7dc9c892526160a5afad4c5c7261d677e73b6b198df87f1718d76a7175eb729",
+    "sourceFingerprint": "1899f3cf6ec697b2d15773ffb75383aecc2223825ef2557b281c0337d4c409e5"
+  },
+  "instanceIdentitySha256": "e6ed8bc1c9bb6255ffc8fe636b5d612baa3fa0b379aecc8fa2e24edf5f375d96",
+  "ownership": {
+    "checks": 116,
+    "beforeEveryExecAndFilesCall": true,
+    "workspaceOwner": true,
+    "canonicalEmployee": true,
+    "providerMetadata": true,
+    "exactInstalledDigest": true,
+    "exactAgentsMirror": true,
+    "resourcesUnchanged": true,
+    "onlyExactMaintenanceLeaseActive": true,
+    "allOtherAssignmentsIdle": true,
+    "noActiveOrUnsettledMedia": true,
+    "maintenanceLease": {
+      "generation": 3,
+      "exactWorkflowAndAttempt": true,
+      "dispatchIdle": true,
+      "noResponse": true,
+      "noCredential": true,
+      "heldAtCompletion": true
+    }
+  },
+  "verification": {
+    "sourceFiles": 21,
+    "previousImageHomeFilesPreserved": 35,
+    "sameInstanceAsPreviousImageAcceptance": true,
+    "all14ExecutableHashesMatchPinnedAcceptedBinaries": true,
+    "rawTransferRoundTripHashes": true,
+    "immutableInputPackagesPreserved": true,
+    "all14NativeContinuationsDownloadedAndHashed": true,
+    "filmProgramRenderUnchanged": true,
+    "solidcraftLinkedChildPreserved": true,
+    "solidcraftNativeContinuationMatchesHostedResult": true
+  },
+  "provenance": {
+    "webClientSha256": "206e1751a4f23eec4521fe8baa659bd45dda27f225c334344bfb4086a92c0eae",
+    "serverBundleSha256": "9d0955a9169300f131df751a1e4fe695a1194f6635033b23571b1aedb1a54370",
+    "operatorHelperSha256": "024d4402810ef10404ae725aaf249d96124579df38024c7a3002c4cb077311cb",
+    "nativeDriverSha256": "33a1e557f835d4de46ac8703904157c632876272ce2236533117446b6096db46",
+    "previousImageAcceptanceSha256": "780bfbdd1d25b516da54fa9d6e1c3a0d81083991f731b0ec358dca0f74f09254",
+    "buildAcceptanceSha256": "1a6300a7b1ab1494117a075c65413cdd518e7d6816531c520abbc1790fb8b3c6",
+    "privateReceiptsRetainedOutsideVersionControl": true
+  },
+  "applications": [
+    {
+      "id": "photocraft",
+      "upstream": "v0.17.0",
+      "sourceCommit": "b8c3f3aa8e2918032cadc0e042664414a03be333",
+      "nativeArchiveSha256": "5259f9c428c8ee3478c35500ece98713561cafc050e4c9eb354a5050f36eb2b8",
+      "binarySha256": "760a1b5b5437266a31ab1f8a99841da499beb140fc3785ba0f0026e52abb5acb",
+      "observedVersion": "photocraft-cli 0.17.0 (b8c3f3aa8, 2026-10-28)",
+      "hostedBffProofSha256": "c44281981e6a4f963d50e1221fa17f2c7a001b6695b4d902aacaa44ea2da8dfb",
+      "inputFiles": [
+        {
+          "path": "Layered image.pcraft",
+          "role": "master",
+          "bytes": 4251,
+          "sha256": "91f3604b36febf454e94963104c1fbc144080574dcdd8e775b69ae638ebbc548"
+        }
+      ],
+      "nativeEditSaveAndReopenPassed": true,
+      "inputPackageUnchanged": true,
+      "continuedSha256": "c1bd17e164718497bc73dbd33f6b80eaba133c282a0e869f7db6d22a1a81fa3c",
+      "continuedBytes": 5885,
+      "outcome": {
+        "layersPreserved": 2,
+        "opacityBefore": 0.65,
+        "opacityAfter": 0.4
+      }
+    },
+    {
+      "id": "vectorcraft",
+      "upstream": "v0.18.0",
+      "sourceCommit": "68b68a30acad9b3d8a72802b35f43b82e2bd7d3a",
+      "nativeArchiveSha256": "76948b50ef78dd482a6ece06f10b7047937bbc0c05f5cf6bc43d88b07f74d826",
+      "binarySha256": "fe2c47d0c5815aa979d01bb14c2d5eaa48523e2a380560d17664a22f9d617a48",
+      "observedVersion": "vectorcraft-cli 0.18.0",
+      "hostedBffProofSha256": "aa6d45ddf5d6eca5de718b6f98003698eb2c67cb68459e4800b8bac51874ecf6",
+      "inputFiles": [
+        {
+          "path": "Illustration.vectorcraft",
+          "role": "master",
+          "bytes": 11145,
+          "sha256": "21140ce247d8a686d902568d74ddc28d11f777753ccec41ca5fe48474f41ac45"
+        }
+      ],
+      "nativeEditSaveAndReopenPassed": true,
+      "inputPackageUnchanged": true,
+      "continuedSha256": "1c0e58945a59ed80f6129dd9c226a0b17ea5e21c9911177557d583026e68da34",
+      "continuedBytes": 33995,
+      "outcome": {
+        "objectsBefore": 4,
+        "objectsAfter": 5,
+        "rectanglesPreserved": 2
+      }
+    },
+    {
+      "id": "lightcraft",
+      "upstream": "v0.15.0",
+      "sourceCommit": "e381c1ae6b2006ce627b243fe41697ce0d9608e0",
+      "nativeArchiveSha256": "0b1acdefc085babb334b9add290dd1a69b50e96efbdad2ec15d44bd6d64bfd3d",
+      "binarySha256": "bbd954f937d97b64b016468e47c600879a0b8da47b0ae23a54125e57037dc289",
+      "observedVersion": "lightcraft-cli 0.15.0",
+      "hostedBffProofSha256": "dbd9245ecb59ff32e4b0179400680ec5997ac93c6571d3ccd48a64590218d7eb",
+      "inputFiles": [
+        {
+          "path": "catalog.snap",
+          "role": "master",
+          "bytes": 8779,
+          "sha256": "efddc5d66b6ab4966072ad47bbca9f4fb312d6937a0b6ddbfdeae31ed863ac44"
+        },
+        {
+          "path": "originals/Original.png",
+          "role": "dependency",
+          "bytes": 383,
+          "sha256": "775ecd070cdb9bce914cfd9e47be1d829553cecf75e2a9a256b65a110eaaf2c1"
+        },
+        {
+          "path": "previews/active.png",
+          "role": "preview",
+          "bytes": 23297,
+          "sha256": "63763defeb189261456588e183a6d60f05cc79c9cf3f54a2579f536de4d7d209"
+        },
+        {
+          "path": "ui.json",
+          "role": "dependency",
+          "bytes": 5661,
+          "sha256": "19cc6d7aa2f2faa4767e82bd126b6e9c3281859840fd906705359b4b89fa1f05"
+        },
+        {
+          "path": "view.json",
+          "role": "dependency",
+          "bytes": 251,
+          "sha256": "3c47d3ccc200bc5f27e12cad0316fa9ce6843b08cabcc66b3f2800ddb26b0e3c"
+        }
+      ],
+      "nativeEditSaveAndReopenPassed": true,
+      "inputPackageUnchanged": true,
+      "continuedSha256": "3479e57c9f129721f2d0328144c9303df31b49ded8765b9a610dc530629b10cf",
+      "continuedBytes": 11534,
+      "outcome": {
+        "browserContrast": 23,
+        "nativeClarity": 8,
+        "portableOriginalPreserved": true,
+        "pathMaterializedOnlyInNativeScratch": true
+      }
+    },
+    {
+      "id": "filmcraft",
+      "upstream": "v0.14.0",
+      "sourceCommit": "a2d8e9ce269aba9c399e36262522e11456df6fbf",
+      "nativeArchiveSha256": "d2aa213cc08abd21e05ab511a78cc38f157caf2226992f3fc8a5e0496a3f7e7d",
+      "binarySha256": "95a176297a0a1d75ef67b928a0fa7c1ef2a7d59294581942cc39d185b9167f8c",
+      "observedVersion": "filmcraft-cli 0.14.0",
+      "hostedBffProofSha256": "3d370fed6d9bb6571266852c7386ee8005af61625edc7faa014fb99fbe46d573",
+      "inputFiles": [
+        {
+          "path": "Film.fcproj",
+          "role": "master",
+          "bytes": 5858,
+          "sha256": "8a23a683d643a0761a5508d93765f712e0cf86ba533cbace8f03e99f03ee6699"
+        },
+        {
+          "path": "media/2da051a87bebee82ef044384d89c7c39a94ef48567e52d4009287e14487cdb1d-Source-picked.png",
+          "role": "dependency",
+          "bytes": 5341,
+          "sha256": "2da051a87bebee82ef044384d89c7c39a94ef48567e52d4009287e14487cdb1d"
+        }
+      ],
+      "nativeEditSaveAndReopenPassed": true,
+      "inputPackageUnchanged": true,
+      "continuedSha256": "47785207d5f992bb005bd8b942c6ff0784225973cdd476cfccfb0c686089380f",
+      "continuedBytes": 5929,
+      "outcome": {
+        "browserBinAndSourceClipPreserved": true,
+        "nativeContinuationBin": true,
+        "programRenderUnchanged": true,
+        "renderSha256": "2da051a87bebee82ef044384d89c7c39a94ef48567e52d4009287e14487cdb1d"
+      }
+    },
+    {
+      "id": "effectcraft",
+      "upstream": "v0.18.0",
+      "sourceCommit": "c3600f9b59b109da97871a43a6898683a0163cb1",
+      "nativeArchiveSha256": "94d1d85691d54ba57fa86e04872fbcc426c33d1bd364f1fc976b1f607344880b",
+      "binarySha256": "558a23937139bb170e3c4996dd85f7a969a0f42debc82f3838971427bae2c7ab",
+      "observedVersion": "effectcraft-cli 0.18.0",
+      "hostedBffProofSha256": "84a107b5277a2bee17303b540874fe4888e5d85ac4eb97631554694da0bff8a2",
+      "inputFiles": [
+        {
+          "path": "Composition.ecproj",
+          "role": "master",
+          "bytes": 12283,
+          "sha256": "d37d30b366c096d8fd51418e8b1c4a98dee0d7c6d5e25c0e674b673464185595"
+        },
+        {
+          "path": "previews/active.png",
+          "role": "preview",
+          "bytes": 922098,
+          "sha256": "9715a25faf776ff0eb2e1ebf27d948ea79a7af33e1bdc8ebe021ca23c2d8b557"
+        }
+      ],
+      "nativeEditSaveAndReopenPassed": true,
+      "inputPackageUnchanged": true,
+      "continuedSha256": "e01128e80d04f519b62103b3315f87a494e96d9e06af56ee905a424970cbbf81",
+      "continuedBytes": 49648,
+      "outcome": {
+        "browserLayerPreserved": true,
+        "newNativeLayer": true
+      }
+    },
+    {
+      "id": "soundcraft",
+      "upstream": "v0.14.0",
+      "sourceCommit": "c6befe57afd0dc35fc4b86a01b2a19011ae1df1e",
+      "nativeArchiveSha256": "2f83503feda6aa2c8d4bc12c44f571422c4389fc664a92bbed092d2bf1d500ad",
+      "binarySha256": "d1ff5c73252067eb0259d068e8c64d60ac87a3ca35ff5947118aa8e4158fac44",
+      "observedVersion": "soundcraft-cli 0.14.0 (linux x86_64)",
+      "hostedBffProofSha256": "78a7032fb02044556e74bdb9c1564dcc536b682b834f8cca84b2c5e167cf3d76",
+      "inputFiles": [
+        {
+          "path": "Session.scraft",
+          "role": "master",
+          "bytes": 3065,
+          "sha256": "c8f91255bf5aad36a1fbd1c933b37ed0f8deb95c06238b4f401ce057c6fc7184"
+        }
+      ],
+      "nativeEditSaveAndReopenPassed": true,
+      "inputPackageUnchanged": true,
+      "continuedSha256": "9ffd579f4e52a798b91ed5d28bd6f4384024e62f71b0eac6812b71a1cb533f66",
+      "continuedBytes": 5623,
+      "outcome": {
+        "browserVolumeDb": -4,
+        "nativeVolumeDb": -6,
+        "notesPreserved": 2
+      }
+    },
+    {
+      "id": "designcraft",
+      "upstream": "v0.14.0",
+      "sourceCommit": "7da69c16ce221f46e8f27cb41e0c88167c8be416",
+      "nativeArchiveSha256": "25c87be759d35a81ca44e1f625ed4304b16e5aab6a03a1051bca498a81bfc547",
+      "binarySha256": "1c2817ab876a59742fff9351bc644dfb842b677dcfeb471a3d442abc7e897b9f",
+      "observedVersion": "designcraft-cli 0.14.0",
+      "hostedBffProofSha256": "7ced4d9b725b8d7d783f8c20b28a592c0c8c9e2a7f4948aab1024c069cb83a5b",
+      "inputFiles": [
+        {
+          "path": "Layout.designcraft",
+          "role": "master",
+          "bytes": 11601,
+          "sha256": "d44057caeb18e94c494743d2d7190440f2edc9e1049fa3fcc40a1684b74b932f"
+        }
+      ],
+      "nativeEditSaveAndReopenPassed": true,
+      "inputPackageUnchanged": true,
+      "continuedSha256": "426855256fe57dd4a05697049ad0b05f1e1027d77373b0d6f81ae143ff0041cd",
+      "continuedBytes": 7469,
+      "outcome": {
+        "pagesPreserved": 2,
+        "itemsBefore": 3,
+        "itemsAfter": 4,
+        "storyPreserved": true
+      }
+    },
+    {
+      "id": "pdfcraft",
+      "upstream": "v0.15.0",
+      "sourceCommit": "75360d1d7db06fed974f48c914d4c04132757187",
+      "nativeArchiveSha256": "b167a18c60a7b329f05a5bbf97e32dc678aad3f8d5866d8e4378ff24273f8313",
+      "binarySha256": "45c4b747fd4359f04d4e656ac6830507b1a431423e31fc6a12f4226a6cf850bd",
+      "observedVersion": "pdfcraft-cli 0.15.0\nDiscord: https://discord.gg/artcraft  (help and feedback)\nWeb:     https://getartcraft.com/apps/pdfcraft\nSource:  https://github.com/storytold/pdfcraft",
+      "hostedBffProofSha256": "127a750db82b47f11c2840b965f77eba5836012f2feae3c7d81b2e72df897564",
+      "inputFiles": [
+        {
+          "path": "Document.pdf",
+          "role": "master",
+          "bytes": 1255,
+          "sha256": "3b7a4acdb6ae74181645138907957a987db38155fbb8370d6a4f557c308ac8e1"
+        }
+      ],
+      "nativeEditSaveAndReopenPassed": true,
+      "inputPackageUnchanged": true,
+      "continuedSha256": "df672681f8aa5504e6010061c672ea3d4d64404e05b7168e40fb9897e8034a5d",
+      "continuedBytes": 1651,
+      "outcome": {
+        "rotatedPagePreserved": [
+          792,
+          612
+        ],
+        "textPreserved": true,
+        "nativeMetadataEdit": true
+      }
+    },
+    {
+      "id": "wordcraft",
+      "upstream": "v0.12.0",
+      "sourceCommit": "3de6ff95af86c19d67030cd96dba15cd6a45a25e",
+      "nativeArchiveSha256": "cd9abd0ee7a11b985af1c1571653332c96077e5dcc48b5e187b55c82f475a33e",
+      "binarySha256": "fc266aa2edbfdf77fb3a030d2b908e43fb2b3858fadf8d9dd73e5df794f72628",
+      "observedVersion": "wordcraft-cli 0.12.0",
+      "hostedBffProofSha256": "993f4d4e7a18b9608d12b975c89ca6f15a617623ed57e20c9dea1816aed7b348",
+      "inputFiles": [
+        {
+          "path": "Document.docx",
+          "role": "master",
+          "bytes": 6598,
+          "sha256": "f4a5536c9408ede34e5c0c22f9eb7ceae6877ace1d3b79635ceb2b5b329f0701"
+        }
+      ],
+      "nativeEditSaveAndReopenPassed": true,
+      "inputPackageUnchanged": true,
+      "continuedSha256": "d80715c26bbf9dbc8d5e0fec6c7a70ad331acd704fe2854cfc97e61148e17ee3",
+      "continuedBytes": 6608,
+      "outcome": {
+        "nativeAndBrowserTextPreserved": true,
+        "nativeContinuationText": true
+      }
+    },
+    {
+      "id": "deckcraft",
+      "upstream": "v0.12.0",
+      "sourceCommit": "29f0f7772c47aa2bfb74fcbb0c4d3b1503300849",
+      "nativeArchiveSha256": "4a410d3caa423e873d0dcab51c98e06588f55bdfcf03e9c1e91409a86c08de3e",
+      "binarySha256": "e28756798d70b4313d43c3b77f192be2578f459a419cb8d59643e7beda69071b",
+      "observedVersion": "deckcraft-cli 0.12.0",
+      "hostedBffProofSha256": "80e0ac638adc7a33794b8ddc8cba558fa83b2a15f0ffd93a13876c208a1abca0",
+      "inputFiles": [
+        {
+          "path": "Presentation.deckcraft",
+          "role": "master",
+          "bytes": 114045,
+          "sha256": "0a7b70e97869f5271bd7bea8ebe341a8c1aedabf2a549565f0696469104c7248"
+        }
+      ],
+      "nativeEditSaveAndReopenPassed": true,
+      "inputPackageUnchanged": true,
+      "continuedSha256": "07d60c46e1fd21de17417d2188960e8481f5de808da831facfb1c15068a727d8",
+      "continuedBytes": 4812,
+      "outcome": {
+        "shapesBefore": 4,
+        "shapesAfter": 5,
+        "nativeAndBrowserTextPreserved": true
+      }
+    },
+    {
+      "id": "gridcraft",
+      "upstream": "v0.13.0",
+      "sourceCommit": "43284377d2466037628e57d8ad0c891778fdb45c",
+      "nativeArchiveSha256": "20c6c56ec1ffd6bbcffee6cdee58cf6b5cadd2f4a04a4360dd7cc64d53ad97e5",
+      "binarySha256": "aa26a8cb7523085d86c56a7ca276e5b2e209e925a8b583b3b2d6d1e4135f8acd",
+      "observedVersion": "gridcraft-cli 0.13.0",
+      "hostedBffProofSha256": "128e468e853860ce711eab77d036f3d56a180aab8e89e06c61071e09c2524a26",
+      "inputFiles": [
+        {
+          "path": "Workbook.xlsx",
+          "role": "master",
+          "bytes": 4060,
+          "sha256": "cbaa6d44ed3ed308713b0179b8d7872c9beeb133ad1186bd96bb1f7f127fe999"
+        }
+      ],
+      "nativeEditSaveAndReopenPassed": true,
+      "inputPackageUnchanged": true,
+      "continuedSha256": "62d74b48e93be4d24bceac625bf8918d59d642f0a683b982cd7a63bb8af40868",
+      "continuedBytes": 4083,
+      "outcome": {
+        "browserValuesPreserved": [
+          42,
+          84
+        ],
+        "nativeFormulaResult": 49
+      }
+    },
+    {
+      "id": "figcraft",
+      "upstream": "v0.12.1",
+      "sourceCommit": "ef9721c5b9d0f1cc19a74449cbe175fc06bf8efa",
+      "nativeArchiveSha256": "00a29f4cc382807d840f5d3e9b59f4c8829356789afbb956a0964918295e49dd",
+      "binarySha256": "cf6549fbe7b86386950bfa7f64e0e3d8739feb149cb56f9b8354bc90505b1d24",
+      "observedVersion": "figcraft-cli 0.12.1",
+      "hostedBffProofSha256": "d7ceaccf59624a7a99c108e4c4f0702977536a2fe3f4d59b9d4af57ca29d728d",
+      "inputFiles": [
+        {
+          "path": "Interface.figcraft",
+          "role": "master",
+          "bytes": 5825,
+          "sha256": "9ec5bc0faa66526255108af7b1ce1be09c21d819fc5be649c02919bd1316853b"
+        }
+      ],
+      "nativeEditSaveAndReopenPassed": true,
+      "inputPackageUnchanged": true,
+      "continuedSha256": "df621124e7f694db768593a21d396da0f41db043673b3cbc95e5c55d330d82ca",
+      "continuedBytes": 5907,
+      "outcome": {
+        "nodesBefore": 4,
+        "nodesAfter": 5,
+        "creatorFramePreserved": true
+      }
+    },
+    {
+      "id": "cadcraft",
+      "upstream": "v0.14.0",
+      "sourceCommit": "fbd97d432cdf36a566c0c53739481bd6f0c32b0d",
+      "nativeArchiveSha256": "95067c849f82305648249299bb86e645b730275aa8c5f19965d81990f83aea9b",
+      "binarySha256": "0fff2029f40189998e47f3112b4be3e678a7e3f864b6cb41d0d73a9f77c30170",
+      "observedVersion": "cadcraft-cli 0.14.0 (fbd97d432cdf36a566c0c53739481bd6f0c32b0d)",
+      "hostedBffProofSha256": "5e0078f9d538a8f78e4cc873be907d56277a6a6eab0a7324395c32c702b2cb83",
+      "inputFiles": [
+        {
+          "path": "Drawing.dxf",
+          "role": "master",
+          "bytes": 16930,
+          "sha256": "a2c1e257a99338fb83c86f22686aa7e3cdcc43a404fe1e4bb4fbbb7d215164c1"
+        }
+      ],
+      "nativeEditSaveAndReopenPassed": true,
+      "inputPackageUnchanged": true,
+      "continuedSha256": "a37fe282716f9d21dc33d6f40006c8664d829217d82c9f411544c6b8c8526fd0",
+      "continuedBytes": 17049,
+      "outcome": {
+        "entitiesBefore": 4,
+        "entitiesAfter": 5,
+        "textsPreserved": 2
+      }
+    },
+    {
+      "id": "solidcraft",
+      "upstream": "v0.27.1",
+      "sourceCommit": "aa1fe28ddff42cac2990a312765a1a6c50d97dfe",
+      "nativeArchiveSha256": "bd4358dedee6d662dc7565eb84f978810b8940612bf156100b97cb46d01368ea",
+      "binarySha256": "9c59e5ddc80e703c799b08b7a8368e715b57af8ca4d5710e62c3f5fe29bd1ff0",
+      "observedVersion": "solidcraft-cli 0.27.1",
+      "hostedBffProofSha256": "b1b0e6af27f20197cb4993263ba8b9b7d6ad4daba305af59e9cfe151e3ab30a1",
+      "inputFiles": [
+        {
+          "path": "Design.sc",
+          "role": "master",
+          "sha256": "9ca87108a6f0ed34e4ac1c0cf9f85a6f45b85e0858f956c4d33782f0e2110c2d",
+          "bytes": 3014
+        },
+        {
+          "path": "parts/Child.sc",
+          "role": "dependency",
+          "sha256": "d95bc3ca43277929f7aebd9085ce10416def5f829c92f70d1ee2fcaf1a15e953",
+          "bytes": 535
+        }
+      ],
+      "nativeEditSaveAndReopenPassed": true,
+      "inputPackageUnchanged": true,
+      "continuedSha256": "66dd3c6210831ecce1227a3f56d11e956dee2c952e98b8e759371ca9d478145e",
+      "continuedBytes": 7621,
+      "outcome": {
+        "browserVolumeMm3": 8125,
+        "nativeContinuationVolumeMm3": 11125,
+        "linkedChildPreserved": true
+      }
+    }
+  ],
+  "limits": [
+    "Native continuation coverage uses the recorded representative fixtures, not every feature or format.",
+    "AI/profile tests and production deployment are separate acceptance records."
+  ]
+}

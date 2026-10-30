@@ -12,7 +12,7 @@ export async function GET(request: Request) {
     const projectId = id(new URL(request.url).searchParams.get("projectId"));
     const jobs = await listMediaJobs(db, { workspaceId, userId: user.id, projectId },request.url);
     let budget;
-    try{budget=await mediaBudget(db,workspaceId);}catch{budget={availableMicros:null,reason:"The Director’s allowance could not be checked. Your existing jobs are preserved."};}
+    try{budget=await mediaBudget(db,workspaceId);}catch{budget={availableMicros:null,reason:"Robyn’s allowance could not be checked. Your existing jobs are preserved."};}
     return json({ ...jobs, budget, providers: mediaAvailability(), generationServices });
   } catch (error) { return handleError(error); }
 }

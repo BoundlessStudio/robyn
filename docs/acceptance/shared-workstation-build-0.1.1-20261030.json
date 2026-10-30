@@ -1,0 +1,164 @@
+{
+  "checkedAt": "2026-10-30T05:41:29.658Z",
+  "status": "registered-awaiting-instance-acceptance",
+  "release": "0.1.1",
+  "template": "robyn-studio-0-1-1@1",
+  "imageDigest": "sha256:23622a922f2ab7df9a45d6cfe64f42247954b31843e228ded96619ccefbbea0d",
+  "defaultPort": 3737,
+  "recipe": "studio-0.1.1",
+  "sourceFingerprint": "1899f3cf6ec697b2d15773ffb75383aecc2223825ef2557b281c0337d4c409e5",
+  "contextSha256": "9801d83ab0d39c2cca3b71d3ea41b9fe5c9ef2d86003ad6239139826d7bfc21c",
+  "contextBytes": 6385,
+  "allowlistedContextFiles": [
+    {
+      "name": "Dockerfile",
+      "bytes": 15241,
+      "sha256": "a7dc9c892526160a5afad4c5c7261d677e73b6b198df87f1718d76a7175eb729"
+    },
+    {
+      "name": "desktop-entrypoint.sh",
+      "bytes": 2256,
+      "sha256": "48ed032a2a34ef5675475dfaffcf4050c65b2092ecebef992b63d409cc345601"
+    },
+    {
+      "name": "release.json",
+      "bytes": 8592,
+      "sha256": "c69af8232263a9a83c953b66cc035eb7809f03e3f15cf7981554a4a1ff450178"
+    }
+  ],
+  "nativeApplicationCount": 14,
+  "nativeArchivesVerifiedAtBuild": true,
+  "nativeCliVersionsVerifiedAtBuild": true,
+  "nativeCliHashesVerifiedAtBuild": true,
+  "nativeArchiveBytes": 1333345304,
+  "applications": [
+    {
+      "id": "photocraft",
+      "upstream": "v0.17.0",
+      "sourceCommit": "b8c3f3aa8e2918032cadc0e042664414a03be333",
+      "nativeArchiveSha256": "5259f9c428c8ee3478c35500ece98713561cafc050e4c9eb354a5050f36eb2b8",
+      "nativeCliSha256": "760a1b5b5437266a31ab1f8a99841da499beb140fc3785ba0f0026e52abb5acb"
+    },
+    {
+      "id": "vectorcraft",
+      "upstream": "v0.18.0",
+      "sourceCommit": "68b68a30acad9b3d8a72802b35f43b82e2bd7d3a",
+      "nativeArchiveSha256": "76948b50ef78dd482a6ece06f10b7047937bbc0c05f5cf6bc43d88b07f74d826",
+      "nativeCliSha256": "fe2c47d0c5815aa979d01bb14c2d5eaa48523e2a380560d17664a22f9d617a48"
+    },
+    {
+      "id": "lightcraft",
+      "upstream": "v0.15.0",
+      "sourceCommit": "e381c1ae6b2006ce627b243fe41697ce0d9608e0",
+      "nativeArchiveSha256": "0b1acdefc085babb334b9add290dd1a69b50e96efbdad2ec15d44bd6d64bfd3d",
+      "nativeCliSha256": "bbd954f937d97b64b016468e47c600879a0b8da47b0ae23a54125e57037dc289"
+    },
+    {
+      "id": "filmcraft",
+      "upstream": "v0.14.0",
+      "sourceCommit": "a2d8e9ce269aba9c399e36262522e11456df6fbf",
+      "nativeArchiveSha256": "d2aa213cc08abd21e05ab511a78cc38f157caf2226992f3fc8a5e0496a3f7e7d",
+      "nativeCliSha256": "95a176297a0a1d75ef67b928a0fa7c1ef2a7d59294581942cc39d185b9167f8c"
+    },
+    {
+      "id": "effectcraft",
+      "upstream": "v0.18.0",
+      "sourceCommit": "c3600f9b59b109da97871a43a6898683a0163cb1",
+      "nativeArchiveSha256": "94d1d85691d54ba57fa86e04872fbcc426c33d1bd364f1fc976b1f607344880b",
+      "nativeCliSha256": "558a23937139bb170e3c4996dd85f7a969a0f42debc82f3838971427bae2c7ab"
+    },
+    {
+      "id": "soundcraft",
+      "upstream": "v0.14.0",
+      "sourceCommit": "c6befe57afd0dc35fc4b86a01b2a19011ae1df1e",
+      "nativeArchiveSha256": "2f83503feda6aa2c8d4bc12c44f571422c4389fc664a92bbed092d2bf1d500ad",
+      "nativeCliSha256": "d1ff5c73252067eb0259d068e8c64d60ac87a3ca35ff5947118aa8e4158fac44"
+    },
+    {
+      "id": "designcraft",
+      "upstream": "v0.14.0",
+      "sourceCommit": "7da69c16ce221f46e8f27cb41e0c88167c8be416",
+      "nativeArchiveSha256": "25c87be759d35a81ca44e1f625ed4304b16e5aab6a03a1051bca498a81bfc547",
+      "nativeCliSha256": "1c2817ab876a59742fff9351bc644dfb842b677dcfeb471a3d442abc7e897b9f"
+    },
+    {
+      "id": "pdfcraft",
+      "upstream": "v0.15.0",
+      "sourceCommit": "75360d1d7db06fed974f48c914d4c04132757187",
+      "nativeArchiveSha256": "b167a18c60a7b329f05a5bbf97e32dc678aad3f8d5866d8e4378ff24273f8313",
+      "nativeCliSha256": "45c4b747fd4359f04d4e656ac6830507b1a431423e31fc6a12f4226a6cf850bd"
+    },
+    {
+      "id": "wordcraft",
+      "upstream": "v0.12.0",
+      "sourceCommit": "3de6ff95af86c19d67030cd96dba15cd6a45a25e",
+      "nativeArchiveSha256": "cd9abd0ee7a11b985af1c1571653332c96077e5dcc48b5e187b55c82f475a33e",
+      "nativeCliSha256": "fc266aa2edbfdf77fb3a030d2b908e43fb2b3858fadf8d9dd73e5df794f72628"
+    },
+    {
+      "id": "deckcraft",
+      "upstream": "v0.12.0",
+      "sourceCommit": "29f0f7772c47aa2bfb74fcbb0c4d3b1503300849",
+      "nativeArchiveSha256": "4a410d3caa423e873d0dcab51c98e06588f55bdfcf03e9c1e91409a86c08de3e",
+      "nativeCliSha256": "e28756798d70b4313d43c3b77f192be2578f459a419cb8d59643e7beda69071b"
+    },
+    {
+      "id": "gridcraft",
+      "upstream": "v0.13.0",
+      "sourceCommit": "43284377d2466037628e57d8ad0c891778fdb45c",
+      "nativeArchiveSha256": "20c6c56ec1ffd6bbcffee6cdee58cf6b5cadd2f4a04a4360dd7cc64d53ad97e5",
+      "nativeCliSha256": "aa26a8cb7523085d86c56a7ca276e5b2e209e925a8b583b3b2d6d1e4135f8acd"
+    },
+    {
+      "id": "figcraft",
+      "upstream": "v0.12.1",
+      "sourceCommit": "ef9721c5b9d0f1cc19a74449cbe175fc06bf8efa",
+      "nativeArchiveSha256": "00a29f4cc382807d840f5d3e9b59f4c8829356789afbb956a0964918295e49dd",
+      "nativeCliSha256": "cf6549fbe7b86386950bfa7f64e0e3d8739feb149cb56f9b8354bc90505b1d24"
+    },
+    {
+      "id": "cadcraft",
+      "upstream": "v0.14.0",
+      "sourceCommit": "fbd97d432cdf36a566c0c53739481bd6f0c32b0d",
+      "nativeArchiveSha256": "95067c849f82305648249299bb86e645b730275aa8c5f19965d81990f83aea9b",
+      "nativeCliSha256": "0fff2029f40189998e47f3112b4be3e678a7e3f864b6cb41d0d73a9f77c30170"
+    },
+    {
+      "id": "solidcraft",
+      "upstream": "v0.27.1",
+      "sourceCommit": "aa1fe28ddff42cac2990a312765a1a6c50d97dfe",
+      "nativeArchiveSha256": "bd4358dedee6d662dc7565eb84f978810b8940612bf156100b97cb46d01368ea",
+      "nativeCliSha256": "9c59e5ddc80e703c799b08b7a8368e715b57af8ca4d5710e62c3f5fe29bd1ff0"
+    }
+  ],
+  "baseImage": "ghcr.io/agent37-platform/hermes@sha256:240560a8e0bdaf4cd467236df083e45e7f088828ab18e9c5dfacd4c76c0b3d7e",
+  "chrome": {
+    "version": "156.0.8078.47-1",
+    "filename": "pool/main/g/google-chrome-stable/google-chrome-stable_156.0.8078.47-1_amd64.deb",
+    "sha256": "6c92cd22e90c6e3e255d782991543fa2091db8614e8536a971a7433a5c4d7ac8"
+  },
+  "credentialsInBuildContext": false,
+  "providerImageBuildSucceeded": true,
+  "liveWorkstationAcceptance": false,
+  "productionDeployed": false,
+  "instanceOperationsByBuildTask": false,
+  "publishedPreviousRecipeBytesPreserved": true,
+  "workstationClient": "0.2.0",
+  "localTests": {
+    "runtime": {
+      "passed": 104,
+      "failed": 0
+    },
+    "studioImage": {
+      "passed": 6,
+      "failed": 0
+    }
+  },
+  "buildLogSha256": "071ecaa66d6181d09df406f769ef48723e32405347220e1693d8223e6ed73c0a",
+  "agent37ClientSourceSha256": "206e1751a4f23eec4521fe8baa659bd45dda27f225c334344bfb4086a92c0eae",
+  "qaBundleSha256": "c85f655df90b6474fb7068c11b8a58bd82d1839b35f7a26b4bcdc240b2d2abd6",
+  "limits": [
+    "Live workstation native continuation and home preservation remain pending for this exact image.",
+    "Production activation and AI/profile validation are recorded separately."
+  ]
+}
