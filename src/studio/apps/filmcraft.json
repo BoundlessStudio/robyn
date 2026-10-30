@@ -25,14 +25,20 @@
     "media-packaging"
   ],
   "editor": {
-    "adapterVersion": "0.2.3",
-    "release": "filmcraft-v0.10.0-robyn-0.2.3",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/filmcraft/v0.10.0-0.2.3/?robyn&policy=20261028",
+    "adapterVersion": "0.3.1",
+    "release": "filmcraft-v0.14.0-robyn-0.3.1",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/filmcraft/v0.14.0-0.3.1/?robyn",
     "status": "verified"
   },
   "workstation": {
-    "template": "robyn-filmcraft-0-10-0@1",
-    "release": "sha256:9af6580357fc0f559d2dc63d0fab876003f7de816cdcda4d0f666b5ccc438d43",
-    "status": "verified"
+    "template": "robyn-filmcraft-0-14-0@1",
+    "release": "sha256:a0928499237173ae502b3d2f0782bb0ec53d3d60f199d947eb198e291b9a7a66",
+    "status": "verified",
+    "previousReleases": [
+      {
+        "template": "robyn-filmcraft-0-10-0@1",
+        "release": "sha256:9af6580357fc0f559d2dc63d0fab876003f7de816cdcda4d0f666b5ccc438d43"
+      }
+    ]
   }
 }

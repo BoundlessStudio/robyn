@@ -1,0 +1,46 @@
+{
+  "workDate": "2026-10-29",
+  "scope": "Server ownership, release identity, assignment/media admission and at-most-once image dispatch guards. Local unit and isolated PostgreSQL-compatible database validation; no live instance or AI turn is certified by this record.",
+  "migration": {
+    "file": "supabase/migrations/0027_workstation_release_upgrades.sql",
+    "sha256": "cfe4a41fe46c1c1cbfb7737fd98306946705a6d616109a53fc130bf592576103",
+    "deploymentRecord": "docs/acceptance/craft-refresh-migration-20261029.json",
+    "editedAfterDeployment": false
+  },
+  "validation": [
+    {
+      "command": "node --import tsx --test --test-concurrency=4 tests/workstation-media-upgrade-database.test.mjs tests/workstation-upgrade-database.test.mjs tests/assignment-dispatch.test.mjs tests/media-database.test.mjs tests/media-settlement.test.mjs tests/media-capacity.test.mjs tests/studio-budget-database.test.mjs",
+      "passed": 7,
+      "failed": 0
+    },
+    {
+      "command": "node --import tsx --test tests/workstation-upgrades.test.ts tests/workstation-boundaries.test.mjs tests/workstation-upgrade-client.test.mjs",
+      "passed": 14,
+      "failed": 0
+    },
+    { "command": "npm run typecheck", "passed": true }
+  ],
+  "verifiedGuards": [
+    "Workspace owner, employee binding, provider metadata and owned mirror must agree before lifecycle operations.",
+    "A Craft target requires exact template revision and immutable image digest. Fresh instances also require the selected release identity.",
+    "Only server-owned previous releases can migrate. A legacy null digest is accepted only with an exact known old template revision; completion still requires the target digest through GET.",
+    "Only a current running assignment with idle dispatch, current generation and active project can claim and dispatch an image update.",
+    "A persistent dispatch receipt precedes the provider POST. Lost replies, transport errors, time and provider drift never authorize another POST.",
+    "Another unresolved image target blocks reconciliation even when the current GET already matches the desired target.",
+    "Pending and dispatched image receipts block new AI turns. Pending plans retain employee readiness for existing paid media recovery; provisioning starts at actual image dispatch.",
+    "Active or financially unsettled media protects its owned instance, including unbound jobs attributed to the employee or its legacy payer identity.",
+    "Late legacy binding, revival and reservation serialize against image dispatch. Token-bound creation retains its existing assignment lock order; current Director reservations and financial settlement remain available.",
+    "Only never-dispatched plans can be superseded. Unresolved provider receipts survive assignment deletion.",
+    "Reconciliation changes only the owned mirror template. Instance identity, resources and caps are preserved; the provider update body contains only the selected template.",
+    "Research retains its existing versioned workstation contract. Explicit legacy media recovery may retain a known previous image without authorizing an image update."
+  ],
+  "limits": [
+    "No live same-ID image migration, home-file preservation or managed-client activation was executed by this validation. Those require a separate operator canary record.",
+    "Unknown outcomes intentionally remain fenced for operator reconciliation. No timeout-based reset or blind retry is provided.",
+    "This record does not certify publication or deployment of a matching web/runtime release. The release record must supply final commits, editor pins and managed-client identity."
+  ],
+  "apiContracts": [
+    "https://www.agent37.com/docs/agents-api/instances/update.md",
+    "https://www.agent37.com/docs/agents-api/instances/object.md"
+  ]
+}

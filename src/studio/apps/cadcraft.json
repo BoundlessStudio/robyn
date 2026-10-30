@@ -25,14 +25,20 @@
     "dimensioning"
   ],
   "editor": {
-    "adapterVersion": "0.2.2",
-    "release": "cadcraft-v0.10.0-robyn-0.2.2",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/cadcraft/v0.10.0-0.2.2/?robyn&policy=20261028",
+    "adapterVersion": "0.3.1",
+    "release": "cadcraft-v0.14.0-robyn-0.3.1",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/cadcraft/v0.14.0-0.3.1/?robyn",
     "status": "verified"
   },
   "workstation": {
-    "template": "robyn-cadcraft-0-10-0@1",
-    "release": "sha256:bca46321dc438354d1b169a91e4f5075d0bad5afc70052b6e6fa0fbcf0f1e488",
-    "status": "verified"
+    "template": "robyn-cadcraft-0-14-0@1",
+    "release": "sha256:df65088c9551376db050ab257e43fd1d07855b2bac7a384fb008e8bdc2253e16",
+    "status": "verified",
+    "previousReleases": [
+      {
+        "template": "robyn-cadcraft-0-10-0@1",
+        "release": "sha256:bca46321dc438354d1b169a91e4f5075d0bad5afc70052b6e6fa0fbcf0f1e488"
+      }
+    ]
   }
 }

@@ -1,0 +1,179 @@
+{
+  "checkedAt": "2026-10-30T05:12:02.261Z",
+  "scope": "Actual authenticated local production Next/BFF UI using an existing isolated owner QA account. No source-component or API-response fixtures for functional acceptance. Final Notes hover and keyboard-focus screenshots use the clean rebuilt production stylesheet with no injected styles.",
+  "functionalPassed": true,
+  "bootstrap": {
+    "ownerMatches": true,
+    "canonicalRobynMatches": true,
+    "visibleEmployees": 1,
+    "applications": 14,
+    "maxConcurrentJobs": 1
+  },
+  "workspaceViews": [
+    {
+      "view": "Jobs",
+      "selected": true,
+      "noRetiredIdentity": true
+    },
+    {
+      "view": "Review",
+      "selected": true,
+      "noRetiredIdentity": true
+    },
+    {
+      "view": "Skills",
+      "selected": true,
+      "noRetiredIdentity": true,
+      "cards": 14
+    },
+    {
+      "view": "Conversation",
+      "selected": true,
+      "noRetiredIdentity": true
+    }
+  ],
+  "noEmployeePicker": true,
+  "noResearcherPersona": true,
+  "sharedAllowance": {
+    "phase": "Verified before the separate operator AI canary",
+    "monthlyLimitMicros": 75000000,
+    "retiredSpentMicros": 1844882,
+    "totalSpentMicros": 1844882,
+    "reservedMicros": 0,
+    "availableMicros": 73155118
+  },
+  "notes": {
+    "legacyAppId": "research",
+    "visibleFormat": "Notes",
+    "exactSavedRevision": true,
+    "masterSha256": "ff7f89bc41fee885fcc454949d31c1d99c602b6fdb18fcd50896ce5569d6a537",
+    "bytes": 4869,
+    "readEditReadCycle": true,
+    "changed": false
+  },
+  "craft": {
+    "exactSavedRevision": true,
+    "editorOrigin": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev",
+    "editorPath": "/wordcraft/v0.12.0-0.3.1/",
+    "cleanNativeState": true,
+    "narrowPreservesFrame": true,
+    "timeOriginUnchanged": true,
+    "restoredDesktop": true
+  },
+  "exploratory": {
+    "unsupportedFirstEntry": {
+      "width": 900,
+      "noticeVisible": true,
+      "editorNotMounted": true
+    },
+    "mismatchedSavedRevision": {
+      "visibleRefusal": true,
+      "exactAssetCheck": true
+    }
+  },
+  "browserControl": {
+    "ownerOnlyConnect": true,
+    "canonicalInstanceMatches": true,
+    "watchConnectedCanvas": true,
+    "takeControl": true,
+    "returnControl": true,
+    "finalControl": "agent",
+    "disconnectedOnLeave": true,
+    "noAiJobs": true,
+    "privateConnectionMaterialOmitted": true
+  },
+  "viewport": {
+    "desktop": {
+      "width": 1600,
+      "height": 1000
+    },
+    "narrow": {
+      "width": 900,
+      "height": 1000
+    },
+    "horizontalOverflow": false
+  },
+  "visualReview": {
+    "requiredStatesReviewed": true,
+    "unintendedClipping": false,
+    "notesToolbarHoverDefectFound": true,
+    "notesToolbarSourceFixed": true,
+    "focusedRegressionPassed": true,
+    "cleanProductionStyleVerified": true,
+    "injectedStylesForFinalSignoff": false
+  },
+  "noAiJobOrEmailSubmission": true,
+  "aiSubmissions": 0,
+  "pageErrors": [],
+  "screenshots": [
+    {
+      "label": "conversation-desktop.png",
+      "sha256": "94454bbc272f4de2a3a9a8fbd51af2ce9a2be995d483654a59a91f1d92b560ae"
+    },
+    {
+      "label": "jobs-desktop.png",
+      "sha256": "7a8256df40ac9518461c1d0c31d681b87474c969c8cd9f8dec48fd5363a8d50e"
+    },
+    {
+      "label": "review-desktop.png",
+      "sha256": "a5971f949119caddad21baf6dd842121d3b2972da16b10c7d39023c63e037038"
+    },
+    {
+      "label": "skills-desktop.png",
+      "sha256": "26eb4eb47e45d06152f5dd5eff42edbfd4ea17fafbe2b379404821408d8e4f76"
+    },
+    {
+      "label": "allowance-desktop.png",
+      "sha256": "fa57386c042b448589df5e7e592e54f0590147820c9547194aefcb348e032cbf"
+    },
+    {
+      "label": "craft-desktop.png",
+      "sha256": "eccc9c7249b76959809b750f81723c4dd08471b98b997fe260d9384153b0e328"
+    },
+    {
+      "label": "craft-narrow-preserved.png",
+      "sha256": "dc5b01c5ae7fee54353c8a42bf941ddb6936936bd688cfef9074e1ec87534eb4"
+    },
+    {
+      "label": "browser-take-desktop.png",
+      "sha256": "5a0475ab5396f13cd1513dfe539e3c5395794dac8cb42a8ed5f9c215316b5dc4"
+    },
+    {
+      "label": "browser-return-desktop.png",
+      "sha256": "5f064e333e1495f5cabaa4e14d35c2cf0ba8863f6219fb28183f0f4cfab3f7be"
+    },
+    {
+      "label": "unsupported-first-entry.png",
+      "sha256": "679822d20e8a97a3682b6461a6e4bfcc5a475bed34b037e884efc8876fa3b4ba"
+    },
+    {
+      "label": "mismatched-revision-refused.png",
+      "sha256": "588f27a790b2d8c1eca572a7924d80103a12f5c077a5e808f975da6df91af64a"
+    },
+    {
+      "label": "notes-desktop-clean-production.png",
+      "sha256": "95035ca59002567ec404ff0c5b30e0834a99ca33b27a57644a28cf99a050eaba"
+    },
+    {
+      "label": "notes-hover-clean-production.png",
+      "sha256": "9f3f45a9ee1c67a1e53c5c08d2ec1296da3e1d9f4478195e5ab088c240cb75e2"
+    },
+    {
+      "label": "notes-focus-clean-production.png",
+      "sha256": "8df86ecae3362302a2f883d77f89405fd28cc6ee92df9e24186cb7a2bc11f676"
+    }
+  ],
+  "privateCredentialsAndSignedUrlsOmitted": true,
+  "passed": true,
+  "notesCleanProductionBuild": {
+    "checkedAt": "2026-10-30T05:12:02.261Z",
+    "hoverInk": "rgb(28, 43, 32)",
+    "focusInk": "rgb(28, 43, 32)",
+    "keyboardFocusVisible": true,
+    "hoverContrastRatio": 10.6,
+    "compiledStylesheetSha256": "fab737e86b3bd99159f419929dd325750f98e773074d431b1f8ae37194027fef",
+    "injectedStyles": false,
+    "postRequests": 0,
+    "pageErrors": []
+  }
+}

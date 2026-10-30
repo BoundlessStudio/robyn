@@ -143,7 +143,7 @@ test("Copy retains the bound asset; Save As adopts the committed asset without r
   globalThis.fetch=async(url,options)=>{
     const path=String(url),body=options?.body?JSON.parse(String(options.body)):{};
     let output:unknown;
-    if(path.includes("/projects/"))output={assets};
+    if(path.includes("/projects/")||path.startsWith("/api/studio/assets?"))output={assets};
     else if(path==="/api/studio/assets") {assets.push({id:body.creationId,app_id:body.appId});output={asset:assets.at(-1)};}
     else if(path.endsWith("/revisions")&&options?.method==="POST"){
       const revisionId=`55555555-5555-4555-8555-${String(++index).padStart(12,"0")}`;
@@ -159,6 +159,8 @@ test("Copy retains the bound asset; Save As adopts the committed asset without r
     await host.handle(message("copy","saveAsset",{...payload,mode:"copy",creationId:copied,name:"A copy"}));
     await host.handle(message("original-notify","notifyChanges",{assetId:initialRef.assetId,dirty:true}));
     const saved=await host.handle(message("save-as","saveAsset",{...payload,mode:"saveAs",creationId:adopted,name:"Another direction"})) as {ref:typeof initialRef};
+    for(let n=0;n<110;n++)await host.handle(message(`browse-${n}`,"listProjectAssets",{}));
+    assert.deepEqual(await host.handle(message("save-as","saveAsset",{...payload,mode:"saveAs",creationId:adopted,name:"Another direction"})),saved,"a lost Save As bridge receipt recovers after the host adopted the new asset");
     await host.handle(message("adopted-notify","notifyChanges",{assetId:adopted,dirty:false}));
     await assert.rejects(host.handle(message("old","saveAsset",payload)),/exact revision/);
     await host.handle(message("continued","saveAsset",{...payload,assetId:adopted,expectedBaseRevisionId:saved.ref.revisionId}));
@@ -166,5 +168,24 @@ test("Copy retains the bound asset; Save As adopts the committed asset without r
     assert.deepEqual([...revisions.values()][0].dependencies,[initialRef]);
     assert.deepEqual([...revisions.values()][2].dependencies,[initialRef],"later saves retain the source revision added by Save As");
     assert.equal(results.length,3);
+  }finally{globalThis.fetch=original;}
+});
+
+test("a failed save request can retry its identity while confirmed receipts stay deduplicated",async()=>{
+  const original=globalThis.fetch;let interrupted=true,commits=0,saved=0;
+  globalThis.fetch=async(url,options)=>{
+    const path=String(url);
+    if(path.includes('/projects/')){if(interrupted){interrupted=false;throw Error('project read interrupted');}return Response.json({assets:[{id:initialRef.assetId,app_id:'cadcraft'}]});}
+    if(path.endsWith('/revisions')&&options?.method==='POST')return Response.json({revisionId:'33333333-3333-4333-8333-333333333333'});
+    if(path.endsWith('/transfers'))return Response.json({transfers:[]});
+    if(path.endsWith('/commit')){commits++;return Response.json({assetId:initialRef.assetId,revisionId:'33333333-3333-4333-8333-333333333333',status:'committed'});}
+    throw Error('Unexpected save request');
+  };
+  try{
+    const host=createEditorHost({projectId:'project',initialRef,signal:new AbortController().signal,onDirty(){},onStatus(){},onSaved(){saved++;}});
+    const request=message('frozen-save','saveAsset',{assetId:initialRef.assetId,expectedBaseRevisionId:initialRef.revisionId,files:[{path:'Drawing.dxf',role:'master',file:new Blob(['native'])}],dependencies:[]});
+    await assert.rejects(host.handle(request),/project read interrupted/);
+    const committed=await host.handle(request);assert.deepEqual(await host.handle(request),committed);
+    assert.equal(commits,1);assert.equal(saved,1);
   }finally{globalThis.fetch=original;}
 });

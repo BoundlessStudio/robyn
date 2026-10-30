@@ -1,0 +1,488 @@
+{
+  "recordedAt": "2026-10-30T00:40:38.897Z",
+  "status": "historical-superseded",
+  "passed": 13,
+  "total": 13,
+  "scope": "Pinned native fixture to actual locally served WASM editor, real createEditorHost and transfer client, authenticated local BFF/private Storage immutable commit, SHA-verified signed downloads, then pinned native CLI continuation. New isolated QA projects and copies only. No employee LLM or workstation operations.",
+  "limitations": [
+    "These 0.3.0 candidates were superseded after repository reconciliation revealed newer adapter and Film Source hooks. Final 0.3.1 acceptance is separate.",
+    "Local editor staging and dashboard checks do not establish deployed CDN or production web acceptance.",
+    "Each Craft covers one ordinary revision save and its stated native continuation. Save As, copy, conflict and lost-acknowledgement coverage are separate evidence.",
+    "These selected fixtures and scoped PDF regressions do not represent the full upstream native test suites or every supported file feature. Early CAD proof fields missing in the original receipt were supplemented from the matching immutable candidate and native release lock."
+  ],
+  "pdfScopedValidation": {
+    "preparedSaveRegressions": {
+      "passed": 3,
+      "failed": 0,
+      "logSha256": "82c1d0030059f05d18d931bffcb7658b55dccb70ed536213c0ef2044ac25cfd3"
+    },
+    "annotationUniqueNameRegression": {
+      "passed": 1,
+      "failed": 0,
+      "logSha256": "45c86304b732244ef41a85b6cc76512c7caba6373a90d421fd0b494ca519091a"
+    },
+    "officialAssetsGenerator": {
+      "passed": true,
+      "repositoryAssets": 289,
+      "dependencyAssets": 6,
+      "fetchedAssets": 22,
+      "logSha256": "dbb3a48cd86b8f316498f7f6142bcdda053e410b066e3ff30686e12e5041b074"
+    }
+  },
+  "applications": [
+    {
+      "appId": "cadcraft",
+      "checkedAt": "2026-10-29T23:18:03.106Z",
+      "upstream": "v0.14.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "fbd97d432cdf36a566c0c53739481bd6f0c32b0d",
+      "fontCommit": "b076417b5880bd4154bd22f00695b1d28c6bea83",
+      "candidateSha256": "218e6e7b8ee43595cbe5ceb1a5eb267ade2ae28d776b15e5ae05c35f62c8892c",
+      "adapterSha256": "87ec8933bef61cead881fa6a52cb923050b793f060b720a9547150df5fdb9df5",
+      "nativeArchiveSha256": "95067c849f82305648249299bb86e645b730275aa8c5f19965d81990f83aea9b",
+      "earlyProofMetadataSupplemented": true,
+      "proofSha256": "a77f79ac30f755e8fc0164dd76a54c23006a53d841fc76e40303f7bdaa0f39a5",
+      "nativeEvidenceSha256": "6fa4e457c403a1a6d220b09a4e9f000705e788e989a25f0da52c130c5dbace08",
+      "screenshotSha256": "ede4956cca410d97d5a974fd0f3d2225fabf5d47f8e5d2f4b544194acfaf70db",
+      "screenshotVisuallyReviewedByProducingAgent": true,
+      "exactAssetAndBase": true,
+      "oneConfirmedBrowserSave": true,
+      "finalDirty": false,
+      "finalPending": false,
+      "finalError": null,
+      "allSavedFilesVerified": 1,
+      "savedFiles": [
+        {
+          "role": "master",
+          "bytes": 16930,
+          "sha256": "a2c1e257a99338fb83c86f22686aa7e3cdcc43a404fe1e4bb4fbbb7d215164c1"
+        }
+      ],
+      "nativeContinuationVerified": true,
+      "semanticAssertion": "Native drawing retains browser text and original entities; native continuation adds another entity.",
+      "browserErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "soundcraft",
+      "checkedAt": "2026-10-29T23:19:17.731Z",
+      "upstream": "v0.14.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "c6befe57afd0dc35fc4b86a01b2a19011ae1df1e",
+      "fontCommit": null,
+      "candidateSha256": "b913221a22494ef02b847d97dce59297fbe5d853971de2c47afa6ffb2fab9570",
+      "adapterSha256": "7171d39cbddb0fefe841e9d9007ad110925d60fbea8afe213ad6457934f22dfd",
+      "nativeArchiveSha256": "2f83503feda6aa2c8d4bc12c44f571422c4389fc664a92bbed092d2bf1d500ad",
+      "earlyProofMetadataSupplemented": false,
+      "proofSha256": "613674671c44691ed69222fca07dd8a0974e57cc4954b4d891670ec26d556481",
+      "nativeEvidenceSha256": "e0a0674f53267ef39e2b1eaa69cc1badd53bddc05d30781ec2c22d8e25425ce8",
+      "screenshotSha256": "c8f85b9277f2570966afb1402d0d366c73569fe698bc7a1fc7f6c31f1c9a3d99",
+      "screenshotVisuallyReviewedByProducingAgent": true,
+      "exactAssetAndBase": true,
+      "oneConfirmedBrowserSave": true,
+      "finalDirty": false,
+      "finalPending": false,
+      "finalError": null,
+      "allSavedFilesVerified": 1,
+      "savedFiles": [
+        {
+          "role": "master",
+          "bytes": 3065,
+          "sha256": "c8f91255bf5aad36a1fbd1c933b37ed0f8deb95c06238b4f401ce057c6fc7184"
+        }
+      ],
+      "nativeContinuationVerified": true,
+      "semanticAssertion": "Original MIDI notes and browser mix volume -4 dB survive; native continuation sets -6 dB.",
+      "browserErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "wordcraft",
+      "checkedAt": "2026-10-29T23:24:36.197Z",
+      "upstream": "v0.12.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "3de6ff95af86c19d67030cd96dba15cd6a45a25e",
+      "fontCommit": "b076417b5880bd4154bd22f00695b1d28c6bea83",
+      "candidateSha256": "99041a6630ceb9e74aa7dd5f8d5f2fec97b7c0e73eb1bb5af75687cb7aebbc8d",
+      "adapterSha256": "023b7ac973e90f5d8d5374a814925a5c74b32d3c229fb32049cd0a5f9500f515",
+      "nativeArchiveSha256": "cd9abd0ee7a11b985af1c1571653332c96077e5dcc48b5e187b55c82f475a33e",
+      "earlyProofMetadataSupplemented": false,
+      "proofSha256": "6e1cb4d1f162d652e5471c41087024bdb0893a413cf8fcc880fd9ca6e6c8cd26",
+      "nativeEvidenceSha256": "c32b9bdcf009bd45c55c6fea9039484f94e1640e1448f9587b54b439e436a3e9",
+      "screenshotSha256": "268348f24b6c4b23a3f81b0a1f35324219887460bf1663e24c8b53064e3f0e9e",
+      "screenshotVisuallyReviewedByProducingAgent": true,
+      "exactAssetAndBase": true,
+      "oneConfirmedBrowserSave": true,
+      "finalDirty": false,
+      "finalPending": false,
+      "finalError": null,
+      "allSavedFilesVerified": 1,
+      "savedFiles": [
+        {
+          "role": "master",
+          "bytes": 6595,
+          "sha256": "3fecf9c3b6371308dcafff9693b24a7608622dd624e1d104b8a6e3138f057267"
+        }
+      ],
+      "nativeContinuationVerified": true,
+      "semanticAssertion": "Original and browser text survive native reopen and native text continuation.",
+      "browserErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "gridcraft",
+      "checkedAt": "2026-10-29T23:29:59.545Z",
+      "upstream": "v0.13.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "43284377d2466037628e57d8ad0c891778fdb45c",
+      "fontCommit": "b076417b5880bd4154bd22f00695b1d28c6bea83",
+      "candidateSha256": "9623097dab21adc392102154d2a8195e5b0d9d01d81d85c9fb7161d641cf4a2b",
+      "adapterSha256": "d90d9675adac7a85fbc4fd099be71f106294918f1db5bc9d5f4352fc475d854b",
+      "nativeArchiveSha256": "20c6c56ec1ffd6bbcffee6cdee58cf6b5cadd2f4a04a4360dd7cc64d53ad97e5",
+      "earlyProofMetadataSupplemented": false,
+      "proofSha256": "22f757fc21de6fed57c59608fe3c3e6bbf21d9f43c9ea40ca1a5b082b8d85602",
+      "nativeEvidenceSha256": "10246456052d84c95641907d9c1c8a0e4cabc4512dfad984c6eaf083ae266277",
+      "screenshotSha256": "542faf19dcdd0af7b28a615c6efed17b001a8db7ce83e339c9dbbc4d9c32c892",
+      "screenshotVisuallyReviewedByProducingAgent": true,
+      "exactAssetAndBase": true,
+      "oneConfirmedBrowserSave": true,
+      "finalDirty": false,
+      "finalPending": false,
+      "finalError": null,
+      "allSavedFilesVerified": 1,
+      "savedFiles": [
+        {
+          "role": "master",
+          "bytes": 4060,
+          "sha256": "cbaa6d44ed3ed308713b0179b8d7872c9beeb133ad1186bd96bb1f7f127fe999"
+        }
+      ],
+      "nativeContinuationVerified": true,
+      "semanticAssertion": "Saved cells recalculate to 42/84; native continuation retains them and computes 7/49.",
+      "browserErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "photocraft",
+      "checkedAt": "2026-10-29T23:34:15.988Z",
+      "upstream": "v0.17.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "b8c3f3aa8e2918032cadc0e042664414a03be333",
+      "fontCommit": "b076417b5880bd4154bd22f00695b1d28c6bea83",
+      "candidateSha256": "faae36626ba5bc16bdfcf42ca5e66cf864641e84571785615a826536068f4b2a",
+      "adapterSha256": "a6a7cd602459ad84759dcfbdd7eb17113efc9e40c276ff88c8c195f1520bca3e",
+      "nativeArchiveSha256": "5259f9c428c8ee3478c35500ece98713561cafc050e4c9eb354a5050f36eb2b8",
+      "earlyProofMetadataSupplemented": false,
+      "proofSha256": "d728a5a777aacccdcaab91c4e8f123ba217711b0aa867fb64314e207c4085a44",
+      "nativeEvidenceSha256": "c9409444c52083b98bf4d3cdeb22dc48b2974aa4b29a0f4bf76b72d1a557468c",
+      "screenshotSha256": "6dd8ee092a99c0c3ed54233a92cb58c96f800ee3886124e3b616adf2869f8fc9",
+      "screenshotVisuallyReviewedByProducingAgent": true,
+      "exactAssetAndBase": true,
+      "oneConfirmedBrowserSave": true,
+      "finalDirty": false,
+      "finalPending": false,
+      "finalError": null,
+      "allSavedFilesVerified": 1,
+      "savedFiles": [
+        {
+          "role": "master",
+          "bytes": 4251,
+          "sha256": "91f3604b36febf454e94963104c1fbc144080574dcdd8e775b69ae638ebbc548"
+        }
+      ],
+      "nativeContinuationVerified": true,
+      "semanticAssertion": "Original layers and browser opacity 0.65 survive; native continuation changes opacity to 0.4.",
+      "browserErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "vectorcraft",
+      "checkedAt": "2026-10-29T23:44:17.654Z",
+      "upstream": "v0.18.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "68b68a30acad9b3d8a72802b35f43b82e2bd7d3a",
+      "fontCommit": "b076417b5880bd4154bd22f00695b1d28c6bea83",
+      "candidateSha256": "1f60ebc97bfee594ea4365fb41794713a13047cc1636b1c59d1b3a793210b909",
+      "adapterSha256": "c258194cdd6c81bec74905d6dbaee58b29a1cd49ef3445030bc9cbbff2c94935",
+      "nativeArchiveSha256": "76948b50ef78dd482a6ece06f10b7047937bbc0c05f5cf6bc43d88b07f74d826",
+      "earlyProofMetadataSupplemented": false,
+      "proofSha256": "7613084ca4f57d99b0c9ba09d79e205bea84c661061e050c4da067fda9508a89",
+      "nativeEvidenceSha256": "5547574be37dba177a746cc25c4ec688a8ddd95692a09e0126e35f7c9b964273",
+      "screenshotSha256": "bcb7504c9e9375a7c4822551a9d6aac257a58b173d9ff2526d27761e2c5c679c",
+      "screenshotVisuallyReviewedByProducingAgent": true,
+      "exactAssetAndBase": true,
+      "oneConfirmedBrowserSave": true,
+      "finalDirty": false,
+      "finalPending": false,
+      "finalError": null,
+      "allSavedFilesVerified": 1,
+      "savedFiles": [
+        {
+          "role": "master",
+          "bytes": 11145,
+          "sha256": "21140ce247d8a686d902568d74ddc28d11f777753ccec41ca5fe48474f41ac45"
+        }
+      ],
+      "nativeContinuationVerified": true,
+      "semanticAssertion": "Original objects and browser rectangle survive; native continuation adds an ellipse.",
+      "browserErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "deckcraft",
+      "checkedAt": "2026-10-29T23:54:03.274Z",
+      "upstream": "v0.12.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "29f0f7772c47aa2bfb74fcbb0c4d3b1503300849",
+      "fontCommit": "37827adc41fd165f9a9234ac40f94dbad353aa69",
+      "candidateSha256": "12ddbbad305944361a19118b3cc0578064a716aad7247cbfcab809c6fe987b08",
+      "adapterSha256": "2addf96387cb4c144e26e4da8e0ed6ea040c1b5cd700bf512db510c0bb3b33ec",
+      "nativeArchiveSha256": "4a410d3caa423e873d0dcab51c98e06588f55bdfcf03e9c1e91409a86c08de3e",
+      "earlyProofMetadataSupplemented": false,
+      "proofSha256": "c3676920b9c428c047bf76e67cf44ca8b4723013e05da6ed00052ff81049ceea",
+      "nativeEvidenceSha256": "f42e372824b4821e0da83a5aa000a1f02256c8e2247a778f027f96d02f7c2175",
+      "screenshotSha256": "965cbe15609913836ecb53962029eec6b4cd75804dec2360a5d57746f67814cd",
+      "screenshotVisuallyReviewedByProducingAgent": true,
+      "exactAssetAndBase": true,
+      "oneConfirmedBrowserSave": true,
+      "finalDirty": false,
+      "finalPending": false,
+      "finalError": null,
+      "allSavedFilesVerified": 1,
+      "savedFiles": [
+        {
+          "role": "master",
+          "bytes": 114045,
+          "sha256": "0a7b70e97869f5271bd7bea8ebe341a8c1aedabf2a549565f0696469104c7248"
+        }
+      ],
+      "nativeContinuationVerified": true,
+      "semanticAssertion": "Original, browser and native-continuation shape text survives; shapes increase from four to five.",
+      "browserErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "figcraft",
+      "checkedAt": "2026-10-30T00:02:52.308Z",
+      "upstream": "v0.12.1",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "ef9721c5b9d0f1cc19a74449cbe175fc06bf8efa",
+      "fontCommit": "37827adc41fd165f9a9234ac40f94dbad353aa69",
+      "candidateSha256": "c201d55f5cce720f5a7c0d6217b37c26dd8788b26ddc4d66dafed85443a620dd",
+      "adapterSha256": "8fdc8414e2082cf31835c0a7ea5f50ce40527d54c07b1495c92342380dac8b93",
+      "nativeArchiveSha256": "00a29f4cc382807d840f5d3e9b59f4c8829356789afbb956a0964918295e49dd",
+      "earlyProofMetadataSupplemented": false,
+      "proofSha256": "e03dab6ea3c52ae9e5af03b54e4a15e732c8d7ccc3879ba8f5af460e0b217c04",
+      "nativeEvidenceSha256": "632cb0d0b1612e569c22ac84998132cfe9474c5b9fa1239f8a8edd7f2f470615",
+      "screenshotSha256": "2ba5cbb356c08b2c292047f26c54fc326d166b74c72c8ace7981682de0b3bfbc",
+      "screenshotVisuallyReviewedByProducingAgent": true,
+      "exactAssetAndBase": true,
+      "oneConfirmedBrowserSave": true,
+      "finalDirty": false,
+      "finalPending": false,
+      "finalError": null,
+      "allSavedFilesVerified": 1,
+      "savedFiles": [
+        {
+          "role": "master",
+          "bytes": 5825,
+          "sha256": "9ec5bc0faa66526255108af7b1ce1be09c21d819fc5be649c02919bd1316853b"
+        }
+      ],
+      "nativeContinuationVerified": true,
+      "semanticAssertion": "Original creator frame and browser ellipse survive; native continuation adds a rectangle.",
+      "browserErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "lightcraft",
+      "checkedAt": "2026-10-30T00:04:53.921Z",
+      "upstream": "v0.15.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "e381c1ae6b2006ce627b243fe41697ce0d9608e0",
+      "fontCommit": "b076417b5880bd4154bd22f00695b1d28c6bea83",
+      "candidateSha256": "36a411f5fc11fe3dbbfef26eacd8be88e762b605a878fa8655ddf96de9d5ab38",
+      "adapterSha256": "008c28714eb73f3d953cd444f328694d8b6b88326c12a0b4a4bd4f065c9dd776",
+      "nativeArchiveSha256": "0b1acdefc085babb334b9add290dd1a69b50e96efbdad2ec15d44bd6d64bfd3d",
+      "earlyProofMetadataSupplemented": false,
+      "proofSha256": "aa2f5730e574a5ff6f043e7cb919c704e57dcc2004947004f0a700380784afcf",
+      "nativeEvidenceSha256": "588f36bd615a43ceb57dea07cd431e59248d79fad16dd2d65e6b2a34a493daa6",
+      "screenshotSha256": "8fc3cb8b481f1c669e4c9f5f2b08265cdc69a62fab0a031b4b1ce49fdb15cb82",
+      "screenshotVisuallyReviewedByProducingAgent": true,
+      "exactAssetAndBase": true,
+      "oneConfirmedBrowserSave": true,
+      "finalDirty": false,
+      "finalPending": false,
+      "finalError": null,
+      "allSavedFilesVerified": 5,
+      "savedFiles": [
+        {
+          "role": "master",
+          "bytes": 8779,
+          "sha256": "c65cb2889e259b6f87c42f56d5560187f5957649b35da4bf4ad8f066c9b224ea"
+        },
+        {
+          "role": "dependency",
+          "bytes": 383,
+          "sha256": "775ecd070cdb9bce914cfd9e47be1d829553cecf75e2a9a256b65a110eaaf2c1"
+        },
+        {
+          "role": "preview",
+          "bytes": 23297,
+          "sha256": "63763defeb189261456588e183a6d60f05cc79c9cf3f54a2579f536de4d7d209"
+        },
+        {
+          "role": "dependency",
+          "bytes": 5661,
+          "sha256": "19cc6d7aa2f2faa4767e82bd126b6e9c3281859840fd906705359b4b89fa1f05"
+        },
+        {
+          "role": "dependency",
+          "bytes": 251,
+          "sha256": "3c47d3ccc200bc5f27e12cad0316fa9ce6843b08cabcc66b3f2800ddb26b0e3c"
+        }
+      ],
+      "nativeContinuationVerified": true,
+      "semanticAssertion": "Original image bytes and browser contrast 23 survive; native continuation adds clarity 8.",
+      "browserErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "designcraft",
+      "checkedAt": "2026-10-30T00:07:59.272Z",
+      "upstream": "v0.14.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "7da69c16ce221f46e8f27cb41e0c88167c8be416",
+      "fontCommit": "b076417b5880bd4154bd22f00695b1d28c6bea83",
+      "candidateSha256": "3d85aa0b13d3be21fda251b5ccf2070979a33b15ef7b0641c85ec9027ea52fc7",
+      "adapterSha256": "7d8d37a916d5ad3f1531ccf19358dec24233bdf55062c0ac885941c5d2af677f",
+      "nativeArchiveSha256": "25c87be759d35a81ca44e1f625ed4304b16e5aab6a03a1051bca498a81bfc547",
+      "earlyProofMetadataSupplemented": false,
+      "proofSha256": "1975572fd1eb8bcb7351e79d1b6c9c4128731f4082acf34af2eb71d0bb5d96f1",
+      "nativeEvidenceSha256": "8cc127620176645ec40f9d88664f6c383070223f856ba2f3ba61cac7aa298ad5",
+      "screenshotSha256": "4a102feefcc3e4d8085c516e4c039b83364d0ea470193f2906c7d9889cc6187c",
+      "screenshotVisuallyReviewedByProducingAgent": true,
+      "exactAssetAndBase": true,
+      "oneConfirmedBrowserSave": true,
+      "finalDirty": false,
+      "finalPending": false,
+      "finalError": null,
+      "allSavedFilesVerified": 1,
+      "savedFiles": [
+        {
+          "role": "master",
+          "bytes": 11601,
+          "sha256": "d44057caeb18e94c494743d2d7190440f2edc9e1049fa3fcc40a1684b74b932f"
+        }
+      ],
+      "nativeContinuationVerified": true,
+      "semanticAssertion": "Two pages and creator story text survive browser frame creation and native frame continuation.",
+      "browserErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "effectcraft",
+      "checkedAt": "2026-10-30T00:08:36.822Z",
+      "upstream": "v0.18.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "c3600f9b59b109da97871a43a6898683a0163cb1",
+      "fontCommit": null,
+      "candidateSha256": "a049f12de86a31d09265f01cfefdb6f74fd4c0b05da226027fb9d89d10487e74",
+      "adapterSha256": "c2ad090e6868c2e2ef45954d5efb215a2a0400bc77482afdff5f5cfe7a98f3b4",
+      "nativeArchiveSha256": "94d1d85691d54ba57fa86e04872fbcc426c33d1bd364f1fc976b1f607344880b",
+      "earlyProofMetadataSupplemented": false,
+      "proofSha256": "1125289604181778ce2a6a26992705e1ad4d3f8ebf6c96f4d6b7dad196bca8ba",
+      "nativeEvidenceSha256": "6c18acfaa1d36ae65cb8b4e092f558e8bbd11036a40e2902ef3f2b4c25cfcc05",
+      "screenshotSha256": "ab74affe87c7c0a1d61bd2336c0f4fb5acdb74b23fc56cdc2afec8bd056398b9",
+      "screenshotVisuallyReviewedByProducingAgent": true,
+      "exactAssetAndBase": true,
+      "oneConfirmedBrowserSave": true,
+      "finalDirty": false,
+      "finalPending": false,
+      "finalError": null,
+      "allSavedFilesVerified": 2,
+      "savedFiles": [
+        {
+          "role": "master",
+          "bytes": 12283,
+          "sha256": "d37d30b366c096d8fd51418e8b1c4a98dee0d7c6d5e25c0e674b673464185595"
+        },
+        {
+          "role": "preview",
+          "bytes": 922098,
+          "sha256": "9715a25faf776ff0eb2e1ebf27d948ea79a7af33e1bdc8ebe021ca23c2d8b557"
+        }
+      ],
+      "nativeContinuationVerified": true,
+      "semanticAssertion": "Original, browser-created and native-continuation solid layers survive.",
+      "browserErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "filmcraft",
+      "checkedAt": "2026-10-30T00:20:43.114Z",
+      "upstream": "v0.14.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "a2d8e9ce269aba9c399e36262522e11456df6fbf",
+      "fontCommit": "b076417b5880bd4154bd22f00695b1d28c6bea83",
+      "candidateSha256": "6dd981c0c4ba8bfa18b034bf486b16d7bcacf1bff68ec753b050203a2e092134",
+      "adapterSha256": "71429d19e432fd1121550dc1c7001e5cef96d2fe8876e52b6e17534b5ff08fd9",
+      "nativeArchiveSha256": "d2aa213cc08abd21e05ab511a78cc38f157caf2226992f3fc8a5e0496a3f7e7d",
+      "earlyProofMetadataSupplemented": false,
+      "proofSha256": "d8786ca13c83faa9c2dcdc2e2c689243e35d808ef3ba54bfd6011633632fdbd2",
+      "nativeEvidenceSha256": "301785d33c623d0f8fb4aff3db40fc549b92f58e3b728d4b70ce36a3c9283e50",
+      "screenshotSha256": "4092d3749507297bed2c51d3a8df45246e4017f0f6d95e77ed596b330d1506f2",
+      "screenshotVisuallyReviewedByProducingAgent": true,
+      "exactAssetAndBase": true,
+      "oneConfirmedBrowserSave": true,
+      "finalDirty": false,
+      "finalPending": false,
+      "finalError": null,
+      "allSavedFilesVerified": 1,
+      "savedFiles": [
+        {
+          "role": "master",
+          "bytes": 5013,
+          "sha256": "5feb8c38a91e857168e5815d3788cd2fdd77589e31a8add05b87b851863beb79"
+        }
+      ],
+      "nativeContinuationVerified": true,
+      "semanticAssertion": "Browser and native-continuation bins survive; real clip time-zero PNG remains byte-identical.",
+      "browserErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "pdfcraft",
+      "checkedAt": "2026-10-30T00:20:57.808Z",
+      "upstream": "v0.15.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "75360d1d7db06fed974f48c914d4c04132757187",
+      "fontCommit": "b076417b5880bd4154bd22f00695b1d28c6bea83",
+      "candidateSha256": "32f7165bf7a1df3f0ae78eaf507a34227707e2fabc6e48384694f715b95eb21c",
+      "adapterSha256": "e0dcc206a7ff0a887ae21c4289a85e9f053d1a45a1987c6b284b4b7a90542097",
+      "nativeArchiveSha256": "b167a18c60a7b329f05a5bbf97e32dc678aad3f8d5866d8e4378ff24273f8313",
+      "earlyProofMetadataSupplemented": false,
+      "proofSha256": "3075cba892fec38907282eccaa63d7853d74450a2195a594be1dc66c58bc090c",
+      "nativeEvidenceSha256": "332ed4c4efd3b843c0af6ec9f1aea9dea556aa7bfd437629542f5b38153382af",
+      "screenshotSha256": "6e1e9a99664450853361245e7e77eafa7d5fb5e6a350ad89313b6563068486d3",
+      "screenshotVisuallyReviewedByProducingAgent": true,
+      "exactAssetAndBase": true,
+      "oneConfirmedBrowserSave": true,
+      "finalDirty": false,
+      "finalPending": false,
+      "finalError": null,
+      "allSavedFilesVerified": 1,
+      "savedFiles": [
+        {
+          "role": "master",
+          "bytes": 1255,
+          "sha256": "3b7a4acdb6ae74181645138907957a987db38155fbb8370d6a4f557c308ac8e1"
+        }
+      ],
+      "nativeContinuationVerified": true,
+      "semanticAssertion": "Saved 90-degree rotation gives 792 by 612 point page; original text and native title continuation survive.",
+      "browserErrors": 0,
+      "editorAssetErrors": 0
+    }
+  ]
+}

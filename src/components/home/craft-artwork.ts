@@ -3,6 +3,7 @@ export interface CraftArtwork {
   title: string;
   alt: string;
   tools: string;
+  fullFrame?: boolean;
 }
 
 // Actual editor screenshots from our own QA project. CSS crops the studio shell
@@ -91,6 +92,13 @@ export const craftArtwork: Record<string, CraftArtwork> = {
     "title": "Precision has a point of view.",
     "alt": "CADCraft's real drawing editor with a dimensioned gallery plan, drawing ribbon, geometry tools and properties.",
     "tools": "GEOMETRY / DIMENSIONS / DRAWING TOOLS"
+  },
+  "solidcraft": {
+    "src": "/artwork/editors/solidcraft.png",
+    "title": "Give your idea another dimension.",
+    "alt": "SolidCraft's actual editor with a parametric 3D block, model browser, sketch and solid modelling tools, and an editable feature history.",
+    "tools": "PARAMETERS / SOLIDS / FEATURE HISTORY",
+    "fullFrame": true
   }
 };
 

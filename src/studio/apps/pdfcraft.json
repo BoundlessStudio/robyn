@@ -25,14 +25,20 @@
     "pdf-assembly"
   ],
   "editor": {
-    "adapterVersion": "0.2.2",
-    "release": "pdfcraft-v0.11.0-robyn-0.2.2",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/pdfcraft/v0.11.0-0.2.2/?robyn&policy=20261028",
+    "adapterVersion": "0.3.1",
+    "release": "pdfcraft-v0.15.0-robyn-0.3.1",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/pdfcraft/v0.15.0-0.3.1/?robyn",
     "status": "verified"
   },
   "workstation": {
-    "template": "robyn-pdfcraft-0-11-0@1",
-    "release": "sha256:165fb8dc380c404f670a5e09b092ede8b0991aa3003ca9f7ea5c1c9133cd9881",
-    "status": "verified"
+    "template": "robyn-pdfcraft-0-15-0@1",
+    "release": "sha256:4c5026a56b8a8b76cb051b9b665c11a3e8893cf770b7e7b9425be143a6dc2627",
+    "status": "verified",
+    "previousReleases": [
+      {
+        "template": "robyn-pdfcraft-0-11-0@1",
+        "release": "sha256:165fb8dc380c404f670a5e09b092ede8b0991aa3003ca9f7ea5c1c9133cd9881"
+      }
+    ]
   }
 }

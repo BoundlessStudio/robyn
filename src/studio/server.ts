@@ -3,14 +3,14 @@ import { requireUser, type DB } from "@/lib/auth";
 import { ApiError } from "@/lib/http";
 import { hasSameOrigin } from "@/lib/request-origin";
 import { studioTools as studioApps } from "./tools";
-import { creativeDirector } from "./director";
+import { robyn } from "./robyn";
+import { studioApps as craftApps } from "./apps/registry";
 import { isAppReady } from "./manifest";
 import { requireUuid } from "./assets";
 
 export const STUDIO_BUCKET = "studio-assets";
 export const profiles = [
-  { key: creativeDirector.id, kind: "director", appId: null, role: creativeDirector.role, version: "0.3.0", instructions: creativeDirector.instructions },
-  ...studioApps.map(app => ({ key: app.id, kind: "specialist", appId: app.id, role: app.employee.role, version: app.version, instructions: app.employee.instructions })),
+  { key: robyn.id, kind: "director", appId: null, role: robyn.role, version: "1.0.0", instructions: robyn.instructions },
 ];
 
 export async function requireStudio() {
@@ -34,7 +34,7 @@ export function appFor(id: unknown) {
 }
 
 export function publicApps() {
-  return studioApps.map(app => ({ id: app.id, name: app.name, role: app.employee.role, color: app.color, monogram: app.monogram, category: app.category, tagline: app.tagline, capabilities: app.capabilities, ready: isAppReady(app), editorStatus: app.editor.status, workstationStatus: app.workstation.status }));
+  return craftApps.map(app => ({ id: app.id, name: app.name, color: app.color, monogram: app.monogram, category: app.category, tagline: app.tagline, capabilities: app.capabilities, ready: isAppReady(app), editorStatus: app.editor.status, workstationStatus: app.workstation.status }));
 }
 
 export async function readStudioBody(request: Request): Promise<Record<string, unknown>> {

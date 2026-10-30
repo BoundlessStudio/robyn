@@ -14,7 +14,7 @@ export async function assignmentBrowserFixture(browser) {
     stdin: { contents: `import {useState} from 'react'; import {createRoot} from 'react-dom/client'; import {AssignmentPanel} from './src/components/studio/AssignmentPanel';
       function Fixture(){const[visible,setVisible]=useState(true),[mode,setMode]=useState('assignments'),[ref,setRef]=useState(location.search?${JSON.stringify(changedRef)}:${JSON.stringify(originalRef)}),[opened,setOpened]=useState('');
         return <main><nav><button onClick={()=>setVisible(v=>!v)}>{visible?'Close composer':'Open composer'}</button><button onClick={()=>setMode(m=>m==='assignments'?'director':'assignments')}>Switch panel</button><button onClick={()=>setRef(${JSON.stringify(changedRef)})}>Change open revision</button></nav>
-          <output aria-label="Opened revision">{opened}</output>{visible&&<AssignmentPanel projectId="${project}" mode={mode} preferredAppId={location.search?'research':undefined} selectedRef={ref} onOpen={r=>setOpened(r.revisionId)}/>}</main>}
+          <output aria-label="Opened revision">{opened}</output>{visible&&<AssignmentPanel projectId="${project}" mode={mode} preferredAppId={location.search?'gridcraft':'wordcraft'} selectedRef={ref} onOpen={r=>setOpened(r.revisionId)}/>}</main>}
       createRoot(document.getElementById('root')).render(<Fixture/>);`, resolveDir:root, sourcefile:"assignment-recovery-fixture.tsx", loader:"tsx" },
     bundle:true,write:false,platform:"browser",format:"iife",define:{"process.env.NODE_ENV":'"production"'},tsconfig:root+"tsconfig.json",
   });
@@ -31,11 +31,12 @@ export async function assignmentBrowserFixture(browser) {
         const payload = request.postDataJSON();
         state.calls.push(payload);
         state.persisted.push(await page.evaluate(key => JSON.parse(localStorage.getItem(key)).pending, journalKey));
+        if(payload.employeeId!==director&&!state.accepted.has(payload.requestId))return route.fulfill({status:409,json:{error:{message:"The saved employee has retired. Your original brief is preserved."}}});
         if (!state.accepted.has(payload.requestId)) state.accepted.set(payload.requestId, {id:crypto.randomUUID(),payload});
         if (!state.acknowledge) return route.fulfill({status:503,json:{error:{message:"Your assignment is saved. Retry this request to reconnect it."}}});
         return route.fulfill({status:202,json:{assignmentId:state.accepted.get(payload.requestId).id,state:"queued"}});
       }
-      return route.fulfill({json:{employees:[{id:director,role:"Creative Director",appId:null,ready:true},{id:specialist,role:"Researcher",appId:"research",ready:true}],assignments:[...state.accepted.values()].map(({id,payload})=>({id,employeeId:payload.employeeId,role:payload.employeeId===director?"Creative Director":"Researcher",appId:payload.employeeId===director?null:"research",brief:payload.brief,state:"queued",createdAt:"2026-10-25T12:00:00Z",deliverables:[]}))}});
+      return route.fulfill({json:{employees:[{id:director,role:"Robyn",appId:null,ready:true}],assignments:[...state.accepted.values()].map(({id,payload})=>({id,employeeId:payload.employeeId,role:"Robyn",appId:payload.appId??null,brief:payload.brief,state:"queued",createdAt:"2026-10-25T12:00:00Z",deliverables:[]}))}});
     }
     if (url.pathname.startsWith("/api/studio/budgets/")) return route.fulfill({json:{availableMicros:state.allowance,reason:state.allowance?null:"No AI allowance remains."}});
     if (url.pathname === "/") return route.fulfill({contentType:"text/html",body:'<!doctype html><html><body><div id="root"></div><script>window.process={env:{NODE_ENV:"production"}};</script><script src="/fixture.js"></script></body></html>'});

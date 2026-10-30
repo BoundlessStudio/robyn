@@ -1,7 +1,7 @@
 {
   "retrieved": "2026-10-27",
   "catalogue": "https://getartcraft.com/apps",
-  "note": "Nine unchanged ArtCraft originals plus five Robyn animal illustrations requested by the owner.",
+  "note": "Nine unchanged ArtCraft originals, five owner-requested Robyn illustrations, and the original SolidCraft application icon.",
   "icons": [
     {
       "id": "photocraft",
@@ -116,6 +116,16 @@
       "sourceSha256": "2605fc6a86d837b04eb90207d9bf74f15108f01b7256c7e73be8992ba4abc949",
       "bytes": 47024,
       "sha256": "d245e8bfe2f747944ea2ecbaba1f8e63213dd040793d6a09eeb3cbc7dc1f0d01"
+    },
+    {
+      "id": "solidcraft",
+      "source": "https://github.com/tangency-labs/solidcraft/blob/9df8837d43409c0ec61b071f3803805ebe5a9463/assets/icons/app/linux/exports/hicolor/256x256/apps/io.tangencylabs.solidcraft.png",
+      "retrieved": "2026-10-29",
+      "author": "SolidCraft contributors",
+      "license": "MIT",
+      "transformation": "Lossless PNG to WebP, original 256×256 pixels",
+      "bytes": 5652,
+      "sha256": "8c07f54b29dc2bfb534c70c894cb11a74c917ae5d06644e96c2e65ce7b60f6f8"
     }
   ]
 }

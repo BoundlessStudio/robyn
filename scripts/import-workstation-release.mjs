@@ -12,7 +12,8 @@ const files = new Map([
   ["configure-hermes.py", await fs.readFile(path.join(source, "lib/configure-hermes.py"))],
 ]);
 if (digest(files.get("studio-mcp.cjs")) !== release.sha256) throw Error("Runtime bytes do not match the release");
-if (!files.get("configure-hermes.py").toString().includes(`studio-mcp-v${release.version}.cjs`)) throw Error("Runtime configuration version mismatch");
+const configuration = files.get("configure-hermes.py").toString();
+if (!configuration.includes(`studio-mcp-v${release.version}.cjs`) && !configuration.includes(`VERSION = "${release.version}"`)) throw Error("Runtime configuration version mismatch");
 for (const entry of (await fs.readdir("src/studio/apps")).filter(name => name.endsWith(".json")).sort()) {
   const app = JSON.parse(await fs.readFile(`src/studio/apps/${entry}`, "utf8"));
   files.set(`skills/${app.id}.md`, await fs.readFile(path.join(source, `apps/${app.id}/SKILL.md`)));

@@ -25,14 +25,20 @@
     "prototypes"
   ],
   "editor": {
-    "adapterVersion": "0.2.2",
-    "release": "figcraft-v0.9.0-robyn-0.2.2",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/figcraft/v0.9.0-0.2.2/?robyn&policy=20261028",
+    "adapterVersion": "0.3.1",
+    "release": "figcraft-v0.12.1-robyn-0.3.1",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/figcraft/v0.12.1-0.3.1/?robyn",
     "status": "verified"
   },
   "workstation": {
-    "template": "robyn-figcraft-0-9-0@1",
-    "release": "sha256:1f6bcfdd286c2fe49d0ab53a11449a00760bec8071099bd372738a6fc1d527c2",
-    "status": "verified"
+    "template": "robyn-figcraft-0-12-1@1",
+    "release": "sha256:d5e1e5e91ecab08b24839cd1e6dbe5005903edb5bc2b3e56b3bba55e196be3f9",
+    "status": "verified",
+    "previousReleases": [
+      {
+        "template": "robyn-figcraft-0-9-0@1",
+        "release": "sha256:1f6bcfdd286c2fe49d0ab53a11449a00760bec8071099bd372738a6fc1d527c2"
+      }
+    ]
   }
 }

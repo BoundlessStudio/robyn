@@ -1,0 +1,296 @@
+{
+  "checkedAt": "2026-10-29 23:32:57 UTC",
+  "source": "Official GitHub release API through the connected GitHub plugin",
+  "applications": [
+    {
+      "id": "photocraft",
+      "tag": "v0.17.0",
+      "expected": "v0.17.0",
+      "matches": true,
+      "publishedAt": "2026-10-28T17:39:12Z",
+      "url": "https://github.com/storytold/photocraft/releases/tag/v0.17.0",
+      "assets": [
+        {
+          "name": "photocraft-0.17.0-linux-x86_64.tar.gz",
+          "bytes": 123212747,
+          "sha256": "sha256:5259f9c428c8ee3478c35500ece98713561cafc050e4c9eb354a5050f36eb2b8"
+        },
+        {
+          "name": "photocraft-web-0.17.0.zip",
+          "bytes": 12955028,
+          "sha256": "sha256:9dbc979e138e83136d5958acd0cf7d1832aeae5095409eb4691dca577db5fc99"
+        }
+      ]
+    },
+    {
+      "id": "vectorcraft",
+      "tag": "v0.18.0",
+      "expected": "v0.18.0",
+      "matches": true,
+      "publishedAt": "2026-10-28T17:38:39Z",
+      "url": "https://github.com/storytold/vectorcraft/releases/tag/v0.18.0",
+      "assets": [
+        {
+          "name": "vectorcraft-0.18.0-linux-x86_64.tar.gz",
+          "bytes": 135504224,
+          "sha256": "sha256:76948b50ef78dd482a6ece06f10b7047937bbc0c05f5cf6bc43d88b07f74d826"
+        },
+        {
+          "name": "vectorcraft-web-0.18.0.zip",
+          "bytes": 30314340,
+          "sha256": "sha256:3eec3f90593b900ea364837dc0fbb8b2c855e4de54452b75a6426121c98f9b9e"
+        }
+      ]
+    },
+    {
+      "id": "lightcraft",
+      "tag": "v0.15.0",
+      "expected": "v0.15.0",
+      "matches": true,
+      "publishedAt": "2026-10-28T17:36:29Z",
+      "url": "https://github.com/storytold/lightcraft/releases/tag/v0.15.0",
+      "assets": [
+        {
+          "name": "lightcraft-0.15.0-linux-x86_64.tar.gz",
+          "bytes": 118686666,
+          "sha256": "sha256:0b1acdefc085babb334b9add290dd1a69b50e96efbdad2ec15d44bd6d64bfd3d"
+        },
+        {
+          "name": "lightcraft-web-0.15.0.zip",
+          "bytes": 72556863,
+          "sha256": "sha256:fb46de80ad77814ea33efa3d2799edbaca3462c96da88347fb874f4d6fd15564"
+        }
+      ]
+    },
+    {
+      "id": "filmcraft",
+      "tag": "v0.14.0",
+      "expected": "v0.14.0",
+      "matches": true,
+      "publishedAt": "2026-10-28T16:40:33Z",
+      "url": "https://github.com/storytold/filmcraft/releases/tag/v0.14.0",
+      "assets": [
+        {
+          "name": "filmcraft-0.14.0-linux-x86_64.tar.gz",
+          "bytes": 105541865,
+          "sha256": "sha256:d2aa213cc08abd21e05ab511a78cc38f157caf2226992f3fc8a5e0496a3f7e7d"
+        },
+        {
+          "name": "filmcraft-web-0.14.0.zip",
+          "bytes": 14300479,
+          "sha256": "sha256:58140e222600c3fbb8ab5fdb94b95abf31cf13d2ad057182b7a6b64843a7a330"
+        }
+      ]
+    },
+    {
+      "id": "effectcraft",
+      "tag": "v0.18.0",
+      "expected": "v0.18.0",
+      "matches": true,
+      "publishedAt": "2026-10-28T17:38:55Z",
+      "url": "https://github.com/storytold/effectcraft/releases/tag/v0.18.0",
+      "assets": [
+        {
+          "name": "effectcraft-0.18.0-linux-x86_64.tar.gz",
+          "bytes": 71639412,
+          "sha256": "sha256:94d1d85691d54ba57fa86e04872fbcc426c33d1bd364f1fc976b1f607344880b"
+        },
+        {
+          "name": "effectcraft-web-0.18.0.zip",
+          "bytes": 20687568,
+          "sha256": "sha256:cc3326670a37a62499b132d20773016d20f576714aaf6b4946744ae6876fa2aa"
+        }
+      ]
+    },
+    {
+      "id": "soundcraft",
+      "tag": "v0.14.0",
+      "expected": "v0.14.0",
+      "matches": true,
+      "publishedAt": "2026-10-28T16:08:49Z",
+      "url": "https://github.com/storytold/soundcraft/releases/tag/v0.14.0",
+      "assets": [
+        {
+          "name": "soundcraft-0.14.0-linux-x86_64.tar.gz",
+          "bytes": 20460821,
+          "sha256": "sha256:2f83503feda6aa2c8d4bc12c44f571422c4389fc664a92bbed092d2bf1d500ad"
+        },
+        {
+          "name": "soundcraft-web-0.14.0.zip",
+          "bytes": 6741547,
+          "sha256": "sha256:76290a220377d80aa62a3a196c8bcc8b28e01eaf5b0aad912fabf7eb5a9a767d"
+        }
+      ]
+    },
+    {
+      "id": "designcraft",
+      "tag": "v0.14.0",
+      "expected": "v0.14.0",
+      "matches": true,
+      "publishedAt": "2026-10-28T16:25:36Z",
+      "url": "https://github.com/storytold/designcraft/releases/tag/v0.14.0",
+      "assets": [
+        {
+          "name": "designcraft-0.14.0-linux-x86_64.tar.gz",
+          "bytes": 122469409,
+          "sha256": "sha256:25c87be759d35a81ca44e1f625ed4304b16e5aab6a03a1051bca498a81bfc547"
+        },
+        {
+          "name": "designcraft-web-0.14.0.zip",
+          "bytes": 26346214,
+          "sha256": "sha256:7d7e5f24d49b07be6c21d9b571f7edd3763bc9f9dd72a9a1dcc61ebd63bcc6bb"
+        }
+      ]
+    },
+    {
+      "id": "pdfcraft",
+      "tag": "v0.15.0",
+      "expected": "v0.15.0",
+      "matches": true,
+      "publishedAt": "2026-10-28T17:38:25Z",
+      "url": "https://github.com/storytold/pdfcraft/releases/tag/v0.15.0",
+      "assets": [
+        {
+          "name": "pdfcraft-0.15.0-linux-x86_64.tar.gz",
+          "bytes": 110282445,
+          "sha256": "sha256:b167a18c60a7b329f05a5bbf97e32dc678aad3f8d5866d8e4378ff24273f8313"
+        },
+        {
+          "name": "pdfcraft-cli-0.15.0-linux-x86_64.tar.gz",
+          "bytes": 41735244,
+          "sha256": "sha256:a5705977e616852929eb08e7ba6de1e0781289fcc52dab1356215ae644d5973d"
+        },
+        {
+          "name": "pdfcraft-web-0.15.0.zip",
+          "bytes": 17051971,
+          "sha256": "sha256:fdb2508030d7668cb5164db3b7d05baa1011a87497c95ef043844d90cbbc4da2"
+        }
+      ]
+    },
+    {
+      "id": "wordcraft",
+      "tag": "v0.12.0",
+      "expected": "v0.12.0",
+      "matches": true,
+      "publishedAt": "2026-10-28T16:22:15Z",
+      "url": "https://github.com/storytold/wordcraft/releases/tag/v0.12.0",
+      "assets": [
+        {
+          "name": "wordcraft-0.12.0-linux-x86_64.tar.gz",
+          "bytes": 109629951,
+          "sha256": "sha256:cd9abd0ee7a11b985af1c1571653332c96077e5dcc48b5e187b55c82f475a33e"
+        },
+        {
+          "name": "wordcraft-web-0.12.0.zip",
+          "bytes": 18599981,
+          "sha256": "sha256:4cf6808b762e6d1211a569dd0cac831b7f1e7eb1a41f70cae90bceeb2c6a6acf"
+        }
+      ]
+    },
+    {
+      "id": "deckcraft",
+      "tag": "v0.12.0",
+      "expected": "v0.12.0",
+      "matches": true,
+      "publishedAt": "2026-10-28T16:18:32Z",
+      "url": "https://github.com/storytold/deckcraft/releases/tag/v0.12.0",
+      "assets": [
+        {
+          "name": "deckcraft-0.12.0-linux-x86_64.tar.gz",
+          "bytes": 103376245,
+          "sha256": "sha256:4a410d3caa423e873d0dcab51c98e06588f55bdfcf03e9c1e91409a86c08de3e"
+        },
+        {
+          "name": "deckcraft-web-0.12.0.zip",
+          "bytes": 11522095,
+          "sha256": "sha256:4625fc2b66f0a0065b1cd549d94dd51f4e0f4f6082638d399c530ffdc56ebab5"
+        }
+      ]
+    },
+    {
+      "id": "gridcraft",
+      "tag": "v0.13.0",
+      "expected": "v0.13.0",
+      "matches": true,
+      "publishedAt": "2026-10-28T16:10:33Z",
+      "url": "https://github.com/storytold/gridcraft/releases/tag/v0.13.0",
+      "assets": [
+        {
+          "name": "gridcraft-0.13.0-linux-x86_64.tar.gz",
+          "bytes": 47964351,
+          "sha256": "sha256:20c6c56ec1ffd6bbcffee6cdee58cf6b5cadd2f4a04a4360dd7cc64d53ad97e5"
+        },
+        {
+          "name": "gridcraft-web-0.13.0.zip",
+          "bytes": 7974995,
+          "sha256": "sha256:e232edde1898459f13568ca7b1f3feecb4037f0cbb8f6aec86de1a3c096af5dc"
+        }
+      ]
+    },
+    {
+      "id": "figcraft",
+      "tag": "v0.12.1",
+      "expected": "v0.12.1",
+      "matches": true,
+      "publishedAt": "2026-10-28T17:58:10Z",
+      "url": "https://github.com/storytold/figcraft/releases/tag/v0.12.1",
+      "assets": [
+        {
+          "name": "figcraft-0.12.1-linux-x86_64.tar.gz",
+          "bytes": 94094269,
+          "sha256": "sha256:00a29f4cc382807d840f5d3e9b59f4c8829356789afbb956a0964918295e49dd"
+        },
+        {
+          "name": "figcraft-server-0.12.1-linux-x86_64.tar.gz",
+          "bytes": 4336809,
+          "sha256": "sha256:425c1335d5c665045bbf2417ae2f2cc388c4061cfdf80fea51b03fc1e8f0025d"
+        },
+        {
+          "name": "figcraft-web-0.12.1.zip",
+          "bytes": 9913496,
+          "sha256": "sha256:8f52f52d4897d35b14c2a347c44ab6362b60b93d6a2f54a17d218111b9006c37"
+        }
+      ]
+    },
+    {
+      "id": "cadcraft",
+      "tag": "v0.14.0",
+      "expected": "v0.14.0",
+      "matches": true,
+      "publishedAt": "2026-10-28T16:34:10Z",
+      "url": "https://github.com/storytold/cadcraft/releases/tag/v0.14.0",
+      "assets": [
+        {
+          "name": "cadcraft-0.14.0-linux-x86_64.tar.gz",
+          "bytes": 71629845,
+          "sha256": "sha256:95067c849f82305648249299bb86e645b730275aa8c5f19965d81990f83aea9b"
+        },
+        {
+          "name": "cadcraft-web-0.14.0.zip",
+          "bytes": 10278462,
+          "sha256": "sha256:f2fbfb80388dc0315a469d65cf7c966b742f86b6b4d3d405752bdee7428d94e8"
+        }
+      ]
+    },
+    {
+      "id": "solidcraft",
+      "tag": "v0.26.1",
+      "expected": "v0.26.1",
+      "matches": true,
+      "publishedAt": "2026-10-29T11:46:12Z",
+      "url": "https://github.com/tangency-labs/solidcraft/releases/tag/v0.26.1",
+      "assets": [
+        {
+          "name": "solidcraft-0.26.1-linux-x86_64.tar.gz",
+          "bytes": 98182314,
+          "sha256": "sha256:5399d29fde71d98f646d3a03d0ad7ffe5f37e8ea4c4766b7701d1718fe4d0a87"
+        },
+        {
+          "name": "solidcraft-web-0.26.1.zip",
+          "bytes": 32613800,
+          "sha256": "sha256:43346d69b00da845f47886bbf81fd90da63af4182f6c203aee75eb882979c59c"
+        }
+      ]
+    }
+  ]
+}

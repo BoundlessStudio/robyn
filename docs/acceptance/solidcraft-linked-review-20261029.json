@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-29",
+  "timezone": "America/Toronto",
+  "appId": "solidcraft",
+  "upstream": "v0.26.1",
+  "adapterVersion": "0.1.0",
+  "sourceCommit": "9df8837d43409c0ec61b071f3803805ebe5a9463",
+  "sourcePatchSha256": "879de19d26b70de013dcaa965dbe399c49027c3d4888893b02b22b7b5b045de0",
+  "exactSourcePatchReverseCheck": "passed",
+  "coreSha256": "15dd83e91159e709717ffe62d9f9340b638517f38cf131ef06c6c3d967142a96",
+  "adapterSha256": "4fe2eed5bef025e8b5589aaea77c0f5bd19197b140992d0a041670bacbd0475a",
+  "adapterInputSha256": {
+    "apps/solidcraft/adapter.mjs": "8b8156ca81428fb12e4737ea44e65634ce66c3e956d77251d28bdd364dbada95",
+    "apps/solidcraft/container.mjs": "af767d8d200b52dea5461c5997b7083637e5963730587e547fd2ff52974bb8b4",
+    "apps/solidcraft/package.mjs": "9ce756b8c7a9fe5b4ba456bc4d76fb0deecea43b9712a2e2e451655b11ddd518",
+    "lib/agent-edit.mjs": "39ad27afc44d6ba5ee9e9131b3e5ee0492cf3905b2ab1e5b55ee0eee7947ccdb",
+    "lib/asset-picker.mjs": "97d28e3b2d6136b48f5c9d4c81feeba3e4893bfde25f3ef812e8c5989ec81f6d",
+    "lib/editor-client.mjs": "9dd5741b0866324feabd198545ac488e40d9802b6bec2b8247d400f0a19a7621",
+    "lib/name-picker.mjs": "bce06f482215159c8ab6c4c679b24d40222c9420827ad1990961d68e17e0c8ad",
+    "lib/package.mjs": "edb624687bb647b38cc8074789fe4473fee213222b779a3c7ebdfe3025de14e7",
+    "lib/save-coordinator.mjs": "b59b2e2c8fed651830f9094a556538b99643ecfe72f9eee4e38140b3525f4991",
+    "node_modules/@noble/hashes/_md.js": "60cf3010fda89e3e4d3f0e7ff1ce249e9c467f34b4fd41b6fd6101d9f69be763",
+    "node_modules/@noble/hashes/_u64.js": "b09da8c07fe8187c07649494cdb7cd0bcf13df90b506a9473d19e4d5f8c2e102",
+    "node_modules/@noble/hashes/sha2.js": "471746bba6ec4c6238ca41358d1d3b40b6ff31cf3363f0b4d550c649c1a8e83b",
+    "node_modules/@noble/hashes/utils.js": "037ad49adb78168b6b699598fd33f85f7877456b1d28b4d032e2a1a16807947c"
+  },
+  "fonts": {
+    "mode": "Upstream embedded fonts and copied official browser font asset; no separate supplier checkout",
+    "upstreamBrowserArchiveSha256": "43346d69b00da845f47886bbf81fd90da63af4182f6c203aee75eb882979c59c",
+    "served": [
+      {
+        "path": "fonts/BIZUDPGothic-Regular.ttf",
+        "sha256": "258d7156c165f2ff774b6efee637c22c3b950de0d8a10e501137061bc8085d01"
+      }
+    ]
+  },
+  "nativePackagerSha256": "8b6fbe8f2e6259d5a5c6e52fe90abb11fbeacc35eec3268fecc8d739a94263d8",
+  "containerReaderSha256": "af767d8d200b52dea5461c5997b7083637e5963730587e547fd2ff52974bb8b4",
+  "review": {
+    "status": "no blocking findings",
+    "candidateOrSourceModified": false,
+    "checks": [
+      "Design graph validated before mounting or output; native realpath bounds reject files outside assignment root.",
+      "ZIP names, sizes, expanded data, CRC, duplicate paths and embedded content hashes checked without rewriting original native bytes.",
+      "Native Save/Save As/Copy route to frozen snapshots; uncertain retries retain snapshot identity, later edits remain dirty and Copy preserves the bound asset.",
+      "Bound editor refuses new/open/recover/tab replacement and edit-in-place changes; raw scripts cannot bypass acknowledged Save.",
+      "Final core and every recorded adapter input hash match the reviewed files; three focused package/container/native-boundary tests pass."
+    ]
+  },
+  "additionalLinkedDesignLoop": {
+    "status": "passed",
+    "scope": "Actual official native CLI → actual frozen final WASM and adapter → local isolated filesystem-backed immutable host receipt → official native continuation. This additional linked-design loop did not use the BFF/private Storage.",
+    "proofSha256": "84f38828f11737e60654a3c54a1950e53cf36c16f12b4ddd2c3d0f76743e2fb1",
+    "confirmedSaves": 1,
+    "savedFiles": 2,
+    "childBytesUnchanged": true,
+    "childSha256": "c86502f99b1155b5affc3085c7f1f395aac458a0e286e2fbfba0ebc4cb449be1",
+    "nativeInputMasterSha256": "8d2fcc160ecdb57d543a23485c4a623fc66d00163ff787a654e6b7258306bac0",
+    "savedMasterSha256": "f5359d22ca4b1d6f882321695490ff5931d3283cf068dbf4110cb492b8f762a8",
+    "continuedMasterSha256": "a80209653b8cb86b41b26d77dadea14024a11b4effc0917e04dd14cf4faec076",
+    "resolvedLinkedFileFound": true,
+    "browserEditedVolumeMm3": 8125,
+    "nativeContinuedVolumeMm3": 11125,
+    "browserAndHostErrors": 0,
+    "screenshotVisuallyReviewed": true,
+    "nativeFixtureRecipe": "A new linked design was explicitly saved with file.save_as before packaging, yielding a relative link. CLI run --out alone can retain an absolute newly inserted source path, which the packager correctly rejects."
+  },
+  "separateActualBffEvidence": {
+    "status": "passed",
+    "checkedAt": "2026-10-29T23:21:52.540Z",
+    "proofSha256": "f28f272c4600fb83bb5b4af292c87f0c26862be08b82e8dd7066d58b766db77b",
+    "scope": "Actual createEditorHost/local authenticated BFF/private Storage immutable saves and hash-checked downloads; separate single-file parametric model. Local parent/editor, isolated QA project.",
+    "confirmedSaves": 5,
+    "browserVolumeMm3": 8000,
+    "nativeContinuationVolumeMm3": 11000,
+    "lostSaveAsAcknowledgementRecovered": true,
+    "laterEditsRemainDirty": true,
+    "copyPreservesOpenAsset": true,
+    "errors": 0
+  },
+  "limits": [
+    "The linked graph exercise adds local host evidence; it does not upgrade its scope to the separate BFF run.",
+    "No employee LLM turn, remote workstation operation, CDN publication or production rollout is claimed.",
+    "Private reference IDs, receipts, signed URLs, temporary evidence paths and screenshots are excluded."
+  ]
+}

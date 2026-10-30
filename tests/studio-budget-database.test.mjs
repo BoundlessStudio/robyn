@@ -1,3 +1,5 @@
+// Historical multi-employee regression fixture: the forward migration 0028 and
+// current canonical contracts are covered in robyn-workstation-database.test.mjs.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -15,7 +17,7 @@ test('Studio budget synchronization is private, fenced, recoverable and cannot r
       create schema storage;create table storage.buckets(id text primary key,name text,public boolean,file_size_limit bigint);
       create table storage.objects(id uuid primary key default gen_random_uuid(),bucket_id text,name text);
       alter table storage.objects enable row level security;grant usage on schema storage to anon,authenticated,service_role;grant all on storage.objects to anon,authenticated,service_role;`);
-    for(const name of (await fs.readdir(new URL('../supabase/migrations',import.meta.url))).filter(n=>n.endsWith('.sql')).sort())await db.exec(await fs.readFile(new URL(`../supabase/migrations/${name}`,import.meta.url),'utf8'));
+    for(const name of (await fs.readdir(new URL('../supabase/migrations',import.meta.url))).filter(n=>n.endsWith('.sql') && n<'0028_').sort())await db.exec(await fs.readFile(new URL(`../supabase/migrations/${name}`,import.meta.url),'utf8'));
     for(const role of ['anon','authenticated']){
       await db.exec(`set role ${role}`);await assert.rejects(db.query('select * from studio_managed_budgets'),/permission denied/);
       await assert.rejects(scalar('select resume_studio_assignment_budget($1,$2,$3,$4,$5) as result',[randomUUID(),randomUUID(),randomUUID(),'workflow',randomUUID()]),/permission denied/);await db.exec('reset role');

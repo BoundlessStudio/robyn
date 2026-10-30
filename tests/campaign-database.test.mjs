@@ -1,3 +1,5 @@
+// Historical multi-employee regression fixture: the forward migration 0028 and
+// current canonical contracts are covered in robyn-workstation-database.test.mjs.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -17,7 +19,7 @@ test('Director plans isolate tenants, freeze handoffs, recover ownership, and st
       create table storage.objects(id uuid primary key default gen_random_uuid(),bucket_id text references storage.buckets(id),name text);
       alter table storage.objects enable row level security; grant usage on schema storage to anon,authenticated,service_role;
       grant all on storage.objects to anon,authenticated,service_role;`);
-    for(const name of (await fs.readdir(new URL('../supabase/migrations',import.meta.url))).filter(x=>x.endsWith('.sql')).sort())await db.exec(await fs.readFile(new URL('../supabase/migrations/'+name,import.meta.url),'utf8'));
+    for(const name of (await fs.readdir(new URL('../supabase/migrations',import.meta.url))).filter(x=>x.endsWith('.sql') && x<'0028_').sort())await db.exec(await fs.readFile(new URL('../supabase/migrations/'+name,import.meta.url),'utf8'));
     for(const role of ['anon','authenticated']){
       for(const table of ['studio_campaigns','studio_campaign_steps','studio_assignment_deliverables'])assert.equal(await scalar("select has_table_privilege($1,$2,'SELECT') as result",[role,table]),false);
       const functions=['director_create_campaign','bind_studio_campaign_workflow','cancel_studio_campaign','advance_studio_campaign','studio_assignment_output_refs'];

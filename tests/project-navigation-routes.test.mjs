@@ -20,15 +20,15 @@ test('legacy project-tool URLs preserve known project context or return to proje
   await assert.rejects(applications({params:Promise.resolve({id:projectId})}),{location:`/dashboard/projects/${projectId}`});
 });
 
-test('Research verifies project ownership before providing a browser connection or changing control',async()=>{
+test('Robyn verifies project ownership and its shared workstation before providing browser access',async()=>{
   const user=randomUUID(),workspace=randomUUID(),project=randomUUID(),foreign=randomUUID(),employee=randomUUID();
-  const records={workspaces:[{id:workspace,owner_id:user}],studio_projects:[{id:project,workspace_id:workspace},{id:foreign,workspace_id:randomUUID()}],studio_employees:[{id:employee,workspace_id:workspace,employee_key:'research',app_id:'research',instance_id:'research-test',provision_state:'ready',browser_control:'agent',browser_control_id:null}]};
+  const records={workspaces:[{id:workspace,owner_id:user}],studio_projects:[{id:project,workspace_id:workspace},{id:foreign,workspace_id:randomUUID()}],studio_employees:[{id:employee,workspace_id:workspace,employee_key:'robyn',kind:'director',app_id:null,retired_at:null,instance_id:'robyn-test',provision_state:'ready',browser_control:'agent',browser_control_id:null}],agents:[{agent37_id:'robyn-test',workspace_id:workspace,template:'robyn-studio@1'}]};
   const provider=[];
   const db={rpc:async()=>({data:workspace,error:null}),from(table){
-    const filters=[];const query={select(){return query;},eq(key,value){filters.push([key,value]);return query;},async single(){return {data:records[table]?.find(row=>filters.every(([key,value])=>row[key]===value))??null,error:null};},async maybeSingle(){return query.single();}};return query;
+    const filters=[];const query={select(){return query;},eq(key,value){filters.push([key,value]);return query;},is(key,value){filters.push([key,value]);return query;},async single(){return {data:records[table]?.find(row=>filters.every(([key,value])=>row[key]===value))??null,error:null};},async maybeSingle(){return query.single();}};return query;
   }};
   globalThis.__projectResearchAuth={db,user:{id:user}};
-  globalThis.__projectResearchProvider={getAgent:async id=>{provider.push(id);return {id,metadata:{app_workspace:workspace,studio_employee:employee}};},signedUrl:async(...args)=>{provider.push(args);return {url:'https://research-test.agent37.app/?test=connection'};}};
+  globalThis.__projectResearchProvider={getAgent:async id=>{provider.push(id);return {id,metadata:{app_workspace:workspace,studio_employee:employee}};},signedUrl:async(...args)=>{provider.push(args);return {url:'https://robyn-test.agent37.app/?test=connection'};}};
   try{
     const {GET,POST}=await loadModule('../../src/app/api/studio/research/browser/route.ts',{
       'server-only':'','@/lib/auth':'export const requireUser=async()=>globalThis.__projectResearchAuth;',
@@ -43,7 +43,7 @@ test('Research verifies project ownership before providing a browser connection 
     }
     assert.equal((await post(project,'connect','https://other.test')).status,403);assert.deepEqual(provider,[]);
     const status=await GET(new Request(address(project)));assert.equal(status.status,200);assert.equal(status.headers.get('cache-control'),'no-store');
-    const connection=await post(project,'connect');assert.equal(connection.status,200);assert.equal((await connection.json()).ws,'wss://research-test.agent37.app/websockify?test=connection');
-    assert.deepEqual(provider,['research-test','research-test',['research-test',6901,60]]);
+    const connection=await post(project,'connect');assert.equal(connection.status,200);assert.equal((await connection.json()).ws,'wss://robyn-test.agent37.app/websockify?test=connection');
+    assert.deepEqual(provider,['robyn-test','robyn-test',['robyn-test',6901,60]]);
   }finally{delete globalThis.__projectResearchAuth;delete globalThis.__projectResearchProvider;}
 });

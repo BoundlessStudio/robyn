@@ -5,8 +5,8 @@ import {chromium,firefox,webkit} from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
 import {nativeImportFixture,origin,projectId} from './fixtures/native-import.mjs';
 const browserType=({chromium,firefox,webkit})[process.env.NATIVE_IMPORT_BROWSER??'chromium'];
-const menuNames=['Dashboard','Assets','AI Employees','Research','Settings'];
-const menuPaths=['','/library','/employees','/research','/settings'];
+const menuNames=['Dashboard','Assets','Robyn','Settings'];
+const menuPaths=['','/library','/employees','/settings'];
 
 async function assertProjectMenu(page,active){
   const navigation=page.getByRole('navigation',{name:'Project navigation',exact:true});
@@ -67,19 +67,19 @@ test('the standard project menu navigates in the same tab with unsaved-work prot
     await tools.getByRole('heading',{name:'Assets.',exact:true}).waitFor();
     await assertProjectMenu(page,'Assets');
     assert.equal(await tools.getByLabel('Filter by project').count(),0);
-    await tools.getByRole('navigation',{name:'Project navigation'}).getByRole('link',{name:'AI Employees',exact:true}).click();
+    await tools.getByRole('navigation',{name:'Project navigation'}).getByRole('link',{name:'Robyn',exact:true}).click();
     await tools.getByLabel('Your idea',{exact:true}).waitFor();
-    await assertProjectMenu(page,'AI Employees');
+    await assertProjectMenu(page,'Robyn');
     assert.equal(await tools.getByLabel('Employee project').count(),0);
-    await tools.getByRole('navigation',{name:'Project navigation'}).getByRole('link',{name:'Research',exact:true}).click();
-    await tools.getByRole('status').filter({hasText:'Research has control'}).waitFor();
-    await assertProjectMenu(page,'Research');
+    await tools.getByRole('link',{name:'Robyn’s browser ↗',exact:true}).click();
+    await tools.getByRole('status').filter({hasText:'Robyn has control'}).waitFor();
+    await assertProjectMenu(page,'Robyn');
     const poll=tools.waitForRequest(request=>request.method()==='GET'&&new URL(request.url()).pathname==='/api/studio/research/browser');
     await tools.getByRole('button',{name:'Take over',exact:true}).click();
     await tools.getByRole('status').filter({hasText:'You have control'}).waitFor();
     await tools.getByRole('button',{name:'Return control',exact:true}).click();
-    await tools.getByRole('status').filter({hasText:'Research has control'}).waitFor();await poll;
-    assert.equal(await tools.getByRole('link',{name:'Project briefs',exact:false}).getAttribute('href'),`/dashboard/projects/${projectId}/employees?view=assignments`);
+    await tools.getByRole('status').filter({hasText:'Robyn has control'}).waitFor();await poll;
+    assert.equal(await tools.getByRole('link',{name:'Robyn’s jobs',exact:false}).getAttribute('href'),`/dashboard/projects/${projectId}/employees?view=jobs`);
     const requests=state.requests.filter(row=>['/api/studio/research/browser','/api/studio/assets','/api/studio/assignments'].includes(row.path));
     assert.ok(requests.length>4);assert.ok(requests.every(row=>new URLSearchParams(row.search).get('projectId')===projectId));
     const controls=requests.filter(row=>['take','return'].includes(row.input?.action));assert.equal(controls.length,2);assert.equal(controls[0].input.controlId,controls[1].input.controlId);
@@ -91,9 +91,9 @@ test('the standard project menu navigates in the same tab with unsaved-work prot
       assert.equal(await tools.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
       await assertProjectMenu(page,'Settings');
     }
-    await tools.getByRole('navigation',{name:'Project navigation'}).getByRole('link',{name:'AI Employees',exact:true}).click();
+    await tools.getByRole('navigation',{name:'Project navigation'}).getByRole('link',{name:'Robyn',exact:true}).click();
     await tools.getByLabel('Your idea',{exact:true}).waitFor();
-    assert.equal(await tools.getByRole('link',{name:'Manage AI budget',exact:false}).getAttribute('href'),`/dashboard/projects/${projectId}/settings#studio-budget`);
+    assert.equal(await tools.getByRole('link',{name:'Manage AI allowance',exact:true}).getAttribute('href'),`/dashboard/projects/${projectId}/settings#studio-budget`);
     assert.equal(state.assignments.size,0);
     assert.equal(page.context().pages().length,1);assert.deepEqual(state.errors,[]);
   }finally{await browser.close();}

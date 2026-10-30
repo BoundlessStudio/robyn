@@ -2,7 +2,9 @@
 
 Updated October 29, 2026. This is the current index; [PLAN.md](PLAN.md) retains the complete scope and dated implementation history. [The review report](PROJECT-REVIEW-2026-10-25.md) tracks remediation and remaining acceptance work.
 
-Robyn is an invitation-only, passwordless, solo-creator studio at **https://robyn.academy**. Its Creative Director, thirteen Craft specialists and Research work with private native files and exact saved revisions. The authenticated studio is desktop-only. Public signup and commercial subscriptions are disabled. The public homepage supports small screens.
+Robyn is an invitation-only, passwordless, solo-creator studio at **https://robyn.academy**. The authenticated studio is desktop-only. Public signup and commercial subscriptions are disabled. The public homepage supports small screens.
+
+**In progress: one Robyn with fourteen Craft tools.** The owner requested one agent and one shared workstation per creator, removal of the separate Researcher, and replacement of the old owned instances. All fourteen refreshed browser/native integrations have passed local round trips and their immutable browser distributions are published. The combined native image has registered successfully. The single-agent server, task profiles, allowance carry-forward, primary test binding and instance cleanup are being verified; the web change is not yet a deployed release. The dated multi-employee records below describe previous deployments.
 
 ## Release boundary
 

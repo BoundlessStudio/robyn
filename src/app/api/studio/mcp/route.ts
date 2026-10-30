@@ -1,6 +1,6 @@
 import { ApiError, json } from "@/lib/http";
 import { requireEmployee } from "@/studio/employee-auth";
-import { employeeTools, employeeToolCall } from "@/studio/employee-tools";
+import { employeeToolsFor, employeeToolCall } from "@/studio/employee-tools";
 import { readMetadataBody } from "@/studio/server";
 
 export const maxDuration=60;
@@ -22,7 +22,7 @@ export async function POST(request:Request){
       const versions=["2025-11-25","2025-06-18","2025-03-26"];
       result={protocolVersion:versions.includes(String(params.protocolVersion))?params.protocolVersion:versions[0],capabilities:{tools:{}},serverInfo:{name:"robyn-studio",version:"0.1.0"},instructions:"Work only on the assigned project. Native file bytes transfer directly to private Storage. Saved revisions are immutable; preserve conflicts."};
     }else if(input.method==="ping")result={};
-    else if(input.method==="tools/list")result={tools:employeeTools};
+    else if(input.method==="tools/list")result={tools:employeeToolsFor(auth.scope)};
     else if(input.method==="tools/call"){
       if(typeof params.name!=="string"||!params.arguments||typeof params.arguments!=="object"||Array.isArray(params.arguments))return json(errorResult(requestId,-32602,"Supply a tool name and an arguments object."),400);
       try{

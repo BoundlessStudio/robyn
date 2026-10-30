@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {randomUUID,createHash} from 'node:crypto';
 import {PGlite} from '@electric-sql/pglite';
-test('Research takeover holds its queue, revokes tool access, and resumes the same assignment behind new fences',async()=>{
+test('historical Research takeover holds its queue and resumes the same assignment behind new fences',async()=>{
  const db=new PGlite();const scalar=async(sql,args=[])=>(await db.query(sql,args)).rows[0]?.result;
  try{
     await db.exec(`create role anon; create role authenticated; create role service_role bypassrls;
@@ -15,7 +15,9 @@ test('Research takeover holds its queue, revokes tool access, and resumes the sa
       create table storage.objects(id uuid primary key default gen_random_uuid(),bucket_id text references storage.buckets(id),name text);
       alter table storage.objects enable row level security; grant usage on schema storage to anon,authenticated,service_role;
       grant all on storage.objects to anon,authenticated,service_role;`);
-    const migrations=(await fs.readdir(new URL('../supabase/migrations',import.meta.url))).filter(x=>x.endsWith('.sql')).sort();
+    // This fixture preserves the Research employee protocol before consolidation.
+    // Current Robyn takeover/profile rotation is covered by the complete0028 fixture.
+    const migrations=(await fs.readdir(new URL('../supabase/migrations',import.meta.url))).filter(x=>x.endsWith('.sql')&&x<='0027_workstation_release_upgrades.sql').sort();
     for(const name of migrations)await db.exec(await fs.readFile(new URL('../supabase/migrations/'+name,import.meta.url),'utf8'));
 
  const owner=randomUUID(),outsider=randomUUID();await db.query('insert into auth.users(id) values($1),($2)',[owner,outsider]);

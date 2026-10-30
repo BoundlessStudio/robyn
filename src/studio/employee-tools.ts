@@ -6,6 +6,7 @@ import { type EmployeeScope, employeeDbFailure } from "./employee-auth";
 import { ownedAsset, ownedRevision, revisionFiles, verifyStoredFiles, textField, id, dbFailure } from "./server";
 import { readSavedPackage, preparePackageTransfers } from "./package-store";
 import { studioTools as studioApps } from "./tools";
+import { studioApps as craftApps } from "./apps/registry";
 import { isEmployeeReady } from "./manifest";
 import { parseCampaignSteps } from "./campaigns";
 import { launchCampaign } from "./campaign-launch";
@@ -25,11 +26,20 @@ export const employeeTools=[
   tool("studio_plan","Director only: save one immutable production plan. Prerequisites must precede their consumers; their exact output revisions are handed onward automatically.",{operationId:uuid,steps:{type:"array",minItems:1,maxItems:20,items:{type:"object",properties:{key:{type:"string"},appId:{type:"string"},brief:{type:"string",maxLength:10000},dependsOn:{type:"array",items:{type:"string"}},inputs:{type:"array",items:{type:"object",properties:{assetId:uuid,revisionId:uuid},required:["assetId","revisionId"]}},final:{type:"boolean"}},required:["key","appId","brief","dependsOn","inputs","final"],additionalProperties:false}}},["operationId","steps"]),
   tool("studio_list_assets","List saved assets in this assigned project. Always open an exact assetId + revisionId.",{}),
   tool("studio_open_asset","Get short-lived private downloads and provenance for one exact saved native or source-media package. Verify every file's size and SHA-256 before opening.",{assetId:uuid,revisionId:uuid},["assetId","revisionId"]),
-  tool("studio_create_asset","Create a library entry for your specialist application. Retrying the same operationId and name returns the same asset.",{operationId:uuid,name:{type:"string",minLength:1,maxLength:160}},["operationId","name"]),
+  tool("studio_create_asset","Create a library entry in an allowed application. Include appId; retry the same operationId, appId and name after a lost reply.",{operationId:uuid,appId:{type:"string"},name:{type:"string",minLength:1,maxLength:160}},["operationId","name"]),
   tool("studio_begin_revision","Reserve an immutable native package. Supply the exact expected base, or null for a new asset. File bytes upload directly to Storage.",{operationId:uuid,assetId:uuid,expectedBaseRevisionId:{anyOf:[uuid,{type:"null"}]},package:{type:"object"}},["operationId","assetId","expectedBaseRevisionId","package"]),
   tool("studio_upload_transfers","Get resumable upload tickets for your reserved revision; never send media bytes to this endpoint.",{revisionId:uuid},["revisionId"]),
   tool("studio_commit_revision","Confirm a fully uploaded package. A conflict preserves your save without replacing another revision. Stop and report conflicts.",{revisionId:uuid},["revisionId"]),
 ];
+
+export function employeeToolsFor(scope:EmployeeScope) {
+  if(scope.kind!=="robyn")return employeeTools;
+  return employeeTools.filter(t=>!["studio_team","studio_plan"].includes(t.name)).map(t=>t.name==="studio_create_asset"?{...t,inputSchema:{...t.inputSchema,required:[...t.inputSchema.required,"appId"]}}:t);
+}
+
+function writableApp(scope:EmployeeScope, appId:string|null) {
+  return scope.kind==="robyn" ? appId==="research"||Boolean(appId&&scope.allowedAppIds?.includes(appId)&&craftApps.some(app=>app.id===appId)) : appId===scope.appId;
+}
 
 export async function employeeToolCall(auth:{db:DB;tokenHash:string;scope:EmployeeScope},name:string,args:Record<string,unknown>) {
   const {db,tokenHash,scope:s}=auth;
@@ -56,7 +66,7 @@ export async function employeeToolCall(auth:{db:DB;tokenHash:string;scope:Employ
     const revision=await ownedRevision(db,s.workspaceId,id(value,"revision ID"));
     if(revision.assignment_id!==s.assignmentId||revision.author_employee_id!==s.employeeId)throw new ApiError(404,"not_found","Revision not found in this assignment.");
     const asset=await ownedProjectAsset(revision.asset_id);
-    if(asset.app_id!==s.appId)throw new ApiError(404,"not_found","Revision not found in this assignment.");
+    if(!writableApp(s,asset.app_id))throw new ApiError(404,"not_found","Revision not found in this assignment.");
     return revision;
   };
   if(name==="studio_context"){
@@ -65,7 +75,7 @@ export async function employeeToolCall(auth:{db:DB;tokenHash:string;scope:Employ
     const {data:assignment,error:assignmentError}=await db.from("studio_assignments").select("purpose").eq("workspace_id",s.workspaceId).eq("id",s.assignmentId).single();dbFailure(assignmentError);
     if(!assignment)throw new ApiError(404,"not_found","Assignment not found.");
     const {data:campaign,error:campaignError}=await db.from("studio_campaigns").select("id,state,specification").eq("workspace_id",s.workspaceId).eq("root_assignment_id",s.assignmentId).maybeSingle();dbFailure(campaignError);
-    return {assignmentId:s.assignmentId,role:s.role,appId:s.appId,purpose:assignment.purpose,startMode:s.startMode??"work",brief:s.brief,project,campaign,inputs:(inputs??[]).map(row=>({assetId:row.asset_id,revisionId:row.revision_id}))};
+    return {assignmentId:s.assignmentId,role:s.role,kind:s.kind,appId:s.appId,appIdHint:s.appIdHint??s.appId,allowedAppIds:s.allowedAppIds??(s.appId?[s.appId]:[]),generation:s.generation,profile:s.profile,purpose:assignment.purpose,startMode:s.startMode??"work",brief:s.brief,project,campaign,inputs:(inputs??[]).map(row=>({assetId:row.asset_id,revisionId:row.revision_id}))};
   }
   if(name==="studio_team"){
     if(s.kind!=="director")throw new ApiError(403,"director_only","Only the Director can coordinate the studio.");
@@ -88,13 +98,16 @@ export async function employeeToolCall(auth:{db:DB;tokenHash:string;scope:Employ
     const asset=await ownedProjectAsset(args.assetId);
     const revision=await ownedRevision(db,s.workspaceId,id(args.revisionId,"revision ID"));
     if(revision.asset_id!==asset.id)throw new ApiError(404,"not_found","Saved asset reference not found.");
-    return readSavedPackage(db,s.workspaceId,revision.id);
+    return {...await readSavedPackage(db,s.workspaceId,revision.id),appId:asset.asset_kind&&asset.asset_kind!=="native"?null:asset.app_id};
   }
   if(name==="studio_create_asset"){
-    const {data,error}=await db.rpc("employee_create_asset",{p_hash:tokenHash,p_operation:id(args.operationId,"operation ID"),p_name:textField(args.name,160,"Asset name")});employeeDbFailure(error);return data;
+    if(s.kind==="robyn"&&(typeof args.appId!=="string"||!writableApp(s,args.appId)))throw new ApiError(403,"application_not_allowed","Choose an application allowed for this job.");
+    const {data,error}=await db.rpc("employee_create_asset",{p_hash:tokenHash,p_operation:id(args.operationId,"operation ID"),p_name:textField(args.name,160,"Asset name"),...(s.kind==="robyn"?{p_app:args.appId}:{})});employeeDbFailure(error);return data;
   }
   if(name==="studio_begin_revision"){
     if(args.expectedBaseRevisionId===undefined)throw new ApiError(400,"base_required","Supply the exact base revision or null for the first save.");
+    const asset=await ownedProjectAsset(args.assetId);
+    if(!writableApp(s,asset.app_id))throw new ApiError(403,"application_not_allowed","Choose an application allowed for this job.");
     let pkg;try{pkg=validateRevisionPackage(args.package);}catch(error){throw new ApiError(400,"invalid_package",(error as Error).message);}
     const {data,error}=await db.rpc("employee_begin_revision",{p_hash:tokenHash,p_operation:id(args.operationId,"operation ID"),p_asset:id(args.assetId,"asset ID"),p_base:args.expectedBaseRevisionId===null?null:id(args.expectedBaseRevisionId,"base revision ID"),p_package:pkg});employeeDbFailure(error);return data;
   }

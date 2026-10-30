@@ -25,14 +25,20 @@
     "color-grading"
   ],
   "editor": {
-    "adapterVersion": "0.2.2",
-    "release": "lightcraft-v0.11.0-robyn-0.2.2",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/lightcraft/v0.11.0-0.2.2/?robyn&policy=20261028",
+    "adapterVersion": "0.3.1",
+    "release": "lightcraft-v0.15.0-robyn-0.3.1",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/lightcraft/v0.15.0-0.3.1/?robyn",
     "status": "verified"
   },
   "workstation": {
-    "template": "robyn-lightcraft-0-11-0@1",
-    "release": "sha256:5f4570949853ff085bbb06035bb3071224357f2119a8bec65010a763979f749c",
-    "status": "verified"
+    "template": "robyn-lightcraft-0-15-0@1",
+    "release": "sha256:ba0e6fcb9d332a7f942a6f7f541716d7d45a48f849dbe846fa0992415211606b",
+    "status": "verified",
+    "previousReleases": [
+      {
+        "template": "robyn-lightcraft-0-11-0@1",
+        "release": "sha256:5f4570949853ff085bbb06035bb3071224357f2119a8bec65010a763979f749c"
+      }
+    ]
   }
 }

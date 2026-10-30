@@ -3,20 +3,24 @@ import assert from 'node:assert/strict';
 import {randomUUID} from 'node:crypto';
 import {chromium,firefox,webkit} from 'playwright';
 import {nativeImportFixture,origin,projectId} from './fixtures/native-import.mjs';
-import {applicationLaunchUrl} from '../src/studio/application-launch.ts';
+import {applicationLaunchUrl,launchableApps} from '../src/studio/application-launch.ts';
+import {studioApps} from '../src/studio/apps/registry.ts';
 const browserType=({chromium,firefox,webkit})[process.env.NATIVE_IMPORT_BROWSER??'chromium'];
-const apps=['PhotoCraft','VectorCraft','LightCraft','FilmCraft','EffectCraft','SoundCraft','DesignCraft','PdfCraft','WordCraft','DeckCraft','GridCraft','FigCraft','CADCraft'];
+const apps=launchableApps.map(app=>app.name);
 const ready=(page,app)=>page.frameLocator(`iframe[title="${app} editor"]`).getByText('Ready',{exact:true}).waitFor();
 async function chooseApplication(page,app){
   await page.getByRole('button',{name:'New file',exact:true}).click();
   await page.getByRole('dialog',{name:'Your applications.'}).getByRole('button',{name:app,exact:false}).click();
 }
 
-test('empty and populated projects lead with all thirteen applications and launch without AI allowance',async()=>{
+test('empty and populated projects list the independent catalogue and launch ready applications without AI allowance',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
     const {page,state}=await nativeImportFixture(browser);state.allowance=0;
-    assert.deepEqual(await page.locator('.application-grid button').evaluateAll(nodes=>nodes.map(node=>node.querySelector('strong').textContent)),apps);
+    assert.deepEqual(await page.locator('.application-grid button').evaluateAll(nodes=>nodes.map(node=>node.querySelector('strong').textContent)),studioApps.map(app=>app.name));
+    assert.equal(await page.locator('.application-grid a').count(),0);
+    assert.equal(await page.getByRole('link',{name:'Talk to Robyn',exact:true}).count(),1);
+    for(const app of studioApps.filter(app=>!launchableApps.some(ready=>ready.id===app.id)))assert.equal(await page.getByRole('button',{name:app.name,exact:false}).isDisabled(),true);
     const applications=page.getByRole('button',{name:'New file',exact:true});
     assert.equal(await applications.count(),0);
     for(const app of apps){
@@ -30,7 +34,7 @@ test('empty and populated projects lead with all thirteen applications and launc
       await page.getByRole('button',{name:app,exact:false}).waitFor();
       assert.equal(await page.locator('iframe').count(),0);
     }
-    assert.equal(state.assets.size,13);assert.equal(state.revisions.size,13);assert.equal(state.assignments.size,0);
+    assert.equal(state.assets.size,apps.length);assert.equal(state.revisions.size,apps.length);assert.equal(state.assignments.size,0);
     assert.equal(state.requests.filter(req=>req.path.includes('/budgets/')).length,0);
     assert.deepEqual(state.errors,[]);
   }finally{await browser.close();}

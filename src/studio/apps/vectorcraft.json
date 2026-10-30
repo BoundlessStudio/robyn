@@ -26,14 +26,20 @@
     "icons"
   ],
   "editor": {
-    "adapterVersion": "0.2.2",
-    "release": "vectorcraft-v0.14.0-robyn-0.2.2",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/vectorcraft/v0.14.0-0.2.2/?robyn&policy=20261028",
+    "adapterVersion": "0.3.1",
+    "release": "vectorcraft-v0.18.0-robyn-0.3.1",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/vectorcraft/v0.18.0-0.3.1/?robyn",
     "status": "verified"
   },
   "workstation": {
-    "template": "robyn-vectorcraft-0-14-0@1",
-    "release": "sha256:b04d54cf9231cbb76f9d929395f0735ead37a326ecb33299ba2947636150ad76",
-    "status": "verified"
+    "template": "robyn-vectorcraft-0-18-0@1",
+    "release": "sha256:346e9ef26bcbfe54aad48d8516a468fdf964f9c02032e73e7552abddde0fe9a5",
+    "status": "verified",
+    "previousReleases": [
+      {
+        "template": "robyn-vectorcraft-0-14-0@1",
+        "release": "sha256:b04d54cf9231cbb76f9d929395f0735ead37a326ecb33299ba2947636150ad76"
+      }
+    ]
   }
 }

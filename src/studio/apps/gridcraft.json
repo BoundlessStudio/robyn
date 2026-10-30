@@ -25,14 +25,20 @@
     "data-layout"
   ],
   "editor": {
-    "adapterVersion": "0.2.2",
-    "release": "gridcraft-v0.10.0-robyn-0.2.2",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/gridcraft/v0.10.0-0.2.2/?robyn&policy=20261028",
+    "adapterVersion": "0.3.1",
+    "release": "gridcraft-v0.13.0-robyn-0.3.1",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/gridcraft/v0.13.0-0.3.1/?robyn",
     "status": "verified"
   },
   "workstation": {
-    "template": "robyn-gridcraft-0-10-0@1",
-    "release": "sha256:7a74c01ecc0599d9a6c67a000c0a2245cfb6641d9e0d641c5167d99a295a8149",
-    "status": "verified"
+    "template": "robyn-gridcraft-0-13-0@1",
+    "release": "sha256:df4eac4d419406428dab897efdb27ae993782bf0e5a998f438f04e5d790638dd",
+    "status": "verified",
+    "previousReleases": [
+      {
+        "template": "robyn-gridcraft-0-10-0@1",
+        "release": "sha256:7a74c01ecc0599d9a6c67a000c0a2245cfb6641d9e0d641c5167d99a295a8149"
+      }
+    ]
   }
 }

@@ -1,0 +1,658 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-29",
+  "timezone": "America/Toronto",
+  "scope": "Final A6 pinned native CLI → actual patched WASM edit → unmodified createEditorHost/transfer-client → actual local BFF and private Storage immutable commit → hash-checked download → native CLI continuation. Isolated QA project; local parent/editor. Additional filesystem-backed host loops are identified separately.",
+  "limits": [
+    "No employee LLM turn, remote workstation operation, CDN deployment or production promotion is claimed by these records.",
+    "Raw private references, receipts, transfer URLs, local evidence paths and sensitive screenshots remain outside version control.",
+    "Core SHA-256 concatenates generated WASM JavaScript, WASM binary and adapter.js in that order; external fonts are separately hashed."
+  ],
+  "sourceBases": {
+    "web": "8379f08dc77f892db7c52a3ad1c7d02d4162d7c3",
+    "runtime": "7a8c83e4e9578e8c83147cfe355d6484a5935d6a",
+    "workingTreeChanges": true
+  },
+  "pinnedWorkstationClient": "0.1.24",
+  "workstationClientScope": "Integration pin only; these local BFF loops do not execute the employee MCP client or an employee LLM turn.",
+  "checks": {
+    "lockedBrowserBuilds": 6,
+    "exactSourcePatchChecks": 6,
+    "byteIdenticalAdapterReproductions": 6,
+    "affectedAppPackageTestsPassed": 20,
+    "sharedFontAssetTestsPassed": 5,
+    "actualBffRoundTripsPassed": 6,
+    "additionalIsolatedHostRoundTripsPassed": 5,
+    "originalNonLibraryHunkAudit": "Retained moved hooks and behavioral changes; equivalent upstream boolean/style changes and newer upstream Light display-fit behavior preserved."
+  },
+  "adapterInputHashProvenance": "Each adapter was reproduced in memory with the final build options and matched saved adapter.js bytes exactly before these individual input files were hashed.",
+  "adapterInputSha256": {
+    "apps/designcraft/adapter.mjs": "1266483aff1dbd942984659d2714df3f6b196ec943ec4cb9e87125a00a50907a",
+    "apps/designcraft/container.mjs": "544b23743454999c6fec4c1c95041727748851260df773f237f1291c94057307",
+    "apps/designcraft/package.mjs": "42905a7d84c982b56ffb1462d86ddda1d395402d75c46d0e0b2e36af1074df6d",
+    "apps/figcraft/adapter.mjs": "aa64d171ce591ac21f92c9a0cff28ce5dc8bc776f4d3826a06292c285be8b536",
+    "apps/figcraft/package.mjs": "2a8d7001b6f26d40d5f96d8e4de5ac0e4fa4bb814505a69d6d936f70b9700b14",
+    "apps/lightcraft/adapter.mjs": "3b368592ca3fd648f805f382309be1d49ceb3bc598eb28b19df526ac496dc6a3",
+    "apps/lightcraft/package.mjs": "351ad48afd50f64f1933aebc3b605cb944ce1f75133a631bdb8cc73fd272b36e",
+    "apps/photocraft/adapter.mjs": "99181ec558691c23a25169a3d8f957c5aa14116daa0bfe17c79fef66f4a2db1b",
+    "apps/photocraft/container.mjs": "0372cfbbb3381d9a8d56b7d69d574e15b51728749c16d392a6cd7befcee35c9d",
+    "apps/photocraft/package.mjs": "f332b86a0152a0a6bf77c2aaf1b222c6aa0f2a16d3799d431b5e8c29564f6f4d",
+    "apps/soundcraft/adapter.mjs": "4e03cb46bc7d2903389d413cb836ff04b47e32eeb2cacde53de20e5ced7070bd",
+    "apps/soundcraft/package.mjs": "1d1da997337057f1f1afd6ce65cc6c9b0b8a398e66e90950d20ac37c1ef317c7",
+    "apps/vectorcraft/adapter.mjs": "ad7107541af9f2515aad6f1209cdd88b4111d7f0f46da92210ec8b6db3187798",
+    "apps/vectorcraft/package.mjs": "80962ce07c67f22f60b31597fd43253f2a4371cf3063c434278934f734d7201a",
+    "lib/agent-edit.mjs": "39ad27afc44d6ba5ee9e9131b3e5ee0492cf3905b2ab1e5b55ee0eee7947ccdb",
+    "lib/asset-picker.mjs": "97d28e3b2d6136b48f5c9d4c81feeba3e4893bfde25f3ef812e8c5989ec81f6d",
+    "lib/editor-client.mjs": "9dd5741b0866324feabd198545ac488e40d9802b6bec2b8247d400f0a19a7621",
+    "lib/name-picker.mjs": "bce06f482215159c8ab6c4c679b24d40222c9420827ad1990961d68e17e0c8ad",
+    "lib/package.mjs": "edb624687bb647b38cc8074789fe4473fee213222b779a3c7ebdfe3025de14e7",
+    "lib/save-coordinator.mjs": "b59b2e2c8fed651830f9094a556538b99643ecfe72f9eee4e38140b3525f4991",
+    "node_modules/@noble/hashes/_blake.js": "cabbff61d1f373bac45594ad758df7c42e176464ddbb94b44f5533fa977a4f56",
+    "node_modules/@noble/hashes/_md.js": "60cf3010fda89e3e4d3f0e7ff1ce249e9c467f34b4fd41b6fd6101d9f69be763",
+    "node_modules/@noble/hashes/_u64.js": "b09da8c07fe8187c07649494cdb7cd0bcf13df90b506a9473d19e4d5f8c2e102",
+    "node_modules/@noble/hashes/blake2.js": "03f00237bcc0b4d822a80f7c0ac22e42632c48e246c3b6da584e6452186e32f0",
+    "node_modules/@noble/hashes/blake3.js": "bc25a8f6c50acabf3781c44ec55cb364b00f6f3f4349d841813a1057a8af2f20",
+    "node_modules/@noble/hashes/sha2.js": "471746bba6ec4c6238ca41358d1d3b40b6ff31cf3363f0b4d550c649c1a8e83b",
+    "node_modules/@noble/hashes/utils.js": "037ad49adb78168b6b699598fd33f85f7877456b1d28b4d032e2a1a16807947c",
+    "node_modules/fzstd/esm/index.mjs": "1a901fc5a58c349bbdb4f2aa1e688637ef56891ec58243a9f0cd863166b0d2a4",
+    "node_modules/lossless-json/lib/esm/config.js": "369f7da8636b8ad75ef56f9bdb7f69f29b4f461a66e46622193ca013e6755c92",
+    "node_modules/lossless-json/lib/esm/index.js": "79e0d8d51c60eecd34978dbaa44be0cbbc270cd2b999347695ffd5f9f551885d",
+    "node_modules/lossless-json/lib/esm/LosslessNumber.js": "1a67a2f25e9312a8adb4130796b50180942ca117a91df0e084dcf2550efaaf62",
+    "node_modules/lossless-json/lib/esm/numberParsers.js": "0d46c610aa237f01fbf12376fd9836c8d9251055bb3f87e7b22dc5b680514df9",
+    "node_modules/lossless-json/lib/esm/parse.js": "c31958812e1c3cd1c48a56c63471704233fd4c210fb5c8773bea7ab9c75ea627",
+    "node_modules/lossless-json/lib/esm/revive.js": "28d52f7536bf3da6a593f0e6014221e6dfd0f193e66346574a3714fd83b06d28",
+    "node_modules/lossless-json/lib/esm/reviveDate.js": "9fe6290d695b3e858520e56abd27bd5de004c441f63880106cdf969c066938e1",
+    "node_modules/lossless-json/lib/esm/stringify.js": "1804d5f8477fa5224c63b83eea4dc48600002cbcd4e823781aeac69cbaa30710",
+    "node_modules/lossless-json/lib/esm/types.js": "01ae2a5b120382f9a648ced7ee8507493a134f216d100fc61600c6c9738235d2",
+    "node_modules/lossless-json/lib/esm/utils.js": "aec4e0e2649ce0871b1cab689046aa3f255ac5914f28c6b4269d6fa43fdf96c6"
+  },
+  "fontAssetsReports": {
+    "f6bb3c54e9f5b05b2dd923e4f19c1f2a47bfe34d584ad7f1ea52aea6126b3de7": {
+      "manifestSha256": "e825709cd46ff7abe213c141e981c0c11e098195a134951e95dada85eaea778a",
+      "served": [
+        {
+          "path": "fonts/biz-ud-mincho/BIZUDMincho-Regular.ttf",
+          "sha256": "468ee6d9b149ca144809e03841bf18740ecf014e055a00da6ecaf1aaf4165af2",
+          "bytes": 6153932,
+          "licensePath": "fonts/biz-ud-mincho/OFL.txt",
+          "licenseSha256": "ef0ed524b3bd012f37015e986809eed6f67905456ebfc1ebd7fcc2765282ee01"
+        },
+        {
+          "path": "fonts/biz-ud-pgothic/BIZUDPGothic-Bold.ttf",
+          "sha256": "30eba52fc837e8b62c97d4b82e6706583149fb7294e3712dd71a655eaea80a90",
+          "bytes": 4640596,
+          "licensePath": "fonts/biz-ud-pgothic/OFL.txt",
+          "licenseSha256": "e753d7155d53c747d037a445e584c8ecfca6dd79846db610417e282a736b28bc"
+        },
+        {
+          "path": "fonts/biz-ud-pgothic/BIZUDPGothic-Regular.ttf",
+          "sha256": "258d7156c165f2ff774b6efee637c22c3b950de0d8a10e501137061bc8085d01",
+          "bytes": 4669688,
+          "licensePath": "fonts/biz-ud-pgothic/OFL.txt",
+          "licenseSha256": "e753d7155d53c747d037a445e584c8ecfca6dd79846db610417e282a736b28bc"
+        },
+        {
+          "path": "fonts/nanum-gothic/NanumGothic-Regular.ttf",
+          "sha256": "76f45ef4a6bcff344c837c95a7dcc26e017e38b5846d5ae0cdcb5b86be2e2d31",
+          "bytes": 2054744,
+          "licensePath": "fonts/nanum-gothic/OFL.txt",
+          "licenseSha256": "eeacf16032901d0ed0456876ec77b8f0fda6b3fecec7d972f8543eb602e6c30f"
+        },
+        {
+          "path": "fonts/noto-sans-arabic/NotoSansArabic.ttf",
+          "sha256": "63111b5b2e074dd48cc67692e0a2726d86ee94c1c37fe8598257b7b4e87e869e",
+          "bytes": 844676,
+          "licensePath": "fonts/noto-sans-arabic/OFL.txt",
+          "licenseSha256": "07fc70bfeb985cc1a87a8587d0a0c80bab11c86c9dc3fd95b6f0cb332f983e96"
+        },
+        {
+          "path": "fonts/noto-sans-cjk-sc/NotoSansCJKsc-Regular.otf",
+          "sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+          "bytes": 16437364,
+          "licensePath": "fonts/noto-sans-cjk-sc/OFL.txt",
+          "licenseSha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2"
+        },
+        {
+          "path": "fonts/noto-sans-devanagari/NotoSansDevanagari-Regular.ttf",
+          "sha256": "573e525d9f4923d34645fe752475419f45f8dec5a8e43f3e83c5c5f43d1f2ff9",
+          "bytes": 277680,
+          "licensePath": "fonts/noto-sans-devanagari/OFL.txt",
+          "licenseSha256": "a216f6f8d85c7228093e0ee5e258d9d377e6671f68acb4db1930b29583d0f331"
+        },
+        {
+          "path": "fonts/noto-sans-georgian/NotoSansGeorgian.ttf",
+          "sha256": "dc591156f36842d38996c4a7a17fee9bb58e45da3e2cac7a31b7d33de700adb9",
+          "bytes": 231988,
+          "licensePath": "fonts/noto-sans-georgian/OFL.txt",
+          "licenseSha256": "8c02263c5d73d40544f9ed91e30c4e947407057a3cc430d7b786189aeceff6df"
+        },
+        {
+          "path": "fonts/noto-sans-hebrew/NotoSansHebrew-Regular.ttf",
+          "sha256": "671951828bd5c95db818e5bb12dcea2d0c0dda00311888522be061ee6835125e",
+          "bytes": 66156,
+          "licensePath": "fonts/noto-sans-hebrew/OFL.txt",
+          "licenseSha256": "9b9fe028b5ba74d231659a1bbaf0ed09b11e759d1ca6a070999e16d151616b47"
+        },
+        {
+          "path": "fonts/noto-sans-symbols-2/NotoSansSymbols2-Regular.ttf",
+          "sha256": "7d5fb73b7ca67a6798101741f5d280a3d016a56a197afcd4199dbb57b4b82a21",
+          "bytes": 1233128,
+          "licensePath": "fonts/noto-sans-symbols-2/OFL.txt",
+          "licenseSha256": "b118dd41337806a5d4797052c77caf3bd096aed783e5eb21b4d11154351e1ac0"
+        },
+        {
+          "path": "fonts/noto-sans-symbols/NotoSansSymbols.ttf",
+          "sha256": "f7e7e04b4a24b6c78893d50cbfd2b2f6cae49617ab047bfef668d252adb128f7",
+          "bytes": 372684,
+          "licensePath": "fonts/noto-sans-symbols/OFL.txt",
+          "licenseSha256": "b118dd41337806a5d4797052c77caf3bd096aed783e5eb21b4d11154351e1ac0"
+        },
+        {
+          "path": "fonts/noto-sans-thai/NotoSansThai.ttf",
+          "sha256": "5a1c559bb539583c8a1fd99d1c5b9491e5e14478c9cd2bd0970d5c3096cc9ef8",
+          "bytes": 218652,
+          "licensePath": "fonts/noto-sans-thai/OFL.txt",
+          "licenseSha256": "2e98fd23a52d253db8612cd5942c8f2ff4111b21d2367050fdca91d8ccc374a0"
+        },
+        {
+          "path": "fonts/shippori-mincho/ShipporiMincho-Regular.ttf",
+          "sha256": "769b5269f0f9bc6534b352c0e6bd856a566e03ff788f107191c2d835863570b2",
+          "bytes": 8677284,
+          "licensePath": "fonts/shippori-mincho/OFL.txt",
+          "licenseSha256": "41fba056279be5f45ff9a99e44b7b53897b42732f5806d8e666e0ab49ac6bd38"
+        }
+      ],
+      "omittedOptionalUncompiledFaces": 0
+    },
+    "081d74d3bda0b8632a67b295cc7b8ecfdd9b4e078b4aa58f110ba2b7ea6c306e": {
+      "manifestSha256": "e825709cd46ff7abe213c141e981c0c11e098195a134951e95dada85eaea778a",
+      "served": [
+        {
+          "path": "fonts/5a1c559bb539583c/NotoSansThai.ttf",
+          "sha256": "5a1c559bb539583c8a1fd99d1c5b9491e5e14478c9cd2bd0970d5c3096cc9ef8",
+          "bytes": 218652,
+          "licensePath": "fonts/5a1c559bb539583c/OFL.txt",
+          "licenseSha256": "2e98fd23a52d253db8612cd5942c8f2ff4111b21d2367050fdca91d8ccc374a0"
+        },
+        {
+          "path": "fonts/63111b5b2e074dd4/NotoSansArabic.ttf",
+          "sha256": "63111b5b2e074dd48cc67692e0a2726d86ee94c1c37fe8598257b7b4e87e869e",
+          "bytes": 844676,
+          "licensePath": "fonts/63111b5b2e074dd4/OFL.txt",
+          "licenseSha256": "07fc70bfeb985cc1a87a8587d0a0c80bab11c86c9dc3fd95b6f0cb332f983e96"
+        },
+        {
+          "path": "fonts/dc591156f36842d3/NotoSansGeorgian.ttf",
+          "sha256": "dc591156f36842d38996c4a7a17fee9bb58e45da3e2cac7a31b7d33de700adb9",
+          "bytes": 231988,
+          "licensePath": "fonts/dc591156f36842d3/OFL.txt",
+          "licenseSha256": "8c02263c5d73d40544f9ed91e30c4e947407057a3cc430d7b786189aeceff6df"
+        }
+      ],
+      "omittedOptionalUncompiledFaces": 30
+    }
+  },
+  "apps": [
+    {
+      "id": "photocraft",
+      "upstream": "v0.17.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "b8c3f3aa8e2918032cadc0e042664414a03be333",
+      "sourcePatchSha256": "9f00a2d9dc7cb8f9f3de853ef5385c241a355ec588c08a998e8bff6c275a62ec",
+      "sourcePatchExactReverseCheck": true,
+      "nativeArchiveSha256": "5259f9c428c8ee3478c35500ece98713561cafc050e4c9eb354a5050f36eb2b8",
+      "upstreamBrowserArchiveSha256": "9dbc979e138e83136d5958acd0cf7d1832aeae5095409eb4691dca577db5fc99",
+      "coreSha256": "faae36626ba5bc16bdfcf42ca5e66cf864641e84571785615a826536068f4b2a",
+      "adapterSha256": "a6a7cd602459ad84759dcfbdd7eb17113efc9e40c276ff88c8c195f1520bca3e",
+      "adapterByteReproduction": true,
+      "adapterInputPaths": [
+        "apps/photocraft/adapter.mjs",
+        "apps/photocraft/container.mjs",
+        "apps/photocraft/package.mjs",
+        "lib/agent-edit.mjs",
+        "lib/asset-picker.mjs",
+        "lib/editor-client.mjs",
+        "lib/name-picker.mjs",
+        "lib/package.mjs",
+        "lib/save-coordinator.mjs",
+        "node_modules/@noble/hashes/_blake.js",
+        "node_modules/@noble/hashes/_md.js",
+        "node_modules/@noble/hashes/_u64.js",
+        "node_modules/@noble/hashes/blake2.js",
+        "node_modules/@noble/hashes/blake3.js",
+        "node_modules/@noble/hashes/sha2.js",
+        "node_modules/@noble/hashes/utils.js",
+        "node_modules/fzstd/esm/index.mjs",
+        "node_modules/lossless-json/lib/esm/LosslessNumber.js",
+        "node_modules/lossless-json/lib/esm/config.js",
+        "node_modules/lossless-json/lib/esm/index.js",
+        "node_modules/lossless-json/lib/esm/numberParsers.js",
+        "node_modules/lossless-json/lib/esm/parse.js",
+        "node_modules/lossless-json/lib/esm/revive.js",
+        "node_modules/lossless-json/lib/esm/reviveDate.js",
+        "node_modules/lossless-json/lib/esm/stringify.js",
+        "node_modules/lossless-json/lib/esm/types.js",
+        "node_modules/lossless-json/lib/esm/utils.js"
+      ],
+      "fonts": {
+        "commit": "b076417b5880bd4154bd22f00695b1d28c6bea83",
+        "manifestSha256": "e825709cd46ff7abe213c141e981c0c11e098195a134951e95dada85eaea778a",
+        "mode": "external checked font files",
+        "assetsReportSha256": "f6bb3c54e9f5b05b2dd923e4f19c1f2a47bfe34d584ad7f1ea52aea6126b3de7",
+        "servedFaces": 13,
+        "omittedOptionalUncompiledFaces": 0
+      },
+      "observations": {
+        "fixture": "160 × 120 layered image",
+        "browserEdit": "Pixel layer 3 opacity changed to 65%",
+        "nativeReopen": "Two layers retained; layer 3 opacity approximately 0.65",
+        "nativeContinuation": "Layer 3 changed to 40% opacity"
+      },
+      "additionalIsolatedHostLoop": {
+        "status": "passed",
+        "scope": "Local editor and isolated filesystem-backed immutable host receipt; no BFF or private Storage in this additional loop",
+        "proofSha256": "73b4e7ead5836822fddfce6c6ad5a50a31fd6c69468a8ce59b5a7f41561fad90",
+        "confirmedSaves": 1
+      },
+      "actualBffLoop": {
+        "status": "passed",
+        "checkedAt": "2026-10-29T23:34:15.988Z",
+        "proofSha256": "d728a5a777aacccdcaab91c4e8f123ba217711b0aa867fb64314e207c4085a44",
+        "nativeEvidenceSha256": "c9409444c52083b98bf4d3cdeb22dc48b2974aa4b29a0f4bf76b72d1a557468c",
+        "exactAsset": true,
+        "exactBase": true,
+        "confirmedSaves": 1,
+        "savedFilesVerified": 1,
+        "savedMasterSha256": "91f3604b36febf454e94963104c1fbc144080574dcdd8e775b69ae638ebbc548",
+        "finalDirty": false,
+        "finalPending": false,
+        "finalError": null,
+        "browserErrors": 0,
+        "assetErrors": 0,
+        "nativeAssertions": {
+          "savedLayers": 2,
+          "savedOpacity": 0.6499999761581421,
+          "continuedOpacity": 0.4000000059604645
+        }
+      }
+    },
+    {
+      "id": "vectorcraft",
+      "upstream": "v0.18.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "68b68a30acad9b3d8a72802b35f43b82e2bd7d3a",
+      "sourcePatchSha256": "8ee8b15043bce91f0da13d2b23a9346fabc7b97154cb05d35f28e7696f8ebe99",
+      "sourcePatchExactReverseCheck": true,
+      "nativeArchiveSha256": "76948b50ef78dd482a6ece06f10b7047937bbc0c05f5cf6bc43d88b07f74d826",
+      "upstreamBrowserArchiveSha256": "3eec3f90593b900ea364837dc0fbb8b2c855e4de54452b75a6426121c98f9b9e",
+      "coreSha256": "1f60ebc97bfee594ea4365fb41794713a13047cc1636b1c59d1b3a793210b909",
+      "adapterSha256": "c258194cdd6c81bec74905d6dbaee58b29a1cd49ef3445030bc9cbbff2c94935",
+      "adapterByteReproduction": true,
+      "adapterInputPaths": [
+        "apps/vectorcraft/adapter.mjs",
+        "apps/vectorcraft/package.mjs",
+        "lib/agent-edit.mjs",
+        "lib/asset-picker.mjs",
+        "lib/editor-client.mjs",
+        "lib/package.mjs",
+        "lib/save-coordinator.mjs",
+        "node_modules/@noble/hashes/_md.js",
+        "node_modules/@noble/hashes/_u64.js",
+        "node_modules/@noble/hashes/sha2.js",
+        "node_modules/@noble/hashes/utils.js",
+        "node_modules/lossless-json/lib/esm/LosslessNumber.js",
+        "node_modules/lossless-json/lib/esm/config.js",
+        "node_modules/lossless-json/lib/esm/index.js",
+        "node_modules/lossless-json/lib/esm/numberParsers.js",
+        "node_modules/lossless-json/lib/esm/parse.js",
+        "node_modules/lossless-json/lib/esm/revive.js",
+        "node_modules/lossless-json/lib/esm/reviveDate.js",
+        "node_modules/lossless-json/lib/esm/stringify.js",
+        "node_modules/lossless-json/lib/esm/types.js",
+        "node_modules/lossless-json/lib/esm/utils.js"
+      ],
+      "fonts": {
+        "commit": "b076417b5880bd4154bd22f00695b1d28c6bea83",
+        "manifestSha256": "e825709cd46ff7abe213c141e981c0c11e098195a134951e95dada85eaea778a",
+        "mode": "external checked font files",
+        "assetsReportSha256": "081d74d3bda0b8632a67b295cc7b8ecfdd9b4e078b4aa58f110ba2b7ea6c306e",
+        "servedFaces": 3,
+        "omittedOptionalUncompiledFaces": 30
+      },
+      "observations": {
+        "fixture": "Layer, rectangle and ellipse",
+        "browserEdit": "Added a second rectangle",
+        "nativeReopen": "Four objects: one layer, two rectangles and one ellipse",
+        "nativeContinuation": "Added a second ellipse; five objects"
+      },
+      "additionalIsolatedHostLoop": {
+        "status": "passed",
+        "scope": "Local editor and isolated filesystem-backed immutable host receipt; no BFF or private Storage in this additional loop",
+        "proofSha256": "039bd6d1bbca9c06f5c715d407100542839fbe0f9bf2299cef37bfe9b6970fe8",
+        "confirmedSaves": 1
+      },
+      "actualBffLoop": {
+        "status": "passed",
+        "checkedAt": "2026-10-29T23:44:17.654Z",
+        "proofSha256": "7613084ca4f57d99b0c9ba09d79e205bea84c661061e050c4da067fda9508a89",
+        "nativeEvidenceSha256": "5547574be37dba177a746cc25c4ec688a8ddd95692a09e0126e35f7c9b964273",
+        "exactAsset": true,
+        "exactBase": true,
+        "confirmedSaves": 1,
+        "savedFilesVerified": 1,
+        "savedMasterSha256": "21140ce247d8a686d902568d74ddc28d11f777753ccec41ca5fe48474f41ac45",
+        "finalDirty": false,
+        "finalPending": false,
+        "finalError": null,
+        "browserErrors": 0,
+        "assetErrors": 0,
+        "nativeAssertions": {
+          "savedObjects": 4,
+          "savedKinds": {
+            "Ellipse": 1,
+            "Layer": 1,
+            "Rectangle": 2
+          },
+          "continuedObjects": 5,
+          "continuedKinds": {
+            "Ellipse": 2,
+            "Layer": 1,
+            "Rectangle": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "lightcraft",
+      "upstream": "v0.15.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "e381c1ae6b2006ce627b243fe41697ce0d9608e0",
+      "sourcePatchSha256": "e58a7e8b432bc7c108a74b07821a5a837c11ae8ec8d0b22bd74a855e620a2fca",
+      "sourcePatchExactReverseCheck": true,
+      "nativeArchiveSha256": "0b1acdefc085babb334b9add290dd1a69b50e96efbdad2ec15d44bd6d64bfd3d",
+      "upstreamBrowserArchiveSha256": "fb46de80ad77814ea33efa3d2799edbaca3462c96da88347fb874f4d6fd15564",
+      "coreSha256": "36a411f5fc11fe3dbbfef26eacd8be88e762b605a878fa8655ddf96de9d5ab38",
+      "adapterSha256": "008c28714eb73f3d953cd444f328694d8b6b88326c12a0b4a4bd4f065c9dd776",
+      "adapterByteReproduction": true,
+      "adapterInputPaths": [
+        "apps/lightcraft/adapter.mjs",
+        "apps/lightcraft/package.mjs",
+        "lib/agent-edit.mjs",
+        "lib/asset-picker.mjs",
+        "lib/editor-client.mjs",
+        "lib/name-picker.mjs",
+        "lib/package.mjs",
+        "lib/save-coordinator.mjs",
+        "node_modules/@noble/hashes/_md.js",
+        "node_modules/@noble/hashes/_u64.js",
+        "node_modules/@noble/hashes/sha2.js",
+        "node_modules/@noble/hashes/utils.js",
+        "node_modules/lossless-json/lib/esm/LosslessNumber.js",
+        "node_modules/lossless-json/lib/esm/config.js",
+        "node_modules/lossless-json/lib/esm/index.js",
+        "node_modules/lossless-json/lib/esm/numberParsers.js",
+        "node_modules/lossless-json/lib/esm/parse.js",
+        "node_modules/lossless-json/lib/esm/revive.js",
+        "node_modules/lossless-json/lib/esm/reviveDate.js",
+        "node_modules/lossless-json/lib/esm/stringify.js",
+        "node_modules/lossless-json/lib/esm/types.js",
+        "node_modules/lossless-json/lib/esm/utils.js"
+      ],
+      "fonts": {
+        "commit": "b076417b5880bd4154bd22f00695b1d28c6bea83",
+        "manifestSha256": "e825709cd46ff7abe213c141e981c0c11e098195a134951e95dada85eaea778a",
+        "mode": "external checked font files",
+        "assetsReportSha256": "f6bb3c54e9f5b05b2dd923e4f19c1f2a47bfe34d584ad7f1ea52aea6126b3de7",
+        "servedFaces": 13,
+        "omittedOptionalUncompiledFaces": 0
+      },
+      "observations": {
+        "fixture": "Catalog, original PNG and develop history",
+        "browserEdit": "Contrast changed from 12 to 23",
+        "nativeReopen": "Contrast 23 retained; original PNG bytes unchanged",
+        "nativeContinuation": "Clarity changed to 8; contrast 23 retained"
+      },
+      "additionalIsolatedHostLoop": {
+        "status": "not separately run",
+        "scope": "BFF loop below supplies the actual native/browser/save/native continuation evidence"
+      },
+      "actualBffLoop": {
+        "status": "passed",
+        "checkedAt": "2026-10-30T00:04:53.921Z",
+        "proofSha256": "aa2f5730e574a5ff6f043e7cb919c704e57dcc2004947004f0a700380784afcf",
+        "nativeEvidenceSha256": "588f36bd615a43ceb57dea07cd431e59248d79fad16dd2d65e6b2a34a493daa6",
+        "exactAsset": true,
+        "exactBase": true,
+        "confirmedSaves": 1,
+        "savedFilesVerified": 5,
+        "savedMasterSha256": "c65cb2889e259b6f87c42f56d5560187f5957649b35da4bf4ad8f066c9b224ea",
+        "finalDirty": false,
+        "finalPending": false,
+        "finalError": null,
+        "browserErrors": 0,
+        "assetErrors": 0,
+        "nativeAssertions": {
+          "savedContrast": 23,
+          "continuedContrast": 23,
+          "continuedClarity": 8,
+          "originalSha256": "775ecd070cdb9bce914cfd9e47be1d829553cecf75e2a9a256b65a110eaaf2c1"
+        }
+      }
+    },
+    {
+      "id": "soundcraft",
+      "upstream": "v0.14.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "c6befe57afd0dc35fc4b86a01b2a19011ae1df1e",
+      "sourcePatchSha256": "7775759ec43df18c97da454b127ed58f8c38c32c71d29d522f3c0cea4553dd71",
+      "sourcePatchExactReverseCheck": true,
+      "nativeArchiveSha256": "2f83503feda6aa2c8d4bc12c44f571422c4389fc664a92bbed092d2bf1d500ad",
+      "upstreamBrowserArchiveSha256": "76290a220377d80aa62a3a196c8bcc8b28e01eaf5b0aad912fabf7eb5a9a767d",
+      "coreSha256": "b913221a22494ef02b847d97dce59297fbe5d853971de2c47afa6ffb2fab9570",
+      "adapterSha256": "7171d39cbddb0fefe841e9d9007ad110925d60fbea8afe213ad6457934f22dfd",
+      "adapterByteReproduction": true,
+      "adapterInputPaths": [
+        "apps/soundcraft/adapter.mjs",
+        "apps/soundcraft/package.mjs",
+        "lib/agent-edit.mjs",
+        "lib/asset-picker.mjs",
+        "lib/editor-client.mjs",
+        "lib/name-picker.mjs",
+        "lib/package.mjs",
+        "lib/save-coordinator.mjs",
+        "node_modules/@noble/hashes/_md.js",
+        "node_modules/@noble/hashes/_u64.js",
+        "node_modules/@noble/hashes/sha2.js",
+        "node_modules/@noble/hashes/utils.js",
+        "node_modules/lossless-json/lib/esm/LosslessNumber.js",
+        "node_modules/lossless-json/lib/esm/config.js",
+        "node_modules/lossless-json/lib/esm/index.js",
+        "node_modules/lossless-json/lib/esm/numberParsers.js",
+        "node_modules/lossless-json/lib/esm/parse.js",
+        "node_modules/lossless-json/lib/esm/revive.js",
+        "node_modules/lossless-json/lib/esm/reviveDate.js",
+        "node_modules/lossless-json/lib/esm/stringify.js",
+        "node_modules/lossless-json/lib/esm/types.js",
+        "node_modules/lossless-json/lib/esm/utils.js"
+      ],
+      "fonts": {
+        "mode": "No external supplier font checkout"
+      },
+      "observations": {
+        "fixture": "Instrument track and two MIDI notes",
+        "browserEdit": "Track volume changed to −4 dB",
+        "nativeReopen": "−4 dB and both MIDI notes retained",
+        "nativeContinuation": "Track volume changed to −6 dB"
+      },
+      "additionalIsolatedHostLoop": {
+        "status": "passed",
+        "scope": "Local editor and isolated filesystem-backed immutable host receipt; no BFF or private Storage in this additional loop",
+        "proofSha256": "d41d4a5da2e995487ee3c0d453335f2a479458de04d9001615c0fbd7a54af450",
+        "confirmedSaves": 1
+      },
+      "actualBffLoop": {
+        "status": "passed",
+        "checkedAt": "2026-10-29T23:19:17.731Z",
+        "proofSha256": "613674671c44691ed69222fca07dd8a0974e57cc4954b4d891670ec26d556481",
+        "nativeEvidenceSha256": "e0a0674f53267ef39e2b1eaa69cc1badd53bddc05d30781ec2c22d8e25425ce8",
+        "exactAsset": true,
+        "exactBase": true,
+        "confirmedSaves": 1,
+        "savedFilesVerified": 1,
+        "savedMasterSha256": "c8f91255bf5aad36a1fbd1c933b37ed0f8deb95c06238b4f401ce057c6fc7184",
+        "finalDirty": false,
+        "finalPending": false,
+        "finalError": null,
+        "browserErrors": 0,
+        "assetErrors": 0,
+        "nativeAssertions": {
+          "savedVolumeDb": -4,
+          "continuedVolumeDb": -6,
+          "midiNotesRetained": 2
+        }
+      }
+    },
+    {
+      "id": "designcraft",
+      "upstream": "v0.14.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "7da69c16ce221f46e8f27cb41e0c88167c8be416",
+      "sourcePatchSha256": "cb7169475380a835556385d0ddf35054c2293a92c85ca1cd6f956d554aed3c30",
+      "sourcePatchExactReverseCheck": true,
+      "nativeArchiveSha256": "25c87be759d35a81ca44e1f625ed4304b16e5aab6a03a1051bca498a81bfc547",
+      "upstreamBrowserArchiveSha256": "7d7e5f24d49b07be6c21d9b571f7edd3763bc9f9dd72a9a1dcc61ebd63bcc6bb",
+      "coreSha256": "3d85aa0b13d3be21fda251b5ccf2070979a33b15ef7b0641c85ec9027ea52fc7",
+      "adapterSha256": "7d8d37a916d5ad3f1531ccf19358dec24233bdf55062c0ac885941c5d2af677f",
+      "adapterByteReproduction": true,
+      "adapterInputPaths": [
+        "apps/designcraft/adapter.mjs",
+        "apps/designcraft/container.mjs",
+        "apps/designcraft/package.mjs",
+        "lib/agent-edit.mjs",
+        "lib/asset-picker.mjs",
+        "lib/editor-client.mjs",
+        "lib/name-picker.mjs",
+        "lib/package.mjs",
+        "lib/save-coordinator.mjs",
+        "node_modules/@noble/hashes/_md.js",
+        "node_modules/@noble/hashes/_u64.js",
+        "node_modules/@noble/hashes/sha2.js",
+        "node_modules/@noble/hashes/utils.js",
+        "node_modules/lossless-json/lib/esm/LosslessNumber.js",
+        "node_modules/lossless-json/lib/esm/config.js",
+        "node_modules/lossless-json/lib/esm/index.js",
+        "node_modules/lossless-json/lib/esm/numberParsers.js",
+        "node_modules/lossless-json/lib/esm/parse.js",
+        "node_modules/lossless-json/lib/esm/revive.js",
+        "node_modules/lossless-json/lib/esm/reviveDate.js",
+        "node_modules/lossless-json/lib/esm/stringify.js",
+        "node_modules/lossless-json/lib/esm/types.js",
+        "node_modules/lossless-json/lib/esm/utils.js"
+      ],
+      "fonts": {
+        "commit": "b076417b5880bd4154bd22f00695b1d28c6bea83",
+        "manifestSha256": "e825709cd46ff7abe213c141e981c0c11e098195a134951e95dada85eaea778a",
+        "mode": "embedded upstream build input; supplier licenses included"
+      },
+      "observations": {
+        "fixture": "Two-page layout with editable story and rectangle",
+        "browserEdit": "Added a rectangle on the first spread",
+        "nativeReopen": "Two pages, three first-spread items and exact story text retained",
+        "nativeContinuation": "Added a fourth first-spread item; both pages and story retained"
+      },
+      "additionalIsolatedHostLoop": {
+        "status": "passed",
+        "scope": "Local editor and isolated filesystem-backed immutable host receipt; no BFF or private Storage in this additional loop",
+        "proofSha256": "341bffe3d8f959607a1d06672299923309f09b41582965dfed4f24b93f6dacd5",
+        "confirmedSaves": 1
+      },
+      "actualBffLoop": {
+        "status": "passed",
+        "checkedAt": "2026-10-30T00:07:59.272Z",
+        "proofSha256": "1975572fd1eb8bcb7351e79d1b6c9c4128731f4082acf34af2eb71d0bb5d96f1",
+        "nativeEvidenceSha256": "8cc127620176645ec40f9d88664f6c383070223f856ba2f3ba61cac7aa298ad5",
+        "exactAsset": true,
+        "exactBase": true,
+        "confirmedSaves": 1,
+        "savedFilesVerified": 1,
+        "savedMasterSha256": "d44057caeb18e94c494743d2d7190440f2edc9e1049fa3fcc40a1684b74b932f",
+        "finalDirty": false,
+        "finalPending": false,
+        "finalError": null,
+        "browserErrors": 0,
+        "assetErrors": 0,
+        "nativeAssertions": {
+          "pages": 2,
+          "savedFirstSpreadItems": 3,
+          "continuedFirstSpreadItems": 4,
+          "editableStorySha256": "69b6e72d1060a0322151f417df22b8449bf430b2b2373f75650b1163b0b25c71"
+        }
+      }
+    },
+    {
+      "id": "figcraft",
+      "upstream": "v0.12.1",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "ef9721c5b9d0f1cc19a74449cbe175fc06bf8efa",
+      "sourcePatchSha256": "e82aaf764e600fb5643ada7639dc5c4d178e4438f4164bbecc2d1c61989a1487",
+      "sourcePatchExactReverseCheck": true,
+      "nativeArchiveSha256": "00a29f4cc382807d840f5d3e9b59f4c8829356789afbb956a0964918295e49dd",
+      "upstreamBrowserArchiveSha256": "8f52f52d4897d35b14c2a347c44ab6362b60b93d6a2f54a17d218111b9006c37",
+      "coreSha256": "c201d55f5cce720f5a7c0d6217b37c26dd8788b26ddc4d66dafed85443a620dd",
+      "adapterSha256": "8fdc8414e2082cf31835c0a7ea5f50ce40527d54c07b1495c92342380dac8b93",
+      "adapterByteReproduction": true,
+      "adapterInputPaths": [
+        "apps/figcraft/adapter.mjs",
+        "apps/figcraft/package.mjs",
+        "lib/agent-edit.mjs",
+        "lib/asset-picker.mjs",
+        "lib/editor-client.mjs",
+        "lib/name-picker.mjs",
+        "lib/package.mjs",
+        "lib/save-coordinator.mjs",
+        "node_modules/@noble/hashes/_md.js",
+        "node_modules/@noble/hashes/_u64.js",
+        "node_modules/@noble/hashes/sha2.js",
+        "node_modules/@noble/hashes/utils.js"
+      ],
+      "fonts": {
+        "commit": "37827adc41fd165f9a9234ac40f94dbad353aa69",
+        "manifestSha256": "e825709cd46ff7abe213c141e981c0c11e098195a134951e95dada85eaea778a",
+        "mode": "embedded upstream build input; supplier licenses included"
+      },
+      "observations": {
+        "fixture": "Page, frame and rectangle",
+        "browserEdit": "Added an ellipse",
+        "nativeReopen": "Four nodes and original frame retained",
+        "nativeContinuation": "Added a rectangle; five nodes"
+      },
+      "additionalIsolatedHostLoop": {
+        "status": "passed",
+        "scope": "Local editor and isolated filesystem-backed immutable host receipt; no BFF or private Storage in this additional loop",
+        "proofSha256": "e800257f4aa4da31c4239924feb00e90481c6d5e38e3c3e029dd89dbdd94ad81",
+        "confirmedSaves": 1
+      },
+      "actualBffLoop": {
+        "status": "passed",
+        "checkedAt": "2026-10-30T00:02:52.308Z",
+        "proofSha256": "e03dab6ea3c52ae9e5af03b54e4a15e732c8d7ccc3879ba8f5af460e0b217c04",
+        "nativeEvidenceSha256": "632cb0d0b1612e569c22ac84998132cfe9474c5b9fa1239f8a8edd7f2f470615",
+        "exactAsset": true,
+        "exactBase": true,
+        "confirmedSaves": 1,
+        "savedFilesVerified": 1,
+        "savedMasterSha256": "9ec5bc0faa66526255108af7b1ce1be09c21d819fc5be649c02919bd1316853b",
+        "finalDirty": false,
+        "finalPending": false,
+        "finalError": null,
+        "browserErrors": 0,
+        "assetErrors": 0,
+        "nativeAssertions": {
+          "savedNodes": 4,
+          "continuedNodes": 5,
+          "originalFrameRetained": true
+        }
+      }
+    }
+  ]
+}
