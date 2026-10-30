@@ -37,9 +37,11 @@
   "runtimeSource": "833e70ab99480f3d6c779591b44fa10e6a031af6",
   "workstationClient": "0.2.0",
   "migrations": {
-    "entries": 29,
-    "last": "0028_single_robyn_workstation.sql",
-    "changed": false
+    "entries": 30,
+    "last": "0029_studio_budget_default.sql",
+    "changedByResourceUpdate": false,
+    "ledgerSha256": "b3758e5eef831bb334baeb143768b9f53f15b362e679afa2386be3f6445a36fe",
+    "verifiedBy": "docs/acceptance/settings-budget-release-20261030.json"
   },
   "editorPinsChanged": false,
   "sources": [
@@ -68,5 +70,6 @@
   "defaultPolicy": {
     "file": "src/config/agents.ts",
     "sha256Lf": "8930cb28f579493428bcaa161b1d1f040a288fc09d8a06eed77e4a631bbf881e"
-  }
+  },
+  "webBaseline": "0a9b16c2205a207b893998745c163c0d1e2bef95"
 }
