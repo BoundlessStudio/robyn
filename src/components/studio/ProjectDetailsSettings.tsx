@@ -5,7 +5,7 @@ import {apiFetch} from "@/lib/api";
 import type {ProjectSummary} from "@/studio/assets";
 import type {ProjectSectionDetails} from "./ProjectSection";
 
-export function ProjectDetailsSettings({project,activity,onProjectChange}:{project:ProjectSummary}&ProjectSectionDetails) {
+export function ProjectDetailsSettings({project,onProjectChange}:{project:ProjectSummary}&Pick<ProjectSectionDetails,"onProjectChange">) {
   const [name,setName]=useState(project.name),[brief,setBrief]=useState(project.brief);
   const [busy,setBusy]=useState<"save"|"status"|null>(null),[error,setError]=useState(""),[notice,setNotice]=useState("");
 
@@ -27,7 +27,7 @@ export function ProjectDetailsSettings({project,activity,onProjectChange}:{proje
     }catch(reason){setError((reason as Error).message);}finally{setBusy(null);}
   }
 
-  return <>
+  return (
     <section id="project-details" className="studio-setting-section">
       <h2>Project details</h2>
       <p>Name your project and keep its creative direction here.</p>
@@ -43,12 +43,15 @@ export function ProjectDetailsSettings({project,activity,onProjectChange}:{proje
       {error&&<p role="alert" className="studio-error">{error}</p>}
       {notice&&<p role="status" className="studio-success">{notice}</p>}
     </section>
-    <section className="studio-setting-section">
-      <h2>Project activity</h2>
-      {activity.length?<ol className="project-activity">{activity.map(event=><li key={event.id}>
+  );
+}
+
+export function ProjectActivitySettings({activity}:Pick<ProjectSectionDetails,"activity">) {
+  return <aside className="studio-setting-section studio-settings-activity" aria-labelledby="project-activity-title">
+      <h2 id="project-activity-title">Project activity</h2>
+      {activity.length?<ol className="project-activity" tabIndex={0} aria-label="Project activity history">{activity.map(event=><li key={event.id}>
         <strong>{event.kind==="revision.committed"?"A new revision was saved":event.kind==="revision.conflict"?"A conflicting save was preserved":event.kind==="asset.forked"?"A revision became a new asset":event.kind}</strong>
         <small>{new Date(event.created_at).toLocaleString()}</small>
       </li>)}</ol>:<p className="studio-muted">Saves and creative handoffs will appear here.</p>}
-    </section>
-  </>;
+    </aside>;
 }

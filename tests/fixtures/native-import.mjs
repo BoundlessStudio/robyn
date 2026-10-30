@@ -132,6 +132,7 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
           if(input.mode!=='automatic')return route.fulfill({status:409,json:{error:{message:'This saved allowance change needs recovery before a new change.'}}});
           const prior=state.budgetChanges.get(input.operationId);
           if(prior)assert.deepEqual(input,prior);else state.budgetChanges.set(input.operationId,input);
+          state.allowance=input.monthlyLimitMicros;
           state.budget={...state.budget,configured:true,employees:state.budget.employees.map(employee=>({...employee,monthlyCapMicros:input.monthlyLimitMicros,availableMicros:input.monthlyLimitMicros})),policy:{state:'synced',operationId:input.operationId,pendingRequest:input,mode:'automatic'},summary:{...state.budget.summary,monthlyLimitMicros:input.monthlyLimitMicros,availableMicros:input.monthlyLimitMicros}};
           if(state.failBudgetReply)return route.fulfill({status:503,json:{error:{message:'The allowance acknowledgement was lost.'}}});
         }

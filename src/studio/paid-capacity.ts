@@ -11,6 +11,7 @@ import {budgetMicros,budgetPeriod,isCurrentRobyn,retiredStudioSpend,unsettledMed
 import {dbFailure} from "./server";
 
 const stopped=(reason:string,code="studio_budget_sync_required")=>({availableMicros:0,reason,code});
+const aiHelperDisabled=()=>stopped("The AI helper is off because the Studio budget is $0. Set a budget above $0 in Settings to enable it.","ai_helper_disabled");
 type CapIntent={employeeId:string;instanceId:string;period:string;monthlyLimitMicros:number;observedCapMicros:number;targetCapMicros:number;leaseId?:string};
 type Policy={monthly_limit_micros:number;sync_state:string;allocations:Record<string,number>;cap_sync?:CapIntent|null};
 async function policyFor(db:DB,workspaceId:string):Promise<Policy|null> {
@@ -86,6 +87,9 @@ export async function paidCapacity(db:DB,employee:StudioEmployee,excludeMediaJob
   if(policy&&policy.sync_state!=="synced")return stopped("The Studio allowance update needs to finish.");
   const authorized=budgetMicros(policy?.monthly_limit_micros??employee.monthly_cap_micros??0);
   if(policy&&(Object.keys(policy.allocations??{}).length!==1||Number(policy.allocations[employee.id])!==authorized))return stopped("The shared Robyn allowance needs to be reconciled.");
+  // A prior provider-write receipt may still need observation; zero must not
+  // strand that recovery or authorize another write. No AI work is admitted.
+  if(authorized===0&&!policy?.cap_sync)return aiHelperDisabled();
   const retired=await retiredStudioSpend(db,employee.workspace_id,budgetPeriod(),employee.instance_id),holds=await unsettledMediaHolds(db,employee.workspace_id,excludeMediaJob);
   if(!employee.instance_id){
     const available=Math.max(0,authorized-retired-holds);
@@ -108,6 +112,7 @@ export async function paidCapacity(db:DB,employee:StudioEmployee,excludeMediaJob
     if(policy&&budget.monthly_cap_micros>current.providerCapMicros)return stopped("The updated workstation allowance needs to be synchronized.");
   }catch{return stopped("Existing one-time headroom needs to be reconciled with the Studio allowance.");}
   const available=Math.max(0,Math.min(managedHeadroom(budget),Math.max(0,authorized-retired-usage.total_micros))-holds);
+  if(authorized===0)return aiHelperDisabled();
   if(available&&(await agent37.getBilling()).balance_usd<=0)return stopped("The Studio AI service needs funding. Contact your Studio operator; your work is preserved.","studio_funding_required");
   return {availableMicros:available,reason:available?null:"Robyn has no uncommitted AI allowance. Manage the Studio allowance to continue.",code:available?null:"employee_budget_required"};
 }
