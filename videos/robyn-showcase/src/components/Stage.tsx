@@ -154,23 +154,64 @@ export const Reveal = ({
   );
 };
 
-// These captures are the real editor pixels. Crop out the historical QA shell.
+// Preserve the recorded editor pixels and their individual source dimensions.
+// Notes shows the saved document body below the retired Research toolbar.
+const captures = {
+  photocraft: {
+    file: "photocraft.png",
+    sourceWidth: 1440,
+    sourceHeight: 1000,
+    x: 184,
+    y: 88,
+    width: 1256,
+    height: 912,
+  },
+  filmcraft: {
+    file: "filmcraft.png",
+    sourceWidth: 1440,
+    sourceHeight: 1000,
+    x: 184,
+    y: 88,
+    width: 1256,
+    height: 912,
+  },
+  solidcraft: {
+    file: "solidcraft.png",
+    sourceWidth: 1600,
+    sourceHeight: 1000,
+    x: 0,
+    y: 0,
+    width: 1600,
+    height: 1000,
+  },
+  notes: {
+    file: "notes.jpg",
+    sourceWidth: 1440,
+    sourceHeight: 1000,
+    x: 184,
+    y: 130,
+    width: 1256,
+    height: 870,
+  },
+};
+
 export const EditorCapture = ({
   app,
   width,
   style,
 }: {
-  app: "photocraft" | "filmcraft" | "research";
+  app: keyof typeof captures;
   width: number;
   style?: CSSProperties;
 }) => {
   const { fps } = useVideoConfig();
-  const scale = width / 1256;
+  const capture = captures[app];
+  const scale = width / capture.width;
   return (
     <div
       style={{
         width,
-        height: 912 * scale,
+        height: capture.height * scale,
         position: "relative",
         overflow: "hidden",
         background: "#272727",
@@ -180,13 +221,13 @@ export const EditorCapture = ({
       <CanvasImage
         name="Actual editor capture"
         premountFor={fps}
-        src={staticFile(`editors/${app}.${app === "research" ? "jpg" : "png"}`)}
+        src={staticFile(`editors/${capture.file}`)}
         style={{
           position: "absolute",
-          left: -184 * scale,
-          top: -88 * scale,
-          width: 1440 * scale,
-          height: 1000 * scale,
+          left: -capture.x * scale,
+          top: -capture.y * scale,
+          width: capture.sourceWidth * scale,
+          height: capture.sourceHeight * scale,
           maxWidth: "none",
         }}
       />
@@ -199,7 +240,7 @@ const iconBackgrounds: Record<string, string> = {
   deckcraft: "#ff731b",
   gridcraft: "#209d59",
   cadcraft: "#16a8c2",
-  research: "#7472e8",
+  solidcraft: "#3487e8",
 };
 export const AppIcon = ({ id, size = 112 }: { id: string; size?: number }) => {
   const { fps } = useVideoConfig();

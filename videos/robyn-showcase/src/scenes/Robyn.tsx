@@ -2,11 +2,11 @@ import { interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 import { C, ease, mono, serif } from "../theme";
 import { AppIcon, Reveal, Stage } from "../components/Stage";
 
-export const Team = () => {
+export const Robyn = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   return (
-    <Stage chapter="A team for your imagination" number="04">
+    <Stage chapter="Conversation · Jobs · Review · Skills" number="04">
       <Reveal
         delay={0.15}
         style={{
@@ -18,7 +18,7 @@ export const Team = () => {
           letterSpacing: "-6px",
         }}
       >
-        A whole team.
+        One Robyn.
         <br />
         <span
           style={{
@@ -28,8 +28,41 @@ export const Team = () => {
             fontSize: 150,
           }}
         >
-          Your direction.
+          Every Craft.
         </span>
+      </Reveal>
+      <Reveal
+        delay={0.6}
+        style={{ position: "absolute", left: 1060, top: 244, width: 744 }}
+      >
+        <div
+          style={{
+            fontFamily: mono,
+            fontSize: 19,
+            letterSpacing: "2px",
+            color: C.muted,
+            marginBottom: 24,
+          }}
+        >
+          YOUR PROJECT
+        </div>
+        <div
+          style={{
+            display: "flex",
+            gap: 32,
+            fontSize: 28,
+            borderBottom: `1px solid ${C.line}`,
+            paddingBottom: 22,
+          }}
+        >
+          <span>Dashboard</span>
+          <span>Assets</span>
+          <span style={{ color: C.rust }}>Robyn</span>
+          <span>Settings</span>
+        </div>
+        <div style={{ fontSize: 29, marginTop: 23, color: C.muted }}>
+          One conversation across your tools.
+        </div>
       </Reveal>
       <svg
         width={1920}
@@ -103,7 +136,7 @@ export const Team = () => {
             color: "#b7c5a8",
           }}
         >
-          02 / CREATIVE DIRECTOR
+          02 / ROBYN
         </div>
         <div
           style={{
@@ -113,9 +146,9 @@ export const Team = () => {
             marginTop: 22,
           }}
         >
-          A plan.
+          One shared workspace.
           <br />
-          The right specialists.
+          All fourteen Crafts.
         </div>
       </Reveal>
       <Reveal
@@ -139,20 +172,32 @@ export const Team = () => {
             marginBottom: 22,
           }}
         >
-          03 / RESEARCH + 13 SPECIALISTS
+          03 / EDITABLE WORK
         </div>
         <div style={{ display: "flex", gap: 20 }}>
-          <AppIcon id="research" size={83} />
           <AppIcon id="photocraft" size={83} />
           <AppIcon id="wordcraft" size={83} />
           <AppIcon id="filmcraft" size={83} />
+          <AppIcon id="solidcraft" size={83} />
         </div>
       </Reveal>
       <Reveal
         delay={2.5}
-        style={{ position: "absolute", left: 112, top: 865, fontSize: 40 }}
+        style={{ position: "absolute", left: 112, top: 813, fontSize: 38 }}
       >
         Ask for a first draft. Review it. Make it yours.
+      </Reveal>
+      <Reveal
+        delay={3.1}
+        style={{
+          position: "absolute",
+          left: 112,
+          top: 882,
+          fontSize: 29,
+          color: C.muted,
+        }}
+      >
+        One monthly AI allowance. You set the limit in Settings.
       </Reveal>
     </Stage>
   );

@@ -15,8 +15,8 @@ import { BirdGuide, ContinuousBirdContext } from "./components/AsciiBird";
 import { Opening } from "./scenes/Opening";
 import { Crafts } from "./scenes/Crafts";
 import { RealTools } from "./scenes/RealTools";
-import { Team } from "./scenes/Team";
-import { Research } from "./scenes/Research";
+import { Robyn } from "./scenes/Robyn";
+import { BrowserNotes } from "./scenes/BrowserNotes";
 import { Media } from "./scenes/Media";
 import { Revisions } from "./scenes/Revisions";
 import { Closing } from "./scenes/Closing";
@@ -43,7 +43,7 @@ export const Showcase = ({ music }: ShowcaseProps) => {
             timing={linearTiming({ durationInFrames: 0.5 * fps })}
           />
           <TransitionSeries.Sequence
-            name="02 — Thirteen Crafts"
+            name="02 — Fourteen Crafts"
             durationInFrames={8 * fps}
             premountFor={fps}
           >
@@ -65,22 +65,22 @@ export const Showcase = ({ music }: ShowcaseProps) => {
             timing={linearTiming({ durationInFrames: 0.5 * fps })}
           />
           <TransitionSeries.Sequence
-            name="04 — Your creative team"
+            name="04 — One Robyn, every Craft"
             durationInFrames={8 * fps}
             premountFor={fps}
           >
-            <Team />
+            <Robyn />
           </TransitionSeries.Sequence>
           <TransitionSeries.Transition
             presentation={wipe({ direction: "from-left" })}
             timing={linearTiming({ durationInFrames: 0.5 * fps })}
           />
           <TransitionSeries.Sequence
-            name="05 — Follow your curiosity"
+            name="05 — Browser tools and Notes"
             durationInFrames={8 * fps}
             premountFor={fps}
           >
-            <Research />
+            <BrowserNotes />
           </TransitionSeries.Sequence>
           <TransitionSeries.Transition
             presentation={wipe({ direction: "from-left" })}

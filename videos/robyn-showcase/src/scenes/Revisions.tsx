@@ -2,7 +2,7 @@ import { C, mono, serif } from "../theme";
 import { EditorCapture, Reveal, Stage } from "../components/Stage";
 
 export const Revisions = () => (
-  <Stage dark chapter="A creative process you can continue" number="07">
+  <Stage dark chapter="Assets / Save and continue" number="07">
     <Reveal
       delay={0.15}
       style={{
@@ -43,10 +43,10 @@ export const Revisions = () => (
         width: 1060,
         borderTop: "1px solid #e9e8dc40",
         paddingTop: 23,
-        fontSize: 34,
+        fontSize: 32,
       }}
     >
-      Native files. Saved revisions. Room to keep going.
+      Your private Assets. Native files. Exact saved revisions.
     </Reveal>
     <Reveal
       delay={1.3}
@@ -99,7 +99,7 @@ export const Revisions = () => (
       <span style={{ fontFamily: mono, marginRight: 32, color: C.rust }}>
         03
       </span>
-      Continue with your specialist ↗
+      Continue with Robyn ↗
     </Reveal>
     <Reveal
       delay={3.5}
@@ -119,7 +119,10 @@ export const Revisions = () => (
       <span>.fcproj</span>
       <span> / </span>
       <span>.docx</span>
-      <span> / …</span>
+      <span> / </span>
+      <span>.sc</span>
+      <span> / </span>
+      <span>.md</span>
     </Reveal>
     <Reveal
       delay={1.2}
@@ -131,7 +134,7 @@ export const Revisions = () => (
         color: "#b7c5a8",
       }}
     >
-      SAVE. REOPEN. KEEP CREATING.
+      REOPEN. RESTORE. EXPORT.
     </Reveal>
   </Stage>
 );

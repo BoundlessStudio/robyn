@@ -54,7 +54,7 @@ export const RealTools = () => {
           top: 163,
           opacity: interpolate(
             frame,
-            [0.5 * fps, 1.2 * fps, 4.9 * fps, 5.25 * fps],
+            [0.5 * fps, 1.2 * fps, 3.4 * fps, 3.75 * fps],
             [0, 1, 1, 0],
             ease,
           ),
@@ -76,7 +76,12 @@ export const RealTools = () => {
           position: "absolute",
           left: 794,
           top: 163,
-          opacity: interpolate(frame, [5.05 * fps, 5.65 * fps], [0, 1], ease),
+          opacity: interpolate(
+            frame,
+            [3.5 * fps, 4.1 * fps, 6.55 * fps, 6.9 * fps],
+            [0, 1, 1, 0],
+            ease,
+          ),
         }}
       >
         <div style={{ fontSize: 27, marginBottom: 18 }}>
@@ -85,6 +90,26 @@ export const RealTools = () => {
         </div>
         <EditorCapture
           app="filmcraft"
+          width={1010}
+          style={{ border: "1px solid #e9e8dc44" }}
+        />
+      </Interactive.Div>
+      <Interactive.Div
+        name="SolidCraft — actual parametric 3D editor"
+        premountFor={fps}
+        style={{
+          position: "absolute",
+          left: 794,
+          top: 163,
+          opacity: interpolate(frame, [6.65 * fps, 7.25 * fps], [0, 1], ease),
+        }}
+      >
+        <div style={{ fontSize: 27, marginBottom: 18 }}>
+          SolidCraft{" "}
+          <span style={{ color: "#a8b89d" }}> / Parametric 3D models</span>
+        </div>
+        <EditorCapture
+          app="solidcraft"
           width={1010}
           style={{ border: "1px solid #e9e8dc44" }}
         />
