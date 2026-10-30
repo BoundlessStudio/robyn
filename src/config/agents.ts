@@ -13,11 +13,18 @@ export const SHAPE_PRESETS: Shape[] = [
   { label: "Max · 8 vCPU / 16 GB", cpu: 8, memory: 16, diskMin: 40, diskMax: 80 },
 ];
 
+// Provisioning policy is independent of the immutable workstation image release.
+export const STUDIO_WORKSTATION_DEFAULTS = {
+  resources: { cpu: 4, memory: 16, disk: 10 },
+  type: "default",
+  region: "us",
+  auto_sleep: true,
+  idle_timeout_seconds: 3600,
+} as const;
+
 export const DEFAULT_AGENT = {
   template: "agent37-hermes",
-  cpu: 2,
-  memory: 4,
-  disk: 6,
+  ...STUDIO_WORKSTATION_DEFAULTS.resources,
   monthlyCapUsd: 5,
 } as const;
 

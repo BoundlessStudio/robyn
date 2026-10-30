@@ -5,6 +5,7 @@ import path from "node:path";
 import { agent37 } from "@/lib/agent37";
 import type { DB } from "@/lib/auth";
 import type { Agent } from "@/lib/types";
+import { STUDIO_WORKSTATION_DEFAULTS } from "@/config/agents";
 import { hashEmployeeToken, issueEmployeeToken } from "./employee-auth";
 import { assignmentRpc } from "./assignment-server";
 import type { Assignment, AssignmentIdentity, StudioEmployee } from "./assignments";
@@ -47,7 +48,7 @@ export async function ensureEmployeeInstance(db: DB, identity: AssignmentIdentit
     const mayCreate=await assignmentRpc<boolean>(db,"claim_studio_employee_creation",creation);
     if(mayCreate){
       const cap=await initialWorkstationCap(db,employee);
-      instance=await agent37.createAgent({template,name:"Robyn",user:identity.userId,resources:image.resources,budget:{monthly_cap_micros:cap},auto_sleep:true,idle_timeout_seconds:900,
+      instance=await agent37.createAgent({...STUDIO_WORKSTATION_DEFAULTS,template,name:"Robyn",user:identity.userId,budget:{monthly_cap_micros:cap},
         metadata:{app_workspace:identity.workspaceId,studio_employee:employee.id,studio_provision_attempt:employee.provision_attempt}});
     }else{
       const matches=(await agent37.listAgents()).data.filter(i=>i.metadata?.app_workspace===identity.workspaceId&&i.metadata?.studio_employee===employee.id&&i.metadata?.studio_provision_attempt===employee.provision_attempt);
