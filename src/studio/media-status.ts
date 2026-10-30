@@ -12,7 +12,7 @@ const explanations: Record<string, string> = {
   media_too_large: "The source exceeds the pilot's 256 MiB media limit. Choose a smaller source. Any submitted charge remains recorded on this job.",
   media_proxy_too_large: "The editing copy exceeds the supported size. Support can inspect the existing source without buying it again.",
   media_duration_exceeds_pilot_limit: "The source exceeds the pilot's ten-minute media limit. Choose a shorter source.",
-  director_budget_required: "The Director needs more AI allowance. Adjust the Studio budget or cancel this unpaid job.",
+  director_budget_required: "Robyn needs more AI allowance. Adjust the Studio budget or cancel this unpaid job.",
 };
 export function mediaStatusMessage(code: string) {
   return explanations[code] ?? "This job needs attention. Reconnect the same job or contact support with its reference.";

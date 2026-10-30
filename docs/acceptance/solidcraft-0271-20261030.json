@@ -1,0 +1,160 @@
+{
+  "checkedAt": "2026-10-30T05:46:01.147Z",
+  "latestReleaseCutoff": "2026-10-30T05:12:39Z",
+  "scope": "Separately versioned SolidCraft 0.27.1 follow-up. Real pinned native fixture → actual immutable hosted WASM editor → local production BFF/private Storage acknowledgement → exact signed-download size/SHA-256 checks → pinned native continuation. This receipt covers local production BFF bytes, not a deployed-web follow-up or employee LLM turn. The same hosted saved graph also passed native continuation on the pinned shared 0.1.1 workstation.",
+  "passed": true,
+  "upstream": {
+    "release": "v0.27.1",
+    "publishedAt": "2026-10-30T04:24:22Z",
+    "sourceCommit": "aa1fe28ddff42cac2990a312765a1a6c50d97dfe",
+    "browserArchiveSha256": "3bd142af6fbc5b209738f7ddc69d58d9baf649085dc5bd718b61900f5c572a1f",
+    "nativeArchiveSha256": "bd4358dedee6d662dc7565eb84f978810b8940612bf156100b97cb46d01368ea",
+    "nativeExecutableSha256": "9c59e5ddc80e703c799b08b7a8368e715b57af8ca4d5710e62c3f5fe29bd1ff0",
+    "nativeVersion": "solidcraft-cli 0.27.1"
+  },
+  "browser": {
+    "adapterVersion": "0.1.2",
+    "hostedEditor": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/solidcraft/v0.27.1-0.1.2/",
+    "executableSha256": "999248f664e3d02edfb3376ef0cdbf9863e9682311c908a054972a3654e5c394",
+    "adapterSha256": "96ea8361216f7cb483fe425fd4f3a1df8f0afbc4523b65d1b059e7ab34622b77",
+    "sourcePatchSha256": "8ffd3c6b9bb45d87e76be0271709c005dc2c9563dae786f6339413bded1b828d",
+    "patchAppliedWithoutFuzz": true,
+    "upstreamMainAndUiPreservedOutsideExplicitHooks": true,
+    "redistributionNoticesCheckedAgainstPinnedSource": true,
+    "upstreamFontIconAndAssetFilesChecked": 10,
+    "releaseFiles": 22,
+    "adapterInputs": {
+      "apps/solidcraft/adapter.mjs": "26c2ccd93aac724167b2ada55d14e8b0715a20e9012dab376ef18ccc2512bd32",
+      "apps/solidcraft/container.mjs": "af767d8d200b52dea5461c5997b7083637e5963730587e547fd2ff52974bb8b4",
+      "apps/solidcraft/package.mjs": "9ce756b8c7a9fe5b4ba456bc4d76fb0deecea43b9712a2e2e451655b11ddd518",
+      "lib/agent-edit.mjs": "34d14b22e23c5289f88584c08c36223f44674260661314870206c17ff707bfd3",
+      "lib/asset-formats.mjs": "976a42834a8b9b9a474dda6e94fc53f11c65a885c17feabc219e02cf9054c97c",
+      "lib/asset-picker.mjs": "98ce06ce7c404c7cf8e47570b1def84c6b1eb262e3f0593bc42acf418564dd8c",
+      "lib/editor-client.mjs": "63173d02cd81bed839ae0f62e8ba325374999bf0a33b6ca2fed4d1c03710f32a",
+      "lib/name-picker.mjs": "bce06f482215159c8ab6c4c679b24d40222c9420827ad1990961d68e17e0c8ad",
+      "lib/package.mjs": "edb624687bb647b38cc8074789fe4473fee213222b779a3c7ebdfe3025de14e7",
+      "lib/save-coordinator.mjs": "b59b2e2c8fed651830f9094a556538b99643ecfe72f9eee4e38140b3525f4991",
+      "node_modules/@noble/hashes/_md.js": "60cf3010fda89e3e4d3f0e7ff1ce249e9c467f34b4fd41b6fd6101d9f69be763",
+      "node_modules/@noble/hashes/_u64.js": "b09da8c07fe8187c07649494cdb7cd0bcf13df90b506a9473d19e4d5f8c2e102",
+      "node_modules/@noble/hashes/sha2.js": "471746bba6ec4c6238ca41358d1d3b40b6ff31cf3363f0b4d550c649c1a8e83b",
+      "node_modules/@noble/hashes/utils.js": "037ad49adb78168b6b699598fd33f85f7877456b1d28b4d032e2a1a16807947c"
+    }
+  },
+  "testedSources": {
+    "servedWebCommit": "c4dc3ddabd9d139a722223542903b5bf120b92e1",
+    "runtimeBaseCommit": "9496ad94d9bccd51645aeecd84aaa0a44b9c2507",
+    "runtimeChanges": "SolidCraft 0.27.1 release lock; unchanged source patch and JS adapter inputs"
+  },
+  "roundTrip": {
+    "passed": true,
+    "actualHostedWasm": true,
+    "actualLocalProductionBff": true,
+    "privateStorageCommitsConfirmed": true,
+    "confirmedSaves": 5,
+    "downloadedFilesSizeAndSha256Verified": true,
+    "exactAsset": true,
+    "exactBase": true,
+    "nativeFormat": "solidcraft/44",
+    "portableRelativeLink": "parts/Child.sc",
+    "linkedChildSha256": "d95bc3ca43277929f7aebd9085ce10416def5f829c92f70d1ee2fcaf1a15e953",
+    "linkedChildUnchangedAcrossEverySave": true,
+    "initialNativeVolume": 6125,
+    "browserSavedVolume": 8125,
+    "nativeContinuationVolume": 11125,
+    "nativeContinuationSha256": "66dd3c6210831ecce1227a3f56d11e956dee2c952e98b8e759371ca9d478145e",
+    "actualSharedPickerOpened": true,
+    "saveAsAcknowledgementLostAfterActualCommit": true,
+    "saveAsFrozenRetryDeduplicated": true,
+    "laterEditsPreserved": true,
+    "copyPreservesOpenAsset": true,
+    "packageChecks": [
+      {
+        "mode": "initial-save",
+        "sha256": "9ca87108a6f0ed34e4ac1c0cf9f85a6f45b85e0858f956c4d33782f0e2110c2d",
+        "volume": 8125,
+        "files": 2,
+        "linkedChildSha256": "d95bc3ca43277929f7aebd9085ce10416def5f829c92f70d1ee2fcaf1a15e953"
+      },
+      {
+        "mode": "save-as",
+        "sha256": "8d2629ab67274d6ec1dc564e71459c713a29c87bda2c4cf8024dc0d61d114080",
+        "volume": 9125,
+        "files": 2,
+        "linkedChildSha256": "d95bc3ca43277929f7aebd9085ce10416def5f829c92f70d1ee2fcaf1a15e953"
+      },
+      {
+        "mode": "adopted-revision",
+        "sha256": "8964397732f167486e13ca7b0b2440af3fc2e175c4a1d4ca12decd9f6960110c",
+        "volume": 9525,
+        "files": 2,
+        "linkedChildSha256": "d95bc3ca43277929f7aebd9085ce10416def5f829c92f70d1ee2fcaf1a15e953"
+      },
+      {
+        "mode": "copy",
+        "sha256": "04a761a6cc3857c1b1ef8a5da70a124d56f345e07b5078303c086f3889fcadba",
+        "volume": 10125,
+        "files": 2,
+        "linkedChildSha256": "d95bc3ca43277929f7aebd9085ce10416def5f829c92f70d1ee2fcaf1a15e953"
+      },
+      {
+        "mode": "final",
+        "sha256": "04a761a6cc3857c1b1ef8a5da70a124d56f345e07b5078303c086f3889fcadba",
+        "volume": 10125,
+        "files": 2,
+        "linkedChildSha256": "d95bc3ca43277929f7aebd9085ce10416def5f829c92f70d1ee2fcaf1a15e953"
+      }
+    ],
+    "editorErrors": 0,
+    "missingHostedAssets": 0,
+    "localAndHostedSavedPackagesAndContinuationBytesMatch": true,
+    "localAndHostedScreenshotsMatch": true
+  },
+  "distribution": {
+    "releases": 80,
+    "retainedPublishedReleases": 79,
+    "retainedPublishedFilePaths": 36001,
+    "previousReleaseAndFileDescriptorsUnchanged": true,
+    "catalogSha256": "38ffa0851a4a80e847c39c113c7a67b8b335c7919a56f933436cb14f1214fa96",
+    "allUniqueHostedBytesVerified": true,
+    "uniqueObjects": 925,
+    "uploadedObjects": 5,
+    "existingObjects": 920,
+    "workerVersion": "c91d6411-1fea-4dd5-8cf5-1d4d7b635396"
+  },
+  "hashes": {
+    "localPrivateProof": "4aeb451ff504c5e1f1327b51eac872dd797ff7fc2dd99f8bdaa1fdd43ce97b29",
+    "hostedPrivateProof": "b1b0e6af27f20197cb4993263ba8b9b7d6ad4daba305af59e9cfe151e3ab30a1",
+    "immutableInputInventory": "99eaa13849b6b8ae169b1bca41fa39c7b6ce521f7c0600870cca8112ff7d1269",
+    "localScreenshot": "2598f71526e70bec877838ca206d8a2c0c075553ebb51e8a75ed6d710e6a9849",
+    "hostedScreenshot": "2598f71526e70bec877838ca206d8a2c0c075553ebb51e8a75ed6d710e6a9849",
+    "publicationProof": "100d38b0208448d749f1c358ff64371b64409e2c3da99b1b7565475adcb39aa4"
+  },
+  "visualReview": "Actual1600×1000 local and hosted screenshots reviewed: v0.27.1 UI, parametric block, linked component, two bodies and confirmed library-save footer.",
+  "limits": [
+    "Desktop Chromium/software WebGL exercised selected modelling/save operations; not every browser or feature."
+  ],
+  "validation": {
+    "runtimeTests": 104,
+    "solidcraftPackageTests": 3,
+    "workerDryRunPassed": true,
+    "independentCandidateAndRetainedReleaseReviewPassed": true,
+    "webSolidRegistrationTests": 8
+  },
+  "sharedNative": {
+    "passed": true,
+    "template": "robyn-studio-0-1-1@1",
+    "imageDigest": "sha256:23622a922f2ab7df9a45d6cfe64f42247954b31843e228ded96619ccefbbea0d",
+    "workstationClientVersion": "0.2.0",
+    "actualHostedSavedInput": true,
+    "inputFilesVerified": 2,
+    "inputFilesPreserved": true,
+    "browserVolumeMm3": 8125,
+    "nativeContinuationVolumeMm3": 11125,
+    "linkedChildPreserved": true,
+    "continuedSha256": "66dd3c6210831ecce1227a3f56d11e956dee2c952e98b8e759371ca9d478145e",
+    "continuedBytes": 7621,
+    "matchesLocalAndHostedContinuation": true,
+    "ownershipMirrorAndMaintenanceIdentityVerifiedBeforeEveryOperation": true,
+    "privateReceiptSha256": "4359ad4412cf25537221c54c342ab77baa22b57444994ba7d9191a78c564317c"
+  }
+}

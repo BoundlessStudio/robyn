@@ -1,7 +1,11 @@
 {
-  "version": "0.1.0",
-  "template": "robyn-studio-0-1-0@1",
-  "release": "sha256:ab0a9abd34d33f471df2f06a6f5bddbdd59651cd7030d3652e2fdde85932b0fc",
-  "resources": { "cpu": 2, "memory": 4, "disk": 6 },
+  "version": "0.1.1",
+  "template": "robyn-studio-0-1-1@1",
+  "release": "sha256:23622a922f2ab7df9a45d6cfe64f42247954b31843e228ded96619ccefbbea0d",
+  "resources": {
+    "cpu": 2,
+    "memory": 4,
+    "disk": 6
+  },
   "applications": 14
 }

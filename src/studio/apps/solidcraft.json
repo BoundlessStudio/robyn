@@ -29,14 +29,20 @@
     "cad"
   ],
   "editor": {
-    "adapterVersion": "0.1.1",
-    "release": "solidcraft-v0.27.0-robyn-0.1.1",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/solidcraft/v0.27.0-0.1.1/?robyn",
+    "adapterVersion": "0.1.2",
+    "release": "solidcraft-v0.27.1-robyn-0.1.2",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/solidcraft/v0.27.1-0.1.2/?robyn",
     "status": "verified"
   },
   "workstation": {
-    "template": "robyn-solidcraft-0-27-0@1",
-    "release": "sha256:2ec95df623e62566bd151d05eeebcf8826301f73d078e84405af62e19780c8e9",
-    "status": "verified"
+    "template": "robyn-studio-0-1-1@1",
+    "release": "sha256:23622a922f2ab7df9a45d6cfe64f42247954b31843e228ded96619ccefbbea0d",
+    "status": "verified",
+    "previousReleases": [
+      {
+        "template": "robyn-solidcraft-0-27-0@1",
+        "release": "sha256:2ec95df623e62566bd151d05eeebcf8826301f73d078e84405af62e19780c8e9"
+      }
+    ]
   }
 }

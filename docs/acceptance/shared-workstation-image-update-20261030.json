@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-10-30T05:50:32.358Z",
+  "passed": true,
+  "scope": "Owner-authorized idle canonical workstation image migration, held by an undispatched maintenance assignment. One persisted provider dispatch; positive GET and health confirmed the target before mirror update. No AI/model dispatch or media acquisition.",
+  "target": {
+    "template": "robyn-studio-0-1-1@1",
+    "imageDigest": "sha256:23622a922f2ab7df9a45d6cfe64f42247954b31843e228ded96619ccefbbea0d"
+  },
+  "verification": {
+    "sameInstanceAndPrimaryOwner": true,
+    "metadataUnchanged": true,
+    "resourcesUnchanged": true,
+    "budgetAndUsageUnchanged": true,
+    "workingDocumentsPreserved": true,
+    "taskConfigurationsPreserved": true,
+    "immutableClientBytesPreserved": true,
+    "oldRevokedCredentialsNotReplaced": true,
+    "mirrorUpdatedOnlyAfterPositiveTargetGet": true,
+    "providerUpdatePosts": 1,
+    "preservedFiles": 9
+  },
+  "instanceIdentitySha256": "e6ed8bc1c9bb6255ffc8fe636b5d612baa3fa0b379aecc8fa2e24edf5f375d96",
+  "maintenanceLeaseStillHeld": true,
+  "nativeAcceptancePending": true
+}
