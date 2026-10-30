@@ -25,14 +25,20 @@
     "storytelling"
   ],
   "editor": {
-    "adapterVersion": "0.2.2",
-    "release": "deckcraft-v0.9.0-robyn-0.2.2",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/deckcraft/v0.9.0-0.2.2/?robyn&policy=20261028",
+    "adapterVersion": "0.3.0",
+    "release": "deckcraft-v0.12.0-robyn-0.3.0",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/deckcraft/v0.12.0-0.3.0/?robyn",
     "status": "verified"
   },
   "workstation": {
-    "template": "robyn-deckcraft-0-9-0@1",
-    "release": "sha256:3dfcd2d3dd5333c261a3800b3d66acae6be286813f921e384dcfce9e816104d5",
-    "status": "verified"
+    "template": "robyn-deckcraft-0-12-0@1",
+    "release": "sha256:0d74f4a4f5311bb6e6580a3354d3f762e88eae4ce8536e86a3569c82d9fca450",
+    "status": "verified",
+    "previousReleases": [
+      {
+        "template": "robyn-deckcraft-0-9-0@1",
+        "release": "sha256:3dfcd2d3dd5333c261a3800b3d66acae6be286813f921e384dcfce9e816104d5"
+      }
+    ]
   }
 }

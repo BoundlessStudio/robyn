@@ -1,5 +1,6 @@
 import { research } from "@/studio/specialists/research";
 import { studioApps } from "@/studio/apps/registry";
+import { isAppReady } from "@/studio/manifest";
 
 const stories: Record<string, { lines: string[]; accent: string; copy: string; details: string[] }> = {
   photocraft: { lines: ["Reality,"], accent: "reimagined.", copy: "Your Photo Artist builds the image you can almost see. Layer, combine and reshape it in PhotoCraft, then put your own hands in the picture.", details: ["LAYERED IMAGES", "COMPOSITING", "YOUR OWN FINAL TOUCH"] },
@@ -15,12 +16,13 @@ const stories: Record<string, { lines: string[]; accent: string; copy: string; d
   deckcraft: { lines: ["An idea", "worth a"], accent: "spotlight.", copy: "Give your thinking a room-filling presence. Your Presentation Designer builds in DeckCraft, connecting the story, the images and the moments that matter.", details: ["PRESENTATIONS", "VISUAL STORYTELLING", "EDITABLE SLIDES"] },
   gridcraft: { lines: ["There’s art"], accent: "in the pattern.", copy: "A good spreadsheet can be a way of seeing. Your Spreadsheet Specialist works in GridCraft, helping information become something you can understand and shape.", details: ["SPREADSHEETS", "FORMULAS", "PATTERNS & POSSIBILITIES"] },
   cadcraft: { lines: ["Imagine it.", "Give it"], accent: "dimension.", copy: "Take a loose thought into precise space. Your CAD Designer draws in CADCraft, giving your idea geometry you can inspect, adjust and keep building on.", details: ["CAD DRAWING", "PRECISE GEOMETRY", "EDITABLE DXF"] },
+  solidcraft: { lines: ["An idea", "taking"], accent: "shape.", copy: "Explore an idea from every angle. Your Parametric 3D Designer builds in SolidCraft, with dimensions, sketches and a feature history you can keep shaping.", details: ["PARAMETRIC 3D", "SKETCHES & SOLIDS", "EDITABLE DESIGNS"] },
 };
 
 // Presentation order is editorial; identity, employees and the application count
 // still come from the independent integration registry. New apps get a fallback.
 const order = Object.keys(stories);
-export const craftTour = [...studioApps].sort((a, b) => {
+export const craftTour = studioApps.filter(isAppReady).sort((a, b) => {
   const ai = order.indexOf(a.id), bi = order.indexOf(b.id);
   return (ai < 0 ? order.length : ai) - (bi < 0 ? order.length : bi);
 }).map(app => ({ ...app, story: stories[app.id] ?? { lines: ["Another way"], accent: "to imagine.", copy: app.tagline, details: [app.employee.role.toUpperCase(), "REAL CREATIVE SOFTWARE", "EDITABLE WORK"] } }));

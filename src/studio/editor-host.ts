@@ -158,13 +158,22 @@ export function createEditorHost(options:{projectId:string;initialRef:AssetRef;s
       const prior=requests.get(message.requestId);
       if(prior){if(prior.operation!==message.operation)return Promise.reject(Error("Request ID already used."));return prior.result;}
       if(requests.size>=100){
-        const oldest=[...requests.entries()].find(([,request])=>request.settled);
+        // Browsing must not evict the most recent save receipt: an editor may
+        // still need it to recover a lost Save As acknowledgement.
+        const settled=[...requests.entries()].filter(([,request])=>request.settled);
+        const oldest=settled.find(([,request])=>request.operation!=="saveAsset")??settled[0];
         if(!oldest)return Promise.reject(Error("Too many active editor requests."));
         requests.delete(oldest[0]);
       }
       const result=dispatch(message);const request={operation:message.operation,result,settled:false};
       requests.set(message.requestId,request);
-      void result.then(()=>{request.settled=true;},()=>{request.settled=true;});
+      void result.then(()=>{request.settled=true;},()=>{
+        request.settled=true;
+        // Confirmed saves retain their original receipt across a lost bridge
+        // reply. A failed transfer may re-enter savePackage, which reconciles
+        // its immutable upload/revision before another commit attempt.
+        if(message.operation==="saveAsset"&&requests.get(message.requestId)===request)requests.delete(message.requestId);
+      });
       return result;
     },
   };

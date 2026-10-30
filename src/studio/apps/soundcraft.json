@@ -25,14 +25,20 @@
     "sound-design"
   ],
   "editor": {
-    "adapterVersion": "0.2.2",
-    "release": "soundcraft-v0.11.0-robyn-0.2.2",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/soundcraft/v0.11.0-0.2.2/?robyn&policy=20261028",
+    "adapterVersion": "0.3.0",
+    "release": "soundcraft-v0.14.0-robyn-0.3.0",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/soundcraft/v0.14.0-0.3.0/?robyn",
     "status": "verified"
   },
   "workstation": {
-    "template": "robyn-soundcraft-0-11-0@1",
-    "release": "sha256:8d7030eff81589c4a267a2ecd3f039338e8c690e8703a358e4c8846bc8375e22",
-    "status": "verified"
+    "template": "robyn-soundcraft-0-14-0@1",
+    "release": "sha256:0af82abd3391a5c6df60b1e5d1a95b31f20402855864637172b62ac7b53f08aa",
+    "status": "verified",
+    "previousReleases": [
+      {
+        "template": "robyn-soundcraft-0-11-0@1",
+        "release": "sha256:8d7030eff81589c4a267a2ecd3f039338e8c690e8703a358e4c8846bc8375e22"
+      }
+    ]
   }
 }

@@ -4,6 +4,8 @@ Nine icons are the original 256 × 256 WebP assets displayed in the [ArtCraft ap
 
 At the owner's request, WordCraft (elephant), DeckCraft (peacock), GridCraft (beaver), CADCraft (spider) and Research (raven) use new engraved animal illustrations generated with the built-in `image_gen` tool. The office applications retain blue, orange and green tiles; CADCraft keeps turquoise and Research uses periwinkle. These five images are encoded as 256 × 256 WebP with their alpha preserved. A matching solid tile colour and rounded clipping provide a consistent interface silhouette.
 
-`sources.json` distinguishes original assets from generated artwork and records source URLs or generation prompts, byte counts and SHA-256 digests. Filenames match the thirteen Craft IDs and Research. The Creative Director retains its own identity.
+SolidCraft uses its original Linux application icon from the pinned v0.26.1 source release, losslessly encoded as WebP. The artwork is by SolidCraft contributors and redistributed under the MIT license in `SolidCraft-LICENSE.txt`.
+
+`sources.json` distinguishes original assets from generated artwork and records source URLs or generation prompts, byte counts and SHA-256 digests. Filenames match the registered Craft IDs and Research. The Creative Director retains its own identity.
 
 The shared `src/components/studio/AppIcon.tsx` renders these assets locally. Adjacent application or file names provide accessible labels; icon images are decorative. Published editor packages, native starters and workstation pins are independent of these interface assets.

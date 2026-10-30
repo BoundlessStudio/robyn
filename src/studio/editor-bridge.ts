@@ -13,7 +13,7 @@ export interface EditorBridge {
   openAsset(ref: AssetRef): Promise<OpenAssetResult>;
   // Blob structured cloning stays inside the browser. The host uploads directly
   // to private Storage; Vercel receives only package metadata and commit requests.
-  saveAsset(input: { assetId: string; expectedBaseRevisionId: string | null; mode?: EditorSaveMode; creationId?: string; name?: string; files: Array<{path:string;role:PackageFileRole;file:Blob}>; dependencies:AssetRef[]; message:string }): Promise<{ ref: AssetRef; status: "committed" | "conflict" }>;
+  saveAsset(input: { assetId: string; expectedBaseRevisionId: string | null; mode?: EditorSaveMode; creationId?: string; requestId?: string; name?: string; files: Array<{path:string;role:PackageFileRole;file:Blob}>; dependencies:AssetRef[]; message:string }): Promise<{ ref: AssetRef; status: "committed" | "conflict" }>;
   listProjectAssets(): Promise<AssetSummary[]>;
   insertAsset(ref: AssetRef): Promise<OpenAssetResult>;
   importAsset(input:{creationId:string;name:string;file:Blob}):Promise<{ref:AssetRef;status:"committed"}>;

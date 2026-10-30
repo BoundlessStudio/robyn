@@ -160,14 +160,15 @@ export const agent37 = {
   start: (id: string) => call<{ id: string; status: string }>(`/instances/${id}/start`, { method: "POST" }),
   stop: (id: string) => call<{ id: string; status: string }>(`/instances/${id}/stop`, { method: "POST" }),
   restart: (id: string) => call<{ id: string; status: string }>(`/instances/${id}/restart`, { method: "POST" }),
-  update: (id: string) =>
+  update: (id: string, template?: string) =>
     call<{
       id: string;
       status: string;
+      template?: string;
       image_ref: string | null;
       image_digest: string | null;
       template_revision: number | null;
-    }>(`/instances/${id}/update`, { method: "POST" }),
+    }>(`/instances/${id}/update`, { method: "POST", ...(template ? {body:JSON.stringify({template})} : {}) }),
   resize: (id: string, body: ResizeInput) =>
     call<{ id: string; status: string; resources: { cpu: number; memory: number; disk: number } }>(
       `/instances/${id}/resize`,

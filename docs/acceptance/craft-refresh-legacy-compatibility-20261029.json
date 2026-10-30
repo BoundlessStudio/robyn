@@ -1,0 +1,474 @@
+{
+  "checkedAt": "2026-10-30T00:17:44.110Z",
+  "visuallyReviewedAt": "2026-10-30T00:19:19.499Z",
+  "passed": 13,
+  "total": 13,
+  "scope": "Read-only backward compatibility of the explicitly selected thirteen original QA revisions with latest pinned native CLIs and actual new browser candidates. Exact BFF owner/project authorization, signed file size/SHA verification, separate native scratch copies, real createEditorHost with saves/imports/employee requests rejected before handling, and all Studio HTTP mutations blocked. No source/private-asset/starter writes, employee LLM, cloud instance, or migration operations.",
+  "qaOwnerAndProjectVerifiedThroughBff": true,
+  "authProcedureRuns": 1,
+  "sourceSummarySha256": "3203d09897715f00db765273248533501dabc0844a39e757250c966f50570bb7",
+  "harnessSha256": "9af1e9ccaa3509f3604a001e0935073f9012d419d3f58e4d25b56d40ddabda08",
+  "blockedHttpWriteAttempts": 0,
+  "allScreenshotsVisuallyReviewed": true,
+  "sourceFiles": 28,
+  "sourceBytes": 17211457,
+  "applications": [
+    {
+      "appId": "cadcraft",
+      "upstream": "v0.14.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "fbd97d432cdf36a566c0c53739481bd6f0c32b0d",
+      "fontCommit": "b076417b5880bd4154bd22f00695b1d28c6bea83",
+      "candidateSha256": "218e6e7b8ee43595cbe5ceb1a5eb267ade2ae28d776b15e5ae05c35f62c8892c",
+      "adapterSha256": "87ec8933bef61cead881fa6a52cb923050b793f060b720a9547150df5fdb9df5",
+      "entrypointHtmlSha256": "5c6a915e98cb41ad66a5256daa999a2152628f1e2f7a88c8f918b7864635af74",
+      "nativeArchiveSha256": "95067c849f82305648249299bb86e645b730275aa8c5f19965d81990f83aea9b",
+      "sourceFiles": [
+        {
+          "role": "master",
+          "bytes": 27057,
+          "sha256": "afa92d09d7d97d35f066be520a3a08826dd95e07c32fd37cfe63c9e0c1960fe5"
+        }
+      ],
+      "nativeOpen": true,
+      "browserOpen": true,
+      "screenshotVisuallyReviewed": true,
+      "screenshotSha256": "34e1bd73989eacf51c99d15cf8eb09bb825d9a481af91cfa05b093548777a841",
+      "nativeOutputSha256": "687c9318d1e1e698497d70760f1edf991053cdec9e617be6a715e6662c570e2c",
+      "sourceFileBytesUnchanged": true,
+      "sourceAssetMetadataUnchanged": true,
+      "sourceRevisionMetadataUnchanged": true,
+      "observedWriteAttempts": 0,
+      "pageErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "deckcraft",
+      "upstream": "v0.12.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "29f0f7772c47aa2bfb74fcbb0c4d3b1503300849",
+      "fontCommit": "37827adc41fd165f9a9234ac40f94dbad353aa69",
+      "candidateSha256": "12ddbbad305944361a19118b3cc0578064a716aad7247cbfcab809c6fe987b08",
+      "adapterSha256": "2addf96387cb4c144e26e4da8e0ed6ea040c1b5cd700bf512db510c0bb3b33ec",
+      "entrypointHtmlSha256": "78d695f904b9b6d602d4a9b03922e73bf40a8d4b37d28ef1bf834f6d9437ca75",
+      "nativeArchiveSha256": "4a410d3caa423e873d0dcab51c98e06588f55bdfcf03e9c1e91409a86c08de3e",
+      "sourceFiles": [
+        {
+          "role": "master",
+          "bytes": 166682,
+          "sha256": "5e412850a0cf946fde47c529a5b700b4bbf6a22b6b68ee69ec0ee80bcfa11f7a"
+        }
+      ],
+      "nativeOpen": true,
+      "browserOpen": true,
+      "screenshotVisuallyReviewed": true,
+      "screenshotSha256": "afee47293fca19c11933ee2dc2537a07e9057523ff2466263a9b0b237929f981",
+      "nativeOutputSha256": "adf17b78cf9d3dc4e29dd373f96728208229d68a2ef2f5496d8b428fb4536eb3",
+      "sourceFileBytesUnchanged": true,
+      "sourceAssetMetadataUnchanged": true,
+      "sourceRevisionMetadataUnchanged": true,
+      "observedWriteAttempts": 0,
+      "pageErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "designcraft",
+      "upstream": "v0.14.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "7da69c16ce221f46e8f27cb41e0c88167c8be416",
+      "fontCommit": "b076417b5880bd4154bd22f00695b1d28c6bea83",
+      "candidateSha256": "3d85aa0b13d3be21fda251b5ccf2070979a33b15ef7b0641c85ec9027ea52fc7",
+      "adapterSha256": "7d8d37a916d5ad3f1531ccf19358dec24233bdf55062c0ac885941c5d2af677f",
+      "entrypointHtmlSha256": "5e9f48b10278de53da5b2810df058dc544184fc349ef6baad77c762bdff4baa4",
+      "nativeArchiveSha256": "25c87be759d35a81ca44e1f625ed4304b16e5aab6a03a1051bca498a81bfc547",
+      "sourceFiles": [
+        {
+          "role": "export",
+          "bytes": 14211,
+          "sha256": "639c3e276bca7ff227dead4e4fd965c56da9c6d8fe6a93de68119ccfd2ddd5fd"
+        },
+        {
+          "role": "master",
+          "bytes": 40569,
+          "sha256": "245c32b084caa360e9dd5c7e0da1c691115f4acfc37f734cc6457c0628e7111f"
+        },
+        {
+          "role": "preview",
+          "bytes": 27723,
+          "sha256": "4a556c4ba135930438e7de1cdbc69590b6e7830dd04ae48eee5c729ef07502bf"
+        }
+      ],
+      "nativeOpen": true,
+      "browserOpen": true,
+      "screenshotVisuallyReviewed": true,
+      "screenshotSha256": "7d47b9be91e1caaaf8a583cc70e5e453f096f91f5e3f387952caede0d5b169d2",
+      "nativeOutputSha256": "dacb831d5150ee5ec932dd5df1010de2b9a89d01136ad64f3871a4c2af609450",
+      "sourceFileBytesUnchanged": true,
+      "sourceAssetMetadataUnchanged": true,
+      "sourceRevisionMetadataUnchanged": true,
+      "observedWriteAttempts": 0,
+      "pageErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "effectcraft",
+      "upstream": "v0.18.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "c3600f9b59b109da97871a43a6898683a0163cb1",
+      "fontCommit": null,
+      "candidateSha256": "a049f12de86a31d09265f01cfefdb6f74fd4c0b05da226027fb9d89d10487e74",
+      "adapterSha256": "c2ad090e6868c2e2ef45954d5efb215a2a0400bc77482afdff5f5cfe7a98f3b4",
+      "entrypointHtmlSha256": "33a87e9a82a9562309cdc69c5f54e3697064240f4863ecc12d7941c288681564",
+      "nativeArchiveSha256": "94d1d85691d54ba57fa86e04872fbcc426c33d1bd364f1fc976b1f607344880b",
+      "sourceFiles": [
+        {
+          "role": "master",
+          "bytes": 67813,
+          "sha256": "a4fda2b32b18f9c81738be81b43649eefdd12d3f42321baec9f40f78fa399c9c"
+        }
+      ],
+      "nativeOpen": true,
+      "browserOpen": true,
+      "screenshotVisuallyReviewed": true,
+      "screenshotSha256": "f4ce06bf9d1abf4ac4bca83ab827ace91164b404612ccabb33f31f6b5612eba1",
+      "nativeOutputSha256": "71034906ee64b84887d24664ca9ae494606e7b42b4fa97b2418af3711df4c5e8",
+      "sourceFileBytesUnchanged": true,
+      "sourceAssetMetadataUnchanged": true,
+      "sourceRevisionMetadataUnchanged": true,
+      "observedWriteAttempts": 0,
+      "pageErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "figcraft",
+      "upstream": "v0.12.1",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "ef9721c5b9d0f1cc19a74449cbe175fc06bf8efa",
+      "fontCommit": "37827adc41fd165f9a9234ac40f94dbad353aa69",
+      "candidateSha256": "c201d55f5cce720f5a7c0d6217b37c26dd8788b26ddc4d66dafed85443a620dd",
+      "adapterSha256": "8fdc8414e2082cf31835c0a7ea5f50ce40527d54c07b1495c92342380dac8b93",
+      "entrypointHtmlSha256": "518104f91ca07561f572d772957e48bf80088ca0891730eb8a690f749a4fc0f3",
+      "nativeArchiveSha256": "00a29f4cc382807d840f5d3e9b59f4c8829356789afbb956a0964918295e49dd",
+      "sourceFiles": [
+        {
+          "role": "master",
+          "bytes": 29782,
+          "sha256": "2df9c7d1c80d6ea3b648095ad87c1bcd46278675402965c70e8985ebbef15e84"
+        },
+        {
+          "role": "preview",
+          "bytes": 63394,
+          "sha256": "af16a257ff1e7ec3c6db28b21288a6d0a88b8ebd4df2f6f89a8dc5eaa98aaab7"
+        },
+        {
+          "role": "preview",
+          "bytes": 116922,
+          "sha256": "eac152a9612fdc01133e7a3c431c92c93d71b20fa5a0a95ff015e879e1901aec"
+        },
+        {
+          "role": "preview",
+          "bytes": 3513,
+          "sha256": "effe8ce4a0d5b61b18b82d9249e4a88b72af5d62ab52ddf2d02729749255f746"
+        }
+      ],
+      "nativeOpen": true,
+      "browserOpen": true,
+      "screenshotVisuallyReviewed": true,
+      "screenshotSha256": "8b0a3f44b4d74a661d0226d492d66c1e2e150d55e164fea8dea5a17e8330572b",
+      "nativeOutputSha256": "a45c9dddb62beda02668cbc6138ecd9f6682853d7e810c29a23e0b072da0e535",
+      "sourceFileBytesUnchanged": true,
+      "sourceAssetMetadataUnchanged": true,
+      "sourceRevisionMetadataUnchanged": true,
+      "observedWriteAttempts": 0,
+      "pageErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "filmcraft",
+      "upstream": "v0.14.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "a2d8e9ce269aba9c399e36262522e11456df6fbf",
+      "fontCommit": "b076417b5880bd4154bd22f00695b1d28c6bea83",
+      "candidateSha256": "6dd981c0c4ba8bfa18b034bf486b16d7bcacf1bff68ec753b050203a2e092134",
+      "adapterSha256": "71429d19e432fd1121550dc1c7001e5cef96d2fe8876e52b6e17534b5ff08fd9",
+      "entrypointHtmlSha256": "ca18d9538ebb7969480ab9b3a6973f0592daa737edb3257d6748cc4f05b0b23e",
+      "nativeArchiveSha256": "d2aa213cc08abd21e05ab511a78cc38f157caf2226992f3fc8a5e0496a3f7e7d",
+      "sourceFiles": [
+        {
+          "role": "master",
+          "bytes": 28612,
+          "sha256": "00a00bc46770c14659d38c62fe50468e628b824021d178a0ea2b6961f09fc5ad"
+        }
+      ],
+      "nativeOpen": true,
+      "browserOpen": true,
+      "screenshotVisuallyReviewed": true,
+      "screenshotSha256": "9bc1793c3a761421322aa062b9b58b83ed85ac745f3dc8887356e8d41800687e",
+      "nativeOutputSha256": "2b62c587da234edd545523ec7729ff700166c5f14cb8a200f0b6c1c32919cdcc",
+      "sourceFileBytesUnchanged": true,
+      "sourceAssetMetadataUnchanged": true,
+      "sourceRevisionMetadataUnchanged": true,
+      "observedWriteAttempts": 0,
+      "pageErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "gridcraft",
+      "upstream": "v0.13.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "43284377d2466037628e57d8ad0c891778fdb45c",
+      "fontCommit": "b076417b5880bd4154bd22f00695b1d28c6bea83",
+      "candidateSha256": "9623097dab21adc392102154d2a8195e5b0d9d01d81d85c9fb7161d641cf4a2b",
+      "adapterSha256": "d90d9675adac7a85fbc4fd099be71f106294918f1db5bc9d5f4352fc475d854b",
+      "entrypointHtmlSha256": "d82d2f790c843a4ae79bd12c09c9ec0a55a77d4c7b3fdfb1d6b1139fc054f46e",
+      "nativeArchiveSha256": "20c6c56ec1ffd6bbcffee6cdee58cf6b5cadd2f4a04a4360dd7cc64d53ad97e5",
+      "sourceFiles": [
+        {
+          "role": "master",
+          "bytes": 12549,
+          "sha256": "4862854c0c60a3d9919cecea563a35ba46d4c0b6085f1be4ff44ae6f8a5b9e7f"
+        }
+      ],
+      "nativeOpen": true,
+      "browserOpen": true,
+      "screenshotVisuallyReviewed": true,
+      "screenshotSha256": "1e713065a1d331c57910a201aabb0c4a000de250837e40d5af4d8ff10296c555",
+      "nativeOutputSha256": "1748a432d8b59b1d1d325d6ae5f65475f201f5241f10d6b46e5b3ee8881f7551",
+      "sourceFileBytesUnchanged": true,
+      "sourceAssetMetadataUnchanged": true,
+      "sourceRevisionMetadataUnchanged": true,
+      "observedWriteAttempts": 0,
+      "pageErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "lightcraft",
+      "upstream": "v0.15.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "e381c1ae6b2006ce627b243fe41697ce0d9608e0",
+      "fontCommit": "b076417b5880bd4154bd22f00695b1d28c6bea83",
+      "candidateSha256": "36a411f5fc11fe3dbbfef26eacd8be88e762b605a878fa8655ddf96de9d5ab38",
+      "adapterSha256": "008c28714eb73f3d953cd444f328694d8b6b88326c12a0b4a4bd4f065c9dd776",
+      "entrypointHtmlSha256": "496900ece20e2d486a685c9837800c70d9535b4aaa693ad67f9174b3af6cdbd2",
+      "nativeArchiveSha256": "0b1acdefc085babb334b9add290dd1a69b50e96efbdad2ec15d44bd6d64bfd3d",
+      "sourceFiles": [
+        {
+          "role": "master",
+          "bytes": 41353,
+          "sha256": "5aff0b57b8d1ae82e421051f61592cece36164d896070b388e03f6aeb3d3f7fd"
+        },
+        {
+          "role": "dependency",
+          "bytes": 2056271,
+          "sha256": "1be13b58d4885797f37432a9f135707460833226d0caa7d806c988b15c8b50f5"
+        },
+        {
+          "role": "preview",
+          "bytes": 408104,
+          "sha256": "83d1d4938d804c8fc997c2ee8807f7d1cd3311c74c325693ac3129eb466138a6"
+        },
+        {
+          "role": "dependency",
+          "bytes": 4325,
+          "sha256": "45621a347707a751a2d005c00dd8b2ac63c840dd13885bf2aae596f0bd849727"
+        },
+        {
+          "role": "dependency",
+          "bytes": 251,
+          "sha256": "3c47d3ccc200bc5f27e12cad0316fa9ce6843b08cabcc66b3f2800ddb26b0e3c"
+        }
+      ],
+      "nativeOpen": true,
+      "browserOpen": true,
+      "screenshotVisuallyReviewed": true,
+      "screenshotSha256": "0d532e8adacf42e179ada13f254ec5d77051f7c4a39f0156eee4c68b39163f15",
+      "nativeOutputSha256": "e4860ff9bfcec838c3289d138e7a38a3dc6e6a57a2f024f596b29470b9c4d3b2",
+      "sourceFileBytesUnchanged": true,
+      "sourceAssetMetadataUnchanged": true,
+      "sourceRevisionMetadataUnchanged": true,
+      "observedWriteAttempts": 0,
+      "pageErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "pdfcraft",
+      "upstream": "v0.15.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "75360d1d7db06fed974f48c914d4c04132757187",
+      "fontCommit": "b076417b5880bd4154bd22f00695b1d28c6bea83",
+      "candidateSha256": "32f7165bf7a1df3f0ae78eaf507a34227707e2fabc6e48384694f715b95eb21c",
+      "adapterSha256": "e0dcc206a7ff0a887ae21c4289a85e9f053d1a45a1987c6b284b4b7a90542097",
+      "entrypointHtmlSha256": "95cd6f6e0a888235b4ef7c2665a4e17cbab08f3b8650b01aeea0ac213a8c3edb",
+      "nativeArchiveSha256": "b167a18c60a7b329f05a5bbf97e32dc678aad3f8d5866d8e4378ff24273f8313",
+      "sourceFiles": [
+        {
+          "role": "master",
+          "bytes": 16599,
+          "sha256": "df9a1939de2187b1bb5b090742faf83d124fa56d5c834af45e79e5a542d3b60b"
+        },
+        {
+          "role": "preview",
+          "bytes": 91285,
+          "sha256": "ce5e1b549a51c3e4a6d42c24dae6636e77fbb4e7ad588ef7feb7d5eee4ef3665"
+        }
+      ],
+      "nativeOpen": true,
+      "browserOpen": true,
+      "screenshotVisuallyReviewed": true,
+      "screenshotSha256": "b3a05782404e64bb349841cddfaa554698d0647832b9d8442b36b6e4c7feec22",
+      "nativeOutputSha256": "d21d830eaf3fb3974f9a5345738c50f9a2f9ca748ce5642d80919840b0de0957",
+      "sourceFileBytesUnchanged": true,
+      "sourceAssetMetadataUnchanged": true,
+      "sourceRevisionMetadataUnchanged": true,
+      "observedWriteAttempts": 0,
+      "pageErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "photocraft",
+      "upstream": "v0.17.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "b8c3f3aa8e2918032cadc0e042664414a03be333",
+      "fontCommit": "b076417b5880bd4154bd22f00695b1d28c6bea83",
+      "candidateSha256": "faae36626ba5bc16bdfcf42ca5e66cf864641e84571785615a826536068f4b2a",
+      "adapterSha256": "a6a7cd602459ad84759dcfbdd7eb17113efc9e40c276ff88c8c195f1520bca3e",
+      "entrypointHtmlSha256": "7fd7e0b493b385a975d06a9a38e49203b91372b700c88e3e3abe5a12796ba706",
+      "nativeArchiveSha256": "5259f9c428c8ee3478c35500ece98713561cafc050e4c9eb354a5050f36eb2b8",
+      "sourceFiles": [
+        {
+          "role": "master",
+          "bytes": 4117224,
+          "sha256": "f5bbb1b6143fcd06e68c61e56733edda5687eaaa87223eb600691a30b21d44a6"
+        },
+        {
+          "role": "preview",
+          "bytes": 625788,
+          "sha256": "e2b8f550eb4ff49842e1a8428c887962691c25abb5c248ba5359fb09b155cb78"
+        }
+      ],
+      "nativeOpen": true,
+      "browserOpen": true,
+      "screenshotVisuallyReviewed": true,
+      "screenshotSha256": "c1ebfb4ec4e27736e6d0d422c0cb693c72dd58ddc30ba45dab726620f87b209e",
+      "nativeOutputSha256": "eb30614156d9be36f3b45efde7152cb631ac0942a6cea4266141ff4aa3edefba",
+      "sourceFileBytesUnchanged": true,
+      "sourceAssetMetadataUnchanged": true,
+      "sourceRevisionMetadataUnchanged": true,
+      "observedWriteAttempts": 0,
+      "pageErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "soundcraft",
+      "upstream": "v0.14.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "c6befe57afd0dc35fc4b86a01b2a19011ae1df1e",
+      "fontCommit": null,
+      "candidateSha256": "b913221a22494ef02b847d97dce59297fbe5d853971de2c47afa6ffb2fab9570",
+      "adapterSha256": "7171d39cbddb0fefe841e9d9007ad110925d60fbea8afe213ad6457934f22dfd",
+      "entrypointHtmlSha256": "cc689b9e0768132377d3aa94ffbaa5d40e6cb40addc1b4ca171419e1cfe01a38",
+      "nativeArchiveSha256": "2f83503feda6aa2c8d4bc12c44f571422c4389fc664a92bbed092d2bf1d500ad",
+      "sourceFiles": [
+        {
+          "role": "export",
+          "bytes": 2304104,
+          "sha256": "7de824562d635e1d999a4b1cc681c32f443e24c791c2ea39c837636480834ffc"
+        },
+        {
+          "role": "export",
+          "bytes": 2304104,
+          "sha256": "9a7e98268bb75fa8bb6cfa88493c62d4a2149c9c650ee737f3c33b58454c7480"
+        },
+        {
+          "role": "export",
+          "bytes": 2304104,
+          "sha256": "a0496a05a427c7a8ebe44a5e2da5b1bb0e3b794eaa898e025fc68b85783a7980"
+        },
+        {
+          "role": "master",
+          "bytes": 9312,
+          "sha256": "cdba6aadbfab7965f3c6cc5cc1146b1cde25113691af463bebc982b7e0ad9a79"
+        },
+        {
+          "role": "preview",
+          "bytes": 2304104,
+          "sha256": "ac99866337c9b4e932aaf2913800c2c66f8359a333ad738293d75d4d02fe063a"
+        }
+      ],
+      "nativeOpen": true,
+      "browserOpen": true,
+      "screenshotVisuallyReviewed": true,
+      "screenshotSha256": "cb602439e390ffd6d64aa628bd5feb795b70bb29ab772af4c9eade9d114a45c7",
+      "nativeOutputSha256": "0cbaad7ef96252441829184658d4d595f12f6c8ea4dacfbf69b176a82e61315b",
+      "sourceFileBytesUnchanged": true,
+      "sourceAssetMetadataUnchanged": true,
+      "sourceRevisionMetadataUnchanged": true,
+      "observedWriteAttempts": 0,
+      "pageErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "vectorcraft",
+      "upstream": "v0.18.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "68b68a30acad9b3d8a72802b35f43b82e2bd7d3a",
+      "fontCommit": "b076417b5880bd4154bd22f00695b1d28c6bea83",
+      "candidateSha256": "1f60ebc97bfee594ea4365fb41794713a13047cc1636b1c59d1b3a793210b909",
+      "adapterSha256": "c258194cdd6c81bec74905d6dbaee58b29a1cd49ef3445030bc9cbbff2c94935",
+      "entrypointHtmlSha256": "b51644e6fb13bef83bf4406203e3b46843fd3bd77ef66b2ea596772b8efe5e4a",
+      "nativeArchiveSha256": "76948b50ef78dd482a6ece06f10b7047937bbc0c05f5cf6bc43d88b07f74d826",
+      "sourceFiles": [
+        {
+          "role": "master",
+          "bytes": 15304,
+          "sha256": "15218f1a23ab01c7506bf4c18bde03e9c07996362047953249a11add40982dd6"
+        }
+      ],
+      "nativeOpen": true,
+      "browserOpen": true,
+      "screenshotVisuallyReviewed": true,
+      "screenshotSha256": "8206f27786b0742e314b25651e35e1b6e3df8daa0217e0037fbfbf7882d7d373",
+      "nativeOutputSha256": "3076436765574189f1b070c124473a11ad8c4c6688252467a8aac4e224f5b741",
+      "sourceFileBytesUnchanged": true,
+      "sourceAssetMetadataUnchanged": true,
+      "sourceRevisionMetadataUnchanged": true,
+      "observedWriteAttempts": 0,
+      "pageErrors": 0,
+      "editorAssetErrors": 0
+    },
+    {
+      "appId": "wordcraft",
+      "upstream": "v0.12.0",
+      "adapterVersion": "0.3.0",
+      "sourceCommit": "3de6ff95af86c19d67030cd96dba15cd6a45a25e",
+      "fontCommit": "b076417b5880bd4154bd22f00695b1d28c6bea83",
+      "candidateSha256": "99041a6630ceb9e74aa7dd5f8d5f2fec97b7c0e73eb1bb5af75687cb7aebbc8d",
+      "adapterSha256": "023b7ac973e90f5d8d5374a814925a5c74b32d3c229fb32049cd0a5f9500f515",
+      "entrypointHtmlSha256": "525c814f15f937573cf4f51bc57a6cbf22d602964fa7d8845dbc57d70369d240",
+      "nativeArchiveSha256": "cd9abd0ee7a11b985af1c1571653332c96077e5dcc48b5e187b55c82f475a33e",
+      "sourceFiles": [
+        {
+          "role": "master",
+          "bytes": 10398,
+          "sha256": "f81946e470d33cc214119d7014cc8661753259dd07a0ff5bd579a07cf9e68728"
+        }
+      ],
+      "nativeOpen": true,
+      "browserOpen": true,
+      "screenshotVisuallyReviewed": true,
+      "screenshotSha256": "c43794448d5a2b68100e8f8014dbca62861a797e593ebb9231cefd26d4ee1160",
+      "nativeOutputSha256": "dd949cd8b640c503de9d18af88810a9a4277326019eadb9910a30b14c8785862",
+      "sourceFileBytesUnchanged": true,
+      "sourceAssetMetadataUnchanged": true,
+      "sourceRevisionMetadataUnchanged": true,
+      "observedWriteAttempts": 0,
+      "pageErrors": 0,
+      "editorAssetErrors": 0
+    }
+  ],
+  "limitations": [
+    "Read-only opening of thirteen selected historical QA revisions; this does not cover every older document or format feature.",
+    "The real authenticated BFF and signed private Storage reads ran against the local dashboard with staged browser candidates. This is not proof of a deployed release.",
+    "No historical asset was edited, imported, saved, or handed to an employee. Edit/save/native-continuation and employee acceptance are separate records."
+  ]
+}

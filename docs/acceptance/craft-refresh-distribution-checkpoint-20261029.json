@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-30T00:45:24.593Z",
+  "checkpoint": true,
+  "workerVersion": "f007a4fb-9b0e-4ee4-9c28-05023b0d154c",
+  "releases": 65,
+  "files": 28729,
+  "uniqueObjects": 868,
+  "allHostedObjectBytesVerified": true,
+  "catalogSha256": "8690ef1e440a0026a3cd23ffc7f55dc30f8ca4edeb8bdde360bab172f234aa40",
+  "retainedReleaseCount": 51,
+  "additiveCandidateReleaseCount": 14,
+  "existingProductionPolicyRestoredFromRuntimeMain": "fe1b155754c592bd73702eb106e74f093a0929de",
+  "representativeExistingHtmlAndWasmRangeExact": true,
+  "currentPolicyAppliesToCachedHtml": true,
+  "workerPolicyTestsPassed": 4,
+  "productionWebPromoted": false,
+  "existingEmployeeInstancesUpgraded": 0,
+  "scope": "Existing published URLs and bytes remain retained. Thirteen adapter0.3.0 and SolidCraft0.1.0 candidates were published but are not selected by production web manifests. Preserve all65 published paths; newer adapters need fresh versions."
+}

@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 import {createServer} from 'node:http';
 import {build} from 'esbuild';
 import {studioTools} from '../../src/studio/tools.ts';
+import {isEmployeeReady} from '../../src/studio/manifest.ts';
 
 export const projectId = '11111111-1111-4111-8111-111111111111';
 export const origin = 'http://127.0.0.1:3000';
@@ -93,7 +94,7 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
   context.on('page',opened=>{opened.setDefaultTimeout(10000);opened.on('pageerror',error=>state.errors.push(error.message));});
   const project={id:projectId,name:'First project',brief:'',status:archived?'archived':'active',created_at:'2026-10-26T12:00:00Z',updated_at:'2026-10-26T12:00:00Z'};
   state.project=project;state.projects=new Map([[projectId,project]]);
-  const employees=[{id:director,role:'Creative Director',appId:null,ready:true},...studioTools.map(app=>({id:randomUUID(),role:app.employee.role,appId:app.id,ready:true}))];
+  const employees=[{id:director,role:'Creative Director',appId:null,ready:true},...studioTools.map(app=>({id:randomUUID(),role:app.employee.role,appId:app.id,ready:isEmployeeReady(app)}))];
   const cors={'access-control-allow-origin':'*'};
   await context.route('**/*',async route=>{
     const req=route.request(),url=new URL(req.url()),method=req.method();

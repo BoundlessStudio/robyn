@@ -13,6 +13,7 @@ import app9 from "./deckcraft.json";
 import app10 from "./gridcraft.json";
 import app11 from "./figcraft.json";
 import app12 from "./cadcraft.json";
+import app13 from "./solidcraft.json";
 
 export const studioApps: readonly StudioAppManifest[] = [
   app0 as StudioAppManifest,
@@ -28,4 +29,5 @@ export const studioApps: readonly StudioAppManifest[] = [
   app10 as StudioAppManifest,
   app11 as StudioAppManifest,
   app12 as StudioAppManifest,
+  app13 as StudioAppManifest,
 ];

@@ -1,15 +1,15 @@
 {
-  "version": "0.1.23",
-  "directory": "vendor/robyn-workstation/0.1.23-463adbe8641b",
-  "fingerprint": "463adbe8641bb2b9f9c232027e4a1edcc5af9bc2c210581cce68af4bfc8ea58d",
+  "version": "0.1.24",
+  "directory": "vendor/robyn-workstation/0.1.24-99ff7446770a",
+  "fingerprint": "99ff7446770a3cce2a7b71cd33afbf2f456bef949b3472a00d53b4e8ede2b47e",
   "files": {
     "studio-mcp.cjs": {
-      "bytes": 1838316,
-      "sha256": "6e7b4525b249cfdd81b00fccceec7ee4ca537663d4493fe1ef8ad6d0559a3b32"
+      "bytes": 1856055,
+      "sha256": "a9e098b630c414704a3d0b6c6f074279fcf2afa4f48fb23c6423f7405b82852b"
     },
     "configure-hermes.py": {
       "bytes": 1989,
-      "sha256": "f20740586af56b7ba2a773d497779041d1737f3e096ed3a27060df0861166dda"
+      "sha256": "8adea77094c9caf7d6fa0c772a949d5c65ed063d91f07fef5ad70dda501c8a7a"
     },
     "skills/cadcraft.md": {
       "bytes": 1838,
@@ -50,6 +50,10 @@
     "skills/photocraft.md": {
       "bytes": 3419,
       "sha256": "1acb778d4954c859c8c6359b56728ca05409e70d0c11cb41982b004ee3ce3635"
+    },
+    "skills/solidcraft.md": {
+      "bytes": 1612,
+      "sha256": "45f47f8f15c6db7932ba2531b4a311defad9a67d09d297c676d99347237ce9e9"
     },
     "skills/soundcraft.md": {
       "bytes": 2229,

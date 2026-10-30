@@ -51,6 +51,7 @@ export interface Agent {
   template: string;
   // Null for images published by a cloud build; compare template_revision instead.
   image_ref: string | null;
+  image_digest?: string | null;
   template_revision: number | null;
   resources: { cpu: number; memory: number; disk: number };
   // Older API versions reported the instance's ports; current ones return null —

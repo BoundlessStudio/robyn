@@ -25,14 +25,20 @@
     "publication"
   ],
   "editor": {
-    "adapterVersion": "0.2.2",
-    "release": "designcraft-v0.11.0-robyn-0.2.2",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/designcraft/v0.11.0-0.2.2/?robyn&policy=20261028",
+    "adapterVersion": "0.3.0",
+    "release": "designcraft-v0.14.0-robyn-0.3.0",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/designcraft/v0.14.0-0.3.0/?robyn",
     "status": "verified"
   },
   "workstation": {
-    "template": "robyn-designcraft-0-11-0@1",
-    "release": "sha256:eb7ef35e69d14ed050f718199979820091a5265bb9c55742c33ff26022bdd6cc",
-    "status": "verified"
+    "template": "robyn-designcraft-0-14-0@1",
+    "release": "sha256:6bd3bc17de676fccd12bad4f56446e06649cc60332976a4798b8e80e50de9453",
+    "status": "verified",
+    "previousReleases": [
+      {
+        "template": "robyn-designcraft-0-11-0@1",
+        "release": "sha256:eb7ef35e69d14ed050f718199979820091a5265bb9c55742c33ff26022bdd6cc"
+      }
+    ]
   }
 }

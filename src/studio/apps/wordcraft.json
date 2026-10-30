@@ -25,14 +25,20 @@
     "document-styles"
   ],
   "editor": {
-    "adapterVersion": "0.2.2",
-    "release": "wordcraft-v0.9.0-robyn-0.2.2",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/wordcraft/v0.9.0-0.2.2/?robyn&policy=20261028",
+    "adapterVersion": "0.3.0",
+    "release": "wordcraft-v0.12.0-robyn-0.3.0",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/wordcraft/v0.12.0-0.3.0/?robyn",
     "status": "verified"
   },
   "workstation": {
-    "template": "robyn-wordcraft-0-9-0@1",
-    "release": "sha256:08ce901c9c0bff1c38bd1334bbcda226ef1b31e7c5678916a8adc9c957e525f2",
-    "status": "verified"
+    "template": "robyn-wordcraft-0-12-0@1",
+    "release": "sha256:223fcb7f752ad1e2edec5d68eb21c213ecd7c6ac176529eda653c025d5c0b6bb",
+    "status": "verified",
+    "previousReleases": [
+      {
+        "template": "robyn-wordcraft-0-9-0@1",
+        "release": "sha256:08ce901c9c0bff1c38bd1334bbcda226ef1b31e7c5678916a8adc9c957e525f2"
+      }
+    ]
   }
 }

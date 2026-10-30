@@ -197,7 +197,9 @@ export async function processMediaJob(identity: MediaIdentity, jobId: string, wo
     if (!job.instance_id) {
       const query = db.from("studio_employees").select("*").eq("workspace_id", identity.workspaceId);
       const { data: employee, error } = job.employee_id ? await query.eq("id", job.employee_id).single() : await query.eq("kind", "director").single(); dbFailure(error);
-      const instance = await ensureEmployeeInstance(db, { workspaceId: identity.workspaceId, userId: identity.userId, assignmentId: job.id }, employee as StudioEmployee);
+      // Legacy paid jobs may still be bound to a specialist's previous known
+      // image. Recover their result without authorizing an image change here.
+      const instance = await ensureEmployeeInstance(db, { workspaceId: identity.workspaceId, userId: identity.userId, assignmentId: job.id }, employee as StudioEmployee, { allowPreviousForMediaRecovery: true });
       if (!instance) return "wait";
       await updateJob(db, identity, job, { instance_id: instance.id }); job.instance_id = instance.id;
     }

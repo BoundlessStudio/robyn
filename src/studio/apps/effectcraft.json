@@ -25,14 +25,20 @@
     "animation"
   ],
   "editor": {
-    "adapterVersion": "0.2.2",
-    "release": "effectcraft-v0.14.0-robyn-0.2.2",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/effectcraft/v0.14.0-0.2.2/?robyn&policy=20261028",
+    "adapterVersion": "0.3.0",
+    "release": "effectcraft-v0.18.0-robyn-0.3.0",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/effectcraft/v0.18.0-0.3.0/?robyn",
     "status": "verified"
   },
   "workstation": {
-    "template": "robyn-effectcraft-0-14-0@1",
-    "release": "sha256:56228ad33996ff68f4abe5fe0388ea33eb4adee24a5ea9916dbe5536d284f12b",
-    "status": "verified"
+    "template": "robyn-effectcraft-0-18-0@1",
+    "release": "sha256:4f5a0082fb05334f039bf0e039ec900d384927564cb82a939ae8b60a544bd8e8",
+    "status": "verified",
+    "previousReleases": [
+      {
+        "template": "robyn-effectcraft-0-14-0@1",
+        "release": "sha256:56228ad33996ff68f4abe5fe0388ea33eb4adee24a5ea9916dbe5536d284f12b"
+      }
+    ]
   }
 }

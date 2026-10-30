@@ -1,0 +1,42 @@
+{
+  "id": "solidcraft",
+  "version": "0.1.0",
+  "order": 14,
+  "name": "SolidCraft",
+  "category": "Engineering",
+  "monogram": "So",
+  "color": "#dfc89b",
+  "artwork": "cad",
+  "tagline": "Shape an idea in three dimensions.",
+  "sourceUrl": "https://github.com/tangency-labs/solidcraft",
+  "employee": {
+    "role": "Parametric 3D Designer",
+    "instructions": "Build editable parametric 3D designs in SolidCraft with named parameters, explicit units, constrained sketches and a clear feature timeline. Preserve assemblies, linked designs, embedded sources and the creator's exact input revisions. Inspect dimensions and feature failures after edits. Save the native .sc design; provide STEP, 3MF or STL exports only alongside the editable master when requested. Report modelling limits without claiming unverified manufacturing suitability or physical safety. Work only within the assigned project. Use studio-mcp for library access and report completion only after the library confirms a new immutable revision with its expected base. Never overwrite another editor's work."
+  },
+  "formats": {
+    "native": [
+      ".sc",
+      ".solidcraft",
+      ".solvecraft"
+    ],
+    "verification": "verified"
+  },
+  "capabilities": [
+    "parametric-3d",
+    "constrained-sketches",
+    "solid-modelling",
+    "assemblies",
+    "cad"
+  ],
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": "solidcraft-v0.26.1-robyn-0.1.0",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/solidcraft/v0.26.1-0.1.0/?robyn",
+    "status": "verified"
+  },
+  "workstation": {
+    "template": "robyn-solidcraft-0-26-1@1",
+    "release": "sha256:1582d831231373052d7a48ec308aac6b74a1e4549faf98b436e8edb5cd96cff7",
+    "status": "verified"
+  }
+}

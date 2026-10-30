@@ -3,6 +3,7 @@ import {useCallback,useEffect,useState} from "react";
 import {apiFetch} from "@/lib/api";
 import {planStudioBudget,type StudioBudgetRequest} from "@/studio/budget-plan";
 import type {StudioBudgetSnapshot} from "@/studio/studio-budgets";
+import {studioApps} from "@/studio/apps/registry";
 
 const usd=(n:number|null)=>n===null?"Unavailable":new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:4}).format(n/1_000_000);
 const micros=(value:string)=>value.trim()?Math.round(Number(value)*1_000_000):NaN;
@@ -41,7 +42,7 @@ export function StudioBudget(){
     }catch(e){setError(`${(e as Error).message} Resume this saved change before making another.`);await load().catch(()=>{});}finally{setBusy(false);}
   }
   return <section className="studio-setting-section studio-budget" id="studio-budget"><h2>One budget. Your whole team.</h2>
-    <p>Set a monthly AI allowance for your Creative Director, Researcher, and all 13 Crafts. Reasoning, paid search, integrations, and Perflo generation use this allowance. Hosting and storage are included in your base subscription.</p>
+    <p>Set a monthly AI allowance for your Creative Director, Researcher, and all {studioApps.length} Crafts. Reasoning, paid search, integrations, and Perflo generation use this allowance. Hosting and storage are included in your base subscription.</p>
     {error&&<p role="alert" className="studio-error">{error}</p>}{notice&&<p role="status" className="studio-success">{notice}</p>}
     {!data?<p role="status">Reading your team’s budgets…</p>:<>
       <div className="studio-budget-totals">{[["Monthly limit",data.summary.monthlyLimitMicros],["Spent",data.summary.spentMicros],["Media reserved",data.summary.reservedMicros],["Available",data.summary.availableMicros]].map(([label,value])=><div key={String(label)}><span>{label}</span><strong>{usd(value as number|null)}</strong></div>)}</div>

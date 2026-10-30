@@ -11,9 +11,11 @@ import { isEmployeeReady } from "./manifest";
 import { issueEmployeeToken } from "./employee-auth";
 import { assignmentRpc } from "./assignment-server";
 import type { Assignment, AssignmentIdentity, StudioEmployee } from "./assignments";
+import { matchingWorkstationTemplate, matchingWorkstationRelease, ownedWorkstation, ownedWorkstationMirror, prepareWorkstationRelease, WorkstationConfigurationError } from "./workstation-upgrades";
+import type { WorkstationMirror, WorkstationUpgrade } from "./workstation-upgrades";
 import release from "./workstation-release.json";
 
-export class WorkstationConfigurationError extends Error {}
+export { WorkstationConfigurationError } from "./workstation-upgrades";
 const sha256 = (bytes: Uint8Array) => createHash("sha256").update(bytes).digest("hex");
 
 export function employeeTemplate(employee: StudioEmployee) {
@@ -23,33 +25,57 @@ export function employeeTemplate(employee: StudioEmployee) {
   return app.workstation.template;
 }
 
-function ownedWorkstation(instance: Agent, identity: AssignmentIdentity, employee: StudioEmployee) {
-  if (instance.metadata?.app_workspace !== identity.workspaceId || instance.metadata?.studio_employee !== employee.id) {
-    throw new WorkstationConfigurationError("workstation_ownership_mismatch");
-  }
-}
-function matchingTemplate(instance: Agent, template: string) {
-  const [name, revision] = template.split("@");
-  return (instance.template === name || instance.template === template)
-    && (!revision || (/^\d+$/.test(revision) ? instance.template_revision === Number(revision) : instance.image_ref?.endsWith(`:${revision}`)));
-}
-
 /** A create attempt is recorded before the upstream request. Recovery only
  * adopts an exact metadata match, including its persistent attempt UUID. */
-export async function ensureEmployeeInstance(db: DB, identity: AssignmentIdentity, employee: StudioEmployee): Promise<Agent | null> {
+export async function ensureEmployeeInstance(db: DB, identity: AssignmentIdentity, employee: StudioEmployee, options?: { allowPreviousForMediaRecovery: true }): Promise<Agent | null> {
   // Existing paid results may still be collected by their bound workstation.
   // New setup waits while the owner allocation is being synchronized.
   const {data:budgetPolicy,error:budgetError}=await db.from("studio_managed_budgets").select("sync_state").eq("workspace_id",identity.workspaceId).maybeSingle();
   if(budgetError)throw new Error("Studio budget unavailable");
   if(budgetPolicy&&budgetPolicy.sync_state!=="synced")return null;
-  const template = employeeTemplate(employee);
   const args = { p_workspace: identity.workspaceId, p_user: identity.userId, p_employee: employee.id };
   employee = await assignmentRpc<StudioEmployee>(db, "claim_studio_employee_provision", args);
+  const template = employeeTemplate(employee);
   let instance: Agent;
   if (employee.instance_id) {
     instance = await agent37.getAgent(employee.instance_id);
-    ownedWorkstation(instance, identity, employee);
-    if (!matchingTemplate(instance, template)) throw new WorkstationConfigurationError("workstation_release_mismatch");
+    const { data: mirror, error: mirrorError } = await db.from("agents").select("agent37_id,workspace_id,template")
+      .eq("workspace_id", identity.workspaceId).eq("agent37_id", employee.instance_id).maybeSingle();
+    if (mirrorError) throw new Error("Studio workstation mirror unavailable");
+    ownedWorkstationMirror(instance, identity, employee, mirror as WorkstationMirror | null);
+    const app = employee.kind === "specialist" ? studioApps.find(app => app.id === employee.app_id)! : null;
+    if (employee.kind === "director" || app?.kind === "research") {
+      // Research retains its existing versioned workstation contract. Craft
+      // image migrations below require a separate immutable image digest.
+      if (!matchingWorkstationTemplate(instance, template) || mirror?.template !== template) {
+        throw new WorkstationConfigurationError("workstation_release_mismatch");
+      }
+    } else {
+      const { data: upgrades, error: upgradesError } = await db.from("studio_workstation_upgrades")
+        .select("id,workspace_id,employee_id,instance_id,from_template,target_template,target_digest,state")
+        .eq("workspace_id", identity.workspaceId).eq("employee_id", employee.id);
+      if (upgradesError) throw new Error("Studio workstation upgrade state unavailable");
+      const target = { template, release: app!.workstation.release! };
+      const upgradeArgs = { ...args, p_instance: instance.id };
+      if (!await prepareWorkstationRelease({
+        identity, employee, instance, mirror: mirror as WorkstationMirror | null, target,
+        previousReleases: app!.workstation.previousReleases ?? [], upgrades: (upgrades ?? []) as WorkstationUpgrade[],
+        allowPreviousForMediaRecovery: options?.allowPreviousForMediaRecovery,
+        io: {
+          claim: (from, fence) => assignmentRpc<WorkstationUpgrade | null>(db, "claim_studio_workstation_upgrade", {
+            ...upgradeArgs, p_assignment: fence.assignmentId, p_workflow: fence.workflowId, p_run_attempt: fence.attemptId,
+            p_from_template: from.template, p_target_template: target.template, p_target_digest: target.release,
+          }),
+          dispatch: (upgrade, fence) => assignmentRpc<boolean>(db, "dispatch_studio_workstation_upgrade", {
+            ...upgradeArgs, p_upgrade: upgrade.id, p_assignment: fence.assignmentId, p_workflow: fence.workflowId, p_run_attempt: fence.attemptId,
+          }),
+          update: targetTemplate => agent37.update(instance.id, targetTemplate),
+          finish: () => assignmentRpc<boolean>(db, "finish_studio_workstation_upgrade", {
+            ...upgradeArgs, p_target_template: target.template, p_target_digest: target.release,
+          }),
+        },
+      })) return null;
+    }
   } else {
     if (!employee.provision_attempt) throw new WorkstationConfigurationError("workstation_provision_failed");
     const creationArgs = { ...args, p_attempt: employee.provision_attempt };
@@ -70,7 +96,11 @@ export async function ensureEmployeeInstance(db: DB, identity: AssignmentIdentit
       instance = matches[0];
     }
     ownedWorkstation(instance, identity, employee);
-    if (!matchingTemplate(instance, template)) throw new WorkstationConfigurationError("workstation_release_mismatch");
+    if (!matchingWorkstationTemplate(instance, template)) throw new WorkstationConfigurationError("workstation_release_mismatch");
+    const app = employee.kind === "specialist" ? studioApps.find(app => app.id === employee.app_id)! : null;
+    if (app && app.kind !== "research" && !matchingWorkstationRelease(instance, {template, release:app.workstation.release!})) {
+      throw new WorkstationConfigurationError("workstation_release_mismatch");
+    }
     if (!await assignmentRpc<boolean>(db, "bind_studio_employee_instance", { ...creationArgs, p_instance: instance.id, p_template: template, p_resources: instance.resources })) return null;
   }
   if (["stopped", "sleeping"].includes(instance.status)) { await agent37.start(instance.id); return null; }

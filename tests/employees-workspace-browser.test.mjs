@@ -4,6 +4,7 @@ import {randomUUID,createHash} from 'node:crypto';
 import {chromium,firefox,webkit} from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
 import {nativeImportFixture,openEmployeeWorkspace,origin,projectId} from './fixtures/native-import.mjs';
+import {studioTools} from '../src/studio/tools.ts';
 const browserType=({chromium,firefox,webkit})[process.env.NATIVE_IMPORT_BROWSER??'chromium'];
 
 test('AI Employees stays in the same tab and keeps the exact saved revision after protecting unsaved work',async()=>{
@@ -70,7 +71,8 @@ test('project routes scope briefs and assignments; all four views remain usable 
     await page.getByRole('button',{name:'Send the brief',exact:true}).click();await page.getByRole('status').filter({hasText:'Your brief is in the studio.'}).waitFor();
     const job=[...state.assignments.values()][0];assert.equal(job.input.projectId,second);assert.equal(job.appId,'research');
     await page.getByRole('button',{name:'Review',exact:true}).click();await page.getByText('Finished work will arrive here.',{exact:false}).waitFor();
-    await page.getByRole('button',{name:'Team',exact:true}).click();await page.getByRole('heading',{name:'Creative Director',exact:true}).waitFor();assert.equal(await page.locator('.studio-app-card').count(),15);
+    await page.getByRole('button',{name:'Team',exact:true}).click();await page.getByRole('heading',{name:'Creative Director',exact:true}).waitFor();assert.equal(await page.locator('.studio-app-card').count(),studioTools.length+1);
+    const solid=page.locator('.studio-app-card').filter({hasText:'SolidCraft'});assert.equal(await solid.count(),1);await solid.getByText('Parametric 3D Designer',{exact:true}).waitFor();await solid.getByText('Ready for your first brief',{exact:true}).waitFor();
     assert.equal(new URL(page.url()).searchParams.get('view'),'team');await page.reload();await page.getByRole('heading',{name:'Creative Director',exact:true}).waitFor();
     await page.goto(`${origin}/dashboard/projects/${projectId}/employees`);
     await page.waitForFunction(()=>document.querySelector('textarea')?.value==='A brief for the first project.');

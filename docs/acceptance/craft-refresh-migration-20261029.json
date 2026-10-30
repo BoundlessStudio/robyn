@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-10-30T00:32:55.763Z",
+  "applied": [
+    "0027_workstation_release_upgrades.sql"
+  ],
+  "ledgerEntries": 28,
+  "allChecksumsMatch": true,
+  "migrationSha256": "cfe4a41fe46c1c1cbfb7737fd98306946705a6d616109a53fc130bf592576103",
+  "ledgerSha256": "0a228d9d0c3c8b901c34a15ba119603a6e071768e293d7a4e54102bfea477958",
+  "previousLedgerUnchanged": true,
+  "baselineChanged": false,
+  "privateTableRls": true,
+  "anonymousAndAuthenticatedDenied": true,
+  "serviceOnlyFunctions": [
+    "claim_studio_assignment_dispatch",
+    "claim_studio_workstation_upgrade",
+    "dispatch_studio_workstation_upgrade",
+    "finish_studio_workstation_upgrade"
+  ],
+  "idempotentRerun": true
+}

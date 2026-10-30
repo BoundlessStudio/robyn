@@ -25,14 +25,20 @@
     "compositing"
   ],
   "editor": {
-    "adapterVersion": "0.2.2",
-    "release": "photocraft-v0.12.0-robyn-0.2.2",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/photocraft/v0.12.0-0.2.2/?robyn&policy=20261028",
+    "adapterVersion": "0.3.0",
+    "release": "photocraft-v0.17.0-robyn-0.3.0",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/photocraft/v0.17.0-0.3.0/?robyn",
     "status": "verified"
   },
   "workstation": {
-    "template": "robyn-photocraft-0-12-0@1",
-    "release": "sha256:b56cb9749d2f3dc88c9f50a12803d57bfa29d359635d0999575055876944c849",
-    "status": "verified"
+    "template": "robyn-photocraft-0-17-0@1",
+    "release": "sha256:f039f03822aa77afa7342fc0828f0c7cdbb50e414a1690c71ee867a352134233",
+    "status": "verified",
+    "previousReleases": [
+      {
+        "template": "robyn-photocraft-0-12-0@1",
+        "release": "sha256:b56cb9749d2f3dc88c9f50a12803d57bfa29d359635d0999575055876944c849"
+      }
+    ]
   }
 }

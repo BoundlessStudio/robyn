@@ -36,3 +36,23 @@ test("readiness cannot be asserted without pinned artifacts", () => {
   app.editor.release = "test-only";
   assert.throws(() => validateManifest(app), /missing editor bundle/);
 });
+
+test("workstation upgrades accept only unique immutable template revisions and image digests", () => {
+  const app = structuredClone(readManifests(path.resolve("src/studio/apps")).find(({ app }) => app.workstation.status === "verified").app);
+  delete app.workstation.previousReleases;
+  app.workstation.previousReleases = [{ template: "robyn-example-previous@1", release: `sha256:${"a".repeat(64)}` }];
+  assert.equal(validateManifest(app), app);
+  for (const previousReleases of [null, {}, "previous", [null], ["robyn-example@1"],
+    [{ template: "robyn-example", release: `sha256:${"a".repeat(64)}` }],
+    [{ template: "robyn-example@latest", release: `sha256:${"a".repeat(64)}` }],
+    [{ template: "robyn-example@0", release: `sha256:${"a".repeat(64)}` }],
+    [{ template: "robyn-example@1", release: "0.1.0" }],
+  ]) assert.throws(() => validateManifest({ ...app, workstation: { ...app.workstation, previousReleases } }), /invalid previous workstation release/);
+  for (const previousReleases of [
+    [{ template: app.workstation.template, release: app.workstation.release }],
+    [{ template: "robyn-example@1", release: `sha256:${"a".repeat(64)}` }, { template: "robyn-example@1", release: `sha256:${"b".repeat(64)}` }],
+  ]) assert.throws(() => validateManifest({ ...app, workstation: { ...app.workstation, previousReleases } }), /duplicate workstation template revision/);
+  for (const overrides of [{ template: "robyn-example" }, { template: "robyn-example@latest" }, { release: "latest" }]) {
+    assert.throws(() => validateManifest({ ...app, workstation: { ...app.workstation, ...overrides } }), /pin a template revision and image digest/);
+  }
+});

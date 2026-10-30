@@ -5,6 +5,7 @@ import {randomUUID,createHash} from 'node:crypto';
 import {chromium,firefox,webkit} from 'playwright';
 import {nativeImportFixture,openEmployeeWorkspace,projectId,origin} from './fixtures/native-import.mjs';
 const browserType=({chromium,firefox,webkit})[process.env.NATIVE_IMPORT_BROWSER??'chromium'];
+import {studioApps} from "../src/studio/apps/registry.ts";
 const starters=JSON.parse(await readFile(new URL('../src/studio/generated/blank-starters.json',import.meta.url),'utf8'));
 
 test('application workspace renames its project and opens its dedicated employee page',async()=>{
@@ -12,7 +13,7 @@ test('application workspace renames its project and opens its dedicated employee
   try{
     const {page:workspace,state}=await nativeImportFixture(browser,{viewport:{width:1200,height:850}});
     let page=workspace;
-    assert.equal(await page.locator('.application-grid button').count(),13);
+    assert.equal(await page.locator('.application-grid button').count(),studioApps.length);
     await page.getByRole('button',{name:'Rename project: First project'}).click();
     await page.getByLabel('Project name',{exact:true}).fill('Garden guide');await page.getByRole('button',{name:'Save name',exact:true}).click();
     await page.getByRole('heading',{name:'Garden guide',exact:true}).waitFor();
@@ -89,12 +90,12 @@ test('a delivered first draft appears in its project and opens from the employee
   }finally{await browser.close();}
 });
 
-test('manual starts cover all thirteen Crafts, validate bytes before writes, and recover one document after reload',async()=>{
-  assert.equal(starters.length,13);
+test('manual starts cover all registered Crafts, validate bytes before writes, and recover one document after reload',async()=>{
+  assert.deepEqual(new Set(starters.map(item=>item.appId)),new Set(studioApps.map(app=>app.id)));
   const browser=await browserType.launch({headless:true});
   try{
     const {page,state}=await nativeImportFixture(browser);state.allowance=0;state.failStarterDownload=true;
-    assert.equal(await page.locator('.application-grid button').count(),13);
+    assert.equal(await page.locator('.application-grid button').count(),studioApps.length);
     await page.locator('.application-grid button').filter({hasText:'WordCraft'}).click();
     await page.getByRole('alert').waitFor();assert.equal(state.assets.size,0);assert.equal(state.revisions.size,0);
     state.failStarterDownload=false;state.failCreationReply=true;
@@ -114,7 +115,7 @@ test('manual starts cover all thirteen Crafts, validate bytes before writes, and
     assert.equal(await editor.getByLabel('Document text').inputValue(),'A first manual edit.','cancel keeps unsaved work in the editor');
     await editor.getByRole('button',{name:'Save document',exact:true}).click();await editor.getByText('Saved',{exact:true}).waitFor();
     await page.getByRole('button',{name:'New file',exact:true}).click();
-    assert.equal(await page.getByRole('dialog').locator('.application-grid button').count(),13);assert.equal(state.assignments.size,0);
+    assert.equal(await page.getByRole('dialog').locator('.application-grid button').count(),studioApps.length);assert.equal(state.assignments.size,0);
     await page.waitForLoadState('networkidle');await page.goto(`${origin}/dashboard/projects/${projectId}/library`);
     await page.getByRole('link').filter({has:page.getByRole('heading',{name:'Untitled document',exact:true})}).click();await page.getByRole('link',{name:'Open in WordCraft',exact:true}).click();await editor.getByText('Ready',{exact:true}).waitFor();
     assert.equal(await editor.getByLabel('Document text').inputValue(),'A first manual edit.');assert.equal(state.assets.size,1);assert.equal(state.revisions.size,2);assert.deepEqual(state.errors,[]);

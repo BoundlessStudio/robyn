@@ -17,6 +17,22 @@ export function validateManifest(app) {
   if (!app.editor.adapterVersion) throw new Error(app.id + ": missing adapter version");
   if (app.editor.status === "verified" && !app.editor.bundleUrl) throw new Error(app.id + ": missing editor bundle");
   if (app.workstation.status === "verified" && !app.workstation.template) throw new Error(app.id + ": missing template");
+  const pinnedTemplate = value => typeof value === "string" && /^robyn-[a-z0-9-]+@[1-9][0-9]*$/.test(value);
+  const imageDigest = value => typeof value === "string" && /^sha256:[0-9a-f]{64}$/.test(value);
+  if (app.workstation.status === "verified" && (!pinnedTemplate(app.workstation.template) || !imageDigest(app.workstation.release))) {
+    throw new Error(app.id + ": verified workstation must pin a template revision and image digest");
+  }
+  if (app.workstation.previousReleases !== undefined) {
+    if (!Array.isArray(app.workstation.previousReleases)) throw new Error(app.id + ": invalid previous workstation releases");
+    const templates = new Set([app.workstation.template]);
+    for (const release of app.workstation.previousReleases) {
+      if (!release || typeof release !== "object" || !pinnedTemplate(release.template) || !imageDigest(release.release)) {
+        throw new Error(app.id + ": invalid previous workstation release");
+      }
+      if (templates.has(release.template)) throw new Error(app.id + ": duplicate workstation template revision");
+      templates.add(release.template);
+    }
+  }
   return app;
 }
 

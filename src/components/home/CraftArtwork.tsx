@@ -27,8 +27,8 @@ export function CraftArtwork({ appId, name, number, nearby, onInspect }: { appId
   if (!artwork) return null;
 
   function screen(enlarged = false) {
-    return <span className={`craft-ui-window${enlarged && original ? " craft-ui-original" : ""}`}>
-      <Image src={artwork.src} alt={artwork.alt} width={1440} height={1000} sizes={enlarged ? "90vw" : "(max-width: 900px) 94vw, 48vw"} quality={85} loading="eager" draggable={false} />
+    return <span className={`craft-ui-window${artwork.fullFrame ? " craft-ui-full" : ""}${enlarged && original ? " craft-ui-original" : ""}`}>
+      <Image src={artwork.src} alt={artwork.alt} width={artwork.fullFrame ? 1600 : 1440} height={1000} sizes={enlarged ? "90vw" : "(max-width: 900px) 94vw, 48vw"} quality={85} loading="eager" draggable={false} />
     </span>;
   }
 

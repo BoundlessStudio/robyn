@@ -1,5 +1,21 @@
 [
   {
+    "id": "solidcraft:2",
+    "appId": "solidcraft",
+    "name": "Untitled model",
+    "description": "Blank parametric 3D design",
+    "files": [
+      {
+        "path": "Untitled model.sc",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 155,
+        "sha256": "28249d2e166b26b600da8583326fdf2a62f8455897ff2bdf1a0afce50b17093a",
+        "url": "/studio/starters/2/solidcraft/Untitled%20model.sc"
+      }
+    ]
+  },
+  {
     "id": "wordcraft:1",
     "appId": "wordcraft",
     "name": "Untitled document",
