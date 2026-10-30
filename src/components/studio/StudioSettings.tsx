@@ -6,7 +6,7 @@ import { apiFetch } from "@/lib/api";
 import {StudioBudget} from "./StudioBudget";
 import Link from "next/link";
 import {ProjectSection,type ProjectSectionDetails} from "./ProjectSection";
-import {ProjectActivitySettings,ProjectDetailsSettings} from "./ProjectDetailsSettings";
+import {ProjectDetailsSettings} from "./ProjectDetailsSettings";
 import type {ProjectSummary} from "@/studio/assets";
 
 export function StudioSettings({projectId}:{projectId:string}) {
@@ -29,7 +29,6 @@ function ProjectSettings({project,details}:{project:ProjectSummary;details:Proje
         <section className="studio-setting-section"><h2>Private by design</h2><p>This pilot gives each invited creator a private studio. Files, project conversations and Robyn’s workstation belong to that studio.</p><p>Saved revisions keep each creative direction recoverable. You and Robyn can continue from any saved revision.</p></section>
         <section className="studio-setting-section"><h2>Your account</h2><p>{userEmail}</p><button className="studio-button" onClick={signOut} disabled={busy}>Sign out</button></section>
       </div>
-      <ProjectActivitySettings activity={details.activity}/>
     </div>
   </div>;
 }

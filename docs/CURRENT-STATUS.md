@@ -8,6 +8,8 @@ Robyn is an invitation-only, passwordless, solo-creator studio at **https://roby
 
 ## Release boundary
 
+Settings hides **Project activity** and uses the full content width. Stored history is preserved. [The local acceptance record](acceptance/settings-hide-project-activity-20261030.md) covers project editing, archive/reactivation, AI allowance and desktop layout checks.
+
 Workstation defaults are **4 vCPU, 16 GB RAM and 10 GB persistent disk**, using **shared cores (`default`) in the US**, with auto-sleep after **one idle hour**. The primary workstation was resized in place to the same settings; ownership, saved files, task configuration and allowance were preserved. [The resource receipt](acceptance/workstation-resources-20261030.json) records the provider confirmation and file checks.
 
 The Craft refresh was accepted at web **`2459805694711db6cd1a3117cfb3979babe5e2eb`**, paired with runtime **`833e70ab99480f3d6c779591b44fa10e6a031af6`**. The shared image is **`robyn-studio-0-1-1@1`**, digest `sha256:23622a922f2ab7df9a45d6cfe64f42247954b31843e228ded96619ccefbbea0d`, with workstation client **0.2.0**. Production has **30 matching checksummed ledger entries through 0029**, including the separately verified [budget default migration](acceptance/settings-budget-release-20261030.json). [The release record](acceptance/shared-workstation-release-20261030.json) records the paired source, editor pins, migration state and acceptance scope; [the production receipt](acceptance/shared-workstation-production-20261030.json) confirms cleanup and the final owner/workstation binding. The resource policy update changes none of those immutable releases or migrations.

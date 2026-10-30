@@ -35,20 +35,21 @@ test('settings support the $20 default, enforce $0–$100 and preserve a saved A
   }finally{await browser.close();}
 });
 
-test('project activity stays in a bounded right sidebar while settings remain usable',async()=>{
+test('settings hide project activity and use the available width while project editing remains usable',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
     const {page,state}=await nativeImportFixture(browser,{initialPath:settings,viewport:{width:1600,height:1000}});
     state.activity=Array.from({length:100},(_,index)=>({id:randomUUID(),kind:'revision.committed',created_at:new Date(2026,9,30,12,index).toISOString()}));
     await page.reload();
-    const activity=page.getByRole('complementary',{name:'Project activity'}),details=page.locator('#project-details');
-    await activity.locator('li').last().waitFor();
-    const bounds=await activity.boundingBox(),main=await details.boundingBox();
-    assert.ok(bounds.x>=main.x+main.width);assert.ok(bounds.y+bounds.height<=1000);
-    assert.ok(await activity.locator('ol').evaluate(list=>list.scrollHeight>list.clientHeight));
+    const details=page.locator('#project-details');await details.waitFor();
+    assert.equal(await page.getByRole('complementary',{name:'Project activity',includeHidden:true}).count(),0);
+    assert.equal(await page.getByRole('heading',{name:'Project activity',includeHidden:true}).count(),0);
+    const main=await details.boundingBox(),layout=await page.locator('.studio-settings-layout').boundingBox();
+    assert.ok(Math.abs(main.width-layout.width)<1);
     await page.getByLabel('Project name',{exact:true}).fill('Settings still work');
     await page.getByRole('button',{name:'Save project details',exact:true}).click();
     await page.getByRole('status').filter({hasText:'Project details saved.'}).waitFor();
+    assert.equal(state.activity.length,100);
     assert.deepEqual(state.errors,[]);
   }finally{await browser.close();}
 });
