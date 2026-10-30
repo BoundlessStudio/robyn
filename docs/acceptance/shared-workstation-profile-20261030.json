@@ -55,7 +55,7 @@
     "actualTerminalReplayAcceptedByCorrectedSource": true,
     "correctedSourceSha256": "488be2057a1ddd31b78fc482dd51ded01589ed49804d0834ff1de4be5b20c641",
     "deploymentPending": true,
-    "authoritativeDocs": "https://www.agent37.com/docs/agents-api/responses"
+    "authoritativeDocs": "https://www.agent37.com/docs/agents-api/streaming"
   },
   "allowance": {
     "monthlyLimitMicros": 75000000,
