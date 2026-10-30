@@ -2,7 +2,7 @@
 
 ## Current scope
 
-This repository implements **Robyn Creative Studio**. [docs/PLAN.md](docs/PLAN.md) is the complete scope; [docs/CURRENT-STATUS.md](docs/CURRENT-STATUS.md) is the current acceptance index. The dated starter guidance in docs/UPSTREAM-STARTER.md is historical. CLAUDE.md imports this file, so keep the instructions here.
+This repository implements **Robyn Creative Studio**. [docs/README.md](docs/README.md) is the documentation index; [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) defines the current architecture and scope; [docs/CURRENT-STATUS.md](docs/CURRENT-STATUS.md) is the current acceptance index. Dated plans, checkpoints, reviews and release narratives live in [docs/archive/](docs/archive/README.md). CLAUDE.md imports this file, so keep the instructions here.
 
 The pilot is invitation-only and passwordless. Public signup must remain disabled. The authenticated studio, all registered Crafts and Robyn’s browser/Notes tools are **desktop-only**. Compact/mobile editor work is outside the pilot and must not block completion. The public homepage supports mobile presentation. Explain the desktop requirement on unsupported first entry and preserve an already-open native editor when the window is temporarily narrowed. Do not restart speculative homepage performance work without a concrete reported issue or new request.
 
@@ -40,6 +40,8 @@ Follow [SETUP.md](SETUP.md). Setup uses a private checksummed migration ledger a
 Use Node 24 and Python 3. Browser fixtures exercise actual component transitions and request identities. Homepage changes require visual review at desktop and mobile widths. Verify affected runtime tests in the companion repository; native/editor changes also need their actual round trip. CI is in .github/workflows/check.yml in both repositories.
 
 Never print .env.local or credential values. Do not indiscriminately add ignored QA artifacts: some contain private access material. Keep sanitized summaries/hashes in docs/acceptance/; keep private receipts and recovery records outside version control. Distinguish local tests, recorded historical acceptance and a deployed release. Record matching web/runtime commits, migration state, editor pins and workstation client version in the release record.
+
+Keep top-level docs focused on maintained system references and procedures. Update the owning document instead of appending one-pass plans or release logs. Temporary checkpoints belong in chat or ignored local notes; retain useful historical records in docs/archive/. Keep unresolved acceptance gaps in CURRENT-STATUS.md or the owning runbook, and preserve original source paths/hashes inside historical JSON receipts.
 
 ## Main locations
 

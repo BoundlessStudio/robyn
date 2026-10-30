@@ -1,6 +1,6 @@
 # Project-scoped navigation — October 28, 2026
 
-Local implementation on `codex/project-scoped-navigation`, based on web main `a623a5d`. This document records local acceptance. The subsequent [deployed-release record](../RELEASE-PROJECT-NAVIGATION-2026-10-28.md) and [sanitized production evidence](production-project-navigation-20261028.json) separately record the live checks.
+Local implementation on `codex/project-scoped-navigation`, based on web main `a623a5d`. This document records local acceptance. The subsequent [deployed-release record](../archive/releases/RELEASE-PROJECT-NAVIGATION-2026-10-28.md) and [sanitized production evidence](production-project-navigation-20261028.json) separately record the live checks.
 
 The later [menu behavior follow-up](project-menu-order-2026-10-28.md) supersedes the separate-tab navigation described in this initial checkpoint.
 

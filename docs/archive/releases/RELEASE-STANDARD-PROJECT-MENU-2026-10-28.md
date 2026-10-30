@@ -1,5 +1,7 @@
 # Standard project menu release — October 28, 2026
 
+> Historical record. Requirements, pause/resume directions, pending actions and release state below describe the recorded pass. Use the [documentation index](../../README.md) for current scope and acceptance.
+
 Every project section and the editor now use the same main menu: **Dashboard, Assets, AI Employees, Research, Applications, Settings**. The header and Robyn dropdown share their labels, icons, order and current-section highlight. Applications always opens its page. New file, Open existing, Files and Project details occupy a separate workspace toolbar.
 
 [PR #33](https://github.com/BoundlessStudio/robyn/pull/33) is merged at web `410cb6813bcc8dca84a51a4c6c34d5677dd80e5e`, containing implementation `a7763255d2ba7ad50e4d2289f90496a3a8018e68`. [Vercel completed the production deployment](https://vercel.com/venatio-studios/robyn-creative-studio/4sp9wDVJxLTNXnDfJnC5VemHsB1x). Authenticated checks on [the canonical studio](https://robyn.academy/dashboard) passed on October 28. Documentation-only follow-ups may rebuild the same application source.
@@ -12,9 +14,9 @@ Fifteen header observations cover all six project destinations at 1440 and 1200 
 
 Opening an existing native asset preserves its exact saved revision in both employee links. The New file chooser exposes all thirteen Crafts and closes without replacing the editor frame. Dashboard then returns to the application launcher and clears the open-file selection during the actual Next navigation.
 
-No authoring, save, employee dispatch, takeover or return action was submitted. Research used its existing view-only connection. There were no failed private API requests or page JavaScript errors. Private screenshots and browser state remain ignored; [sanitized production evidence](acceptance/production-standard-project-menu-20261028.json) records observations and screenshot hashes.
+No authoring, save, employee dispatch, takeover or return action was submitted. Research used its existing view-only connection. There were no failed private API requests or page JavaScript errors. Private screenshots and browser state remain ignored; [sanitized production evidence](../../acceptance/production-standard-project-menu-20261028.json) records observations and screenshot hashes.
 
-[Local acceptance](acceptance/project-menu-standardization-2026-10-28.md) records 128 passing tests, typecheck, production build, 28 affected scenarios in each of Chromium, Firefox and WebKit, header accessibility/position checks and desktop visual review. The public gate passes eighteen page/viewport/engine cases and fourteen keyboard checks, with four existing Windows WebKit platform cases explicitly unverified. Hosted PR and branch checks pass tests, typecheck, dependency audit, build and the public gate. The initial local Firefox fixture race was corrected and its complete rerun passed.
+[Local acceptance](../../acceptance/project-menu-standardization-2026-10-28.md) records 128 passing tests, typecheck, production build, 28 affected scenarios in each of Chromium, Firefox and WebKit, header accessibility/position checks and desktop visual review. The public gate passes eighteen page/viewport/engine cases and fourteen keyboard checks, with four existing Windows WebKit platform cases explicitly unverified. Hosted PR and branch checks pass tests, typecheck, dependency audit, build and the public gate. The initial local Firefox fixture race was corrected and its complete rerun passed.
 
 ## Runtime, database and rollback
 

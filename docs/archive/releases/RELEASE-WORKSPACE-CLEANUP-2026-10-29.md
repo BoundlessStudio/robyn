@@ -1,5 +1,7 @@
 # Project workspace cleanup release — October 29, 2026
 
+> Historical record. Requirements, pause/resume directions, pending actions and release state below describe the recorded pass. Use the [documentation index](../../README.md) for current scope and acceptance.
+
 Dashboard is the single application launcher. The project header and dropdown now contain **Dashboard, Assets, AI Employees, Research and Settings**. Existing Applications links redirect to Dashboard. Project name, brief, archive/reactivation and recent activity live in Settings. The Files rail, Project details panel and secondary workspace toolbar are removed; New file remains beside the editor's document controls. Asset grid cards use short previews and the same 48-pixel application icons as list view.
 
 [PR #34](https://github.com/BoundlessStudio/robyn/pull/34) is merged at web `8134e07d0aa0b74a491a2e7365c29584f26af3bd`, containing implementation `d2c9730be0f39bcd9d1a2be093f3b782fd28c6a0`. [Vercel completed the production deployment](https://vercel.com/venatio-studios/robyn-creative-studio/6UZak49sGafj6jMQUh3xGFhyLFvs). Authenticated checks on [the canonical studio](https://robyn.academy/dashboard) passed on October 29. Documentation-only follow-ups may rebuild identical application source.
@@ -12,11 +14,11 @@ Settings shows the existing project's saved name and brief, its activity and arc
 
 An existing saved WordCraft document opens at its exact revision, with the editor frame starting at y=88. AI Employees retains the same asset/revision reference. The New file chooser exposes all thirteen Crafts and closes with keyboard focus restored while retaining the same editor frame. Dashboard then clears the selection during the actual Next navigation.
 
-No authoring, save, archive, employee dispatch, takeover or return action was submitted. Research used its existing view-only connection. There were no failed private API requests or page JavaScript errors. Private browser state, request diagnostics and screenshots remain ignored; [sanitized production evidence](acceptance/production-workspace-cleanup-20261029.json) records observations and screenshot hashes.
+No authoring, save, archive, employee dispatch, takeover or return action was submitted. Research used its existing view-only connection. There were no failed private API requests or page JavaScript errors. Private browser state, request diagnostics and screenshots remain ignored; [sanitized production evidence](../../acceptance/production-workspace-cleanup-20261029.json) records observations and screenshot hashes.
 
 ## Verification and release boundary
 
-[Local acceptance](acceptance/project-workspace-cleanup-2026-10-29.md) records 129 passing tests, typecheck, production build and 26 affected browser scenarios in each engine, including exact import/launch retry identity and unsaved-editor protection. Desktop visual review covers 1200 and 1440 pixels. Public layout/axe checks pass eighteen page/viewport/engine cases; fourteen keyboard checks pass, with four existing Windows WebKit platform cases explicitly unverified. Hosted PR, branch and main checks passed tests, typecheck, dependency audit, build and the public gate.
+[Local acceptance](../../acceptance/project-workspace-cleanup-2026-10-29.md) records 129 passing tests, typecheck, production build and 26 affected browser scenarios in each engine, including exact import/launch retry identity and unsaved-editor protection. Desktop visual review covers 1200 and 1440 pixels. Public layout/axe checks pass eighteen page/viewport/engine cases; fourteen keyboard checks pass, with four existing Windows WebKit platform cases explicitly unverified. Hosted PR, branch and main checks passed tests, typecheck, dependency audit, build and the public gate.
 
 The documentation-only release-record run subsequently exposed an existing Firefox media-test race: it asserted the retry count immediately after clicking, before the second request reached the fixture. The test-only follow-up waits for the successful retry response and an enabled dialog close control before checking the same two requests and their exact identities. It changes no application source or published release pins.
 

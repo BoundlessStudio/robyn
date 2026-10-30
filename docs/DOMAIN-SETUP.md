@@ -9,7 +9,7 @@ Website/auth configured October 23; editor distribution updated October 24; supp
 - `www.robyn.academy` redirects permanently (308) to `robyn.academy`, preserving the path and query.
 - `NEXT_PUBLIC_SITE_URL=https://robyn.academy` is saved in the Vercel Production/Preview variable and local `.env.local`. New employee assignment setup derives its MCP endpoint from that value. Existing assignments can continue using the still-active Vercel hostname.
 - `src/config/branding.ts` supplies the canonical metadata origin; the homepage canonical and Open Graph URL use the custom domain.
-- Initial domain deployment: `dpl_Fsk4iKXzDZTQy9ne7gBtRXeRZBkn` (READY). Subsequent deployments are recorded in `docs/PAUSE-CHECKPOINT.md`.
+- Initial domain deployment: `dpl_Fsk4iKXzDZTQy9ne7gBtRXeRZBkn` (READY). Use [current acceptance](CURRENT-STATUS.md) for the maintained release boundary and [archived release records](archive/README.md#release-narratives) for earlier deployments.
 
 ## Embedded editor origin
 

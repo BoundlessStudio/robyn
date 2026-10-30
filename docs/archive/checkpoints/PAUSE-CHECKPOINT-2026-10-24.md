@@ -1,5 +1,7 @@
 # Robyn continuation checkpoint
 
+> Historical record. Requirements, pause/resume directions, pending actions and release state below describe the recorded pass. Use the [documentation index](../../README.md) for current scope and acceptance.
+
 ## Desktop-only pilot scope accepted — 2026-10-24
 
 The user explicitly excluded mobile/compact studio support from the pilot and authorized a mobile public homepage. This supersedes the blocker audit below: mobile editors are no longer a pending acceptance requirement. The goal objective, PLAN and AGENTS now carry that boundary. Release `dpl_6M3hryBqSuciYknbuuHLaQDk6bn6` is live at `https://robyn.academy` with clear desktop-required entry and a phone/tablet ASCII tour containing all fourteen features. Typecheck, all 36 web tests and the production build pass.

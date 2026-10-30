@@ -2,7 +2,7 @@
 
 ## Scope and release boundary
 
-Implementation `564dee3a60186006d2889151711d85c3e77866b9` on base `2c248f6adfb9a90c6d5b3b4c2039f9e1215b2f45` is deployed in web merge `a0a9cdd5a38d6613f42da09a0d76e58d30e81553` ([PR #35](https://github.com/BoundlessStudio/robyn/pull/35)). Runtime sources, native editors, Craft manifests and workstation 0.1.23 are unchanged. [The release record](../RELEASE-BETA-ADMINISTRATION-2026-10-29.md) records the production deployment and paired runtime commit.
+Implementation `564dee3a60186006d2889151711d85c3e77866b9` on base `2c248f6adfb9a90c6d5b3b4c2039f9e1215b2f45` is deployed in web merge `a0a9cdd5a38d6613f42da09a0d76e58d30e81553` ([PR #35](https://github.com/BoundlessStudio/robyn/pull/35)). Runtime sources, native editors, Craft manifests and workstation 0.1.23 are unchanged. [The release record](../archive/releases/RELEASE-BETA-ADMINISTRATION-2026-10-29.md) records the production deployment and paired runtime commit.
 
 The configured Supabase database has migrations `0025_beta_administration.sql` and `0026_beta_admin_session_reset.sql` applied, and its sole `admin` account is configured. Account passwords/hashes, session cookies, request emails and provider credentials are excluded from this record.
 

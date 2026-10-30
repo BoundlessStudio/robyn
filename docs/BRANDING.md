@@ -56,4 +56,5 @@ indexing; account/private pages inherit `noindex, nofollow`. Robots directives
 complement the existing authorization checks and are not an access boundary.
 
 Desktop visual evidence and HTTP metadata verification are saved in
-`artifacts/qa/branding/`. Mobile/compact review remains deferred by the user.
+`artifacts/qa/branding/`. [Current acceptance](CURRENT-STATUS.md) records the later
+public mobile presentation; authenticated studio/editor support remains desktop-only.

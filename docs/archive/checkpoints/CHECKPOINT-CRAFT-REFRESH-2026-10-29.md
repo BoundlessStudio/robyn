@@ -1,5 +1,7 @@
 # Craft refresh checkpoint — paused October 29, 2026
 
+> Historical record. Requirements, pause/resume directions, pending actions and release state below describe the recorded pass. Use the [documentation index](../../README.md) for current scope and acceptance.
+
 The owner requested a checkpoint and pause. **The refresh is unfinished; do not deploy this checkpoint as a completed release.** Resume the existing goal to refresh the thirteen ArtCraft applications and add SolidCraft as an application and Parametric 3D Designer employee.
 
 ## Saved repositories

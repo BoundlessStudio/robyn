@@ -1,6 +1,6 @@
 # Browser and accessibility baseline
 
-Updated October 25, 2026. The invited studio, all thirteen Crafts and Research are desktop-only. Compact native editors are outside the pilot. The initial entry check requires a viewport of at least 1200 CSS pixels, a fine pointer and hover. It is a presentation check, not proof of GPU/codec support. A temporarily narrowed window preserves an already-open editor and its unsaved state.
+The invited studio, all fourteen Crafts, Notes and Robyn's browser tools are desktop-only. Compact native editors are outside the pilot. The initial entry check requires a viewport of at least 1200 CSS pixels, a fine pointer and hover. It is a presentation check, not proof of GPU/codec support. A temporarily narrowed window preserves an already-open editor and its unsaved state. The detailed browser/accessibility exercises below were recorded on October 25, 2026; [current acceptance](CURRENT-STATUS.md) separately indexes the October 30 fourteen-Craft refresh.
 
 | Environment | Evidence / support claim |
 | --- | --- |
