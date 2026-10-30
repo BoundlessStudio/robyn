@@ -364,6 +364,7 @@
 .research-notebook-tools { display:flex; flex:none; align-items:center; justify-content:space-between; gap:12px; min-height:38px; padding:4px 18px; border-bottom:1px solid #bbc0ad; font-size:10px; letter-spacing:1px; }
 .research-notebook-tools>div { display:flex; gap:8px; }.research-notebook-tools i { color:#cf502d; font-style:normal; }
 .research-notebook-tools button { color:#1c2b20; }.research-notebook-tools button:disabled { opacity:.4; }
+.research-notebook-tools .studio-tool-button:is(:hover,:focus-visible) { color:#1c2b20; background:#1c2b2012; }
 .research-notebook-paper { overflow:auto; padding:clamp(24px,4vw,70px); line-height:1.8; font-size:15px; }
 .research-notebook-paper>div { max-width:860px; margin:0 auto; }.research-notebook-paper h1 { font-size:clamp(32px,3.8vw,58px); font-weight:500; letter-spacing:-2px; line-height:1.08; margin-bottom:28px; }
 .research-notebook-paper h2 { font-family:"Instrument Serif",serif; font-weight:400; font-size:32px; color:#b54828; margin:32px 0 12px; }.research-notebook-paper h3 { margin:24px 0 8px; }
