@@ -4,26 +4,27 @@ Updated October 31, 2026. This page indexes recorded release evidence and remain
 
 ## Recorded release boundary
 
-The invitation-only, passwordless pilot has one visible Robyn and one shared workstation per creator, with fourteen Craft tools, Chrome and Brave Search. Saved notebooks remain Notes. The authenticated studio is desktop-only; the public homepage supports mobile presentation. Public signup and subscription billing remain disabled.
+The invitation-only, passwordless pilot has one visible Robyn and one shared workstation per creator, with 26 installed Crafts, fourteen ready browser/library integrations, Chrome and Brave Search. Saved notebooks remain Notes. The authenticated studio is desktop-only; the public homepage supports mobile presentation. Public signup and subscription billing remain disabled.
 
 | Boundary | Recorded state and evidence |
 | --- | --- |
-| Craft refresh sources | Web `2459805694711db6cd1a3117cfb3979babe5e2eb`, runtime `833e70ab99480f3d6c779591b44fa10e6a031af6`; [paired release and editor pins](acceptance/shared-workstation-release-20261030.json) |
-| Shared image / client | `robyn-studio-0-1-1@1`, digest `sha256:23622a922f2ab7df9a45d6cfe64f42247954b31843e228ded96619ccefbbea0d`; workstation client **0.2.0** |
-| Migration ledger | **30 matching checksummed entries through 0029**; [budget-default follow-up](acceptance/settings-budget-release-20261030.json). The Craft release receipt's 29-entry checkpoint through 0028 is historical |
+| Fourteen-Craft acceptance sources | Web `2459805694711db6cd1a3117cfb3979babe5e2eb`, runtime `833e70ab99480f3d6c779591b44fa10e6a031af6`; [paired release and editor pins](acceptance/shared-workstation-release-20261030.json) |
+| Studio expansion release | Web `0469608f94cbeda6ba0a4493c10099b8c7ed300e`, runtime `5362885c4f7abdaf84a551cd2fba4e70f1844e13`; [production rollout and scoped checks](acceptance/studio-expansion-deployed-20261031.json) |
+| Shared image / client | `robyn-studio-0-2-1@1`, digest `sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da`; workstation client **0.2.0** |
+| Migration ledger | Last verified **30 matching checksummed entries through 0029**; [budget-default follow-up](acceptance/settings-budget-release-20261030.json). This expansion applied no schema migrations; the ledger was not reread. The Craft release receipt's 29-entry checkpoint through 0028 is historical |
 | Resource policy | **4 vCPU, 16 GB RAM, 10 GB persistent disk**, `default` shared cores, US region, one-hour idle sleep; [in-place resource confirmation](acceptance/workstation-resources-20261030.json) |
 | Settings follow-up | Project activity hidden while stored history is preserved; [local project/settings acceptance](acceptance/settings-hide-project-activity-20261030.md) |
 | Consolidation | One linked primary QA workstation remains. Seventeen retired instances were deleted after private archives totaling **557,160,094 bytes** passed rehash checks; bindings/mirrors cleared, historical rows/jobs/spending retained; [production receipt](acceptance/shared-workstation-production-20261030.json) |
 
 The QA allowance retained its **$75** ceiling and archived charges: the production receipt records **1,850,361 micros** spent, **73,149,639 micros** available and zero reserved. All three existing studios have one canonical Robyn; only the primary QA studio was provisioned. At the recorded cleanup boundary, canary credentials were revoked, jobs/media were idle, and browser control was returned to Robyn and disconnected. These are dated observations, not a live health report.
 
-## Studio expansion, not deployed
+## Studio expansion, deployed October 31
 
-The source catalog contains **26 Crafts: Creative 10, Drafting 9 and Analysis 7**, in the requested order, including DetailCraft, with upstream context from [Remade](https://remade.wiki/). Dashboard launchers and Robyn's Skills directory use those groups. [The expansion evidence](acceptance/studio-expansion-20261031.json) records the new image, source/package pins, installation checks, temporary canary and local verification separately from the production boundary above.
+The deployed catalog contains **26 Crafts: Creative 10, Drafting 9 and Analysis 7**, in the requested order, including DetailCraft, with upstream context from [Remade](https://remade.wiki/). Dashboard launchers and Robyn's Skills directory use those groups. [The production receipt](acceptance/studio-expansion-deployed-20261031.json) records the owned idle image/mirror update, matching web deployment, all 26 native installation checks, file API transfers, authenticated UI checks and public desktop/mobile review. Eleven recorded working/configuration files retained their hashes; resources, allowance and managed usage were unchanged. The maintenance assignment closed without an AI turn.
 
 The fourteen existing integrations retain their recorded native/editor verification pins. The twelve additions have pending formats, browser and workstation integration status: native installation does not certify a browser edit or confirmed library save. Pending Crafts stay unavailable for paid work, new-file launches and native imports, and cannot make an existing ready PDF importer ambiguous. The immutable workstation client remains 0.2.0 with its fourteen supported Craft skills.
 
-The new image pin requires a coordinated owned idle workstation/mirror update and web deployment, following [operations](OPERATIONS.md#shared-workstation-ownership-and-task-recovery). Publishing a template or preparing web source does not change the existing production workstation, its data, allowance or migration ledger.
+The earlier [build and canary evidence](acceptance/studio-expansion-20261031.json) retains its original pre-deployment scope. The [updated 60-second showcase export](acceptance/2026-10-31-remotion-showcase-export.json) is a separate local video artifact. Future image changes require the coordinated owned idle workstation/mirror update and web deployment described in [operations](OPERATIONS.md#shared-workstation-ownership-and-task-recovery).
 
 ## Acceptance scope
 
@@ -33,6 +34,7 @@ The new image pin requires a coordinated owned idle workstation/mirror update an
 | --- | --- |
 | Fourteen Crafts | Native → hosted browser edit → confirmed private-library save → native continuation passed for all fourteen, including SolidCraft **0.27.1**. See [hosted refresh](acceptance/craft-refresh-hosted-20261030.json), [SolidCraft follow-up](acceptance/solidcraft-0271-20261030.json) and [upstream cutoff](acceptance/craft-refresh-upstream-cutoff-20261030.json) |
 | Combined native image | All fourteen executable versions/hashes and native edit/save/reopen continuations passed. Thirty-five QA files survived the in-place image update; [0.1.1 native acceptance](acceptance/shared-workstation-native-0.1.1-20261030.json) |
+| Expanded native image and catalog | The 0.2.1 primary passes all 26 installation checks and native file API read/write. The live launcher and Skills directory show 10/9/7 Crafts with fourteen ready and twelve connecting; [October 31 rollout](acceptance/studio-expansion-deployed-20261031.json). New browser/library round trips remain pending |
 | Robyn AI workflow | An ordinary generation-4 production workflow read task context, confirmed fourteen allowed tools and ran native CADCraft 0.14.0/SolidCraft 0.27.1 version checks, then completed and received creator approval. Actual editor saves and three operator-controlled cross-application MCP outputs are separate scopes in the [release receipt](acceptance/shared-workstation-release-20261030.json) |
 | Authenticated UI, browser and Notes | Dashboard/Assets/Robyn/Settings, all four Robyn views, exact Notes/WordCraft/SolidCraft reopening, temporary-narrow editor preservation and idle owner watch/take/return/disconnect passed; [production UI checks](acceptance/production-studio-one-robyn-20261030.json). Historical real search and active-turn takeover remain earlier evidence |
 | Task isolation and allowance | Task/generation/profile/folder boundaries, profile rotation and old-process denial are recorded separately from AI activity; [profile acceptance](acceptance/shared-workstation-profile-20261030.json). Archived spending and uncertain dispatch/cap-write fences remain preserved |
