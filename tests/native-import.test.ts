@@ -1,7 +1,16 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { nativeImportApp, directNativeImportApp, importedDocumentName, checkNativeImport } from "../src/studio/native-import";
+import { nativeImportApp, nativeImportApps, directNativeImportApp, importedDocumentName, checkNativeImport } from "../src/studio/native-import";
 import { studioApps } from "../src/studio/apps/registry";
+import {readFile} from "node:fs/promises";
+import {createHash} from "node:crypto";
+
+test("the vendored native inspector retains its exact generated provenance bytes",async()=>{
+  const root=new URL('../src/studio/generated/',import.meta.url);
+  const bytes=await readFile(new URL('native-inspector.mjs',root));
+  const proof=JSON.parse(await readFile(new URL('native-inspector.provenance.json',root),'utf8'));
+  assert.equal(createHash('sha256').update(bytes).digest('hex'),proof.sha256);
+});
 
 test("native recognition handles filenames but refuses conversion, ambiguous formats and unverified editors", () => {
   assert.equal(nativeImportApp("Autumn exhibition.DOCX")?.id, "wordcraft");
@@ -24,6 +33,19 @@ test("native recognition handles filenames but refuses conversion, ambiguous for
   assert.equal(importedDocumentName("Épreuve.v2.DOCX"), "Épreuve.v2");
   assert.equal(importedDocumentName(".docx"), ".docx");
   assert.equal(importedDocumentName("a".repeat(180)+".docx").length,160);
+  assert.equal(importedDocumentName("Steel.detailcraft.json"),"Steel");
+  assert.equal(importedDocumentName("Site.civilcraft.json"),"Site");
+  assert.equal(importedDocumentName("Assembly.partcraft-asm.json"),"Assembly");
+});
+
+test("PDF routing offers both verified applications, preserves direct intake and honors an explicit choice",()=>{
+  const pdf=studioApps.find(app=>app.id==='pdfcraft')!;
+  const markup={...pdf,id:'markupcraft',name:'MarkupCraft'};
+  assert.deepEqual(nativeImportApps('Plan.PDF',[pdf,markup]).map(app=>app.id),['pdfcraft','markupcraft']);
+  assert.equal(nativeImportApp('Plan.pdf',[pdf,markup])?.id,'pdfcraft');
+  assert.equal(nativeImportApp('Plan.pdf',[pdf,markup],'markupcraft')?.id,'markupcraft');
+  assert.equal(nativeImportApp('Plan.pdf',[pdf,markup],'wordcraft'),null);
+  assert.equal(nativeImportApp('Plan.pdf',[pdf,{...markup,editor:{...markup.editor,status:'pending'}}],'markupcraft'),null);
 });
 
 test("published adapter master names are normalized without changing source bytes or uploading unrelated files",async()=>{

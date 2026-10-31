@@ -93,6 +93,55 @@ export const craftArtwork: Record<string, CraftArtwork> = {
     "alt": "CADCraft's real drawing editor with a dimensioned gallery plan, drawing ribbon, geometry tools and properties.",
     "tools": "GEOMETRY / DIMENSIONS / DRAWING TOOLS"
   },
+  "bimcraft": {
+    "src": "/artwork/editors/bimcraft.png",
+    "title": "A building, taking shape.",
+    "alt": "BimCraft's actual building editor with four editable IFC walls, model properties and native drawing tools.",
+    "tools": "BUILDING ELEMENTS / IFC / PROPERTIES",
+    "fullFrame": true
+  },
+  "modelcraft": {
+    "src": "/artwork/editors/modelcraft.png",
+    "title": "Room for another angle.",
+    "alt": "ModelCraft's actual editor showing a three-dimensional solid, saved scenes, face and edge counts, modelling tools and materials.",
+    "tools": "FACES & EDGES / MODELLING / SCENES",
+    "fullFrame": true
+  },
+  "markupcraft": {
+    "src": "/artwork/editors/markupcraft.png",
+    "title": "Make your mark.",
+    "alt": "MarkupCraft's actual PDF review editor showing an annotated kitchen plan, sheet navigation and native markup controls.",
+    "tools": "PLAN REVIEW / ANNOTATIONS / SHEETS",
+    "fullFrame": true
+  },
+  "takeoffcraft": {
+    "src": "/artwork/editors/takeoffcraft.png",
+    "title": "Make every measure count.",
+    "alt": "TakeoffCraft's actual estimating editor with a calibrated kitchen plan, area and count marks, measured items and the quantity table.",
+    "tools": "PLAN MEASUREMENTS / QUANTITIES / ESTIMATES",
+    "fullFrame": true
+  },
+  "civilcraft": {
+    "src": "/artwork/editors/civilcraft.png",
+    "title": "Give a place shape.",
+    "alt": "CivilCraft's actual site editor with survey points, a graded pad, terrain boundaries and computed earthwork quantities.",
+    "tools": "SURVEY POINTS / TERRAIN / SITE DESIGN",
+    "fullFrame": true
+  },
+  "detailcraft": {
+    "src": "/artwork/editors/detailcraft.png",
+    "title": "Down to the detail.",
+    "alt": "DetailCraft's actual steel detailing editor with a modelled beam, grids, levels, member tools and a bill of materials panel.",
+    "tools": "MEMBERS / CONNECTIONS / DRAWINGS",
+    "fullFrame": true
+  },
+  "partcraft": {
+    "src": "/artwork/editors/partcraft.png",
+    "title": "Fit an idea together.",
+    "alt": "PartCraft's actual part editor showing a table frame, editable sketches and structural member features, geometry and material properties.",
+    "tools": "SKETCHES / FEATURES / ASSEMBLIES",
+    "fullFrame": true
+  },
   "solidcraft": {
     "src": "/artwork/editors/solidcraft.png",
     "title": "Give your idea another dimension.",

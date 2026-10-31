@@ -1,19 +1,27 @@
 {
-  "version": "0.2.0",
-  "directory": "vendor/robyn-workstation/0.2.0-97a41d837b66",
-  "fingerprint": "97a41d837b667d9d544083614c9cf8fe23a627ce8187818518da616cbe063c0c",
+  "version": "0.3.0",
+  "directory": "vendor/robyn-workstation/0.3.0-3e62cacf85f8",
+  "fingerprint": "3e62cacf85f887fa29275a664714b542c29d42ce6ea205475d4b20e8166d7fc5",
   "files": {
     "studio-mcp.cjs": {
-      "bytes": 1864194,
-      "sha256": "09a5f30e962361d2e0f1120270bfbb753d6aa84fe42a5718bf228bd32c42686d"
+      "bytes": 1891523,
+      "sha256": "651e17014bb5a073a184bb8dfd38361182516395df5b203eb41c1eb49534ddbd"
     },
     "configure-hermes.py": {
-      "bytes": 10489,
-      "sha256": "b6da72e4aba53700b3ad0afeaa588a1be6aae672d518ca66361e916342bf1b71"
+      "bytes": 10596,
+      "sha256": "c6fd1814b5624e71c3a8bff02fe3e642c259b603990439c81e098cd3e1a02bf0"
+    },
+    "skills/bimcraft.md": {
+      "bytes": 2483,
+      "sha256": "50b126d71b29f9c6a992896b966fa850f984d8857d6f4288846d810490e6904e"
     },
     "skills/cadcraft.md": {
       "bytes": 2033,
       "sha256": "f06797192538fa358eb18e02ca241d7dc54ed67f15f1e984f3e197a406a5f351"
+    },
+    "skills/civilcraft.md": {
+      "bytes": 2635,
+      "sha256": "eea8e334f71dd3679cde8086985d30f08b809c7c9d6411063f0d316b6071a865"
     },
     "skills/deckcraft.md": {
       "bytes": 2232,
@@ -22,6 +30,10 @@
     "skills/designcraft.md": {
       "bytes": 1986,
       "sha256": "03c03624fb33855e0e1568536ed8756b8a0776eb25e56228f0a41667fb88eeec"
+    },
+    "skills/detailcraft.md": {
+      "bytes": 2660,
+      "sha256": "824a547bb775b343188bf884ab743055e1fa81736e0d114289cf7a0802b94716"
     },
     "skills/effectcraft.md": {
       "bytes": 2241,
@@ -43,6 +55,18 @@
       "bytes": 2632,
       "sha256": "5ce555cb1fb30e75ee51bdb6b6ab170e6b2076dfb9c6ab3e236a13cb8a50bf28"
     },
+    "skills/markupcraft.md": {
+      "bytes": 2629,
+      "sha256": "b9171f75e8309cf8f6bb9c72add9d6ab706696c00e9e5c77e104c68df59a0779"
+    },
+    "skills/modelcraft.md": {
+      "bytes": 2520,
+      "sha256": "5d2c0a3c461c5e62003a3293148e99551865a9f193afc59ab64b3e29a75004bc"
+    },
+    "skills/partcraft.md": {
+      "bytes": 2892,
+      "sha256": "afecf2b2b238708cdc02cb20b34ca4e05d2c65cec7d8de276b3e549a04594a4d"
+    },
     "skills/pdfcraft.md": {
       "bytes": 3745,
       "sha256": "a83ed785dfe68c59085a8405ff96357ceccc6809de5809db2019651d9fe43106"
@@ -58,6 +82,10 @@
     "skills/soundcraft.md": {
       "bytes": 2428,
       "sha256": "30e7d0c75a7832952ae1971fdb857a03bda99a04538351b6251bd129fadea7bf"
+    },
+    "skills/takeoffcraft.md": {
+      "bytes": 2855,
+      "sha256": "ff355a942ca38bace959b28a789f8d99d7d0b31a711ff475733e922b496684a8"
     },
     "skills/vectorcraft.md": {
       "bytes": 3454,

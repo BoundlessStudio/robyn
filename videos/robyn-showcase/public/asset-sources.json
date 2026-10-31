@@ -226,8 +226,8 @@
   ],
   "catalog": {
     "destination": "catalog.json",
-    "bytes": 5194,
-    "sha256": "d961071891b299fa1ac4d90d6fdb85e42cb2868a59ccc7e502ba9b5abf59efe9",
+    "bytes": 5187,
+    "sha256": "9fdfaff3e9689840c738a72b21fb1ef0f8a2b4e07da08cf351349efc0d3b1f00",
     "sourceEncoding": "UTF-8 with LF line endings",
     "manifests": [
       {
@@ -287,38 +287,38 @@
       },
       {
         "source": "src/studio/apps/bimcraft.json",
-        "bytes": 1436,
-        "sha256": "c97c604d80233d87998e4456a576596f657f8906d30915de8c3f86041da03f78"
+        "bytes": 1556,
+        "sha256": "21aeb090f80c0be5ac16b63423bb94c94c02944f57f0e516bf07459de1d9f3a4"
       },
       {
         "source": "src/studio/apps/modelcraft.json",
-        "bytes": 1431,
-        "sha256": "dde69e62249f6eb4b113d627f8dffe6a9e85c4440e0683037ad89220a6b89272"
+        "bytes": 1555,
+        "sha256": "94fa03e43ad83177e67b4facbab257009d3f80ea2d5d693d4f942644630dd9a0"
       },
       {
         "source": "src/studio/apps/markupcraft.json",
-        "bytes": 1499,
-        "sha256": "1287e0858a4cf19e6c4c2b2db7cb1d2538cb499ae28b058210fa21ac409cc7f7"
+        "bytes": 1625,
+        "sha256": "49c225d795f45be6d585f1540d80558c1b6e2c8523647850c3e6f7f2faaf3dbb"
       },
       {
         "source": "src/studio/apps/takeoffcraft.json",
-        "bytes": 1547,
-        "sha256": "37ea9ec2682a39f172a8a04f7c26784b895e3728171f72fb3c9ceeec6d85a647"
+        "bytes": 1684,
+        "sha256": "185a433d582dc595a04a0063116185ecff853b0f3da2616122ae8214823cd4e6"
       },
       {
         "source": "src/studio/apps/civilcraft.json",
-        "bytes": 1484,
-        "sha256": "b21e3535ddb31c7ebd84f98a7f9ddb8a77db23da244e9ba1859f4982bfad5b7d"
+        "bytes": 1616,
+        "sha256": "966a029d8fc5d96b72440877d13932b2a659c03471127c5c94913488c92dd405"
       },
       {
         "source": "src/studio/apps/detailcraft.json",
-        "bytes": 1531,
-        "sha256": "a03dba2e3a4114c475d2a3c320386a963b424f7d6c63a4d3ff253ada9e4f71af"
+        "bytes": 1670,
+        "sha256": "21efdaf2ee9709e0f52134806a9ac8bf6a6060b7ebb62af2db8f69fba6895492"
       },
       {
         "source": "src/studio/apps/partcraft.json",
-        "bytes": 1491,
-        "sha256": "d7df4fdefea13ae9dc8099454909401a3a35b6af29a551af4949dbd4478bfe52"
+        "bytes": 1638,
+        "sha256": "9c9d2d8ec9847058a79fffa1dcddcfd94165e27d91048411f566d7e6e1aaf211"
       },
       {
         "source": "src/studio/apps/solidcraft.json",

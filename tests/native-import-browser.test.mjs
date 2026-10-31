@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {mkdtemp,mkdir,writeFile,rm} from 'node:fs/promises';
+import {mkdtemp,mkdir,readFile,writeFile,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join,resolve,sep} from 'node:path';
 import {chromium,firefox,webkit} from 'playwright';
@@ -62,6 +62,32 @@ test('file-picker import retries lost creation and commit replies without duplic
     const creations=state.requests.filter(req=>req.path==='/api/studio/assets'&&req.method==='POST');
     assert.equal(creations.length,2);assert.deepEqual(creations[0].input,creations[1].input);
     assert.equal(state.assets.size,1);assert.equal(state.revisions.size,1);
+    assert.deepEqual(state.errors,[]);
+  }finally{await browser.close();}
+});
+
+test('PDF import requires an explicit Craft and preserves that choice through an uncertain creation reply',async()=>{
+  const browser=await browserType.launch({headless:true});
+  try{
+    const {page,state}=await nativeImportFixture(browser);
+    const pdf=await readFile(new URL('../public/studio/starters/3/markupcraft/Untitled%20plan.pdf',import.meta.url));
+    await page.getByLabel('Choose documents to import').setInputFiles({name:'Site plan.pdf',mimeType:'application/pdf',buffer:pdf});
+    await page.getByLabel('Open with',{exact:true}).waitFor();
+    assert.deepEqual(await page.getByLabel('Open with',{exact:true}).locator('option').allTextContents(),['Choose an application','MarkupCraft','PdfCraft']);
+    assert.equal(state.requests.some(request=>request.method==='POST'),false);
+    assert.equal(state.assets.size,0);
+    await page.getByLabel('Open with',{exact:true}).selectOption('markupcraft');
+    state.failCreationReply=true;
+    await page.getByRole('button',{name:'Open in MarkupCraft',exact:true}).click();
+    await page.getByRole('button',{name:'Continue import'}).waitFor();
+    assert.equal(await page.getByLabel('Open with',{exact:true}).count(),0,'a pending request cannot be reassigned');
+    await page.getByRole('button',{name:'Continue import'}).click();
+    await page.frameLocator('iframe[title="MarkupCraft editor"]').getByText('Ready',{exact:true}).waitFor();
+    const creations=state.requests.filter(request=>request.path==='/api/studio/assets'&&request.method==='POST');
+    assert.equal(creations.length,2);assert.deepEqual(creations[0].input,creations[1].input);
+    const asset=[...state.assets.values()][0],revision=[...state.revisions.values()][0];
+    assert.equal(asset.app_id,'markupcraft');assert.equal(asset.name,'Site plan');
+    assert.deepEqual(state.bytes.get(revision.id+'/Site plan.pdf'),pdf);
     assert.deepEqual(state.errors,[]);
   }finally{await browser.close();}
 });

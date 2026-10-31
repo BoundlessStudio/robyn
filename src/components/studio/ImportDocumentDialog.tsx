@@ -3,7 +3,7 @@
 import {useEffect,useRef,useState} from "react";
 import {apiFetch} from "@/lib/api";
 import {validatePackagePath,type AssetSummary} from "@/studio/assets";
-import {checkNativeImport,importPath,importedDocumentName,nativeImportApp} from "@/studio/native-import";
+import {checkNativeImport,importPath,importedDocumentName,nativeImportApp,nativeImportApps} from "@/studio/native-import";
 import {sourceFormat,sourceImportFiles} from "@/studio/source-import";
 import {savePackage,type LocalPackageFile,type SaveResult} from "@/studio/transfer-client";
 import {StudioDialog} from "./StudioDialog";
@@ -17,19 +17,23 @@ export function ImportDocumentDialog({projectId,initialFiles,folder=false,close,
   const [files,setFiles]=useState(initialFiles);
   const initialCandidates=initialFiles.filter(file=>nativeImportApp(file.name));
   const [master,setMaster]=useState(initialCandidates.length===1?importPath(initialCandidates[0]):"");
+  const [application,setApplication]=useState("");
   const [busy,setBusy]=useState(false),[error,setError]=useState(""),[progress,setProgress]=useState(0),[status,setStatus]=useState("");
   const [locked,setLocked]=useState(false),[completed,setCompleted]=useState(0);
   const started=useRef(false),running=useRef(false),tasks=useRef<ImportTask[]|null>(null),controller=useRef<AbortController|null>(null);
   const extraFiles=useRef<HTMLInputElement>(null),folderPicker=useRef<HTMLInputElement>(null);
-  const candidates=files.filter(file=>nativeImportApp(file.name)),app=nativeImportApp(master);
+  const candidates=files.filter(file=>nativeImportApps(file.name).length),choices=nativeImportApps(master);
+  const app=application?nativeImportApp(master,undefined,application):choices.length===1?choices[0]:null;
   const sources=files.length>0&&files.every(file=>sourceFormat(file.name));
 
-  async function run(selected:File[]=files,main:string=master) {
+  async function run(selected:File[]=files,main:string=master,chosen:string=application) {
     if(running.current||!selected.length)return;
     if(!main&&!selected.every(file=>sourceFormat(file.name))){
       if(!selected.some(file=>nativeImportApp(file.name)))setError("No supported project was found. Choose a native Craft project, or supported images, audio and video.");
       return;
     }
+    const available=nativeImportApps(main);
+    if(available.length>1&&!chosen)return;
     running.current=true;setBusy(true);setError("");setProgress(0);setStatus("Checking your files…");
     controller.current=new AbortController();const signal=controller.current.signal;
     try {
@@ -42,7 +46,8 @@ export function ImportDocumentDialog({projectId,initialFiles,folder=false,close,
           paths.add(key);
           if((!file.size&&(!main||importPath(file)===main))||file.size>512*1024**2||(bytes+=file.size)>1024**3)throw Error("Choose nonempty files up to 512 MiB each, and up to 1 GiB in total.");
         }
-        const native=nativeImportApp(main);
+        const native=chosen?nativeImportApp(main,undefined,chosen):nativeImportApp(main);
+        if(available.length&&!native)throw Error("Choose an application that opens this native project.");
         if(native){
           const packageFiles:LocalPackageFile[]=selected.map(file=>({file,path:importPath(file),role:importPath(file)===main?"master":"dependency"}));
           if(!packageFiles.some(file=>file.role==="master"))throw Error("Choose the project to open.");
@@ -81,14 +86,16 @@ export function ImportDocumentDialog({projectId,initialFiles,folder=false,close,
     const selected=replace?incoming:[...files,...incoming];
     const matches=selected.filter(file=>nativeImportApp(file.name));
     const main=selected.some(file=>importPath(file)===master)?master:matches.length===1?importPath(matches[0]):"";
-    setFiles(selected);setMaster(main);setError("");void run(selected,main);
+    const chosen=nativeImportApps(main).some(app=>app.id===application)?application:"";
+    setFiles(selected);setMaster(main);setApplication(chosen);setError("");void run(selected,main,chosen);
   }
   useEffect(()=>{if(started.current)return;started.current=true;void run(initialFiles,master);},[]);
 
   return <StudioDialog title={busy?(app?`Opening in ${app.name}…`:"Adding to your library…"):error?"Let’s finish this import.":folder&&!files.length?"Bring the whole project.":"Choose what to open."} eyebrow="BRING EXISTING FILES" close={close} busy={busy} returnFocusRef={returnFocusRef}>
     {files.length>0&&<p className="studio-import-filename">{master||files[0].name}{files.length>1&&<small> · {files.length} files selected</small>}</p>}
-    <p className="studio-muted">{sources?"Images, audio and video stay available across your project. We’ll save the originals in your project and library, then open a preview.":"Robyn selects the Craft, keeps the original files and opens your saved project. Linked files stay together."}</p>
-    {!locked&&!busy&&candidates.length>1&&<label>Project to open<select aria-label="Project to open" value={master} onChange={event=>setMaster(event.target.value)}><option value="">Choose a project</option>{candidates.map(file=><option key={importPath(file)} value={importPath(file)}>{importPath(file)}</option>)}</select></label>}
+    <p className="studio-muted">{sources?"Images, audio and video stay available across your project. We’ll save the originals in your project and library, then open a preview.":choices.length>1?"Choose the application for this file. Robyn keeps the original bytes and any linked files together.":"Robyn selects the Craft, keeps the original files and opens your saved project. Linked files stay together."}</p>
+    {!locked&&!busy&&candidates.length>1&&<label>Project to open<select aria-label="Project to open" value={master} onChange={event=>{setMaster(event.target.value);if(!nativeImportApps(event.target.value).some(app=>app.id===application))setApplication("");}}><option value="">Choose a project</option>{candidates.map(file=><option key={importPath(file)} value={importPath(file)}>{importPath(file)}</option>)}</select></label>}
+    {!locked&&!busy&&choices.length>1&&<label>Open with<select aria-label="Open with" value={application} onChange={event=>setApplication(event.target.value)}><option value="">Choose an application</option>{choices.map(app=><option key={app.id} value={app.id}>{app.name}</option>)}</select></label>}
     {busy&&<div className="studio-upload-progress" role="status"><progress aria-label="Import progress" value={progress} max={100}/><p>{status}</p></div>}
     {error&&<p role="alert" className="studio-error">{error}</p>}
     {completed>0&&<p className="studio-muted">{completed} {completed===1?"file is":"files are"} already saved. Continuing will resume the remaining work.</p>}
@@ -98,6 +105,6 @@ export function ImportDocumentDialog({projectId,initialFiles,folder=false,close,
       <input ref={folderPicker} type="file" hidden {...{webkitdirectory:""}} aria-label="Choose project folder" onChange={event=>{choose(Array.from(event.currentTarget.files??[]),true);event.currentTarget.value="";}}/>
       <div className="studio-action-row"><button className={`studio-button${error?" primary":""}`} onClick={()=>folderPicker.current?.click()}>Choose project folder</button>{files.length>0&&<button className="studio-button" onClick={()=>extraFiles.current?.click()}>{candidates.length?"Add linked files":"Choose different files"}</button>}</div>
     </>}
-    <div className="studio-action-row">{busy?<button className="studio-button" onClick={()=>controller.current?.abort()}>Pause import</button>:(locked||!error&&(master||sources)||error.startsWith("Import paused"))&&<button className="studio-button primary" onClick={()=>void run()}>{locked||error?"Continue import":app?`Open in ${app.name}`:"Add to library"}</button>}</div>
+    <div className="studio-action-row">{busy?<button className="studio-button" onClick={()=>controller.current?.abort()}>Pause import</button>:(locked||!error&&(app||sources)||error.startsWith("Import paused"))&&<button className="studio-button primary" onClick={()=>void run()}>{locked||error?"Continue import":app?`Open in ${app.name}`:"Add to library"}</button>}</div>
   </StudioDialog>;
 }

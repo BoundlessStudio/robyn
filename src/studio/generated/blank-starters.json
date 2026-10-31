@@ -1,5 +1,117 @@
 [
   {
+    "id": "bimcraft:3",
+    "appId": "bimcraft",
+    "name": "Untitled building",
+    "description": "Blank IFC building",
+    "files": [
+      {
+        "path": "Untitled building.ifc",
+        "role": "master",
+        "mimeType": "application/x-step",
+        "bytes": 2017,
+        "sha256": "010eab14a34ae377407a700e329e11eb42f377d4671d49f51105e25e440cb519",
+        "url": "/studio/starters/3/bimcraft/Untitled%20building.ifc"
+      }
+    ]
+  },
+  {
+    "id": "modelcraft:3",
+    "appId": "modelcraft",
+    "name": "Untitled model",
+    "description": "Blank surface model",
+    "files": [
+      {
+        "path": "Untitled model.modelcraft",
+        "role": "master",
+        "mimeType": "application/json",
+        "bytes": 201,
+        "sha256": "551851790681a9dd8f8d0c00bcec4129816b606128a0eba71fc1cbd335c9b113",
+        "url": "/studio/starters/3/modelcraft/Untitled%20model.modelcraft"
+      }
+    ]
+  },
+  {
+    "id": "markupcraft:3",
+    "appId": "markupcraft",
+    "name": "Untitled plan",
+    "description": "Blank PDF review page",
+    "files": [
+      {
+        "path": "Untitled plan.pdf",
+        "role": "master",
+        "mimeType": "application/pdf",
+        "bytes": 577,
+        "sha256": "53587622763eb53fda6e90894735e5addeb7951be0c20edcfd9930fce4cc57f3",
+        "url": "/studio/starters/3/markupcraft/Untitled%20plan.pdf"
+      }
+    ]
+  },
+  {
+    "id": "takeoffcraft:3",
+    "appId": "takeoffcraft",
+    "name": "Untitled takeoff",
+    "description": "Empty quantity takeoff",
+    "files": [
+      {
+        "path": "Untitled takeoff.takeoff.json",
+        "role": "master",
+        "mimeType": "application/json",
+        "bytes": 174,
+        "sha256": "715f592bc137dc1f20592f709d9ef50785013a53b34618635d547516d80d406e",
+        "url": "/studio/starters/3/takeoffcraft/Untitled%20takeoff.takeoff.json"
+      }
+    ]
+  },
+  {
+    "id": "civilcraft:3",
+    "appId": "civilcraft",
+    "name": "Untitled site",
+    "description": "Blank civil project",
+    "files": [
+      {
+        "path": "Untitled site.civilcraft.json",
+        "role": "master",
+        "mimeType": "application/json",
+        "bytes": 804,
+        "sha256": "eef371f34279840c793bd381a0b0a95134477987451831f12418a276feb94792",
+        "url": "/studio/starters/3/civilcraft/Untitled%20site.civilcraft.json"
+      }
+    ]
+  },
+  {
+    "id": "detailcraft:3",
+    "appId": "detailcraft",
+    "name": "Untitled detail",
+    "description": "Blank steel detailing model",
+    "files": [
+      {
+        "path": "Untitled detail.detailcraft.json",
+        "role": "master",
+        "mimeType": "application/json",
+        "bytes": 635,
+        "sha256": "5290acbfcddeca407ef722ccb85501e2ae3f938cad3e632bd6c00f315f6cb7f2",
+        "url": "/studio/starters/3/detailcraft/Untitled%20detail.detailcraft.json"
+      }
+    ]
+  },
+  {
+    "id": "partcraft:3",
+    "appId": "partcraft",
+    "name": "Untitled part",
+    "description": "Blank parametric part",
+    "files": [
+      {
+        "path": "Untitled part.partcraft.json",
+        "role": "master",
+        "mimeType": "application/json",
+        "bytes": 144,
+        "sha256": "a3ef130dbdee52648ffc8141056ffbed58b01ab7fbb868a53e903a382c4c464a",
+        "url": "/studio/starters/3/partcraft/Untitled%20part.partcraft.json"
+      }
+    ]
+  },
+  {
     "id": "solidcraft:2",
     "appId": "solidcraft",
     "name": "Untitled model",

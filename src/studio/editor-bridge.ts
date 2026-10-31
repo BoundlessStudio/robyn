@@ -11,6 +11,8 @@ export interface OpenAssetResult {
 }
 export interface EditorBridge {
   openAsset(ref: AssetRef): Promise<OpenAssetResult>;
+  /** Resume a document already bound by this editor, without discarding other open documents. */
+  activateAsset(ref: AssetRef): Promise<{ref:AssetRef}>;
   // Blob structured cloning stays inside the browser. The host uploads directly
   // to private Storage; Vercel receives only package metadata and commit requests.
   saveAsset(input: { assetId: string; expectedBaseRevisionId: string | null; mode?: EditorSaveMode; creationId?: string; requestId?: string; name?: string; files: Array<{path:string;role:PackageFileRole;file:Blob}>; dependencies:AssetRef[]; message:string }): Promise<{ ref: AssetRef; status: "committed" | "conflict" }>;
@@ -37,7 +39,7 @@ export function isEditorMessage(value: unknown, channel: string): value is Edito
   const message = value as Record<string, unknown>;
   return message.protocol === EDITOR_BRIDGE_PROTOCOL && message.channel === channel
     && typeof message.requestId === "string" && /^[a-zA-Z0-9_-]{1,100}$/.test(message.requestId)
-    && ["openAsset", "saveAsset", "listProjectAssets", "insertAsset", "importAsset", "notifyChanges", "requestAgentEdit"].includes(String(message.operation));
+    && ["openAsset", "activateAsset", "saveAsset", "listProjectAssets", "insertAsset", "importAsset", "notifyChanges", "requestAgentEdit"].includes(String(message.operation));
 }
 
 export function isTrustedEditorEvent(event: Pick<MessageEvent, "source" | "origin" | "data">, source: MessageEventSource | null, origin: string, channel: string): boolean {
