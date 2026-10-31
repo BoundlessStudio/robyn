@@ -22,20 +22,20 @@
   },
   "formats": {
     "native": [
-      ".landxml"
+      ".civilcraft.json"
     ],
-    "verification": "pending"
+    "verification": "verified"
   },
   "editor": {
-    "adapterVersion": "0.1.0",
-    "release": null,
-    "bundleUrl": null,
-    "status": "pending"
+    "adapterVersion": "0.1.1",
+    "release": "civilcraft-v0.7.0-robyn-0.1.1",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/civilcraft/v0.7.0-0.1.1/?robyn",
+    "status": "verified"
   },
   "workstation": {
     "template": "robyn-studio-0-2-1@1",
     "release": "sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da",
-    "status": "pending"
+    "status": "verified"
   },
   "studio": "Drafting"
 }

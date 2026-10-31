@@ -1,3 +1,4 @@
 # Workstation releases are verified by byte size and SHA-256 on every checkout.
-vendor/** -text
+vendor/** -text whitespace=-blank-at-eof
+src/studio/generated/native-inspector* -text
 public/studio/starters/** binary

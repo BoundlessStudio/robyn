@@ -101,7 +101,7 @@
           "name": "BimCraft",
           "monogram": "Bi",
           "color": "#a7c9c1",
-          "ready": false,
+          "ready": true,
           "hasIcon": true
         },
         {
@@ -109,7 +109,7 @@
           "name": "ModelCraft",
           "monogram": "Mo",
           "color": "#c7bf9d",
-          "ready": false,
+          "ready": true,
           "hasIcon": true
         },
         {
@@ -117,7 +117,7 @@
           "name": "MarkupCraft",
           "monogram": "Mk",
           "color": "#d0b0a3",
-          "ready": false,
+          "ready": true,
           "hasIcon": true
         },
         {
@@ -125,7 +125,7 @@
           "name": "TakeoffCraft",
           "monogram": "Tk",
           "color": "#bfcba1",
-          "ready": false,
+          "ready": true,
           "hasIcon": true
         },
         {
@@ -133,7 +133,7 @@
           "name": "CivilCraft",
           "monogram": "Ci",
           "color": "#b6c59a",
-          "ready": false,
+          "ready": true,
           "hasIcon": true
         },
         {
@@ -141,7 +141,7 @@
           "name": "DetailCraft",
           "monogram": "Dt",
           "color": "#aabfca",
-          "ready": false,
+          "ready": true,
           "hasIcon": true
         },
         {
@@ -149,7 +149,7 @@
           "name": "PartCraft",
           "monogram": "Pa",
           "color": "#aeb9d1",
-          "ready": false,
+          "ready": true,
           "hasIcon": true
         },
         {

@@ -1,0 +1,558 @@
+{
+  "checkedAt": "2026-10-31T18:25:26.851Z",
+  "stage": "verified-sources-awaiting-web-deployment",
+  "scope": "Seven Drafting integrations; the previous fourteen remain ready and the five other additions remain pending.",
+  "runtimeCommit": "56011f4fbea7ee5eba425fa3cf9bc529e0a87f66",
+  "readyCrafts": 21,
+  "installedCrafts": 26,
+  "remaining": [
+    "subcraft",
+    "materialcraft",
+    "dashcraft",
+    "matcraft",
+    "datacraft"
+  ],
+  "apps": [
+    {
+      "id": "bimcraft",
+      "manifest": {
+        "adapterVersion": "0.1.1",
+        "release": "bimcraft-v0.7.0-robyn-0.1.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/bimcraft/v0.7.0-0.1.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".ifc"
+      ],
+      "sourceCommit": "c778c7ca3f83eeecc3e815078417f152b2ca7a94",
+      "browserBundleSha256": "7e18b72ac6a96379b856a261ad1ae6bb4f35e7975ac68193834c78695ae41bb4",
+      "nativeArchiveSha256": "cd7997ecd7289081161613bf61fec0d223d3882e11401d1a742803159586a9bf",
+      "sourcePatchSha256": "9a0bcd8b8706de2becf00b951c79bbcd44f7761e44a032a8a8ada288435cad75",
+      "cases": [
+        {
+          "format": "bimcraft",
+          "sourceFiles": [
+            {
+              "bytes": 18639,
+              "sha256": "54cd400bd3d07e3d0dfa08046e616f8967c7af6bd3a0cebd19490e58faadec75"
+            }
+          ],
+          "before": {
+            "walls": 4
+          },
+          "after": {
+            "walls": 5
+          },
+          "continuedMaster": {
+            "bytes": 21496,
+            "sha256": "d7100606016cbd1035515a2e4dfb835364f349fe71ba45d73679ec9b18f609b7"
+          }
+        }
+      ],
+      "capture": {
+        "path": "public/artwork/editors/bimcraft.png",
+        "width": 1600,
+        "height": 1000,
+        "bytes": 225972,
+        "sha256": "ce00708b259521805fda310919c4577698bab91992d9ad959fcfcd9766a962dc",
+        "method": "Unmodified screenshot of the actual upstream application in Chromium after a confirmed private-library save; only native view/selection controls were used to frame the example."
+      }
+    },
+    {
+      "id": "modelcraft",
+      "manifest": {
+        "adapterVersion": "0.1.1",
+        "release": "modelcraft-v0.7.0-robyn-0.1.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/modelcraft/v0.7.0-0.1.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".modelcraft"
+      ],
+      "sourceCommit": "1ad753fb22f027abd381bda996b4c956f4cc20ce",
+      "browserBundleSha256": "f127ac434b2b4bd7bc05d3c32f180615423f1982b6394a0a3ea1308bcaf9d8e6",
+      "nativeArchiveSha256": "cd7997ecd7289081161613bf61fec0d223d3882e11401d1a742803159586a9bf",
+      "sourcePatchSha256": "ef6e6585a42cb52381bbec5e7101ee246e97ae305d77f306cdcb591b46dd01b6",
+      "cases": [
+        {
+          "format": "modelcraft",
+          "sourceFiles": [
+            {
+              "bytes": 1531,
+              "sha256": "43b1a69a1db98f3502860382b7132908e214d91f7d8f75e948d2e91e7b7cdb88"
+            }
+          ],
+          "before": {
+            "looseFaces": 6,
+            "instances": 0,
+            "scenes": [
+              "Scene 1",
+              "Scene 2"
+            ]
+          },
+          "after": {
+            "looseFaces": 6,
+            "instances": 1,
+            "scenes": [
+              "Scene 1",
+              "Scene 2"
+            ]
+          },
+          "continuedMaster": {
+            "bytes": 2093,
+            "sha256": "0ae3d204b062b08fc4c93802ca68f4fe23a4dc4c7a5a419e0981a843c7a5564a"
+          }
+        }
+      ],
+      "capture": {
+        "path": "public/artwork/editors/modelcraft.png",
+        "width": 1600,
+        "height": 1000,
+        "bytes": 171670,
+        "sha256": "190643bb2780b96047b4de87053bbe29853cd8326a90d9d3bed61c4d4d878b09",
+        "method": "Unmodified screenshot of the actual upstream application in Chromium after a confirmed private-library save; only native view/selection controls were used to frame the example."
+      }
+    },
+    {
+      "id": "markupcraft",
+      "manifest": {
+        "adapterVersion": "0.1.1",
+        "release": "markupcraft-v0.7.0-robyn-0.1.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/markupcraft/v0.7.0-0.1.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".pdf"
+      ],
+      "sourceCommit": "70967b4125431d6ad9402825faa1627f234fd643",
+      "browserBundleSha256": "96a22bc2dee06026428b60f77a14435c319fc6b5fa1791f1a857894d992f684e",
+      "nativeArchiveSha256": "cd7997ecd7289081161613bf61fec0d223d3882e11401d1a742803159586a9bf",
+      "sourcePatchSha256": "3c131976ece2d8dbad9a0d98d05060fef7c40bcc5bde85f567926847bb43c744",
+      "cases": [
+        {
+          "format": "markupcraft",
+          "sourceFiles": [
+            {
+              "bytes": 101343,
+              "sha256": "97ab08002b57e28764a37556dcba0f4f2176d89e50d0310a89cc1cf0c9dc82e2"
+            }
+          ],
+          "before": {
+            "pages": 1,
+            "annotations": 6
+          },
+          "after": {
+            "pages": 1,
+            "annotations": 7
+          },
+          "continuedMaster": {
+            "bytes": 104528,
+            "sha256": "d071a52cdcc26e80bea11dd71373d84d471459e60eb32b23c7614c9f7a765aa8"
+          }
+        }
+      ],
+      "capture": {
+        "path": "public/artwork/editors/markupcraft.png",
+        "width": 1600,
+        "height": 1000,
+        "bytes": 149617,
+        "sha256": "960024faca22a914761cb8c1d51141b64463f7e621c6d5f65c7b028380749e52",
+        "method": "Unmodified screenshot of the actual upstream application in Chromium after a confirmed private-library save; only native view/selection controls were used to frame the example."
+      }
+    },
+    {
+      "id": "takeoffcraft",
+      "manifest": {
+        "adapterVersion": "0.1.1",
+        "release": "takeoffcraft-v0.7.0-robyn-0.1.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/takeoffcraft/v0.7.0-0.1.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".takeoff.json"
+      ],
+      "sourceCommit": "9f504b6ae88acf86f53f5a8681efbd54113fe00a",
+      "browserBundleSha256": "9758496b5c16ee10189cec9083d57dfd8814f4d202f6eead9e7c1d1321bdf037",
+      "nativeArchiveSha256": "cd7997ecd7289081161613bf61fec0d223d3882e11401d1a742803159586a9bf",
+      "sourcePatchSha256": "c45b9bb6ad43eba47477ff06db13b49efb65d51beb00d6d8347fcd7aed3d4e83",
+      "cases": [
+        {
+          "format": "takeoffcraft",
+          "sourceFiles": [
+            {
+              "bytes": 577,
+              "sha256": "15d5955ebf7e7eb64784dde49ecf5bb9311f712527cf656fc6a534df1a02bf19"
+            },
+            {
+              "bytes": 22422,
+              "sha256": "09c500b4e0a35635b04523fbab7fe8f2373b91f9e99b74c37ae70ba046ef6bd7"
+            },
+            {
+              "bytes": 7094,
+              "sha256": "9b72c66540b5bebfbb1d9a8d5834013c5f19e6a46a4f0b261ec47e7e5acca89c"
+            }
+          ],
+          "before": {
+            "items": 7,
+            "marks": 21,
+            "drawings": [
+              {
+                "name": "kitchen-plan-sheet.pdf",
+                "pages": 1,
+                "sha256": "09c500b4e0a35635b04523fbab7fe8f2373b91f9e99b74c37ae70ba046ef6bd7"
+              },
+              {
+                "name": "new-plan.pdf",
+                "pages": 1,
+                "sha256": "15d5955ebf7e7eb64784dde49ecf5bb9311f712527cf656fc6a534df1a02bf19"
+              }
+            ]
+          },
+          "after": {
+            "items": 8,
+            "marks": 21,
+            "drawings": [
+              {
+                "name": "kitchen-plan-sheet.pdf",
+                "pages": 1,
+                "sha256": "09c500b4e0a35635b04523fbab7fe8f2373b91f9e99b74c37ae70ba046ef6bd7"
+              },
+              {
+                "name": "new-plan.pdf",
+                "pages": 1,
+                "sha256": "15d5955ebf7e7eb64784dde49ecf5bb9311f712527cf656fc6a534df1a02bf19"
+              }
+            ]
+          },
+          "continuedMaster": {
+            "bytes": 5169,
+            "sha256": "47b4a51be4837a0c0b8d12b33f5a01e492d97ea4aeb7ad054e0be35a4542a833"
+          }
+        }
+      ],
+      "capture": {
+        "path": "public/artwork/editors/takeoffcraft.png",
+        "width": 1600,
+        "height": 1000,
+        "bytes": 187366,
+        "sha256": "6ccabf3de182643f094223d2ee3c438ba6d2c0e81e0aed49de23266ab06391ae",
+        "method": "Unmodified screenshot of the actual upstream application in Chromium after a confirmed private-library save; only native view/selection controls were used to frame the example."
+      }
+    },
+    {
+      "id": "civilcraft",
+      "manifest": {
+        "adapterVersion": "0.1.1",
+        "release": "civilcraft-v0.7.0-robyn-0.1.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/civilcraft/v0.7.0-0.1.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".civilcraft.json"
+      ],
+      "sourceCommit": "98d42c16f9880f2ef9d23a07fd85c7d949c407e7",
+      "browserBundleSha256": "acf6118952eb1ac19d37151221e880aed1cef5c8a97cf552717e28924da4c46a",
+      "nativeArchiveSha256": "cd7997ecd7289081161613bf61fec0d223d3882e11401d1a742803159586a9bf",
+      "sourcePatchSha256": "eee4aacd07bb30b5d1ace58a802757094166c14ff33c4a1f7ffa94539cd0255c",
+      "cases": [
+        {
+          "format": "civilcraft",
+          "sourceFiles": [
+            {
+              "bytes": 1191,
+              "sha256": "4498ccd18f020fa75c250e03c5429b32af7f31475d47121ec2f13e388c45ea85"
+            }
+          ],
+          "before": {
+            "points": 4,
+            "pads": 1,
+            "gradedTriangles": 314
+          },
+          "after": {
+            "points": 5,
+            "pads": 1,
+            "gradedTriangles": 314
+          },
+          "continuedMaster": {
+            "bytes": 1259,
+            "sha256": "ce8aa2c34d61c4519f4fff6fb7213f41cbba1916f54fde6eeefd69f0d6237728"
+          }
+        }
+      ],
+      "capture": {
+        "path": "public/artwork/editors/civilcraft.png",
+        "width": 1600,
+        "height": 1000,
+        "bytes": 193528,
+        "sha256": "3c679f61652293e2b28a2b5f8dc896a938e8dfacaf69b283955f00884fac5280",
+        "method": "Unmodified screenshot of the actual upstream application in Chromium after a confirmed private-library save; only native view/selection controls were used to frame the example."
+      }
+    },
+    {
+      "id": "detailcraft",
+      "manifest": {
+        "adapterVersion": "0.1.1",
+        "release": "detailcraft-v0.7.0-robyn-0.1.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/detailcraft/v0.7.0-0.1.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".detailcraft.json"
+      ],
+      "sourceCommit": "4d7ec7059ec585f88b5cf8ff8df3eb5e872507bf",
+      "browserBundleSha256": "2eb2608b9e95135db88ee254eeb7c6c626e1a296101dbcb97158846b943db9f8",
+      "nativeArchiveSha256": "cd7997ecd7289081161613bf61fec0d223d3882e11401d1a742803159586a9bf",
+      "sourcePatchSha256": "77d83eea74566264f564f8d2268cada0fc50349da39968e35ac9a98121382097",
+      "cases": [
+        {
+          "format": "detailcraft",
+          "sourceFiles": [
+            {
+              "bytes": 932,
+              "sha256": "3d748d30b24d155498dabb7ae31cca761e540d0062e6ebf7039845a69c823d37"
+            }
+          ],
+          "before": {
+            "members": 1,
+            "parts": 1,
+            "steelKg": 392.9,
+            "problems": 0
+          },
+          "after": {
+            "members": 2,
+            "parts": 2,
+            "steelKg": 785.8,
+            "problems": 0
+          },
+          "continuedMaster": {
+            "bytes": 1215,
+            "sha256": "6d417c033296d4ffd0f6ef6433aee7601600540c53e60c66778abb93814b31dd"
+          }
+        }
+      ],
+      "capture": {
+        "path": "public/artwork/editors/detailcraft.png",
+        "width": 1600,
+        "height": 1000,
+        "bytes": 178543,
+        "sha256": "a6f0214d8d05e7179937a42b4ab638a01819d26c64a415ed98ad813df3883bed",
+        "method": "Unmodified screenshot of the actual upstream application in Chromium after a confirmed private-library save; only native view/selection controls were used to frame the example."
+      }
+    },
+    {
+      "id": "partcraft",
+      "manifest": {
+        "adapterVersion": "0.1.1",
+        "release": "partcraft-v0.7.0-robyn-0.1.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/partcraft/v0.7.0-0.1.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".partcraft.json",
+        ".partcraft-asm.json"
+      ],
+      "sourceCommit": "8dae0fc92484fd3f28f0afcbd7c1dfb96de3f33e",
+      "browserBundleSha256": "eae863232214115514e8cc9cc7b01be6b0514eeeeadee46834e5466bf42fffaa",
+      "nativeArchiveSha256": "cd7997ecd7289081161613bf61fec0d223d3882e11401d1a742803159586a9bf",
+      "sourcePatchSha256": "679bb8bfcf5e82f0adc414b12abd8dc9a2c693298efb1219dfaa1210552fc73c",
+      "cases": [
+        {
+          "format": "partcraft",
+          "sourceFiles": [
+            {
+              "bytes": 5055,
+              "sha256": "16cfe89c3cccd28af8e702c867413592aa103518a5045b8c740cc4ddeef2034a"
+            }
+          ],
+          "before": {
+            "features": 5,
+            "failing": [],
+            "volume": 5672956.805031
+          },
+          "after": {
+            "features": 5,
+            "failing": [],
+            "volume": 5674751.261065
+          },
+          "continuedMaster": {
+            "bytes": 5055,
+            "sha256": "178d19f4599fe8a2748edae0e0b4da78bcc86c94ccdb8226661ad93e35704444"
+          }
+        },
+        {
+          "format": "partcraft-assembly",
+          "sourceFiles": [
+            {
+              "bytes": 6853,
+              "sha256": "cd3cf7e579706a9903df590b8210b566d8324ab01732c14d2c8463735470c567"
+            }
+          ],
+          "before": {
+            "parts": 1,
+            "instances": 2,
+            "freePlacement": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              980.9703236187148,
+              0,
+              0,
+              1
+            ]
+          },
+          "after": {
+            "parts": 1,
+            "instances": 2,
+            "freePlacement": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              980.9703236187148,
+              0,
+              100,
+              1
+            ]
+          },
+          "continuedMaster": {
+            "bytes": 6855,
+            "sha256": "39cb9f85d95dd9d21c337ba44c9c7c938ce468ed9753df82f18d4a44aa5e120f"
+          }
+        }
+      ],
+      "capture": {
+        "path": "public/artwork/editors/partcraft.png",
+        "width": 1600,
+        "height": 1000,
+        "bytes": 174999,
+        "sha256": "4cb217cb3f1cc4909a76018f76fca55b182a976e4d687335ac6069a1e3826d38",
+        "method": "Unmodified screenshot of the actual upstream application in Chromium after a confirmed private-library save; only native view/selection controls were used to frame the example."
+      }
+    }
+  ],
+  "publication": {
+    "checkedAt": "2026-10-31T18:20:13.056Z",
+    "origin": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev",
+    "accountId": "ad511085f517f4740591851cad7686eb",
+    "bucket": "robyn-editor-artifacts",
+    "releases": 94,
+    "files": 43121,
+    "uniqueObjects": 2763,
+    "bytes": 2205423583,
+    "catalogSha256": "2453fb0c10d6d335937af0819ef2259d9620518fc27782bcfa743963817b3822",
+    "uploaded": 14,
+    "existing": 2749,
+    "allHostedBytesVerified": true,
+    "sourceBaseline": false,
+    "uploadOnly": false,
+    "privateBucket": true,
+    "readOnlyServingWorker": true,
+    "workerVersion": "52a9368c-9c5f-4d44-a37c-f7c96f837dbd",
+    "apps": [
+      {
+        "id": "bimcraft",
+        "prefix": "bimcraft/v0.7.0-0.1.1/",
+        "sourceCommit": "c778c7ca3f83eeecc3e815078417f152b2ca7a94",
+        "browserBundleSha256": "7e18b72ac6a96379b856a261ad1ae6bb4f35e7975ac68193834c78695ae41bb4"
+      },
+      {
+        "id": "modelcraft",
+        "prefix": "modelcraft/v0.7.0-0.1.1/",
+        "sourceCommit": "1ad753fb22f027abd381bda996b4c956f4cc20ce",
+        "browserBundleSha256": "f127ac434b2b4bd7bc05d3c32f180615423f1982b6394a0a3ea1308bcaf9d8e6"
+      },
+      {
+        "id": "markupcraft",
+        "prefix": "markupcraft/v0.7.0-0.1.1/",
+        "sourceCommit": "70967b4125431d6ad9402825faa1627f234fd643",
+        "browserBundleSha256": "96a22bc2dee06026428b60f77a14435c319fc6b5fa1791f1a857894d992f684e"
+      },
+      {
+        "id": "takeoffcraft",
+        "prefix": "takeoffcraft/v0.7.0-0.1.1/",
+        "sourceCommit": "9f504b6ae88acf86f53f5a8681efbd54113fe00a",
+        "browserBundleSha256": "9758496b5c16ee10189cec9083d57dfd8814f4d202f6eead9e7c1d1321bdf037"
+      },
+      {
+        "id": "civilcraft",
+        "prefix": "civilcraft/v0.7.0-0.1.1/",
+        "sourceCommit": "98d42c16f9880f2ef9d23a07fd85c7d949c407e7",
+        "browserBundleSha256": "acf6118952eb1ac19d37151221e880aed1cef5c8a97cf552717e28924da4c46a"
+      },
+      {
+        "id": "detailcraft",
+        "prefix": "detailcraft/v0.7.0-0.1.1/",
+        "sourceCommit": "4d7ec7059ec585f88b5cf8ff8df3eb5e872507bf",
+        "browserBundleSha256": "2eb2608b9e95135db88ee254eeb7c6c626e1a296101dbcb97158846b943db9f8"
+      },
+      {
+        "id": "partcraft",
+        "prefix": "partcraft/v0.7.0-0.1.1/",
+        "sourceCommit": "8dae0fc92484fd3f28f0afcbd7c1dfb96de3f33e",
+        "browserBundleSha256": "eae863232214115514e8cc9cc7b01be6b0514eeeeadee46834e5466bf42fffaa"
+      }
+    ]
+  },
+  "workstation": {
+    "template": "robyn-studio-0-2-1@1",
+    "digest": "sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da",
+    "clientVersion": "0.3.0",
+    "clientFingerprint": "3e62cacf85f887fa29275a664714b542c29d42ce6ea205475d4b20e8166d7fc5",
+    "bundle": {
+      "bytes": 1891523,
+      "sha256": "651e17014bb5a073a184bb8dfd38361182516395df5b203eb41c1eb49534ddbd"
+    },
+    "imageChanged": false,
+    "maintenanceLeaseClosed": true,
+    "priorFilesPreserved": 11,
+    "metadataAndResourcesPreserved": true,
+    "budgetAndModelUsagePreserved": true,
+    "modelDispatches": 0,
+    "credentialsIssued": 0
+  },
+  "checks": {
+    "runtimeTests": 121,
+    "linuxProfileTests": 4,
+    "webTests": 238,
+    "webTypecheck": "passed",
+    "webProductionBuild": "passed; Next.js 16.4.2 production build with all final source manifests and captures",
+    "nativeCases": 8,
+    "privateLibrary": "Real production BFF and Storage, exact immutable bytes downloaded and rehashed",
+    "saveAcknowledgement": "All seven native applications and the separate assembly confirmed a revision and returned the studio to clean state",
+    "negativeCases": "The preceding adapter receipt retains actual lost commit-response, conflict, Copy/Save As and multiple-document exercises; the 0.1.1 transport regression adds fast-save acknowledgement and same-request failure recovery",
+    "pdfImport": "The actual import dialog requires an explicit verified PDF Craft, starts no write before selection and freezes that selection through a lost creation reply",
+    "visual": "Seven real native editor captures at 1600 x 1000. All seven public desktop previews decoded, toggled original colour, closed with Escape and restored focus; desktop and mobile capture layout and mobile preview reviewed with the final production build. Native UI retains the earlier 1440 and 1200 reviews.",
+    "chromium": "156.0.8078.4"
+  },
+  "migrations": {
+    "applied": [],
+    "lastVerified": {
+      "entries": 30,
+      "through": "0029",
+      "evidence": "settings-budget-release-20261030.json"
+    },
+    "ledgerReread": false
+  },
+  "limits": [
+    "Selected operations in Chromium; no claim that every upstream feature, browser engine or GPU has passed.",
+    "Desktop studio only. DashCraft remains an explicitly approved open-only integration and needs no library writes.",
+    "This source receipt does not claim that its web changes are already deployed."
+  ]
+}

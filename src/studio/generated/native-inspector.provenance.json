@@ -2,7 +2,7 @@
   "source": "robyn-artcraft-runtime",
   "entry": "lib/import-inspection.mjs",
   "build": "node scripts/build-import-inspection.mjs",
-  "sha256": "043da7c18802a319cd19dec55124052fc6ebd2fa40d1c0acafce653f97c9e3e4",
+  "sha256": "4c158ec357bdce33be91c02b310235ace8ebeefecf47e207a3b5f1d330b431c5",
   "sources": {
     "apps/cadcraft/package.mjs": "896419f52e35828a018a056366631d8d8f3d8589fbd714e7d343c4c4e27c68bc",
     "apps/deckcraft/container.mjs": "cb373ccd33549aabc952e418114cf261148840afb6839953de05e1c172627cf5",
@@ -20,7 +20,8 @@
     "apps/solidcraft/package.mjs": "9ce756b8c7a9fe5b4ba456bc4d76fb0deecea43b9712a2e2e451655b11ddd518",
     "apps/soundcraft/package.mjs": "1d1da997337057f1f1afd6ce65cc6c9b0b8a398e66e90950d20ac37c1ef317c7",
     "apps/vectorcraft/package.mjs": "80962ce07c67f22f60b31597fd43253f2a4371cf3063c434278934f734d7201a",
-    "lib/import-inspection.mjs": "e2823abdcccb85983852a54a9668104d6313f89fff0ab5b00cbeb620bd6bba44",
+    "lib/drafting-package.mjs": "7d304d5b64016471b3629670add95ff78fefc6c764380c63c871eb4e9b7fbc6b",
+    "lib/import-inspection.mjs": "e51eac65d790a4fc755d9925df4e1378897da71b98df39bf80cd8c34e0f1c81f",
     "lib/package.mjs": "edb624687bb647b38cc8074789fe4473fee213222b779a3c7ebdfe3025de14e7",
     "node_modules/@noble/hashes/_blake.js": "cabbff61d1f373bac45594ad758df7c42e176464ddbb94b44f5533fa977a4f56",
     "node_modules/@noble/hashes/_md.js": "60cf3010fda89e3e4d3f0e7ff1ce249e9c467f34b4fd41b6fd6101d9f69be763",

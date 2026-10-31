@@ -23,6 +23,11 @@ export function createEditorHost(options:{projectId:string;initialRef:AssetRef;s
   let saving=false;
   let dirty=false;
   let importing=false;
+  let activating=false;
+  // A multi-document native editor may return to its original document after
+  // Save As. Only this editor's initial and durably adopted bindings can resume;
+  // opening an input/reference file does not grant it a writable binding.
+  const bindings=new Map([[assetId,base]]);
   const imports=new Map<string,{fingerprint:string;result?:{ref:AssetRef;status:"committed"}}>();
   const requests=new Map<string,{operation:string;result:Promise<unknown>;settled:boolean}>();
   async function assets(previews=false) {
@@ -51,11 +56,24 @@ export function createEditorHost(options:{projectId:string;initialRef:AssetRef;s
     switch(message.operation){
       case "openAsset": return open(assetRef(message.payload));
       case "insertAsset": return open(assetRef(message.payload));
+      case "activateAsset": {
+        const ref=assetRef(message.payload);
+        if(saving||importing||activating)throw Error("Another library operation is still being confirmed.");
+        if(bindings.get(ref.assetId)!==ref.revisionId)throw Error("Resume only an exact document already bound by this editor.");
+        activating=true;
+        try{
+          const pkg=await open(ref);
+          options.signal.throwIfAborted();
+          assetId=ref.assetId;base=ref.revisionId;
+          adoptedDependencies=pkg.dependencies.map(value=>({...value}));
+          return {ref};
+        }finally{activating=false;}
+      }
       case "importAsset": {
         const input=object(message.payload),creationId=requireUuid(input.creationId,"import request ID");
         const name=validatePackagePath(input.name);
         if(name.includes("/")||!(input.file instanceof Blob)||!input.file.size||input.file.size>256*1024**2)throw Error("Choose a single supported file up to 256 MiB.");
-        if(importing)throw Error("Another library import is still being confirmed.");
+        if(importing||activating)throw Error("Another library import is still being confirmed.");
         importing=true;
         try{
           const file=new File([input.file],name,{type:input.file.type}),format=sourceFormat(name),app=nativeImportApp(name);
@@ -89,7 +107,7 @@ export function createEditorHost(options:{projectId:string;initialRef:AssetRef;s
       }
       case "requestAgentEdit": {
         const input=object(message.payload),ref=assetRef(input.ref);
-        if(saving||dirty)throw Error("Save your edits before handing this revision to an employee.");
+        if(saving||dirty||activating)throw Error("Save your edits before handing this revision to an employee.");
         if(ref.assetId!==assetId||ref.revisionId!==base)throw Error("Hand off the exact saved revision open in this editor.");
         const instruction=typeof input.instruction==="string"?input.instruction.trim():"";
         if(!instruction||instruction.length>20000)throw Error("Describe the changes using 1–20,000 characters.");
@@ -98,7 +116,7 @@ export function createEditorHost(options:{projectId:string;initialRef:AssetRef;s
         if(!current)throw Error("This asset is outside the open project.");
         // Native changes or another save can arrive while membership is checked.
         // Authorize the still-current, clean revision immediately before dispatch.
-        if(saving||dirty)throw Error("Save your edits before handing this revision to an employee.");
+        if(saving||dirty||activating)throw Error("Save your edits before handing this revision to an employee.");
         if(ref.assetId!==assetId||ref.revisionId!==base)throw Error("Hand off the exact saved revision open in this editor.");
         const result=await apiFetch<{assignmentId:string}>("/api/studio/assignments",{method:"POST",body:JSON.stringify({projectId:options.projectId,appId:current.app_id,brief:instruction,inputs:[ref],requestId}),signal:options.signal});
         requireUuid(result.assignmentId,"assignment ID");
@@ -113,7 +131,7 @@ export function createEditorHost(options:{projectId:string;initialRef:AssetRef;s
         const creationId=mode==="revision"?undefined:requireUuid(input.creationId,"new asset ID");
         const name=typeof input.name==="string"?input.name.trim():"";
         if(mode!=="revision"&&(!name||name.length>160))throw Error("Name the new asset using 1–160 characters.");
-        if(saving)throw Error("Another save is still being confirmed.");
+        if(saving||activating)throw Error("Another save is still being confirmed.");
         if(!Array.isArray(input.files)||input.files.length<1||input.files.length>200)throw Error("A native package needs 1–200 files.");
         let total=0;
         const files:LocalPackageFile[]=input.files.map(raw=>{
@@ -145,6 +163,7 @@ export function createEditorHost(options:{projectId:string;initialRef:AssetRef;s
           const result=await savePackage({assetId:targetId,expectedBaseRevisionId:creationId?null:base,files,dependencies,message:typeof input.message==="string"?input.message:"Edited in the browser",signal:options.signal,onProgress:message=>options.onStatus(message)});
           if(result.status==="committed"&&mode!=="copy"){
             base=result.revisionId;assetId=result.assetId;
+            bindings.set(assetId,base);
             if(mode==="saveAs")adoptedDependencies=dependencies.map(ref=>({...ref}));
           }
           options.onSaved({...result,mode});

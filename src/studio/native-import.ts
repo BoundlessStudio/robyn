@@ -2,11 +2,18 @@ import { studioApps } from "./apps/registry";
 import { isAppReady, type StudioAppManifest } from "./manifest";
 
 /** Recognise native formats only. An extension match never promises conversion. */
-export function nativeImportApp(filename: string, apps: readonly StudioAppManifest[] = studioApps): StudioAppManifest | null {
+export function nativeImportApps(filename: string, apps: readonly StudioAppManifest[] = studioApps): StudioAppManifest[] {
   const lower = filename.toLowerCase();
-  const matches = apps.filter(app => isAppReady(app) && app.formats.native.some(extension => lower.endsWith(extension.toLowerCase())));
-  if (matches.length !== 1) return null;
-  return matches[0];
+  return apps.filter(app => isAppReady(app) && app.formats.native.some(extension => lower.endsWith(extension.toLowerCase())));
+}
+export function nativeImportApp(filename: string, apps: readonly StudioAppManifest[] = studioApps, selectedAppId?:string): StudioAppManifest | null {
+  const matches=nativeImportApps(filename,apps);
+  if(selectedAppId)return matches.find(app=>app.id===selectedAppId)??null;
+  if(matches.length===1)return matches[0];
+  // Preserve the established PDF default for programmatic/direct intake. The
+  // creator-facing import dialog asks explicitly whenever several Crafts fit.
+  if(matches.length>1&&matches.every(app=>['pdfcraft','markupcraft'].includes(app.id)))return matches.find(app=>app.id==='pdfcraft')??null;
+  return null;
 }
 
 export function directNativeImportApp(filename: string): StudioAppManifest | null {
@@ -31,5 +38,6 @@ export async function checkNativeImport<T extends {path: string; role: string; f
 }
 
 export function importedDocumentName(filename: string): string {
-  return (filename.replace(/\.[^.]+$/, "").trim() || filename.trim() || "Untitled").slice(0, 160).trim();
+  const extension=studioApps.flatMap(app=>app.formats.native).sort((a,b)=>b.length-a.length).find(ext=>filename.toLowerCase().endsWith(ext.toLowerCase()));
+  return ((extension?filename.slice(0,-extension.length):filename.replace(/\.[^.]+$/, "")).trim() || filename.trim() || "Untitled").slice(0, 160).trim();
 }

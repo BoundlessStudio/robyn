@@ -98,6 +98,29 @@ test("the editor refuses a revision whose returned asset identity differs",async
   }finally{globalThis.fetch=original;}
 });
 
+test("native document activation locks asynchronous ownership checks and cannot resume a reference input",async()=>{
+  const original=globalThis.fetch;
+  let authorize!:(response:Response)=>void;
+  const dirty:boolean[]=[];
+  globalThis.fetch=async url=>String(url).includes('/revisions/')
+    ?Response.json({ref:initialRef,files:[],dependencies:[]})
+    :new Promise<Response>(resolve=>{authorize=resolve;});
+  try{
+    const host=createEditorHost({projectId:'owned-project',initialRef,signal:new AbortController().signal,onDirty:value=>dirty.push(value),onStatus(){},onSaved(){assert.fail('Activation is not a save');}});
+    await host.handle(message('keep-unsaved','notifyChanges',{assetId:initialRef.assetId,dirty:true}));
+    const pending=host.handle(message('resume','activateAsset',initialRef));
+    await assert.rejects(host.handle(message('other-resume','activateAsset',initialRef)),/still being confirmed/);
+    await assert.rejects(host.handle(message('save-during-resume','saveAsset',{assetId:initialRef.assetId,expectedBaseRevisionId:initialRef.revisionId})),/Another save/);
+    authorize(Response.json({assets:[{id:initialRef.assetId}]}));
+    assert.deepEqual(await pending,{ref:initialRef});
+    assert.deepEqual(dirty,[true],'activation keeps the aggregate dirty state of all native documents');
+    const revoked=host.handle(message('revoked','activateAsset',initialRef));
+    authorize(Response.json({assets:[]}));
+    await assert.rejects(revoked,/outside the open project/);
+    await assert.rejects(host.handle(message('foreign','activateAsset',{assetId:'33333333-3333-4333-8333-333333333333',revisionId:initialRef.revisionId})),/already bound/);
+  }finally{globalThis.fetch=original;}
+});
+
 test("employee handoff requires a clean exact revision and preserves its request identity",async()=>{
   const original=globalThis.fetch, requests:Record<string,unknown>[]=[];
   globalThis.fetch=async(url,options)=>{
@@ -144,6 +167,7 @@ test("Copy retains the bound asset; Save As adopts the committed asset without r
     const path=String(url),body=options?.body?JSON.parse(String(options.body)):{};
     let output:unknown;
     if(path.includes("/projects/")||path.startsWith("/api/studio/assets?"))output={assets};
+    else if(path===`/api/studio/revisions/${initialRef.revisionId}`)output={ref:initialRef,files:[],dependencies:[]};
     else if(path==="/api/studio/assets") {assets.push({id:body.creationId,app_id:body.appId});output={asset:assets.at(-1)};}
     else if(path.endsWith("/revisions")&&options?.method==="POST"){
       const revisionId=`55555555-5555-4555-8555-${String(++index).padStart(12,"0")}`;
@@ -168,6 +192,11 @@ test("Copy retains the bound asset; Save As adopts the committed asset without r
     assert.deepEqual([...revisions.values()][0].dependencies,[initialRef]);
     assert.deepEqual([...revisions.values()][2].dependencies,[initialRef],"later saves retain the source revision added by Save As");
     assert.equal(results.length,3);
+    await assert.rejects(host.handle(message("unbound-copy","activateAsset",{assetId:copied,revisionId:[...revisions.keys()][0]})),/already bound/);
+    await assert.rejects(host.handle(message("stale-adoption","activateAsset",saved.ref)),/already bound/);
+    assert.deepEqual(await host.handle(message("resume-original","activateAsset",initialRef)),{ref:initialRef});
+    await host.handle(message("resumed-notify","notifyChanges",{assetId:initialRef.assetId,dirty:true}));
+    assert.equal(results.length,3,"resuming a native document neither writes nor fabricates a save receipt");
   }finally{globalThis.fetch=original;}
 });
 
