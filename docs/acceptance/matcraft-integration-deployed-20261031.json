@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-31T21:12:48.201738+00:00",
+  "scope": "Paired production rollout of MatCraft; twenty-two Crafts ready and four integrations pending.",
+  "webCommit": "ec2dcf48909367518a2033383e2d471eb1c63daf",
+  "webSourceCommit": "ab0914a483cd262b44713bf1b7bdaa3359ad0dbf",
+  "runtimeCommit": "49b2a8a64c7176ad1865d6c61ab6f17b3bc35fc2",
+  "runtimeSourceCommit": "a7ed866e2659b53cbef788e06d61e1fb18af4340",
+  "pullRequests": {
+    "web": "https://github.com/BoundlessStudio/robyn/pull/50",
+    "runtime": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/13"
+  },
+  "deployment": {
+    "origin": "https://robyn.academy",
+    "provider": "Vercel via GitHub",
+    "state": "success",
+    "statusUrl": "https://vercel.com/venatio-studios/robyn-creative-studio/BZbVteNWgy1cLfMG5BKNpc7yR5ND"
+  },
+  "sourceAcceptance": "matcraft-integration-20261031.json",
+  "readyCrafts": 22,
+  "installedCrafts": 26,
+  "remaining": [
+    "subcraft",
+    "materialcraft",
+    "dashcraft",
+    "datacraft"
+  ],
+  "workstation": {
+    "template": "robyn-studio-0-2-1@1",
+    "release": "sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da",
+    "clientVersion": "0.4.0",
+    "clientFingerprint": "f994e1c108a49345376fccf4bf22b61cff50ca117f7423e29f89fd43df04185c",
+    "bundle": {
+      "bytes": 1899284,
+      "sha256": "c9ffb0c28c4bcff3e8572de888b2931f617eacddb0eb2318b2d49649a18bddd5"
+    },
+    "imageChanged": false
+  },
+  "publication": {
+    "checkedAt": "2026-10-31T20:39:02.254Z",
+    "origin": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev",
+    "accountId": "ad511085f517f4740591851cad7686eb",
+    "bucket": "robyn-editor-artifacts",
+    "releases": 95,
+    "files": 43487,
+    "uniqueObjects": 2784,
+    "bytes": 2220961359,
+    "catalogSha256": "670735dc039b0dd996819d9b789452c981574f1c4f8755a170135e3e19ca8ebe",
+    "uploaded": 21,
+    "existing": 2763,
+    "allHostedBytesVerified": true,
+    "sourceBaseline": false,
+    "uploadOnly": false,
+    "privateBucket": true,
+    "readOnlyServingWorker": true,
+    "workerVersion": "8f8829e7-601d-42b5-a9bb-a0491b58aa73",
+    "apps": [
+      {
+        "id": "matcraft",
+        "prefix": "matcraft/v0.1.0-0.1.0/",
+        "sourceCommit": "effb4218bd7c5c82eefb157378d6561d5b0f2cb3",
+        "browserBundleSha256": "09d8dc56d36305b57801f5f948260ddc17597a5f1eed6971cb6b11c02284ed55"
+      }
+    ]
+  },
+  "migrations": {
+    "applied": 0,
+    "lastRecordedVerifiedLedger": "30 matching checksummed entries through 0029; not reread by this release"
+  },
+  "checks": {
+    "authenticatedBootstrap": {
+      "status": 200,
+      "registered": 26,
+      "ready": 22,
+      "pending": [
+        "subcraft",
+        "materialcraft",
+        "dashcraft",
+        "datacraft"
+      ],
+      "robyn": 1,
+      "maxConcurrentJobs": 1
+    },
+    "anonymousBootstrap": 401,
+    "nativeBlankLaunch": true,
+    "nativeScriptEditSaveCompute": true,
+    "computedResult": [
+      [
+        5,
+        4
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "exactSavedMaster": {
+      "path": "Untitled script.m",
+      "role": "master",
+      "bytes": 55,
+      "sha256": "8ede68a95e23eff72162fab2b09ee92f97c62ebd16ecda420aaca6f2b32a823b"
+    },
+    "fullSavedReload": true,
+    "exactSavedMatWorkspaceReopen": true,
+    "nativeScriptImport": true,
+    "productionCaptureSha256": "6ea515743c873897a5f08a458418eaecf5627336840f1e002ed9e5bcf7b7fec0",
+    "appJavascriptErrors": 0,
+    "localWeb": {
+      "typecheck": "passed",
+      "tests": 240,
+      "failures": 0,
+      "build": "passed",
+      "publicLayoutAxe": "18 Chromium/Firefox/WebKit page-viewport combinations passed",
+      "homepageVisual": "MatCraft chapter reviewed at 1440x1000 and 390x844 without horizontal overflow; original-colour preview, Escape and focus return passed",
+      "showcaseSourceTypecheck": "passed; twenty-two ready/four pending catalog; no new video export claimed"
+    },
+    "sourceCi": "Studio checks and Runtime checks passed on their source commits"
+  },
+  "nativeEnvironment": {
+    "priorFilesPreserved": 11,
+    "instanceMetadataPreserved": true,
+    "resourcesPreserved": true,
+    "budgetAndModelUsagePreserved": true,
+    "credentialsIssued": 0,
+    "modelDispatches": 0,
+    "maintenanceLeasesClosed": true
+  },
+  "privateProductionProof": {
+    "path": "E:/Development/robyn-shared-workstation-20261029/matcraft-production-ui-20261031.private.json",
+    "sha256": "0aa00c281749930cc0993f7fa71514bcdf85df237a4884d1704958b5fc449930"
+  },
+  "limits": [
+    "Selected production controls in desktop Chromium; source acceptance records the wider numerical/native cases.",
+    "The native MCP bundle was rehashed and the actual installed native CLI/packager exercised; no ordinary AI turn was dispatched.",
+    "Windows WebKit default implicit-link keyboard behavior remains explicitly unverified in four public-page cases; public layout/axe checks pass.",
+    "No all-twenty-six-ready showcase video export is claimed."
+  ]
+}
