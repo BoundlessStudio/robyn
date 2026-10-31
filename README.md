@@ -4,7 +4,7 @@ An invitation-only creative studio at **[robyn.academy](https://robyn.academy)**
 
 The authenticated pilot is **desktop-only**. The public homepage is a mobile-capable, continuous ASCII robin tour with real Craft interface captures. Sign-in uses invitation-only email links; public signup and subscription billing are disabled. Start with the [documentation index](docs/README.md) and [architecture and scope](docs/ARCHITECTURE.md).
 
-The expanded source catalog groups **26 Crafts into Creative (10), Drafting (9) and Analysis (7)**. Fourteen integrations have verified native/browser/library round trips; the twelve additions remain pending browser/library integration. [Current acceptance](docs/CURRENT-STATUS.md) distinguishes this expansion from the deployed release and records paired web/runtime sources, migration state and editor/workstation pins. The [operator runbook](docs/OPERATIONS.md) covers support and recovery; [archived records](docs/archive/README.md) preserve dated release and rollback evidence. Support is **support@robyn.academy**.
+The deployed catalog groups **26 Crafts into Creative (10), Drafting (9) and Analysis (7)**. Fourteen integrations have verified native/browser/library round trips; the twelve additions remain pending browser/library integration. [Current acceptance](docs/CURRENT-STATUS.md) records the deployed web/runtime sources, migration state, editor/workstation pins and acceptance limits. The [operator runbook](docs/OPERATIONS.md) covers support and recovery; [archived records](docs/archive/README.md) preserve dated release and rollback evidence. Support is **support@robyn.academy**.
 
 ## Develop and verify
 
