@@ -1,0 +1,287 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-31T19:02:26.264Z",
+  "scope": "Paired production rollout of seven accepted Drafting integrations. Twenty-one Crafts are ready; the other five remain pending.",
+  "webCommit": "31c077641ed8b5447ce3d09f89c96736afd5a973",
+  "webSourceCommit": "7fad0ce2bc86f3e92711831195a53354b63f6b0e",
+  "runtimeCommit": "6e36132e0ac4fce621ef67ca4565d3e488233b74",
+  "runtimeSourceCommit": "56011f4fbea7ee5eba425fa3cf9bc529e0a87f66",
+  "pullRequests": {
+    "web": "https://github.com/BoundlessStudio/robyn/pull/48",
+    "runtime": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/12"
+  },
+  "deployment": {
+    "origin": "https://robyn.academy",
+    "provider": "Vercel via GitHub",
+    "state": "success",
+    "statusUrl": "https://vercel.com/venatio-studios/robyn-creative-studio/PKSPsg2SUC2C3469Et33Y34uegzH"
+  },
+  "sourceAcceptance": "drafting-integrations-20261031.json",
+  "workstation": {
+    "template": "robyn-studio-0-2-1@1",
+    "digest": "sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da",
+    "clientVersion": "0.3.0",
+    "clientFingerprint": "3e62cacf85f887fa29275a664714b542c29d42ce6ea205475d4b20e8166d7fc5",
+    "bundle": {
+      "bytes": 1891523,
+      "sha256": "651e17014bb5a073a184bb8dfd38361182516395df5b203eb41c1eb49534ddbd"
+    },
+    "imageChanged": false,
+    "maintenanceLeaseClosed": true,
+    "priorFilesPreserved": 11,
+    "metadataAndResourcesPreserved": true,
+    "budgetAndModelUsagePreserved": true,
+    "modelDispatches": 0,
+    "credentialsIssued": 0
+  },
+  "publication": {
+    "checkedAt": "2026-10-31T18:20:13.056Z",
+    "origin": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev",
+    "accountId": "ad511085f517f4740591851cad7686eb",
+    "bucket": "robyn-editor-artifacts",
+    "releases": 94,
+    "files": 43121,
+    "uniqueObjects": 2763,
+    "bytes": 2205423583,
+    "catalogSha256": "2453fb0c10d6d335937af0819ef2259d9620518fc27782bcfa743963817b3822",
+    "uploaded": 14,
+    "existing": 2749,
+    "allHostedBytesVerified": true,
+    "sourceBaseline": false,
+    "uploadOnly": false,
+    "privateBucket": true,
+    "readOnlyServingWorker": true,
+    "workerVersion": "52a9368c-9c5f-4d44-a37c-f7c96f837dbd",
+    "apps": [
+      {
+        "id": "bimcraft",
+        "prefix": "bimcraft/v0.7.0-0.1.1/",
+        "sourceCommit": "c778c7ca3f83eeecc3e815078417f152b2ca7a94",
+        "browserBundleSha256": "7e18b72ac6a96379b856a261ad1ae6bb4f35e7975ac68193834c78695ae41bb4"
+      },
+      {
+        "id": "modelcraft",
+        "prefix": "modelcraft/v0.7.0-0.1.1/",
+        "sourceCommit": "1ad753fb22f027abd381bda996b4c956f4cc20ce",
+        "browserBundleSha256": "f127ac434b2b4bd7bc05d3c32f180615423f1982b6394a0a3ea1308bcaf9d8e6"
+      },
+      {
+        "id": "markupcraft",
+        "prefix": "markupcraft/v0.7.0-0.1.1/",
+        "sourceCommit": "70967b4125431d6ad9402825faa1627f234fd643",
+        "browserBundleSha256": "96a22bc2dee06026428b60f77a14435c319fc6b5fa1791f1a857894d992f684e"
+      },
+      {
+        "id": "takeoffcraft",
+        "prefix": "takeoffcraft/v0.7.0-0.1.1/",
+        "sourceCommit": "9f504b6ae88acf86f53f5a8681efbd54113fe00a",
+        "browserBundleSha256": "9758496b5c16ee10189cec9083d57dfd8814f4d202f6eead9e7c1d1321bdf037"
+      },
+      {
+        "id": "civilcraft",
+        "prefix": "civilcraft/v0.7.0-0.1.1/",
+        "sourceCommit": "98d42c16f9880f2ef9d23a07fd85c7d949c407e7",
+        "browserBundleSha256": "acf6118952eb1ac19d37151221e880aed1cef5c8a97cf552717e28924da4c46a"
+      },
+      {
+        "id": "detailcraft",
+        "prefix": "detailcraft/v0.7.0-0.1.1/",
+        "sourceCommit": "4d7ec7059ec585f88b5cf8ff8df3eb5e872507bf",
+        "browserBundleSha256": "2eb2608b9e95135db88ee254eeb7c6c626e1a296101dbcb97158846b943db9f8"
+      },
+      {
+        "id": "partcraft",
+        "prefix": "partcraft/v0.7.0-0.1.1/",
+        "sourceCommit": "8dae0fc92484fd3f28f0afcbd7c1dfb96de3f33e",
+        "browserBundleSha256": "eae863232214115514e8cc9cc7b01be6b0514eeeeadee46834e5466bf42fffaa"
+      }
+    ]
+  },
+  "migrations": {
+    "applied": [],
+    "lastVerified": {
+      "entries": 30,
+      "through": "0029",
+      "evidence": "settings-budget-release-20261030.json"
+    },
+    "ledgerReread": false
+  },
+  "production": {
+    "checkedAt": "2026-10-31T18:56:57.523Z",
+    "bootstrap": {
+      "authenticated": 200,
+      "anonymous": 401,
+      "visibleRobyn": 1,
+      "maxConcurrentJobs": 1,
+      "applications": 26,
+      "ready": 21,
+      "pending": [
+        "subcraft",
+        "materialcraft",
+        "dashcraft",
+        "matcraft",
+        "datacraft"
+      ]
+    },
+    "studioGroups": {
+      "Creative": 10,
+      "Drafting": 9,
+      "Analysis": 7
+    },
+    "blankNativeLaunches": [
+      {
+        "id": "bimcraft",
+        "urlPrefix": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/bimcraft/v0.7.0-0.1.1/?robyn",
+        "nativeLoaded": true,
+        "confirmedSaved": "Saved. Saved revision open"
+      },
+      {
+        "id": "modelcraft",
+        "urlPrefix": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/modelcraft/v0.7.0-0.1.1/?robyn",
+        "nativeLoaded": true,
+        "confirmedSaved": "Saved. Saved revision open"
+      },
+      {
+        "id": "markupcraft",
+        "urlPrefix": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/markupcraft/v0.7.0-0.1.1/?robyn",
+        "nativeLoaded": true,
+        "confirmedSaved": "Saved. Saved revision open"
+      },
+      {
+        "id": "takeoffcraft",
+        "urlPrefix": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/takeoffcraft/v0.7.0-0.1.1/?robyn",
+        "nativeLoaded": true,
+        "confirmedSaved": "Saved. Saved revision open"
+      },
+      {
+        "id": "civilcraft",
+        "urlPrefix": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/civilcraft/v0.7.0-0.1.1/?robyn",
+        "nativeLoaded": true,
+        "confirmedSaved": "Saved. Saved revision open"
+      },
+      {
+        "id": "detailcraft",
+        "urlPrefix": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/detailcraft/v0.7.0-0.1.1/?robyn",
+        "nativeLoaded": true,
+        "confirmedSaved": "Saved. Saved revision open"
+      },
+      {
+        "id": "partcraft",
+        "urlPrefix": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/partcraft/v0.7.0-0.1.1/?robyn",
+        "nativeLoaded": true,
+        "confirmedSaved": "Saved. Saved revision open"
+      }
+    ],
+    "savedNativeReopens": [
+      {
+        "id": "bimcraft",
+        "nativeLoaded": true,
+        "expectedSavedContent": "Native acceptance building and edited wall height",
+        "libraryConfirmed": true
+      },
+      {
+        "id": "modelcraft",
+        "nativeLoaded": true,
+        "expectedSavedContent": "Scene 2",
+        "libraryConfirmed": true
+      },
+      {
+        "id": "markupcraft",
+        "nativeLoaded": true,
+        "expectedSavedContent": "plan",
+        "libraryConfirmed": true
+      },
+      {
+        "id": "takeoffcraft",
+        "nativeLoaded": true,
+        "expectedSavedContent": "Gypsum board",
+        "libraryConfirmed": true
+      },
+      {
+        "id": "civilcraft",
+        "nativeLoaded": true,
+        "expectedSavedContent": "Courtyard site",
+        "libraryConfirmed": true
+      },
+      {
+        "id": "detailcraft",
+        "nativeLoaded": true,
+        "expectedSavedContent": "Steel beam study",
+        "libraryConfirmed": true
+      },
+      {
+        "id": "partcraft",
+        "nativeLoaded": true,
+        "expectedSavedContent": "Studio frame",
+        "libraryConfirmed": true
+      }
+    ],
+    "editSaveReload": {
+      "app": "bimcraft",
+      "status": "committed",
+      "nativeControl": "Existing File Save",
+      "changedWallHeightMeters": 3.25,
+      "newRevisionConfirmed": true,
+      "fullPageReloadConfirmed": true
+    },
+    "pdfImport": {
+      "unselectedByDefault": true,
+      "choices": [
+        "markupcraft",
+        "pdfcraft"
+      ],
+      "writesBeforeChoice": 0,
+      "markupCraftImportAndOpen": "passed",
+      "existingPdfCraftImportAndOpen": "passed"
+    },
+    "deployedCaptureHashes": [
+      {
+        "id": "bimcraft",
+        "sha256": "ce00708b259521805fda310919c4577698bab91992d9ad959fcfcd9766a962dc"
+      },
+      {
+        "id": "modelcraft",
+        "sha256": "190643bb2780b96047b4de87053bbe29853cd8326a90d9d3bed61c4d4d878b09"
+      },
+      {
+        "id": "markupcraft",
+        "sha256": "960024faca22a914761cb8c1d51141b64463f7e621c6d5f65c7b028380749e52"
+      },
+      {
+        "id": "takeoffcraft",
+        "sha256": "6ccabf3de182643f094223d2ee3c438ba6d2c0e81e0aed49de23266ab06391ae"
+      },
+      {
+        "id": "civilcraft",
+        "sha256": "3c679f61652293e2b28a2b5f8dc896a938e8dfacaf69b283955f00884fac5280"
+      },
+      {
+        "id": "detailcraft",
+        "sha256": "a6f0214d8d05e7179937a42b4ab638a01819d26c64a415ed98ad813df3883bed"
+      },
+      {
+        "id": "partcraft",
+        "sha256": "4cb217cb3f1cc4909a76018f76fca55b182a976e4d687335ac6069a1e3826d38"
+      }
+    ],
+    "pageErrors": [],
+    "privateReceipt": {
+      "sourcePath": "E:/Development/robyn-shared-workstation-20261029/drafting-production-ui-20261031.private.json",
+      "sha256": "45bbd413915949ef483073c7ab6bbd11de50f2af63ce3ee5a2c9015fcb56ee5b"
+    }
+  },
+  "checks": {
+    "sourceCi": "passed in both repositories; web typecheck, tests, audit, production build and public browser checks passed",
+    "browser": "Chromium 156.0.8078.4",
+    "imageChanged": false,
+    "credentialsIssued": 0,
+    "modelDispatches": 0,
+    "maintenanceLeasesClosed": true
+  },
+  "limits": [
+    "Seven new native integrations plus the preceding fourteen are accepted for their recorded operations and versions; this is not exhaustive upstream feature, browser or GPU certification.",
+    "SubCraft, MaterialCraft, DashCraft, MatCraft and DataCraft remain pending. DashCraft is owner-approved as open-only; editing and library writes are not required.",
+    "The original source receipt and earlier fourteen-Craft deployment remain historical evidence. This release applied no migrations and did not reread the private ledger.",
+    "The final twenty-six-ready showcase export remains pending."
+  ]
+}
