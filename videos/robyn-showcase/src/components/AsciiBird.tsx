@@ -205,7 +205,7 @@ export const BirdGuide = ({ chapter }: { chapter?: number }) => {
   const t = frame / fps;
   const stops = [
     [1080, 165, 780],
-    [1450, 105, 350],
+    [1490, 96, 300],
     [420, 610, 350],
     [1440, 630, 370],
     [470, 630, 350],

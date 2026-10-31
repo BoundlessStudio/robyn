@@ -1,0 +1,2 @@
+public/**/*.txt text eol=lf
+public/*.json text eol=lf

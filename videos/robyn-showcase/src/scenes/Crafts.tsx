@@ -1,43 +1,41 @@
 import { interpolate, useCurrentFrame, useVideoConfig } from "remotion";
-import { C, ease, serif } from "../theme";
+import { C, ease, mono, serif } from "../theme";
 import { AppIcon, Reveal, Stage } from "../components/Stage";
+import { crafts, readyCrafts, studios } from "../catalog";
 
-const crafts = [
-  ["photocraft", "PhotoCraft", "Images"],
-  ["lightcraft", "LightCraft", "Photography"],
-  ["vectorcraft", "VectorCraft", "Illustration"],
-  ["designcraft", "DesignCraft", "Layouts"],
-  ["figcraft", "FigCraft", "Interfaces"],
-  ["filmcraft", "FilmCraft", "Film"],
-  ["effectcraft", "EffectCraft", "Motion"],
-  ["soundcraft", "SoundCraft", "Audio"],
-  ["wordcraft", "WordCraft", "Documents"],
-  ["pdfcraft", "PdfCraft", "PDFs"],
-  ["deckcraft", "DeckCraft", "Presentations"],
-  ["gridcraft", "GridCraft", "Spreadsheets"],
-  ["cadcraft", "CADCraft", "CAD"],
-  ["solidcraft", "SolidCraft", "Parametric 3D"],
-];
 export const Crafts = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   return (
-    <Stage chapter="Dashboard / Fourteen ways to make" number="02">
+    <Stage chapter="Creative · Drafting · Analysis" number="02">
       <Reveal
         delay={0.15}
         style={{
           position: "absolute",
           left: 104,
           top: 184,
-          fontSize: 119,
+          fontSize: 104,
           lineHeight: 1.05,
-          letterSpacing: "-6px",
+          letterSpacing: "-5px",
         }}
       >
-        14 Crafts.{" "}
+        {crafts.length} Crafts.{" "}
         <span style={{ fontFamily: serif, fontStyle: "italic", color: C.rust }}>
-          One studio.
+          Three studios.
         </span>
+      </Reveal>
+      <Reveal
+        delay={0.45}
+        style={{
+          position: "absolute",
+          left: 112,
+          top: 325,
+          fontSize: 28,
+          color: C.muted,
+        }}
+      >
+        {readyCrafts.length} ready to use. {crafts.length - readyCrafts.length}{" "}
+        being connected.
       </Reveal>
       <div
         style={{
@@ -46,48 +44,79 @@ export const Crafts = () => {
           right: 104,
           top: 420,
           display: "grid",
-          gridTemplateColumns: "repeat(7, 1fr)",
-          rowGap: 46,
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: 48,
         }}
       >
-        {crafts.map(([id, name, discipline], i) => (
-          <div
-            key={id}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              opacity: interpolate(
-                frame,
-                [(0.55 + i * 0.055) * fps, (1 + i * 0.055) * fps],
-                [0, 1],
-                ease,
-              ),
-              translate: `0px ${interpolate(frame, [(0.55 + i * 0.055) * fps, (1.2 + i * 0.055) * fps], [32, 0], ease)}px`,
-            }}
-          >
-            <AppIcon id={id} size={108} />
-            <div
+        {studios.map((studio, groupIndex) => (
+          <div key={studio.name} data-studio-group={studio.name}>
+            <Reveal
+              delay={0.5 + groupIndex * 0.14}
               style={{
-                fontSize: 29,
-                fontWeight: 500,
-                marginTop: 18,
-                letterSpacing: "-0.8px",
+                display: "flex",
+                alignItems: "baseline",
+                justifyContent: "space-between",
+                borderBottom: `1px solid ${C.line}`,
+                paddingBottom: 15,
+                marginBottom: 16,
               }}
             >
-              {name}
-            </div>
-            <div style={{ fontSize: 23, color: C.muted, marginTop: 4 }}>
-              {discipline}
+              <span style={{ fontSize: 42, letterSpacing: "-1.8px" }}>
+                {studio.name}
+              </span>
+              <span style={{ fontFamily: mono, fontSize: 21, color: C.muted }}>
+                {studio.apps.length} Crafts
+              </span>
+            </Reveal>
+            <div style={{ display: "grid", gap: 7 }}>
+              {studio.apps.map((app, index) => (
+                <div
+                  key={app.id}
+                  data-craft-id={app.id}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    height: 32,
+                    gap: 13,
+                    opacity: interpolate(
+                      frame,
+                      [
+                        (0.75 + groupIndex * 0.14 + index * 0.04) * fps,
+                        (1.2 + groupIndex * 0.14 + index * 0.04) * fps,
+                      ],
+                      [0, 1],
+                      ease,
+                    ),
+                    translate: `0px ${interpolate(frame, [(0.75 + groupIndex * 0.14 + index * 0.04) * fps, (1.4 + groupIndex * 0.14 + index * 0.04) * fps], [18, 0], ease)}px`,
+                  }}
+                >
+                  <AppIcon id={app.id} size={32} />
+                  <span style={{ fontSize: 28, letterSpacing: "-0.6px" }}>
+                    {app.name}
+                  </span>
+                  {!app.ready && (
+                    <span
+                      style={{
+                        marginLeft: "auto",
+                        color: C.rust,
+                        fontSize: 17,
+                        fontFamily: mono,
+                      }}
+                    >
+                      Connecting
+                    </span>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         ))}
       </div>
       <Reveal
         delay={2.5}
-        style={{ position: "absolute", left: 112, top: 884, fontSize: 39 }}
+        style={{ position: "absolute", left: 112, top: 926, fontSize: 29 }}
       >
-        Open a Craft. Start making.
+        One workstation. Start making with a ready Craft.
       </Reveal>
     </Stage>
   );

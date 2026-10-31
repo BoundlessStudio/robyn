@@ -11,6 +11,7 @@ import {
   useVideoConfig,
 } from "remotion";
 import { C, ease, mono, sans } from "../theme";
+import { crafts } from "../catalog";
 
 export const Stage = ({
   children,
@@ -244,6 +245,7 @@ const iconBackgrounds: Record<string, string> = {
 };
 export const AppIcon = ({ id, size = 112 }: { id: string; size?: number }) => {
   const { fps } = useVideoConfig();
+  const app = crafts.find((craft) => craft.id === id);
   return (
     <div
       style={{
@@ -251,15 +253,24 @@ export const AppIcon = ({ id, size = 112 }: { id: string; size?: number }) => {
         height: size,
         overflow: "hidden",
         borderRadius: size * 0.23,
-        background: iconBackgrounds[id],
+        background: app?.hasIcon ? iconBackgrounds[id] : app?.color,
         flexShrink: 0,
+        display: "grid",
+        placeItems: "center",
+        color: C.ink,
+        fontSize: size * 0.42,
+        fontWeight: 600,
       }}
     >
-      <CanvasImage
-        premountFor={fps}
-        src={staticFile(`apps/${id}.webp`)}
-        style={{ width: size, height: size }}
-      />
+      {app?.hasIcon ? (
+        <CanvasImage
+          premountFor={fps}
+          src={staticFile(`apps/${id}.webp`)}
+          style={{ width: size, height: size }}
+        />
+      ) : (
+        app?.monogram
+      )}
     </div>
   );
 };

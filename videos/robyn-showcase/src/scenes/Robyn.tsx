@@ -1,6 +1,7 @@
 import { interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 import { C, ease, mono, serif } from "../theme";
 import { AppIcon, Reveal, Stage } from "../components/Stage";
+import { readyCrafts } from "../catalog";
 
 export const Robyn = () => {
   const frame = useCurrentFrame();
@@ -28,7 +29,7 @@ export const Robyn = () => {
             fontSize: 150,
           }}
         >
-          Every Craft.
+          In every studio.
         </span>
       </Reveal>
       <Reveal
@@ -146,9 +147,9 @@ export const Robyn = () => {
             marginTop: 22,
           }}
         >
-          One shared workspace.
+          One workstation.
           <br />
-          All fourteen Crafts.
+          {readyCrafts.length} Crafts ready.
         </div>
       </Reveal>
       <Reveal
