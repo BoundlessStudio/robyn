@@ -1,10 +1,10 @@
 # Robyn Creative Studio
 
-An invitation-only creative studio at **[robyn.academy](https://robyn.academy)**: one Robyn works across fourteen Craft applications, with Chrome and Brave Search as tools. Each creator has one shared workstation; application instructions load as skills and production jobs run one at a time. Saved research notebooks remain editable as Notes. Native files stay private and editable. Built with Next.js, Supabase, Agent37 and Vercel. Public editor releases are delivered through Cloudflare R2 and a separate read-only Worker.
+An invitation-only creative studio at **[robyn.academy](https://robyn.academy)**: one Robyn works with Craft applications, Chrome and Brave Search. Each creator has one shared workstation; application instructions load as skills and production jobs run one at a time. Saved research notebooks remain editable as Notes. Native files stay private and editable. Built with Next.js, Supabase, Agent37 and Vercel. Public editor releases are delivered through Cloudflare R2 and a separate read-only Worker.
 
 The authenticated pilot is **desktop-only**. The public homepage is a mobile-capable, continuous ASCII robin tour with real Craft interface captures. Sign-in uses invitation-only email links; public signup and subscription billing are disabled. Start with the [documentation index](docs/README.md) and [architecture and scope](docs/ARCHITECTURE.md).
 
-[Current acceptance](docs/CURRENT-STATUS.md) records the paired web/runtime sources, migration state, editor/workstation pins and verified scopes, including all fourteen native/browser round trips. The [operator runbook](docs/OPERATIONS.md) covers support and recovery; [archived records](docs/archive/README.md) preserve dated release and rollback evidence. Support is **support@robyn.academy**.
+The expanded source catalog groups **26 Crafts into Creative (10), Drafting (9) and Analysis (7)**. Fourteen integrations have verified native/browser/library round trips; the twelve additions remain pending browser/library integration. [Current acceptance](docs/CURRENT-STATUS.md) distinguishes this expansion from the deployed release and records paired web/runtime sources, migration state and editor/workstation pins. The [operator runbook](docs/OPERATIONS.md) covers support and recovery; [archived records](docs/archive/README.md) preserve dated release and rollback evidence. Support is **support@robyn.academy**.
 
 ## Develop and verify
 

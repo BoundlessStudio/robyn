@@ -19,7 +19,7 @@ The QA allowance retained its **$75** ceiling and archived charges: the producti
 
 ## Studio expansion, not deployed
 
-The prepared source catalog contains **26 Crafts: Creative 10, Drafting 9 and Analysis 7**, in the requested order, including DetailCraft. Dashboard launchers and Robyn's Skills directory use those groups. [The expansion evidence](acceptance/studio-expansion-20261031.json) records the new image, source/package pins, installation checks, temporary canary and local verification separately from the production boundary above.
+The source catalog contains **26 Crafts: Creative 10, Drafting 9 and Analysis 7**, in the requested order, including DetailCraft, with upstream context from [Remade](https://remade.wiki/). Dashboard launchers and Robyn's Skills directory use those groups. [The expansion evidence](acceptance/studio-expansion-20261031.json) records the new image, source/package pins, installation checks, temporary canary and local verification separately from the production boundary above.
 
 The fourteen existing integrations retain their recorded native/editor verification pins. The twelve additions have pending formats, browser and workstation integration status: native installation does not certify a browser edit or confirmed library save. Pending Crafts stay unavailable for paid work, new-file launches and native imports, and cannot make an existing ready PDF importer ambiguous. The immutable workstation client remains 0.2.0 with its fourteen supported Craft skills.
 
@@ -50,7 +50,7 @@ The original review marked R01, R02, R03, R04, R05, R07, R08, R10, R11, R12, R14
 
 | Finding | Remaining boundary |
 | --- | --- |
-| New Craft integrations | Complete independent native packaging, browser/library adapters, real blank files where applicable and actual edit/save/continuation acceptance for the twelve additions. SubCraft's pinned release is desktop-only; DashCraft is a read-only report viewer; DataCraft is a native database workspace. Their installation checks do not promote editor readiness |
+| New Craft integrations | Complete native document packagers, browser/library adapters, real blank files where applicable and actual edit/save/continuation acceptance for the twelve additions. SubCraft's pinned release is desktop-only; DashCraft is a read-only report viewer; DataCraft is a native database workspace. Their installation checks do not promote editor readiness |
 | R06 — capacity recovery, partial | Recover an already-purchased result after a real space failure. Controlled reservation refusal/recovery does not complete that case |
 | R09 — workstation recovery, partial | Broader self-service recovery, lost persistent state and active/unsettled external work. Accepted idle replacement, image update and retirement do not complete those cases |
 | R13 — provider promotion, partial | Gemini image, image edit and sound effects remain disabled; their prepared **$0.13** acceptance batch still awaits approval. Additional options require bounded acquisition, final cost, provenance/rights and editable-file acceptance. Generated music is not implemented; video reference inputs are rejected |

@@ -30,8 +30,8 @@
     "status": "pending"
   },
   "workstation": {
-    "template": null,
-    "release": null,
+    "template": "robyn-studio-0-2-1@1",
+    "release": "sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da",
     "status": "pending"
   },
   "studio": "Creative"
