@@ -68,3 +68,17 @@ test("MatCraft intake keeps exact selected scripts and numerical inputs and reje
   await assert.rejects(checkNativeImport("matcraft",[{...script,file:new Blob([new Uint8Array([0,1,2])])}]));
   await assert.rejects(checkNativeImport("matcraft",[{...script,path:"Broken.mat"}]));
 });
+
+test("MaterialCraft intake retains exact native SBS and linked resources without unrelated files",async()=>{
+  assert.equal(nativeImportApp("Material.SBS")?.id,"materialcraft");
+  const source='<?xml version="1.0"?><package><content><graph><future uid="9223372036854775807"/></graph><resource><filepath v="images/leaf.png"/></resource></content></package>';
+  const master={path:"Material.sbs",role:"master",file:new Blob([source])};
+  const linked={path:"images/leaf.png",role:"dependency",file:new Blob([new Uint8Array([0,255,1,128])])};
+  const unrelated={path:"unrelated.txt",role:"dependency",file:new Blob(["private"])};
+  const result=await checkNativeImport("materialcraft",[master,linked,unrelated]);
+  assert.deepEqual(result,[master,linked]);
+  assert.equal(await result[0].file.text(),source);
+  assert.equal(result[1].file,linked.file);
+  await assert.rejects(checkNativeImport("materialcraft",[master]),/missing/);
+  await assert.rejects(checkNativeImport("materialcraft",[{...master,file:new Blob(['<!DOCTYPE package [<!ENTITY x SYSTEM "file:///private">]>'+source])}]));
+});
