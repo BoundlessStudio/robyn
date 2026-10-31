@@ -1,0 +1,583 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-31T06:47:12.304Z",
+  "contextSources": [
+    "https://remade.wiki/",
+    "https://remade.wiki/data/catalog.json"
+  ],
+  "webSourceCommit": "794b47296bbb3a125e162f0a04debf8f144e24ac",
+  "runtimeSourceCommit": "86b7a1ba0f7d63baeb9be20f88fa32ebf030000f",
+  "deployment": {
+    "webDeployed": false,
+    "productionWorkstationUpdated": false,
+    "migrationChanges": [],
+    "migrationBaseline": {
+      "scope": "Previously recorded; not reread or changed during this task",
+      "entries": 30,
+      "through": "0029"
+    }
+  },
+  "temporaryInstanceCleanup": {
+    "checkedAt": "2026-10-31T06:46:07.472Z",
+    "temporaryInstancesCreated": 2,
+    "temporaryInstancesDeleted": 2,
+    "remainingTemporaryInstances": 0
+  },
+  "catalog": {
+    "applications": 26,
+    "studios": {
+      "Creative": [
+        "designcraft",
+        "effectcraft",
+        "lightcraft",
+        "figcraft",
+        "photocraft",
+        "soundcraft",
+        "vectorcraft",
+        "filmcraft",
+        "subcraft",
+        "materialcraft"
+      ],
+      "Drafting": [
+        "cadcraft",
+        "bimcraft",
+        "modelcraft",
+        "markupcraft",
+        "takeoffcraft",
+        "civilcraft",
+        "detailcraft",
+        "partcraft",
+        "solidcraft"
+      ],
+      "Analysis": [
+        "gridcraft",
+        "deckcraft",
+        "pdfcraft",
+        "wordcraft",
+        "dashcraft",
+        "matcraft",
+        "datacraft"
+      ]
+    },
+    "ready": 14,
+    "pending": [
+      "bimcraft",
+      "civilcraft",
+      "dashcraft",
+      "datacraft",
+      "detailcraft",
+      "markupcraft",
+      "matcraft",
+      "materialcraft",
+      "modelcraft",
+      "partcraft",
+      "subcraft",
+      "takeoffcraft"
+    ]
+  },
+  "image": {
+    "schemaVersion": 1,
+    "checkedAt": "2026-10-31T06:47:12.290Z",
+    "sourceCommit": "86b7a1ba0f7d63baeb9be20f88fa32ebf030000f",
+    "recipe": "studio-0.2.1",
+    "buildId": "tb_a4bfaa66a848fd8e2b24",
+    "template": "robyn-studio-0-2-1@1",
+    "digest": "sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da",
+    "sourceFingerprint": "de24c3288f54a32d595cb76cb76bbbb795574611725d7ec1805e1f7b9fc24ecf",
+    "contextSha256": "aa14e8a82619d0cd1e4f009900698a8ae739d7a578798512262e580f18edce0c",
+    "contextFiles": [
+      {
+        "name": "Dockerfile",
+        "bytes": 22614,
+        "sha256": "cd1bbdc69bb16ad89520362393e29e641cb6e75c9980cb95870918f22f323e06"
+      },
+      {
+        "name": "desktop-entrypoint.sh",
+        "bytes": 2256,
+        "sha256": "48ed032a2a34ef5675475dfaffcf4050c65b2092ecebef992b63d409cc345601"
+      },
+      {
+        "name": "release.json",
+        "bytes": 23282,
+        "sha256": "61f27277173fa8d30d10d5775d1297b767fed3b8adcf48a66e24f67c24231bbc"
+      },
+      {
+        "name": "build-matcraft.py",
+        "bytes": 6255,
+        "sha256": "66905c3739ba5cb00564d4a660856b7985dca1848524baf2ef98537030514a9b"
+      },
+      {
+        "name": "verify-installation.py",
+        "bytes": 3332,
+        "sha256": "ee751b690cd6ef8ca8b685c4889b9d189a17432b02006542f9bd85a710e9bb96"
+      }
+    ],
+    "installedApplications": 26,
+    "studios": {
+      "Creative": 10,
+      "Drafting": 9,
+      "Analysis": 7
+    },
+    "nativeChecks": {
+      "installedApplications": 26,
+      "studios": {
+        "Creative": 10,
+        "Drafting": 9,
+        "Analysis": 7
+      },
+      "legacyNativeCliChecks": "passed",
+      "nativePackageHashes": "passed",
+      "dynamicLibraries": "passed",
+      "matcraftNumericalSmoke": "passed",
+      "newBrowserLibraryIntegrations": "pending"
+    },
+    "matcraft": {
+      "matcraft": "built from pinned source",
+      "sourceCommit": "effb4218bd7c5c82eefb157378d6561d5b0f2cb3",
+      "executables": {
+        "matcraft": "13e523368d7ea67de4864011e2d8b1d9ff43f5991e06030b047c6d0197e163c4",
+        "matcraft-cli": "c4d86c5f12cdcce8ad1d5567aa0f15a2e0a2d5cd56f7b43c1cb6c20681166a8c"
+      },
+      "numericalSmoke": "passed"
+    },
+    "nativeGuiStartup": [
+      {
+        "command": "bimcraft",
+        "runningAfter3Seconds": true,
+        "exitCode": -15
+      },
+      {
+        "command": "modelcraft",
+        "runningAfter3Seconds": true,
+        "exitCode": -15
+      },
+      {
+        "command": "markupcraft",
+        "runningAfter3Seconds": true,
+        "exitCode": -15
+      },
+      {
+        "command": "takeoffcraft",
+        "runningAfter3Seconds": true,
+        "exitCode": -15
+      },
+      {
+        "command": "civilcraft",
+        "runningAfter3Seconds": true,
+        "exitCode": -15
+      },
+      {
+        "command": "detailcraft",
+        "runningAfter3Seconds": true,
+        "exitCode": -15
+      },
+      {
+        "command": "partcraft",
+        "runningAfter3Seconds": true,
+        "exitCode": -15
+      },
+      {
+        "command": "subcraft",
+        "runningAfter3Seconds": true,
+        "exitCode": -15
+      },
+      {
+        "command": "materialcraft-gui",
+        "runningAfter3Seconds": true,
+        "exitCode": -15
+      },
+      {
+        "command": "dashcraft-gui",
+        "runningAfter3Seconds": true,
+        "exitCode": -15
+      },
+      {
+        "command": "datacraft",
+        "runningAfter3Seconds": true,
+        "exitCode": -15
+      },
+      {
+        "command": "matcraft",
+        "runningAfter3Seconds": true,
+        "exitCode": -15
+      }
+    ],
+    "nativeGuiCheck": {
+      "observationSeconds": 3,
+      "cleanup": "QA sent SIGTERM to each application after the startup observation; negative exit codes record that deliberate cleanup."
+    },
+    "scope": "Installation and native startup only; twelve new browser/library round trips remain pending.",
+    "canary": {
+      "template": "robyn-studio-0-2-1@1",
+      "digest": "sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da",
+      "resources": {
+        "cpu": 4,
+        "memory": 16,
+        "disk": 10
+      },
+      "health": {
+        "ok": true,
+        "healthy": true
+      },
+      "aiBudgetMicros": 0,
+      "deleted": true
+    },
+    "productionWorkstationUpdated": false
+  },
+  "client": {
+    "version": "0.2.0",
+    "fingerprint": "97a41d837b667d9d544083614c9cf8fe23a627ce8187818518da616cbe063c0c",
+    "bundleSha256": "09a5f30e962361d2e0f1120270bfbb753d6aa84fe42a5718bf228bd32c42686d",
+    "craftSkills": 14,
+    "changed": false
+  },
+  "editorPins": [
+    {
+      "id": "cadcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "cadcraft-v0.14.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/cadcraft/v0.14.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "recordedNativeVerification": {
+        "template": "robyn-cadcraft-0-14-0@1",
+        "release": "sha256:df65088c9551376db050ab257e43fd1d07855b2bac7a384fb008e8bdc2253e16",
+        "status": "verified",
+        "previousReleases": [
+          {
+            "template": "robyn-cadcraft-0-10-0@1",
+            "release": "sha256:bca46321dc438354d1b169a91e4f5075d0bad5afc70052b6e6fa0fbcf0f1e488"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deckcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "deckcraft-v0.12.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/deckcraft/v0.12.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "recordedNativeVerification": {
+        "template": "robyn-deckcraft-0-12-0@1",
+        "release": "sha256:0d74f4a4f5311bb6e6580a3354d3f762e88eae4ce8536e86a3569c82d9fca450",
+        "status": "verified",
+        "previousReleases": [
+          {
+            "template": "robyn-deckcraft-0-9-0@1",
+            "release": "sha256:3dfcd2d3dd5333c261a3800b3d66acae6be286813f921e384dcfce9e816104d5"
+          }
+        ]
+      }
+    },
+    {
+      "id": "designcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "designcraft-v0.14.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/designcraft/v0.14.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "recordedNativeVerification": {
+        "template": "robyn-designcraft-0-14-0@1",
+        "release": "sha256:6bd3bc17de676fccd12bad4f56446e06649cc60332976a4798b8e80e50de9453",
+        "status": "verified",
+        "previousReleases": [
+          {
+            "template": "robyn-designcraft-0-11-0@1",
+            "release": "sha256:eb7ef35e69d14ed050f718199979820091a5265bb9c55742c33ff26022bdd6cc"
+          }
+        ]
+      }
+    },
+    {
+      "id": "effectcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "effectcraft-v0.18.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/effectcraft/v0.18.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "recordedNativeVerification": {
+        "template": "robyn-effectcraft-0-18-0@1",
+        "release": "sha256:4f5a0082fb05334f039bf0e039ec900d384927564cb82a939ae8b60a544bd8e8",
+        "status": "verified",
+        "previousReleases": [
+          {
+            "template": "robyn-effectcraft-0-14-0@1",
+            "release": "sha256:56228ad33996ff68f4abe5fe0388ea33eb4adee24a5ea9916dbe5536d284f12b"
+          }
+        ]
+      }
+    },
+    {
+      "id": "figcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "figcraft-v0.12.1-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/figcraft/v0.12.1-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "recordedNativeVerification": {
+        "template": "robyn-figcraft-0-12-1@1",
+        "release": "sha256:d5e1e5e91ecab08b24839cd1e6dbe5005903edb5bc2b3e56b3bba55e196be3f9",
+        "status": "verified",
+        "previousReleases": [
+          {
+            "template": "robyn-figcraft-0-9-0@1",
+            "release": "sha256:1f6bcfdd286c2fe49d0ab53a11449a00760bec8071099bd372738a6fc1d527c2"
+          }
+        ]
+      }
+    },
+    {
+      "id": "filmcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "filmcraft-v0.14.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/filmcraft/v0.14.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "recordedNativeVerification": {
+        "template": "robyn-filmcraft-0-14-0@1",
+        "release": "sha256:a0928499237173ae502b3d2f0782bb0ec53d3d60f199d947eb198e291b9a7a66",
+        "status": "verified",
+        "previousReleases": [
+          {
+            "template": "robyn-filmcraft-0-10-0@1",
+            "release": "sha256:9af6580357fc0f559d2dc63d0fab876003f7de816cdcda4d0f666b5ccc438d43"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gridcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "gridcraft-v0.13.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/gridcraft/v0.13.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "recordedNativeVerification": {
+        "template": "robyn-gridcraft-0-13-0@1",
+        "release": "sha256:df4eac4d419406428dab897efdb27ae993782bf0e5a998f438f04e5d790638dd",
+        "status": "verified",
+        "previousReleases": [
+          {
+            "template": "robyn-gridcraft-0-10-0@1",
+            "release": "sha256:7a74c01ecc0599d9a6c67a000c0a2245cfb6641d9e0d641c5167d99a295a8149"
+          }
+        ]
+      }
+    },
+    {
+      "id": "lightcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "lightcraft-v0.15.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/lightcraft/v0.15.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "recordedNativeVerification": {
+        "template": "robyn-lightcraft-0-15-0@1",
+        "release": "sha256:ba0e6fcb9d332a7f942a6f7f541716d7d45a48f849dbe846fa0992415211606b",
+        "status": "verified",
+        "previousReleases": [
+          {
+            "template": "robyn-lightcraft-0-11-0@1",
+            "release": "sha256:5f4570949853ff085bbb06035bb3071224357f2119a8bec65010a763979f749c"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pdfcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "pdfcraft-v0.15.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/pdfcraft/v0.15.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "recordedNativeVerification": {
+        "template": "robyn-pdfcraft-0-15-0@1",
+        "release": "sha256:4c5026a56b8a8b76cb051b9b665c11a3e8893cf770b7e7b9425be143a6dc2627",
+        "status": "verified",
+        "previousReleases": [
+          {
+            "template": "robyn-pdfcraft-0-11-0@1",
+            "release": "sha256:165fb8dc380c404f670a5e09b092ede8b0991aa3003ca9f7ea5c1c9133cd9881"
+          }
+        ]
+      }
+    },
+    {
+      "id": "photocraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "photocraft-v0.17.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/photocraft/v0.17.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "recordedNativeVerification": {
+        "template": "robyn-photocraft-0-17-0@1",
+        "release": "sha256:f039f03822aa77afa7342fc0828f0c7cdbb50e414a1690c71ee867a352134233",
+        "status": "verified",
+        "previousReleases": [
+          {
+            "template": "robyn-photocraft-0-12-0@1",
+            "release": "sha256:b56cb9749d2f3dc88c9f50a12803d57bfa29d359635d0999575055876944c849"
+          }
+        ]
+      }
+    },
+    {
+      "id": "solidcraft",
+      "editor": {
+        "adapterVersion": "0.1.2",
+        "release": "solidcraft-v0.27.1-robyn-0.1.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/solidcraft/v0.27.1-0.1.2/?robyn",
+        "status": "verified"
+      },
+      "recordedNativeVerification": {
+        "template": "robyn-studio-0-1-1@1",
+        "release": "sha256:23622a922f2ab7df9a45d6cfe64f42247954b31843e228ded96619ccefbbea0d",
+        "status": "verified",
+        "previousReleases": [
+          {
+            "template": "robyn-solidcraft-0-27-0@1",
+            "release": "sha256:2ec95df623e62566bd151d05eeebcf8826301f73d078e84405af62e19780c8e9"
+          }
+        ]
+      }
+    },
+    {
+      "id": "soundcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "soundcraft-v0.14.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/soundcraft/v0.14.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "recordedNativeVerification": {
+        "template": "robyn-soundcraft-0-14-0@1",
+        "release": "sha256:0af82abd3391a5c6df60b1e5d1a95b31f20402855864637172b62ac7b53f08aa",
+        "status": "verified",
+        "previousReleases": [
+          {
+            "template": "robyn-soundcraft-0-11-0@1",
+            "release": "sha256:8d7030eff81589c4a267a2ecd3f039338e8c690e8703a358e4c8846bc8375e22"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vectorcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "vectorcraft-v0.18.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/vectorcraft/v0.18.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "recordedNativeVerification": {
+        "template": "robyn-vectorcraft-0-18-0@1",
+        "release": "sha256:346e9ef26bcbfe54aad48d8516a468fdf964f9c02032e73e7552abddde0fe9a5",
+        "status": "verified",
+        "previousReleases": [
+          {
+            "template": "robyn-vectorcraft-0-14-0@1",
+            "release": "sha256:b04d54cf9231cbb76f9d929395f0735ead37a326ecb33299ba2947636150ad76"
+          }
+        ]
+      }
+    },
+    {
+      "id": "wordcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "wordcraft-v0.12.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/wordcraft/v0.12.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "recordedNativeVerification": {
+        "template": "robyn-wordcraft-0-12-0@1",
+        "release": "sha256:223fcb7f752ad1e2edec5d68eb21c213ecd7c6ac176529eda653c025d5c0b6bb",
+        "status": "verified",
+        "previousReleases": [
+          {
+            "template": "robyn-wordcraft-0-9-0@1",
+            "release": "sha256:08ce901c9c0bff1c38bd1334bbcda226ef1b31e7c5678916a8adc9c957e525f2"
+          }
+        ]
+      }
+    }
+  ],
+  "localChecks": {
+    "web": {
+      "nodeTests": 235,
+      "typecheck": "passed",
+      "build": "passed",
+      "publicLayoutAxeCombinations": 18,
+      "publicKeyboardFocusPassed": 14,
+      "existingPlatformKeyboardLimitations": 4,
+      "highSeverityAudit": "passed",
+      "moderateAuditFindings": 23
+    },
+    "runtime": {
+      "nodeTests": 112,
+      "linuxPythonTests": 4,
+      "highSeverityAudit": "passed",
+      "bundleBytesUnchanged": true
+    },
+    "visualReview": {
+      "supportedDesktopWidths": [
+        1200,
+        1440
+      ],
+      "screenshots": [
+        {
+          "file": "launcher-1200-analysis.png",
+          "bytes": 67708,
+          "sha256": "44db80f4213ee0f4bf94411fb156a7ce64533802419e6cf911e5aa0ae7deb240"
+        },
+        {
+          "file": "launcher-1200-creative.png",
+          "bytes": 143404,
+          "sha256": "fbd2e2aa12a65b7ca7d3863903d87e7a71e1af0017644623830d4f320179f11c"
+        },
+        {
+          "file": "launcher-1200-drafting.png",
+          "bytes": 123558,
+          "sha256": "06851de939bf05da2c064d6374433da457aab92988a49754b192212f38a631a8"
+        },
+        {
+          "file": "launcher-1440-analysis.png",
+          "bytes": 72332,
+          "sha256": "912d256f765f7e14e7f03aef888b38aafd0791d7e143641b06ffb703fd3a19b7"
+        },
+        {
+          "file": "launcher-1440-creative.png",
+          "bytes": 152162,
+          "sha256": "9b4c0f175fb669b368939cf6a7db621c05eef7d5158c4412797e192611544832"
+        },
+        {
+          "file": "launcher-1440-drafting.png",
+          "bytes": 129076,
+          "sha256": "f8b980bdec685298e54d26577f9729d25c63c0f5cc3f2fc0500de5e4e33de526"
+        },
+        {
+          "file": "skills-drafting.png",
+          "bytes": 210061,
+          "sha256": "05368a68ed83d5e1485f251158dae199ca6376eafc41d492390a6c104b4842f3"
+        }
+      ],
+      "scope": "Actual Studio components with isolated BFF/transport fixtures; does not certify native editors"
+    }
+  },
+  "limits": [
+    "Twelve new integrations remain pending real native/browser edit/confirmed private-library save/native continuation acceptance.",
+    "Existing fourteen editor/native verification pins retain their historical acceptance scope.",
+    "Web changes and the image pin need coordinated owned idle workstation/mirror maintenance before production deployment."
+  ]
+}
