@@ -1,0 +1,396 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-31T23:33:17.488355+00:00",
+  "stage": "production-verified",
+  "scope": "Paired MaterialCraft runtime/web rollout and scoped authenticated production manual editor checks; source records retain their historical scope.",
+  "webCommit": "b7f2232f3a65eee6c422870c52d991c8c549dfc5",
+  "webSourceCommit": "0d4e7847cc34a65ae7a8f68ec9b7a532f41917f7",
+  "webPullRequest": "https://github.com/BoundlessStudio/robyn/pull/52",
+  "runtimeCommit": "9b7668f30111cdfb5413890d1a1cb08b443049d5",
+  "runtimeSourceCommit": "2d4e0524b6a239e5245011081225de6edbfc34f7",
+  "runtimePullRequest": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/14",
+  "productionDeployment": {
+    "provider": "Vercel",
+    "url": "https://vercel.com/venatio-studios/robyn-creative-studio/Br3vGBKCq6rE4HkDuqCyyqzhq5tm",
+    "commit": "b7f2232f3a65eee6c422870c52d991c8c549dfc5",
+    "githubStatus": "success"
+  },
+  "sourceAcceptance": {
+    "path": "docs/acceptance/materialcraft-integration-20261031.json",
+    "sha256": "74edb32ce0a757ec90e9c1a6a98d4d222f0033063129470a73f8109f4405075a",
+    "hashScope": "exact source-commit Git blob"
+  },
+  "installedCrafts": 26,
+  "readyCrafts": 23,
+  "remaining": [
+    "subcraft",
+    "dashcraft",
+    "datacraft"
+  ],
+  "app": {
+    "id": "materialcraft",
+    "manifest": {
+      "adapterVersion": "0.1.0",
+      "release": "materialcraft-v0.5.0-robyn-0.1.0",
+      "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/materialcraft/v0.5.0-0.1.0/?robyn",
+      "status": "verified"
+    },
+    "formats": [
+      ".sbs"
+    ],
+    "sourceCommit": "34cbfff7cf7341dd50298f89a4026131a2acda03",
+    "sourcePatchSha256": "0fd350eb9148f375accfb608ddfcd1a24417a22d50345f593d098427e94a7426",
+    "browserBundleSha256": "1667b6d6301ac8e41c6e4183ad27e59f447b691803f8a13e3d1f6619a097a41d",
+    "nativeCliSha256": "75d9a5a5b57722ab0bdf957f34d87ed2fe2dbacabf7771cf34532e6c62d923dd",
+    "nativeCases": [
+      {
+        "stage": "canonical",
+        "id": "linked",
+        "sourceFiles": [
+          {
+            "bytes": 8066,
+            "sha256": "d900f28765a44e128083a386574e978bb97aaff0ae9359b53584f5056f2c6967"
+          },
+          {
+            "bytes": 2056271,
+            "sha256": "1be13b58d4885797f37432a9f135707460833226d0caa7d806c988b15c8b50f5"
+          }
+        ],
+        "before": {
+          "size": 128,
+          "seed": 25,
+          "nodes": 13
+        },
+        "after": {
+          "size": 256,
+          "seed": 25,
+          "nodes": 13
+        },
+        "renders": {
+          "before": {
+            "width": 128,
+            "height": 128,
+            "bytes": 31848,
+            "sha256": "d562b7ea8f18a009132ef08363ac65a45c13e4f9d20748ddd9fc0c5e504662aa"
+          },
+          "after": {
+            "width": 256,
+            "height": 256,
+            "bytes": 114118,
+            "sha256": "5bb56c9da96dd734029d11eeb136b63637ceb06457e3704ea356b5d9ae2fe6a9"
+          }
+        },
+        "continuedMaster": {
+          "bytes": 8066,
+          "sha256": "da8ba3c5c2020dfd91a6f353430b21f0a5115f98fc7bd571a4873aefdfd7e6d8"
+        },
+        "continuedPackage": {
+          "masterPath": "Continued material.sbs",
+          "files": [
+            {
+              "path": "Continued material.sbs",
+              "bytes": 8066,
+              "sha256": "da8ba3c5c2020dfd91a6f353430b21f0a5115f98fc7bd571a4873aefdfd7e6d8"
+            },
+            {
+              "path": "images/leaf.png",
+              "bytes": 2056271,
+              "sha256": "1be13b58d4885797f37432a9f135707460833226d0caa7d806c988b15c8b50f5"
+            }
+          ]
+        },
+        "sourceFilesUnchanged": true
+      },
+      {
+        "stage": "canonical",
+        "id": "blank",
+        "sourceFiles": [
+          {
+            "bytes": 1018,
+            "sha256": "808937711ccaf53c950b5044594be6fd1cf8293e726055b4298c36d1f337db46"
+          }
+        ],
+        "before": {
+          "size": 512,
+          "seed": 31,
+          "nodes": 1
+        },
+        "after": {
+          "size": 256,
+          "seed": 31,
+          "nodes": 1
+        },
+        "renders": {
+          "before": {
+            "width": 128,
+            "height": 128,
+            "bytes": 157,
+            "sha256": "a2f0bb9b39aaa32c3177d2a14d39e34a954105e56ca356b449f49817fb1057a5"
+          },
+          "after": {
+            "width": 256,
+            "height": 256,
+            "bytes": 301,
+            "sha256": "149eea74ff2e701c39ccef26acf4a32cb11804c0cc2f4927879a695dcd11b8ba"
+          }
+        },
+        "continuedMaster": {
+          "bytes": 1018,
+          "sha256": "2c924000540d4f76d6c5ce0abd49d06d5f47dbb112f4378f02666c6e6c4c0d8d"
+        },
+        "continuedPackage": {
+          "masterPath": "Continued material.sbs",
+          "files": [
+            {
+              "path": "Continued material.sbs",
+              "bytes": 1018,
+              "sha256": "2c924000540d4f76d6c5ce0abd49d06d5f47dbb112f4378f02666c6e6c4c0d8d"
+            }
+          ]
+        },
+        "sourceFilesUnchanged": true
+      },
+      {
+        "stage": "hosted",
+        "id": "linked",
+        "sourceFiles": [
+          {
+            "bytes": 8066,
+            "sha256": "b5226934ff3f480c5d4a66f57ff651798995efe4e35dea4c7412255045f9dbf8"
+          },
+          {
+            "bytes": 2056271,
+            "sha256": "1be13b58d4885797f37432a9f135707460833226d0caa7d806c988b15c8b50f5"
+          }
+        ],
+        "before": {
+          "size": 128,
+          "seed": 28,
+          "nodes": 13
+        },
+        "after": {
+          "size": 256,
+          "seed": 28,
+          "nodes": 13
+        },
+        "renders": {
+          "before": {
+            "width": 128,
+            "height": 128,
+            "bytes": 31848,
+            "sha256": "d562b7ea8f18a009132ef08363ac65a45c13e4f9d20748ddd9fc0c5e504662aa"
+          },
+          "after": {
+            "width": 256,
+            "height": 256,
+            "bytes": 114118,
+            "sha256": "5bb56c9da96dd734029d11eeb136b63637ceb06457e3704ea356b5d9ae2fe6a9"
+          }
+        },
+        "continuedMaster": {
+          "bytes": 8066,
+          "sha256": "1e3f3f24f35c8fdceed3f879e67f73cd810654f2265c12af9384c8258ecd9287"
+        },
+        "continuedPackage": {
+          "masterPath": "Continued material.sbs",
+          "files": [
+            {
+              "path": "Continued material.sbs",
+              "bytes": 8066,
+              "sha256": "1e3f3f24f35c8fdceed3f879e67f73cd810654f2265c12af9384c8258ecd9287"
+            },
+            {
+              "path": "images/leaf.png",
+              "bytes": 2056271,
+              "sha256": "1be13b58d4885797f37432a9f135707460833226d0caa7d806c988b15c8b50f5"
+            }
+          ]
+        },
+        "sourceFilesUnchanged": true
+      },
+      {
+        "stage": "hosted",
+        "id": "blank",
+        "sourceFiles": [
+          {
+            "bytes": 1013,
+            "sha256": "09d80437ad65a8e722bac902eef54493f21c4398589c0beb435ac2f83c7f2af5"
+          }
+        ],
+        "before": {
+          "size": 512,
+          "seed": 41,
+          "nodes": 1
+        },
+        "after": {
+          "size": 256,
+          "seed": 41,
+          "nodes": 1
+        },
+        "renders": {
+          "before": {
+            "width": 128,
+            "height": 128,
+            "bytes": 157,
+            "sha256": "a2f0bb9b39aaa32c3177d2a14d39e34a954105e56ca356b449f49817fb1057a5"
+          },
+          "after": {
+            "width": 256,
+            "height": 256,
+            "bytes": 301,
+            "sha256": "149eea74ff2e701c39ccef26acf4a32cb11804c0cc2f4927879a695dcd11b8ba"
+          }
+        },
+        "continuedMaster": {
+          "bytes": 1013,
+          "sha256": "0eb3da49d1d63c00c901e9932f3c9005116c11b0cb3a5838c6f74669738ad5c2"
+        },
+        "continuedPackage": {
+          "masterPath": "Continued material.sbs",
+          "files": [
+            {
+              "path": "Continued material.sbs",
+              "bytes": 1013,
+              "sha256": "0eb3da49d1d63c00c901e9932f3c9005116c11b0cb3a5838c6f74669738ad5c2"
+            }
+          ]
+        },
+        "sourceFilesUnchanged": true
+      }
+    ],
+    "capture": {
+      "path": "public/artwork/editors/materialcraft.png",
+      "width": 1600,
+      "height": 1000,
+      "bytes": 322280,
+      "sha256": "902d7b4665f501f4706c140c618646a6457c108ec35aab793bdba98b482b09d8",
+      "method": "Unmodified actual Cloudflare-hosted MaterialCraft 0.5.0 screenshot after a real linked graph edit, confirmed private-library Save and full reload. The graph, flower source texture and CPU-rendered previews are genuine."
+    }
+  },
+  "workstation": {
+    "template": "robyn-studio-0-2-1@1",
+    "release": "sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da",
+    "clientVersion": "0.5.0",
+    "clientFingerprint": "bb0c7270a92c7ce3be7ae909df8f95850125cee596ce767152be47e7d71af717",
+    "bundle": {
+      "bytes": 2132791,
+      "sha256": "b55a96196a35c2059f821e542e7e2c48389b8a99aa5b20d57ad80b4ed95193de"
+    },
+    "imageChanged": false,
+    "activationScope": "Web-selected immutable client. Native canaries rehashed this exact MCP bundle and ran the installed CLI plus runtime packager. No ordinary AI/profile activation was dispatched."
+  },
+  "distribution": {
+    "checkedAt": "2026-10-31T22:45:51.867Z",
+    "origin": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev",
+    "accountId": "ad511085f517f4740591851cad7686eb",
+    "bucket": "robyn-editor-artifacts",
+    "releases": 96,
+    "files": 43816,
+    "uniqueObjects": 2798,
+    "bytes": 2238517638,
+    "catalogSha256": "abbb52ee21b5138ecf63e3ca2b189ba1a48e4c8df31b8793113af115cae3bc49",
+    "uploaded": 14,
+    "existing": 2784,
+    "allHostedBytesVerified": true,
+    "sourceBaseline": false,
+    "uploadOnly": false,
+    "privateBucket": true,
+    "readOnlyServingWorker": true,
+    "workerVersion": "89d3614f-db6d-4e1d-bb9f-19c29bada414",
+    "newRelease": "materialcraft/v0.5.0-0.1.0/",
+    "retainedReleases": 95
+  },
+  "ci": {
+    "runtime": {
+      "sourceCommit": "2d4e0524b6a239e5245011081225de6edbfc34f7",
+      "workflowRun": 41250715426,
+      "result": "success"
+    },
+    "web": {
+      "sourceCommit": "0d4e7847cc34a65ae7a8f68ec9b7a532f41917f7",
+      "workflowRun": 41251335032,
+      "result": "success"
+    }
+  },
+  "localWebValidation": {
+    "typecheck": "passed",
+    "tests": 241,
+    "failures": 0,
+    "build": "passed",
+    "publicLayoutAxe": "18 Chromium/Firefox/WebKit page-viewport combinations passed",
+    "keyboardFocus": "14 passed; four default Windows WebKit implicit-focus cases remain explicitly unverified",
+    "homepageVisual": "1440x1000 and 390x844 reviewed without horizontal overflow; actual loaded capture, native-colour toggle, Escape and focus return passed",
+    "showcaseSourceTypecheck": "passed; twenty-three ready/three pending catalog; no new video export claimed"
+  },
+  "productionUi": {
+    "checkedAt": "2026-10-31T23:32:24.702Z",
+    "checks": {
+      "nativeBlankLaunch": true,
+      "nativeNodeCreationSeedEditAndSave": true,
+      "fullReloadExactSavedRevision": true,
+      "nativeSaveAs": true,
+      "nativeFolderImportExactSbsAndLinkedPng": true,
+      "importedProjectNativeEditSaveAndExactTexture": true,
+      "importedSavedProjectFullReload": true,
+      "anonymousBootstrapRejected": true,
+      "productionPublicCaptureAndAuthenticatedStarterMatch": true,
+      "anonymousStarterRequiresLogin": true,
+      "oneRobynAndOneJobBoundary": true
+    },
+    "readyCrafts": 23,
+    "productionCaptureSha256": "902d7b4665f501f4706c140c618646a6457c108ec35aab793bdba98b482b09d8",
+    "blankSavedFile": {
+      "path": "Untitled material.sbs",
+      "bytes": 1012,
+      "sha256": "58af8dea7626d635301ee67d36f972e92d39bf4f67d84825d81d2860ad4da8c6"
+    },
+    "importedFiles": [
+      {
+        "path": "Canonical material.sbs",
+        "role": "master",
+        "bytes": 8066,
+        "sha256": "b5226934ff3f480c5d4a66f57ff651798995efe4e35dea4c7412255045f9dbf8",
+        "mimeType": "application/octet-stream"
+      },
+      {
+        "path": "images/leaf.png",
+        "role": "dependency",
+        "bytes": 2056271,
+        "sha256": "1be13b58d4885797f37432a9f135707460833226d0caa7d806c988b15c8b50f5",
+        "mimeType": "image/png"
+      }
+    ],
+    "importedSavedFiles": [
+      {
+        "path": "Canonical material.sbs",
+        "role": "master",
+        "bytes": 8066,
+        "sha256": "966f696243b34bba22ef01b9d6bfa12744a266ba9b905e2a9821f2e5eac46913",
+        "mimeType": "application/octet-stream"
+      },
+      {
+        "path": "images/leaf.png",
+        "role": "dependency",
+        "bytes": 2056271,
+        "sha256": "1be13b58d4885797f37432a9f135707460833226d0caa7d806c988b15c8b50f5",
+        "mimeType": "application/octet-stream"
+      }
+    ],
+    "javascriptErrors": 0,
+    "modelDispatches": 0,
+    "note": "Manual creation, native controls, import and exact-file reads only. The native starter remains behind studio authentication; the public screenshot is anonymous-readable."
+  },
+  "privateProof": {
+    "path": "E:/Development/robyn-shared-workstation-20261029/materialcraft-production-ui-20261031.private.json",
+    "sha256": "ef950c3064cb27f1ff617131265082a9e274e0ea6bc46dd8ddfbd8a9280115e9"
+  },
+  "migrations": {
+    "applied": 0,
+    "lastRecordedVerifiedLedger": "30 matching checksummed entries through 0029; not reread by this release"
+  },
+  "limits": [
+    "Selected current-engine graph/texture operations and native controls, not every proprietary Substance node, bake/export feature or browser engine.",
+    "Editable SBS XML and its explicit exact relative dependencies; no arbitrary local filesystem access.",
+    "Desktop only; production Studio activation is a separate release gate."
+  ]
+}
