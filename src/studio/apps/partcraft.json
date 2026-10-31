@@ -1,0 +1,42 @@
+{
+  "id": "partcraft",
+  "version": "0.1.0",
+  "order": 18,
+  "name": "PartCraft",
+  "category": "Mechanical CAD",
+  "monogram": "Pa",
+  "color": "#aeb9d1",
+  "artwork": "cad",
+  "sourceUrl": "https://github.com/getcadcraft/partcraft",
+  "tagline": "Work out how every part fits.",
+  "capabilities": [
+    "parametric-cad",
+    "constrained-sketches",
+    "feature-history",
+    "assemblies",
+    "step"
+  ],
+  "employee": {
+    "role": "Mechanical Designer",
+    "instructions": "Use PartCraft for constrained sketches, parametric features and assemblies. Preserve the editable feature history, dimensions, explicit units and linked parts. Keep STEP exports alongside the application master when one is available. Do not imply full SOLIDWORKS file compatibility, manufacturing suitability, tolerance validation or physical safety. Work only in the assigned project and task working folder. Use studio-mcp for authorized library access. Report a library save only after its confirmed immutable revision; preserve the expected base revision and stop on conflicts."
+  },
+  "formats": {
+    "native": [
+      ".step",
+      ".stp"
+    ],
+    "verification": "pending"
+  },
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": null,
+    "bundleUrl": null,
+    "status": "pending"
+  },
+  "workstation": {
+    "template": null,
+    "release": null,
+    "status": "pending"
+  },
+  "studio": "Drafting"
+}

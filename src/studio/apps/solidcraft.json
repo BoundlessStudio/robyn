@@ -1,7 +1,7 @@
 {
   "id": "solidcraft",
   "version": "0.1.0",
-  "order": 14,
+  "order": 19,
   "name": "SolidCraft",
   "category": "Engineering",
   "monogram": "So",
@@ -44,5 +44,6 @@
         "release": "sha256:2ec95df623e62566bd151d05eeebcf8826301f73d078e84405af62e19780c8e9"
       }
     ]
-  }
+  },
+  "studio": "Drafting"
 }

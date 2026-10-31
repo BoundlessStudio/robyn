@@ -1,7 +1,7 @@
 {
   "id": "figcraft",
   "version": "0.1.3",
-  "order": 12,
+  "order": 4,
   "name": "FigCraft",
   "category": "Interface",
   "monogram": "Fg",
@@ -40,5 +40,6 @@
         "release": "sha256:1f6bcfdd286c2fe49d0ab53a11449a00760bec8071099bd372738a6fc1d527c2"
       }
     ]
-  }
+  },
+  "studio": "Creative"
 }

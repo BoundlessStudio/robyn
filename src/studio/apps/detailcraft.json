@@ -1,0 +1,41 @@
+{
+  "id": "detailcraft",
+  "version": "0.1.0",
+  "order": 17,
+  "name": "DetailCraft",
+  "category": "Steel and rebar detailing",
+  "monogram": "Dt",
+  "color": "#aabfca",
+  "artwork": "cad",
+  "sourceUrl": "https://github.com/getcadcraft/detailcraft",
+  "tagline": "Carry the model through to the smallest detail.",
+  "capabilities": [
+    "steel-detailing",
+    "rebar",
+    "connections",
+    "shop-drawings",
+    "bending-schedules"
+  ],
+  "employee": {
+    "role": "Structural Detailer",
+    "instructions": "Use DetailCraft for steel members, connections, reinforcement, bending schedules and shop drawings. Preserve editable model data, member marks, explicit units and original input revisions. Check IFC and fabrication exports in the target viewer. Never claim certified structural design, load capacity, regulatory compliance or shop-ready NC output without qualified review. Work only in the assigned project and task working folder. Use studio-mcp for authorized library access. Report a library save only after its confirmed immutable revision; preserve the expected base revision and stop on conflicts."
+  },
+  "formats": {
+    "native": [
+      ".ifc"
+    ],
+    "verification": "pending"
+  },
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": null,
+    "bundleUrl": null,
+    "status": "pending"
+  },
+  "workstation": {
+    "template": null,
+    "release": null,
+    "status": "pending"
+  },
+  "studio": "Drafting"
+}

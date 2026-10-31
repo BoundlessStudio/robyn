@@ -34,7 +34,7 @@ test("SolidCraft registers as a tool under one Robyn profile while pending impor
     });
     assert.equal(profiles.length,1);
     assert.deepEqual(profiles.map(({key,kind,appId,role})=>({key,kind,appId,role})),[{key:"robyn",kind:"director",appId:null,role:"Robyn"}]);
-    assert.equal(publicApps().length,apps.length);assert.equal(publicApps().length,14);
+    assert.equal(publicApps().length,apps.length);assert.equal(publicApps().length,26);
     assert.equal(publicApps().some(app=>app.id==="research"),false);
     assert.equal(publicApps().find(app => app.id === "solidcraft").ready, false);
   } finally { delete globalThis.__solidcraftCatalogue; }
@@ -61,8 +61,11 @@ test("homepage and icon counts follow registered and ready applications independ
     assert.ok(ready.craftTour.find(app => app.id === "solidcraft").story.copy.trim());
   } finally { delete globalThis.__solidcraftCatalogue; }
   const provenance = JSON.parse(await fs.readFile(new URL("../public/brand/apps/sources.json", import.meta.url), "utf8"));
-  const expected = [...studioApps.map(app => app.id), research.id].sort();
-  assert.deepEqual(provenance.icons.map(icon => icon.id).sort(), expected);
+  const registered = new Set([...studioApps.map(app => app.id), research.id]);
+  const iconIds = new Set(provenance.icons.map(icon => icon.id));
+  assert.equal(iconIds.size,provenance.icons.length);
+  for(const icon of provenance.icons)assert.ok(registered.has(icon.id));
+  for(const app of [...studioApps.filter(isAppReady),research])assert.ok(iconIds.has(app.id),`${app.id} ready icon`);
   for (const icon of provenance.icons) {
     const bytes = await fs.readFile(new URL(`../public/brand/apps/${icon.id}.webp`, import.meta.url));
     assert.equal(bytes.byteLength, icon.bytes, `${icon.id} icon bytes`);
@@ -107,13 +110,25 @@ test("pending SolidCraft rejects paid assignment creation before budget or workf
 });
 
 test("all 14 ready Craft hints and an unhinted brief use the same canonical Robyn",async()=>{
-  assert.equal(studioApps.length,14);assert.ok(studioApps.every(isEmployeeReady));
+  const readyApps=studioApps.filter(isEmployeeReady);
+  assert.equal(readyApps.length,14);
   await assignmentBoundary(studioApps,async({submit,employee,created})=>{
-    for(const app of studioApps){const response=await submit({appId:app.id,employeeId:employee.id});assert.equal(response.status,202);}
+    for(const app of readyApps){const response=await submit({appId:app.id,employeeId:employee.id});assert.equal(response.status,202);}
     const response=await submit();assert.equal(response.status,202);
-    assert.deepEqual(created.map(args=>args.p_app),[...studioApps.map(app=>app.id),null]);
+    assert.deepEqual(created.map(args=>args.p_app),[...readyApps.map(app=>app.id),null]);
     assert.deepEqual([...new Set(created.map(args=>args.p_employee))],[employee.id]);
-    assert.ok(created.every(args=>JSON.stringify(args.p_allowed_apps)===JSON.stringify(studioApps.map(app=>app.id))));
+    assert.ok(created.every(args=>JSON.stringify(args.p_allowed_apps)===JSON.stringify(readyApps.map(app=>app.id))));
+  });
+});
+
+test("new studio Crafts cannot start paid work before their integrations pass acceptance",async()=>{
+  await assignmentBoundary(studioApps,async({submit,calls,created})=>{
+    for(const app of studioApps.filter(app=>!isAppReady(app))){
+      const response=await submit({appId:app.id});
+      assert.equal(response.status,409,app.id);
+      assert.equal((await response.json()).error.code,"integration_pending",app.id);
+    }
+    assert.equal(calls.includes("budget"),false);assert.deepEqual(created,[]);
   });
 });
 

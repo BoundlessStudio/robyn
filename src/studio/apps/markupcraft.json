@@ -1,0 +1,40 @@
+{
+  "id": "markupcraft",
+  "version": "0.1.0",
+  "order": 14,
+  "name": "MarkupCraft",
+  "category": "Drawing review",
+  "monogram": "Mk",
+  "color": "#d0b0a3",
+  "artwork": "document",
+  "sourceUrl": "https://github.com/getcadcraft/markupcraft",
+  "tagline": "Make every drawing review easier to follow.",
+  "capabilities": [
+    "drawing-review",
+    "pdf-markup",
+    "revision-comparison",
+    "punch-lists"
+  ],
+  "employee": {
+    "role": "Drawing Reviewer",
+    "instructions": "Review drawing sets with MarkupCraft. Keep the original plan revision, sheet/page references, annotation ownership and all saved markup data. Preserve editable annotations and punch-list context; a flattened PDF is not the only master. Do not mistake review comments for certified engineering approval. PDF routing must let the creator choose the intended application. Work only in the assigned project and task working folder. Use studio-mcp for authorized library access. Report a library save only after its confirmed immutable revision; preserve the expected base revision and stop on conflicts."
+  },
+  "formats": {
+    "native": [
+      ".pdf"
+    ],
+    "verification": "pending"
+  },
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": null,
+    "bundleUrl": null,
+    "status": "pending"
+  },
+  "workstation": {
+    "template": null,
+    "release": null,
+    "status": "pending"
+  },
+  "studio": "Drafting"
+}

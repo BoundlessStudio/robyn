@@ -6,6 +6,7 @@ import {chromium,firefox,webkit} from 'playwright';
 import {nativeImportFixture,openEmployeeWorkspace,projectId,origin} from './fixtures/native-import.mjs';
 const browserType=({chromium,firefox,webkit})[process.env.NATIVE_IMPORT_BROWSER??'chromium'];
 import {studioApps} from "../src/studio/apps/registry.ts";
+import {isAppReady} from "../src/studio/manifest.ts";
 const starters=JSON.parse(await readFile(new URL('../src/studio/generated/blank-starters.json',import.meta.url),'utf8'));
 
 test('application workspace renames its project and opens its dedicated employee page',async()=>{
@@ -90,8 +91,8 @@ test('a delivered first draft appears in its project and opens from the employee
   }finally{await browser.close();}
 });
 
-test('manual starts cover all registered Crafts, validate bytes before writes, and recover one document after reload',async()=>{
-  assert.deepEqual(new Set(starters.map(item=>item.appId)),new Set(studioApps.map(app=>app.id)));
+test('manual starts cover all ready Crafts, validate bytes before writes, and recover one document after reload',async()=>{
+  assert.deepEqual(new Set(starters.map(item=>item.appId)),new Set(studioApps.filter(isAppReady).map(app=>app.id)));
   const browser=await browserType.launch({headless:true});
   try{
     const {page,state}=await nativeImportFixture(browser);state.allowance=0;state.failStarterDownload=true;

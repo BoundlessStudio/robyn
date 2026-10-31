@@ -599,6 +599,11 @@
 .application-launcher h2 em { font-family:"Instrument Serif",serif; font-weight:400; color:#d5c7ab; }
 .application-launcher header p { color:#bdb6a6; font-size:13px; line-height:1.7; }
 .application-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+.application-studios { display:grid; gap:28px; }
+.application-studio-heading { display:flex; align-items:baseline; gap:12px; margin:0 0 14px; font-size:18px; font-weight:500; letter-spacing:-.4px; }
+.application-studio-heading>span { font-size:10px; font-weight:400; letter-spacing:0; color:#bfb9aa; }
+.studio-skill-group { margin-top:32px; }
+.studio-app-card h3.studio-craft-name { font-size:24px; letter-spacing:-1px; font-weight:450; color:inherit; margin-bottom:6px; }
 .application-grid>button,.application-grid>a { display:flex; align-items:center; gap:13px; min-width:0; min-height:94px; padding:18px 15px; border:1px solid #48473e; border-radius:8px; background:#22221f; text-align:left; transition:border-color .15s,background .15s; }
 .application-grid>button:hover:not(:disabled),.application-grid>a:hover { border-color:#aebc95; background:#2c2e26; }
 .application-icon { display:grid; place-items:center; width:48px; height:48px; flex:none; border-radius:7px; font-size:16px; font-weight:600; color:#11120e; }

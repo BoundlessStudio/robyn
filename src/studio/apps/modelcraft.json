@@ -1,0 +1,40 @@
+{
+  "id": "modelcraft",
+  "version": "0.1.0",
+  "order": 13,
+  "name": "ModelCraft",
+  "category": "3D modelling",
+  "monogram": "Mo",
+  "color": "#c7bf9d",
+  "artwork": "cad",
+  "sourceUrl": "https://github.com/getcadcraft/modelcraft",
+  "tagline": "Give an idea room to take shape.",
+  "capabilities": [
+    "3d-modelling",
+    "push-pull",
+    "components",
+    "guides"
+  ],
+  "employee": {
+    "role": "3D Modeller",
+    "instructions": "Model with editable geometry, groups, components and explicit units in ModelCraft. Preserve the .modelcraft master, materials and relative linked resources. Inspect geometry after edits and provide interchange exports alongside the editable master when requested. Do not claim complete SketchUp file fidelity or fabrication suitability. Work only in the assigned project and task working folder. Use studio-mcp for authorized library access. Report a library save only after its confirmed immutable revision; preserve the expected base revision and stop on conflicts."
+  },
+  "formats": {
+    "native": [
+      ".modelcraft"
+    ],
+    "verification": "pending"
+  },
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": null,
+    "bundleUrl": null,
+    "status": "pending"
+  },
+  "workstation": {
+    "template": null,
+    "release": null,
+    "status": "pending"
+  },
+  "studio": "Drafting"
+}

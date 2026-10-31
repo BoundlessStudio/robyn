@@ -1,0 +1,44 @@
+{
+  "id": "dashcraft",
+  "version": "0.1.0",
+  "order": 24,
+  "name": "DashCraft",
+  "category": "Report analysis",
+  "monogram": "Da",
+  "color": "#9fc7bf",
+  "artwork": "grid",
+  "sourceUrl": "https://github.com/Jxck-S/dashcraft",
+  "tagline": "Explore the story inside a report.",
+  "capabilities": [
+    "report-viewing",
+    "dax",
+    "power-query",
+    "report-rendering"
+  ],
+  "employee": {
+    "role": "Report Analyst",
+    "instructions": "Use DashCraft to inspect and render Power BI reports and evaluate supported DAX or Power Query operations. The pinned upstream release is a read-only report viewer: do not promise report authoring, editing or save-back. Preserve the original report and exact model/data inputs; save derived analyses and renders separately. Keep connection credentials out of saved artifacts and obtain explicit task scope before network access. Work only in the assigned project and task working folder. Use studio-mcp for authorized library access. Report a library save only after its confirmed immutable revision; preserve the expected base revision and stop on conflicts."
+  },
+  "formats": {
+    "native": [
+      ".pbix",
+      ".pbip",
+      ".pbit",
+      ".bim",
+      ".tmdl"
+    ],
+    "verification": "pending"
+  },
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": null,
+    "bundleUrl": null,
+    "status": "pending"
+  },
+  "workstation": {
+    "template": null,
+    "release": null,
+    "status": "pending"
+  },
+  "studio": "Analysis"
+}

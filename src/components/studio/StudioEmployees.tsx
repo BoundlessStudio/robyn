@@ -6,6 +6,7 @@ import {ArrowUpRight,FileText} from "lucide-react";
 import {apiFetch} from "@/lib/api";
 import {requireUuid,type AssetRef,type AssetSummary,type ProjectSummary} from "@/studio/assets";
 import {studioApps} from "@/studio/apps/registry";
+import {studioAppGroups} from "@/studio/studios";
 import {isAppReady} from "@/studio/manifest";
 import {AppIcon} from "./AppIcon";
 import {AssignmentPanel} from "./AssignmentPanel";
@@ -77,8 +78,11 @@ function EmployeeProject({project,selection,view,clearInput}:{project:ProjectSum
 }
 
 function SkillsDirectory() {
-  return <section aria-label="Robyn’s creative tools">
-    <p className="studio-note">Robyn plans, researches with Chrome and Brave Search, and works across these {studioApps.length} creative applications. Open any Craft from your project dashboard to keep editing the saved work yourself.</p>
-    <div className="studio-app-grid">{studioApps.map(app=><article key={app.id} className="studio-app-card"><StudioStudy kind={app.artwork} index={app.order}/><div className="studio-craft-caption"><AppIcon app={app}/><small>{app.category}</small></div><h2>{app.name}</h2><p>{app.tagline}</p><span className="studio-status">{isAppReady(app)?"Ready to use":"Creative tools being connected"}</span></article>)}</div>
+  return <section aria-label="Robyn’s studio tools">
+    <p className="studio-note">Explore {studioApps.length} applications across Creative, Drafting and Analysis. Robyn currently works with {studioApps.filter(isAppReady).length} ready Crafts, Chrome and Brave Search. Open a ready Craft from your project dashboard to keep editing the saved work yourself.</p>
+    {studioAppGroups.map(studio=><section className="studio-skill-group" key={studio.name} aria-label={`${studio.name} studio`}>
+      <h2 className="application-studio-heading">{studio.name}<span>{studio.apps.length} Crafts</span></h2>
+      <div className="studio-app-grid">{studio.apps.map(app=><article key={app.id} className="studio-app-card"><StudioStudy kind={app.artwork} index={app.order}/><div className="studio-craft-caption"><AppIcon app={app}/><small>{app.category}</small></div><h3 className="studio-craft-name">{app.name}</h3><p>{app.tagline}</p><span className="studio-status">{isAppReady(app)?"Ready to use":"Application being connected"}</span></article>)}</div>
+    </section>)}
   </section>;
 }

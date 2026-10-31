@@ -1,13 +1,12 @@
 import { studioApps } from "./apps/registry";
-import type { StudioAppManifest } from "./manifest";
+import { isAppReady, type StudioAppManifest } from "./manifest";
 
 /** Recognise native formats only. An extension match never promises conversion. */
 export function nativeImportApp(filename: string, apps: readonly StudioAppManifest[] = studioApps): StudioAppManifest | null {
   const lower = filename.toLowerCase();
-  const matches = apps.filter(app => app.formats.native.some(extension => lower.endsWith(extension.toLowerCase())));
+  const matches = apps.filter(app => isAppReady(app) && app.formats.native.some(extension => lower.endsWith(extension.toLowerCase())));
   if (matches.length !== 1) return null;
-  const app = matches[0];
-  return app.formats.verification === "verified" && app.editor.status === "verified" && app.editor.bundleUrl ? app : null;
+  return matches[0];
 }
 
 export function directNativeImportApp(filename: string): StudioAppManifest | null {

@@ -37,6 +37,13 @@ test("readiness cannot be asserted without pinned artifacts", () => {
   assert.throws(() => validateManifest(app), /missing editor bundle/);
 });
 
+test("Craft studios are explicit and unknown group names are rejected", () => {
+  const entries=readManifests(path.resolve("src/studio/apps"));
+  assert.deepEqual(Object.fromEntries(["Creative","Drafting","Analysis"].map(name=>[name,entries.filter(({app})=>app.studio===name).length])),{Creative:10,Drafting:9,Analysis:7});
+  const app=structuredClone(entries[0].app);
+  for(const studio of [undefined,"Engineering","creative",""])assert.throws(()=>validateManifest({...app,studio}),/invalid studio/);
+});
+
 test("workstation upgrades accept only unique immutable template revisions and image digests", () => {
   const app = structuredClone(readManifests(path.resolve("src/studio/apps")).find(({ app }) => app.workstation.status === "verified").app);
   delete app.workstation.previousReleases;

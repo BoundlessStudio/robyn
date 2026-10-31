@@ -1,7 +1,7 @@
 {
   "id": "deckcraft",
   "version": "0.1.2",
-  "order": 10,
+  "order": 21,
   "name": "DeckCraft",
   "category": "Publishing",
   "monogram": "Dc",
@@ -40,5 +40,6 @@
         "release": "sha256:3dfcd2d3dd5333c261a3800b3d66acae6be286813f921e384dcfce9e816104d5"
       }
     ]
-  }
+  },
+  "studio": "Analysis"
 }

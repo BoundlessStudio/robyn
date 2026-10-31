@@ -17,6 +17,8 @@ test("native recognition handles filenames but refuses conversion, ambiguous for
   for (const file of ["Slides.pptx", "Layers.psd", "Photo.jpg", "Notes", "fake.docx.exe"]) assert.equal(nativeImportApp(file), null);
   const word = studioApps.find(app => app.id === "wordcraft")!;
   assert.equal(nativeImportApp("Brief.docx", [word, {...word, id:"other"}]), null);
+  assert.equal(nativeImportApp("Brief.docx", [word, {...word, id:"pending",editor:{...word.editor,status:"pending"}}])?.id,"wordcraft");
+  assert.equal(nativeImportApp("Brief.docx", [{...word,workstation:{...word.workstation,status:"pending"}}]),null);
   assert.equal(nativeImportApp("Brief.docx", [{...word, editor:{...word.editor,status:"pending"}}]), null);
   assert.equal(nativeImportApp("Brief.docx", [{...word, formats:{...word.formats,verification:"pending"}}]), null);
   assert.equal(importedDocumentName("Épreuve.v2.DOCX"), "Épreuve.v2");

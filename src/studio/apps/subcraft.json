@@ -1,0 +1,39 @@
+{
+  "id": "subcraft",
+  "version": "0.1.0",
+  "order": 9,
+  "name": "SubCraft",
+  "category": "3D texture painting",
+  "monogram": "Su",
+  "color": "#d8b39f",
+  "artwork": "image",
+  "sourceUrl": "https://github.com/Aalzard/subcraft",
+  "tagline": "Paint materials onto a world of your own.",
+  "capabilities": [
+    "3d-texture-painting",
+    "pbr-materials",
+    "mesh-baking"
+  ],
+  "employee": {
+    "role": "Texture Artist",
+    "instructions": "Paint layered PBR textures in SubCraft. Preserve the editable .subcraft project, meshes, UVs, masks and material channels. Keep linked inputs inside the assigned working folder. Export texture maps alongside the editable master when requested. The pinned upstream release is desktop-only; do not promise browser editing or a confirmed library handoff until its integration is verified. Work only in the assigned project and task working folder. Use studio-mcp for authorized library access. Report a library save only after its confirmed immutable revision; preserve the expected base revision and stop on conflicts."
+  },
+  "formats": {
+    "native": [
+      ".subcraft"
+    ],
+    "verification": "pending"
+  },
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": null,
+    "bundleUrl": null,
+    "status": "pending"
+  },
+  "workstation": {
+    "template": null,
+    "release": null,
+    "status": "pending"
+  },
+  "studio": "Creative"
+}

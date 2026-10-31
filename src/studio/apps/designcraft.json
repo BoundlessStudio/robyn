@@ -1,7 +1,7 @@
 {
   "id": "designcraft",
   "version": "0.1.2",
-  "order": 7,
+  "order": 1,
   "name": "DesignCraft",
   "category": "Publishing",
   "monogram": "De",
@@ -40,5 +40,6 @@
         "release": "sha256:eb7ef35e69d14ed050f718199979820091a5265bb9c55742c33ff26022bdd6cc"
       }
     ]
-  }
+  },
+  "studio": "Creative"
 }

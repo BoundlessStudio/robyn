@@ -1,7 +1,7 @@
 {
   "id": "gridcraft",
   "version": "0.1.2",
-  "order": 11,
+  "order": 20,
   "name": "GridCraft",
   "category": "Publishing",
   "monogram": "Gr",
@@ -40,5 +40,6 @@
         "release": "sha256:7a74c01ecc0599d9a6c67a000c0a2245cfb6641d9e0d641c5167d99a295a8149"
       }
     ]
-  }
+  },
+  "studio": "Analysis"
 }

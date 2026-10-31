@@ -1,0 +1,39 @@
+{
+  "id": "takeoffcraft",
+  "version": "0.1.0",
+  "order": 15,
+  "name": "TakeoffCraft",
+  "category": "Quantity takeoff",
+  "monogram": "Tk",
+  "color": "#bfcba1",
+  "artwork": "document",
+  "sourceUrl": "https://github.com/getcadcraft/takeoffcraft",
+  "tagline": "Turn a plan into quantities you can check.",
+  "capabilities": [
+    "quantity-takeoff",
+    "plan-measurement",
+    "estimating"
+  ],
+  "employee": {
+    "role": "Quantity Surveyor",
+    "instructions": "Use TakeoffCraft for plan measurements and quantity takeoffs. Record sheet scale, units, measurement assumptions and the exact source plan revision. Preserve editable measurements, assemblies and calculation inputs with the plan; exports accompany the editable master. Estimates require creator review and do not establish supplier prices or contractual quantities. PDF routing must let the creator choose the intended application. Work only in the assigned project and task working folder. Use studio-mcp for authorized library access. Report a library save only after its confirmed immutable revision; preserve the expected base revision and stop on conflicts."
+  },
+  "formats": {
+    "native": [
+      ".pdf"
+    ],
+    "verification": "pending"
+  },
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": null,
+    "bundleUrl": null,
+    "status": "pending"
+  },
+  "workstation": {
+    "template": null,
+    "release": null,
+    "status": "pending"
+  },
+  "studio": "Drafting"
+}

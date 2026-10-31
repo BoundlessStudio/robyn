@@ -1,4 +1,6 @@
 export type IntegrationStatus = "pending" | "verified";
+export const STUDIO_GROUPS = ["Creative", "Drafting", "Analysis"] as const;
+export type StudioGroup = typeof STUDIO_GROUPS[number];
 
 export interface StudioAppManifest {
   kind?: "craft" | "research";
@@ -6,6 +8,7 @@ export interface StudioAppManifest {
   version: string;
   order: number;
   name: string;
+  studio?: StudioGroup;
   category: string;
   monogram: string;
   color: string;

@@ -1,7 +1,7 @@
 {
   "id": "wordcraft",
   "version": "0.1.2",
-  "order": 9,
+  "order": 23,
   "name": "WordCraft",
   "category": "Publishing",
   "monogram": "Wo",
@@ -40,5 +40,6 @@
         "release": "sha256:08ce901c9c0bff1c38bd1334bbcda226ef1b31e7c5678916a8adc9c957e525f2"
       }
     ]
-  }
+  },
+  "studio": "Analysis"
 }

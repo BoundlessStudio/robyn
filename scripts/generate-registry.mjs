@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 
 export function validateManifest(app) {
   if (!/^[a-z][a-z0-9-]*$/.test(app.id ?? "")) throw new Error("Invalid application ID");
+  if (!["Creative", "Drafting", "Analysis"].includes(app.studio)) throw new Error(app.id + ": invalid studio");
   for (const field of ["name", "category", "monogram", "artwork", "tagline", "version", "sourceUrl"]) {
     if (typeof app[field] !== "string" || !app[field].trim()) throw new Error(app.id + ": missing " + field);
   }
@@ -67,5 +68,5 @@ export function generateRegistry(directory, output) {
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const count = generateRegistry(path.join(root, "src/studio/apps"), path.join(root, "src/studio/apps/registry.ts"));
-  console.log("Registered " + count + " independent creative applications.");
+  console.log("Registered " + count + " independent studio applications.");
 }

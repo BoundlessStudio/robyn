@@ -124,6 +124,10 @@ test('employee page controls fit the supported desktop widths and pass accessibi
         await page.getByRole('button',{name:view,exact:true}).click();
         if(view==='Skills')await page.getByRole('heading',{name:'SolidCraft',exact:true}).waitFor();
         else await page.locator('.assignment-list').waitFor();
+        if(view==='Skills')assert.equal(await page.locator('.studio-app-card').evaluateAll(cards=>cards.every(card=>{
+          const bounds=card.getBoundingClientRect(),art=card.querySelector('.studio-study').getBoundingClientRect();
+          return art.left>=bounds.left-1&&art.right<=bounds.right+1&&art.top>=bounds.top-1&&art.bottom<=bounds.bottom+1;
+        })),true,'Every Craft illustration stays inside its own card');
         assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
         const report=await new AxeBuilder({page}).include('.studio-main').analyze();assert.deepEqual(report.violations.map(row=>({id:row.id,nodes:row.nodes.map(node=>node.target)})),[]);
       }
