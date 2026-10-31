@@ -210,7 +210,7 @@
           "name": "MatCraft",
           "monogram": "Ma",
           "color": "#b6c7df",
-          "ready": false,
+          "ready": true,
           "hasIcon": true
         },
         {

@@ -226,8 +226,8 @@
   ],
   "catalog": {
     "destination": "catalog.json",
-    "bytes": 5187,
-    "sha256": "9fdfaff3e9689840c738a72b21fb1ef0f8a2b4e07da08cf351349efc0d3b1f00",
+    "bytes": 5186,
+    "sha256": "4ddd5fa7e7468e0fa9017b416b32bc011200e40bd5aeb805ade465c264237c1d",
     "sourceEncoding": "UTF-8 with LF line endings",
     "manifests": [
       {
@@ -352,8 +352,8 @@
       },
       {
         "source": "src/studio/apps/matcraft.json",
-        "bytes": 1525,
-        "sha256": "9e6369f1456e4afcd2e27988171f643bc0c5ce44b37930d77abe0245c73393cd"
+        "bytes": 1645,
+        "sha256": "6ae1c806f4b7c3ce5969bb23c0ba5d3e2063d02628ad9229aab1575c6597468c"
       },
       {
         "source": "src/studio/apps/datacraft.json",

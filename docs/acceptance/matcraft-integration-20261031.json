@@ -1,0 +1,328 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-31T20:55:17.524979+00:00",
+  "stage": "verified-sources-awaiting-web-deployment",
+  "scope": "MatCraft numerical scripts and MAT v5 workspaces; previous twenty-one Craft pins retained, four other additions still pending.",
+  "runtimeCommit": "49b2a8a64c7176ad1865d6c61ab6f17b3bc35fc2",
+  "runtimePullRequest": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/13",
+  "readyCrafts": 22,
+  "installedCrafts": 26,
+  "remaining": [
+    "subcraft",
+    "materialcraft",
+    "dashcraft",
+    "datacraft"
+  ],
+  "app": {
+    "id": "matcraft",
+    "manifest": {
+      "adapterVersion": "0.1.0",
+      "release": "matcraft-v0.1.0-robyn-0.1.0",
+      "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/matcraft/v0.1.0-0.1.0/?robyn",
+      "status": "verified"
+    },
+    "formats": [
+      ".m",
+      ".mat"
+    ],
+    "sourceCommit": "effb4218bd7c5c82eefb157378d6561d5b0f2cb3",
+    "browserBundleSha256": "09d8dc56d36305b57801f5f948260ddc17597a5f1eed6971cb6b11c02284ed55",
+    "sourcePatchSha256": "e074c5e6e1ef512e6ccd6c80f08be2a976759288b58d27e94eadcc842053ee47",
+    "nativeCliSha256": "c4d86c5f12cdcce8ad1d5567aa0f15a2e0a2d5cd56f7b43c1cb6c20681166a8c",
+    "cases": [
+      {
+        "format": "script",
+        "sourceFiles": [
+          {
+            "bytes": 8,
+            "sha256": "96bbd5de61f36b0e10c5771d180998d066192e8986aa34a8cb7c453f62959274"
+          },
+          {
+            "bytes": 97,
+            "sha256": "dc9d916fcd10a0501f147e18c75a9cb06c4eea3a81ceb2d4ede3baa14599b67d"
+          },
+          {
+            "bytes": 44,
+            "sha256": "50445d7356a918938b84d1f0dcb18f82e05cbc1e0da2185a8c00077996ecc2c7"
+          }
+        ],
+        "before": [
+          [
+            9,
+            17
+          ],
+          [
+            25,
+            33
+          ]
+        ],
+        "after": [
+          [
+            18,
+            34
+          ],
+          [
+            50,
+            66
+          ]
+        ],
+        "continuedMaster": {
+          "bytes": 103,
+          "sha256": "23a03eb5d0eb552d0ca3901e8f85979b71c9879b07ea9023450dd85a9820d3f6"
+        },
+        "continuedPackage": {
+          "masterPath": "Continued study.m",
+          "files": [
+            {
+              "bytes": 103,
+              "sha256": "23a03eb5d0eb552d0ca3901e8f85979b71c9879b07ea9023450dd85a9820d3f6"
+            },
+            {
+              "bytes": 8,
+              "sha256": "96bbd5de61f36b0e10c5771d180998d066192e8986aa34a8cb7c453f62959274"
+            },
+            {
+              "bytes": 97,
+              "sha256": "dc9d916fcd10a0501f147e18c75a9cb06c4eea3a81ceb2d4ede3baa14599b67d"
+            },
+            {
+              "bytes": 44,
+              "sha256": "50445d7356a918938b84d1f0dcb18f82e05cbc1e0da2185a8c00077996ecc2c7"
+            }
+          ]
+        },
+        "sourceFilesUnchanged": true
+      },
+      {
+        "format": "workspace",
+        "sourceFiles": [
+          {
+            "bytes": 328,
+            "sha256": "1fef9d5ca78f86fcb5b34bd02a39ca2b017bfab2b52f108c70e4d311f8cbae43"
+          },
+          {
+            "bytes": 328,
+            "sha256": "7cad4f37fa58e3da38933624f47193beefe67b81001ba262c0348f15fc78495c"
+          }
+        ],
+        "before": [
+          [
+            84,
+            116
+          ],
+          [
+            116,
+            164
+          ]
+        ],
+        "after": [
+          [
+            168,
+            232
+          ],
+          [
+            232,
+            328
+          ]
+        ],
+        "continuedMaster": {
+          "bytes": 448,
+          "sha256": "9d32de09745eb38e5f613d1722ed60bb82f2bf50edeee12ca65d190ec8a7b2df"
+        },
+        "continuedPackage": {
+          "masterPath": "Continued workspace.mat",
+          "files": [
+            {
+              "bytes": 448,
+              "sha256": "9d32de09745eb38e5f613d1722ed60bb82f2bf50edeee12ca65d190ec8a7b2df"
+            },
+            {
+              "bytes": 328,
+              "sha256": "1fef9d5ca78f86fcb5b34bd02a39ca2b017bfab2b52f108c70e4d311f8cbae43"
+            },
+            {
+              "bytes": 328,
+              "sha256": "7cad4f37fa58e3da38933624f47193beefe67b81001ba262c0348f15fc78495c"
+            }
+          ]
+        },
+        "sourceFilesUnchanged": true
+      },
+      {
+        "format": "hosted-blank-script",
+        "sourceFiles": [
+          {
+            "bytes": 49,
+            "sha256": "f575040db28fa53c51b4337b7ffc906d03affd92e938c3b0023af26cb9f579b3"
+          },
+          {
+            "bytes": 49,
+            "sha256": "f575040db28fa53c51b4337b7ffc906d03affd92e938c3b0023af26cb9f579b3"
+          }
+        ],
+        "before": [
+          [
+            10,
+            14
+          ],
+          [
+            14,
+            20
+          ]
+        ],
+        "after": [
+          [
+            20,
+            28
+          ],
+          [
+            28,
+            40
+          ]
+        ],
+        "continuedMaster": {
+          "bytes": 92,
+          "sha256": "1d52491dbab4cc5466804956fdae32a777bf2e2b08ce26e5f1f9164e65a4f4c1"
+        },
+        "continuedPackage": {
+          "masterPath": "Continued study.m",
+          "files": [
+            {
+              "bytes": 92,
+              "sha256": "1d52491dbab4cc5466804956fdae32a777bf2e2b08ce26e5f1f9164e65a4f4c1"
+            },
+            {
+              "bytes": 49,
+              "sha256": "f575040db28fa53c51b4337b7ffc906d03affd92e938c3b0023af26cb9f579b3"
+            },
+            {
+              "bytes": 49,
+              "sha256": "f575040db28fa53c51b4337b7ffc906d03affd92e938c3b0023af26cb9f579b3"
+            }
+          ]
+        },
+        "sourceFilesUnchanged": true
+      }
+    ],
+    "capture": {
+      "path": "public/artwork/editors/matcraft.png",
+      "width": 1600,
+      "height": 1000,
+      "bytes": 63849,
+      "sha256": "6ea515743c873897a5f08a458418eaecf5627336840f1e002ed9e5bcf7b7fec0",
+      "method": "Unmodified actual Cloudflare-hosted MatCraft screenshot after a native blank edit, confirmed production private-library Save/Save As, full reload and computation."
+    }
+  },
+  "workstation": {
+    "template": "robyn-studio-0-2-1@1",
+    "release": "sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da",
+    "clientVersion": "0.4.0",
+    "clientFingerprint": "f994e1c108a49345376fccf4bf22b61cff50ca117f7423e29f89fd43df04185c",
+    "bundle": {
+      "bytes": 1899284,
+      "sha256": "c9ffb0c28c4bcff3e8572de888b2931f617eacddb0eb2318b2d49649a18bddd5"
+    },
+    "imageChanged": false
+  },
+  "checks": {
+    "nativeBrowserRoundTrip": "Native-created .m script with exact helper/CSV inputs and MAT v5 workspace opened in the real source-built MatCraft WASM UI. Existing controls meaningfully edited, computed and saved immutable revisions through createEditorHost/transfer-client and production owner-checked BFF/private Storage. All returned files passed size/SHA-256 checks.",
+    "nativeContinuation": "Exact saved packages materialized, reopened, computed, continued, repackaged and reopened with the actual installed MatCraft CLI and runtime native packager on the owned shared workstation. Separate maintenance assignments excluded production jobs. Candidate MCP bundle rehashed; no AI turn dispatched.",
+    "nativeStarter": "Version 4 blank .m generated/reopened with the real native CLI. Real Cloudflare editor edit, Save, compute, Save As and full reload passed; exact committed package then passed installed-native continuation.",
+    "seamlessSave": "Existing ribbon/editor/workspace Save actions, Ctrl+S, egui filename dialogs and status areas. Durable confirmation cleans only its acknowledged snapshot; later edits stay dirty. No wrapper controls.",
+    "failureHandling": "Pre-canonical real BFF lost-commit-response recovery retained the same revision and later edits. Competing editors produced a real conflict recovered through native Save As. Per-document ownership retained exact linked inputs. Final canonical bytes repeat the core .m/.mat and hosted starter loops; negative exercises predate final formatting/lint/clock-only changes.",
+    "reproducibleBuild": {
+      "builder": "rust:1.95.0-slim-bookworm@sha256:d7482085ff5b415f84dba5647ae71606650bdef00db7aeb69f4b3d170c3e4082",
+      "bindgenVersion": "0.2.129",
+      "independentMatchingBuilds": 2,
+      "identicalFiles": 364,
+      "publishedFiles": 366,
+      "aliasNote": "Two extra canonical underscore aliases are byte-identical to the real upstream hyphenated JS/WASM entry points.",
+      "rustDependenciesWithLicenses": 201
+    },
+    "quality": {
+      "runtimeTests": 123,
+      "linuxProfileTests": 4,
+      "nativeEngineAndLanguageTests": 210,
+      "wasmClippy": "passed with -D warnings and no lint allowances",
+      "rustfmt": "passed"
+    },
+    "hostedDistribution": {
+      "checkedAt": "2026-10-31T20:39:02.254Z",
+      "origin": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev",
+      "catalogSha256": "670735dc039b0dd996819d9b789452c981574f1c4f8755a170135e3e19ca8ebe",
+      "workerVersion": "8f8829e7-601d-42b5-a9bb-a0491b58aa73",
+      "allHostedBytesVerified": true,
+      "prefix": "matcraft/v0.1.0-0.1.0/"
+    },
+    "productionWeb": "Not claimed by this record."
+  },
+  "environment": {
+    "priorFilesPreserved": 11,
+    "instanceMetadataPreserved": true,
+    "resourcesPreserved": true,
+    "budgetAndModelUsagePreserved": true,
+    "credentialsIssued": 0,
+    "modelDispatches": 0,
+    "maintenanceLeasesClosed": true
+  },
+  "publication": {
+    "checkedAt": "2026-10-31T20:39:02.254Z",
+    "origin": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev",
+    "accountId": "ad511085f517f4740591851cad7686eb",
+    "bucket": "robyn-editor-artifacts",
+    "releases": 95,
+    "files": 43487,
+    "uniqueObjects": 2784,
+    "bytes": 2220961359,
+    "catalogSha256": "670735dc039b0dd996819d9b789452c981574f1c4f8755a170135e3e19ca8ebe",
+    "uploaded": 21,
+    "existing": 2763,
+    "allHostedBytesVerified": true,
+    "sourceBaseline": false,
+    "uploadOnly": false,
+    "privateBucket": true,
+    "readOnlyServingWorker": true,
+    "workerVersion": "8f8829e7-601d-42b5-a9bb-a0491b58aa73",
+    "apps": [
+      {
+        "id": "matcraft",
+        "prefix": "matcraft/v0.1.0-0.1.0/",
+        "sourceCommit": "effb4218bd7c5c82eefb157378d6561d5b0f2cb3",
+        "browserBundleSha256": "09d8dc56d36305b57801f5f948260ddc17597a5f1eed6971cb6b11c02284ed55"
+      }
+    ]
+  },
+  "privateProof": [
+    {
+      "path": "E:/Development/robyn-shared-workstation-20261029/matcraft-client-0.4.0-canary.private.json",
+      "sha256": "816295ac87ea7bfba6a631b12c5e160c279cd199c67df25286f2ce5dc479b491"
+    },
+    {
+      "path": "E:/Development/robyn-shared-workstation-20261029/matcraft-client-0.4.0-starter-canary.private.json",
+      "sha256": "53fa9ce9e1086d345a7115713212a1b0254bffa6e82967772f585408b0dd7563"
+    },
+    {
+      "path": "E:/Development/robyn-shared-workstation-20261029/matcraft-save-recovery-20261031.private.json",
+      "sha256": "d84b94f06f96f729fdef1def12082829a0c86ae2d0f67e961b4050d587424734"
+    }
+  ],
+  "migrations": {
+    "applied": 0,
+    "lastRecordedVerifiedLedger": "30 matching checksummed entries through 0029; not reread by this release"
+  },
+  "limits": [
+    "Selected operations and browser controls, not every upstream feature, language/toolbox feature or browser engine.",
+    "Little-endian MAT v5 and explicitly selected .m/.mat/.csv/.tsv/.txt inputs; no unrelated folder scan.",
+    "Desktop only; production Studio activation is a separate release gate."
+  ],
+  "runtimeSourceCommit": "a7ed866e2659b53cbef788e06d61e1fb18af4340",
+  "localWebValidation": {
+    "typecheck": "passed",
+    "tests": 240,
+    "failures": 0,
+    "build": "passed",
+    "publicLayoutAxe": "18 Chromium/Firefox/WebKit page-viewport combinations passed",
+    "homepageVisual": "MatCraft chapter reviewed at 1440x1000 and 390x844 without horizontal overflow; original-colour preview, Escape and focus return passed",
+    "showcaseSourceTypecheck": "passed; twenty-two ready/four pending catalog; no new video export claimed"
+  }
+}

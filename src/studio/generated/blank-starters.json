@@ -1,5 +1,21 @@
 [
   {
+    "id": "matcraft:4",
+    "appId": "matcraft",
+    "name": "Untitled script",
+    "description": "Blank numerical script",
+    "files": [
+      {
+        "path": "Untitled script.m",
+        "role": "master",
+        "mimeType": "text/plain",
+        "bytes": 18,
+        "sha256": "73918191e0cb277f94ad50d15808adaa450106570faae5fe42523896c1179a13",
+        "url": "/studio/starters/4/matcraft/Untitled%20script.m"
+      }
+    ]
+  },
+  {
     "id": "bimcraft:3",
     "appId": "bimcraft",
     "name": "Untitled building",

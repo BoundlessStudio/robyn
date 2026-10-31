@@ -142,6 +142,13 @@ export const craftArtwork: Record<string, CraftArtwork> = {
     "tools": "SKETCHES / FEATURES / ASSEMBLIES",
     "fullFrame": true
   },
+  "matcraft": {
+    "src": "/artwork/editors/matcraft.png",
+    "title": "Follow the mathematics.",
+    "alt": "MatCraft's actual numerical workspace showing an editable M-code script, computed matrix product, variables and native run controls.",
+    "tools": "SCRIPTS / MATRICES / COMPUTATION",
+    "fullFrame": true
+  },
   "solidcraft": {
     "src": "/artwork/editors/solidcraft.png",
     "title": "Give your idea another dimension.",
