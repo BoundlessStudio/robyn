@@ -1,0 +1,227 @@
+{
+  "studios": [
+    {
+      "name": "Creative",
+      "apps": [
+        {
+          "id": "designcraft",
+          "name": "DesignCraft",
+          "monogram": "De",
+          "color": "#e64729",
+          "ready": true,
+          "hasIcon": true
+        },
+        {
+          "id": "effectcraft",
+          "name": "EffectCraft",
+          "monogram": "Ef",
+          "color": "#c8b2dc",
+          "ready": true,
+          "hasIcon": true
+        },
+        {
+          "id": "lightcraft",
+          "name": "LightCraft",
+          "monogram": "Li",
+          "color": "#d3c6b3",
+          "ready": true,
+          "hasIcon": true
+        },
+        {
+          "id": "figcraft",
+          "name": "FigCraft",
+          "monogram": "Fg",
+          "color": "#b9c6f1",
+          "ready": true,
+          "hasIcon": true
+        },
+        {
+          "id": "photocraft",
+          "name": "PhotoCraft",
+          "monogram": "Ph",
+          "color": "#e64729",
+          "ready": true,
+          "hasIcon": true
+        },
+        {
+          "id": "soundcraft",
+          "name": "SoundCraft",
+          "monogram": "So",
+          "color": "#d9fa42",
+          "ready": true,
+          "hasIcon": true
+        },
+        {
+          "id": "vectorcraft",
+          "name": "VectorCraft",
+          "monogram": "Ve",
+          "color": "#d9fa42",
+          "ready": true,
+          "hasIcon": true
+        },
+        {
+          "id": "filmcraft",
+          "name": "FilmCraft",
+          "monogram": "Fi",
+          "color": "#df4d2b",
+          "ready": true,
+          "hasIcon": true
+        },
+        {
+          "id": "subcraft",
+          "name": "SubCraft",
+          "monogram": "Su",
+          "color": "#d8b39f",
+          "ready": false,
+          "hasIcon": false
+        },
+        {
+          "id": "materialcraft",
+          "name": "MaterialCraft",
+          "monogram": "Mt",
+          "color": "#c9b2dc",
+          "ready": false,
+          "hasIcon": false
+        }
+      ]
+    },
+    {
+      "name": "Drafting",
+      "apps": [
+        {
+          "id": "cadcraft",
+          "name": "CADCraft",
+          "monogram": "Ca",
+          "color": "#d4dbd5",
+          "ready": true,
+          "hasIcon": true
+        },
+        {
+          "id": "bimcraft",
+          "name": "BimCraft",
+          "monogram": "Bi",
+          "color": "#a7c9c1",
+          "ready": false,
+          "hasIcon": false
+        },
+        {
+          "id": "modelcraft",
+          "name": "ModelCraft",
+          "monogram": "Mo",
+          "color": "#c7bf9d",
+          "ready": false,
+          "hasIcon": false
+        },
+        {
+          "id": "markupcraft",
+          "name": "MarkupCraft",
+          "monogram": "Mk",
+          "color": "#d0b0a3",
+          "ready": false,
+          "hasIcon": false
+        },
+        {
+          "id": "takeoffcraft",
+          "name": "TakeoffCraft",
+          "monogram": "Tk",
+          "color": "#bfcba1",
+          "ready": false,
+          "hasIcon": false
+        },
+        {
+          "id": "civilcraft",
+          "name": "CivilCraft",
+          "monogram": "Ci",
+          "color": "#b6c59a",
+          "ready": false,
+          "hasIcon": false
+        },
+        {
+          "id": "detailcraft",
+          "name": "DetailCraft",
+          "monogram": "Dt",
+          "color": "#aabfca",
+          "ready": false,
+          "hasIcon": false
+        },
+        {
+          "id": "partcraft",
+          "name": "PartCraft",
+          "monogram": "Pa",
+          "color": "#aeb9d1",
+          "ready": false,
+          "hasIcon": false
+        },
+        {
+          "id": "solidcraft",
+          "name": "SolidCraft",
+          "monogram": "So",
+          "color": "#dfc89b",
+          "ready": true,
+          "hasIcon": true
+        }
+      ]
+    },
+    {
+      "name": "Analysis",
+      "apps": [
+        {
+          "id": "gridcraft",
+          "name": "GridCraft",
+          "monogram": "Gr",
+          "color": "#d9fa42",
+          "ready": true,
+          "hasIcon": true
+        },
+        {
+          "id": "deckcraft",
+          "name": "DeckCraft",
+          "monogram": "Dc",
+          "color": "#c8b2dc",
+          "ready": true,
+          "hasIcon": true
+        },
+        {
+          "id": "pdfcraft",
+          "name": "PdfCraft",
+          "monogram": "Pd",
+          "color": "#ece4d2",
+          "ready": true,
+          "hasIcon": true
+        },
+        {
+          "id": "wordcraft",
+          "name": "WordCraft",
+          "monogram": "Wo",
+          "color": "#c7ced9",
+          "ready": true,
+          "hasIcon": true
+        },
+        {
+          "id": "dashcraft",
+          "name": "DashCraft",
+          "monogram": "Da",
+          "color": "#9fc7bf",
+          "ready": false,
+          "hasIcon": false
+        },
+        {
+          "id": "matcraft",
+          "name": "MatCraft",
+          "monogram": "Ma",
+          "color": "#b6c7df",
+          "ready": false,
+          "hasIcon": false
+        },
+        {
+          "id": "datacraft",
+          "name": "DataCraft",
+          "monogram": "Dc",
+          "color": "#a4c9d2",
+          "ready": false,
+          "hasIcon": false
+        }
+      ]
+    }
+  ]
+}

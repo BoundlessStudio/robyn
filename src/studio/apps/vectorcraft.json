@@ -1,7 +1,7 @@
 {
   "id": "vectorcraft",
   "version": "0.1.4",
-  "order": 2,
+  "order": 7,
   "name": "VectorCraft",
   "category": "Graphics",
   "monogram": "Ve",
@@ -41,5 +41,6 @@
         "release": "sha256:b04d54cf9231cbb76f9d929395f0735ead37a326ecb33299ba2947636150ad76"
       }
     ]
-  }
+  },
+  "studio": "Creative"
 }

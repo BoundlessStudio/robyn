@@ -1,41 +1,11 @@
 {
-  "note": "Unmodified repository assets. Screenshot crop is presentation-only. See ../../docs/HOMEPAGE-ARTWORK.md and ../../public/brand/apps/sources.json.",
+  "note": "Unmodified image/font assets; text license line endings normalized to LF. Screenshot crop is presentation-only. See ../../docs/HOMEPAGE-ARTWORK.md and ../../public/brand/apps/sources.json.",
   "files": [
-    {
-      "source": "public/brand/apps/photocraft.webp",
-      "destination": "apps/photocraft.webp",
-      "bytes": 34146,
-      "sha256": "3dc4caf2a44de97ddde2d18fcb6b5629f97c3bd159ff8a4a35f3bf122854513a"
-    },
-    {
-      "source": "public/brand/apps/lightcraft.webp",
-      "destination": "apps/lightcraft.webp",
-      "bytes": 25402,
-      "sha256": "8db8bf365af9a422f37c96ef29a25e55c9508993e782f291cdfd15d4d33dc47e"
-    },
-    {
-      "source": "public/brand/apps/vectorcraft.webp",
-      "destination": "apps/vectorcraft.webp",
-      "bytes": 27266,
-      "sha256": "c48f5f530363ea86278c80729a4fcd75346be8bf2f5718d3beaffcbbcfe093cf"
-    },
     {
       "source": "public/brand/apps/designcraft.webp",
       "destination": "apps/designcraft.webp",
       "bytes": 24474,
       "sha256": "e51060f1e246783bf3163db378d8adcfd53e0a468590df9bad9f36243323fb6a"
-    },
-    {
-      "source": "public/brand/apps/figcraft.webp",
-      "destination": "apps/figcraft.webp",
-      "bytes": 30224,
-      "sha256": "c9e9753431a038b186bcf411c1c98a126bf326e03e618f3cf59b41f562833fad"
-    },
-    {
-      "source": "public/brand/apps/filmcraft.webp",
-      "destination": "apps/filmcraft.webp",
-      "bytes": 24538,
-      "sha256": "b9da03e528790c6bcca4403d45cd538512e82accf1a6b6384d0cfb59834f3b35"
     },
     {
       "source": "public/brand/apps/effectcraft.webp",
@@ -44,34 +14,40 @@
       "sha256": "0c65ee3b451a5447315725fb93d454fabd7adf3a598c835ebe293eebf3e799e0"
     },
     {
+      "source": "public/brand/apps/lightcraft.webp",
+      "destination": "apps/lightcraft.webp",
+      "bytes": 25402,
+      "sha256": "8db8bf365af9a422f37c96ef29a25e55c9508993e782f291cdfd15d4d33dc47e"
+    },
+    {
+      "source": "public/brand/apps/figcraft.webp",
+      "destination": "apps/figcraft.webp",
+      "bytes": 30224,
+      "sha256": "c9e9753431a038b186bcf411c1c98a126bf326e03e618f3cf59b41f562833fad"
+    },
+    {
+      "source": "public/brand/apps/photocraft.webp",
+      "destination": "apps/photocraft.webp",
+      "bytes": 34146,
+      "sha256": "3dc4caf2a44de97ddde2d18fcb6b5629f97c3bd159ff8a4a35f3bf122854513a"
+    },
+    {
       "source": "public/brand/apps/soundcraft.webp",
       "destination": "apps/soundcraft.webp",
       "bytes": 13776,
       "sha256": "f02169fc5dbf594f2516f0dc22cfa7ac2ce324a8dd7ea92958270649e75f8ef2"
     },
     {
-      "source": "public/brand/apps/wordcraft.webp",
-      "destination": "apps/wordcraft.webp",
-      "bytes": 43010,
-      "sha256": "1dd203cc9a1ba33f0415564a8a4d8b740b780fb68976ec5c32a2d58675d0f1b4"
+      "source": "public/brand/apps/vectorcraft.webp",
+      "destination": "apps/vectorcraft.webp",
+      "bytes": 27266,
+      "sha256": "c48f5f530363ea86278c80729a4fcd75346be8bf2f5718d3beaffcbbcfe093cf"
     },
     {
-      "source": "public/brand/apps/pdfcraft.webp",
-      "destination": "apps/pdfcraft.webp",
-      "bytes": 27992,
-      "sha256": "96d7d96e89eca7bb43f198606af3cf3aa13b3bb262147c885eb063c060086eb6"
-    },
-    {
-      "source": "public/brand/apps/deckcraft.webp",
-      "destination": "apps/deckcraft.webp",
-      "bytes": 45416,
-      "sha256": "3a9b53df2850d1d17825087c67afe45269bbb7cbdcc98671e7945ab6793e18cb"
-    },
-    {
-      "source": "public/brand/apps/gridcraft.webp",
-      "destination": "apps/gridcraft.webp",
-      "bytes": 47024,
-      "sha256": "d245e8bfe2f747944ea2ecbaba1f8e63213dd040793d6a09eeb3cbc7dc1f0d01"
+      "source": "public/brand/apps/filmcraft.webp",
+      "destination": "apps/filmcraft.webp",
+      "bytes": 24538,
+      "sha256": "b9da03e528790c6bcca4403d45cd538512e82accf1a6b6384d0cfb59834f3b35"
     },
     {
       "source": "public/brand/apps/cadcraft.webp",
@@ -84,6 +60,30 @@
       "destination": "apps/solidcraft.webp",
       "bytes": 45148,
       "sha256": "edc580363fde8607c97e931370d907c548f90fa4992d35011484d0ea898e1ebd"
+    },
+    {
+      "source": "public/brand/apps/gridcraft.webp",
+      "destination": "apps/gridcraft.webp",
+      "bytes": 47024,
+      "sha256": "d245e8bfe2f747944ea2ecbaba1f8e63213dd040793d6a09eeb3cbc7dc1f0d01"
+    },
+    {
+      "source": "public/brand/apps/deckcraft.webp",
+      "destination": "apps/deckcraft.webp",
+      "bytes": 45416,
+      "sha256": "3a9b53df2850d1d17825087c67afe45269bbb7cbdcc98671e7945ab6793e18cb"
+    },
+    {
+      "source": "public/brand/apps/pdfcraft.webp",
+      "destination": "apps/pdfcraft.webp",
+      "bytes": 27992,
+      "sha256": "96d7d96e89eca7bb43f198606af3cf3aa13b3bb262147c885eb063c060086eb6"
+    },
+    {
+      "source": "public/brand/apps/wordcraft.webp",
+      "destination": "apps/wordcraft.webp",
+      "bytes": 43010,
+      "sha256": "1dd203cc9a1ba33f0415564a8a4d8b740b780fb68976ec5c32a2d58675d0f1b4"
     },
     {
       "source": "public/artwork/editors/photocraft.png",
@@ -112,8 +112,8 @@
     {
       "source": "public/brand/apps/SolidCraft-LICENSE.txt",
       "destination": "apps/SolidCraft-LICENSE.txt",
-      "bytes": 1101,
-      "sha256": "44cca886556f909c92e8856945be1c55371698d06d052c6fe7cee7c6fb8e316f"
+      "bytes": 1080,
+      "sha256": "1a26c1e94401d5d221896c74dd1c58d227edc64516da95aaac6f675567c8af63"
     },
     {
       "source": "public/artwork/offscript-bloom.png",
@@ -151,5 +151,143 @@
       "bytes": 4532,
       "sha256": "b6106a757902d2d412e09d94dc4a226fe3da80485208a98003969f1b8b6b1d74"
     }
-  ]
+  ],
+  "catalog": {
+    "destination": "catalog.json",
+    "bytes": 5206,
+    "sha256": "121a8043555409338da139048952122dd35bec4c05cebe0bb3b97e0ebaa2c47d",
+    "sourceEncoding": "UTF-8 with LF line endings",
+    "manifests": [
+      {
+        "source": "src/studio/apps/designcraft.json",
+        "bytes": 1695,
+        "sha256": "aea57a13e529dbda752ff8a2bbfa10957750f6b225886e9fd4de339ab7b3000e"
+      },
+      {
+        "source": "src/studio/apps/effectcraft.json",
+        "bytes": 1695,
+        "sha256": "261b23f39ca0d4b8089e15cfba7f92e9b32e42bea07dff04db6cc678326c9b43"
+      },
+      {
+        "source": "src/studio/apps/lightcraft.json",
+        "bytes": 1692,
+        "sha256": "d63eeaa1b016de95e7a55d9cc50338ff4fa5da7dcd852b26d16f557d5a433d0f"
+      },
+      {
+        "source": "src/studio/apps/figcraft.json",
+        "bytes": 1724,
+        "sha256": "4fb0f6a8d14d20b374d3b74c826624c8fea932d1aab9d60c710d41f43d855554"
+      },
+      {
+        "source": "src/studio/apps/photocraft.json",
+        "bytes": 1730,
+        "sha256": "2499d3a3c9dbd14deec43d5f4ff525f4996d2c2c5209c9f0765b573f0c30b23a"
+      },
+      {
+        "source": "src/studio/apps/soundcraft.json",
+        "bytes": 1693,
+        "sha256": "8fd072a54f5cb065a91a8532ed82cc305ff01b9691cfa2ddf042b3de7003e053"
+      },
+      {
+        "source": "src/studio/apps/vectorcraft.json",
+        "bytes": 1726,
+        "sha256": "2481fa0352dd5f2350ed57f6dac1d7a86223567377f76afd2f9b43dc39d19aab"
+      },
+      {
+        "source": "src/studio/apps/filmcraft.json",
+        "bytes": 1694,
+        "sha256": "a305eb0ab2b2c6e89369ac2c089c0f136a4c856d86b6c6c26f125efdff989b3f"
+      },
+      {
+        "source": "src/studio/apps/subcraft.json",
+        "bytes": 1486,
+        "sha256": "e026a0bc38ba82e32cc5e38a25edf0e09f30f2f613d758eb6a9382b36b525644"
+      },
+      {
+        "source": "src/studio/apps/materialcraft.json",
+        "bytes": 1489,
+        "sha256": "0cddc260017d1579b3a0ff4595c08f54ff46e58f8d2433fa84ecf64f14dcdbd2"
+      },
+      {
+        "source": "src/studio/apps/cadcraft.json",
+        "bytes": 1723,
+        "sha256": "4d359bdc56759ba1e3be3f524127455036cc51bd5da14110d1b2aabd3268e73e"
+      },
+      {
+        "source": "src/studio/apps/bimcraft.json",
+        "bytes": 1436,
+        "sha256": "c97c604d80233d87998e4456a576596f657f8906d30915de8c3f86041da03f78"
+      },
+      {
+        "source": "src/studio/apps/modelcraft.json",
+        "bytes": 1431,
+        "sha256": "dde69e62249f6eb4b113d627f8dffe6a9e85c4440e0683037ad89220a6b89272"
+      },
+      {
+        "source": "src/studio/apps/markupcraft.json",
+        "bytes": 1499,
+        "sha256": "1287e0858a4cf19e6c4c2b2db7cb1d2538cb499ae28b058210fa21ac409cc7f7"
+      },
+      {
+        "source": "src/studio/apps/takeoffcraft.json",
+        "bytes": 1547,
+        "sha256": "37ea9ec2682a39f172a8a04f7c26784b895e3728171f72fb3c9ceeec6d85a647"
+      },
+      {
+        "source": "src/studio/apps/civilcraft.json",
+        "bytes": 1484,
+        "sha256": "b21e3535ddb31c7ebd84f98a7f9ddb8a77db23da244e9ba1859f4982bfad5b7d"
+      },
+      {
+        "source": "src/studio/apps/detailcraft.json",
+        "bytes": 1531,
+        "sha256": "a03dba2e3a4114c475d2a3c320386a963b424f7d6c63a4d3ff253ada9e4f71af"
+      },
+      {
+        "source": "src/studio/apps/partcraft.json",
+        "bytes": 1491,
+        "sha256": "d7df4fdefea13ae9dc8099454909401a3a35b6af29a551af4949dbd4478bfe52"
+      },
+      {
+        "source": "src/studio/apps/solidcraft.json",
+        "bytes": 1974,
+        "sha256": "2166c29c34aaaa3437cca64f44d03da8f6ca4d4c6b39566cd59d778c2312175b"
+      },
+      {
+        "source": "src/studio/apps/gridcraft.json",
+        "bytes": 1715,
+        "sha256": "8322aa661650ab8a911afd700e67a8ae0b64698d72fccc606dd9bf96df24e501"
+      },
+      {
+        "source": "src/studio/apps/deckcraft.json",
+        "bytes": 1727,
+        "sha256": "ad38f919a3397fe76b3a1d9c71b96f27fea2ac4a828b271dc30906b30700cb74"
+      },
+      {
+        "source": "src/studio/apps/pdfcraft.json",
+        "bytes": 1713,
+        "sha256": "b0cf5f199ad88845ca70f1eb502d9df91ff72708e963cc16ed9d5340d43d5022"
+      },
+      {
+        "source": "src/studio/apps/wordcraft.json",
+        "bytes": 1685,
+        "sha256": "262e09250929df210e3386d78981700af9166c96ec45797e0ea62b170f9d8e3d"
+      },
+      {
+        "source": "src/studio/apps/dashcraft.json",
+        "bytes": 1584,
+        "sha256": "48227707c9a5155d448723f695aac8153105f236421f3ace1f6ed9eb96dde301"
+      },
+      {
+        "source": "src/studio/apps/matcraft.json",
+        "bytes": 1525,
+        "sha256": "9e6369f1456e4afcd2e27988171f643bc0c5ce44b37930d77abe0245c73393cd"
+      },
+      {
+        "source": "src/studio/apps/datacraft.json",
+        "bytes": 1608,
+        "sha256": "84a9e4849f4949aa8b9c9a06d20404fd087cd9a97e4e13d75e297e208b07cbbc"
+      }
+    ]
+  }
 }

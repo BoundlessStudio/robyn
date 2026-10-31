@@ -4,10 +4,11 @@ import {readFile} from "node:fs/promises";
 import {createHash,randomUUID} from "node:crypto";
 import {blankStarters,blankRequestKey,readBlankRequest} from "../src/studio/blank-starters";
 import {studioApps} from "../src/studio/apps/registry";
+import {isAppReady} from "../src/studio/manifest";
 import {checkNativeImport} from "../src/studio/native-import";
 
-test("each Craft has an intact, self-contained native starter compatible with its package adapter",async()=>{
-  assert.deepEqual(new Set(blankStarters.map(item=>item.appId)),new Set(studioApps.map(app=>app.id)));
+test("each ready Craft has an intact, self-contained native starter compatible with its package adapter",async()=>{
+  assert.deepEqual(new Set(blankStarters.map(item=>item.appId)),new Set(studioApps.filter(isAppReady).map(app=>app.id)));
   for(const starter of blankStarters){
     const entries=[];
     for(const file of starter.files){

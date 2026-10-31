@@ -1,7 +1,7 @@
 {
   "id": "effectcraft",
   "version": "0.1.0",
-  "order": 5,
+  "order": 2,
   "name": "EffectCraft",
   "category": "Media",
   "monogram": "Ef",
@@ -40,5 +40,6 @@
         "release": "sha256:56228ad33996ff68f4abe5fe0388ea33eb4adee24a5ea9916dbe5536d284f12b"
       }
     ]
-  }
+  },
+  "studio": "Creative"
 }

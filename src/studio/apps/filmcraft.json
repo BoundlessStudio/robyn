@@ -1,7 +1,7 @@
 {
   "id": "filmcraft",
   "version": "0.1.0",
-  "order": 4,
+  "order": 8,
   "name": "FilmCraft",
   "category": "Media",
   "monogram": "Fi",
@@ -40,5 +40,6 @@
         "release": "sha256:9af6580357fc0f559d2dc63d0fab876003f7de816cdcda4d0f666b5ccc438d43"
       }
     ]
-  }
+  },
+  "studio": "Creative"
 }

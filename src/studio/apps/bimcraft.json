@@ -1,0 +1,40 @@
+{
+  "id": "bimcraft",
+  "version": "0.1.0",
+  "order": 12,
+  "name": "BimCraft",
+  "category": "Building information modelling",
+  "monogram": "Bi",
+  "color": "#a7c9c1",
+  "artwork": "cad",
+  "sourceUrl": "https://github.com/getcadcraft/bimcraft",
+  "tagline": "Bring a building and its information together.",
+  "capabilities": [
+    "bim",
+    "building-elements",
+    "schedules",
+    "ifc"
+  ],
+  "employee": {
+    "role": "BIM Designer",
+    "instructions": "Use BimCraft for building elements, schedules and IFC interchange. Keep units, levels, element identifiers and exact linked input revisions. Preserve the editable model and inspect exported geometry and properties. Do not claim Revit-native compatibility, regulatory compliance or structural adequacy from an unverified model. Work only in the assigned project and task working folder. Use studio-mcp for authorized library access. Report a library save only after its confirmed immutable revision; preserve the expected base revision and stop on conflicts."
+  },
+  "formats": {
+    "native": [
+      ".ifc"
+    ],
+    "verification": "pending"
+  },
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": null,
+    "bundleUrl": null,
+    "status": "pending"
+  },
+  "workstation": {
+    "template": "robyn-studio-0-2-1@1",
+    "release": "sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da",
+    "status": "pending"
+  },
+  "studio": "Drafting"
+}

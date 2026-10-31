@@ -34,7 +34,7 @@ export function appFor(id: unknown) {
 }
 
 export function publicApps() {
-  return craftApps.map(app => ({ id: app.id, name: app.name, color: app.color, monogram: app.monogram, category: app.category, tagline: app.tagline, capabilities: app.capabilities, ready: isAppReady(app), editorStatus: app.editor.status, workstationStatus: app.workstation.status }));
+  return craftApps.map(app => ({ id: app.id, name: app.name, studio: app.studio, color: app.color, monogram: app.monogram, category: app.category, tagline: app.tagline, capabilities: app.capabilities, ready: isAppReady(app), editorStatus: app.editor.status, workstationStatus: app.workstation.status }));
 }
 
 export async function readStudioBody(request: Request): Promise<Record<string, unknown>> {

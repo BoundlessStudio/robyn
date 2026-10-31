@@ -103,7 +103,7 @@ export const Opening = () => {
           lineHeight: 1.35,
         }}
       >
-        One Robyn. Fourteen creative tools.
+        One Robyn. Three studios.
         <br />
         Your imagination, in the making.
       </Reveal>

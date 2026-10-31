@@ -1,7 +1,7 @@
 {
   "id": "photocraft",
   "version": "0.1.4",
-  "order": 1,
+  "order": 5,
   "name": "PhotoCraft",
   "category": "Graphics",
   "monogram": "Ph",
@@ -40,5 +40,6 @@
         "release": "sha256:b56cb9749d2f3dc88c9f50a12803d57bfa29d359635d0999575055876944c849"
       }
     ]
-  }
+  },
+  "studio": "Creative"
 }

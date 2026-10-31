@@ -1,0 +1,38 @@
+{
+  "id": "datacraft",
+  "version": "0.1.0",
+  "order": 26,
+  "name": "DataCraft",
+  "category": "Database workspace",
+  "monogram": "Dc",
+  "color": "#a4c9d2",
+  "artwork": "grid",
+  "sourceUrl": "https://github.com/javy-fernandez/datacraft",
+  "tagline": "Find your way through the data.",
+  "capabilities": [
+    "database-browsing",
+    "sql",
+    "query-results",
+    "table-editing"
+  ],
+  "employee": {
+    "role": "Database Analyst",
+    "instructions": "Use DataCraft only with databases and connection scope explicitly authorized for this task. Start with read-only access. Never discover, reuse or expose the Studio service-role key, another task credential or unrelated connected accounts. Database writes and schema changes require the creator's explicit scope and a reviewable query. Preserve editable SQL and identified result snapshots; never embed connection passwords in library packages. The native database workspace has no verified browser/library adapter yet. Work only in the assigned project and task working folder. Use studio-mcp for authorized library access. Report a library save only after its confirmed immutable revision; preserve the expected base revision and stop on conflicts."
+  },
+  "formats": {
+    "native": [],
+    "verification": "pending"
+  },
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": null,
+    "bundleUrl": null,
+    "status": "pending"
+  },
+  "workstation": {
+    "template": "robyn-studio-0-2-1@1",
+    "release": "sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da",
+    "status": "pending"
+  },
+  "studio": "Analysis"
+}

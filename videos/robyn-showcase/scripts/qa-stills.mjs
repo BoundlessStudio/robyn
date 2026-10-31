@@ -4,12 +4,43 @@ import {
   selectComposition,
   renderStill,
 } from "@remotion/renderer";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
+import assert from "node:assert/strict";
 import path from "node:path";
 
 const output = path.resolve("out/qa");
 const chaptersOnly = process.argv.includes("--chapters-only");
 await mkdir(output, { recursive: true });
+const catalogBytes = await readFile("public/catalog.json");
+const catalog = JSON.parse(catalogBytes);
+const sources = JSON.parse(await readFile("public/asset-sources.json", "utf8"));
+const apps = catalog.studios.flatMap((studio) => studio.apps);
+assert.deepEqual(
+  catalog.studios.map(({ name, apps }) => [name, apps.length]),
+  [
+    ["Creative", 10],
+    ["Drafting", 9],
+    ["Analysis", 7],
+  ],
+);
+assert.equal(new Set(apps.map(({ id }) => id)).size, 26);
+assert.equal(apps.filter(({ ready }) => ready).length, 14);
+assert.equal(apps.filter(({ hasIcon }) => hasIcon).length, 14);
+assert.equal(catalogBytes.length, sources.catalog.bytes);
+assert.equal(
+  createHash("sha256").update(catalogBytes).digest("hex"),
+  sources.catalog.sha256,
+);
+for (const file of sources.files) {
+  const bytes = await readFile(path.join("public", file.destination));
+  assert.equal(bytes.length, file.bytes, file.destination);
+  assert.equal(
+    createHash("sha256").update(bytes).digest("hex"),
+    file.sha256,
+    file.destination,
+  );
+}
 const serveUrl = await bundle({
   entryPoint: path.resolve("src/index.ts"),
   rspack: true,
@@ -71,7 +102,7 @@ try {
   }
   const chapters = [
     ["IdeasHaveWings", 100, 100],
-    ["FourteenCrafts", 125, 350],
+    ["ThreeStudios", 125, 350],
     ["RealTools", 100, 550],
     ["OneRobyn", 110, 860],
     ["BrowserAndNotes", 125, 1100],
@@ -113,6 +144,17 @@ try {
           masterFrame,
         })),
         errors: messages,
+        catalog: {
+          studios: catalog.studios.map(({ name, apps }) => ({
+            name,
+            applications: apps.length,
+          })),
+          applications: apps.length,
+          ready: 14,
+          connecting: 12,
+          copiedAssets: sources.files.length,
+          sha256: sources.catalog.sha256,
+        },
       },
       null,
       2,

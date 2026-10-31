@@ -1,6 +1,6 @@
 # Current pilot acceptance
 
-Updated October 30, 2026. This page indexes recorded release evidence and remaining gaps. [Architecture and scope](ARCHITECTURE.md) describes the current system; [operations](OPERATIONS.md) owns recovery procedures. Documentation maintenance does not imply a new deployment or a fresh live check. Earlier release summaries and the R01–R18 review are in the [archive](archive/README.md).
+Updated October 31, 2026. This page indexes recorded release evidence and remaining gaps. [Architecture and scope](ARCHITECTURE.md) describes the current system; [operations](OPERATIONS.md) owns recovery procedures. Documentation maintenance does not imply a new deployment or a fresh live check. Earlier release summaries and the R01–R18 review are in the [archive](archive/README.md).
 
 ## Recorded release boundary
 
@@ -16,6 +16,14 @@ The invitation-only, passwordless pilot has one visible Robyn and one shared wor
 | Consolidation | One linked primary QA workstation remains. Seventeen retired instances were deleted after private archives totaling **557,160,094 bytes** passed rehash checks; bindings/mirrors cleared, historical rows/jobs/spending retained; [production receipt](acceptance/shared-workstation-production-20261030.json) |
 
 The QA allowance retained its **$75** ceiling and archived charges: the production receipt records **1,850,361 micros** spent, **73,149,639 micros** available and zero reserved. All three existing studios have one canonical Robyn; only the primary QA studio was provisioned. At the recorded cleanup boundary, canary credentials were revoked, jobs/media were idle, and browser control was returned to Robyn and disconnected. These are dated observations, not a live health report.
+
+## Studio expansion, not deployed
+
+The source catalog contains **26 Crafts: Creative 10, Drafting 9 and Analysis 7**, in the requested order, including DetailCraft, with upstream context from [Remade](https://remade.wiki/). Dashboard launchers and Robyn's Skills directory use those groups. [The expansion evidence](acceptance/studio-expansion-20261031.json) records the new image, source/package pins, installation checks, temporary canary and local verification separately from the production boundary above.
+
+The fourteen existing integrations retain their recorded native/editor verification pins. The twelve additions have pending formats, browser and workstation integration status: native installation does not certify a browser edit or confirmed library save. Pending Crafts stay unavailable for paid work, new-file launches and native imports, and cannot make an existing ready PDF importer ambiguous. The immutable workstation client remains 0.2.0 with its fourteen supported Craft skills.
+
+The new image pin requires a coordinated owned idle workstation/mirror update and web deployment, following [operations](OPERATIONS.md#shared-workstation-ownership-and-task-recovery). Publishing a template or preparing web source does not change the existing production workstation, its data, allowance or migration ledger.
 
 ## Acceptance scope
 
@@ -42,6 +50,7 @@ The original review marked R01, R02, R03, R04, R05, R07, R08, R10, R11, R12, R14
 
 | Finding | Remaining boundary |
 | --- | --- |
+| New Craft integrations | Complete native document packagers, browser/library adapters, real blank files where applicable and actual edit/save/continuation acceptance for the twelve additions. SubCraft's pinned release is desktop-only; DashCraft is a read-only report viewer; DataCraft is a native database workspace. Their installation checks do not promote editor readiness |
 | R06 — capacity recovery, partial | Recover an already-purchased result after a real space failure. Controlled reservation refusal/recovery does not complete that case |
 | R09 — workstation recovery, partial | Broader self-service recovery, lost persistent state and active/unsettled external work. Accepted idle replacement, image update and retirement do not complete those cases |
 | R13 — provider promotion, partial | Gemini image, image edit and sound effects remain disabled; their prepared **$0.13** acceptance batch still awaits approval. Additional options require bounded acquisition, final cost, provenance/rights and editable-file acceptance. Generated music is not implemented; video reference inputs are rejected |

@@ -43,7 +43,7 @@ export const Showcase = ({ music }: ShowcaseProps) => {
             timing={linearTiming({ durationInFrames: 0.5 * fps })}
           />
           <TransitionSeries.Sequence
-            name="02 — Fourteen Crafts"
+            name="02 — Three studios, 26 Crafts"
             durationInFrames={8 * fps}
             premountFor={fps}
           >
@@ -65,7 +65,7 @@ export const Showcase = ({ music }: ShowcaseProps) => {
             timing={linearTiming({ durationInFrames: 0.5 * fps })}
           />
           <TransitionSeries.Sequence
-            name="04 — One Robyn, every Craft"
+            name="04 — One Robyn, three studios"
             durationInFrames={8 * fps}
             premountFor={fps}
           >

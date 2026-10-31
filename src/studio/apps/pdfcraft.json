@@ -1,7 +1,7 @@
 {
   "id": "pdfcraft",
   "version": "0.1.4",
-  "order": 8,
+  "order": 22,
   "name": "PdfCraft",
   "category": "Publishing",
   "monogram": "Pd",
@@ -40,5 +40,6 @@
         "release": "sha256:165fb8dc380c404f670a5e09b092ede8b0991aa3003ca9f7ea5c1c9133cd9881"
       }
     ]
-  }
+  },
+  "studio": "Analysis"
 }

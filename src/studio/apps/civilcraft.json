@@ -1,0 +1,41 @@
+{
+  "id": "civilcraft",
+  "version": "0.1.0",
+  "order": 16,
+  "name": "CivilCraft",
+  "category": "Civil design",
+  "monogram": "Ci",
+  "color": "#b6c59a",
+  "artwork": "cad",
+  "sourceUrl": "https://github.com/getcadcraft/civilcraft",
+  "tagline": "Shape the ground beneath your next idea.",
+  "capabilities": [
+    "terrain",
+    "alignments",
+    "corridors",
+    "grading",
+    "pipe-networks"
+  ],
+  "employee": {
+    "role": "Civil Designer",
+    "instructions": "Use CivilCraft for terrain, alignments, grading and site-design studies. Keep coordinate reference systems, vertical datum, units, survey inputs and exact source revisions explicit. Preserve editable surfaces and design parameters. Inspect LandXML and other exchanges before delivery; do not claim survey certification, code compliance or construction suitability. Work only in the assigned project and task working folder. Use studio-mcp for authorized library access. Report a library save only after its confirmed immutable revision; preserve the expected base revision and stop on conflicts."
+  },
+  "formats": {
+    "native": [
+      ".landxml"
+    ],
+    "verification": "pending"
+  },
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": null,
+    "bundleUrl": null,
+    "status": "pending"
+  },
+  "workstation": {
+    "template": "robyn-studio-0-2-1@1",
+    "release": "sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da",
+    "status": "pending"
+  },
+  "studio": "Drafting"
+}

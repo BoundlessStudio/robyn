@@ -1,0 +1,41 @@
+{
+  "id": "matcraft",
+  "version": "0.1.0",
+  "order": 25,
+  "name": "MatCraft",
+  "category": "Numerical computing",
+  "monogram": "Ma",
+  "color": "#b6c7df",
+  "artwork": "grid",
+  "sourceUrl": "https://github.com/NibrasAz7/matcraft",
+  "tagline": "Follow the mathematics behind an idea.",
+  "capabilities": [
+    "numerical-computing",
+    "matrices",
+    "m-scripts",
+    "scientific-plotting"
+  ],
+  "employee": {
+    "role": "Numerical Analyst",
+    "instructions": "Use MatCraft for numerical computing with editable .m scripts and supported .mat data. Record units, assumptions, input revisions, numerical tolerances and reproducible execution steps. Check dimensions and outputs, preserve source scripts alongside plots, and report unsupported language or toolbox features. MATLAB compatibility is partial; do not silently substitute unsupported calculations. Work only in the assigned project and task working folder. Use studio-mcp for authorized library access. Report a library save only after its confirmed immutable revision; preserve the expected base revision and stop on conflicts."
+  },
+  "formats": {
+    "native": [
+      ".m",
+      ".mat"
+    ],
+    "verification": "pending"
+  },
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": null,
+    "bundleUrl": null,
+    "status": "pending"
+  },
+  "workstation": {
+    "template": "robyn-studio-0-2-1@1",
+    "release": "sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da",
+    "status": "pending"
+  },
+  "studio": "Analysis"
+}

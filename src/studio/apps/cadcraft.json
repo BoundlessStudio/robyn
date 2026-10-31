@@ -1,7 +1,7 @@
 {
   "id": "cadcraft",
   "version": "0.1.0",
-  "order": 13,
+  "order": 11,
   "name": "CADCraft",
   "category": "Engineering",
   "monogram": "Ca",
@@ -40,5 +40,6 @@
         "release": "sha256:bca46321dc438354d1b169a91e4f5075d0bad5afc70052b6e6fa0fbcf0f1e488"
       }
     ]
-  }
+  },
+  "studio": "Drafting"
 }

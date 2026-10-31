@@ -1,6 +1,6 @@
 # Robyn Creative Studio: architecture and scope
 
-Robyn is an invitation-only, passwordless studio for an individual creator. One visible Robyn uses fourteen Craft applications and browser/search tools on one shared workstation. The creator and Robyn continue work through private native files and exact saved revisions. [Current acceptance](CURRENT-STATUS.md) records deployed pins, verified capabilities and remaining gaps; [operations](OPERATIONS.md) describes support and recovery.
+Robyn is an invitation-only, passwordless studio for an individual creator. One visible Robyn uses Craft applications and browser/search tools on one shared workstation. The catalog contains 26 Crafts grouped into Creative, Drafting and Analysis; fourteen currently have verified browser/library integrations. The creator and Robyn continue work through private native files and exact saved revisions. [Current acceptance](CURRENT-STATUS.md) records deployed pins, verified capabilities and remaining gaps; [operations](OPERATIONS.md) describes support and recovery.
 
 ## Product and device boundaries
 
@@ -12,7 +12,7 @@ Studio navigation opens Projects. Every project uses the same menu and current-p
 
 | Destination | Responsibility |
 | --- | --- |
-| Dashboard | Fourteen Craft launchers, new native files and existing-file import |
+| Dashboard | Crafts grouped by studio, new native files in ready applications and existing-file import |
 | Assets | Files, Notes, source media, imports, exact versions, exports and downloads |
 | Robyn | Conversation, Jobs, Review and Skills, browser control and one AI allowance summary |
 | Settings | Project name and brief, archive/reactivation, shared studio/account controls and AI allowance |
@@ -33,7 +33,15 @@ The public homepage is a continuous, scroll-driven ASCII robin tour with fourtee
 
 Independent [Craft manifests](../src/studio/apps/) own identity, skill instructions, formats, capabilities, editor/native pins and readiness. Registry generation supplies discovery and routing. Adding a Craft adds a tool and an on-demand skill to Robyn. It does not create another employee.
 
-The registered Crafts are PhotoCraft, VectorCraft, LightCraft, FilmCraft, EffectCraft, SoundCraft, DesignCraft, PdfCraft, WordCraft, DeckCraft, GridCraft, FigCraft, CADCraft and SolidCraft. Keep integrations independently versioned and visibly unavailable until verified. Published versions retain their exact bytes. Native builds and workstation sources belong in the companion repository; resource policy belongs on this server. Current resource defaults and maintenance procedures are in [operations](OPERATIONS.md#shared-workstation-ownership-and-task-recovery).
+The registry's `studio` and `order` fields define the launcher and Skills directory:
+
+| Studio | Applications, in display order |
+| --- | --- |
+| Creative | DesignCraft, EffectCraft, LightCraft, FigCraft, PhotoCraft, SoundCraft, VectorCraft, FilmCraft, SubCraft, MaterialCraft |
+| Drafting | CADCraft, BimCraft, ModelCraft, MarkupCraft, TakeoffCraft, CivilCraft, DetailCraft, PartCraft, SolidCraft |
+| Analysis | GridCraft, DeckCraft, PdfCraft, WordCraft, DashCraft, MatCraft, DataCraft |
+
+Keep integrations independently versioned and visibly unavailable until verified. Native installation alone does not establish browser editing, a private-library save or permission to start paid work. The twelve additions remain pending those independent integrations; DashCraft's pinned native release is a read-only report viewer and SubCraft's pinned release is desktop-only. Pending applications cannot displace a ready application's native-format import routing. Published versions retain their exact bytes. Native builds and workstation sources belong in the companion repository; resource policy belongs on this server. Current resource defaults and maintenance procedures are in [operations](OPERATIONS.md#shared-workstation-ownership-and-task-recovery).
 
 ## Authorization and provider boundaries
 

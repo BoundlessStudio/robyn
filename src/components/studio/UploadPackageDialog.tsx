@@ -7,6 +7,7 @@ import { describeLocalPackage, savePackage, type SaveResult, type LocalPackageFi
 import { StudioDialog } from "./StudioDialog";
 import { checkNativeImport, importedDocumentName, nativeImportApp } from "@/studio/native-import";
 import {sourceFormat} from "@/studio/source-import";
+import {isAppReady} from "@/studio/manifest";
 
 function relativePath(file:File){const path=file.webkitRelativePath;return path?path.slice(path.indexOf("/")+1):file.name;}
 
@@ -50,7 +51,7 @@ export function UploadPackageDialog({projectId,asset,close,saved,returnFocusRef,
   }
   return <StudioDialog title={asset?"Keep the work moving.":"Bring your work in."} eyebrow={asset?"SAVE A NEW REVISION":"ADD A NATIVE PACKAGE"} close={close} busy={busy} returnFocusRef={returnFocusRef}><form onSubmit={upload}>
     {explanation&&<p className="studio-muted" role="status">{explanation}</p>}
-    {!asset&&<><label>Asset name<input value={name} onChange={e=>setName(e.target.value)} maxLength={160} required disabled={busy||locked||Boolean(creation.current)}/></label><label>Application<select aria-label="Application" value={appId} onChange={e=>setAppId(e.target.value)} required disabled={busy||locked||Boolean(creation.current)}><option value="" disabled>Choose an application</option>{studioApps.map(app=><option key={app.id} value={app.id}>{app.name}</option>)}</select></label></>}
+    {!asset&&<><label>Asset name<input value={name} onChange={e=>setName(e.target.value)} maxLength={160} required disabled={busy||locked||Boolean(creation.current)}/></label><label>Application<select aria-label="Application" value={appId} onChange={e=>setAppId(e.target.value)} required disabled={busy||locked||Boolean(creation.current)}><option value="" disabled>Choose an application</option>{studioApps.map(app=><option key={app.id} value={app.id} disabled={!isAppReady(app)}>{app.name}{!isAppReady(app)?" — being connected":""}</option>)}</select></label></>}
     <div className="studio-view-switch" aria-label="Import source"><button type="button" aria-pressed={mode==="files"} disabled={busy||locked} onClick={()=>{setMode("files");setFiles([]);setMaster("");}}>Choose files</button><button type="button" aria-pressed={mode==="folder"} disabled={busy||locked} onClick={()=>{setMode("folder");setFiles([]);setMaster("");}}>Choose a folder</button></div>
     {files.length>0&&<p className="studio-muted">{files.length} {files.length===1?"file is":"files are"} selected for this import.</p>}
     {mode==="files"?<label>{files.length?"Replace selected files":"Native file and linked media"}<input key="files" type="file" multiple onChange={e=>choose(e.target.files)} disabled={busy||locked}/></label>:<label>{files.length?"Replace selected folder":"Native package folder"}<input key="folder" type="file" {...{webkitdirectory:""}} onChange={e=>choose(e.target.files)} disabled={busy||locked}/></label>}

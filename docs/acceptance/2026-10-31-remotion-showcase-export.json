@@ -1,0 +1,303 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-31T11:26:34.692Z",
+  "sourceCommit": "2cd65c9e33bd541201838805d62609259c6677e6",
+  "project": "videos/robyn-showcase",
+  "composition": "RobynShowcase",
+  "remotion": "4.0.539",
+  "scope": "Updated local showcase artifact and preview. Website and workstation deployment have their own release evidence. No new browser/library integrations or ordinary AI production jobs are accepted by this video.",
+  "catalog": {
+    "studios": [
+      {
+        "name": "Creative",
+        "applications": [
+          {
+            "id": "designcraft",
+            "name": "DesignCraft",
+            "ready": true
+          },
+          {
+            "id": "effectcraft",
+            "name": "EffectCraft",
+            "ready": true
+          },
+          {
+            "id": "lightcraft",
+            "name": "LightCraft",
+            "ready": true
+          },
+          {
+            "id": "figcraft",
+            "name": "FigCraft",
+            "ready": true
+          },
+          {
+            "id": "photocraft",
+            "name": "PhotoCraft",
+            "ready": true
+          },
+          {
+            "id": "soundcraft",
+            "name": "SoundCraft",
+            "ready": true
+          },
+          {
+            "id": "vectorcraft",
+            "name": "VectorCraft",
+            "ready": true
+          },
+          {
+            "id": "filmcraft",
+            "name": "FilmCraft",
+            "ready": true
+          },
+          {
+            "id": "subcraft",
+            "name": "SubCraft",
+            "ready": false
+          },
+          {
+            "id": "materialcraft",
+            "name": "MaterialCraft",
+            "ready": false
+          }
+        ]
+      },
+      {
+        "name": "Drafting",
+        "applications": [
+          {
+            "id": "cadcraft",
+            "name": "CADCraft",
+            "ready": true
+          },
+          {
+            "id": "bimcraft",
+            "name": "BimCraft",
+            "ready": false
+          },
+          {
+            "id": "modelcraft",
+            "name": "ModelCraft",
+            "ready": false
+          },
+          {
+            "id": "markupcraft",
+            "name": "MarkupCraft",
+            "ready": false
+          },
+          {
+            "id": "takeoffcraft",
+            "name": "TakeoffCraft",
+            "ready": false
+          },
+          {
+            "id": "civilcraft",
+            "name": "CivilCraft",
+            "ready": false
+          },
+          {
+            "id": "detailcraft",
+            "name": "DetailCraft",
+            "ready": false
+          },
+          {
+            "id": "partcraft",
+            "name": "PartCraft",
+            "ready": false
+          },
+          {
+            "id": "solidcraft",
+            "name": "SolidCraft",
+            "ready": true
+          }
+        ]
+      },
+      {
+        "name": "Analysis",
+        "applications": [
+          {
+            "id": "gridcraft",
+            "name": "GridCraft",
+            "ready": true
+          },
+          {
+            "id": "deckcraft",
+            "name": "DeckCraft",
+            "ready": true
+          },
+          {
+            "id": "pdfcraft",
+            "name": "PdfCraft",
+            "ready": true
+          },
+          {
+            "id": "wordcraft",
+            "name": "WordCraft",
+            "ready": true
+          },
+          {
+            "id": "dashcraft",
+            "name": "DashCraft",
+            "ready": false
+          },
+          {
+            "id": "matcraft",
+            "name": "MatCraft",
+            "ready": false
+          },
+          {
+            "id": "datacraft",
+            "name": "DataCraft",
+            "ready": false
+          }
+        ]
+      }
+    ],
+    "applications": 26,
+    "ready": 14,
+    "connecting": 12,
+    "sha256": "121a8043555409338da139048952122dd35bec4c05cebe0bb3b97e0ebaa2c47d",
+    "copiedAssets": 25,
+    "sourceManifestHashes": "videos/robyn-showcase/public/asset-sources.json"
+  },
+  "export": {
+    "checkedAt": "2026-10-31T11:19:23.476Z",
+    "file": "out/robyn-showcase-2026-10-31.mp4",
+    "bytes": 16582295,
+    "sha256": "210a871c3868189968938c0a3b4ff7440735892d57dcd16b628bd0c5fe17e4c7",
+    "video": {
+      "codec": "h264",
+      "width": 1920,
+      "height": 1080,
+      "pixelFormat": "yuv420p",
+      "fps": 30,
+      "frames": 1800,
+      "duration": 60
+    },
+    "audio": {
+      "codec": "aac",
+      "channels": 2,
+      "sampleRate": 48000,
+      "bitRate": 317373,
+      "duration": 60.011,
+      "samplePeakDbfs": -4.1,
+      "meanVolumeDbfs": -19.1
+    },
+    "containerDuration": 60.011,
+    "fullDecode": "passed",
+    "decodedFrames": [
+      100,
+      350,
+      550,
+      610,
+      680,
+      860,
+      1100,
+      1320,
+      1540,
+      1740,
+      1799
+    ],
+    "frameComparisons": [
+      {
+        "frame": 100,
+        "rgbPsnrDb": 37.461
+      },
+      {
+        "frame": 350,
+        "rgbPsnrDb": 34.593
+      },
+      {
+        "frame": 550,
+        "rgbPsnrDb": 38.25
+      },
+      {
+        "frame": 610,
+        "rgbPsnrDb": 37.918
+      },
+      {
+        "frame": 680,
+        "rgbPsnrDb": 38.691
+      },
+      {
+        "frame": 860,
+        "rgbPsnrDb": 35.896
+      },
+      {
+        "frame": 1100,
+        "rgbPsnrDb": 37.301
+      },
+      {
+        "frame": 1320,
+        "rgbPsnrDb": 36.32
+      },
+      {
+        "frame": 1540,
+        "rgbPsnrDb": 36.748
+      },
+      {
+        "frame": 1740,
+        "rgbPsnrDb": 37.375
+      },
+      {
+        "frame": 1799,
+        "rgbPsnrDb": 37.442
+      }
+    ],
+    "chapterMasterPixelMatches": 8
+  },
+  "checks": {
+    "lint": "passed",
+    "typecheck": "passed",
+    "bundle": "passed",
+    "masterStills": 39,
+    "standaloneChapters": 8,
+    "rendererErrors": [],
+    "mascot": {
+      "points": 38460,
+      "geometrySha256": "c88cf59c4c08e4cc109f360798474d8b8c25dcf665d6baef6d2a53e2e3ef1255",
+      "geometryPaletteAndCharactersUnchanged": true
+    },
+    "preview": {
+      "musicEnabled": true,
+      "playbackAdvancedFromFrame": 350,
+      "toFrame": 1293,
+      "errorsDuringFinalPlaybackCheck": 0
+    },
+    "highSeverityAudit": "passed",
+    "moderateAuditFindings": 11
+  },
+  "artifacts": [
+    {
+      "file": "out/robyn-poster.png",
+      "bytes": 384589,
+      "sha256": "de7e1bc69aba3f65c46db45d5d74e5fdf4299b6acf56824554de6eb45cb06e82"
+    },
+    {
+      "file": "out/qa/frame-0350.png",
+      "bytes": 358445,
+      "sha256": "e1d2d8a4767cb5aa9e8203f31f1f9a66326e1e201b27b086fb640f2b560d85e2"
+    },
+    {
+      "file": "out/qa/frame-0860.png",
+      "bytes": 367434,
+      "sha256": "e65494140c3b39b1355115d20fca92b507a22a5c23e0dc7d80b6b4df19f30064"
+    },
+    {
+      "file": "out/qa/frame-1799.png",
+      "bytes": 368884,
+      "sha256": "0ab29224974ae790f8ceeca939e9499e49b9afd3cc2636fcbd61e11006689760"
+    },
+    {
+      "file": "out/qa/review-board.jpg",
+      "bytes": 468752,
+      "sha256": "f5550f2ef6829f86ea0f25600259148f4f7fe74003055ae6505fcdfe4115329c"
+    }
+  ],
+  "limits": [
+    "Twelve added Crafts are displayed as Connecting; native installation does not claim verified browser/library editing or paid-task capabilities.",
+    "Recorded editor captures retain their historical scope; no new authenticated AI/editor session is depicted.",
+    "Export is a local MP4, excluded from Git and Vercel uploads along with other generated out/ artifacts."
+  ]
+}
