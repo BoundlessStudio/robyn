@@ -26,7 +26,7 @@ assert.deepEqual(
 );
 assert.equal(new Set(apps.map(({ id }) => id)).size, 26);
 assert.equal(apps.filter(({ ready }) => ready).length, 14);
-assert.equal(apps.filter(({ hasIcon }) => hasIcon).length, 14);
+assert.equal(apps.filter(({ hasIcon }) => hasIcon).length, 26);
 assert.equal(catalogBytes.length, sources.catalog.bytes);
 assert.equal(
   createHash("sha256").update(catalogBytes).digest("hex"),

@@ -8,6 +8,10 @@ The pilot is invitation-only and passwordless. Public signup must remain disable
 
 Independent app integrations live in src/studio/apps/*.json. Native images, browser adapter patches and workstation client sources belong in the companion ../robyn-artcraft-runtime, not a Dockerfile here. Never mark a manifest verified before its actual native → browser edit → confirmed save → native continuation passes. Do not overwrite a published release version with changed bytes.
 
+Application integrations must be seamless within the existing application. Wire the application's own File/Save actions and keyboard shortcuts directly to the confirmed private-library save flow, and use its existing menus, status area and dialog conventions. Never add a separate Robyn save bar, duplicate application controls, wrapper status banners or a simulated replacement editor. A download is not a library save; show success only after the immutable library revision is confirmed. If direct integration is blocked, stop work on that integration, explain the concrete limitation to the owner, and obtain direction before attempting a workaround. This is an explicit owner requirement, not an optional presentation preference.
+
+DashCraft is an explicit owner-approved exception to the edit/save round-trip requirement: integrate its existing read-only report computation and display, opening exact private-library inputs. Report authoring and asset-library writes are not required for DashCraft readiness.
+
 The current architecture is one visible Robyn and one shared workstation per creator, with all registered Craft applications installed. Application instructions load as skills when needed. Browsing and research are tools; saved notebooks remain Notes. Do not recreate the retired Director/specialist/Researcher roster. Run one production job per workspace and preserve task-specific credentials, working folders, internal profiles and uncertain-operation fences. Historical employee rows retain attribution only.
 
 ## Authorization and provider boundaries
