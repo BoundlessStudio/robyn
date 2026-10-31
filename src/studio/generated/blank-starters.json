@@ -1,5 +1,21 @@
 [
   {
+    "id": "materialcraft:5",
+    "appId": "materialcraft",
+    "name": "Untitled material",
+    "description": "Blank material graph · 512 × 512",
+    "files": [
+      {
+        "path": "Untitled material.sbs",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 612,
+        "sha256": "d3427fd0ea8aa9d6785f57b5c7adfa6a592307b463e7f2080e05f736886f9a42",
+        "url": "/studio/starters/5/materialcraft/Untitled%20material.sbs"
+      }
+    ]
+  },
+  {
     "id": "matcraft:4",
     "appId": "matcraft",
     "name": "Untitled script",

@@ -1,6 +1,6 @@
 # Robyn feature showcase
 
-The original ASCII robin guides a 60-second, 1920 × 1080 feature showcase. Eight chapters cover 26 Crafts grouped into Creative (10), Drafting (9) and Analysis (7), real editors including SolidCraft, one Robyn across the studios, browser control, saved Notes, media and exact revisions. The current source catalog identifies twenty-two ready integrations and four applications being connected. Includes local brand fonts, recorded editor captures, current application icons and monograms, an original stereo soundtrack and a poster composition. Previously exported videos retain their dated acceptance scope; changing the source catalog does not create a new export.
+The original ASCII robin guides a 60-second, 1920 × 1080 feature showcase. Eight chapters cover 26 Crafts grouped into Creative (10), Drafting (9) and Analysis (7), real editors including SolidCraft, one Robyn across the studios, browser control, saved Notes, media and exact revisions. The current source catalog identifies twenty-three ready integrations and three applications being connected. Includes local brand fonts, recorded editor captures, current application icons and monograms, an original stereo soundtrack and a poster composition. Previously exported videos retain their dated acceptance scope; changing the source catalog does not create a new export.
 
 ## Preview and edit
 

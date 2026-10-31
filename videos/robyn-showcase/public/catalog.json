@@ -80,7 +80,7 @@
           "name": "MaterialCraft",
           "monogram": "Mt",
           "color": "#c9b2dc",
-          "ready": false,
+          "ready": true,
           "hasIcon": true
         }
       ]

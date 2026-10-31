@@ -226,8 +226,8 @@
   ],
   "catalog": {
     "destination": "catalog.json",
-    "bytes": 5186,
-    "sha256": "4ddd5fa7e7468e0fa9017b416b32bc011200e40bd5aeb805ade465c264237c1d",
+    "bytes": 5185,
+    "sha256": "f47fd253d96085060299f1869af6d93ea64ce414b84e553a76b97c63ea5df41a",
     "sourceEncoding": "UTF-8 with LF line endings",
     "manifests": [
       {
@@ -277,8 +277,8 @@
       },
       {
         "source": "src/studio/apps/materialcraft.json",
-        "bytes": 1489,
-        "sha256": "0cddc260017d1579b3a0ff4595c08f54ff46e58f8d2433fa84ecf64f14dcdbd2"
+        "bytes": 1637,
+        "sha256": "c95d1a7e6e86c3d2915770ed281568e65095ea680c66ee1039b5b1b35cc74fdb"
       },
       {
         "source": "src/studio/apps/cadcraft.json",

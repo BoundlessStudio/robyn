@@ -149,6 +149,13 @@ export const craftArtwork: Record<string, CraftArtwork> = {
     "tools": "SCRIPTS / MATRICES / COMPUTATION",
     "fullFrame": true
   },
+  "materialcraft": {
+    "src": "/artwork/editors/materialcraft.png",
+    "title": "Build an idea into the surface.",
+    "alt": "MaterialCraft's actual material editor showing an editable node graph, linked source texture, material channels and genuine 2D and 3D previews.",
+    "tools": "MATERIALS / NODE GRAPHS / TEXTURES",
+    "fullFrame": true
+  },
   "solidcraft": {
     "src": "/artwork/editors/solidcraft.png",
     "title": "Give your idea another dimension.",

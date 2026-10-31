@@ -1,0 +1,584 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-31T23:03:52.240885+00:00",
+  "stage": "verified-sources-awaiting-web-deployment",
+  "scope": "MaterialCraft current 0.5.0 material graphs and exact linked textures; prior twenty-two Craft pins retained; three additions remain pending.",
+  "runtimeCommit": "9b7668f30111cdfb5413890d1a1cb08b443049d5",
+  "runtimeSourceCommit": "2d4e0524b6a239e5245011081225de6edbfc34f7",
+  "runtimePullRequest": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/14",
+  "readyCrafts": 23,
+  "installedCrafts": 26,
+  "remaining": [
+    "subcraft",
+    "dashcraft",
+    "datacraft"
+  ],
+  "app": {
+    "id": "materialcraft",
+    "manifest": {
+      "adapterVersion": "0.1.0",
+      "release": "materialcraft-v0.5.0-robyn-0.1.0",
+      "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/materialcraft/v0.5.0-0.1.0/?robyn",
+      "status": "verified"
+    },
+    "formats": [
+      ".sbs"
+    ],
+    "sourceCommit": "34cbfff7cf7341dd50298f89a4026131a2acda03",
+    "sourcePatchSha256": "0fd350eb9148f375accfb608ddfcd1a24417a22d50345f593d098427e94a7426",
+    "browserBundleSha256": "1667b6d6301ac8e41c6e4183ad27e59f447b691803f8a13e3d1f6619a097a41d",
+    "nativeCliSha256": "75d9a5a5b57722ab0bdf957f34d87ed2fe2dbacabf7771cf34532e6c62d923dd",
+    "nativeCases": [
+      {
+        "stage": "canonical",
+        "id": "linked",
+        "sourceFiles": [
+          {
+            "bytes": 8066,
+            "sha256": "d900f28765a44e128083a386574e978bb97aaff0ae9359b53584f5056f2c6967"
+          },
+          {
+            "bytes": 2056271,
+            "sha256": "1be13b58d4885797f37432a9f135707460833226d0caa7d806c988b15c8b50f5"
+          }
+        ],
+        "before": {
+          "size": 128,
+          "seed": 25,
+          "nodes": 13
+        },
+        "after": {
+          "size": 256,
+          "seed": 25,
+          "nodes": 13
+        },
+        "renders": {
+          "before": {
+            "width": 128,
+            "height": 128,
+            "bytes": 31848,
+            "sha256": "d562b7ea8f18a009132ef08363ac65a45c13e4f9d20748ddd9fc0c5e504662aa"
+          },
+          "after": {
+            "width": 256,
+            "height": 256,
+            "bytes": 114118,
+            "sha256": "5bb56c9da96dd734029d11eeb136b63637ceb06457e3704ea356b5d9ae2fe6a9"
+          }
+        },
+        "continuedMaster": {
+          "bytes": 8066,
+          "sha256": "da8ba3c5c2020dfd91a6f353430b21f0a5115f98fc7bd571a4873aefdfd7e6d8"
+        },
+        "continuedPackage": {
+          "masterPath": "Continued material.sbs",
+          "files": [
+            {
+              "path": "Continued material.sbs",
+              "bytes": 8066,
+              "sha256": "da8ba3c5c2020dfd91a6f353430b21f0a5115f98fc7bd571a4873aefdfd7e6d8"
+            },
+            {
+              "path": "images/leaf.png",
+              "bytes": 2056271,
+              "sha256": "1be13b58d4885797f37432a9f135707460833226d0caa7d806c988b15c8b50f5"
+            }
+          ]
+        },
+        "sourceFilesUnchanged": true
+      },
+      {
+        "stage": "canonical",
+        "id": "blank",
+        "sourceFiles": [
+          {
+            "bytes": 1018,
+            "sha256": "808937711ccaf53c950b5044594be6fd1cf8293e726055b4298c36d1f337db46"
+          }
+        ],
+        "before": {
+          "size": 512,
+          "seed": 31,
+          "nodes": 1
+        },
+        "after": {
+          "size": 256,
+          "seed": 31,
+          "nodes": 1
+        },
+        "renders": {
+          "before": {
+            "width": 128,
+            "height": 128,
+            "bytes": 157,
+            "sha256": "a2f0bb9b39aaa32c3177d2a14d39e34a954105e56ca356b449f49817fb1057a5"
+          },
+          "after": {
+            "width": 256,
+            "height": 256,
+            "bytes": 301,
+            "sha256": "149eea74ff2e701c39ccef26acf4a32cb11804c0cc2f4927879a695dcd11b8ba"
+          }
+        },
+        "continuedMaster": {
+          "bytes": 1018,
+          "sha256": "2c924000540d4f76d6c5ce0abd49d06d5f47dbb112f4378f02666c6e6c4c0d8d"
+        },
+        "continuedPackage": {
+          "masterPath": "Continued material.sbs",
+          "files": [
+            {
+              "path": "Continued material.sbs",
+              "bytes": 1018,
+              "sha256": "2c924000540d4f76d6c5ce0abd49d06d5f47dbb112f4378f02666c6e6c4c0d8d"
+            }
+          ]
+        },
+        "sourceFilesUnchanged": true
+      },
+      {
+        "stage": "hosted",
+        "id": "linked",
+        "sourceFiles": [
+          {
+            "bytes": 8066,
+            "sha256": "b5226934ff3f480c5d4a66f57ff651798995efe4e35dea4c7412255045f9dbf8"
+          },
+          {
+            "bytes": 2056271,
+            "sha256": "1be13b58d4885797f37432a9f135707460833226d0caa7d806c988b15c8b50f5"
+          }
+        ],
+        "before": {
+          "size": 128,
+          "seed": 28,
+          "nodes": 13
+        },
+        "after": {
+          "size": 256,
+          "seed": 28,
+          "nodes": 13
+        },
+        "renders": {
+          "before": {
+            "width": 128,
+            "height": 128,
+            "bytes": 31848,
+            "sha256": "d562b7ea8f18a009132ef08363ac65a45c13e4f9d20748ddd9fc0c5e504662aa"
+          },
+          "after": {
+            "width": 256,
+            "height": 256,
+            "bytes": 114118,
+            "sha256": "5bb56c9da96dd734029d11eeb136b63637ceb06457e3704ea356b5d9ae2fe6a9"
+          }
+        },
+        "continuedMaster": {
+          "bytes": 8066,
+          "sha256": "1e3f3f24f35c8fdceed3f879e67f73cd810654f2265c12af9384c8258ecd9287"
+        },
+        "continuedPackage": {
+          "masterPath": "Continued material.sbs",
+          "files": [
+            {
+              "path": "Continued material.sbs",
+              "bytes": 8066,
+              "sha256": "1e3f3f24f35c8fdceed3f879e67f73cd810654f2265c12af9384c8258ecd9287"
+            },
+            {
+              "path": "images/leaf.png",
+              "bytes": 2056271,
+              "sha256": "1be13b58d4885797f37432a9f135707460833226d0caa7d806c988b15c8b50f5"
+            }
+          ]
+        },
+        "sourceFilesUnchanged": true
+      },
+      {
+        "stage": "hosted",
+        "id": "blank",
+        "sourceFiles": [
+          {
+            "bytes": 1013,
+            "sha256": "09d80437ad65a8e722bac902eef54493f21c4398589c0beb435ac2f83c7f2af5"
+          }
+        ],
+        "before": {
+          "size": 512,
+          "seed": 41,
+          "nodes": 1
+        },
+        "after": {
+          "size": 256,
+          "seed": 41,
+          "nodes": 1
+        },
+        "renders": {
+          "before": {
+            "width": 128,
+            "height": 128,
+            "bytes": 157,
+            "sha256": "a2f0bb9b39aaa32c3177d2a14d39e34a954105e56ca356b449f49817fb1057a5"
+          },
+          "after": {
+            "width": 256,
+            "height": 256,
+            "bytes": 301,
+            "sha256": "149eea74ff2e701c39ccef26acf4a32cb11804c0cc2f4927879a695dcd11b8ba"
+          }
+        },
+        "continuedMaster": {
+          "bytes": 1013,
+          "sha256": "0eb3da49d1d63c00c901e9932f3c9005116c11b0cb3a5838c6f74669738ad5c2"
+        },
+        "continuedPackage": {
+          "masterPath": "Continued material.sbs",
+          "files": [
+            {
+              "path": "Continued material.sbs",
+              "bytes": 1013,
+              "sha256": "0eb3da49d1d63c00c901e9932f3c9005116c11b0cb3a5838c6f74669738ad5c2"
+            }
+          ]
+        },
+        "sourceFilesUnchanged": true
+      }
+    ],
+    "capture": {
+      "path": "public/artwork/editors/materialcraft.png",
+      "width": 1600,
+      "height": 1000,
+      "bytes": 322280,
+      "sha256": "902d7b4665f501f4706c140c618646a6457c108ec35aab793bdba98b482b09d8",
+      "method": "Unmodified actual Cloudflare-hosted MaterialCraft 0.5.0 screenshot after a real linked graph edit, confirmed private-library Save and full reload. The graph, flower source texture and CPU-rendered previews are genuine."
+    }
+  },
+  "workstation": {
+    "template": "robyn-studio-0-2-1@1",
+    "release": "sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da",
+    "clientVersion": "0.5.0",
+    "clientFingerprint": "bb0c7270a92c7ce3be7ae909df8f95850125cee596ce767152be47e7d71af717",
+    "bundle": {
+      "bytes": 2132791,
+      "sha256": "b55a96196a35c2059f821e542e7e2c48389b8a99aa5b20d57ad80b4ed95193de"
+    },
+    "imageChanged": false
+  },
+  "checks": {
+    "nativeBrowserRoundTrip": "Native-created SBS with a linked PNG and a genuine 512x512 native empty graph opened in the current 0.5.0 UI/CPU renderer. Ordinary graph controls and node creation saved exact packages through createEditorHost, transfer-client and the production owner-checked BFF/private Storage. Every returned file passed size/SHA-256 checks.",
+    "nativeContinuation": "Both canonical and actual Cloudflare-hosted saved packages reopened, rendered at 128px, continued to 256px, repackaged and reopened through the installed SHA-256-pinned MaterialCraft CLI and exact runtime packager on the owned shared workstation. Four complete cases; isolated maintenance assignments, no ordinary AI turn.",
+    "seamlessSave": "Existing Save/Ctrl+S, Save package as/Shift+Ctrl+S, File > Save a copy, native egui filename dialog and application status. No wrapper controls. Save success requires a durable immutable revision; Copy keeps the original asset binding.",
+    "failureHandling": "Real lost-commit-response recovery reconciled the same captured revision without duplicates and retained later edits. A real stale-revision conflict retained work and recovered through native Save As without advancing the current asset. Invalid paths failed locally without freezing a save. Local File > Open kept independent document bindings.",
+    "exactInputs": "Original SBS XML, recursive explicit SBS references and exact linked resources are retained; missing paths, XML entity declarations, escapes and symlink escapes are rejected. No unrelated folder scan or basename guessing. Current WASM resource reads use the exact mounted relative paths.",
+    "nativeStarter": "Version 5 SBS was generated with the actual release CLI at 512x512. Actual hosted node creation, Save, Save As and full reload passed; exact committed seeded graph passed installed-native rendering and continuation.",
+    "reproducibleBuild": {
+      "builder": "rust:1.95.0-slim-bookworm@sha256:d7482085ff5b415f84dba5647ae71606650bdef00db7aeb69f4b3d170c3e4082",
+      "bindgenVersion": "0.2.129",
+      "independentMatchingBuilds": 2,
+      "identicalFiles": 329,
+      "inventorySha256": "690e0f691fc1ccd7014e339d38fcc33f0e84874df0e24b1d3a68ed37d8112b81",
+      "rustDependenciesWithLicenses": 175,
+      "aliases": "Two underscore JS/WASM aliases are byte-identical to the genuine hyphenated entry points."
+    },
+    "quality": {
+      "runtimeTests": 125,
+      "linuxProfileTests": 4,
+      "nativeEngineTests": 31,
+      "wasmClippy": "passed with -D warnings and no lint allowances",
+      "newRustModuleFormatting": "passed"
+    },
+    "hostedDistribution": {
+      "checkedAt": "2026-10-31T22:45:51.867Z",
+      "origin": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev",
+      "catalogSha256": "abbb52ee21b5138ecf63e3ca2b189ba1a48e4c8df31b8793113af115cae3bc49",
+      "workerVersion": "89d3614f-db6d-4e1d-bb9f-19c29bada414",
+      "allHostedBytesVerified": true,
+      "prefix": "materialcraft/v0.5.0-0.1.0/",
+      "retainedReleases": 95
+    },
+    "qaCorrections": "A misbound project fixture was correctly rejected. An extra hosted blank run had an incorrect seed expectation; its one completed source case is not counted as blank acceptance. The failed run was reconciled and closed, then the visible blank edit was repeated and its saved XML rehashed before two fresh hosted native cases passed. A timed-out private file upload was reconciled by readback; native execution was not replayed.",
+    "productionWeb": "Not claimed by this source record."
+  },
+  "environment": {
+    "priorFilesPreserved": 11,
+    "instanceMetadataPreserved": true,
+    "resourcesPreserved": true,
+    "budgetAndModelUsagePreserved": true,
+    "credentialsIssued": 0,
+    "modelDispatches": 0,
+    "maintenanceLeasesClosed": true
+  },
+  "distribution": {
+    "checkedAt": "2026-10-31T22:45:51.867Z",
+    "origin": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev",
+    "accountId": "ad511085f517f4740591851cad7686eb",
+    "bucket": "robyn-editor-artifacts",
+    "releases": 96,
+    "files": 43816,
+    "uniqueObjects": 2798,
+    "bytes": 2238517638,
+    "catalogSha256": "abbb52ee21b5138ecf63e3ca2b189ba1a48e4c8df31b8793113af115cae3bc49",
+    "uploaded": 14,
+    "existing": 2784,
+    "allHostedBytesVerified": true,
+    "sourceBaseline": false,
+    "uploadOnly": false,
+    "privateBucket": true,
+    "readOnlyServingWorker": true,
+    "workerVersion": "89d3614f-db6d-4e1d-bb9f-19c29bada414",
+    "newRelease": "materialcraft/v0.5.0-0.1.0/",
+    "retainedReleases": 95
+  },
+  "retainedEditors": {
+    "count": 22,
+    "pins": [
+      {
+        "id": "designcraft",
+        "editor": {
+          "adapterVersion": "0.3.1",
+          "release": "designcraft-v0.14.0-robyn-0.3.1",
+          "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/designcraft/v0.14.0-0.3.1/?robyn",
+          "status": "verified"
+        }
+      },
+      {
+        "id": "effectcraft",
+        "editor": {
+          "adapterVersion": "0.3.1",
+          "release": "effectcraft-v0.18.0-robyn-0.3.1",
+          "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/effectcraft/v0.18.0-0.3.1/?robyn",
+          "status": "verified"
+        }
+      },
+      {
+        "id": "lightcraft",
+        "editor": {
+          "adapterVersion": "0.3.1",
+          "release": "lightcraft-v0.15.0-robyn-0.3.1",
+          "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/lightcraft/v0.15.0-0.3.1/?robyn",
+          "status": "verified"
+        }
+      },
+      {
+        "id": "figcraft",
+        "editor": {
+          "adapterVersion": "0.3.1",
+          "release": "figcraft-v0.12.1-robyn-0.3.1",
+          "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/figcraft/v0.12.1-0.3.1/?robyn",
+          "status": "verified"
+        }
+      },
+      {
+        "id": "photocraft",
+        "editor": {
+          "adapterVersion": "0.3.1",
+          "release": "photocraft-v0.17.0-robyn-0.3.1",
+          "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/photocraft/v0.17.0-0.3.1/?robyn",
+          "status": "verified"
+        }
+      },
+      {
+        "id": "soundcraft",
+        "editor": {
+          "adapterVersion": "0.3.1",
+          "release": "soundcraft-v0.14.0-robyn-0.3.1",
+          "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/soundcraft/v0.14.0-0.3.1/?robyn",
+          "status": "verified"
+        }
+      },
+      {
+        "id": "vectorcraft",
+        "editor": {
+          "adapterVersion": "0.3.1",
+          "release": "vectorcraft-v0.18.0-robyn-0.3.1",
+          "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/vectorcraft/v0.18.0-0.3.1/?robyn",
+          "status": "verified"
+        }
+      },
+      {
+        "id": "filmcraft",
+        "editor": {
+          "adapterVersion": "0.3.1",
+          "release": "filmcraft-v0.14.0-robyn-0.3.1",
+          "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/filmcraft/v0.14.0-0.3.1/?robyn",
+          "status": "verified"
+        }
+      },
+      {
+        "id": "cadcraft",
+        "editor": {
+          "adapterVersion": "0.3.1",
+          "release": "cadcraft-v0.14.0-robyn-0.3.1",
+          "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/cadcraft/v0.14.0-0.3.1/?robyn",
+          "status": "verified"
+        }
+      },
+      {
+        "id": "bimcraft",
+        "editor": {
+          "adapterVersion": "0.1.1",
+          "release": "bimcraft-v0.7.0-robyn-0.1.1",
+          "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/bimcraft/v0.7.0-0.1.1/?robyn",
+          "status": "verified"
+        }
+      },
+      {
+        "id": "modelcraft",
+        "editor": {
+          "adapterVersion": "0.1.1",
+          "release": "modelcraft-v0.7.0-robyn-0.1.1",
+          "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/modelcraft/v0.7.0-0.1.1/?robyn",
+          "status": "verified"
+        }
+      },
+      {
+        "id": "markupcraft",
+        "editor": {
+          "adapterVersion": "0.1.1",
+          "release": "markupcraft-v0.7.0-robyn-0.1.1",
+          "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/markupcraft/v0.7.0-0.1.1/?robyn",
+          "status": "verified"
+        }
+      },
+      {
+        "id": "takeoffcraft",
+        "editor": {
+          "adapterVersion": "0.1.1",
+          "release": "takeoffcraft-v0.7.0-robyn-0.1.1",
+          "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/takeoffcraft/v0.7.0-0.1.1/?robyn",
+          "status": "verified"
+        }
+      },
+      {
+        "id": "civilcraft",
+        "editor": {
+          "adapterVersion": "0.1.1",
+          "release": "civilcraft-v0.7.0-robyn-0.1.1",
+          "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/civilcraft/v0.7.0-0.1.1/?robyn",
+          "status": "verified"
+        }
+      },
+      {
+        "id": "detailcraft",
+        "editor": {
+          "adapterVersion": "0.1.1",
+          "release": "detailcraft-v0.7.0-robyn-0.1.1",
+          "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/detailcraft/v0.7.0-0.1.1/?robyn",
+          "status": "verified"
+        }
+      },
+      {
+        "id": "partcraft",
+        "editor": {
+          "adapterVersion": "0.1.1",
+          "release": "partcraft-v0.7.0-robyn-0.1.1",
+          "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/partcraft/v0.7.0-0.1.1/?robyn",
+          "status": "verified"
+        }
+      },
+      {
+        "id": "solidcraft",
+        "editor": {
+          "adapterVersion": "0.1.2",
+          "release": "solidcraft-v0.27.1-robyn-0.1.2",
+          "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/solidcraft/v0.27.1-0.1.2/?robyn",
+          "status": "verified"
+        }
+      },
+      {
+        "id": "gridcraft",
+        "editor": {
+          "adapterVersion": "0.3.1",
+          "release": "gridcraft-v0.13.0-robyn-0.3.1",
+          "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/gridcraft/v0.13.0-0.3.1/?robyn",
+          "status": "verified"
+        }
+      },
+      {
+        "id": "deckcraft",
+        "editor": {
+          "adapterVersion": "0.3.1",
+          "release": "deckcraft-v0.12.0-robyn-0.3.1",
+          "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/deckcraft/v0.12.0-0.3.1/?robyn",
+          "status": "verified"
+        }
+      },
+      {
+        "id": "pdfcraft",
+        "editor": {
+          "adapterVersion": "0.3.1",
+          "release": "pdfcraft-v0.15.0-robyn-0.3.1",
+          "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/pdfcraft/v0.15.0-0.3.1/?robyn",
+          "status": "verified"
+        }
+      },
+      {
+        "id": "wordcraft",
+        "editor": {
+          "adapterVersion": "0.3.1",
+          "release": "wordcraft-v0.12.0-robyn-0.3.1",
+          "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/wordcraft/v0.12.0-0.3.1/?robyn",
+          "status": "verified"
+        }
+      },
+      {
+        "id": "matcraft",
+        "editor": {
+          "adapterVersion": "0.1.0",
+          "release": "matcraft-v0.1.0-robyn-0.1.0",
+          "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/matcraft/v0.1.0-0.1.0/?robyn",
+          "status": "verified"
+        }
+      }
+    ]
+  },
+  "privateProof": [
+    {
+      "path": "E:/Development/robyn-shared-workstation-20261029/materialcraft-client-0.5.0-canary.private.json",
+      "sha256": "ae336e860e41a8d67af5242b4abfc2af61df4a645062e67b6d33660133aefada"
+    },
+    {
+      "path": "E:/Development/robyn-shared-workstation-20261029/materialcraft-canonical-browser-20261031.private.json",
+      "sha256": "8a935dd83a284463ad72dd7a025f71b65bd7776adc6664ec7650bd038a4cebcb"
+    },
+    {
+      "path": "E:/Development/robyn-shared-workstation-20261029/materialcraft-canonical-conflict-20261031.private.json",
+      "sha256": "01ca98339535f8a5d65c16d89843104efcecbdf2c56aa423da9021a773459bd1"
+    },
+    {
+      "path": "E:/Development/robyn-shared-workstation-20261029/materialcraft-hosted-browser-20261031.private.json",
+      "sha256": "90b0ef16f0b297859425493b0666e7ee0b70de5d35c76445a4606fecc079a443"
+    },
+    {
+      "path": "E:/Development/robyn-shared-workstation-20261029/materialcraft-hosted-browser-rechecked-20261031.private.json",
+      "sha256": "dd40389d0b63cfc715ff3bd4a2dfaa3cd088c19655d32b5b7eb1625e9d74c129"
+    },
+    {
+      "path": "E:/Development/robyn-shared-workstation-20261029/materialcraft-hosted-rechecked-client-0.5.0-canary.private.json",
+      "sha256": "b36ef119f362f724ee142f4877006abcbf07201f07d61e6c7ef21f91ee4dde4a"
+    },
+    {
+      "path": "E:/Development/robyn-shared-workstation-20261029/materialcraft-hosted-client-0.5.0-canary.private.json",
+      "sha256": "7478f212294f0b6718d06cd83a75d03c463f0d92f1af998fc73d5a6dc2d2aed2"
+    }
+  ],
+  "migrations": {
+    "applied": 0,
+    "lastRecordedVerifiedLedger": "30 matching checksummed entries through 0029; not reread by this release"
+  },
+  "limits": [
+    "Selected current-engine graph/texture operations and native controls, not every proprietary Substance node, bake/export feature or browser engine.",
+    "Editable SBS XML and its explicit exact relative dependencies; no arbitrary local filesystem access.",
+    "Desktop only; production Studio activation is a separate release gate."
+  ],
+  "localWebValidation": {
+    "typecheck": "passed",
+    "tests": 241,
+    "failures": 0,
+    "build": "passed",
+    "publicLayoutAxe": "18 Chromium/Firefox/WebKit page-viewport combinations passed",
+    "keyboardFocus": "14 passed; four default Windows WebKit implicit-focus cases remain explicitly unverified",
+    "homepageVisual": "1440x1000 and 390x844 reviewed without horizontal overflow; actual loaded capture, native-colour toggle, Escape and focus return passed",
+    "showcaseSourceTypecheck": "passed; twenty-three ready/three pending catalog; no new video export claimed"
+  }
+}
