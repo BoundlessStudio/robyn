@@ -1,15 +1,15 @@
 {
-  "version": "0.3.0",
-  "directory": "vendor/robyn-workstation/0.3.0-3e62cacf85f8",
-  "fingerprint": "3e62cacf85f887fa29275a664714b542c29d42ce6ea205475d4b20e8166d7fc5",
+  "version": "0.4.0",
+  "directory": "vendor/robyn-workstation/0.4.0-f994e1c108a4",
+  "fingerprint": "f994e1c108a49345376fccf4bf22b61cff50ca117f7423e29f89fd43df04185c",
   "files": {
     "studio-mcp.cjs": {
-      "bytes": 1891523,
-      "sha256": "651e17014bb5a073a184bb8dfd38361182516395df5b203eb41c1eb49534ddbd"
+      "bytes": 1899284,
+      "sha256": "c9ffb0c28c4bcff3e8572de888b2931f617eacddb0eb2318b2d49649a18bddd5"
     },
     "configure-hermes.py": {
-      "bytes": 10596,
-      "sha256": "c6fd1814b5624e71c3a8bff02fe3e642c259b603990439c81e098cd3e1a02bf0"
+      "bytes": 10608,
+      "sha256": "ddfc82b13fdb308a5e20a6c68ff792fec67c966bbd29f52e0009e1a72ebf7670"
     },
     "skills/bimcraft.md": {
       "bytes": 2483,
@@ -58,6 +58,10 @@
     "skills/markupcraft.md": {
       "bytes": 2629,
       "sha256": "b9171f75e8309cf8f6bb9c72add9d6ab706696c00e9e5c77e104c68df59a0779"
+    },
+    "skills/matcraft.md": {
+      "bytes": 2578,
+      "sha256": "8d448523366a77ef2bf8385f1a64670fe44515f5f7a2328b5bd594d28c005fbc"
     },
     "skills/modelcraft.md": {
       "bytes": 2520,

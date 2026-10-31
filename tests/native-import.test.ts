@@ -57,3 +57,14 @@ test("published adapter master names are normalized without changing source byte
   const light=await checkNativeImport("lightcraft",[{path:"My catalog.snap",file:catalog,role:"master"}]);
   assert.equal(light[0].path,"catalog.snap");assert.equal(light[0].file,catalog);
 });
+
+
+test("MatCraft intake keeps exact selected scripts and numerical inputs and rejects binary scripts",async()=>{
+  assert.equal(nativeImportApp("Study.m")?.id,"matcraft");
+  assert.equal(nativeImportApp("Workspace.MAT")?.id,"matcraft");
+  const script={path:"Study.m",role:"master",file:new Blob(["result = readmatrix('data/samples.csv');\n"])};
+  const data={path:"data/samples.csv",role:"dependency",file:new Blob(["1,2\n3,4\n"])};
+  assert.deepEqual(await checkNativeImport("matcraft",[script,data]),[script,data]);
+  await assert.rejects(checkNativeImport("matcraft",[{...script,file:new Blob([new Uint8Array([0,1,2])])}]));
+  await assert.rejects(checkNativeImport("matcraft",[{...script,path:"Broken.mat"}]));
+});
