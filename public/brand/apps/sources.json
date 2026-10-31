@@ -1,7 +1,7 @@
 {
   "retrieved": "2026-10-27",
   "catalogue": "https://getartcraft.com/apps",
-  "note": "Nine unchanged ArtCraft originals plus six Robyn animal illustrations requested by the owner.",
+  "note": "Nine unchanged ArtCraft originals plus eighteen Robyn animal illustrations requested by the owner; twenty-six Craft icons and the Notes/Research raven. Sixteen generated backgrounds were repaired on October 31; previous source prompts and hashes remain recorded.",
   "icons": [
     {
       "id": "photocraft",
@@ -60,14 +60,24 @@
     {
       "id": "cadcraft",
       "source": "Generated for Robyn with the built-in image_gen tool",
-      "generated": "2026-10-27",
-      "prompt": "Create one production application icon for CADCraft, matching the engraved animal icons for Robyn / ArtCraft shown in this conversation. A precise antique natural-history wood engraving of an orb-weaver spider, viewed from above with a subtly angled oval abdomen, compact head and exactly eight elegantly jointed legs arranged clearly around it. The spider is a graceful natural architect: calm, balanced, beautiful, anatomically plausible, not frightening, not cartoonish. Black ink crosshatching with warm ivory highlights, fine engraved texture, clean strong silhouette legible at 48 pixels. The spider fills most of the square with adequate space for the eight legs to remain recognizable and inside the tile. Background is a uniform vivid turquoise #16A8C2 rounded square filling the canvas, large smooth rounded corners, true transparency only outside the corners. Match the flat coloured tile and monochrome natural-history illustration style of the fox, owl, lion, elephant, peacock, beaver and raven icons. One icon only, 1024x1024 square. No lettering, no tools, no ruler, no drafting triangle, no web or scenery, no gradients, no shadows, no sticker rim, no outer margin. Full-bleed solid colour tile, crisp isolated detailed engraving.",
+      "generated": "2026-10-31",
+      "prompt": "Use case: precise-object-edit. Asset: production cadcraft application icon. The attached image is the edit target. Repair ONLY the background of this existing engraved orb-weaver spider with exactly eight legs icon. Preserve the animal identity, pose, crop, anatomy, fine black-ink crosshatching, warm ivory highlights and original composition. Replace the whole background with one perfectly uniform flat opaque #16A8C2 color extending edge to edge of the square INCLUDING all four corners. Remove every red/black fringe, dark blotch, hole, halo, semitransparent area, texture, gradient, shadow and vignette in the background. Every canvas pixel must be fully opaque: keep the complete colored tile, not an isolated animal cutout. Rounded corners will be applied separately by the application. Preserve every leg, antenna, feather or tail and the same silhouette. Do not add objects, lettering, outlines or sticker rim. One full-bleed square icon only.",
       "width": 256,
       "height": 256,
-      "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved.",
-      "sourceSha256": "08c66fb2ef378be7dd0ac1672d18844e9c3c1de0da3292db98f2df0d5f3697f4",
-      "bytes": 46960,
-      "sha256": "0fb06b48bafefe5cc2e4371836aed6db7907d5953f9df9c4711a7f77de5f45d2"
+      "processing": "Background repaired with the built-in image_gen tool as an opaque tile; encoded as 256 × 256 WebP with a clean 22% rounded-corner mask. Alpha is confined to the outer corners.",
+      "sourceSha256": "c29a7c58f8b8c1c0855111373168e74ebc80ca93d5aecb40a8fbfeaf687d5842",
+      "bytes": 23200,
+      "sha256": "337e14afb0da3f7e6e723788312a85b0de250a28f44a871fed48bc1eae06ebf3",
+      "previousVersions": [
+        {
+          "generated": "2026-10-27",
+          "prompt": "Create one production application icon for CADCraft, matching the engraved animal icons for Robyn / ArtCraft shown in this conversation. A precise antique natural-history wood engraving of an orb-weaver spider, viewed from above with a subtly angled oval abdomen, compact head and exactly eight elegantly jointed legs arranged clearly around it. The spider is a graceful natural architect: calm, balanced, beautiful, anatomically plausible, not frightening, not cartoonish. Black ink crosshatching with warm ivory highlights, fine engraved texture, clean strong silhouette legible at 48 pixels. The spider fills most of the square with adequate space for the eight legs to remain recognizable and inside the tile. Background is a uniform vivid turquoise #16A8C2 rounded square filling the canvas, large smooth rounded corners, true transparency only outside the corners. Match the flat coloured tile and monochrome natural-history illustration style of the fox, owl, lion, elephant, peacock, beaver and raven icons. One icon only, 1024x1024 square. No lettering, no tools, no ruler, no drafting triangle, no web or scenery, no gradients, no shadows, no sticker rim, no outer margin. Full-bleed solid colour tile, crisp isolated detailed engraving.",
+          "sourceSha256": "08c66fb2ef378be7dd0ac1672d18844e9c3c1de0da3292db98f2df0d5f3697f4",
+          "bytes": 46960,
+          "sha256": "0fb06b48bafefe5cc2e4371836aed6db7907d5953f9df9c4711a7f77de5f45d2",
+          "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved."
+        }
+      ]
     },
     {
       "id": "research",
@@ -84,38 +94,68 @@
     {
       "id": "wordcraft",
       "source": "Generated for Robyn with the built-in image_gen tool",
-      "generated": "2026-10-27",
-      "prompt": "Create a single production application icon for WordCraft in the ArtCraft animal icon family: a black-and-ivory antique natural-history wood engraving of an elephant's head and upper shoulders, three-quarter view facing left, expressive eye, large ears, gently curled trunk clearly visible. Fine dense black ink hatching, warm ivory paper-white highlights, crisp isolated animal silhouette. The elephant fills almost the whole icon, cropped at the bottom. Background is a uniform vivid royal blue #3C59DD rounded-square tile filling the square canvas, large smooth rounded corners, actual transparency outside the corners only. Icon must match the detailed monochrome fox, owl, lynx, lion and chameleon illustrations on flat saturated coloured rounded tiles shown in this conversation. Strong outline legible at 48 pixels. One icon only, 1024x1024. No text, letters, book, pen, UI, shadow, gradients, sticker rim or surrounding margin. No scenery. Flat vintage engraved animal, not cartoon or 3D.",
+      "generated": "2026-10-31",
+      "prompt": "Use case: precise-object-edit. Asset: production wordcraft application icon. Input image is the edit target. Repair ONLY the background of this existing engraved elephant icon. Preserve the same animal, pose, crop, face, anatomy, black ink crosshatching and warm ivory highlights. Replace the entire background with one perfectly uniform flat opaque #3C59DD color, extending from edge to edge of the square INCLUDING all four corners. Completely remove all red or black fringes, dark blotches, holes, semitransparent areas, halos, texture, gradients, shadows and vignettes from the background. Every pixel of the canvas must be opaque; do not cut out the animal or remove the tile background. The application applies rounded corners separately. Keep the animal illustration crisp and detailed, with the same silhouette and composition. No lettering, no new objects, no outlines or sticker rim. One full-bleed square icon only.",
       "width": 256,
       "height": 256,
-      "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved.",
-      "sourceSha256": "b1a1368749a33fed1f605343ccacc34e355596e38c5a7062929296e1d83da70e",
-      "bytes": 43010,
-      "sha256": "1dd203cc9a1ba33f0415564a8a4d8b740b780fb68976ec5c32a2d58675d0f1b4"
+      "processing": "Background repaired with the built-in image_gen tool as an opaque tile; encoded as 256 × 256 WebP with a clean 22% rounded-corner mask. Alpha is confined to the outer corners.",
+      "sourceSha256": "c26fd261500f65ed5e6b064fc85c6278c82e1bdb8d669f29b48a1f91ad585f83",
+      "bytes": 33074,
+      "sha256": "253c45f3de61365df39c0cce228b5dfe0a1acd411e9202eaf5dba77bf0ccdd53",
+      "previousVersions": [
+        {
+          "generated": "2026-10-27",
+          "prompt": "Create a single production application icon for WordCraft in the ArtCraft animal icon family: a black-and-ivory antique natural-history wood engraving of an elephant's head and upper shoulders, three-quarter view facing left, expressive eye, large ears, gently curled trunk clearly visible. Fine dense black ink hatching, warm ivory paper-white highlights, crisp isolated animal silhouette. The elephant fills almost the whole icon, cropped at the bottom. Background is a uniform vivid royal blue #3C59DD rounded-square tile filling the square canvas, large smooth rounded corners, actual transparency outside the corners only. Icon must match the detailed monochrome fox, owl, lynx, lion and chameleon illustrations on flat saturated coloured rounded tiles shown in this conversation. Strong outline legible at 48 pixels. One icon only, 1024x1024. No text, letters, book, pen, UI, shadow, gradients, sticker rim or surrounding margin. No scenery. Flat vintage engraved animal, not cartoon or 3D.",
+          "sourceSha256": "b1a1368749a33fed1f605343ccacc34e355596e38c5a7062929296e1d83da70e",
+          "bytes": 43010,
+          "sha256": "1dd203cc9a1ba33f0415564a8a4d8b740b780fb68976ec5c32a2d58675d0f1b4",
+          "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved."
+        }
+      ]
     },
     {
       "id": "deckcraft",
       "source": "Generated for Robyn with the built-in image_gen tool",
-      "generated": "2026-10-27",
-      "prompt": "Create a single production application icon for DeckCraft in the ArtCraft animal icon family: a black-and-ivory antique natural-history wood engraving of a proud peacock with its distinctive slim curved neck, small feather crown and elegant head in profile facing left, with a compact fan of patterned tail feathers rising behind it. Composition makes the peacock head and neck prominent and recognizable, not lost in feathers. Fine dense black ink hatching, warm ivory paper-white highlights, crisp isolated animal silhouette. The bird fills almost the whole icon, cropped at the bottom. Background is a uniform vivid orange #FF731B rounded-square tile filling the square canvas, large smooth rounded corners, actual transparency outside the corners only. Icon must match the detailed monochrome fox, owl, lynx, lion and chameleon illustrations on flat saturated coloured rounded tiles shown in this conversation. Strong outline legible at 48 pixels. One icon only, 1024x1024. No text, letters, objects, UI, shadow, gradients, sticker rim or surrounding margin. No scenery. Flat vintage engraved animal, not cartoon or 3D.",
+      "generated": "2026-10-31",
+      "prompt": "Use case: precise-object-edit. Asset: production deckcraft application icon. The attached image is the edit target. Repair ONLY the background of this existing engraved peacock icon. Preserve the animal identity, pose, crop, anatomy, fine black-ink crosshatching, warm ivory highlights and original composition. Replace the whole background with one perfectly uniform flat opaque #FF731B color extending edge to edge of the square INCLUDING all four corners. Remove every red/black fringe, dark blotch, hole, halo, semitransparent area, texture, gradient, shadow and vignette in the background. Every canvas pixel must be fully opaque: keep the complete colored tile, not an isolated animal cutout. Rounded corners will be applied separately by the application. Preserve every leg, antenna, feather or tail and the same silhouette. Do not add objects, lettering, outlines or sticker rim. One full-bleed square icon only.",
       "width": 256,
       "height": 256,
-      "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved.",
-      "sourceSha256": "8d6973df581a013f58fd622189a671648a9326c8f6f9415539a10933c2301cf5",
-      "bytes": 45416,
-      "sha256": "3a9b53df2850d1d17825087c67afe45269bbb7cbdcc98671e7945ab6793e18cb"
+      "processing": "Background repaired with the built-in image_gen tool as an opaque tile; encoded as 256 × 256 WebP with a clean 22% rounded-corner mask. Alpha is confined to the outer corners.",
+      "sourceSha256": "a1e34a49c4ed12479d2ee117b0307ca35cb4804d18e1d5bae3c4f95fe4b12f73",
+      "bytes": 29990,
+      "sha256": "35eaa7b0589fccde69d4048ed25049f8ed106564e6ef9fd6d014c6416af69d27",
+      "previousVersions": [
+        {
+          "generated": "2026-10-27",
+          "prompt": "Create a single production application icon for DeckCraft in the ArtCraft animal icon family: a black-and-ivory antique natural-history wood engraving of a proud peacock with its distinctive slim curved neck, small feather crown and elegant head in profile facing left, with a compact fan of patterned tail feathers rising behind it. Composition makes the peacock head and neck prominent and recognizable, not lost in feathers. Fine dense black ink hatching, warm ivory paper-white highlights, crisp isolated animal silhouette. The bird fills almost the whole icon, cropped at the bottom. Background is a uniform vivid orange #FF731B rounded-square tile filling the square canvas, large smooth rounded corners, actual transparency outside the corners only. Icon must match the detailed monochrome fox, owl, lynx, lion and chameleon illustrations on flat saturated coloured rounded tiles shown in this conversation. Strong outline legible at 48 pixels. One icon only, 1024x1024. No text, letters, objects, UI, shadow, gradients, sticker rim or surrounding margin. No scenery. Flat vintage engraved animal, not cartoon or 3D.",
+          "sourceSha256": "8d6973df581a013f58fd622189a671648a9326c8f6f9415539a10933c2301cf5",
+          "bytes": 45416,
+          "sha256": "3a9b53df2850d1d17825087c67afe45269bbb7cbdcc98671e7945ab6793e18cb",
+          "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved."
+        }
+      ]
     },
     {
       "id": "gridcraft",
       "source": "Generated for Robyn with the built-in image_gen tool",
-      "generated": "2026-10-27",
-      "prompt": "Create a single production application icon for GridCraft in the ArtCraft animal icon family: a black-and-ivory antique natural-history wood engraving of a beaver's head and upper chest, three-quarter view facing left. Broad round head, small round ears, bright observant eye, characteristic blunt muzzle and two clear modest front teeth; small forepaws at the bottom, a hint of flat patterned tail on one side. Fine dense black ink hatching, warm ivory paper-white highlights, crisp isolated animal silhouette. The beaver fills almost the whole icon, cropped at the bottom. Background is a uniform vivid emerald green #209D59 rounded-square tile filling the square canvas, large smooth rounded corners, actual transparency outside the corners only. Icon must match the detailed monochrome fox, owl, lynx, lion and chameleon illustrations on flat saturated coloured rounded tiles shown in this conversation. Strong outline legible at 48 pixels. One icon only, 1024x1024. No text, letters, tools, UI, shadow, gradients, sticker rim or surrounding margin. No scenery. Flat vintage engraved animal, not cartoon or 3D.",
+      "generated": "2026-10-31",
+      "prompt": "Use case: precise-object-edit. Asset: production gridcraft application icon. The attached image is the edit target. Repair ONLY the background of this existing engraved beaver icon. Preserve the animal identity, pose, crop, anatomy, fine black-ink crosshatching, warm ivory highlights and original composition. Replace the whole background with one perfectly uniform flat opaque #209D59 color extending edge to edge of the square INCLUDING all four corners. Remove every red/black fringe, dark blotch, hole, halo, semitransparent area, texture, gradient, shadow and vignette in the background. Every canvas pixel must be fully opaque: keep the complete colored tile, not an isolated animal cutout. Rounded corners will be applied separately by the application. Preserve every leg, antenna, feather or tail and the same silhouette. Do not add objects, lettering, outlines or sticker rim. One full-bleed square icon only.",
       "width": 256,
       "height": 256,
-      "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved.",
-      "sourceSha256": "2605fc6a86d837b04eb90207d9bf74f15108f01b7256c7e73be8992ba4abc949",
-      "bytes": 47024,
-      "sha256": "d245e8bfe2f747944ea2ecbaba1f8e63213dd040793d6a09eeb3cbc7dc1f0d01"
+      "processing": "Background repaired with the built-in image_gen tool as an opaque tile; encoded as 256 × 256 WebP with a clean 22% rounded-corner mask. Alpha is confined to the outer corners.",
+      "sourceSha256": "8c6d2a438b6923d6b8b635eaf4e7af885b33aad13a661252ff9a75c9fd57cbf9",
+      "bytes": 32556,
+      "sha256": "ec5167956d300b13ff8c17bd23f34290a2545366e2b376adf28860c7b25e8070",
+      "previousVersions": [
+        {
+          "generated": "2026-10-27",
+          "prompt": "Create a single production application icon for GridCraft in the ArtCraft animal icon family: a black-and-ivory antique natural-history wood engraving of a beaver's head and upper chest, three-quarter view facing left. Broad round head, small round ears, bright observant eye, characteristic blunt muzzle and two clear modest front teeth; small forepaws at the bottom, a hint of flat patterned tail on one side. Fine dense black ink hatching, warm ivory paper-white highlights, crisp isolated animal silhouette. The beaver fills almost the whole icon, cropped at the bottom. Background is a uniform vivid emerald green #209D59 rounded-square tile filling the square canvas, large smooth rounded corners, actual transparency outside the corners only. Icon must match the detailed monochrome fox, owl, lynx, lion and chameleon illustrations on flat saturated coloured rounded tiles shown in this conversation. Strong outline legible at 48 pixels. One icon only, 1024x1024. No text, letters, tools, UI, shadow, gradients, sticker rim or surrounding margin. No scenery. Flat vintage engraved animal, not cartoon or 3D.",
+          "sourceSha256": "2605fc6a86d837b04eb90207d9bf74f15108f01b7256c7e73be8992ba4abc949",
+          "bytes": 47024,
+          "sha256": "d245e8bfe2f747944ea2ecbaba1f8e63213dd040793d6a09eeb3cbc7dc1f0d01",
+          "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved."
+        }
+      ]
     },
     {
       "id": "solidcraft",
@@ -128,6 +168,282 @@
       "sourceSha256": "a2be763c34f784f53b4ba50d846e7d0bdc609be3914edbd971b449fb07dc44f1",
       "bytes": 45148,
       "sha256": "edc580363fde8607c97e931370d907c548f90fa4992d35011484d0ea898e1ebd"
+    },
+    {
+      "id": "bimcraft",
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-10-31",
+      "animal": "termite",
+      "prompt": "Use case: precise-object-edit. Asset: production bimcraft application icon. The attached image is the edit target. Repair ONLY the background of this existing engraved termite with exactly six legs and two antennae icon. Preserve the animal identity, pose, crop, anatomy, fine black-ink crosshatching, warm ivory highlights and original composition. Replace the whole background with one perfectly uniform flat opaque #C6A34F color extending edge to edge of the square INCLUDING all four corners. Remove every red/black fringe, dark blotch, hole, halo, semitransparent area, texture, gradient, shadow and vignette in the background. Every canvas pixel must be fully opaque: keep the complete colored tile, not an isolated animal cutout. Rounded corners will be applied separately by the application. Preserve every leg, antenna, feather or tail and the same silhouette. Do not add objects, lettering, outlines or sticker rim. One full-bleed square icon only.",
+      "width": 256,
+      "height": 256,
+      "processing": "Background repaired with the built-in image_gen tool as an opaque tile; encoded as 256 × 256 WebP with a clean 22% rounded-corner mask. Alpha is confined to the outer corners.",
+      "sourceSha256": "b55e35761659c9b762b442732a9107a115c1eb824874fa3ae203b297cde4ddd8",
+      "bytes": 23704,
+      "sha256": "9754183b330866acb20e6ef68eee777444fb5d01b0166967093c2eb160cf2763",
+      "previousVersions": [
+        {
+          "generated": "2026-10-31",
+          "prompt": "Use case: logo-brand. Asset type: a single production application icon for bimcraft in Robyn's existing engraved-animal Craft family. The three supplied images are STYLE REFERENCES only, not edit targets. Subject: a termite, a calm natural architect, with a clearly recognizable head, antennae and six legs. Style: intricate antique natural-history wood engraving in dense black ink cross-hatching and warm ivory highlights, anatomically plausible, beautiful and calm, strong recognizable silhouette legible at 32 pixels. Centered close crop filling most of a saturated #C6A34F rounded square tile; large smooth rounded corners, real alpha transparency outside the tile. Match the reference beaver, spider and armadillo in weight, detail, cropping and flat solid background. Animal can subtly overlap the tile edge, as in the references. One animal, one square icon, 1024 by 1024. No text, lettering, tools, scenery, border, outer margin, shadows, gradients, 3D, glossy effects, watermark or checkerboard.",
+          "sourceSha256": "54699d18080e61dc350e7128e409bbc4445f8dce3a3e516956c4a0fe458ddfb4",
+          "bytes": 33824,
+          "sha256": "21d59320379f1184dc9a459da115fb4beb99e964b2cb8ecab522b0aa609bb9c3",
+          "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved."
+        }
+      ]
+    },
+    {
+      "id": "modelcraft",
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-10-31",
+      "animal": "giraffe",
+      "prompt": "Use case: precise-object-edit. Asset: production modelcraft application icon. Input image is the edit target. Repair ONLY the background of this existing engraved giraffe icon. Preserve the same animal, pose, crop, face, anatomy, black ink crosshatching and warm ivory highlights. Replace the entire background with one perfectly uniform flat opaque #CF617A color, extending from edge to edge of the square INCLUDING all four corners. Completely remove all red or black fringes, dark blotches, holes, semitransparent areas, halos, texture, gradients, shadows and vignettes from the background. Every pixel of the canvas must be opaque; do not cut out the animal or remove the tile background. The application applies rounded corners separately. Keep the animal illustration crisp and detailed, with the same silhouette and composition. No lettering, no new objects, no outlines or sticker rim. One full-bleed square icon only.",
+      "width": 256,
+      "height": 256,
+      "processing": "Background repaired with the built-in image_gen tool as an opaque tile; encoded as 256 × 256 WebP with a clean 22% rounded-corner mask. Alpha is confined to the outer corners.",
+      "sourceSha256": "638a42a057bc614350dcf4dcfe8d1b98a6ed8e19b6f8e5e1114ccd0e41076fa1",
+      "bytes": 26924,
+      "sha256": "7b733feb5b42b8fa1798330ca8b59bfd636890fca8216bea5fe4de6b369608f5",
+      "previousVersions": [
+        {
+          "generated": "2026-10-31",
+          "prompt": "Use case: logo-brand. Asset type: a single production application icon for modelcraft in Robyn's existing engraved-animal Craft family. The three supplied images are STYLE REFERENCES only, not edit targets. Subject: a giraffe's head and upper neck, with distinctive ossicones and patches. Style: intricate antique natural-history wood engraving in dense black ink cross-hatching and warm ivory highlights, anatomically plausible, beautiful and calm, strong recognizable silhouette legible at 32 pixels. Centered close crop filling most of a saturated #CF617A rounded square tile; large smooth rounded corners, real alpha transparency outside the tile. Match the reference beaver, spider and armadillo in weight, detail, cropping and flat solid background. Animal can subtly overlap the tile edge, as in the references. One animal, one square icon, 1024 by 1024. No text, lettering, tools, scenery, border, outer margin, shadows, gradients, 3D, glossy effects, watermark or checkerboard.",
+          "sourceSha256": "e87c0128a812c4f19ddae171cbfb76bdcd033779af7f010a2e82cfe2e1593e8a",
+          "bytes": 44080,
+          "sha256": "fa762d107dfc5ac8812a0f082a6e167dd67af610fa7addc992ee82f776a7f97e",
+          "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved."
+        }
+      ]
+    },
+    {
+      "id": "markupcraft",
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-10-31",
+      "animal": "woodpecker",
+      "prompt": "Use case: precise-object-edit. Asset: production markupcraft application icon. The attached image is the edit target. Repair ONLY the background of this existing engraved woodpecker icon. Preserve the same animal identity, pose, face, crop, anatomy, detailed black-ink crosshatching and warm ivory highlights. Replace the whole background with one perfectly uniform flat opaque #E85F54 color extending edge to edge of the square INCLUDING all four corners. Remove every red/black fringe, dark blotch, hole, halo, semitransparent area, texture, gradient, shadow and vignette from the background. Every pixel must be fully opaque: keep the complete colored tile rather than an isolated animal cutout. Rounded corners will be applied separately by the application. Keep the same silhouette and original engraving style. No added objects, lettering, outlines, sticker rim or scenery. One full-bleed square icon only.",
+      "width": 256,
+      "height": 256,
+      "processing": "Background repaired with the built-in image_gen tool as an opaque tile; encoded as 256 × 256 WebP with a clean 22% rounded-corner mask. Alpha is confined to the outer corners.",
+      "sourceSha256": "9f6cd7969a8132271533161151893054135872b0e9596d766ef5958ed0ec26bb",
+      "bytes": 28048,
+      "sha256": "187a6a2cb064003eb617c8aedebf8ad0510a78305a8d3811d554ab0154a43e57",
+      "previousVersions": [
+        {
+          "generated": "2026-10-31",
+          "prompt": "Use case: logo-brand. Asset type: a single production application icon for markupcraft in Robyn's existing engraved-animal Craft family. The three supplied images are STYLE REFERENCES only, not edit targets. Subject: a woodpecker's head and upper body in alert three-quarter profile. Style: intricate antique natural-history wood engraving in dense black ink cross-hatching and warm ivory highlights, anatomically plausible, beautiful and calm, strong recognizable silhouette legible at 32 pixels. Centered close crop filling most of a saturated #E85F54 rounded square tile; large smooth rounded corners, real alpha transparency outside the tile. Match the reference beaver, spider and armadillo in weight, detail, cropping and flat solid background. Animal can subtly overlap the tile edge, as in the references. One animal, one square icon, 1024 by 1024. No text, lettering, tools, scenery, border, outer margin, shadows, gradients, 3D, glossy effects, watermark or checkerboard.",
+          "sourceSha256": "a36d25edc62377873cea1f96128e36489bc5e2c24406e3b72e4e3445e5730c54",
+          "bytes": 42024,
+          "sha256": "8f36170e61827c9822464d12134b65f7536c6770d88cff0df2e22d590268ef75",
+          "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved."
+        }
+      ]
+    },
+    {
+      "id": "takeoffcraft",
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-10-31",
+      "animal": "kestrel",
+      "prompt": "Use case: precise-object-edit. Asset: production takeoffcraft application icon. The attached image is the edit target. Repair ONLY the background of this existing engraved kestrel icon. Preserve the same animal identity, pose, face, crop, anatomy, detailed black-ink crosshatching and warm ivory highlights. Replace the whole background with one perfectly uniform flat opaque #D6AE35 color extending edge to edge of the square INCLUDING all four corners. Remove every red/black fringe, dark blotch, hole, halo, semitransparent area, texture, gradient, shadow and vignette from the background. Every pixel must be fully opaque: keep the complete colored tile rather than an isolated animal cutout. Rounded corners will be applied separately by the application. Keep the same silhouette and original engraving style. No added objects, lettering, outlines, sticker rim or scenery. One full-bleed square icon only.",
+      "width": 256,
+      "height": 256,
+      "processing": "Background repaired with the built-in image_gen tool as an opaque tile; encoded as 256 × 256 WebP with a clean 22% rounded-corner mask. Alpha is confined to the outer corners.",
+      "sourceSha256": "ab9537ff523fb2090e85a1facd91d7ddf4639bee6f572ca2b9953d7a292a38ce",
+      "bytes": 29306,
+      "sha256": "7f182e9670b2fd85d60196c555703c71fa80415b6fce0fb7645ff3837edb6959",
+      "previousVersions": [
+        {
+          "generated": "2026-10-31",
+          "prompt": "Use case: logo-brand. Asset type: one square production application icon for takeoffcraft, matching Robyn's engraved animal icon family. The three images are STYLE REFERENCES only. Subject: a kestrel falcon's head and upper body, keen observant eye and hooked beak. Intricate antique natural-history wood engraving, dense fine black cross-hatching and warm ivory highlights, anatomically plausible, calm, beautiful, strong silhouette legible at 32 pixels. Centered close crop filling most of a uniform saturated #D6AE35 rounded square tile, smooth large rounded corners, true alpha transparency outside the tile. Match the reference beaver, spider and armadillo in weight, detail and flat background. One animal, one icon, square 1024 by 1024. No text, tools, scenery, shadow, gradient, border, margin, glossy or 3D effect, watermark or checkerboard.",
+          "sourceSha256": "d406be453e85d240bdd9258a67a8b76af73dabbb8b8fd5ca60c779e060f1d07c",
+          "bytes": 46632,
+          "sha256": "fa6c92325a8e5208119d2827cd22a0a29425e5e120183af74ab2a14adf3507fc",
+          "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved."
+        }
+      ]
+    },
+    {
+      "id": "civilcraft",
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-10-31",
+      "animal": "badger",
+      "prompt": "Use case: precise-object-edit. Asset: production civilcraft application icon. The attached image is the edit target. Repair ONLY the background of this existing engraved badger icon. Preserve the same animal identity, pose, face, crop, anatomy, detailed black-ink crosshatching and warm ivory highlights. Replace the whole background with one perfectly uniform flat opaque #7D9D45 color extending edge to edge of the square INCLUDING all four corners. Remove every red/black fringe, dark blotch, hole, halo, semitransparent area, texture, gradient, shadow and vignette from the background. Every pixel must be fully opaque: keep the complete colored tile rather than an isolated animal cutout. Rounded corners will be applied separately by the application. Keep the same silhouette and original engraving style. No added objects, lettering, outlines, sticker rim or scenery. One full-bleed square icon only.",
+      "width": 256,
+      "height": 256,
+      "processing": "Background repaired with the built-in image_gen tool as an opaque tile; encoded as 256 × 256 WebP with a clean 22% rounded-corner mask. Alpha is confined to the outer corners.",
+      "sourceSha256": "d6bb1cebc3525398ca7dbde6e9c974f65e0e31b250832c6f46abacf60042e05d",
+      "bytes": 31210,
+      "sha256": "d8f2d969ef37e031dcb8bec961ebdd5636484ebe2ce680bdbaace2b046e24b55",
+      "previousVersions": [
+        {
+          "generated": "2026-10-31",
+          "prompt": "Use case: logo-brand. Asset type: one square production application icon for civilcraft, matching Robyn's engraved animal icon family. The three images are STYLE REFERENCES only. Subject: a European badger's head and shoulders, distinctive black and ivory facial stripes. Intricate antique natural-history wood engraving, dense fine black cross-hatching and warm ivory highlights, anatomically plausible, calm, beautiful, strong silhouette legible at 32 pixels. Centered close crop filling most of a uniform saturated #7D9D45 rounded square tile, smooth large rounded corners, true alpha transparency outside the tile. Match the reference beaver, spider and armadillo in weight, detail and flat background. One animal, one icon, square 1024 by 1024. No text, tools, scenery, shadow, gradient, border, margin, glossy or 3D effect, watermark or checkerboard.",
+          "sourceSha256": "677ab6f427a306166429f28a89abc5f650835695e2c40c95f228e909334d3184",
+          "bytes": 46788,
+          "sha256": "801cb5a18d303d0e1861f39d453a877a3bf8a7ac7769d2da36c6a7c20ba18b66",
+          "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved."
+        }
+      ]
+    },
+    {
+      "id": "detailcraft",
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-10-31",
+      "animal": "kingfisher",
+      "prompt": "Use case: precise-object-edit. Asset: production detailcraft application icon. The attached image is the edit target. Repair ONLY the background of this existing engraved kingfisher icon. Preserve the same animal identity, pose, face, crop, anatomy, detailed black-ink crosshatching and warm ivory highlights. Replace the whole background with one perfectly uniform flat opaque #36A6C9 color extending edge to edge of the square INCLUDING all four corners. Remove every red/black fringe, dark blotch, hole, halo, semitransparent area, texture, gradient, shadow and vignette from the background. Every pixel must be fully opaque: keep the complete colored tile rather than an isolated animal cutout. Rounded corners will be applied separately by the application. Keep the same silhouette and original engraving style. No added objects, lettering, outlines, sticker rim or scenery. One full-bleed square icon only.",
+      "width": 256,
+      "height": 256,
+      "processing": "Background repaired with the built-in image_gen tool as an opaque tile; encoded as 256 × 256 WebP with a clean 22% rounded-corner mask. Alpha is confined to the outer corners.",
+      "sourceSha256": "7b340e94b0ae73927423ecd7a69c333a43c245fa9a9775fe5821f2da10d3fac7",
+      "bytes": 26354,
+      "sha256": "ef002cb99e2a6606e501369a346ad6db75a98d7886a00250cee4e7f1e1e68850",
+      "previousVersions": [
+        {
+          "generated": "2026-10-31",
+          "prompt": "Use case: logo-brand. Asset type: one square production application icon for detailcraft, matching Robyn's engraved animal icon family. The three images are STYLE REFERENCES only. Subject: a kingfisher's head and upper body in three-quarter profile, long straight beak and patterned feathers. Intricate antique natural-history wood engraving, dense fine black cross-hatching and warm ivory highlights, anatomically plausible, calm, beautiful, strong silhouette legible at 32 pixels. Centered close crop filling most of a uniform saturated #36A6C9 rounded square tile, smooth large rounded corners, true alpha transparency outside the tile. Match the reference beaver, spider and armadillo in weight, detail and flat background. One animal, one icon, square 1024 by 1024. No text, tools, scenery, shadow, gradient, border, margin, glossy or 3D effect, watermark or checkerboard.",
+          "sourceSha256": "4c5f6bb3ae8bd9bef36c017d75da1931e098be201f10669c2b7d7b44d1588e81",
+          "bytes": 37168,
+          "sha256": "c734c2c358074c74a2396d1e602cba15f9b1f1535ddba5224e7ffcaa836322d1",
+          "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved."
+        }
+      ]
+    },
+    {
+      "id": "partcraft",
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-10-31",
+      "animal": "ant",
+      "prompt": "Use case: precise-object-edit. Asset: production partcraft application icon. The attached image is the edit target. Repair ONLY the background of this existing engraved ant with exactly six legs and two antennae icon. Preserve the animal identity, pose, face, crop, anatomy, intricate black-ink crosshatching and warm ivory highlights. Replace the entire background with one perfectly uniform flat opaque #4686C8 color extending edge to edge of the square INCLUDING every corner. Remove every red/black fringe, dark blotch, hole, halo, semitransparent area, texture, gradient, shadow and vignette in the background. Every pixel must be fully opaque; keep the complete colored tile, not a transparent animal cutout. The application applies rounded corners separately. Keep the same recognizable silhouette and engraving detail. No added objects, lettering, outlines, sticker rim or scenery. One full-bleed square icon only.",
+      "width": 256,
+      "height": 256,
+      "processing": "Background repaired with the built-in image_gen tool as an opaque tile; encoded as 256 × 256 WebP with a clean 22% rounded-corner mask. Alpha is confined to the outer corners.",
+      "sourceSha256": "859f67cd482d01d6aba112ee9d17fdc680ddcb033067024783c5bf1c15824c60",
+      "bytes": 21956,
+      "sha256": "4f3764337317949aed7526c7969cbb11b4b2a6c71e73698e63622253bd505170",
+      "previousVersions": [
+        {
+          "generated": "2026-10-31",
+          "prompt": "Use case: logo-brand. Asset type: one square production application icon for partcraft, matching Robyn's engraved-animal icon family. The three images are STYLE REFERENCES only. Subject: a single ant, six elegantly jointed legs, distinctive narrow waist and curved antennae, an industrious natural builder. Intricate antique natural-history wood engraving, dense fine black cross-hatching and warm ivory highlights, anatomically plausible, calm, beautiful, strong silhouette legible at 32 pixels. Centered close crop filling most of a uniform saturated #4686C8 rounded square tile, smooth large rounded corners, true alpha transparency outside the tile. Match the reference beaver, spider and armadillo in weight, detail and flat background. One animal, one icon, square 1024 by 1024. No text, tools, scenery, shadow, gradient, border, margin, glossy or 3D effect, watermark or checkerboard.",
+          "sourceSha256": "08a7c8fd1d36efacefcd59305e1b4d2806906f066f740befcbf1f5cbcfa988d0",
+          "bytes": 45876,
+          "sha256": "4dc0f91cf5d6851c44e7a3adc9e949c0c01384daf78edddee9516437c030e6ab",
+          "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved."
+        }
+      ]
+    },
+    {
+      "id": "subcraft",
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-10-31",
+      "animal": "cuttlefish",
+      "prompt": "Use case: precise-object-edit. Asset: production subcraft application icon. The attached image is the edit target. Repair ONLY the background of this existing engraved cuttlefish icon. Preserve the animal identity, pose, face, crop, anatomy, intricate black-ink crosshatching and warm ivory highlights. Replace the entire background with one perfectly uniform flat opaque #7A65D7 color extending edge to edge of the square INCLUDING every corner. Remove every red/black fringe, dark blotch, hole, halo, semitransparent area, texture, gradient, shadow and vignette in the background. Every pixel must be fully opaque; keep the complete colored tile, not a transparent animal cutout. The application applies rounded corners separately. Keep the same recognizable silhouette and engraving detail. No added objects, lettering, outlines, sticker rim or scenery. One full-bleed square icon only.",
+      "width": 256,
+      "height": 256,
+      "processing": "Background repaired with the built-in image_gen tool as an opaque tile; encoded as 256 × 256 WebP with a clean 22% rounded-corner mask. Alpha is confined to the outer corners.",
+      "sourceSha256": "5668f73c932fc1013c60d2af74fc796657bdaf09971991c4bb73a8a94416afb3",
+      "bytes": 29132,
+      "sha256": "1a42b44685470ee234066125f7ece57d83701774c695c9649ecd9302fc63af79",
+      "previousVersions": [
+        {
+          "generated": "2026-10-31",
+          "prompt": "Use case: logo-brand. Asset type: one square production application icon for subcraft, matching Robyn's engraved-animal icon family. The three images are STYLE REFERENCES only. Subject: a cuttlefish with expressive eyes, flowing mantle and a compact natural arrangement of arms. Intricate antique natural-history wood engraving, dense fine black cross-hatching and warm ivory highlights, anatomically plausible, calm, beautiful, strong silhouette legible at 32 pixels. Centered close crop filling most of a uniform saturated #7A65D7 rounded square tile, smooth large rounded corners, true alpha transparency outside the tile. Match the reference beaver, spider and armadillo in weight, detail and flat background. One animal, one icon, square 1024 by 1024. No text, tools, scenery, shadow, gradient, border, margin, glossy or 3D effect, watermark or checkerboard.",
+          "sourceSha256": "af28d37c0c5d117010d7bb027f48234d44890c6c912da3865afd90ee3d03dba9",
+          "bytes": 44464,
+          "sha256": "59d2b6e88a6be845c35d4ab9a9d3c936e05dcd9fc88143a689dd5805b76c48ab",
+          "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved."
+        }
+      ]
+    },
+    {
+      "id": "materialcraft",
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-10-31",
+      "animal": "nautilus",
+      "prompt": "Use case: precise-object-edit. Asset: production materialcraft application icon. The attached image is the edit target. Repair ONLY the background of this existing engraved nautilus icon. Preserve the animal identity, pose, face, crop, anatomy, intricate black-ink crosshatching and warm ivory highlights. Replace the entire background with one perfectly uniform flat opaque #C47739 color extending edge to edge of the square INCLUDING every corner. Remove every red/black fringe, dark blotch, hole, halo, semitransparent area, texture, gradient, shadow and vignette in the background. Every pixel must be fully opaque; keep the complete colored tile, not a transparent animal cutout. The application applies rounded corners separately. Keep the same recognizable silhouette and engraving detail. No added objects, lettering, outlines, sticker rim or scenery. One full-bleed square icon only.",
+      "width": 256,
+      "height": 256,
+      "processing": "Background repaired with the built-in image_gen tool as an opaque tile; encoded as 256 × 256 WebP with a clean 22% rounded-corner mask. Alpha is confined to the outer corners.",
+      "sourceSha256": "62838734ff71d88fd8e39897449d84dcd14ecad03f0b9e54b5d2d8835b8b9434",
+      "bytes": 29844,
+      "sha256": "03a7b17bcbf593fe2e4b9f653492bb148bef3e5b7d38442b668c5d567921edbe",
+      "previousVersions": [
+        {
+          "generated": "2026-10-31",
+          "prompt": "Use case: logo-brand. Asset type: one square production application icon for materialcraft, matching Robyn's engraved-animal icon family. The three images are STYLE REFERENCES only. Subject: a chambered nautilus with its beautifully patterned spiral shell, head and a compact arrangement of slender tentacles. Intricate antique natural-history wood engraving, dense fine black cross-hatching and warm ivory highlights, anatomically plausible, calm, beautiful, strong silhouette legible at 32 pixels. Centered close crop filling most of a uniform saturated #C47739 rounded square tile, smooth large rounded corners, true alpha transparency outside the tile. Match the reference beaver, spider and armadillo in weight, detail and flat background. One animal, one icon, square 1024 by 1024. No text, tools, scenery, shadow, gradient, border, margin, glossy or 3D effect, watermark or checkerboard.",
+          "sourceSha256": "d0ec14560fd7a0e7d18a301916378bad2b615724a3835700b0b8dad2474780a7",
+          "bytes": 44638,
+          "sha256": "03f36242a0216febef9bc9490028e4aa1bd71be62fdbbbeaa0366ecc0d52ae5f",
+          "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved."
+        }
+      ]
+    },
+    {
+      "id": "dashcraft",
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-10-31",
+      "animal": "meerkat",
+      "prompt": "Use case: precise-object-edit. Asset: production dashcraft application icon. The attached image is the edit target. Repair ONLY the background of this existing engraved meerkat icon. Preserve the same animal identity, pose, face, crop, anatomy, intricate black-ink crosshatching and warm ivory highlights. Replace the entire background with one perfectly uniform flat opaque #AA6CCC color extending edge to edge of the square INCLUDING all four corners. Remove every red/black fringe, dark blotch, hole, halo, semitransparent area, texture, gradient, shadow and vignette in the background. Every pixel must be fully opaque, keeping the entire colored tile rather than an isolated transparent cutout. The application applies rounded corners separately. Keep the same recognizable silhouette and engraving detail. No added objects, lettering, outlines, sticker rim or scenery. One full-bleed square icon only.",
+      "width": 256,
+      "height": 256,
+      "processing": "Background repaired with the built-in image_gen tool as an opaque tile; encoded as 256 × 256 WebP with a clean 22% rounded-corner mask. Alpha is confined to the outer corners.",
+      "sourceSha256": "40da87e3f089203c0ceb156b54d5083ca3187058189471a69c642f5366f6c8df",
+      "bytes": 27134,
+      "sha256": "41785f613710ffd4f0b0027a3a268f149ac22e1c490e26ba3eaacbe37107b972",
+      "previousVersions": [
+        {
+          "generated": "2026-10-31",
+          "prompt": "Use case: logo-brand. Asset type: one square production application icon for dashcraft, matching Robyn's engraved-animal icon family. The three images are STYLE REFERENCES only. Subject: a meerkat's head and upper torso in an alert upright pose, intelligent eyes and small ears. Intricate antique natural-history wood engraving, dense fine black cross-hatching and warm ivory highlights, anatomically plausible, calm, beautiful, strong silhouette legible at 32 pixels. Centered close crop filling most of a uniform saturated #AA6CCC rounded square tile, smooth large rounded corners, true alpha transparency outside the tile. Match the reference beaver, spider and armadillo in weight, detail and flat background. One animal, one icon, square 1024 by 1024. No text, tools, scenery, shadow, gradient, border, margin, glossy or 3D effect, watermark or checkerboard.",
+          "sourceSha256": "eb97ad3a861f92e18a5593c2ccaf431a1c188729ef412ddd525e1cce28bfc6bf",
+          "bytes": 45818,
+          "sha256": "39a93b35503b321c2978f8b22b16eef3f92bafa6e55aa4242514b45e7d8774c7",
+          "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved."
+        }
+      ]
+    },
+    {
+      "id": "matcraft",
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-10-31",
+      "animal": "dolphin",
+      "prompt": "Use case: precise-object-edit. Asset: production matcraft application icon. The attached image is the edit target. Repair ONLY the background of this existing engraved dolphin icon. Preserve the same animal identity, pose, face, crop, anatomy, intricate black-ink crosshatching and warm ivory highlights. Replace the entire background with one perfectly uniform flat opaque #39A59D color extending edge to edge of the square INCLUDING all four corners. Remove every red/black fringe, dark blotch, hole, halo, semitransparent area, texture, gradient, shadow and vignette in the background. Every pixel must be fully opaque, keeping the entire colored tile rather than an isolated transparent cutout. The application applies rounded corners separately. Keep the same recognizable silhouette and engraving detail. No added objects, lettering, outlines, sticker rim or scenery. One full-bleed square icon only.",
+      "width": 256,
+      "height": 256,
+      "processing": "Background repaired with the built-in image_gen tool as an opaque tile; encoded as 256 × 256 WebP with a clean 22% rounded-corner mask. Alpha is confined to the outer corners.",
+      "sourceSha256": "4d4cb944e6e7d15830ac7a314bf83caed4e61708d5ca23d90fbffc68519e0e3b",
+      "bytes": 23392,
+      "sha256": "de01fb70c885fe3a2bbed0cb52a701f40996fe3566c726bed6d7ed9b4a526eb8",
+      "previousVersions": [
+        {
+          "generated": "2026-10-31",
+          "prompt": "Use case: logo-brand. Asset type: one square production application icon for matcraft, matching Robyn's engraved-animal icon family. The three images are STYLE REFERENCES only. Subject: a dolphin in a graceful compact curve, clear natural rostrum, dorsal fin and tail, elegant balanced silhouette. Intricate antique natural-history wood engraving, dense fine black cross-hatching and warm ivory highlights, anatomically plausible, calm, beautiful, strong silhouette legible at 32 pixels. Centered close crop filling most of a uniform saturated #39A59D rounded square tile, smooth large rounded corners, true alpha transparency outside the tile. Match the reference beaver, spider and armadillo in weight, detail and flat background. One animal, one icon, square 1024 by 1024. No text, tools, scenery, shadow, gradient, border, margin, glossy or 3D effect, watermark or checkerboard.",
+          "sourceSha256": "9b48110cf42328f4507e7426fe5bad67d765d47ad7d29a7b4dbcfefbd0cca364",
+          "bytes": 36308,
+          "sha256": "b1b94230963b8555944f13af06a7bbc5fffc53db6e974102afc53f812745b85f",
+          "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved."
+        }
+      ]
+    },
+    {
+      "id": "datacraft",
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-10-31",
+      "animal": "raccoon",
+      "prompt": "Use case: precise-object-edit. Asset: production datacraft application icon. The attached image is the edit target. Repair ONLY the background of this existing engraved raccoon icon. Preserve the same animal identity, pose, face, crop, anatomy, intricate black-ink crosshatching and warm ivory highlights. Replace the entire background with one perfectly uniform flat opaque #586ED9 color extending edge to edge of the square INCLUDING all four corners. Remove every red/black fringe, dark blotch, hole, halo, semitransparent area, texture, gradient, shadow and vignette in the background. Every pixel must be fully opaque, keeping the entire colored tile rather than an isolated transparent cutout. The application applies rounded corners separately. Keep the same recognizable silhouette and engraving detail. No added objects, lettering, outlines, sticker rim or scenery. One full-bleed square icon only.",
+      "width": 256,
+      "height": 256,
+      "processing": "Background repaired with the built-in image_gen tool as an opaque tile; encoded as 256 × 256 WebP with a clean 22% rounded-corner mask. Alpha is confined to the outer corners.",
+      "sourceSha256": "76e4f88a6220ec2645182d0b9d98a36c4cdb87669605eb0281d451d92308a082",
+      "bytes": 33516,
+      "sha256": "ca9e4216577a1cb49687caf1bb684b41005886ef93bff2e58e8c74e4a6cb6087",
+      "previousVersions": [
+        {
+          "generated": "2026-10-31",
+          "prompt": "Use case: logo-brand. Asset type: one square production application icon for datacraft, matching Robyn's engraved-animal icon family. The three images are STYLE REFERENCES only. Subject: a raccoon's head and upper shoulders, distinctive dark eye mask and finely engraved fur. Intricate antique natural-history wood engraving, dense fine black cross-hatching and warm ivory highlights, anatomically plausible, calm, beautiful, strong silhouette legible at 32 pixels. Centered close crop filling most of a uniform saturated #586ED9 rounded square tile, smooth large rounded corners, true alpha transparency outside the tile. Match the reference beaver, spider and armadillo in weight, detail and flat background. One animal, one icon, square 1024 by 1024. No text, tools, scenery, shadow, gradient, border, margin, glossy or 3D effect, watermark or checkerboard.",
+          "sourceSha256": "4ff49e0b5a0b0bf90d4238740b842acddbae333868f31f75bc36b9a6e16b437a",
+          "bytes": 41788,
+          "sha256": "dc4f6fd7e0c978d74b03278328c98e89b55c3a7db79aecd26c9ef32f44b9afcf",
+          "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved."
+        }
+      ]
     }
   ]
 }

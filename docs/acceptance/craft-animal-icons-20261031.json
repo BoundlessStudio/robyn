@@ -1,0 +1,239 @@
+{
+  "date": "2026-10-31",
+  "scope": "Application artwork only; application integration readiness is unchanged.",
+  "method": "Sixteen built-in image_gen edits repaired opaque tile backgrounds. Deterministic encoding applies the shared 22% rounded-corner silhouette; transparency is confined to the corners.",
+  "repaired": [
+    "cadcraft",
+    "wordcraft",
+    "deckcraft",
+    "gridcraft",
+    "bimcraft",
+    "modelcraft",
+    "markupcraft",
+    "takeoffcraft",
+    "civilcraft",
+    "detailcraft",
+    "partcraft",
+    "subcraft",
+    "materialcraft",
+    "dashcraft",
+    "matcraft",
+    "datacraft"
+  ],
+  "visualReview": {
+    "sizes": [
+      32,
+      48,
+      80
+    ],
+    "surfaces": [
+      "dark",
+      "light"
+    ],
+    "result": "passed"
+  },
+  "assets": [
+    {
+      "id": "photocraft",
+      "sha256": "3dc4caf2a44de97ddde2d18fcb6b5629f97c3bd159ff8a4a35f3bf122854513a",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "vectorcraft",
+      "sha256": "c48f5f530363ea86278c80729a4fcd75346be8bf2f5718d3beaffcbbcfe093cf",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "filmcraft",
+      "sha256": "b9da03e528790c6bcca4403d45cd538512e82accf1a6b6384d0cfb59834f3b35",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "lightcraft",
+      "sha256": "8db8bf365af9a422f37c96ef29a25e55c9508993e782f291cdfd15d4d33dc47e",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "pdfcraft",
+      "sha256": "96d7d96e89eca7bb43f198606af3cf3aa13b3bb262147c885eb063c060086eb6",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "effectcraft",
+      "sha256": "0c65ee3b451a5447315725fb93d454fabd7adf3a598c835ebe293eebf3e799e0",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "designcraft",
+      "sha256": "e51060f1e246783bf3163db378d8adcfd53e0a468590df9bad9f36243323fb6a",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "figcraft",
+      "sha256": "c9e9753431a038b186bcf411c1c98a126bf326e03e618f3cf59b41f562833fad",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "soundcraft",
+      "sha256": "f02169fc5dbf594f2516f0dc22cfa7ac2ce324a8dd7ea92958270649e75f8ef2",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "cadcraft",
+      "sha256": "337e14afb0da3f7e6e723788312a85b0de250a28f44a871fed48bc1eae06ebf3",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "research",
+      "sha256": "c82cb6a3f60f318fbc28b3013d39f57888fc776aeb83987e4b7f1f4218c43e26",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "wordcraft",
+      "sha256": "253c45f3de61365df39c0cce228b5dfe0a1acd411e9202eaf5dba77bf0ccdd53",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "deckcraft",
+      "sha256": "35eaa7b0589fccde69d4048ed25049f8ed106564e6ef9fd6d014c6416af69d27",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "gridcraft",
+      "sha256": "ec5167956d300b13ff8c17bd23f34290a2545366e2b376adf28860c7b25e8070",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "solidcraft",
+      "sha256": "edc580363fde8607c97e931370d907c548f90fa4992d35011484d0ea898e1ebd",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "bimcraft",
+      "sha256": "9754183b330866acb20e6ef68eee777444fb5d01b0166967093c2eb160cf2763",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "modelcraft",
+      "sha256": "7b733feb5b42b8fa1798330ca8b59bfd636890fca8216bea5fe4de6b369608f5",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "markupcraft",
+      "sha256": "187a6a2cb064003eb617c8aedebf8ad0510a78305a8d3811d554ab0154a43e57",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "takeoffcraft",
+      "sha256": "7f182e9670b2fd85d60196c555703c71fa80415b6fce0fb7645ff3837edb6959",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "civilcraft",
+      "sha256": "d8f2d969ef37e031dcb8bec961ebdd5636484ebe2ce680bdbaace2b046e24b55",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "detailcraft",
+      "sha256": "ef002cb99e2a6606e501369a346ad6db75a98d7886a00250cee4e7f1e1e68850",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "partcraft",
+      "sha256": "4f3764337317949aed7526c7969cbb11b4b2a6c71e73698e63622253bd505170",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "subcraft",
+      "sha256": "1a42b44685470ee234066125f7ece57d83701774c695c9649ecd9302fc63af79",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "materialcraft",
+      "sha256": "03a7b17bcbf593fe2e4b9f653492bb148bef3e5b7d38442b668c5d567921edbe",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "dashcraft",
+      "sha256": "41785f613710ffd4f0b0027a3a268f149ac22e1c490e26ba3eaacbe37107b972",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "matcraft",
+      "sha256": "de01fb70c885fe3a2bbed0cb52a701f40996fe3566c726bed6d7ed9b4a526eb8",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "datacraft",
+      "sha256": "ca9e4216577a1cb49687caf1bb684b41005886ef93bff2e58e8c74e4a6cb6087",
+      "interiorNonopaquePixels": 0,
+      "width": 256,
+      "height": 256
+    }
+  ],
+  "provenance": {
+    "path": "public/brand/apps/sources.json",
+    "sha256": "a0ac122c5e08c37bb6551a9d8a9722237b49bcca3f129f0d408bb16751293bb4"
+  },
+  "cache": "AppIcon image URLs include a content hash; showcase image copies and inventory were refreshed.",
+  "validation": [
+    "27 icon interiors checked for unintended transparency; all 16 repaired interiors are fully opaque",
+    "Existing icon provenance/registration tests passed",
+    "TypeScript typecheck passed",
+    "Full web suite: 235 tests passed",
+    "Production build passed: 45 static pages generated",
+    "All eight showcase chapters rendered without browser errors; icon chapter visually reviewed"
+  ]
+}

@@ -73,7 +73,7 @@
           "monogram": "Su",
           "color": "#d8b39f",
           "ready": false,
-          "hasIcon": false
+          "hasIcon": true
         },
         {
           "id": "materialcraft",
@@ -81,7 +81,7 @@
           "monogram": "Mt",
           "color": "#c9b2dc",
           "ready": false,
-          "hasIcon": false
+          "hasIcon": true
         }
       ]
     },
@@ -102,7 +102,7 @@
           "monogram": "Bi",
           "color": "#a7c9c1",
           "ready": false,
-          "hasIcon": false
+          "hasIcon": true
         },
         {
           "id": "modelcraft",
@@ -110,7 +110,7 @@
           "monogram": "Mo",
           "color": "#c7bf9d",
           "ready": false,
-          "hasIcon": false
+          "hasIcon": true
         },
         {
           "id": "markupcraft",
@@ -118,7 +118,7 @@
           "monogram": "Mk",
           "color": "#d0b0a3",
           "ready": false,
-          "hasIcon": false
+          "hasIcon": true
         },
         {
           "id": "takeoffcraft",
@@ -126,7 +126,7 @@
           "monogram": "Tk",
           "color": "#bfcba1",
           "ready": false,
-          "hasIcon": false
+          "hasIcon": true
         },
         {
           "id": "civilcraft",
@@ -134,7 +134,7 @@
           "monogram": "Ci",
           "color": "#b6c59a",
           "ready": false,
-          "hasIcon": false
+          "hasIcon": true
         },
         {
           "id": "detailcraft",
@@ -142,7 +142,7 @@
           "monogram": "Dt",
           "color": "#aabfca",
           "ready": false,
-          "hasIcon": false
+          "hasIcon": true
         },
         {
           "id": "partcraft",
@@ -150,7 +150,7 @@
           "monogram": "Pa",
           "color": "#aeb9d1",
           "ready": false,
-          "hasIcon": false
+          "hasIcon": true
         },
         {
           "id": "solidcraft",
@@ -203,7 +203,7 @@
           "monogram": "Da",
           "color": "#9fc7bf",
           "ready": false,
-          "hasIcon": false
+          "hasIcon": true
         },
         {
           "id": "matcraft",
@@ -211,7 +211,7 @@
           "monogram": "Ma",
           "color": "#b6c7df",
           "ready": false,
-          "hasIcon": false
+          "hasIcon": true
         },
         {
           "id": "datacraft",
@@ -219,7 +219,7 @@
           "monogram": "Dc",
           "color": "#a4c9d2",
           "ready": false,
-          "hasIcon": false
+          "hasIcon": true
         }
       ]
     }
