@@ -85,7 +85,7 @@ export const Stage = ({
         }}
       >
         <span>SMALL BIRD. BIG IDEAS.</span>
-        <span>{number} / 08</span>
+        <span>{number} / 07</span>
       </div>
       <Interactive.Div
         name="Chapter entrance"
@@ -156,7 +156,6 @@ export const Reveal = ({
 };
 
 // Preserve the recorded editor pixels and their individual source dimensions.
-// Notes shows the saved document body below the retired Research toolbar.
 const captures = {
   photocraft: {
     file: "photocraft.png",
@@ -202,15 +201,6 @@ const captures = {
     y: 0,
     width: 1600,
     height: 1000,
-  },
-  notes: {
-    file: "notes.jpg",
-    sourceWidth: 1440,
-    sourceHeight: 1000,
-    x: 184,
-    y: 130,
-    width: 1256,
-    height: 870,
   },
 };
 

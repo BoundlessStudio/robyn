@@ -53,7 +53,6 @@ const files = [
   ["public/artwork/editors/solidcraft.png", "editors/solidcraft.png"],
   ["public/artwork/editors/dashcraft-showcase.png", "editors/dashcraft.png"],
   ["public/artwork/editors/datacraft.png", "editors/datacraft.png"],
-  ["public/artwork/editors/research.jpg", "editors/notes.jpg"],
   ["public/brand/apps/SolidCraft-LICENSE.txt", "apps/SolidCraft-LICENSE.txt"],
   ["public/artwork/offscript-bloom.png", "artwork/bloom.png"],
   [

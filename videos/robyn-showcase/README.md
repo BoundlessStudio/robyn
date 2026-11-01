@@ -1,6 +1,6 @@
 # Robyn feature showcase
 
-The original ASCII robin guides a 60-second, 1920 × 1080 feature showcase. Eight chapters cover 26 Crafts grouped into Creative (10), Drafting (9) and Analysis (7), real editors including SolidCraft, one Robyn across the studios, browser control, saved Notes, media and exact revisions. The current source catalog has all 26 integrations ready, including the read-only DashCraft report viewer and the editable DataCraft SQLite workspace. Includes local brand fonts, recorded editor captures, current application icons and monograms, an original stereo soundtrack and a poster composition. Previously exported videos retain their dated acceptance scope; changing the source catalog does not create a new export.
+The original ASCII robin guides a 60-second, 1920 × 1080 feature showcase. Seven chapters cover 26 Crafts grouped into Creative (10), Drafting (9) and Analysis (7), real editors including SolidCraft, one Robyn across the studios, sources, the Asset library, compatible files moving between Crafts, media and exact revisions. The standalone browser/Notes chapter and its historical Research capture have been removed. The current source catalog has all 26 integrations ready, including the read-only DashCraft report viewer and the editable DataCraft SQLite workspace. Includes local brand fonts, recorded editor captures, current application icons and monograms, an original stereo soundtrack and a poster composition. Previously exported videos retain their dated acceptance scope; changing the source does not create a new export.
 
 ## Preview and edit
 
@@ -45,7 +45,7 @@ npm run qa:stills
 npm audit
 ```
 
-`qa:mascot` compares every geometry point, material, color and character against the original homepage robin. `qa:stills` validates metadata and captures 42 master frames, including all five featured editors and takeoff, wipe and landing samples at every transition, plus all eight standalone chapters into ignored `out/qa`. Use `npm run qa:stills -- --chapters-only` to inspect just the chapter previews. These are still-frame checks, not an MP4 export. The first run may download Remotion's Chrome Headless Shell.
+`qa:mascot` compares every geometry point, material, color and character against the original homepage robin. `qa:stills` validates metadata and captures 42 master frames, including all five featured editors, both parts of the sources/Assets chapter and takeoff, wipe and landing samples at every chapter transition, plus all seven standalone chapters into ignored `out/qa`. Use `npm run qa:stills -- --chapters-only` to inspect just the chapter previews. Pass `--out-dir=out/qa-name` to preserve an earlier check's frames. These are still-frame checks, not an MP4 export. The first run may download Remotion's Chrome Headless Shell.
 
 All required public assets are checked in. `npm run assets` refreshes them and the catalog from the web repository using Node 24 (run the web root's `npm ci` first to make its font files available). Existing icon provenance determines which applications use images; pending applications without an icon use their catalog monogram. Image/font bytes are preserved and license text uses LF line endings. `npm run score` reproduces the original soundtrack from source, without external services.
 

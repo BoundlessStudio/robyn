@@ -115,7 +115,7 @@ for (let bar = 0; bar < 24; bar++) {
     }
   }
 }
-for (const time of [7.5, 15, 25, 32.5, 40, 47.5, 55]) {
+for (const time of [7.5, 15, 25, 32.5, 47.5, 55]) {
   // Soft air, followed by an ascending two-note cue that belongs to the bird.
   add(
     time - 0.42,

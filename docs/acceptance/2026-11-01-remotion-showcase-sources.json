@@ -1,0 +1,208 @@
+{
+  "scope": "Editable showcase project and Studio preview; removed browser/Notes chapter and expanded sources, Asset library and compatible cross-Craft handoffs. No new MP4 export.",
+  "baseWebCommit": "0688af7c1ab22bdb58db057210307a53cf3af6a9",
+  "runtimeCommit": "a02fe2e0d47d449701ddb7ee929943116d214e7b",
+  "pairedApplicationRelease": "docs/acceptance/datacraft-integration-deployed-20261101.json",
+  "metadata": {
+    "composition": "RobynShowcase",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "durationInFrames": 1800
+  },
+  "chapters": [
+    {
+      "id": "IdeasHaveWings",
+      "frame": 100,
+      "masterFrame": 100
+    },
+    {
+      "id": "ThreeStudios",
+      "frame": 125,
+      "masterFrame": 350
+    },
+    {
+      "id": "RealTools",
+      "frame": 100,
+      "masterFrame": 550
+    },
+    {
+      "id": "OneRobyn",
+      "frame": 110,
+      "masterFrame": 860
+    },
+    {
+      "id": "Media",
+      "frame": 345,
+      "masterFrame": 1320
+    },
+    {
+      "id": "SavedRevisions",
+      "frame": 115,
+      "masterFrame": 1540
+    },
+    {
+      "id": "Invitation",
+      "frame": 90,
+      "masterFrame": 1740
+    }
+  ],
+  "masterSamples": 42,
+  "rendererErrors": [],
+  "chapterPixelComparison": [
+    {
+      "chapter": "IdeasHaveWings",
+      "masterFrame": 100,
+      "exactPixelsExceptProgressBar": true
+    },
+    {
+      "chapter": "ThreeStudios",
+      "masterFrame": 350,
+      "exactPixelsExceptProgressBar": true
+    },
+    {
+      "chapter": "RealTools",
+      "masterFrame": 550,
+      "exactPixelsExceptProgressBar": true
+    },
+    {
+      "chapter": "OneRobyn",
+      "masterFrame": 860,
+      "exactPixelsExceptProgressBar": true
+    },
+    {
+      "chapter": "Media",
+      "masterFrame": 1320,
+      "exactPixelsExceptProgressBar": true
+    },
+    {
+      "chapter": "SavedRevisions",
+      "masterFrame": 1540,
+      "exactPixelsExceptProgressBar": true
+    },
+    {
+      "chapter": "Invitation",
+      "masterFrame": 1740,
+      "exactPixelsExceptProgressBar": true
+    }
+  ],
+  "catalog": {
+    "studios": [
+      {
+        "name": "Creative",
+        "applications": 10
+      },
+      {
+        "name": "Drafting",
+        "applications": 9
+      },
+      {
+        "name": "Analysis",
+        "applications": 7
+      }
+    ],
+    "applications": 26,
+    "ready": 26,
+    "connecting": 0,
+    "copiedAssets": 38,
+    "sha256": "d6b6170d5ac59e7f763dad29815ccebf469baa6f1cf059ff155273f9c6adc34e"
+  },
+  "checks": {
+    "lintAndTypecheck": "passed",
+    "remotionBundle": "passed",
+    "originalMascotGeometryPaletteAndRamp": "passed",
+    "studioChapterListAndPlayback": "reviewed",
+    "nativeOrEditorPinsChanged": false
+  },
+  "claimBoundary": "Motion graphic of explicit placement of compatible originals, exports and previews with exact source references; no automatic live sync or universal native-format interchange.",
+  "score": {
+    "path": "videos/robyn-showcase/public/audio/paper-and-wings.wav",
+    "bytes": 11520044,
+    "sha256": "5ea15ff82781128560ed4a5dd9229d3c9f73ef669fa1e650a421ba67fac6d51f",
+    "seconds": 60,
+    "sampleRate": 48000,
+    "channels": 2,
+    "chapterCuesSeconds": [
+      7.5,
+      15,
+      25,
+      32.5,
+      47.5,
+      55
+    ]
+  },
+  "localProofs": [
+    {
+      "path": "videos/robyn-showcase/out/qa-sources-20261101-final/check.json",
+      "sha256": "dcdbdc61d70f6d4f88d26c250e1f0f9e518b3c21c9e592d2010461403003174e"
+    },
+    {
+      "path": "videos/robyn-showcase/out/qa-sources-20261101-final/chapter-comparison.json",
+      "sha256": "33d9eb3169773c6ea6340d04f4e86394776337d56df7de1374461f6b0d7f9c49"
+    },
+    {
+      "path": "videos/robyn-showcase/out/qa-sources-20261101-final/frame-1100.png",
+      "sha256": "0df06b9d373d6e553b10dae60d153750617a5704aa49697e4cafc5819493450d"
+    },
+    {
+      "path": "videos/robyn-showcase/out/qa-sources-20261101-final/frame-1320.png",
+      "sha256": "8d24b9e95047a0fd1615d80ae45f02fde52143e6419dfed34f35086da616ed70"
+    },
+    {
+      "path": "videos/robyn-showcase/out/qa-sources-20261101-final/sources-transition-board.jpg",
+      "sha256": "03f3caaa19486f7a138b41897f4cb54aad32c104845e2ab806c11891ba10df10"
+    }
+  ],
+  "sourceHashes": [
+    {
+      "path": "videos/robyn-showcase/src/Composition.tsx",
+      "sha256Utf8Lf": "ff9128c1fa5aaa86603e74e81d6ec0ae165f66b047ebed331ee1187917baa9ef"
+    },
+    {
+      "path": "videos/robyn-showcase/src/Root.tsx",
+      "sha256Utf8Lf": "8f1aa6a35f46b6d068824f3d07f9d11e4c9a92daf001f63a55c91b61f3088e5c"
+    },
+    {
+      "path": "videos/robyn-showcase/src/components/Stage.tsx",
+      "sha256Utf8Lf": "d26b036f11dcac4006b221e3a32e5ead3efcf7a26077cd32a2b4e04052187411"
+    },
+    {
+      "path": "videos/robyn-showcase/src/components/AsciiBird.tsx",
+      "sha256Utf8Lf": "4bf18d9b82fee67581c2ad75026823b31a4220993bb132dedd5f045cee8ca608"
+    },
+    {
+      "path": "videos/robyn-showcase/src/scenes/Media.tsx",
+      "sha256Utf8Lf": "b41a0d09226350320acbc70e5765e3d4b8637cf5b63af977945dda91a7f6bc42"
+    },
+    {
+      "path": "videos/robyn-showcase/src/scenes/Revisions.tsx",
+      "sha256Utf8Lf": "d4428d8b2f17307e415711abcce785c8ed0000e8f81fa53db8e32b3b0d32d55a"
+    },
+    {
+      "path": "videos/robyn-showcase/src/scenes/Closing.tsx",
+      "sha256Utf8Lf": "5a7f390bc133e0b2a2c2f32a6f3fc2ec08e7d28ef0a73addee666d7404b8057c"
+    },
+    {
+      "path": "videos/robyn-showcase/scripts/qa-stills.mjs",
+      "sha256Utf8Lf": "fef97537d09051d007881cdc9a5b92b7f3bf5753462ae56cda3e181c23e65106"
+    },
+    {
+      "path": "videos/robyn-showcase/scripts/compose-score.mjs",
+      "sha256Utf8Lf": "0e1232b87922262c30b9c6b27921b16a2015fa64bf28dcf4d787a540338948af"
+    },
+    {
+      "path": "videos/robyn-showcase/scripts/sync-assets.mjs",
+      "sha256Utf8Lf": "32d997e6df9675ec135bddf136adcdeddd0168b92ec7576e112b8dcf1a025666"
+    },
+    {
+      "path": "videos/robyn-showcase/public/asset-sources.json",
+      "sha256Utf8Lf": "75635dfb11348df4f8497d6bfdadcc5a28d6592de50072a853297843df9ab8a4"
+    }
+  ],
+  "previousExport": {
+    "path": "videos/robyn-showcase/out/robyn-showcase-20261101-all-26.mp4",
+    "sha256": "30e3ff8e468ad45297b5b6b14a30db87b808a2b6b6bc923b19366c545da14cbf",
+    "unchanged": true
+  },
+  "newMp4Exported": false
+}
