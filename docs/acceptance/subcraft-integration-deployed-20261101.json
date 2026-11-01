@@ -1,0 +1,294 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-01T03:21:44.122660+00:00",
+  "stage": "production-verified",
+  "scope": "Paired SubCraft runtime/web release, including the shared Save As URL race fix, and scoped actual authenticated production manual editing. Source receipts retain their original boundary.",
+  "webCommit": "a70929f5002ff5d691b0900406b0968f43d9e396",
+  "webSourceCommit": "9f1731b0e97fe8f7b673bbdb91cf353339a30a8b",
+  "webPullRequest": "https://github.com/BoundlessStudio/robyn/pull/55",
+  "webFeatureRelease": {
+    "commit": "3830f6e299902abd6e8a8b2ef546a1e8c14c0dcc",
+    "sourceCommit": "4014fbbffc8d794eef2576139ce5c6548a56a83c",
+    "pullRequest": "https://github.com/BoundlessStudio/robyn/pull/54"
+  },
+  "runtimeCommit": "0ec3497fef47923e0ee918a484515c817a5fc4ab",
+  "runtimeSourceCommit": "5ca5f1409e6de97c04aaa72f3050a36475648fb2",
+  "runtimePullRequest": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/15",
+  "productionDeployment": {
+    "provider": "Vercel",
+    "url": "https://vercel.com/venatio-studios/robyn-creative-studio/4AN6xDwNy7fL8VKvmkuoWYhgBvts",
+    "commit": "a70929f5002ff5d691b0900406b0968f43d9e396",
+    "githubStatus": "success"
+  },
+  "sourceAcceptance": {
+    "path": "docs/acceptance/subcraft-integration-20261101.json",
+    "sha256": "33b4ec577c00a13fa09d8d7858b2db49be4d6f0201a2d3a1d9151c1b0e478e91",
+    "hashScope": "exact source-commit Git blob"
+  },
+  "saveBindingAcceptance": {
+    "path": "docs/acceptance/editor-save-binding-20261101.json",
+    "sha256": "0d50ece5ca58679372bfc5a43a956f91f6c76a23e2f33cbc5e261d712ca46cf5",
+    "hashScope": "exact source-commit Git blob"
+  },
+  "installedCrafts": 26,
+  "readyCrafts": 24,
+  "remaining": [
+    "dashcraft",
+    "datacraft"
+  ],
+  "catalog": {
+    "apps": 26,
+    "ready": 24,
+    "pending": [
+      "dashcraft",
+      "datacraft"
+    ],
+    "groups": {
+      "Creative": 10,
+      "Drafting": 9,
+      "Analysis": 7
+    },
+    "visibleRobyns": 1,
+    "maxConcurrentJobs": 1
+  },
+  "app": {
+    "id": "subcraft",
+    "manifest": {
+      "adapterVersion": "0.1.0",
+      "release": "subcraft-v0.1.8-robyn-0.1.0",
+      "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/subcraft/v0.1.8-0.1.0/?robyn",
+      "status": "verified"
+    },
+    "formats": [
+      ".subcraft"
+    ],
+    "sourceCommit": "56a23a7e88077fbb5d11bd15865d73750964ae78",
+    "sourceArchive": {
+      "url": "https://codeload.github.com/Aalzard/subcraft/tar.gz/56a23a7e88077fbb5d11bd15865d73750964ae78",
+      "bytes": 378219805,
+      "sha256": "1b5b61bc504870d00fc96e89840f30fb971fc67089e381c844f0f61e1be9d2c6",
+      "name": "subcraft-56a23a7e88077fbb5d11bd15865d73750964ae78.tar.gz"
+    },
+    "sourcePatchSha256": "f7eb7b64e03e5cbbea9995cc923dcc3f532ba55e9b71b3406cf72f3112358481",
+    "browserBundleSha256": "39aa7d4db36eaf7c989643d87cb520df022652d7064d2ad4be17fb3e203e7814",
+    "nativeBinarySha256": "5dce3a07be76c5f5ed51a9c74e5161c49a2740d6f695a59e7c4b90f5f6c1c6a7",
+    "capture": {
+      "path": "public/artwork/editors/subcraft.png",
+      "width": 1600,
+      "height": 1000,
+      "bytes": 520025,
+      "sha256": "9fd86ad447117e42d02b864c4055226d6dc5c64fb828655b5f23ff481ea56c7f"
+    }
+  },
+  "sourceNativeCases": {
+    "canonical": 2,
+    "hosted": 2,
+    "scope": "Original installed GUI paint/name/Save/package/reopen, exact0.6.0 client, with original inputs and11priorfiles preserved. Full case hashes remain in sourceAcceptance."
+  },
+  "workstation": {
+    "image": {
+      "version": "0.2.1",
+      "template": "robyn-studio-0-2-1@1",
+      "release": "sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da",
+      "resources": {
+        "cpu": 4,
+        "memory": 16,
+        "disk": 10
+      },
+      "applications": 26,
+      "previousReleases": [
+        {
+          "template": "robyn-studio-0-1-1@1",
+          "release": "sha256:23622a922f2ab7df9a45d6cfe64f42247954b31843e228ded96619ccefbbea0d"
+        }
+      ]
+    },
+    "imageBytesChanged": false,
+    "clientVersion": "0.6.0",
+    "clientDirectory": "vendor/robyn-workstation/0.6.0-452cd79f8da8",
+    "clientFingerprint": "452cd79f8da812733830c52deeabd4126bee523dddf249eea9bbaaf1837611c2",
+    "bundle": {
+      "bytes": 2173787,
+      "sha256": "f2f33b0e273985183ac1db0ac9d738522299d9566e74be79821bf768f319c60d"
+    },
+    "craftSkills": 24,
+    "notesSkillRetained": true,
+    "activationScope": "Web-selected immutable client. Native canaries rehashed this exact bundle and invoked its original-GUI CLI plus exact runtime packager. No ordinary AI/profile activation was dispatched."
+  },
+  "blank": {
+    "version": 6,
+    "path": "starters/6/subcraft/Untitled texture.subcraft",
+    "bytes": 9457,
+    "sha256": "8bf4e0d3a0f3b8039bcf3347bbcfbfbe95c629d601690ceae6769c7e628e7a65",
+    "source": "Original0.1.8 GUI-saved unpainted sample crate, Body and Trim texture sets, no raster payloads; embedded native New copy matches exactly."
+  },
+  "nativeImportInspector": {
+    "sha256": "7aee4ecac25eb2b5d56032afe663d6bb7cbd99eaffc93c6b9cd26cfb8a7b88cc",
+    "source": "src/studio/generated/native-inspector.provenance.json"
+  },
+  "distribution": {
+    "checkedAt": "2026-11-01T02:25:50.986Z",
+    "origin": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev",
+    "accountId": "ad511085f517f4740591851cad7686eb",
+    "bucket": "robyn-editor-artifacts",
+    "releases": 97,
+    "files": 44359,
+    "uniqueObjects": 2986,
+    "bytes": 2336979106,
+    "catalogSha256": "6a982c0f754dcab6ff00e78b50126e1cd320f35fc4f3baf5db5bc4914c2c06b2",
+    "uploaded": 188,
+    "existing": 2798,
+    "allHostedBytesVerified": true,
+    "sourceBaseline": false,
+    "uploadOnly": false,
+    "privateBucket": true,
+    "readOnlyServingWorker": true,
+    "workerVersion": "19293c70-99db-44c4-a21e-bedd444dd7f3",
+    "logicalBytes": 5426937690
+  },
+  "productionBrowser": {
+    "browserVersion": "156.0.8078.4",
+    "checks": {
+      "projectCreatedAndNamedViaUI": true,
+      "nativeBlankPaintFocusedNameAndCtrlS": true,
+      "nativeFileSaveAs": true,
+      "fullReloadExactSaveAsRevision": true,
+      "productionBindingSurvivesHeldRefresh": true,
+      "nativeImportExactBytes": true,
+      "importedProjectPaintNameCtrlS": true,
+      "nativeImportedEditExactFullReload": true,
+      "nativeBlankStoredHashVerified": true
+    },
+    "nativeBlank": {
+      "path": "Untitled texture.subcraft",
+      "bytes": 9457,
+      "sha256": "8bf4e0d3a0f3b8039bcf3347bbcfbfbe95c629d601690ceae6769c7e628e7a65"
+    },
+    "savedBlank": {
+      "path": "Untitled texture.subcraft",
+      "bytes": 65200,
+      "sha256": "7fdb4e4c75becd1f5498fe30acae512ea5b9f154e219bd7dfdcb334680d18d0c"
+    },
+    "saveAsReload": "Actual production commit with its asynchronous project GET deliberately held. Before metadata refresh completed, the URL matched the new asset/revision. Immediate full reload opened that exact clean native project.",
+    "nativeImport": {
+      "path": "Native continued.subcraft",
+      "bytes": 145191,
+      "sha256": "6f575e954edfc9c2012e51688d39c25d1a33db5c6b8081fdd81c91b54f948201"
+    },
+    "nativeImportEdited": {
+      "path": "Native continued.subcraft",
+      "bytes": 139170,
+      "sha256": "edab4e87da2cfc8508e41e92ddb46575985e466f4b0457d2dc131384bda49b35",
+      "changedRasterEntries": [
+        "rasters/00000.tiles",
+        "rasters/00001.tiles",
+        "rasters/00002.tiles",
+        "rasters/00003.tiles",
+        "rasters/00004.tiles"
+      ],
+      "savedNativeName": "Production imported coat"
+    },
+    "captures": [
+      {
+        "path": "artifacts/qa/craft-integrations/subcraft-production-fixed-reload.png",
+        "bytes": 471038,
+        "sha256": "a7b52e02f954318f46adba74000eac20f112fb07311a3c6e8ac155d8d092290d"
+      },
+      {
+        "path": "artifacts/qa/craft-integrations/subcraft-production-import-reload.png",
+        "bytes": 503258,
+        "sha256": "c4fcb5962c0eb42b58d55ca3ab3a93dc222be5aa2efd0ee8916b208cd014df48"
+      }
+    ],
+    "pageErrors": [],
+    "publicBoundaries": {
+      "anonymousScreenshotStatus": 200,
+      "anonymousScreenshotSha256": "9fd86ad447117e42d02b864c4055226d6dc5c64fb828655b5f23ff481ea56c7f",
+      "anonymousStarterStatus": 307
+    },
+    "modelDispatches": 0,
+    "credentialsIssued": 0,
+    "note": "Manual project/file creation, actual native controls, exact import, save and file reads only. No ordinary AI/profile activation. Anonymous native-starter access redirects to sign-in; the public unmodified screenshot returns its exact source bytes."
+  },
+  "validation": {
+    "featureRelease": {
+      "runtimeTests": 130,
+      "linuxTaskProfiles": 4,
+      "nativeAppCoreTests": 48,
+      "nativeAppSavedSnapshotInvariants": 2,
+      "npmAuditHigh": 0,
+      "deterministicWorkstationBundle": true,
+      "webTypecheck": "passed",
+      "webTests": 238,
+      "webTsxTests": 4,
+      "webBuild": "passed",
+      "publicLayoutAxe": {
+        "combinations": 18,
+        "passed": 18,
+        "keyboardPassed": 14,
+        "explicitWindowsWebKitKeyboardLimits": 4,
+        "source": "artifacts/qa/craft-integrations/subcraft-public/results.json",
+        "sha256": "f5752732916253a1ffe3d6f72d9241714fcacbc833a974d09574982ae71fa085"
+      },
+      "homepageVisualReview": {
+        "desktop": [
+          1440,
+          1000
+        ],
+        "mobile": [
+          390,
+          844
+        ],
+        "captures": [
+          {
+            "path": "artifacts/qa/craft-integrations/subcraft-public-desktop-section.png",
+            "bytes": 348584,
+            "sha256": "babf42cd772bb6552a947c9fac0962712a6aaae490a616b9b32d2bcc85e9625e"
+          },
+          {
+            "path": "artifacts/qa/craft-integrations/subcraft-public-mobile-section.png",
+            "bytes": 92378,
+            "sha256": "0975c9bf80b937e28d7f867504e5cb7e4fbed8e2f9039ba0ad72e9824940eebf"
+          }
+        ]
+      },
+      "runtimeCI": "Runtime checks verify passed; PR15 merged at0ec3497fef47923e0ee918a484515c817a5fc4ab"
+    },
+    "saveBindingFollowup": {
+      "typecheck": "passed",
+      "coreTests": 239,
+      "tsxTests": 4,
+      "productionBuild": "passed",
+      "ci": "Studio checks verify124734144450 passed, including all18 public combinations and audit"
+    },
+    "prior25OtherManifestsByteIdentical": true
+  },
+  "migrations": {
+    "applied": [],
+    "ledgerReadThisRelease": false,
+    "lastVerified": "30 matching checksummed ledger entries through0029 in settings-budget-release-20261030.json"
+  },
+  "video": {
+    "sourceReady": 24,
+    "sourcePending": 2,
+    "sourceAssets": 37,
+    "sourceCatalogEntries": 26,
+    "typecheck": "passed",
+    "finalAll26ReadyExport": "pending after remaining two integrations; prior exports retain their dated scope"
+  },
+  "privateProof": {
+    "path": "E:/Development/robyn-shared-workstation-20261029/subcraft-production-browser-20261101.private.json",
+    "sha256": "6d34ae475ce086d751410d3d1e28b5c0c77cb77fc75085d4dd0601ea1f2e3d2b"
+  },
+  "resolvedProductionIssue": {
+    "source": "docs/acceptance/editor-save-binding-20261101.json",
+    "beforeProductionProofPath": "E:/Development/robyn-shared-workstation-20261029/subcraft-production-save-as-race-20261101.private.json",
+    "beforeProductionProofSha256": "8d68ec8c188c4db6790516e98db7577d76d6c51296b7c53d6aa4466b0b84bd02",
+    "result": "Production held-refresh/immediate-reload check passed on a70929f5002ff5d691b0900406b0968f43d9e396."
+  },
+  "limits": [
+    "Desktop Chromium with an available WebGPU adapter; additional browser/GPU combinations are not accepted.",
+    "Selected native brush/layer operations and complete self-contained native projects, not every bake/export/starter-pack feature or proprietary project format.",
+    "Native actions are bounded to100 inputs/35 seconds; typed text supports printable ASCII. Original upstream controls are used, with a fresh task-isolated display for each native command."
+  ]
+}
