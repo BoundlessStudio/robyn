@@ -9,7 +9,10 @@ import { createHash } from "node:crypto";
 import assert from "node:assert/strict";
 import path from "node:path";
 
-const output = path.resolve("out/qa");
+const output = path.resolve(
+  process.argv.find((arg) => arg.startsWith("--out-dir="))?.slice(10) ||
+    "out/qa",
+);
 const chaptersOnly = process.argv.includes("--chapters-only");
 await mkdir(output, { recursive: true });
 const catalogBytes = await readFile("public/catalog.json");
@@ -74,7 +77,11 @@ try {
     730,
     860,
     1100,
+    1185,
+    1207,
+    1230,
     1320,
+    1400,
     1540,
     1740,
     1799,
@@ -82,10 +89,9 @@ try {
     450,
     750,
     975,
-    1200,
     1425,
     1650,
-    ...[225, 450, 750, 975, 1200, 1425, 1650].flatMap((cut) => [
+    ...[225, 450, 750, 975, 1425, 1650].flatMap((cut) => [
       cut - 15,
       cut + 7,
       cut + 21,
@@ -108,8 +114,7 @@ try {
     ["ThreeStudios", 125, 350],
     ["RealTools", 100, 550],
     ["OneRobyn", 110, 860],
-    ["BrowserAndNotes", 125, 1100],
-    ["Media", 120, 1320],
+    ["Media", 345, 1320],
     ["SavedRevisions", 115, 1540],
     ["Invitation", 90, 1740],
   ];

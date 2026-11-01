@@ -8,14 +8,13 @@ A 60-second feature showcase at 1920 × 1080, 30 fps. Designed to communicate wi
 | --- | --- | --- |
 | 00:00 | Ideas have wings | Robyn's creative promise and original ASCII robin |
 | 00:07.5 | Three studios | All 26 Crafts in Creative, Drafting and Analysis; all 26 ready |
-| 00:15 | Real tools, your touch | Actual PhotoCraft, FilmCraft and SolidCraft editor captures |
+| 00:15 | Real tools, your touch | Actual PhotoCraft, FilmCraft, SolidCraft, DashCraft and DataCraft editor captures |
 | 00:25 | One Robyn, three studios | One workstation, 26 ready Crafts, four project destinations, conversation/jobs/review/skills, and one monthly AI allowance |
-| 00:32.5 | Browser tools and Notes | Robyn's search and browser control; saved findings remain editable Notes documents |
-| 00:40 | Creative ingredients | Imports, Commons media, generated images/speech/video, and retained sources and credits |
+| 00:32.5 | Sources, Assets and connected Crafts | Imports, Commons and generated media; source references, creators and licences; one Asset library holding native masters, previews, exports and exact revisions; compatible files moving between Crafts across all three studios |
 | 00:47.5 | Save and continue | Private Assets, native files, exact saved revisions and continuation with Robyn |
 | 00:55 | Invitation | robyn.academy; private pilot; desktop studio |
 
-Scene starts include the half-second incoming wipe. The eight authored sequences total 63.5 seconds; seven 0.5-second overlaps produce exactly 60 seconds. The final invitation holds through the last frame.
+Scene starts include the half-second incoming wipe. The seven authored sequences total 63 seconds; six 0.5-second overlaps produce exactly 60 seconds. The expanded sources/Assets chapter lasts 15.5 seconds, with media intake followed by the shared-library and Craft connections diagram. The removed browser/Notes chapter has no timeline entry or standalone composition. The final invitation holds through the last frame.
 
 ## Art direction
 
@@ -25,19 +24,25 @@ The robin's original sampled geometry, seven ink colors and character ramp are p
 
 The master has exactly one continuous mascot layer. Standalone chapters include the same guide with their master-clock offset, so reviewing a chapter never drops or restarts the character. Feature-scene perches use 300–420px canvases, and the opening and invitation use 780px canvases. The catalog perch sits above the three studio columns so all 26 tools remain visible. Flight clearance protects the chapter header.
 
-`Paper and Wings` is a deterministic original 96 BPM score: warm plucked tones, sustained harmony, soft percussion, stereo room taps, and short bird cues at chapter changes. It is 48 kHz, stereo PCM, 60 seconds, with a measured sample peak of -2.60 dBFS and RMS of -17.72 dBFS before the composition's 0.85 volume setting. These are sample measurements, not an integrated LUFS or true-peak certification. No voiceover, licensed music, stock samples or paid generation service was used.
+`Paper and Wings` is a deterministic original 96 BPM score: warm plucked tones, sustained harmony, soft percussion, stereo room taps, and short bird cues at the six chapter changes. It is 48 kHz, stereo PCM, 60 seconds, with a measured sample peak of -2.61 dBFS and RMS of -17.72 dBFS before the composition's 0.85 volume setting. These are sample measurements, not an integrated LUFS or true-peak certification. No voiceover, licensed music, stock samples or paid generation service was used.
 
 ## Source and claim boundaries
 
 - Product scope follows `docs/ARCHITECTURE.md`, `docs/CURRENT-STATUS.md` (November 1, 2026), `docs/MEDIA-ACCEPTANCE.md` and the 26 app manifests. Creative contains 10 Crafts, Drafting 9 and Analysis 7 in manifest order, including DetailCraft. The current source catalog has 26 ready integrations. DashCraft computes and displays exact saved reports without authoring or library writes; DataCraft edits SQLite databases and SQL companions through its original application controls. Source acceptance and production activation retain separate records. Dated exports retain their original readiness scope. Installation does not claim new editing or paid-task readiness. Browsing and research are Robyn's tools; Notes is a saved document format.
 - PhotoCraft and FilmCraft imagery is copied unchanged from `public/artwork/editors`. Their crops exclude the old surrounding QA shell at x184, y88, width1256, height912.
 - SolidCraft uses the unchanged 1600 × 1000 `public/artwork/editors/solidcraft.png` capture from the accepted 0.27.0 editor exercise, with its original model and feature history. It is a recorded demonstration, not a claim that this image records the subsequent 0.27.1 release.
-- The Notes source remains the unchanged historical `public/artwork/editors/research.jpg`, copied locally as `editors/notes.jpg`. Its x184, y130, width1256, height870 crop shows the saved notebook body below the retired Research toolbar. No replacement controls are painted onto the capture. These recorded product captures are not a newly recorded production session; `docs/HOMEPAGE-ARTWORK.md` owns their provenance.
-- The brief → Robyn → editable-work flow, project destinations and revision stack are explanatory motion graphics. They do not represent a fresh authenticated UI capture, a new AI job or new saved production revisions. The media waveform is illustrative. The sunset comes from the actual FilmCraft capture.
+- The standalone browser/Notes chapter, its source component, capture mapping and copied `editors/notes.jpg` asset have been removed from this project at the owner's request. Historical export receipts retain their original source paths and hashes. The underlying product's browser tools and Notes document format are unchanged.
+- The brief → Robyn → editable-work flow, project destinations, sources → Asset library → Crafts diagram and revision stack are explanatory motion graphics. They do not represent a fresh authenticated UI capture, a new AI job or new saved production revisions. The connected-Craft message describes explicit placement of compatible originals, exports or previews with exact source references; it does not claim automatic live synchronisation or universal native-format interchange. The media waveform is illustrative. The sunset comes from the actual FilmCraft capture.
 - The generation caption covers the accepted image, speech and short-video profiles only. It does not claim generated music, image editing, sound effects, video reference inputs or unrestricted models. Sources and credits refer to the existing provenance and attribution workflow.
 - The current source uses matching animal artwork for all 26 Crafts, documented in `public/brand/apps/sources.json`, including the corrected icon backgrounds. The original flower artwork is also reused. Dated exports retain their recorded icon/readiness scope; the November 1 export records the final 26-ready catalog separately from earlier exports.
 - `public/asset-sources.json` records copied asset paths, byte sizes and SHA-256 hashes plus the generated catalog and all 26 source-manifest hashes. Source-manifest and text-license line endings are normalized to LF. Font licenses are included in `public/fonts`; the historical SolidCraft attribution is retained with the app assets.
 - The closing invitation accurately identifies the private desktop pilot. There is no public signup, subscription pricing, mobile editor, unrestricted generation, or new integration claim.
+
+## Current source validation
+
+The [sources/Assets revision receipt](../../docs/acceptance/2026-11-01-remotion-showcase-sources.json) covers the seven-chapter edit. Lint/TypeScript, bundling and the exact mascot comparison pass. All 38 copied assets match their recorded hashes. Forty-two master samples cover all five featured editors, both parts of the expanded chapter and every chapter transition; all seven standalone chapters match the master pixels exactly apart from its five-pixel progress bar. Renderer errors are empty. Studio's chapter list and playback were reviewed with the browser/Notes chapter absent.
+
+This is an editable-project and preview revision. The MP4 exports below predate this edit and retain their original bytes and acceptance scope.
 
 ## Recorded export validation, November 1, 2026
 
