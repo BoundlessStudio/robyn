@@ -52,6 +52,7 @@ export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,ini
   const documentMenuButton=useRef<HTMLButtonElement>(null);
   const [editorState,setEditorState]=useState<EditorViewState>({status:"Opening editor…",dirty:false,error:""});
   const editorDirty=useRef(false);const [editorEpoch,setEditorEpoch]=useState(0);
+  const editorSaveSequence=useRef(0);const editorEpochNow=useRef(editorEpoch);editorEpochNow.current=editorEpoch;
   useEffect(()=>{if(!notice)return;const timer=window.setTimeout(()=>setNotice(""),6500);return()=>window.clearTimeout(timer);},[notice]);
   useEffect(()=>{
     const url=new URL(window.location.href);
@@ -112,12 +113,23 @@ export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,ini
     try{await reload();}catch{setError("Your revision was saved, but the project could not refresh. Reload this page to reopen it.");}
   }
   async function editorSaved(result:EditorSaveResult){
+    const sequence=result.mode==="copy"?editorSaveSequence.current:++editorSaveSequence.current;
+    // The editor may acknowledge before the project refresh returns. Persist
+    // its durable binding now so an immediate reload opens the saved document.
+    if(result.status==="committed"&&result.mode!=="copy"){
+      const url=new URL(window.location.href);url.searchParams.set("asset",result.assetId);url.searchParams.set("revision",result.revisionId);
+      for(const key of ["app","launch","start"])url.searchParams.delete(key);
+      window.history.replaceState(null,"",url.pathname+url.search+url.hash);
+    }
     if(result.status==="conflict")setFileDetails(true);
     setNotice("");
     try{await reload();
+      if(editorEpochNow.current!==editorEpoch||sequence!==editorSaveSequence.current)return;
       if(result.mode!=="copy"){
         setFocusedRevision(result);setHistory(result.status==="conflict");
-        if(result.mode==="saveAs"&&result.status==="committed"){setSelected(result.assetId);setTabs(current=>current.includes(result.assetId)?current:[...current,result.assetId]);}
+        // A later revision can arrive while Save As is still refreshing. Its
+        // confirmed binding is authoritative even when its mode is revision.
+        if(result.status==="committed"){setSelected(result.assetId);setTabs(current=>current.includes(result.assetId)?current:[...current,result.assetId]);}
       }
     }catch{setError("The save is confirmed, but the project could not refresh. Keep the editor open and try again.");}
   }
@@ -137,7 +149,7 @@ export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,ini
   },[project,launch.storageReady,initialAppId,initialLaunchId,initialAssetId]);
   // Dashboard shares this route with the editor. Clear its local selection even
   // when Next keeps the component mounted during a same-route navigation.
-  function showDashboard(){setSelected("");setFocusedRevision(null);setApplicationsOpen(false);setHistory(false);setFileDetails(false);setError("");}
+  function showDashboard(){setEditorEpoch(value=>value+1);setSelected("");setFocusedRevision(null);setApplicationsOpen(false);setHistory(false);setFileDetails(false);setError("");}
   function chooseFiles(folder=false){setApplicationsOpen(false);if(folder)receiveFiles([],true);else filePicker.current?.click();}
   const employeeParams=new URLSearchParams();
   if(asset&&targetRevision){employeeParams.set("asset",asset.id);employeeParams.set("revision",targetRevision);}

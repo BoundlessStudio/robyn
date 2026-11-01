@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-01T03:05:48.059771+00:00",
+  "stage": "verified-source-awaiting-production",
+  "scope": "Shared ProjectWorkspace Save As/revision URL binding, live-editor preservation and stale refresh fencing. Runtime/editor/client bytes are unchanged.",
+  "observedProductionCommit": "3830f6e299902abd6e8a8b2ef546a1e8c14c0dcc",
+  "problem": "A durable Save As reply reached the native editor before asynchronous project refresh adopted its new asset/revision in the URL. Immediate reload reopened the original file.",
+  "behavior": "Committed non-copy results update the exact reload URL before project metadata refresh. A later revision adopts its actual host binding even while earlier Save As metadata is pending. Older refreshes and callbacks from an unmounted editor cannot retarget the current document; Copy preserves the binding and the existing iframe.",
+  "validation": {
+    "webTypecheck": "passed",
+    "coreTests": 239,
+    "tsxTests": 4,
+    "webBuild": "passed",
+    "regression": "Actual ProjectWorkspace and EmbeddedEditor with a transport peer and real request identities: held refresh, Save As URL before acknowledgement, Copy, later save, older refresh release, same iframe and exact full reload. Baseline reproduced the production failure; patched source passes. Genuine SubCraft/native acceptance is recorded separately."
+  },
+  "localProof": [
+    {
+      "path": "artifacts/qa/craft-integrations/subcraft-binding-typecheck.log",
+      "sha256": "bfb6b9bb7a8b00f34503cccf733ee41de1c63849ef1c731da2a0a2fae8af1a0b"
+    },
+    {
+      "path": "artifacts/qa/craft-integrations/subcraft-binding-web-tests.log",
+      "sha256": "aa3ab7d63e663baecf70c2a22c2f3495cdd0025c24be62e5d6892ea8b7ab2c0f"
+    },
+    {
+      "path": "artifacts/qa/craft-integrations/subcraft-binding-web-build.log",
+      "sha256": "90d117aa969730c1966099e785bd2e047a272a09771318a1c3d78ef0511f137a"
+    },
+    {
+      "path": "artifacts/qa/craft-integrations/subcraft-binding-regression-before.log",
+      "sha256": "ec131776082b256c4d57bdaaeb232469bb549c6662842588c295f8faae58ac2d"
+    },
+    {
+      "path": "artifacts/qa/craft-integrations/subcraft-binding-regression-after.log",
+      "sha256": "8392616bba98c168cee1a3c91f3aa23489e579e75b87986647d0cca088c262fa"
+    }
+  ],
+  "privateProof": {
+    "path": "E:/Development/robyn-shared-workstation-20261029/subcraft-production-save-as-race-20261101.private.json",
+    "sha256": "8d68ec8c188c4db6790516e98db7577d76d6c51296b7c53d6aa4466b0b84bd02"
+  },
+  "nativePinsUnchanged": {
+    "runtimeCommit": "0ec3497fef47923e0ee918a484515c817a5fc4ab",
+    "client": "0.6.0",
+    "bundleSha256": "f2f33b0e273985183ac1db0ac9d738522299d9566e74be79821bf768f319c60d",
+    "subcraftCoreSha256": "39aa7d4db36eaf7c989643d87cb520df022652d7064d2ad4be17fb3e203e7814"
+  },
+  "migrationsApplied": [],
+  "modelDispatches": 0
+}

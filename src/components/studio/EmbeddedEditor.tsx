@@ -41,7 +41,7 @@ export function EmbeddedEditor({ref,projectId,initialRef,bundleUrl,name,onSaved,
     }
     url.hash=new URLSearchParams({channel:binding.channel,parentOrigin:window.location.origin,assetId:binding.ref.assetId,revisionId:binding.ref.revisionId}).toString();
     let dirty=false;let active=true;
-    const host=createEditorHost({projectId,initialRef:binding.ref,signal:controller.signal,onImported:()=>callbacks.current.onLibraryChanged?.(),onDirty:value=>{dirty=value;setHasChanges(value);callbacks.current.onDirty(value);if(!value)setStatus("Saved revision open");},onStatus:setStatus,onSaved:result=>{setError("");setStatus(result.status!=="committed"?"Conflicting save preserved — check revision history":result.mode==="copy"?"Copy saved · Still editing the original":"Saved to your library");callbacks.current.onSaved(result);}});
+    const host=createEditorHost({projectId,initialRef:binding.ref,signal:controller.signal,onImported:()=>callbacks.current.onLibraryChanged?.(),onDirty:value=>{dirty=value;setHasChanges(value);callbacks.current.onDirty(value);if(!value)setStatus("Saved revision open");},onStatus:setStatus,onSaved:result=>{if(!active)return;setError("");setStatus(result.status!=="committed"?"Conflicting save preserved — check revision history":result.mode==="copy"?"Copy saved · Still editing the original":"Saved to your library");callbacks.current.onSaved(result);}});
     function receive(event:MessageEvent){
       if(!isTrustedEditorEvent(event,frame.current?.contentWindow??null,url.origin,binding.channel))return;
       const message=event.data as EditorMessage;

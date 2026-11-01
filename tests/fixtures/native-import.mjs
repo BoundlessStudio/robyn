@@ -52,7 +52,7 @@ async function bundle() {
 // A transport peer, not a native editor. Native editing is checked separately
 // against the published WordCraft bundle; these tests exercise the actual host.
 const editor = `<!doctype html><html lang="en"><head><title>Isolated editor peer</title></head><body>
-  <label>Document text<textarea id="text"></textarea></label><button id="save">Save document</button><p id="state" role="status">Opening</p>
+  <label>Document text<textarea id="text"></textarea></label><button id="save">Save document</button><button id="save-as">Save as another asset</button><button id="copy">Save a copy</button><p id="state" role="status">Opening</p>
   <script>
     const params=new URLSearchParams(location.hash.slice(1)), channel=params.get('channel'), parentOrigin=params.get('parentOrigin');
     let ref={assetId:params.get('assetId'),revisionId:params.get('revisionId')}, path, pending=new Map();
@@ -61,6 +61,7 @@ const editor = `<!doctype html><html lang="en"><head><title>Isolated editor peer
     request('openAsset',ref).then(async pkg=>{const master=pkg.files.find(file=>file.role==='master');path=master.path;document.getElementById('text').value=await (await fetch(master.downloadUrl)).text();await request('notifyChanges',{assetId:ref.assetId,dirty:false});document.getElementById('state').textContent='Ready';});
     document.getElementById('text').oninput=()=>request('notifyChanges',{assetId:ref.assetId,dirty:true});
     document.getElementById('save').onclick=async()=>{const result=await request('saveAsset',{assetId:ref.assetId,expectedBaseRevisionId:ref.revisionId,files:[{path,role:'master',file:new Blob([document.getElementById('text').value],{type:'application/octet-stream'})}],dependencies:[],message:'Edited transport fixture'});ref=result.ref;await request('notifyChanges',{assetId:ref.assetId,dirty:false});document.getElementById('state').textContent='Saved';};
+    for(const [id,mode,label]of [['save-as','saveAs','Saved as another asset'],['copy','copy','Copy saved']])document.getElementById(id).onclick=async()=>{const result=await request('saveAsset',{assetId:ref.assetId,expectedBaseRevisionId:ref.revisionId,mode,creationId:crypto.randomUUID(),name:mode==='copy'?'A copy':'Another direction',files:[{path,role:'master',file:new Blob([document.getElementById('text').value],{type:'application/octet-stream'})}],dependencies:[]});if(mode!=='copy'){ref=result.ref;await request('notifyChanges',{assetId:ref.assetId,dirty:false});}document.getElementById('state').textContent=label;};
   </script></body></html>`;
 
 export async function nativeImportFixture(browser, {realEditor=false, viewport={width:1440,height:960}, workspaceOrigin=origin, fileOrigin='https://native-import-files.test', initialPath, archived=false, allowance=5000000}={}) {
