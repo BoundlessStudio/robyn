@@ -7,9 +7,9 @@ A 60-second feature showcase at 1920 × 1080, 30 fps. Designed to communicate wi
 | Start | Chapter | Feature |
 | --- | --- | --- |
 | 00:00 | Ideas have wings | Robyn's creative promise and original ASCII robin |
-| 00:07.5 | Three studios | All 26 Crafts in Creative, Drafting and Analysis; twenty-four ready and two connecting |
+| 00:07.5 | Three studios | All 26 Crafts in Creative, Drafting and Analysis; all 26 ready |
 | 00:15 | Real tools, your touch | Actual PhotoCraft, FilmCraft and SolidCraft editor captures |
-| 00:25 | One Robyn, three studios | One workstation, fourteen ready Crafts, four project destinations, conversation/jobs/review/skills, and one monthly AI allowance |
+| 00:25 | One Robyn, three studios | One workstation, 26 ready Crafts, four project destinations, conversation/jobs/review/skills, and one monthly AI allowance |
 | 00:32.5 | Browser tools and Notes | Robyn's search and browser control; saved findings remain editable Notes documents |
 | 00:40 | Creative ingredients | Imports, Commons media, generated images/speech/video, and retained sources and credits |
 | 00:47.5 | Save and continue | Private Assets, native files, exact saved revisions and continuation with Robyn |
@@ -29,15 +29,23 @@ The master has exactly one continuous mascot layer. Standalone chapters include 
 
 ## Source and claim boundaries
 
-- Product scope follows `docs/ARCHITECTURE.md`, `docs/CURRENT-STATUS.md` (October 31, 2026), `docs/MEDIA-ACCEPTANCE.md` and the 26 app manifests. Creative contains 10 Crafts, Drafting 9 and Analysis 7 in manifest order, including DetailCraft. The current source catalog has twenty-four ready integrations; DashCraft and DataCraft remain pending and display Connecting. SubCraft source acceptance is separate from its production activation. Dated exports retain their original readiness scope. Installation does not claim new editing or paid-task readiness. Browsing and research are Robyn's tools; Notes is a saved document format.
+- Product scope follows `docs/ARCHITECTURE.md`, `docs/CURRENT-STATUS.md` (November 1, 2026), `docs/MEDIA-ACCEPTANCE.md` and the 26 app manifests. Creative contains 10 Crafts, Drafting 9 and Analysis 7 in manifest order, including DetailCraft. The current source catalog has 26 ready integrations. DashCraft computes and displays exact saved reports without authoring or library writes; DataCraft edits SQLite databases and SQL companions through its original application controls. Source acceptance and production activation retain separate records. Dated exports retain their original readiness scope. Installation does not claim new editing or paid-task readiness. Browsing and research are Robyn's tools; Notes is a saved document format.
 - PhotoCraft and FilmCraft imagery is copied unchanged from `public/artwork/editors`. Their crops exclude the old surrounding QA shell at x184, y88, width1256, height912.
 - SolidCraft uses the unchanged 1600 × 1000 `public/artwork/editors/solidcraft.png` capture from the accepted 0.27.0 editor exercise, with its original model and feature history. It is a recorded demonstration, not a claim that this image records the subsequent 0.27.1 release.
 - The Notes source remains the unchanged historical `public/artwork/editors/research.jpg`, copied locally as `editors/notes.jpg`. Its x184, y130, width1256, height870 crop shows the saved notebook body below the retired Research toolbar. No replacement controls are painted onto the capture. These recorded product captures are not a newly recorded production session; `docs/HOMEPAGE-ARTWORK.md` owns their provenance.
 - The brief → Robyn → editable-work flow, project destinations and revision stack are explanatory motion graphics. They do not represent a fresh authenticated UI capture, a new AI job or new saved production revisions. The media waveform is illustrative. The sunset comes from the actual FilmCraft capture.
 - The generation caption covers the accepted image, speech and short-video profiles only. It does not claim generated music, image editing, sound effects, video reference inputs or unrestricted models. Sources and credits refer to the existing provenance and attribution workflow.
-- The current source uses matching animal artwork for all 26 Crafts, documented in `public/brand/apps/sources.json`, including the corrected icon backgrounds. The original flower artwork is also reused. Dated exports retain their recorded icon/readiness scope; the final export after all 26 integrations are ready remains separate.
+- The current source uses matching animal artwork for all 26 Crafts, documented in `public/brand/apps/sources.json`, including the corrected icon backgrounds. The original flower artwork is also reused. Dated exports retain their recorded icon/readiness scope; the November 1 export records the final 26-ready catalog separately from earlier exports.
 - `public/asset-sources.json` records copied asset paths, byte sizes and SHA-256 hashes plus the generated catalog and all 26 source-manifest hashes. Source-manifest and text-license line endings are normalized to LF. Font licenses are included in `public/fonts`; the historical SolidCraft attribution is retained with the app assets.
 - The closing invitation accurately identifies the private desktop pilot. There is no public signup, subscription pricing, mobile editor, unrestricted generation, or new integration claim.
+
+## Recorded export validation, November 1, 2026
+
+The [26-Craft export receipt](../../docs/acceptance/2026-11-01-remotion-showcase-export.json) records the new 22,262,944-byte MP4 (SHA-256 `30e3ff8e468ad45297b5b6b14a30db87b808a2b6b6bc923b19366c545da14cbf`). It contains 1,800 H.264 frames at 1920 × 1080 / 30 fps. Video duration is 60 seconds; AAC padding gives the container a 60.011-second duration. Full audio/video decoding passes. Stereo audio has a measured sample peak of −4.1 dBFS and mean volume of −19.1 dBFS.
+
+All 39 copied assets match their recorded hashes, and the source catalog contains 26 ready Crafts with 26 animal icons. Forty-two master samples and eight standalone chapters render without errors. Every chapter matches its master pixels exactly, excluding the five-pixel progress bar. The mascot retains all 38,460 original geometry points, its palette and character ramp. The earlier export remains byte-for-byte unchanged.
+
+DashCraft and DataCraft use unchanged real application captures from their November 1 acceptance checks. The dedicated `dashcraft-showcase.png` capture is cropped below the surrounding Studio header (1600 × 912 at y88); the established homepage DashCraft capture is retained. DataCraft preserves its complete 1600 × 1000 editor. Both are recorded captures with no replacement controls.
 
 ## Recorded export validation, October 31, 2026
 

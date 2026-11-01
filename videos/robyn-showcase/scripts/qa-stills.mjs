@@ -25,7 +25,7 @@ assert.deepEqual(
   ],
 );
 assert.equal(new Set(apps.map(({ id }) => id)).size, 26);
-assert.equal(apps.filter(({ ready }) => ready).length, 14);
+assert.equal(apps.filter(({ ready }) => ready).length, 26);
 assert.equal(apps.filter(({ hasIcon }) => hasIcon).length, 26);
 assert.equal(catalogBytes.length, sources.catalog.bytes);
 assert.equal(
@@ -66,9 +66,12 @@ try {
   const frames = [
     100,
     350,
+    500,
     550,
     610,
+    670,
     680,
+    730,
     860,
     1100,
     1320,
@@ -150,8 +153,8 @@ try {
             applications: apps.length,
           })),
           applications: apps.length,
-          ready: 14,
-          connecting: 12,
+          ready: apps.filter(({ ready }) => ready).length,
+          connecting: apps.filter(({ ready }) => !ready).length,
           copiedAssets: sources.files.length,
           sha256: sources.catalog.sha256,
         },

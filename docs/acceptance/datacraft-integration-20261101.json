@@ -1,0 +1,406 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-01T09:25:26.204701+00:00",
+  "stage": "verified-sources-awaiting-web-deployment",
+  "scope": "DataCraft completes the candidate catalog of 26 ready Crafts. DashCraft retains its owner-approved read-only scope. The 25 prior ready editor pins and the workstation image are retained. Production promotion and final showcase export are recorded separately.",
+  "readyCrafts": 26,
+  "installedCrafts": 26,
+  "remaining": [],
+  "runtimeCommit": "a02fe2e0d47d449701ddb7ee929943116d214e7b",
+  "app": {
+    "id": "datacraft",
+    "manifest": {
+      "adapterVersion": "0.1.0",
+      "release": "datacraft-v0.11.0-robyn-0.1.0",
+      "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/datacraft/v0.11.0-0.1.0/?robyn",
+      "status": "verified"
+    },
+    "formats": [
+      ".sqlite",
+      ".sqlite3",
+      ".db",
+      ".db3"
+    ],
+    "verification": {
+      "appId": "datacraft",
+      "integrationStatus": "verified",
+      "roundTrip": "verified",
+      "status": "verified",
+      "checkedAt": "2026-11-01T09:25:26.204701+00:00",
+      "upstream": "0.11.0",
+      "sourceCommit": "02756165e6674e680ab76f2a797df7b53d3f2633",
+      "adapterVersion": "0.1.0",
+      "browserBundleSha256": "d2d80df746abd0a467ac2ebb2d7a2463f671317082b90c0419dd325f5f7481d0",
+      "sourcePatchSha256": "711cb0fda971648912b2217b8d8dacbbe5f8888d021806ae8e5727fd46ef492a",
+      "imageInstallation": {
+        "template": "robyn-studio-0-2-1@1",
+        "digest": "sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da",
+        "evidence": "../../workstations/studio-0.2.1/verification.json"
+      },
+      "scope": "Original desktop DataCraft UI, typed worker and SQLite driver; exact standalone SQLite masters with explicitly saved SQL companions. Browser server providers/account profiles/filesystem backups are outside this browser scope and use the installed native application.",
+      "reproducibility": {
+        "scope": "Two independent Rust target-volume builds with pinned identical source and compiler, complete browser outputs byte-for-byte equal",
+        "builds": [
+          "datacraft-canonical-3",
+          "datacraft-canonical-4"
+        ],
+        "files": 341,
+        "bytes": 35732393,
+        "sha256": "d2d80df746abd0a467ac2ebb2d7a2463f671317082b90c0419dd325f5f7481d0",
+        "manifestSha256": "5d1ee20f3de0fa7e42507b2c7c6ebd71046e99b64dca5db2512208b53f1a68db"
+      },
+      "dependencyLocks": {
+        "ui": "27d097195b45cc711343e656fde6b286666c42bd61b75857e92aad77528216b9",
+        "engine": "d2e1e82b9497643c6b502dd6758e34f4c553fb2dc721ecebcc659b8dc22723af",
+        "native": "85032326090abe3d96e30be54768e1163b4b59e26436e42af96ffd1a6b04ba17",
+        "preservedSharedNativeDependencyIdentities": {
+          "robyn-web-ui": 327,
+          "robyn-web-engine": 42
+        },
+        "changedSharedNativeVersions": 0
+      },
+      "checks": {
+        "nativeSource": {
+          "bytes": 8192,
+          "sha256": "cb643afde4dd6d9a2f14f0f15f2fa95294ce5815093e201bf3f3c383bc49dcf0",
+          "genuineOriginalGuiCreatedRows": true
+        },
+        "canonical": {
+          "master": {
+            "path": "database.sqlite",
+            "role": "master",
+            "bytes": 8192,
+            "sha256": "d21fe1a5726e33fbdc6b6973836b42fe48e385dc285c9774cb33aa2b4ab246da",
+            "mimeType": "application/octet-stream"
+          },
+          "quantityAfterBrowser": 14,
+          "quantityAfterNative": 19,
+          "nativeContinuedSha256": "7f87e52ea1c78c1bd9a52d52436d45fd1d57e70a29b25ca88af806a49cb4aad6",
+          "originalGridAndSqlControls": true,
+          "unsavedSqlCloseCancelAndDiscard": true,
+          "exactSqlCompanionSaveAndReload": true,
+          "explicitRollbackCreatesNoRevision": true,
+          "metadataReadsPreserveOpenTransaction": true,
+          "lostCommitAcknowledgementRetryDoesNotRepeatIncrement": true,
+          "originalCsvImportPreservesUnicode": true,
+          "realSelectedSqlScriptRunner": true,
+          "resultExportIsDownloadOnly": true
+        },
+        "hosted": {
+          "master": {
+            "path": "database.sqlite",
+            "role": "master",
+            "bytes": 8192,
+            "sha256": "7f237c331ca7786ecf6994a2020d55a835f8ba8717a588ef34a29abc4a4a7620",
+            "mimeType": "application/octet-stream"
+          },
+          "quantityAfterBrowser": 15,
+          "quantityAfterNative": 20,
+          "nativeContinuedSha256": "8e3866776beb3c0d2199f7b839459f361df543f818537bc77cdb8ae24ceea71a",
+          "originalF2AndCtrlSSave": true,
+          "confirmedLibraryRevisionAndExactFullReload": true,
+          "sqlCompanionRetained": true,
+          "runtimeClientEntry": "--native-datacraft",
+          "runtimeClientVersion": "0.8.0",
+          "runtimeClientSha256": "421111ced6aad290ffc80c79c658daabebcb8f5639b8e0f16299e2d21bb884eb",
+          "encodingReconciliation": "The QA runner used an implicit Windows encoding when copying expected Unicode literals. Its failed receipt is retained. A separate read-only audit verified the correct original native result with escaped Unicode, exact input/bundle/output hashes and integrity checks; no native edit was repeated."
+        },
+        "saveConflict": {
+          "frozenSnapshotPreserved": true,
+          "nativeSaveAsCreatesSeparateAsset": true,
+          "lostSaveAsAckRetryOneAssetOneRevision": true,
+          "newerOriginalCommittedRevisionNotOverwritten": true
+        },
+        "browserEngines": {
+          "chromium": {
+            "originalUiEditSaveAndReload": true
+          },
+          "firefox": {
+            "browser": "firefox",
+            "bytes": 159,
+            "sha256": "819d93b20c4e0753bce3e737c028ac76334feae1c90acdce317c626a30ab51e0"
+          },
+          "webkit": {
+            "browser": "webkit",
+            "bytes": 159,
+            "sha256": "819d93b20c4e0753bce3e737c028ac76334feae1c90acdce317c626a30ab51e0"
+          }
+        },
+        "minimumDesktop1100x800PreservesOpenDocument": true,
+        "noDuplicateSaveControls": true,
+        "nativeOwnership": {
+          "preservedFiles": 11,
+          "metadataResourcesBudgetAndUsageUnchanged": true,
+          "credentialsIssued": 0,
+          "modelDispatches": 0,
+          "allMaintenanceLeasesClosed": true
+        }
+      },
+      "nativeBlank": {
+        "version": 7,
+        "path": "Untitled database.sqlite",
+        "bytes": 4096,
+        "sha256": "90c8a9670d08c6336dfd9ca68537a82d2a212b3b84a4c01b02c102ff4cbf9253",
+        "originalGuiVacuumCreated": true
+      },
+      "workstationClient": {
+        "version": "0.8.0",
+        "bundle": {
+          "bytes": 2227084,
+          "sha256": "421111ced6aad290ffc80c79c658daabebcb8f5639b8e0f16299e2d21bb884eb"
+        },
+        "fingerprint": "3d9fa702304f6fbe516a1a51fe0bfe1c9bc3703cfcc55f9dc074c1689cbad4d0",
+        "craftSkills": 26,
+        "configurationProfileTests": 4
+      },
+      "hosting": {
+        "checkedAt": "2026-11-01T09:02:29.445Z",
+        "origin": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev",
+        "accountId": "ad511085f517f4740591851cad7686eb",
+        "bucket": "robyn-editor-artifacts",
+        "releases": 99,
+        "files": 45328,
+        "uniqueObjects": 3109,
+        "bytes": 2456031509,
+        "catalogSha256": "5bfb337ec58c9a8b2ef9e740dcd06bd2bed64c474ce787499166b6bf0fb10651",
+        "uploaded": 0,
+        "existing": 0,
+        "allHostedBytesVerified": true,
+        "sourceBaseline": false,
+        "uploadOnly": false,
+        "privateBucket": true,
+        "readOnlyServingWorker": true,
+        "workerVersion": "65153cee-bc80-449e-89bc-cf06e2530cff",
+        "previousReleasesRetained": 98,
+        "previousFileDescriptorsRetained": 44987
+      },
+      "tests": {
+        "runtime": 145,
+        "linuxConfiguration": 4,
+        "auditHighVulnerabilities": 0,
+        "web": "Recorded separately in the paired web source/release record"
+      },
+      "privateEvidence": [
+        {
+          "sourcePath": "E:/Development/robyn-shared-workstation-20261029/datacraft-candidate-roundtrip-20261101.private.json",
+          "bytes": 1275,
+          "sha256": "d7e45a1b81d34d53353855660a9ab3fe42a3a682704097c1a7c8b1cccfd882b1"
+        },
+        {
+          "sourcePath": "E:/Development/robyn-shared-workstation-20261029/datacraft-native-canonical-operation-20261101.private.json",
+          "bytes": 11074,
+          "sha256": "334178501a8943e480ebe397e1e61b33b896261fac950d5afac263abdcff49ef"
+        },
+        {
+          "sourcePath": "E:/Development/robyn-shared-workstation-20261029/datacraft-browser-acceptance-20261101.private.json",
+          "bytes": 2072,
+          "sha256": "640122f2b0c4de1fad1812e07651428db604145eafa66ddda53ae4dbde8e3d72"
+        },
+        {
+          "sourcePath": "E:/Development/robyn-shared-workstation-20261029/datacraft-native-hosted-client-operation-20261101.private.json",
+          "bytes": 13334,
+          "sha256": "dfee400c3d86a728780cf34dce4ad6ba6f3914914b8e2ae6bc394e63bba29688"
+        }
+      ]
+    }
+  },
+  "workstationClient": {
+    "version": "0.8.0",
+    "directory": "vendor/robyn-workstation/0.8.0-3d9fa702304f",
+    "fingerprint": "3d9fa702304f6fbe516a1a51fe0bfe1c9bc3703cfcc55f9dc074c1689cbad4d0",
+    "files": {
+      "studio-mcp.cjs": {
+        "bytes": 2227084,
+        "sha256": "421111ced6aad290ffc80c79c658daabebcb8f5639b8e0f16299e2d21bb884eb"
+      },
+      "configure-hermes.py": {
+        "bytes": 10663,
+        "sha256": "5cd5f311f201dfde689705a6fbc5576eff3dcdfb121c11cfa0258a5287a8ecd0"
+      },
+      "skills/bimcraft.md": {
+        "bytes": 2483,
+        "sha256": "50b126d71b29f9c6a992896b966fa850f984d8857d6f4288846d810490e6904e"
+      },
+      "skills/cadcraft.md": {
+        "bytes": 2033,
+        "sha256": "f06797192538fa358eb18e02ca241d7dc54ed67f15f1e984f3e197a406a5f351"
+      },
+      "skills/civilcraft.md": {
+        "bytes": 2635,
+        "sha256": "eea8e334f71dd3679cde8086985d30f08b809c7c9d6411063f0d316b6071a865"
+      },
+      "skills/dashcraft.md": {
+        "bytes": 3139,
+        "sha256": "dbaa3ca247b303fe68c97befc4ba75cc7c02a7c8bfcdc727e80e4f9f93318cb5"
+      },
+      "skills/datacraft.md": {
+        "bytes": 3445,
+        "sha256": "a7baffcee83d345abbf4bb55e423b6d12ce66f60ac0784a8c404b70c8344fed9"
+      },
+      "skills/deckcraft.md": {
+        "bytes": 2232,
+        "sha256": "0eca77621dcadf5a8138f56232898e21a1acfe787a26d19d50a10c986e88bc43"
+      },
+      "skills/designcraft.md": {
+        "bytes": 1986,
+        "sha256": "03c03624fb33855e0e1568536ed8756b8a0776eb25e56228f0a41667fb88eeec"
+      },
+      "skills/detailcraft.md": {
+        "bytes": 2660,
+        "sha256": "824a547bb775b343188bf884ab743055e1fa81736e0d114289cf7a0802b94716"
+      },
+      "skills/effectcraft.md": {
+        "bytes": 2241,
+        "sha256": "19e97607142561bade2ce226dd0d421229b76f989526fe2930f8a9062f3db247"
+      },
+      "skills/figcraft.md": {
+        "bytes": 2065,
+        "sha256": "5e3ed3becf2db79dbd828744d5d85dcd7874f7a7247d878f267ea7f278384127"
+      },
+      "skills/filmcraft.md": {
+        "bytes": 3238,
+        "sha256": "0e636265041381d189cfdf0d608c7d0d75ab0e4aa0ff4ff1fffefd9f5144f962"
+      },
+      "skills/gridcraft.md": {
+        "bytes": 2563,
+        "sha256": "da3029fbb26ee0a6b0a4e5014ca0a19259405ef86ab5da33fbeeda56c9bb941b"
+      },
+      "skills/lightcraft.md": {
+        "bytes": 2632,
+        "sha256": "5ce555cb1fb30e75ee51bdb6b6ab170e6b2076dfb9c6ab3e236a13cb8a50bf28"
+      },
+      "skills/markupcraft.md": {
+        "bytes": 2629,
+        "sha256": "b9171f75e8309cf8f6bb9c72add9d6ab706696c00e9e5c77e104c68df59a0779"
+      },
+      "skills/matcraft.md": {
+        "bytes": 2578,
+        "sha256": "8d448523366a77ef2bf8385f1a64670fe44515f5f7a2328b5bd594d28c005fbc"
+      },
+      "skills/materialcraft.md": {
+        "bytes": 2855,
+        "sha256": "a1a102e1f0116ee68ca7264dba073e870f62472b7925f814f78efca926e1b067"
+      },
+      "skills/modelcraft.md": {
+        "bytes": 2520,
+        "sha256": "5d2c0a3c461c5e62003a3293148e99551865a9f193afc59ab64b3e29a75004bc"
+      },
+      "skills/partcraft.md": {
+        "bytes": 2892,
+        "sha256": "afecf2b2b238708cdc02cb20b34ca4e05d2c65cec7d8de276b3e549a04594a4d"
+      },
+      "skills/pdfcraft.md": {
+        "bytes": 3745,
+        "sha256": "a83ed785dfe68c59085a8405ff96357ceccc6809de5809db2019651d9fe43106"
+      },
+      "skills/photocraft.md": {
+        "bytes": 3618,
+        "sha256": "bb12de1e9f2af34698c6804b23ec27fedae12d5110830b02bac039ad1aa12f66"
+      },
+      "skills/solidcraft.md": {
+        "bytes": 1811,
+        "sha256": "d88fddcaae2d67f6558af45ca5b5fd2443628d7891b25c5028c19e12a10265db"
+      },
+      "skills/soundcraft.md": {
+        "bytes": 2428,
+        "sha256": "30e7d0c75a7832952ae1971fdb857a03bda99a04538351b6251bd129fadea7bf"
+      },
+      "skills/subcraft.md": {
+        "bytes": 2617,
+        "sha256": "c3f64a8607c86e214845ba849fe8bdbe293f6134f7baf2e3d186884c2277f1f3"
+      },
+      "skills/takeoffcraft.md": {
+        "bytes": 2855,
+        "sha256": "ff355a942ca38bace959b28a789f8d99d7d0b31a711ff475733e922b496684a8"
+      },
+      "skills/vectorcraft.md": {
+        "bytes": 3454,
+        "sha256": "0f0f7fbee79a3330d3701011a388ba54191ec1010b030e52490e4e8a70c2a73d"
+      },
+      "skills/wordcraft.md": {
+        "bytes": 2148,
+        "sha256": "49fed4362d7b2a9da7f8a0e974c1b46ff22e56ec3d8f9fdc1d0dbeb4a0e69672"
+      },
+      "skills/research.md": {
+        "bytes": 2255,
+        "sha256": "d42dd3e14a55b5756348a698528541f888fe529d25a04834ee4cbe4e008091cd"
+      }
+    }
+  },
+  "migrations": {
+    "changed": false,
+    "baseline": "Unchanged from the prior deployed checksummed ledger, 30 migrations through 0029; this source change adds no migration."
+  },
+  "publicSignup": "disabled",
+  "desktopOnly": true,
+  "privateCredentialsAndReceiptsCommitted": false,
+  "runtimeSourceCommit": "78fe495f1e9c2d88e1b92676ed39a27b4c4021bb",
+  "runtimePullRequest": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/17",
+  "checks": {
+    "webTests": 247,
+    "runtimeTests": 145,
+    "linuxProfileTests": 4,
+    "typecheck": true,
+    "productionBuild": true,
+    "highAuditFindings": 0,
+    "studioCandidate": {
+      "enabledCrafts": 26,
+      "disabledCrafts": 0,
+      "nativeBlankLaunch": true,
+      "originalSqlCreatesDatabaseContent": true,
+      "confirmedDatabaseCommit": true,
+      "sqlCompanionSave": true,
+      "exactFullReload": true,
+      "master": {
+        "path": "Untitled database.sqlite",
+        "role": "master",
+        "bytes": 8192,
+        "sha256": "da8e8e7c3a1e7e9ff8f60276a0f78aab394ac28d167927d49143428d3183541b",
+        "mimeType": "application/octet-stream"
+      },
+      "privateEvidence": {
+        "sourcePath": "E:/Development/robyn-shared-workstation-20261029/datacraft-studio-blank-saved-20261101.private.json",
+        "bytes": 887,
+        "sha256": "90e5eaf1d499dd6f2523ecaec8a75d464dee5f4b1f6fa01c3a233df0b94851a1"
+      }
+    },
+    "homepage": {
+      "craftCaptures": 26,
+      "desktop": [
+        1600,
+        1000
+      ],
+      "mobile": [
+        390,
+        844
+      ],
+      "mobileHorizontalOverflow": false,
+      "originalColourToggle": true,
+      "escapeReturnsFocus": true,
+      "affectedRegressionTests": 9,
+      "productionBuildAfterHomepageChange": true,
+      "evidence": [
+        {
+          "sourcePath": "E:/Development/robyn-shared-workstation-20261029/datacraft-home-desktop-20261101.png",
+          "bytes": 276813,
+          "sha256": "6ebc80d8df22d2301f9212b79966845873da6b28fed613539407671dc3cb7d48"
+        },
+        {
+          "sourcePath": "E:/Development/robyn-shared-workstation-20261029/datacraft-home-preview-20261101.png",
+          "bytes": 133685,
+          "sha256": "82081b2afc5035c134336aeef31cd0533877d68a4c9d50b353f1305a46855397"
+        },
+        {
+          "sourcePath": "E:/Development/robyn-shared-workstation-20261029/datacraft-home-mobile-20261101.png",
+          "bytes": 59972,
+          "sha256": "eb8f5d7018eeafcc52e5cb6f970d6d988765d9c05dc96bd3f56309bbdfea6d92"
+        }
+      ]
+    }
+  },
+  "showcase": "2026-11-01-remotion-showcase-export.json",
+  "runtimeCi": {
+    "runId": 41293363875,
+    "conclusion": "success"
+  }
+}

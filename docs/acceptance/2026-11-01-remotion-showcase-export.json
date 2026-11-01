@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "scope": "New actual MP4 export of the final 26-ready Craft source catalog, corrected animal icons and real DashCraft/DataCraft captures; distinct from all earlier exports.",
+  "file": "D:/.codex/worktrees/1e82/robyn/videos/robyn-showcase/out/robyn-showcase-20261101-all-26.mp4",
+  "chatCopy": "C:/Users/jamie/.codex/visualizations/2026/10/31/01a19057-b4f5-7ec2-8d57-414aa0ab4894/robyn-showcase-2026-11-01-all-26-30e3ff8e.mp4",
+  "bytes": 22262944,
+  "sha256": "30e3ff8e468ad45297b5b6b14a30db87b808a2b6b6bc923b19366c545da14cbf",
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "frames": 1800,
+  "durationSeconds": 60,
+  "containerDurationSeconds": 60.011,
+  "audioPaddingSeconds": 0.011000000000002785,
+  "videoCodec": "h264",
+  "audioCodec": "aac",
+  "audioChannels": 2,
+  "previewOpenedInApp": true,
+  "qa": {
+    "composition": "RobynShowcase",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "durationInFrames": 1800,
+    "frames": [
+      100,
+      350,
+      500,
+      550,
+      610,
+      670,
+      680,
+      730,
+      860,
+      1100,
+      1320,
+      1540,
+      1740,
+      1799,
+      225,
+      450,
+      750,
+      975,
+      1200,
+      1425,
+      1650,
+      210,
+      232,
+      246,
+      435,
+      457,
+      471,
+      735,
+      757,
+      771,
+      960,
+      982,
+      996,
+      1185,
+      1207,
+      1221,
+      1410,
+      1432,
+      1446,
+      1635,
+      1657,
+      1671
+    ],
+    "chapters": [
+      {
+        "id": "IdeasHaveWings",
+        "frame": 100,
+        "masterFrame": 100
+      },
+      {
+        "id": "ThreeStudios",
+        "frame": 125,
+        "masterFrame": 350
+      },
+      {
+        "id": "RealTools",
+        "frame": 100,
+        "masterFrame": 550
+      },
+      {
+        "id": "OneRobyn",
+        "frame": 110,
+        "masterFrame": 860
+      },
+      {
+        "id": "BrowserAndNotes",
+        "frame": 125,
+        "masterFrame": 1100
+      },
+      {
+        "id": "Media",
+        "frame": 120,
+        "masterFrame": 1320
+      },
+      {
+        "id": "SavedRevisions",
+        "frame": 115,
+        "masterFrame": 1540
+      },
+      {
+        "id": "Invitation",
+        "frame": 90,
+        "masterFrame": 1740
+      }
+    ],
+    "errors": [],
+    "catalog": {
+      "studios": [
+        {
+          "name": "Creative",
+          "applications": 10
+        },
+        {
+          "name": "Drafting",
+          "applications": 9
+        },
+        {
+          "name": "Analysis",
+          "applications": 7
+        }
+      ],
+      "applications": 26,
+      "ready": 26,
+      "connecting": 0,
+      "copiedAssets": 39,
+      "sha256": "d6b6170d5ac59e7f763dad29815ccebf469baa6f1cf059ff155273f9c6adc34e"
+    }
+  },
+  "chapterMasterComparisons": [
+    {
+      "chapter": "IdeasHaveWings",
+      "exactMasterPixelsExceptProgressBar": true
+    },
+    {
+      "chapter": "ThreeStudios",
+      "exactMasterPixelsExceptProgressBar": true
+    },
+    {
+      "chapter": "RealTools",
+      "exactMasterPixelsExceptProgressBar": true
+    },
+    {
+      "chapter": "OneRobyn",
+      "exactMasterPixelsExceptProgressBar": true
+    },
+    {
+      "chapter": "BrowserAndNotes",
+      "exactMasterPixelsExceptProgressBar": true
+    },
+    {
+      "chapter": "Media",
+      "exactMasterPixelsExceptProgressBar": true
+    },
+    {
+      "chapter": "SavedRevisions",
+      "exactMasterPixelsExceptProgressBar": true
+    },
+    {
+      "chapter": "Invitation",
+      "exactMasterPixelsExceptProgressBar": true
+    }
+  ],
+  "catalogSha256": "d6b6170d5ac59e7f763dad29815ccebf469baa6f1cf059ff155273f9c6adc34e",
+  "previousExportUnchanged": true,
+  "previousExportSha256": "210a871c3868189968938c0a3b4ff7440735892d57dcd16b628bd0c5fe17e4c7",
+  "captureSources": [
+    {
+      "sourcePath": "E:/Development/robyn-shared-workstation-20261029/dashcraft-production-viewer-20261101.png",
+      "bytes": 192572,
+      "sha256": "8a29b6dcb382a905f4dde06e804c16c58344017b67d64a86d53f019fb8fe16ab"
+    },
+    {
+      "sourcePath": "E:/Development/robyn-shared-workstation-20261029/datacraft-hosted-reloaded-20261101.png",
+      "bytes": 81958,
+      "sha256": "c0d59c2677e75d0ee7b3a730d94024f219e900dc54068a30952d2d1be4ef3724"
+    }
+  ],
+  "decode": {
+    "fullAudioVideoPassed": true,
+    "audioMeanDbfs": -19.1,
+    "audioSamplePeakDbfs": -4.1
+  },
+  "renderedAt": "2026-11-01T09:25:36.375854+00:00"
+}

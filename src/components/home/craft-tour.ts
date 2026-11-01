@@ -27,6 +27,7 @@ const stories: Record<string, { lines: string[]; accent: string; copy: string; d
   subcraft: { lines: ["Give a surface"], accent: "character.", copy: "Paint colour, texture and detail onto a three-dimensional form. Robyn works in SubCraft, preserving the mesh and layered materials for your next touch.", details: ["3D TEXTURE PAINTING", "PBR MATERIALS", "EDITABLE LAYERS"] },
   partcraft: { lines: ["Fit an idea"], accent: "together.", copy: "Shape a part, revisit a feature and see how it fits. Robyn builds in PartCraft with editable sketches, features and assemblies.", details: ["PARAMETRIC PARTS", "FEATURE HISTORY", "ASSEMBLIES"] },
   dashcraft: { lines: ["See the story"], accent: "in the report.", copy: "Explore a report with Robyn in DashCraft. Compute results, follow a filter and query the model while the original report stays unchanged.", details: ["REPORT ANALYSIS", "DAX & POWER QUERY", "READ-ONLY VIEWING"] },
+  datacraft: { lines: ["Find the idea"], accent: "in the data.", copy: "Work through tables and queries with Robyn in DataCraft. Keep the database and saved SQL ready to inspect, edit and continue.", details: ["SQL QUERIES", "EDITABLE TABLES", "SAVED DATABASES"] },
 };
 
 // Presentation order is editorial; identity and the application count
