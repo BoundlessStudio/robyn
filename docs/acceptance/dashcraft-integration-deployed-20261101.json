@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-01T06:20:35.897675+00:00",
+  "stage": "deployed-and-production-verified",
+  "scope": "DashCraft owner-approved read-only report analysis in the actual robyn.academy project launcher and exact report picker, using the immutable hosted original application and owner-checked private-library BFF. Report authoring and library save-back are excluded.",
+  "webCommit": "0ffbb59b3cd24d87feff6ca650a07e96327b652e",
+  "webSourceCommit": "fbae3ed72cf28c7b6f73da0d06f0cc535d10107d",
+  "webPullRequest": "https://github.com/BoundlessStudio/robyn/pull/57",
+  "runtimeCommit": "fe68bb83075970396ef51217bc097583627e2771",
+  "runtimeSourceCommit": "ee91e080313e701c6e2db4926a616c60508526fd",
+  "runtimePullRequest": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/16",
+  "ci": {
+    "web": {
+      "workflowRun": 41279268114,
+      "status": "success"
+    },
+    "runtime": {
+      "workflowRun": 41278793973,
+      "status": "success"
+    },
+    "vercelCommitStatus": "success",
+    "vercelStatusTargetUrl": "https://vercel.com/venatio-studios/robyn-creative-studio/5A8k6cnafF92pBMKS9h5uoKjWF6N"
+  },
+  "readyCrafts": 25,
+  "installedCrafts": 26,
+  "remaining": [
+    "datacraft"
+  ],
+  "app": {
+    "mode": "readOnly",
+    "adapterVersion": "0.1.0",
+    "release": "dashcraft-v0.2.0-robyn-0.1.0",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/dashcraft/v0.2.0-0.1.0/?robyn",
+    "status": "verified"
+  },
+  "browserBundleSha256": "89f7454df16ba2c0f773961abe3d859f089190f79b0f1fbb2674f914e18b89b1",
+  "workstation": {
+    "template": "robyn-studio-0-2-1@1",
+    "imageDigest": "sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da",
+    "imageBytesChanged": false,
+    "clientVersion": "0.7.0",
+    "clientDirectory": "vendor/robyn-workstation/0.7.0-945928ccaabf",
+    "clientFingerprint": "945928ccaabfb8c623bd07e5f3fcd12d59be10e07251a24886c9275a3445d86e",
+    "clientBundle": {
+      "bytes": 2196986,
+      "sha256": "505d12fe6268cfc508860179b24fe17aee511ac345e91e01b60db071ecd2ed06"
+    },
+    "craftSkills": 25
+  },
+  "migrationState": {
+    "appliedByThisRelease": 0,
+    "lastRecordedEntries": 30,
+    "lastRecordedThrough": "0029",
+    "liveLedgerReread": false
+  },
+  "productionChecks": {
+    "launcher": {
+      "groups": [
+        "Creative10 Crafts",
+        "Drafting9 Crafts",
+        "Analysis7 Crafts"
+      ],
+      "ready": 25,
+      "pending": 1
+    },
+    "privateInputHashesMatched": 137,
+    "saved2025Canvas": 457432.15,
+    "year2024SlicerSales": 372196.85,
+    "dax": [
+      894300.500000001,
+      489883.85,
+      404416.650000001,
+      3900
+    ],
+    "readOnlyStatus": "Read only",
+    "originalSaveDisabled": true,
+    "fullReloadExactInputAndCompute": true,
+    "viewerLibraryWrites": 0,
+    "libraryRevisions": 1
+  },
+  "sourceChecks": {
+    "nativeCases": 3,
+    "allSourceInputsUnchanged": true,
+    "preservedWorkstationFiles": 11,
+    "maintenanceLeaseClosed": true,
+    "metadataResourcesBudgetAndModelUsageUnchanged": true,
+    "taskCredentialsIssued": 0,
+    "modelTurns": 0,
+    "canonicalAndHostedExportSha256": "b2efd4cfb6e4be9686337efa058b00ef6f8e0ec65c2698ab81bb2425352d815e",
+    "refused": [
+      "corrupt input before engine open",
+      "foreign project/asset reference",
+      "saveAsset",
+      "importAsset",
+      "requestAgentEdit",
+      "dirty report state"
+    ]
+  },
+  "limits": [
+    "Original report/M/DAX/visual compatibility limits remain visible",
+    "Local Firefox and Playwright WebKit computation is separately scoped; no physical Safari certification",
+    "Final all-26 showcase export remains pending DataCraft readiness"
+  ],
+  "evidence": [
+    {
+      "path": "docs/acceptance/dashcraft-integration-20261101.json",
+      "sha256": "01c57ced3053d75a5351da86b86f8c6f7cfff6fb5cd97c28b9f2ceb70f36a6ec"
+    },
+    {
+      "path": "E:\\Development\\robyn-shared-workstation-20261029\\dashcraft-production-browser-20261101.private.json",
+      "sha256": "5f64a1896652c57b056841cd57f29546294bb71b152774cbf3f6326fb00cc177"
+    },
+    {
+      "path": "E:\\Development\\robyn-shared-workstation-20261029\\dashcraft-production-viewer-20261101.png",
+      "sha256": "8a29b6dcb382a905f4dde06e804c16c58344017b67d64a86d53f019fb8fe16ab"
+    }
+  ]
+}
