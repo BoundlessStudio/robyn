@@ -13,7 +13,7 @@ function object(value: unknown): Record<string, unknown> {
 }
 function assetRef(value:unknown):AssetRef {const input=object(value);return{assetId:requireUuid(input.assetId),revisionId:requireUuid(input.revisionId)};}
 
-export function createEditorHost(options:{projectId:string;initialRef:AssetRef;signal:AbortSignal;onDirty:(dirty:boolean)=>void;onStatus:(message:string)=>void;onSaved:(result:EditorSaveResult)=>void;onImported?:()=>void}) {
+export function createEditorHost(options:{projectId:string;initialRef:AssetRef;signal:AbortSignal;onDirty:(dirty:boolean)=>void;onStatus:(message:string)=>void;onSaved:(result:EditorSaveResult)=>void;onImported?:()=>void;readOnly?:boolean}) {
   let assetId=options.initialRef.assetId;
   let base=options.initialRef.revisionId;
   // Save As adds the source here, after the editor froze its dependency list.
@@ -53,6 +53,7 @@ export function createEditorHost(options:{projectId:string;initialRef:AssetRef;s
   }
   async function dispatch(message:EditorMessage):Promise<unknown> {
     options.signal.throwIfAborted();
+    if(options.readOnly&&["saveAsset","importAsset","requestAgentEdit"].includes(message.operation))throw Error("This read-only application opens library inputs without changing them.");
     switch(message.operation){
       case "openAsset": return open(assetRef(message.payload));
       case "insertAsset": return open(assetRef(message.payload));
@@ -103,6 +104,7 @@ export function createEditorHost(options:{projectId:string;initialRef:AssetRef;s
       case "notifyChanges": {
         const input=object(message.payload);
         if(input.assetId!==assetId||typeof input.dirty!=="boolean")throw Error("Invalid change notification.");
+        if(options.readOnly&&input.dirty)throw Error("This read-only application cannot mark the report as edited.");
         dirty=input.dirty;options.onDirty(dirty);return{received:true};
       }
       case "requestAgentEdit": {

@@ -169,6 +169,13 @@ export const craftArtwork: Record<string, CraftArtwork> = {
     "alt": "SolidCraft's actual editor with a parametric 3D block, model browser, sketch and solid modelling tools, and an editable feature history.",
     "tools": "PARAMETERS / SOLIDS / FEATURE HISTORY",
     "fullFrame": true
+  },
+  "dashcraft": {
+    "src": "/artwork/editors/dashcraft.png",
+    "title": "See the story in the report.",
+    "alt": "DashCraft's actual read-only report viewer showing a computed sales report, year slicer, charts, report pages and loaded model tables.",
+    "tools": "REPORTS / FILTERS / DAX & POWER QUERY",
+    "fullFrame": true
   }
 };
 

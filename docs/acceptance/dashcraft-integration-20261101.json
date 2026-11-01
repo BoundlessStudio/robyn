@@ -1,0 +1,449 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-01T05:58:32.436884+00:00",
+  "stage": "verified-sources-awaiting-web-deployment",
+  "scope": "DashCraft 0.2.0 original Svelte UI and original Rust report/M/DAX/DataFusion/rendering engines; owner-approved exact private-library read-only scope. All 24 prior ready Craft pins retained; DataCraft remains pending.",
+  "runtimeCommit": "fe68bb83075970396ef51217bc097583627e2771",
+  "runtimeSourceCommit": "ee91e080313e701c6e2db4926a616c60508526fd",
+  "runtimePullRequest": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/16",
+  "readyCrafts": 25,
+  "installedCrafts": 26,
+  "remaining": [
+    "datacraft"
+  ],
+  "ownerException": "Exact private-library open, real computation/display/filter/query and native interoperability; report editing and library save-back are not required.",
+  "app": {
+    "id": "dashcraft",
+    "manifest": {
+      "mode": "readOnly",
+      "adapterVersion": "0.1.0",
+      "release": "dashcraft-v0.2.0-robyn-0.1.0",
+      "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/dashcraft/v0.2.0-0.1.0/?robyn",
+      "status": "verified"
+    },
+    "formats": [
+      ".pbix",
+      ".pbip",
+      ".pbit",
+      ".bim",
+      ".tmdl"
+    ],
+    "sourceCommit": "4e3bbe2d7863dd86f43206f5be87d23612511be4",
+    "sourceArchive": {
+      "name": "dashcraft-4e3bbe2d7863dd86f43206f5be87d23612511be4.tar.gz",
+      "url": "https://codeload.github.com/Jxck-S/dashcraft/tar.gz/4e3bbe2d7863dd86f43206f5be87d23612511be4",
+      "bytes": 9606781,
+      "sha256": "af0eab957a8ec8142a78940a27a52fca0115037b019d0b9e277b7ef0e3d3f8c5"
+    },
+    "sourcePatchSha256": "cff099c91ef2350b02468a50c633ad014cd836582fff4fb69ea61c261a064478",
+    "browserBundleSha256": "89f7454df16ba2c0f773961abe3d859f089190f79b0f1fbb2674f914e18b89b1",
+    "nativeBinarySha256": "19f28dcd819cda115e61d5ba0b91d5140ac5d1d113c537e41e4a70a73eece740",
+    "checks": {
+      "canonicalPrivateBrowser": {
+        "privateInputHashesMatched": 137,
+        "initialLibraryRevisions": 1,
+        "refreshedTables": 11,
+        "dax": [
+          894300.500000001,
+          489883.85,
+          404416.650000001,
+          3900
+        ],
+        "saved2025Canvas": 457432.15,
+        "year2024SlicerSales": 372196.85,
+        "model": {
+          "tables": 11,
+          "relationships": 8
+        },
+        "verbatimTmdlFiles": 17,
+        "tableGridRows": 3900,
+        "exportPbit": {
+          "bytes": 61264,
+          "sha256": "b2efd4cfb6e4be9686337efa058b00ef6f8e0ec65c2698ab81bb2425352d815e"
+        },
+        "exportReopenedInOwnFileOpen": true,
+        "originalSaveDisabled": true,
+        "engineBrowsers": {
+          "chromium": true,
+          "firefox": true,
+          "webkit": true
+        },
+        "fullReloadReopenedOriginalPrivatePackage": true,
+        "viewerLibraryWrites": 0,
+        "finalLibraryRevisions": 1
+      },
+      "hostedPrivateBrowser": {
+        "privateInputHashesMatched": 137,
+        "refreshedTables": 11,
+        "dax": [
+          894300.500000001,
+          489883.85,
+          404416.650000001,
+          3900
+        ],
+        "saved2025Canvas": 457432.15,
+        "year2024SlicerSales": 372196.85,
+        "originalPageAndReportSwitches": true,
+        "model": {
+          "tables": 11,
+          "relationships": 8
+        },
+        "verbatimTmdlFiles": 17,
+        "exportPbit": {
+          "bytes": 61264,
+          "sha256": "b2efd4cfb6e4be9686337efa058b00ef6f8e0ec65c2698ab81bb2425352d815e"
+        },
+        "canonicalAndHostedExportsIdentical": true,
+        "fullReloadReopenedOriginalPrivatePackage": true,
+        "viewerLibraryWrites": 0,
+        "finalLibraryRevisions": 1,
+        "writeAndAgentMutationsRefusedBeforeApi": [
+          "saveAsset",
+          "importAsset",
+          "requestAgentEdit",
+          "notifyChanges"
+        ],
+        "corruptPrivateInputRefusedBeforeEngineOpen": true,
+        "foreignAssetReferenceRefusedBeforeInputTransfer": true
+      },
+      "nativeContinuation": "Three installed SHA-256-pinned original CLI cases: native PBIP and both canonical/hosted PBIT exports. All 11 M/DAX tables, independent DAX oracle and original report SVG verified; inputs unchanged. Maintenance lease closed with 11 prior files, metadata, resources, budget and model usage unchanged; no task credentials or model turn.",
+      "seamlessUi": "Original File/Open/folder/recent/Export, original report/table/model/DAX/TMDL views and existing read-only controls/status/dialogs. No replacement editor or wrapper save bar.",
+      "reproducibleBuild": {
+        "builds": 2,
+        "identicalFiles": 628,
+        "bytes": 103322201,
+        "rustVersion": "1.99.1",
+        "emscriptenVersion": "6.0.10",
+        "builderImage": "sha256:a514e769b08e0c143b09261b8af6358e8f8589569e1c3d23388e5caf2c1c0944",
+        "unchangedOriginalDependencyIdentities": 743,
+        "originalPackageLockUnchanged": true,
+        "compileTimeRandomnessPinned": true,
+        "repositoryRelativeSvelteStyleScopes": true
+      },
+      "quality": {
+        "runtimeTests": 140,
+        "newRustModulesFormatted": true,
+        "originalEngineBrowserTests": [
+          "Chromium",
+          "Firefox",
+          "WebKit"
+        ],
+        "frontendAudit": "Two low development-only deepmerge advisories, no patched version available. Actual Vite module graphs exclude deepmerge and the build plugin from all distributed browser modules.",
+        "strictClippy": "Not claimed; original code warnings remain.",
+        "linuxProfileTests": 4
+      },
+      "hostedDistribution": {
+        "checkedAt": "2026-11-01T05:41:24.529Z",
+        "origin": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev",
+        "accountId": "ad511085f517f4740591851cad7686eb",
+        "bucket": "robyn-editor-artifacts",
+        "releases": 98,
+        "files": 44987,
+        "uniqueObjects": 3087,
+        "bytes": 2437529193,
+        "catalogSha256": "e57bca891a91baa168e37811e88cccbe32d9fe0dfc679d204520f80c5b56270e",
+        "uploaded": 101,
+        "existing": 2986,
+        "allHostedBytesVerified": true,
+        "sourceBaseline": false,
+        "uploadOnly": false,
+        "privateBucket": true,
+        "readOnlyServingWorker": true
+      },
+      "qaReconciliation": "An initial 137-file intake exceeded the QA runner wait. The original uploading revision was resumed and confirmed, with no duplicate revision. A local harness CSP mismatch was corrected to the existing private-Storage origin; distributed app bytes did not change.",
+      "productionWeb": "Not claimed by this source record."
+    },
+    "nativeCases": [
+      {
+        "id": "native-source",
+        "masterSha256": "4436881ad884be62e584e6a7f234810a70f4ce759d1902cd19e6b23ee2ba4a87",
+        "tables": 11,
+        "measures": 33,
+        "reports": 3,
+        "rows": {
+          "Orders": 3900,
+          "Customers": 400,
+          "Products": 120,
+          "Stores": 15,
+          "Targets": 120,
+          "Returns": 168,
+          "Web Sessions": 1600,
+          "Date": 731,
+          "Time Calc": 4,
+          "Products Never Sold": 6,
+          "Last Refreshed": 1
+        },
+        "dax": [
+          894300.5000000009,
+          489883.8500000002,
+          404416.6500000007,
+          3900
+        ],
+        "inputCount": 137,
+        "allInputsUnchanged": true,
+        "nativeReportSvgSha256": "159c435c159f1cf9ee141ab2e39d1c6a5013d79bdd0631676d7f9e339ad731b7",
+        "nativeResultSha256": "bb5b9a1e81ce602f5a0ec91b110c9dd3d4b90bd0c5a04d4414328ed2b703bee1"
+      },
+      {
+        "id": "canonical-export",
+        "masterSha256": "b2efd4cfb6e4be9686337efa058b00ef6f8e0ec65c2698ab81bb2425352d815e",
+        "tables": 11,
+        "measures": 33,
+        "reports": 1,
+        "rows": {
+          "Orders": 3900,
+          "Customers": 400,
+          "Products": 120,
+          "Stores": 15,
+          "Targets": 120,
+          "Returns": 168,
+          "Web Sessions": 1600,
+          "Date": 731,
+          "Time Calc": 4,
+          "Products Never Sold": 6,
+          "Last Refreshed": 1
+        },
+        "dax": [
+          894300.5000000009,
+          489883.8500000002,
+          404416.6500000007,
+          3900
+        ],
+        "inputCount": 138,
+        "allInputsUnchanged": true,
+        "nativeReportSvgSha256": "159c435c159f1cf9ee141ab2e39d1c6a5013d79bdd0631676d7f9e339ad731b7",
+        "nativeResultSha256": "b878f31d6ca5a8461de23e7ebc0b4c415d03b27c6881334254fdc3cde3b41e60"
+      },
+      {
+        "id": "hosted-export",
+        "masterSha256": "b2efd4cfb6e4be9686337efa058b00ef6f8e0ec65c2698ab81bb2425352d815e",
+        "tables": 11,
+        "measures": 33,
+        "reports": 1,
+        "rows": {
+          "Orders": 3900,
+          "Customers": 400,
+          "Products": 120,
+          "Stores": 15,
+          "Targets": 120,
+          "Returns": 168,
+          "Web Sessions": 1600,
+          "Date": 731,
+          "Time Calc": 4,
+          "Products Never Sold": 6,
+          "Last Refreshed": 1
+        },
+        "dax": [
+          894300.5000000009,
+          489883.8500000002,
+          404416.6500000007,
+          3900
+        ],
+        "inputCount": 138,
+        "allInputsUnchanged": true,
+        "nativeReportSvgSha256": "159c435c159f1cf9ee141ab2e39d1c6a5013d79bdd0631676d7f9e339ad731b7",
+        "nativeResultSha256": "b48de81ef0146f2b34a136323cfd021dd30da67102433fd22a58f9a9dfd416e2"
+      }
+    ]
+  },
+  "workstation": {
+    "image": {
+      "version": "0.2.1",
+      "template": "robyn-studio-0-2-1@1",
+      "release": "sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da",
+      "resources": {
+        "cpu": 4,
+        "memory": 16,
+        "disk": 10
+      },
+      "applications": 26,
+      "previousReleases": [
+        {
+          "template": "robyn-studio-0-1-1@1",
+          "release": "sha256:23622a922f2ab7df9a45d6cfe64f42247954b31843e228ded96619ccefbbea0d"
+        }
+      ]
+    },
+    "client": {
+      "version": "0.7.0",
+      "directory": "vendor/robyn-workstation/0.7.0-945928ccaabf",
+      "fingerprint": "945928ccaabfb8c623bd07e5f3fcd12d59be10e07251a24886c9275a3445d86e",
+      "files": {
+        "studio-mcp.cjs": {
+          "bytes": 2196986,
+          "sha256": "505d12fe6268cfc508860179b24fe17aee511ac345e91e01b60db071ecd2ed06"
+        },
+        "configure-hermes.py": {
+          "bytes": 10650,
+          "sha256": "b0b509952e9908cfeb2786062224c2f5e865040c8a6be751108d7c7637ec954e"
+        },
+        "skills/bimcraft.md": {
+          "bytes": 2483,
+          "sha256": "50b126d71b29f9c6a992896b966fa850f984d8857d6f4288846d810490e6904e"
+        },
+        "skills/cadcraft.md": {
+          "bytes": 2033,
+          "sha256": "f06797192538fa358eb18e02ca241d7dc54ed67f15f1e984f3e197a406a5f351"
+        },
+        "skills/civilcraft.md": {
+          "bytes": 2635,
+          "sha256": "eea8e334f71dd3679cde8086985d30f08b809c7c9d6411063f0d316b6071a865"
+        },
+        "skills/dashcraft.md": {
+          "bytes": 3139,
+          "sha256": "dbaa3ca247b303fe68c97befc4ba75cc7c02a7c8bfcdc727e80e4f9f93318cb5"
+        },
+        "skills/deckcraft.md": {
+          "bytes": 2232,
+          "sha256": "0eca77621dcadf5a8138f56232898e21a1acfe787a26d19d50a10c986e88bc43"
+        },
+        "skills/designcraft.md": {
+          "bytes": 1986,
+          "sha256": "03c03624fb33855e0e1568536ed8756b8a0776eb25e56228f0a41667fb88eeec"
+        },
+        "skills/detailcraft.md": {
+          "bytes": 2660,
+          "sha256": "824a547bb775b343188bf884ab743055e1fa81736e0d114289cf7a0802b94716"
+        },
+        "skills/effectcraft.md": {
+          "bytes": 2241,
+          "sha256": "19e97607142561bade2ce226dd0d421229b76f989526fe2930f8a9062f3db247"
+        },
+        "skills/figcraft.md": {
+          "bytes": 2065,
+          "sha256": "5e3ed3becf2db79dbd828744d5d85dcd7874f7a7247d878f267ea7f278384127"
+        },
+        "skills/filmcraft.md": {
+          "bytes": 3238,
+          "sha256": "0e636265041381d189cfdf0d608c7d0d75ab0e4aa0ff4ff1fffefd9f5144f962"
+        },
+        "skills/gridcraft.md": {
+          "bytes": 2563,
+          "sha256": "da3029fbb26ee0a6b0a4e5014ca0a19259405ef86ab5da33fbeeda56c9bb941b"
+        },
+        "skills/lightcraft.md": {
+          "bytes": 2632,
+          "sha256": "5ce555cb1fb30e75ee51bdb6b6ab170e6b2076dfb9c6ab3e236a13cb8a50bf28"
+        },
+        "skills/markupcraft.md": {
+          "bytes": 2629,
+          "sha256": "b9171f75e8309cf8f6bb9c72add9d6ab706696c00e9e5c77e104c68df59a0779"
+        },
+        "skills/matcraft.md": {
+          "bytes": 2578,
+          "sha256": "8d448523366a77ef2bf8385f1a64670fe44515f5f7a2328b5bd594d28c005fbc"
+        },
+        "skills/materialcraft.md": {
+          "bytes": 2855,
+          "sha256": "a1a102e1f0116ee68ca7264dba073e870f62472b7925f814f78efca926e1b067"
+        },
+        "skills/modelcraft.md": {
+          "bytes": 2520,
+          "sha256": "5d2c0a3c461c5e62003a3293148e99551865a9f193afc59ab64b3e29a75004bc"
+        },
+        "skills/partcraft.md": {
+          "bytes": 2892,
+          "sha256": "afecf2b2b238708cdc02cb20b34ca4e05d2c65cec7d8de276b3e549a04594a4d"
+        },
+        "skills/pdfcraft.md": {
+          "bytes": 3745,
+          "sha256": "a83ed785dfe68c59085a8405ff96357ceccc6809de5809db2019651d9fe43106"
+        },
+        "skills/photocraft.md": {
+          "bytes": 3618,
+          "sha256": "bb12de1e9f2af34698c6804b23ec27fedae12d5110830b02bac039ad1aa12f66"
+        },
+        "skills/solidcraft.md": {
+          "bytes": 1811,
+          "sha256": "d88fddcaae2d67f6558af45ca5b5fd2443628d7891b25c5028c19e12a10265db"
+        },
+        "skills/soundcraft.md": {
+          "bytes": 2428,
+          "sha256": "30e7d0c75a7832952ae1971fdb857a03bda99a04538351b6251bd129fadea7bf"
+        },
+        "skills/subcraft.md": {
+          "bytes": 2617,
+          "sha256": "c3f64a8607c86e214845ba849fe8bdbe293f6134f7baf2e3d186884c2277f1f3"
+        },
+        "skills/takeoffcraft.md": {
+          "bytes": 2855,
+          "sha256": "ff355a942ca38bace959b28a789f8d99d7d0b31a711ff475733e922b496684a8"
+        },
+        "skills/vectorcraft.md": {
+          "bytes": 3454,
+          "sha256": "0f0f7fbee79a3330d3701011a388ba54191ec1010b030e52490e4e8a70c2a73d"
+        },
+        "skills/wordcraft.md": {
+          "bytes": 2148,
+          "sha256": "49fed4362d7b2a9da7f8a0e974c1b46ff22e56ec3d8f9fdc1d0dbeb4a0e69672"
+        },
+        "skills/research.md": {
+          "bytes": 2255,
+          "sha256": "d42dd3e14a55b5756348a698528541f888fe529d25a04834ee4cbe4e008091cd"
+        }
+      }
+    },
+    "imageBytesChanged": false,
+    "maintenanceLeaseClosed": true,
+    "preservedFiles": 11,
+    "metadataResourcesBudgetAndModelUsageUnchanged": true,
+    "credentialsIssued": 0,
+    "modelTurns": 0
+  },
+  "prior24ManifestPinsSha256": "d84edb94e73e8a0a6c1c6c6051072e74031d7ebe5802bded2c87e521d3b53cc9",
+  "homepageCapture": {
+    "path": "public/artwork/editors/dashcraft.png",
+    "bytes": 171617,
+    "sha256": "4eb0d854fe871fb5ec7e60b5ae51c42515b9e0ab5b9223bb2a6199eaf47ba209",
+    "width": 1600,
+    "height": 1000,
+    "scope": "Unmodified genuine hosted app after exact private-library input reload and actual Refresh, with original report/model/filter controls. Public synthetic source data only."
+  },
+  "webChecks": {
+    "typecheck": "passed after final source changes",
+    "fullSuiteTests": 246,
+    "additionalNativeIntakeRegression": "Nine native-intake tests passed, including exact DashCraft report/model/offline-data selection, missing inputs and credentials refusal",
+    "productionBuild": "passed after final read-only launch protection, homepage story and capture mapping",
+    "publicGate": "18 page/viewport/engine layout/axe combinations passed after final homepage changes; 14 keyboard passes and four explicitly unverified Windows WebKit implicit-link cases",
+    "productionDeployment": "not claimed",
+    "finalAll26ShowcaseExport": "pending DataCraft readiness",
+    "applicationWorkspaceRegression": "Eight actual workspace browser tests passed after final source changes, including exact read-only revision selection/reload, zero blank creation, foreign-project refusal, and one discard prompt only when an exact report is selected",
+    "visualReview": "Actual read-only picker plus desktop/mobile homepage chapter and mobile viewport reviewed"
+  },
+  "evidence": {
+    "runtimeVerification": {
+      "path": "apps/dashcraft/verification.json",
+      "sha256": "759fe101654f17c8878eef254c2f2c45264612847c64b45f9304ff521ca758d6"
+    },
+    "canonicalReproduction": {
+      "path": "artifacts/studio-expansion/dashcraft-canonical-repro-3-4.json",
+      "sha256": "c5171ce22cebf0993ed9d377aecf3d0a60a21d345369c74c557c2668b604119d"
+    },
+    "webLogs": [
+      {
+        "path": "artifacts/qa/craft-integrations/dashcraft-web-tests-final.log",
+        "sha256": "823cc3e9d18ecbe1b7a60a11fbe5a31d8de11a164ff53d47e553ff2da074db70"
+      },
+      {
+        "path": "artifacts/qa/craft-integrations/dashcraft-native-import-tests-final.log",
+        "sha256": "9f4d879beaecbacfe39de0f611df9ad4a17551ff9a89e472453e455027293a89"
+      },
+      {
+        "path": "artifacts/qa/craft-integrations/dashcraft-workspace-tests-final.log",
+        "sha256": "b2eb058e8d4b976893c0488c4142eb0741ae4a958de10e2611b72279f89020c8"
+      },
+      {
+        "path": "artifacts/qa/craft-integrations/dashcraft-web-typecheck-release.log",
+        "sha256": "bfb6b9bb7a8b00f34503cccf733ee41de1c63849ef1c731da2a0a2fae8af1a0b"
+      },
+      {
+        "path": "artifacts/qa/craft-integrations/dashcraft-web-build-release.log",
+        "sha256": "0c7968a5a075a0e32093cceb2f035d697af35499b67404efa0803369231a49f4"
+      },
+      {
+        "path": "artifacts/qa/craft-integrations/dashcraft-public-release.log",
+        "sha256": "3cdb62f6eb13ab3d1a2580b39fe0e235b3914d3e86effac5cd1ce3013e20709b"
+      }
+    ]
+  }
+}

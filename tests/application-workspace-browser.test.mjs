@@ -1,12 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {randomUUID} from 'node:crypto';
+import {createHash,randomUUID} from 'node:crypto';
 import {chromium,firefox,webkit} from 'playwright';
 import {nativeImportFixture,origin,projectId} from './fixtures/native-import.mjs';
 import {applicationLaunchUrl,launchableApps} from '../src/studio/application-launch.ts';
 import {studioApps} from '../src/studio/apps/registry.ts';
 const browserType=({chromium,firefox,webkit})[process.env.NATIVE_IMPORT_BROWSER??'chromium'];
-const apps=launchableApps.map(app=>app.name);
+const apps=launchableApps.filter(app=>app.editor.mode!=='readOnly').map(app=>app.name);
 const ready=(page,app)=>page.frameLocator(`iframe[title="${app} editor"]`).getByText('Ready',{exact:true}).waitFor();
 async function chooseApplication(page,app){
   await page.getByRole('button',{name:'New file',exact:true}).click();
@@ -41,6 +41,73 @@ test('empty and populated projects list the independent catalogue and launch rea
     }
     assert.equal(state.assets.size,apps.length);assert.equal(state.revisions.size,apps.length);assert.equal(state.assignments.size,0);
     assert.equal(state.requests.filter(req=>req.path.includes('/budgets/')).length,0);
+    assert.deepEqual(state.errors,[]);
+  }finally{await browser.close();}
+});
+
+test('read-only applications select exact saved reports without creating blank assets or revisions',async()=>{
+  const browser=await browserType.launch({headless:true});
+  try{
+    const {page,state}=await nativeImportFixture(browser);state.allowance=0;
+    await page.getByRole('button',{name:'DashCraft',exact:false}).click();
+    const picker=page.getByRole('dialog',{name:'Open DashCraft report.',exact:true});
+    await picker.getByText('This project has no saved reports for this application yet.').waitFor();
+    assert.equal(state.assets.size,0);assert.equal(state.revisions.size,0);
+    assert.equal(state.requests.filter(req=>req.method==='POST').length,0);
+    const assetId=randomUUID(),revisionId=randomUUID(),bytes=Buffer.from('Exact saved report input');
+    const file={path:'Example.pbit',role:'master',mimeType:'application/octet-stream',bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')};
+    state.assets.set(assetId,{id:assetId,project_id:projectId,app_id:'dashcraft',name:'Quarterly sales',asset_kind:'native',current_revision_id:revisionId,created_at:state.project.created_at});
+    state.revisions.set(revisionId,{id:revisionId,assetId,state:'committed',revision_number:1,created_at:state.project.created_at,package:{files:[file],dependencies:[],message:'Component transport fixture'}});
+    state.bytes.set(revisionId+'/'+file.path,bytes);
+    await picker.getByLabel('Search reports',{exact:true}).fill('Quarter');
+    await picker.getByRole('button',{name:'Quarterly sales',exact:true}).waitFor();
+    const query=state.requests.filter(req=>req.path==='/api/studio/assets').at(-1);
+    assert.equal(new URLSearchParams(query.search).get('q'),'Quarter');
+    assert.equal(new URLSearchParams(query.search).get('projectId'),projectId);
+    assert.equal(new URLSearchParams(query.search).get('appId'),'dashcraft');
+    await picker.getByRole('button',{name:'Quarterly sales',exact:true}).click();
+    await page.frameLocator('iframe[title="DashCraft viewer"]').getByText('Ready',{exact:true}).waitFor();
+    assert.equal(new URL(page.url()).searchParams.get('asset'),assetId);
+    assert.equal(new URL(page.url()).searchParams.get('revision'),revisionId);
+    assert.equal(await page.locator('.project-save-state').innerText(),'Read only');
+    await page.reload();await page.frameLocator('iframe[title="DashCraft viewer"]').getByText('Ready',{exact:true}).waitFor();
+    assert.equal(state.assets.size,1);assert.equal(state.revisions.size,1);assert.equal(state.assignments.size,0);
+    assert.equal(state.requests.filter(req=>req.method==='POST').length,0);
+    assert.deepEqual(state.errors,[]);
+    await chooseApplication(page,'WordCraft');await ready(page,'WordCraft');
+    const text=page.frameLocator('iframe').getByLabel('Document text');
+    await text.fill('Keep my unsaved document while choosing a report.');
+    await page.locator('.project-save-state[data-state="dirty"]').waitFor();
+    let discardPrompts=0;
+    const refuse=dialog=>{discardPrompts++;void dialog.dismiss();};page.on('dialog',refuse);
+    await chooseApplication(page,'DashCraft');
+    const secondPicker=page.getByRole('dialog',{name:'Open DashCraft report.',exact:true});
+    await secondPicker.getByRole('button',{name:'Quarterly sales',exact:true}).click();
+    assert.equal(discardPrompts,1,'only selecting the exact report asks to leave the unsaved document');
+    assert.equal(await text.inputValue(),'Keep my unsaved document while choosing a report.');
+    assert.equal(await secondPicker.isVisible(),true);
+    page.removeListener('dialog',refuse);page.once('dialog',dialog=>dialog.accept());
+    await secondPicker.getByRole('button',{name:'Quarterly sales',exact:true}).click();
+    await page.frameLocator('iframe[title="DashCraft viewer"]').getByText('Ready',{exact:true}).waitFor();
+    assert.equal(state.assets.size,2);assert.equal(state.revisions.size,2);
+    assert.deepEqual(state.errors,[]);
+  }finally{await browser.close();}
+});
+
+test('a report picker refuses a foreign project response before selection and preserves the current editor',async()=>{
+  const browser=await browserType.launch({headless:true});
+  try{
+    const {page,state}=await nativeImportFixture(browser);
+    await page.getByRole('button',{name:'WordCraft',exact:false}).click();await ready(page,'WordCraft');
+    const source=await page.locator('iframe').getAttribute('src');
+    await page.route('**/api/studio/assets?**',async route=>route.fulfill({json:{assets:[{id:randomUUID(),project_id:randomUUID(),app_id:'dashcraft',name:'Foreign report',current_revision_id:randomUUID()}],nextCursor:null}}));
+    await chooseApplication(page,'DashCraft');
+    const picker=page.getByRole('dialog',{name:'Open DashCraft report.',exact:true});
+    await picker.getByRole('alert').filter({hasText:'The report list did not match this project.'}).waitFor();
+    assert.equal(await picker.getByRole('button',{name:'Foreign report',exact:true}).count(),0);
+    await page.keyboard.press('Escape');
+    assert.equal(await page.locator('iframe').getAttribute('src'),source);
+    assert.equal(state.assets.size,1);assert.equal(state.revisions.size,1);
     assert.deepEqual(state.errors,[]);
   }finally{await browser.close();}
 });

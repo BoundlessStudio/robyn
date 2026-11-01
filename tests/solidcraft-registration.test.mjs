@@ -109,10 +109,10 @@ test("pending SolidCraft rejects paid assignment creation before budget or workf
   });
 });
 
-test("all 24 ready Craft hints and an unhinted brief use the same canonical Robyn",async()=>{
+test("all 25 ready Craft hints and an unhinted brief use the same canonical Robyn",async()=>{
   const readyApps=studioApps.filter(isEmployeeReady);
-  assert.equal(readyApps.length,24);
-  assert.deepEqual(studioApps.filter(app=>!isAppReady(app)).map(app=>app.id),['dashcraft','datacraft']);
+  assert.equal(readyApps.length,25);
+  assert.deepEqual(studioApps.filter(app=>!isAppReady(app)).map(app=>app.id),['datacraft']);
   await assignmentBoundary(studioApps,async({submit,employee,created})=>{
     for(const app of readyApps){const response=await submit({appId:app.id,employeeId:employee.id});assert.equal(response.status,202);}
     const response=await submit();assert.equal(response.status,202);

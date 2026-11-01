@@ -8,7 +8,7 @@ import type { EditorSaveResult } from "@/studio/editor-host";
 export interface EditorViewState { status:string; dirty:boolean; error:string }
 export interface EmbeddedEditorHandle { expand:()=>void }
 
-export function EmbeddedEditor({ref,projectId,initialRef,bundleUrl,name,onSaved,onDirty,onState,onLibraryChanged}:{ref?:React.Ref<EmbeddedEditorHandle>;projectId:string;initialRef:AssetRef;bundleUrl:string;name:string;onSaved:(result:EditorSaveResult)=>void;onDirty:(dirty:boolean)=>void;onState:(state:EditorViewState)=>void;onLibraryChanged?:()=>void}) {
+export function EmbeddedEditor({ref,projectId,initialRef,bundleUrl,name,onSaved,onDirty,onState,onLibraryChanged,readOnly=false}:{ref?:React.Ref<EmbeddedEditorHandle>;projectId:string;initialRef:AssetRef;bundleUrl:string;name:string;onSaved:(result:EditorSaveResult)=>void;onDirty:(dirty:boolean)=>void;onState:(state:EditorViewState)=>void;onLibraryChanged?:()=>void;readOnly?:boolean}) {
   const shell=useRef<HTMLDivElement>(null);
   const frame=useRef<HTMLIFrameElement>(null);
   const callbacks=useRef({onSaved,onDirty,onState,onLibraryChanged});callbacks.current={onSaved,onDirty,onState,onLibraryChanged};
@@ -41,11 +41,12 @@ export function EmbeddedEditor({ref,projectId,initialRef,bundleUrl,name,onSaved,
     }
     url.hash=new URLSearchParams({channel:binding.channel,parentOrigin:window.location.origin,assetId:binding.ref.assetId,revisionId:binding.ref.revisionId}).toString();
     let dirty=false;let active=true;
-    const host=createEditorHost({projectId,initialRef:binding.ref,signal:controller.signal,onImported:()=>callbacks.current.onLibraryChanged?.(),onDirty:value=>{dirty=value;setHasChanges(value);callbacks.current.onDirty(value);if(!value)setStatus("Saved revision open");},onStatus:setStatus,onSaved:result=>{if(!active)return;setError("");setStatus(result.status!=="committed"?"Conflicting save preserved — check revision history":result.mode==="copy"?"Copy saved · Still editing the original":"Saved to your library");callbacks.current.onSaved(result);}});
+    const host=createEditorHost({projectId,initialRef:binding.ref,readOnly,signal:controller.signal,onImported:()=>callbacks.current.onLibraryChanged?.(),onDirty:value=>{dirty=value;setHasChanges(value);callbacks.current.onDirty(value);if(!value)setStatus(readOnly?"Read-only library input":"Saved revision open");},onStatus:setStatus,onSaved:result=>{if(!active)return;setError("");setStatus(result.status!=="committed"?"Conflicting save preserved — check revision history":result.mode==="copy"?"Copy saved · Still editing the original":"Saved to your library");callbacks.current.onSaved(result);}});
     function receive(event:MessageEvent){
       if(!isTrustedEditorEvent(event,frame.current?.contentWindow??null,url.origin,binding.channel))return;
       const message=event.data as EditorMessage;
       void host.handle(message).then(result=>{
+        if(active&&readOnly&&message.operation==="openAsset")setStatus("Read-only library input");
         if(active)frame.current?.contentWindow?.postMessage({protocol:EDITOR_BRIDGE_PROTOCOL,channel:binding.channel,requestId:message.requestId,kind:"result",ok:true,result},url.origin);
       },reason=>{
         if(!active)return;const messageText=reason instanceof Error?reason.message:"Editor operation failed.";
@@ -59,6 +60,6 @@ export function EmbeddedEditor({ref,projectId,initialRef,bundleUrl,name,onSaved,
     window.addEventListener("message",receive);window.addEventListener("beforeunload",leaving);document.addEventListener("click",navigate,true);
     setSrc(url.toString());
     return()=>{active=false;controller.abort();window.removeEventListener("message",receive);window.removeEventListener("beforeunload",leaving);document.removeEventListener("click",navigate,true);callbacks.current.onDirty(false);};
-  },[binding,bundleUrl,projectId]);
-  return <div ref={shell} className="embedded-editor">{expanded&&<div className="editor-fullscreen-bar"><span role="status">{hasChanges?"Unsaved edits":status}</span><button className="studio-tool-button" onClick={()=>{void document.exitFullscreen().catch(()=>setError("Your browser could not return to the project."));}}>Return to project ↙</button></div>}{error&&<div className="studio-error" role="alert">{error}<button className="studio-button" onClick={()=>setError("")}>Dismiss</button></div>}{openingDelayed&&<div className="editor-startup"><div><span className="studio-eyebrow">YOUR CREATIVE WORKSPACE</span><h2>{name} is taking a little longer.</h2><p role="status">The editor hasn’t opened yet. Try opening it again to continue with your saved revision.</p><button className="studio-button primary" onClick={retryOpening}>Open {name}</button></div></div>}{src&&<iframe key={frameAttempt} ref={frame} src={src} onLoad={()=>setOpeningDelayed(false)} title={`${name} editor`} sandbox="allow-scripts allow-same-origin allow-downloads allow-modals allow-popups allow-popups-to-escape-sandbox" allow="autoplay; clipboard-read; clipboard-write; fullscreen" allowFullScreen referrerPolicy="no-referrer"/>}</div>;
+  },[binding,bundleUrl,projectId,readOnly]);
+  return <div ref={shell} className="embedded-editor">{expanded&&<div className="editor-fullscreen-bar"><span role="status">{hasChanges?"Unsaved edits":status}</span><button className="studio-tool-button" onClick={()=>{void document.exitFullscreen().catch(()=>setError("Your browser could not return to the project."));}}>Return to project ↙</button></div>}{error&&<div className="studio-error" role="alert">{error}<button className="studio-button" onClick={()=>setError("")}>Dismiss</button></div>}{openingDelayed&&<div className="editor-startup"><div><span className="studio-eyebrow">YOUR CREATIVE WORKSPACE</span><h2>{name} is taking a little longer.</h2><p role="status">The editor hasn’t opened yet. Try opening it again to continue with your saved revision.</p><button className="studio-button primary" onClick={retryOpening}>Open {name}</button></div></div>}{src&&<iframe key={frameAttempt} ref={frame} src={src} onLoad={()=>setOpeningDelayed(false)} title={`${name} ${readOnly?"viewer":"editor"}`} sandbox="allow-scripts allow-same-origin allow-downloads allow-modals allow-popups allow-popups-to-escape-sandbox" allow="autoplay; clipboard-read; clipboard-write; fullscreen" allowFullScreen referrerPolicy="no-referrer"/>}</div>;
 }

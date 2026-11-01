@@ -5,6 +5,7 @@ The invited studio, all 26 registered Crafts, Notes and Robyn's browser tools ar
 | Environment | Evidence / support claim |
 | --- | --- |
 | Desktop Chromium | Recorded production Craft/Research acceptance and isolated browser regressions. This is the tested baseline |
+| DashCraft read-only reports | Exact private-library computation, slicers, DAX, model/TMDL views, native export and reload passed in desktop Chromium. The final original UI/engine also refreshed and computed the report and DAX oracle in Firefox and Playwright WebKit using local exact-input transport fixtures; this does not certify physical Safari or every M/DAX/visual feature |
 | SubCraft browser painting | Current 0.1.8 native writer and brush/layer loop passed in desktop Chromium with an available hardware WebGPU adapter. Its own startup area explains an unavailable adapter; additional engines/GPUs and all bake/export operations are unaccepted |
 | User's Chrome Home profile | Intended ordinary Chrome profile; historical startup comparison remains a scoped case. Do not interpret it as failure of every current editor |
 | Edge desktop | Intended Chromium-family browser; separate branded-browser acceptance not completed |

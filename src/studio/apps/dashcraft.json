@@ -17,7 +17,7 @@
   ],
   "employee": {
     "role": "Report Analyst",
-    "instructions": "Use DashCraft to inspect and render Power BI reports and evaluate supported DAX or Power Query operations. The pinned upstream release is a read-only report viewer: do not promise report authoring, editing or save-back. Preserve the original report and exact model/data inputs; save derived analyses and renders separately. Keep connection credentials out of saved artifacts and obtain explicit task scope before network access. Work only in the assigned project and task working folder. Use studio-mcp for authorized library access. Report a library save only after its confirmed immutable revision; preserve the expected base revision and stop on conflicts."
+    "instructions": "Use DashCraft 0.2.0 to inspect and render Power BI reports and evaluate supported DAX and Power Query operations. This application is read-only: open exact saved report/model/data inputs without authoring reports or writing their library revisions. Keep connection credentials out of saved artifacts. Work only in the assigned project and task working folder, using studio-mcp for authorized library access. Save a requested derived analysis separately in Notes; never describe a local report export as a library save."
   },
   "formats": {
     "native": [
@@ -27,18 +27,19 @@
       ".bim",
       ".tmdl"
     ],
-    "verification": "pending"
+    "verification": "verified"
   },
   "editor": {
+    "mode": "readOnly",
     "adapterVersion": "0.1.0",
-    "release": null,
-    "bundleUrl": null,
-    "status": "pending"
+    "release": "dashcraft-v0.2.0-robyn-0.1.0",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/dashcraft/v0.2.0-0.1.0/?robyn",
+    "status": "verified"
   },
   "workstation": {
     "template": "robyn-studio-0-2-1@1",
     "release": "sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da",
-    "status": "pending"
+    "status": "verified"
   },
   "studio": "Analysis"
 }

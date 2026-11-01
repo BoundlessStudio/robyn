@@ -7,8 +7,8 @@ import { requireUuid } from "@/studio/assets";
 import { savePackage, type SaveResult } from "@/studio/transfer-client";
 
 /** One launch operation is shared by every project entry point. */
-export function useApplicationLaunch({ projectId, ready, onSaved }: {
-  projectId: string; ready: boolean; onSaved: (result: SaveResult) => Promise<void>;
+export function useApplicationLaunch({ projectId, ready, onSaved, onOpenReadOnly }: {
+  projectId: string; ready: boolean; onSaved: (result: SaveResult) => Promise<void>; onOpenReadOnly?: (appId:string) => void;
 }) {
   const [pending, setPending] = useState<BlankRequest | null>(null);
   const [storageReady, setStorageReady] = useState(false);
@@ -18,6 +18,7 @@ export function useApplicationLaunch({ projectId, ready, onSaved }: {
   const running = useRef(false);
   const controller = useRef<AbortController | null>(null);
   const saved = useRef(onSaved); saved.current = onSaved;
+  const openReadOnly = useRef(onOpenReadOnly); openReadOnly.current = onOpenReadOnly;
 
   useEffect(() => {
     const read = () => {
@@ -33,6 +34,13 @@ export function useApplicationLaunch({ projectId, ready, onSaved }: {
   async function launch(appId: string, creationId?: string) {
     if (running.current || !storageReady) return;
     if (!ready) { setError("Reactivate this project before starting new work."); return; }
+    const application = launchableApps.find(app => app.id === appId);
+    if (application?.editor.mode === "readOnly") {
+      try { if (pending || readBlankRequest(localStorage, projectId)) { setError("Continue opening your existing document first."); return; } }
+      catch { setError("Your saved document start could not be read. Restore browser storage access first."); return; }
+      if (!openReadOnly.current) { setError("Open a saved report from this project."); return; }
+      setError(""); openReadOnly.current(appId); return;
+    }
     const starter = currentBlankStarters.find(item => item.appId === appId);
     if (!starter || !launchableApps.some(app => app.id === appId)) { setError("This application is unavailable."); return; }
     running.current = true; setBusy(true); setError(""); setStatus(`Opening ${launchableApps.find(app => app.id === appId)!.name}…`);
