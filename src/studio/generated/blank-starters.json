@@ -1,5 +1,21 @@
 [
   {
+    "id": "subcraft:6",
+    "appId": "subcraft",
+    "name": "Untitled texture",
+    "description": "Unpainted sample crate · Body and Trim texture sets",
+    "files": [
+      {
+        "path": "Untitled texture.subcraft",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 9457,
+        "sha256": "8bf4e0d3a0f3b8039bcf3347bbcfbfbe95c629d601690ceae6769c7e628e7a65",
+        "url": "/studio/starters/6/subcraft/Untitled%20texture.subcraft"
+      }
+    ]
+  },
+  {
     "id": "materialcraft:5",
     "appId": "materialcraft",
     "name": "Untitled material",

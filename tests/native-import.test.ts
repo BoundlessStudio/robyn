@@ -82,3 +82,14 @@ test("MaterialCraft intake retains exact native SBS and linked resources without
   await assert.rejects(checkNativeImport("materialcraft",[master]),/missing/);
   await assert.rejects(checkNativeImport("materialcraft",[{...master,file:new Blob(['<!DOCTYPE package [<!ENTITY x SYSTEM "file:///private">]>'+source])}]));
 });
+
+test("SubCraft intake preserves the complete embedded project and excludes unrelated files",async()=>{
+  assert.equal(nativeImportApp("Paint.SUBCRAFT")?.id,"subcraft");
+  const bytes=await readFile(new URL('../public/studio/starters/6/subcraft/Untitled%20texture.subcraft',import.meta.url));
+  const master={path:"Paint.SUBCRAFT",role:"master",file:new Blob([bytes])};
+  const unrelated={path:"private.txt",role:"dependency",file:new Blob(["private"])};
+  const files=await checkNativeImport("subcraft",[master,unrelated]);
+  assert.deepEqual(files,[master]);
+  assert.equal(files[0].file,master.file);
+  await assert.rejects(checkNativeImport("subcraft",[{...master,file:new Blob([bytes.subarray(0,100)])}]),/complete native/);
+});

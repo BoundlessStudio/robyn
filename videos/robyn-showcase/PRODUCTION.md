@@ -7,7 +7,7 @@ A 60-second feature showcase at 1920 × 1080, 30 fps. Designed to communicate wi
 | Start | Chapter | Feature |
 | --- | --- | --- |
 | 00:00 | Ideas have wings | Robyn's creative promise and original ASCII robin |
-| 00:07.5 | Three studios | All 26 Crafts in Creative, Drafting and Analysis; fourteen ready and twelve connecting |
+| 00:07.5 | Three studios | All 26 Crafts in Creative, Drafting and Analysis; twenty-four ready and two connecting |
 | 00:15 | Real tools, your touch | Actual PhotoCraft, FilmCraft and SolidCraft editor captures |
 | 00:25 | One Robyn, three studios | One workstation, fourteen ready Crafts, four project destinations, conversation/jobs/review/skills, and one monthly AI allowance |
 | 00:32.5 | Browser tools and Notes | Robyn's search and browser control; saved findings remain editable Notes documents |
@@ -29,7 +29,7 @@ The master has exactly one continuous mascot layer. Standalone chapters include 
 
 ## Source and claim boundaries
 
-- Product scope follows `docs/ARCHITECTURE.md`, `docs/CURRENT-STATUS.md` (October 31, 2026), `docs/MEDIA-ACCEPTANCE.md` and the 26 app manifests. Creative contains 10 Crafts, Drafting 9 and Analysis 7 in manifest order, including DetailCraft. Fourteen integrations are ready; the twelve native additions remain pending browser/private-library integration and display Connecting. Installation does not claim new editing or paid-task readiness. Browsing and research are Robyn's tools; Notes is a saved document format.
+- Product scope follows `docs/ARCHITECTURE.md`, `docs/CURRENT-STATUS.md` (October 31, 2026), `docs/MEDIA-ACCEPTANCE.md` and the 26 app manifests. Creative contains 10 Crafts, Drafting 9 and Analysis 7 in manifest order, including DetailCraft. The current source catalog has twenty-four ready integrations; DashCraft and DataCraft remain pending and display Connecting. SubCraft source acceptance is separate from its production activation. Dated exports retain their original readiness scope. Installation does not claim new editing or paid-task readiness. Browsing and research are Robyn's tools; Notes is a saved document format.
 - PhotoCraft and FilmCraft imagery is copied unchanged from `public/artwork/editors`. Their crops exclude the old surrounding QA shell at x184, y88, width1256, height912.
 - SolidCraft uses the unchanged 1600 × 1000 `public/artwork/editors/solidcraft.png` capture from the accepted 0.27.0 editor exercise, with its original model and feature history. It is a recorded demonstration, not a claim that this image records the subsequent 0.27.1 release.
 - The Notes source remains the unchanged historical `public/artwork/editors/research.jpg`, copied locally as `editors/notes.jpg`. Its x184, y130, width1256, height870 crop shows the saved notebook body below the retired Research toolbar. No replacement controls are painted onto the capture. These recorded product captures are not a newly recorded production session; `docs/HOMEPAGE-ARTWORK.md` owns their provenance.
@@ -39,7 +39,7 @@ The master has exactly one continuous mascot layer. Standalone chapters include 
 - `public/asset-sources.json` records copied asset paths, byte sizes and SHA-256 hashes plus the generated catalog and all 26 source-manifest hashes. Source-manifest and text-license line endings are normalized to LF. Font licenses are included in `public/fonts`; the historical SolidCraft attribution is retained with the app assets.
 - The closing invitation accurately identifies the private desktop pilot. There is no public signup, subscription pricing, mobile editor, unrestricted generation, or new integration claim.
 
-## Current validation, October 31, 2026
+## Recorded export validation, October 31, 2026
 
 - Remotion lint/TypeScript and bundling pass. The master is 1920 × 1080, 30 fps and exactly 1,800 frames / 60 seconds.
 - All 25 copied assets and the 26-entry catalog match their recorded hashes. The catalog has fourteen ready integrations, twelve Connecting labels, fourteen existing icons and twelve monograms. The mascot check preserves all 38,460 original geometry points, seven colors and character ramp.

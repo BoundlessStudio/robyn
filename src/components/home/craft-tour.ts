@@ -24,6 +24,7 @@ const stories: Record<string, { lines: string[]; accent: string; copy: string; d
   detailcraft: { lines: ["An idea,"], accent: "down to detail.", copy: "Follow a design into its members and connections. Robyn works in DetailCraft, preserving the model behind the drawings and quantities.", details: ["STEEL DETAILING", "MEMBERS & CONNECTIONS", "EDITABLE MODELS"] },
   matcraft: { lines: ["Follow the"], accent: "mathematics.", copy: "Explore the calculation behind an idea. Robyn works in MatCraft with scripts, matrices and numerical results you can inspect and continue.", details: ["NUMERICAL COMPUTING", "MATRICES", "EDITABLE SCRIPTS"] },
   materialcraft: { lines: ["Build an idea"], accent: "into the surface.", copy: "Connect colour, texture and structure into a material of your own. Robyn works in MaterialCraft with node graphs and source textures you can keep shaping.", details: ["PROCEDURAL MATERIALS", "NODE GRAPHS", "EDITABLE TEXTURES"] },
+  subcraft: { lines: ["Give a surface"], accent: "character.", copy: "Paint colour, texture and detail onto a three-dimensional form. Robyn works in SubCraft, preserving the mesh and layered materials for your next touch.", details: ["3D TEXTURE PAINTING", "PBR MATERIALS", "EDITABLE LAYERS"] },
   partcraft: { lines: ["Fit an idea"], accent: "together.", copy: "Shape a part, revisit a feature and see how it fits. Robyn builds in PartCraft with editable sketches, features and assemblies.", details: ["PARAMETRIC PARTS", "FEATURE HISTORY", "ASSEMBLIES"] },
 };
 

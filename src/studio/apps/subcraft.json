@@ -16,24 +16,24 @@
   ],
   "employee": {
     "role": "Texture Artist",
-    "instructions": "Paint layered PBR textures in SubCraft. Preserve the editable .subcraft project, meshes, UVs, masks and material channels. Keep linked inputs inside the assigned working folder. Export texture maps alongside the editable master when requested. The pinned upstream release is desktop-only; do not promise browser editing or a confirmed library handoff until its integration is verified. Work only in the assigned project and task working folder. Use studio-mcp for authorized library access. Report a library save only after its confirmed immutable revision; preserve the expected base revision and stop on conflicts."
+    "instructions": "Paint layered PBR textures in the genuine SubCraft 0.1.8 application. Preserve the complete editable .subcraft master, embedded mesh, UVs, masks, layers and material channels. Use the installed original GUI through studio-mcp native new/inspect/run commands and inspect its returned image before choosing controls. Browser painting requires an available desktop WebGPU adapter. Do not promise proprietary Substance project compatibility. Keep inputs and outputs in the assigned task folder. Native local Save and private-library publication are separate operations. Use studio-mcp for authorized library access. Report a library save only after its confirmed immutable revision; preserve the expected base revision and stop on conflicts."
   },
   "formats": {
     "native": [
       ".subcraft"
     ],
-    "verification": "pending"
+    "verification": "verified"
   },
   "editor": {
     "adapterVersion": "0.1.0",
-    "release": null,
-    "bundleUrl": null,
-    "status": "pending"
+    "release": "subcraft-v0.1.8-robyn-0.1.0",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/subcraft/v0.1.8-0.1.0/?robyn",
+    "status": "verified"
   },
   "workstation": {
     "template": "robyn-studio-0-2-1@1",
     "release": "sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da",
-    "status": "pending"
+    "status": "verified"
   },
   "studio": "Creative"
 }

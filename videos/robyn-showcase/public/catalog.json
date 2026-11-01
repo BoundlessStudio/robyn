@@ -72,7 +72,7 @@
           "name": "SubCraft",
           "monogram": "Su",
           "color": "#d8b39f",
-          "ready": false,
+          "ready": true,
           "hasIcon": true
         },
         {

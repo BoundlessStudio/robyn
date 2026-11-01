@@ -1,10 +1,11 @@
 # Browser and accessibility baseline
 
-The invited studio, all fourteen Crafts, Notes and Robyn's browser tools are desktop-only. Compact native editors are outside the pilot. The initial entry check requires a viewport of at least 1200 CSS pixels, a fine pointer and hover. It is a presentation check, not proof of GPU/codec support. A temporarily narrowed window preserves an already-open editor and its unsaved state. The detailed browser/accessibility exercises below were recorded on October 25, 2026; [current acceptance](CURRENT-STATUS.md) separately indexes the October 30 fourteen-Craft refresh.
+The invited studio, all 26 registered Crafts, Notes and Robyn's browser tools are desktop-only. Compact native editors are outside the pilot. The initial entry check requires a viewport of at least 1200 CSS pixels, a fine pointer and hover. It is a presentation check, not proof of GPU/codec support. A temporarily narrowed window preserves an already-open editor and its unsaved state. The detailed browser/accessibility exercises below were recorded on October 25, 2026; [current acceptance](CURRENT-STATUS.md) separately indexes the October 30 fourteen-Craft refresh.
 
 | Environment | Evidence / support claim |
 | --- | --- |
 | Desktop Chromium | Recorded production Craft/Research acceptance and isolated browser regressions. This is the tested baseline |
+| SubCraft browser painting | Current 0.1.8 native writer and brush/layer loop passed in desktop Chromium with an available hardware WebGPU adapter. Its own startup area explains an unavailable adapter; additional engines/GPUs and all bake/export operations are unaccepted |
 | User's Chrome Home profile | Intended ordinary Chrome profile; historical startup comparison remains a scoped case. Do not interpret it as failure of every current editor |
 | Edge desktop | Intended Chromium-family browser; separate branded-browser acceptance not completed |
 | Firefox 157 / Playwright WebKit 27.2 on Windows | PhotoCraft, SoundCraft and FilmCraft 0.1.4 opened real saved projects in each engine. This is startup evidence, not full native editing/playback acceptance or a Safari claim |
