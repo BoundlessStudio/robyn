@@ -1,0 +1,372 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-01T02:42:10.462526+00:00",
+  "stage": "verified-sources-awaiting-web-deployment",
+  "scope": "SubCraft current0.1.8 genuine painting UI/native project writer, complete editable native projects and original installed-GUI continuation; all23 prior ready Craft pins retained. DashCraft and DataCraft remain pending.",
+  "runtimeCommit": "0ec3497fef47923e0ee918a484515c817a5fc4ab",
+  "runtimeSourceCommit": "5ca5f1409e6de97c04aaa72f3050a36475648fb2",
+  "runtimePullRequest": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/15",
+  "readyCrafts": 24,
+  "installedCrafts": 26,
+  "remaining": [
+    "dashcraft",
+    "datacraft"
+  ],
+  "app": {
+    "id": "subcraft",
+    "manifest": {
+      "adapterVersion": "0.1.0",
+      "release": "subcraft-v0.1.8-robyn-0.1.0",
+      "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/subcraft/v0.1.8-0.1.0/?robyn",
+      "status": "verified"
+    },
+    "formats": [
+      ".subcraft"
+    ],
+    "sourceCommit": "56a23a7e88077fbb5d11bd15865d73750964ae78",
+    "sourceArchive": {
+      "url": "https://codeload.github.com/Aalzard/subcraft/tar.gz/56a23a7e88077fbb5d11bd15865d73750964ae78",
+      "bytes": 378219805,
+      "sha256": "1b5b61bc504870d00fc96e89840f30fb971fc67089e381c844f0f61e1be9d2c6",
+      "name": "subcraft-56a23a7e88077fbb5d11bd15865d73750964ae78.tar.gz"
+    },
+    "sourcePatchSha256": "f7eb7b64e03e5cbbea9995cc923dcc3f532ba55e9b71b3406cf72f3112358481",
+    "browserBundleSha256": "39aa7d4db36eaf7c989643d87cb520df022652d7064d2ad4be17fb3e203e7814",
+    "nativeBinarySha256": "5dce3a07be76c5f5ed51a9c74e5161c49a2740d6f695a59e7c4b90f5f6c1c6a7",
+    "nativeCases": [
+      {
+        "stage": "canonical",
+        "id": "paint",
+        "sourceFiles": [
+          {
+            "path": "Conflict preserved.subcraft",
+            "bytes": 147596,
+            "sha256": "51e0eaa62f93534a2e379a1334322872f26dbbe614858ffba4bd8ea9b66f8758"
+          }
+        ],
+        "changedEntries": [
+          "document.json",
+          "rasters/00000.tiles",
+          "rasters/00001.tiles",
+          "rasters/00002.tiles",
+          "rasters/00003.tiles",
+          "rasters/00004.tiles"
+        ],
+        "continuedMaster": {
+          "bytes": 152182,
+          "sha256": "3c1d1807834f6bc28548b1289e0416b5af206b1034015abf60484fd988546860"
+        },
+        "continuedPackage": {
+          "masterPath": "Native continued.subcraft",
+          "files": {
+            "Native continued.subcraft": {
+              "bytes": 152182,
+              "sha256": "3c1d1807834f6bc28548b1289e0416b5af206b1034015abf60484fd988546860"
+            }
+          }
+        },
+        "nativePreviewSha256": "790ee94d4eac8333ab6c232c7fd6ff818cbd6701f3e787852b3b79d8c89220fe",
+        "reopenPreviewSha256": "568dd7b9d74de3f77160fc1a08ed9e8ebffa7582f17946d1168532431cc185fc",
+        "sourceFilesUnchanged": true
+      },
+      {
+        "stage": "canonical",
+        "id": "blank",
+        "sourceFiles": [
+          {
+            "path": "Untitled texture.subcraft",
+            "bytes": 57766,
+            "sha256": "eb7349c265b4dc0d5a6bffa29bb923aac6a67fd4d9645eb1ba71c180d469df43"
+          }
+        ],
+        "changedEntries": [
+          "document.json",
+          "rasters/00000.tiles",
+          "rasters/00001.tiles",
+          "rasters/00002.tiles",
+          "rasters/00003.tiles",
+          "rasters/00004.tiles"
+        ],
+        "continuedMaster": {
+          "bytes": 103029,
+          "sha256": "ad5d1c9bceafee4118e098578f924c55e8c9a64d3d5a0e86330309f889da8c81"
+        },
+        "continuedPackage": {
+          "masterPath": "Native continued.subcraft",
+          "files": {
+            "Native continued.subcraft": {
+              "bytes": 103029,
+              "sha256": "ad5d1c9bceafee4118e098578f924c55e8c9a64d3d5a0e86330309f889da8c81"
+            }
+          }
+        },
+        "nativePreviewSha256": "c1142363589760ada66e48f74c6ad2aa6787e2fc5e1a76c6346896578eec5972",
+        "reopenPreviewSha256": "dcbf405ece600a7f5d5e919cbe8ddac5e4527020f91083afd37bbae0e9f31a59",
+        "sourceFilesUnchanged": true
+      },
+      {
+        "stage": "hosted",
+        "id": "paint",
+        "sourceFiles": [
+          {
+            "path": "Native-painted crate.subcraft",
+            "bytes": 141394,
+            "sha256": "1bda722501fac97e0d825f81b18995011966aca428b14c9c9fa6d0c560680a60"
+          }
+        ],
+        "changedEntries": [
+          "document.json",
+          "rasters/00000.tiles",
+          "rasters/00001.tiles",
+          "rasters/00002.tiles",
+          "rasters/00003.tiles",
+          "rasters/00004.tiles"
+        ],
+        "continuedMaster": {
+          "bytes": 145191,
+          "sha256": "6f575e954edfc9c2012e51688d39c25d1a33db5c6b8081fdd81c91b54f948201"
+        },
+        "continuedPackage": {
+          "masterPath": "Native continued.subcraft",
+          "files": {
+            "Native continued.subcraft": {
+              "bytes": 145191,
+              "sha256": "6f575e954edfc9c2012e51688d39c25d1a33db5c6b8081fdd81c91b54f948201"
+            }
+          }
+        },
+        "nativePreviewSha256": "6c467c81fa3176c1a17c8ab870b1f5fe9e773db2bd0c2923fa810ad5c2c165cf",
+        "reopenPreviewSha256": "2c69074003f2123f0cbbfce7fb72070926d367898a9c93069eca445d5b23472e",
+        "sourceFilesUnchanged": true
+      },
+      {
+        "stage": "hosted",
+        "id": "blank",
+        "sourceFiles": [
+          {
+            "path": "Untitled texture.subcraft",
+            "bytes": 57779,
+            "sha256": "a68d832403db023509bd3ded0d77bceb9da8ba67f5c0ff57e0da8b986cf3d429"
+          }
+        ],
+        "changedEntries": [
+          "document.json",
+          "rasters/00000.tiles",
+          "rasters/00001.tiles",
+          "rasters/00002.tiles",
+          "rasters/00003.tiles",
+          "rasters/00004.tiles"
+        ],
+        "continuedMaster": {
+          "bytes": 97160,
+          "sha256": "92c019a8e8bc7d01572355cd56c0ca3754de57de53218e367f34b50be88bbb83"
+        },
+        "continuedPackage": {
+          "masterPath": "Native continued.subcraft",
+          "files": {
+            "Native continued.subcraft": {
+              "bytes": 97160,
+              "sha256": "92c019a8e8bc7d01572355cd56c0ca3754de57de53218e367f34b50be88bbb83"
+            }
+          }
+        },
+        "nativePreviewSha256": "dbeb0689bbe7a199695259dc5d84c4a4f8d1d1c56cc10af33c589f7326d0d6ed",
+        "reopenPreviewSha256": "703cf30d3b0fff60956e98fe91672ea1fdab3fe0db9cb78d3f31b98ba92c9b61",
+        "sourceFilesUnchanged": true
+      }
+    ],
+    "capture": {
+      "path": "public/artwork/editors/subcraft.png",
+      "width": 1600,
+      "height": 1000,
+      "bytes": 520025,
+      "sha256": "9fd86ad447117e42d02b864c4055226d6dc5c64fb828655b5f23ff481ea56c7f"
+    },
+    "checks": {
+      "nativeBrowserRoundTrip": "Four complete original native GUI -> genuine browser paint/name edit -> confirmed private BFF save -> original installed native GUI paint/name/CtrlS -> package/reopen cases, two canonical and two Cloudflare-hosted. Native local Save and library Save remain distinct.",
+      "existingControls": "Existing File Save, Ctrl/CmdS, focused Property and inline-layer names, Save As, Save a Copy, filename validation/Cancel, unsaved prompts, save-before-local-Open and new-document binding exercised without wrapper controls.",
+      "uncertainSave": "Actual hosted commit succeeded while its response was dropped. CtrlS retry reconciled the same immutable revision with one commit POST; its native ZIP retained the frozen name. A later focused name remained dirty and was confirmed by a separate save. New/Open remained fenced in the canonical unknown-save case.",
+      "conflict": "Real second-window revision made the first base stale. Conflict preserved changes and the next native Save opened Save As; the recovered asset adopted only after acknowledgement.",
+      "nativeClient": "Exact immutable0.6.0 bundle ran original installedGUI New/paint/name/Save/inspect on isolated Xvfb displays, with actual image/hash results. No source-built helper was substituted for installed-native acceptance.",
+      "tests": {
+        "runtime": 130,
+        "linuxTaskProfiles": 4,
+        "nativeAppCore": 48,
+        "nativeAppSavedSnapshotInvariants": 2,
+        "npmAuditHigh": 0
+      },
+      "strictClippy": "Not passed: strict root WASM clippy reports baseline warnings in unchanged upstream image-resize and mesh code. The added Rust module passed rustfmt and all native core tests.",
+      "licenses": "Upstream MIT/Apache, all214 reachable Rust package notices, JavaScript dependencies, Inter/Phosphor fonts and CC0 material/alpha/environment notices included."
+    }
+  },
+  "workstation": {
+    "image": {
+      "version": "0.2.1",
+      "template": "robyn-studio-0-2-1@1",
+      "release": "sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da",
+      "resources": {
+        "cpu": 4,
+        "memory": 16,
+        "disk": 10
+      },
+      "applications": 26,
+      "previousReleases": [
+        {
+          "template": "robyn-studio-0-1-1@1",
+          "release": "sha256:23622a922f2ab7df9a45d6cfe64f42247954b31843e228ded96619ccefbbea0d"
+        }
+      ]
+    },
+    "imageBytesChanged": false,
+    "clientVersion": "0.6.0",
+    "clientDirectory": "vendor/robyn-workstation/0.6.0-452cd79f8da8",
+    "clientFingerprint": "452cd79f8da812733830c52deeabd4126bee523dddf249eea9bbaaf1837611c2",
+    "bundle": {
+      "bytes": 2173787,
+      "sha256": "f2f33b0e273985183ac1db0ac9d738522299d9566e74be79821bf768f319c60d"
+    },
+    "craftSkills": 24,
+    "notesSkillRetained": true,
+    "activationScope": "Web-selected immutable client. Native canaries rehashed this exact bundle and invoked its original-GUI CLI plus exact runtime packager. No ordinary AI/profile activation was dispatched."
+  },
+  "nativeImportInspector": {
+    "sha256": "7aee4ecac25eb2b5d56032afe663d6bb7cbd99eaffc93c6b9cd26cfb8a7b88cc",
+    "source": "src/studio/generated/native-inspector.provenance.json"
+  },
+  "blank": {
+    "version": 6,
+    "path": "starters/6/subcraft/Untitled texture.subcraft",
+    "bytes": 9457,
+    "sha256": "8bf4e0d3a0f3b8039bcf3347bbcfbfbe95c629d601690ceae6769c7e628e7a65",
+    "source": "Original0.1.8 GUI-saved unpainted sample crate, Body and Trim texture sets, no raster payloads; embedded native New copy matches exactly."
+  },
+  "distribution": {
+    "checkedAt": "2026-11-01T02:25:50.986Z",
+    "origin": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev",
+    "accountId": "ad511085f517f4740591851cad7686eb",
+    "bucket": "robyn-editor-artifacts",
+    "releases": 97,
+    "files": 44359,
+    "uniqueObjects": 2986,
+    "bytes": 2336979106,
+    "catalogSha256": "6a982c0f754dcab6ff00e78b50126e1cd320f35fc4f3baf5db5bc4914c2c06b2",
+    "uploaded": 188,
+    "existing": 2798,
+    "allHostedBytesVerified": true,
+    "sourceBaseline": false,
+    "uploadOnly": false,
+    "privateBucket": true,
+    "readOnlyServingWorker": true,
+    "workerVersion": "19293c70-99db-44c4-a21e-bedd444dd7f3",
+    "logicalBytes": 5426937690
+  },
+  "environment": {
+    "priorFilesPreserved": 11,
+    "instanceMetadataPreserved": true,
+    "resourcesPreserved": true,
+    "budgetAndModelUsagePreserved": true,
+    "credentialsIssued": 0,
+    "modelDispatches": 0,
+    "maintenanceLeasesClosed": true
+  },
+  "privateProof": [
+    {
+      "path": "E:/Development/robyn-shared-workstation-20261029/subcraft-client-0.6.0-canonical-rechecked-canary.private.json",
+      "sha256": "9712c3b86196e09a4046c443745dc7897d016cd48113cd04d8b6e72a23d8b28a"
+    },
+    {
+      "path": "E:/Development/robyn-shared-workstation-20261029/subcraft-client-0.6.0-hosted-canary.private.json",
+      "sha256": "660bf47af5a05a8d0ea8a30f6ec0fac2b194173717440762a9ba6ab874d055d7"
+    },
+    {
+      "path": "E:/Development/robyn-shared-workstation-20261029/subcraft-canonical8-browser-progress.private.json",
+      "sha256": "ff8a08019a4bc0a5b078c7ab5c3a57197be5abe5f0a072aa13a7bbe9e43019ad"
+    },
+    {
+      "path": "E:/Development/robyn-shared-workstation-20261029/subcraft-canonical8-blank.private.json",
+      "sha256": "319c45b0326a9d092dddd4aa0e44ebe8f1df5b30702e9745ab4c1b14c8af3993"
+    },
+    {
+      "path": "E:/Development/robyn-shared-workstation-20261029/subcraft-canonical8-conflict.private.json",
+      "sha256": "634e748b91b7e34f8dbbc2e697288309befed7a886fa7f4f3e798ceec99f8502"
+    },
+    {
+      "path": "E:/Development/robyn-shared-workstation-20261029/subcraft-canonical8-open.private.json",
+      "sha256": "66746ac803ed0034b9035e224a17f31604ee56ae4d578eff67b1540058b18c93"
+    },
+    {
+      "path": "E:/Development/robyn-shared-workstation-20261029/subcraft-canonical8-fence.private.json",
+      "sha256": "10532bb496f1774cb91f019f2e0213061607af69a5ce42363e41b1f03839d139"
+    },
+    {
+      "path": "E:/Development/robyn-shared-workstation-20261029/subcraft-canonical8-final-inputs.private.json",
+      "sha256": "1e3d1414b15c2192079d30d61517668d03ba3b6224bfe36a7b6d80a8f8ccf208"
+    },
+    {
+      "path": "E:/Development/robyn-shared-workstation-20261029/subcraft-hosted-browser-20261101.private.json",
+      "sha256": "417e1795b210903fcefa8eed2a20dfc0110817a704823c0cf8eb97c618432318"
+    }
+  ],
+  "migrations": {
+    "applied": [],
+    "ledgerReadThisRelease": false,
+    "lastVerified": "30 matching checksummed ledger entries through0029 in settings-budget-release-20261030.json"
+  },
+  "validation": {
+    "runtimeTests": 130,
+    "linuxTaskProfiles": 4,
+    "nativeAppCoreTests": 48,
+    "nativeAppSavedSnapshotInvariants": 2,
+    "npmAuditHigh": 0,
+    "deterministicWorkstationBundle": true,
+    "webTypecheck": "passed",
+    "webTests": 238,
+    "webTsxTests": 4,
+    "webBuild": "passed",
+    "publicLayoutAxe": {
+      "combinations": 18,
+      "passed": 18,
+      "keyboardPassed": 14,
+      "explicitWindowsWebKitKeyboardLimits": 4,
+      "source": "artifacts/qa/craft-integrations/subcraft-public/results.json",
+      "sha256": "f5752732916253a1ffe3d6f72d9241714fcacbc833a974d09574982ae71fa085"
+    },
+    "homepageVisualReview": {
+      "desktop": [
+        1440,
+        1000
+      ],
+      "mobile": [
+        390,
+        844
+      ],
+      "captures": [
+        {
+          "path": "artifacts/qa/craft-integrations/subcraft-public-desktop-section.png",
+          "bytes": 348584,
+          "sha256": "babf42cd772bb6552a947c9fac0962712a6aaae490a616b9b32d2bcc85e9625e"
+        },
+        {
+          "path": "artifacts/qa/craft-integrations/subcraft-public-mobile-section.png",
+          "bytes": 92378,
+          "sha256": "0975c9bf80b937e28d7f867504e5cb7e4fbed8e2f9039ba0ad72e9824940eebf"
+        }
+      ]
+    },
+    "runtimeCI": "Runtime checks verify passed; PR15 merged at0ec3497fef47923e0ee918a484515c817a5fc4ab"
+  },
+  "video": {
+    "sourceReady": 24,
+    "sourcePending": 2,
+    "sourceAssets": 37,
+    "sourceCatalogEntries": 26,
+    "typecheck": "passed",
+    "finalAll26ReadyExport": "pending after remaining two integrations; prior exports retain their dated scope"
+  },
+  "limits": [
+    "Desktop Chromium with an available WebGPU adapter; additional browser/GPU combinations are not accepted.",
+    "Selected native brush/layer operations and complete self-contained native projects, not every bake/export/starter-pack feature or proprietary project format.",
+    "Native actions are bounded to100 inputs/35 seconds; typed text supports printable ASCII. Original upstream controls are used, with a fresh task-isolated display for each native command.",
+    "Production Studio activation is a separate release gate."
+  ]
+}

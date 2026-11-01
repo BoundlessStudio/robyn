@@ -226,8 +226,8 @@
   ],
   "catalog": {
     "destination": "catalog.json",
-    "bytes": 5185,
-    "sha256": "f47fd253d96085060299f1869af6d93ea64ce414b84e553a76b97c63ea5df41a",
+    "bytes": 5184,
+    "sha256": "08bf88a08b2cbc896872d019e9dc3f2af07a9b66167199fbebe36cffe23a469c",
     "sourceEncoding": "UTF-8 with LF line endings",
     "manifests": [
       {
@@ -272,8 +272,8 @@
       },
       {
         "source": "src/studio/apps/subcraft.json",
-        "bytes": 1486,
-        "sha256": "e026a0bc38ba82e32cc5e38a25edf0e09f30f2f613d758eb6a9382b36b525644"
+        "bytes": 1727,
+        "sha256": "a055b05e0dd849b0d229b19378b20118a79128c9c1ac80ab84970c5f7e7c185d"
       },
       {
         "source": "src/studio/apps/materialcraft.json",

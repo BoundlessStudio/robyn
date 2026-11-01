@@ -156,6 +156,13 @@ export const craftArtwork: Record<string, CraftArtwork> = {
     "tools": "MATERIALS / NODE GRAPHS / TEXTURES",
     "fullFrame": true
   },
+  "subcraft": {
+    "src": "/artwork/editors/subcraft.png",
+    "title": "Give a surface character.",
+    "alt": "SubCraft's actual painting editor showing an editable textured crate, PBR material shelf, paint layer and native brush controls.",
+    "tools": "3D PAINTING / PBR MATERIALS / LAYERS",
+    "fullFrame": true
+  },
   "solidcraft": {
     "src": "/artwork/editors/solidcraft.png",
     "title": "Give your idea another dimension.",
