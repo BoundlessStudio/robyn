@@ -170,6 +170,13 @@ export const craftArtwork: Record<string, CraftArtwork> = {
     "tools": "PARAMETERS / SOLIDS / FEATURE HISTORY",
     "fullFrame": true
   },
+  "datacraft": {
+    "src": "/artwork/editors/datacraft.png",
+    "title": "Find the idea in the data.",
+    "alt": "DataCraft's actual SQLite editor showing a saved SQL query, editable database tables, Unicode labels and exact integer results.",
+    "tools": "SQL / DATABASES / EDITABLE TABLES",
+    "fullFrame": true
+  },
   "dashcraft": {
     "src": "/artwork/editors/dashcraft.png",
     "title": "See the story in the report.",

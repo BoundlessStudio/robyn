@@ -119,6 +119,7 @@ test('application chooser, cancelled launch and narrowing preserve the live unsa
     await page.getByRole('button',{name:'WordCraft',exact:false}).click();await ready(page,'WordCraft');
     const editor=page.frameLocator('iframe'),src=await page.locator('iframe').getAttribute('src');
     await editor.getByLabel('Document text').fill('Keep these unsaved words.');
+    await page.locator('.project-save-state[data-state="dirty"]').waitFor();
     await page.getByRole('button',{name:'New file',exact:true}).click();
     await page.getByRole('dialog',{name:'Your applications.'}).waitFor();
     assert.equal(await page.locator('iframe').getAttribute('src'),src);

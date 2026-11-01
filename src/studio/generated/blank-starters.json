@@ -1,5 +1,21 @@
 [
   {
+    "id": "datacraft:7",
+    "appId": "datacraft",
+    "name": "Untitled database",
+    "description": "Empty SQLite database",
+    "files": [
+      {
+        "path": "Untitled database.sqlite",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 4096,
+        "sha256": "90c8a9670d08c6336dfd9ca68537a82d2a212b3b84a4c01b02c102ff4cbf9253",
+        "url": "/studio/starters/7/datacraft/Untitled%20database.sqlite"
+      }
+    ]
+  },
+  {
     "id": "subcraft:6",
     "appId": "subcraft",
     "name": "Untitled texture",

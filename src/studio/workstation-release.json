@@ -1,15 +1,15 @@
 {
-  "version": "0.7.0",
-  "directory": "vendor/robyn-workstation/0.7.0-945928ccaabf",
-  "fingerprint": "945928ccaabfb8c623bd07e5f3fcd12d59be10e07251a24886c9275a3445d86e",
+  "version": "0.8.0",
+  "directory": "vendor/robyn-workstation/0.8.0-3d9fa702304f",
+  "fingerprint": "3d9fa702304f6fbe516a1a51fe0bfe1c9bc3703cfcc55f9dc074c1689cbad4d0",
   "files": {
     "studio-mcp.cjs": {
-      "bytes": 2196986,
-      "sha256": "505d12fe6268cfc508860179b24fe17aee511ac345e91e01b60db071ecd2ed06"
+      "bytes": 2227084,
+      "sha256": "421111ced6aad290ffc80c79c658daabebcb8f5639b8e0f16299e2d21bb884eb"
     },
     "configure-hermes.py": {
-      "bytes": 10650,
-      "sha256": "b0b509952e9908cfeb2786062224c2f5e865040c8a6be751108d7c7637ec954e"
+      "bytes": 10663,
+      "sha256": "5cd5f311f201dfde689705a6fbc5576eff3dcdfb121c11cfa0258a5287a8ecd0"
     },
     "skills/bimcraft.md": {
       "bytes": 2483,
@@ -26,6 +26,10 @@
     "skills/dashcraft.md": {
       "bytes": 3139,
       "sha256": "dbaa3ca247b303fe68c97befc4ba75cc7c02a7c8bfcdc727e80e4f9f93318cb5"
+    },
+    "skills/datacraft.md": {
+      "bytes": 3445,
+      "sha256": "a7baffcee83d345abbf4bb55e423b6d12ce66f60ac0784a8c404b70c8344fed9"
     },
     "skills/deckcraft.md": {
       "bytes": 2232,

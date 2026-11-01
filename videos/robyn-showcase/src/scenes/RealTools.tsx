@@ -54,7 +54,7 @@ export const RealTools = () => {
           top: 163,
           opacity: interpolate(
             frame,
-            [0.5 * fps, 1.2 * fps, 3.4 * fps, 3.75 * fps],
+            [0.3 * fps, 0.7 * fps, 2.1 * fps, 2.4 * fps],
             [0, 1, 1, 0],
             ease,
           ),
@@ -78,7 +78,7 @@ export const RealTools = () => {
           top: 163,
           opacity: interpolate(
             frame,
-            [3.5 * fps, 4.1 * fps, 6.55 * fps, 6.9 * fps],
+            [2.1 * fps, 2.5 * fps, 4.1 * fps, 4.4 * fps],
             [0, 1, 1, 0],
             ease,
           ),
@@ -101,7 +101,7 @@ export const RealTools = () => {
           position: "absolute",
           left: 794,
           top: 163,
-          opacity: interpolate(frame, [6.65 * fps, 7.25 * fps], [0, 1], ease),
+          opacity: interpolate(frame, [4.1 * fps, 4.5 * fps, 6.1 * fps, 6.4 * fps], [0, 1, 1, 0], ease),
         }}
       >
         <div style={{ fontSize: 27, marginBottom: 18 }}>
@@ -113,6 +113,36 @@ export const RealTools = () => {
           width={1010}
           style={{ border: "1px solid #e9e8dc44" }}
         />
+      </Interactive.Div>
+      <Interactive.Div
+        name="DashCraft — actual read-only report computation"
+        premountFor={fps}
+        style={{
+          position: "absolute",
+          left: 794,
+          top: 163,
+          opacity: interpolate(frame, [6.1 * fps, 6.5 * fps, 8.1 * fps, 8.4 * fps], [0, 1, 1, 0], ease),
+        }}
+      >
+        <div style={{ fontSize: 27, marginBottom: 18 }}>
+          DashCraft <span style={{ color: "#a8b89d" }}> / Reports &amp; computation · Read only</span>
+        </div>
+        <EditorCapture app="dashcraft" width={1010} style={{ border: "1px solid #e9e8dc44" }} />
+      </Interactive.Div>
+      <Interactive.Div
+        name="DataCraft — actual editable SQLite database"
+        premountFor={fps}
+        style={{
+          position: "absolute",
+          left: 794,
+          top: 163,
+          opacity: interpolate(frame, [8.1 * fps, 8.5 * fps], [0, 1], ease),
+        }}
+      >
+        <div style={{ fontSize: 27, marginBottom: 18 }}>
+          DataCraft <span style={{ color: "#a8b89d" }}> / SQLite, SQL &amp; editable tables</span>
+        </div>
+        <EditorCapture app="datacraft" width={1010} style={{ border: "1px solid #e9e8dc44" }} />
       </Interactive.Div>
       <Reveal
         delay={1.5}

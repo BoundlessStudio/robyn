@@ -34,8 +34,7 @@ export const Crafts = () => {
           color: C.muted,
         }}
       >
-        {readyCrafts.length} ready to use. {crafts.length - readyCrafts.length}{" "}
-        being connected.
+        {readyCrafts.length} ready to use. Made for desktop.
       </Reveal>
       <div
         style={{

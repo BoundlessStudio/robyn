@@ -9,7 +9,7 @@ const registry='src/studio/generated/blank-starters.json';
 let old=[];try{old=JSON.parse(await readFile(registry,'utf8'));}catch(error){if(error.code!=='ENOENT')throw error;}
 const appIds=(await readdir('src/studio/apps')).filter(name=>name.endsWith('.json')).map(name=>name.slice(0,-5));
 const manifests=await Promise.all(appIds.map(id=>readFile(`src/studio/apps/${id}.json`,'utf8').then(JSON.parse)));
-const readyIds=manifests.filter(app=>app.formats.verification==='verified'&&app.editor.status==='verified'&&app.workstation.status==='verified'&&app.editor.release&&app.editor.bundleUrl&&app.workstation.template&&app.workstation.release).map(app=>app.id);
+const readyIds=manifests.filter(app=>app.editor.mode!=='readOnly'&&app.formats.verification==='verified'&&app.editor.status==='verified'&&app.workstation.status==='verified'&&app.editor.release&&app.editor.bundleUrl&&app.workstation.template&&app.workstation.release).map(app=>app.id);
 const available=new Set([...catalog,...old].map(row=>row.appId));
 if(!catalog.length||new Set(catalog.map(row=>row.id)).size!==catalog.length||catalog.some(row=>!appIds.includes(row.appId))||readyIds.some(id=>!available.has(id)))throw Error('An intact starter for every ready Craft is required.');
 for(const starter of catalog)for(const file of starter.files){

@@ -202,7 +202,7 @@
           "name": "DashCraft",
           "monogram": "Da",
           "color": "#9fc7bf",
-          "ready": false,
+          "ready": true,
           "hasIcon": true
         },
         {
@@ -218,7 +218,7 @@
           "name": "DataCraft",
           "monogram": "Dc",
           "color": "#a4c9d2",
-          "ready": false,
+          "ready": true,
           "hasIcon": true
         }
       ]
