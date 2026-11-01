@@ -4,7 +4,7 @@ An invitation-only creative studio at **[robyn.academy](https://robyn.academy)**
 
 The authenticated pilot is **desktop-only**. The public homepage is a mobile-capable, continuous ASCII robin tour with real Craft interface captures. Sign-in uses invitation-only email links; public signup and subscription billing are disabled. Start with the [documentation index](docs/README.md) and [architecture and scope](docs/ARCHITECTURE.md).
 
-The deployed catalog groups **26 Crafts into Creative (10), Drafting (9) and Analysis (7)**. The source catalog has twenty-four verified native/browser/library integrations; DashCraft and DataCraft remain pending. SubCraft's accepted source release is awaiting its paired web rollout; twenty-three integrations are currently deployed. [Current acceptance](docs/CURRENT-STATUS.md) records the deployed web/runtime sources, migration state, editor/workstation pins and acceptance limits. The [operator runbook](docs/OPERATIONS.md) covers support and recovery; [archived records](docs/archive/README.md) preserve dated release and rollback evidence. Support is **support@robyn.academy**.
+The deployed catalog groups **26 Crafts into Creative (10), Drafting (9) and Analysis (7)**. Twenty-four integrations are deployed with verified native/browser/library loops, including SubCraft. DashCraft and DataCraft remain pending. [Current acceptance](docs/CURRENT-STATUS.md) records the deployed web/runtime sources, migration state, editor/workstation pins and acceptance limits. The [operator runbook](docs/OPERATIONS.md) covers support and recovery; [archived records](docs/archive/README.md) preserve dated release and rollback evidence. Support is **support@robyn.academy**.
 
 ## Develop and verify
 
