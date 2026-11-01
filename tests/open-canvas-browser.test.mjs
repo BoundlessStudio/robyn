@@ -92,7 +92,7 @@ test('a delivered first draft appears in its project and opens from the employee
 });
 
 test('manual starts cover all ready Crafts, validate bytes before writes, and recover one document after reload',async()=>{
-  assert.deepEqual(new Set(starters.map(item=>item.appId)),new Set(studioApps.filter(isAppReady).map(app=>app.id)));
+  assert.deepEqual(new Set(starters.map(item=>item.appId)),new Set(studioApps.filter(app=>isAppReady(app)&&app.editor.mode!=="readOnly").map(app=>app.id)));
   const browser=await browserType.launch({headless:true});
   try{
     const {page,state}=await nativeImportFixture(browser);state.allowance=0;state.failStarterDownload=true;

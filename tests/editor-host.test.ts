@@ -6,6 +6,26 @@ import {isTrustedEditorEvent,EDITOR_BRIDGE_PROTOCOL,type EditorMessage} from "..
 const initialRef={assetId:"11111111-1111-4111-8111-111111111111",revisionId:"22222222-2222-4222-8222-222222222222"};
 const message=(requestId:string,operation:EditorMessage["operation"],payload:unknown):EditorMessage=>({protocol:EDITOR_BRIDGE_PROTOCOL,channel:"frame",requestId,operation,payload});
 
+test("read-only viewers open exact project inputs and refuse every write before dispatch",async()=>{
+  const original=globalThis.fetch,requests:Array<{path:string;method:string}>=[],dirty:boolean[]=[];
+  const pkg={ref:initialRef,files:[{path:"Report.pbip",role:"master"}],dependencies:[]};
+  globalThis.fetch=async(url,options)=>{
+    requests.push({path:String(url),method:options?.method??"GET"});
+    return Response.json(String(url).includes("/revisions/")?pkg:{assets:[{id:initialRef.assetId,app_id:"dashcraft"}]});
+  };
+  try{
+    const host=createEditorHost({projectId:"project",initialRef,readOnly:true,signal:new AbortController().signal,onDirty:value=>dirty.push(value),onStatus(){},onSaved(){assert.fail("A viewer cannot save");}});
+    assert.deepEqual(await host.handle(message("open","openAsset",initialRef)),pkg);
+    const before=requests.length;
+    for(const operation of ["saveAsset","importAsset","requestAgentEdit"] as const)await assert.rejects(host.handle(message(operation,operation,{})),/read-only/);
+    await assert.rejects(host.handle(message("dirty","notifyChanges",{assetId:initialRef.assetId,dirty:true})),/read-only/);
+    assert.equal(requests.length,before);assert.deepEqual(dirty,[]);
+    await host.handle(message("clean","notifyChanges",{assetId:initialRef.assetId,dirty:false}));
+    assert.deepEqual(dirty,[false]);assert.ok(requests.every(request=>request.method==="GET"));
+    await assert.rejects(host.handle(message("foreign","openAsset",{...initialRef,assetId:"33333333-3333-4333-8333-333333333333"})),/outside the open project/);
+  }finally{globalThis.fetch=original;}
+});
+
 test("editor pickers and project authorization include every page without cursor loops",async()=>{
   const original=globalThis.fetch,requests:string[]=[];
   const old={id:initialRef.assetId,app_id:"filmcraft",current_revision_id:initialRef.revisionId};

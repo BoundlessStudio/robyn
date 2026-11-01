@@ -24,7 +24,7 @@ export function ApplicationLauncher({ projectId, launch, ready, onLaunch, onFile
   onFiles: () => void; onFolder: () => void; importButtonRef?: RefObject<HTMLButtonElement|null>; employeesHref: string; compact?: boolean;
 }) {
   return <div className={`application-launcher${compact ? " compact" : ""}`}>
-    {!compact && <header><span className="studio-eyebrow">YOUR APPLICATIONS</span><h2>What will you <em>make?</em></h2><p>Choose an application. Start with a blank file, saved in this project.</p></header>}
+    {!compact && <header><span className="studio-eyebrow">YOUR APPLICATIONS</span><h2>What will you <em>make?</em></h2><p>Choose an application to start a file or open a report.</p></header>}
     <LaunchProgress launch={launch} ready={ready} onResume={() => { if (launch.pendingApp) onLaunch(launch.pendingApp.id); }}/>
     {!ready && <p className="studio-note">This project is archived. Open <Link href={`/dashboard/projects/${projectId}/settings#project-details`}>Settings</Link> to reactivate it and create new files.</p>}
     <div className="application-studios" aria-label="Project applications">
@@ -33,7 +33,7 @@ export function ApplicationLauncher({ projectId, launch, ready, onLaunch, onFile
         <div className="application-grid">
           {studio.apps.map(app => <button key={app.id} disabled={!launchableApps.some(item=>item.id===app.id) || !ready || !launch.storageReady || launch.busy || Boolean(launch.pending)} onClick={() => onLaunch(app.id)}>
             <AppIcon app={app} className="application-icon"/>
-            <span><strong>{app.name}</strong><small>{launchableApps.some(item=>item.id===app.id)?currentBlankStarters.find(item => item.appId === app.id)?.description:"Application being connected"}</small></span><ArrowUpRight size={15} aria-hidden="true"/>
+            <span><strong>{app.name}</strong><small>{launchableApps.some(item=>item.id===app.id)?app.editor.mode==="readOnly"?"Open a report · Read only":currentBlankStarters.find(item => item.appId === app.id)?.description:"Application being connected"}</small></span><ArrowUpRight size={15} aria-hidden="true"/>
           </button>)}
         </div>
       </section>)}

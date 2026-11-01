@@ -123,6 +123,10 @@
 .studio-modal input,.studio-modal textarea,.studio-modal select,.studio-form input,.studio-form textarea,.studio-form select { background:#161615; border:1px solid #4b4a46; border-radius:5px; padding:11px 12px; color:#f1f0e8; font-size:12px!important; max-width:100%; width:100%; }
 .studio-modal textarea,.studio-form textarea { resize:vertical; }
 .studio-modal .studio-button { justify-self:start; }
+.report-picker { display:grid; gap:16px; }
+.report-picker>p { margin:0; font-size:12px; line-height:1.7; }
+.report-picker-list { display:grid; gap:8px; margin:0; padding:0; list-style:none; }
+.report-picker-list .studio-button { width:100%; justify-content:flex-start; text-align:left; overflow-wrap:anywhere; }
 .studio-icon-button { display:grid; place-items:center; width:32px; height:32px; border-radius:4px; color:#a8b69a; }
 .studio-icon-button:hover { background:#35402e; }
 .modal-close { position:absolute; right:17px; top:17px; }

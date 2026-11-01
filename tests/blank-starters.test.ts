@@ -7,8 +7,9 @@ import {studioApps} from "../src/studio/apps/registry";
 import {isAppReady} from "../src/studio/manifest";
 import {checkNativeImport} from "../src/studio/native-import";
 
-test("each ready Craft has an intact, self-contained native starter compatible with its package adapter",async()=>{
-  assert.deepEqual(new Set(blankStarters.map(item=>item.appId)),new Set(studioApps.filter(isAppReady).map(app=>app.id)));
+test("each ready editing Craft has an intact native starter; read-only viewers open existing reports",async()=>{
+  assert.deepEqual(new Set(blankStarters.map(item=>item.appId)),new Set(studioApps.filter(app=>isAppReady(app)&&app.editor.mode!=="readOnly").map(app=>app.id)));
+  assert.equal(blankStarters.some(item=>item.appId==="dashcraft"),false);
   for(const starter of blankStarters){
     const entries=[];
     for(const file of starter.files){

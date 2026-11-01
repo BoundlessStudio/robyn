@@ -18,7 +18,7 @@ export interface StudioAppManifest {
   employee: { role: string; instructions: string };
   formats: { native: string[]; verification: IntegrationStatus };
   capabilities: string[];
-  editor: { adapterVersion: string; release: string | null; bundleUrl: string | null; status: IntegrationStatus };
+  editor: { adapterVersion: string; release: string | null; bundleUrl: string | null; status: IntegrationStatus; mode?: "edit" | "readOnly" };
   workstation: { template: string | null; release: string | null; status: IntegrationStatus; previousReleases?: Array<{template:string;release:string}> };
 }
 

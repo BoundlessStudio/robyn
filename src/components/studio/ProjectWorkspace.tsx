@@ -6,6 +6,7 @@ import { ResearchNotebook } from "./ResearchNotebook";
 import {ApplicationLauncher, LaunchProgress} from "./ApplicationLauncher";
 import {useApplicationLaunch} from "./useApplicationLaunch";
 import {DocumentName} from "./DocumentName";
+import {ReadOnlyApplicationDialog} from "./ReadOnlyApplicationDialog";
 import {ProjectName} from "./ProjectName";
 import { Markdown } from "@/components/Markdown";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -44,6 +45,8 @@ export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,ini
   const [fileDetails,setFileDetails]=useState(false);
   const [fork,setFork]=useState<string|null>(null);
   const [applicationsOpen,setApplicationsOpen]=useState(false);
+  const [readOnlyApplication,setReadOnlyApplication]=useState("");
+  const readOnlyApp=studioApps.find(app=>app.id===readOnlyApplication&&app.editor.mode==="readOnly");
   const applicationsButton=useRef<HTMLButtonElement>(null);
   const initialLaunchHandled=useRef(false);
   const [revisionCursor,setRevisionCursor]=useState<string|null>(null),[paging,setPaging]=useState(false);
@@ -83,7 +86,7 @@ export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,ini
     return()=>{live=false;};
   },[asset?.id,asset?.current_revision_id,focusedRevision]);
   function leaveEditor(){return !editorDirty.current||window.confirm("This editor has unsaved work. Leave without saving?");}
-  function select(id:string){if(id===selected){return;}if(!leaveEditor())return;setEditorEpoch(value=>value+1);setSelected(id);setTabs(current=>current.includes(id)?current:[...current,id]);setFocusedRevision(null);setError("");setHistory(false);setFileDetails(false);}
+  function select(id:string){if(id===selected){return true;}if(!leaveEditor())return false;setEditorEpoch(value=>value+1);setSelected(id);setTabs(current=>current.includes(id)?current:[...current,id]);setFocusedRevision(null);setError("");setHistory(false);setFileDetails(false);return true;}
   function closeTab(id:string){if(id===selected&&!leaveEditor())return;setTabs(current=>current.filter(tab=>tab!==id));if(selected===id){setEditorEpoch(value=>value+1);setFocusedRevision(null);setSelected(tabs.find(tab=>tab!==id)??"");}}
   function importPackage(mode:"new"|"revision"){if(leaveEditor())setUpload(mode);}
   function receiveFiles(files:globalThis.File[],folder=false){
@@ -136,9 +139,9 @@ export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,ini
   function openRevision(id:string){if(!asset||!leaveEditor())return;setFileDetails(false);setError("");setFocusedRevision({assetId:asset.id,revisionId:id});setEditorEpoch(value=>value+1);}
   async function restore(id:string){if(!asset||!leaveEditor())return;setBusy(true);setError("");try{const response=await fetch(`/api/studio/assets/${asset.id}/restore`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({revisionId:id,expectedBaseRevisionId:asset.current_revision_id})});if(!response.ok&&response.status!==409)throw new Error(await readApiError(response,"Could not restore"));const result=await response.json() as SaveResult;if(!result.status)throw new Error("The revision could not be restored.");await saved(result);}catch(error){setError((error as Error).message);}finally{setBusy(false);}}
   async function forkRevision(event:React.FormEvent<HTMLFormElement>){event.preventDefault();if(!fork||!leaveEditor())return;const data=new FormData(event.currentTarget);setBusy(true);try{const result=await apiFetch<SaveResult>(`/api/studio/revisions/${fork}/fork`,{method:"POST",body:JSON.stringify({name:data.get("name")})});setFork(null);await saved(result);}catch(error){setError((error as Error).message);}finally{setBusy(false);}}
-  const launch=useApplicationLaunch({projectId,ready:project?.status==="active",onSaved:saved});
+  const launch=useApplicationLaunch({projectId,ready:project?.status==="active",onSaved:saved,onOpenReadOnly:appId=>{setApplicationsOpen(false);setReadOnlyApplication(appId);}});
   function launchApplication(appId:string){
-    if(launch.busy||!leaveEditor())return;
+    if(launch.busy||(studioApps.find(app=>app.id===appId)?.editor.mode!=="readOnly"&&!leaveEditor()))return;
     if(asset)setApplicationsOpen(true);
     void launch.launch(appId);
   }
@@ -149,8 +152,8 @@ export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,ini
   },[project,launch.storageReady,initialAppId,initialLaunchId,initialAssetId]);
   // Dashboard shares this route with the editor. Clear its local selection even
   // when Next keeps the component mounted during a same-route navigation.
-  function showDashboard(){setEditorEpoch(value=>value+1);setSelected("");setFocusedRevision(null);setApplicationsOpen(false);setHistory(false);setFileDetails(false);setError("");}
-  function chooseFiles(folder=false){setApplicationsOpen(false);if(folder)receiveFiles([],true);else filePicker.current?.click();}
+  function showDashboard(){setReadOnlyApplication("");setEditorEpoch(value=>value+1);setSelected("");setFocusedRevision(null);setApplicationsOpen(false);setHistory(false);setFileDetails(false);setError("");}
+  function chooseFiles(folder=false){setReadOnlyApplication("");setApplicationsOpen(false);if(folder)receiveFiles([],true);else filePicker.current?.click();}
   const employeeParams=new URLSearchParams();
   if(asset&&targetRevision){employeeParams.set("asset",asset.id);employeeParams.set("revision",targetRevision);}
   const employeesHref=`/dashboard/projects/${projectId}/employees${employeeParams.size?`?${employeeParams}`:""}`;
@@ -162,7 +165,7 @@ export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,ini
       {history&&<div className="asset-history"><h3>Saved revisions</h3>{revisionCursor&&<button className="studio-button" disabled={paging} onClick={()=>void loadMoreRevisions()}>Load older revisions</button>}{revisions.length?revisions.map(revision=><div key={revision.id}><div className="revision-description"><button className="revision-open" disabled={revision.state==="uploading"||busy} onClick={()=>openRevision(revision.id)}><strong>{revision.revision_number?`Revision ${revision.revision_number}`:revision.state==="conflict"?"Preserved conflict":"Upload in progress"}</strong><small>{new Date(revision.created_at).toLocaleString()}</small></button><Markdown className="revision-note" content={revision.message||"Native package"}/></div>{revision.state==="committed"&&revision.id!==asset.current_revision_id&&<button className="studio-button" disabled={busy} onClick={()=>restore(revision.id)}>Restore as new revision</button>}{revision.state==="conflict"&&<button className="studio-button" onClick={()=>{setFileDetails(false);setFork(revision.id);}}>Save as new asset</button>}{revision.state==="uploading"&&<button className="studio-button" onClick={()=>importPackage("revision")}>Resume with original files</button>}</div>):<p className="studio-muted">The first saved revision will appear here.</p>}</div>}</>;
   const simpleImport=intake&&(intake.folder||intake.files.some(file=>nativeImportApp(file.name))||intake.files.every(file=>sourceFormat(file.name)));
   const hasEditor=Boolean((editorUrl||asset?.app_id==="research")&&targetRevision);
-  const statusLabel=editorState.error?"Needs attention":/conflict/i.test(editorState.status)?"Conflict preserved":/opening/i.test(editorState.status)?"Opening…":editorState.dirty?(/upload|hash|confirm|prepar|saving/i.test(editorState.status)?"Saving…":"Unsaved"):"Saved";
+  const statusLabel=editorState.error?"Needs attention":app?.editor.mode==="readOnly"?"Read only":/conflict/i.test(editorState.status)?"Conflict preserved":/opening/i.test(editorState.status)?"Opening…":editorState.dirty?(/upload|hash|confirm|prepar|saving/i.test(editorState.status)?"Saving…":"Unsaved"):"Saved";
   return <div className={`project-workspace${hasEditor?" has-editor":""}`}>
     <input ref={filePicker} type="file" multiple hidden aria-label="Choose documents to import" onChange={event=>{receiveFiles(Array.from(event.currentTarget.files??[]));event.currentTarget.value="";}}/>
     <ProjectHeader projectId={projectId} project={project} title={project?<ProjectName id={projectId} name={project.name} onSaved={reload}/>:<h1>Opening project…</h1>} savedRevision={asset&&targetRevision?{assetId:asset.id,revisionId:targetRevision}:undefined} onDashboard={showDashboard}/>
@@ -188,11 +191,16 @@ export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,ini
         </div>}
       </div>}
     {!asset?<div className="project-start">{launcher}</div>:<>
-      {asset.app_id==="research"&&targetRevision?<ResearchNotebook ref={embeddedEditor} key={editorEpoch} initialRef={{assetId:asset.id,revisionId:targetRevision}} onState={setEditorState} onDirty={dirty=>{editorDirty.current=dirty;}} onSaved={editorSaved} onRequest={()=>{window.open(`${employeesHref}&view=jobs`,"_blank","noopener");}}/>:editorUrl&&targetRevision?<EmbeddedEditor ref={embeddedEditor} onLibraryChanged={()=>{void reload().catch(error=>setError(error.message));}} onState={setEditorState} key={editorEpoch} projectId={projectId} initialRef={{assetId:asset.id,revisionId:targetRevision}} bundleUrl={editorUrl} name={app?.name??"Creative"} onSaved={editorSaved} onDirty={dirty=>{editorDirty.current=dirty;}}/>:opening?<p role="status" className="studio-empty">Opening the native package…</p>:<div className="asset-preview">{sourceMedia&&<div className="source-import-note"><strong>{asset.name}</strong><p>Saved as reusable source media. Use Place from studio in a compatible Craft to add it to your work.</p><a href={savedFileUrl(revisionId!,packageData?.files.find(file=>file.role==="master")?.path??preview?.path??"")}>Download original</a></div>}{preview?.mimeType.startsWith("image/")?<SavedMedia key={`${revisionId}:${preview.path}`} revisionId={revisionId!} file={preview} name={asset.name}/>:preview&&(preview.mimeType.startsWith("video/")||preview.mimeType.startsWith("audio/"))?<SavedMedia key={`${revisionId}:${preview.path}`} revisionId={revisionId!} file={preview} name={asset.name}/>:<div className="asset-native-placeholder"><AppIcon app={app}/><h2>{asset.name}</h2><p>{packageData?"Your native package is saved.":"Import the native master to create its first saved revision."}</p><p className="studio-muted">{app?.editor.status==="verified"?"The browser editor is ready to connect.":`${app?.name}'s browser integration is being prepared.`}</p></div>}</div>}
+      {asset.app_id==="research"&&targetRevision?<ResearchNotebook ref={embeddedEditor} key={editorEpoch} initialRef={{assetId:asset.id,revisionId:targetRevision}} onState={setEditorState} onDirty={dirty=>{editorDirty.current=dirty;}} onSaved={editorSaved} onRequest={()=>{window.open(`${employeesHref}&view=jobs`,"_blank","noopener");}}/>:editorUrl&&targetRevision?<EmbeddedEditor ref={embeddedEditor} onLibraryChanged={()=>{void reload().catch(error=>setError(error.message));}} onState={setEditorState} key={editorEpoch} projectId={projectId} initialRef={{assetId:asset.id,revisionId:targetRevision}} bundleUrl={editorUrl} readOnly={app?.editor.mode==="readOnly"} name={app?.name??"Creative"} onSaved={editorSaved} onDirty={dirty=>{editorDirty.current=dirty;}}/>:opening?<p role="status" className="studio-empty">Opening the native package…</p>:<div className="asset-preview">{sourceMedia&&<div className="source-import-note"><strong>{asset.name}</strong><p>Saved as reusable source media. Use Place from studio in a compatible Craft to add it to your work.</p><a href={savedFileUrl(revisionId!,packageData?.files.find(file=>file.role==="master")?.path??preview?.path??"")}>Download original</a></div>}{preview?.mimeType.startsWith("image/")?<SavedMedia key={`${revisionId}:${preview.path}`} revisionId={revisionId!} file={preview} name={asset.name}/>:preview&&(preview.mimeType.startsWith("video/")||preview.mimeType.startsWith("audio/"))?<SavedMedia key={`${revisionId}:${preview.path}`} revisionId={revisionId!} file={preview} name={asset.name}/>:<div className="asset-native-placeholder"><AppIcon app={app}/><h2>{asset.name}</h2><p>{packageData?"Your native package is saved.":"Import the native master to create its first saved revision."}</p><p className="studio-muted">{app?.editor.status==="verified"?"The browser editor is ready to connect.":`${app?.name}'s browser integration is being prepared.`}</p></div>}</div>}
       {fileDetails&&<StudioDialog title="Files & revisions." eyebrow={asset.name} close={()=>{setFileDetails(false);setHistory(false);}} returnFocusRef={documentMenuButton}>{assetDetails}</StudioDialog>}
     </>}</section>
     </div>
     {asset&&applicationsOpen&&<StudioDialog title="Your applications." eyebrow={project?.name??"PROJECT"} close={()=>setApplicationsOpen(false)} busy={launch.busy} returnFocusRef={applicationsButton}>{launcher}</StudioDialog>}
+    {readOnlyApp&&<ReadOnlyApplicationDialog projectId={projectId} app={readOnlyApp} close={()=>setReadOnlyApplication("")} onFiles={()=>chooseFiles()} onFolder={()=>chooseFiles(true)} returnFocusRef={importReturnFocus} onOpen={report=>{
+      if(report.project_id!==projectId||report.app_id!==readOnlyApp.id||!report.current_revision_id)return;
+      setAssets(rows=>[...new Map([...rows,report].map(row=>[row.id,row])).values()]);
+      if(select(report.id)){setFocusedRevision({assetId:report.id,revisionId:report.current_revision_id});setReadOnlyApplication("");}
+    }}/>}
     {upload&&<UploadPackageDialog projectId={projectId} asset={upload==="revision"?asset:undefined} close={()=>setUpload(null)} saved={saved} returnFocusRef={upload==="revision"?documentMenuButton:importReturnFocus}/>}
     {intake&&(simpleImport?<ImportDocumentDialog projectId={projectId} initialFiles={intake.files} folder={intake.folder} close={()=>{setIntake(null);void reload().catch(error=>setError(error.message));}} saved={saved} returnFocusRef={importReturnFocus}/>:<UploadPackageDialog projectId={projectId} initialFiles={intake.files} explanation="These files weren’t recognised. Choose an application only for its supported native project format. Export other documents from their original application first." close={()=>setIntake(null)} saved={saved} returnFocusRef={importReturnFocus}/>)}
     {fork&&<StudioDialog title="Another direction." eyebrow="SAVE AS A NEW ASSET" close={()=>setFork(null)} busy={busy}><form onSubmit={forkRevision}><label>Asset name<input name="name" required maxLength={160} defaultValue={`${asset?.name??"Untitled"} — alternate`} autoFocus/></label><p className="studio-muted">The native package and exact dependencies will be preserved in a new asset.</p>{error&&<p role="alert" className="studio-error">{error}</p>}<button className="studio-button primary" disabled={busy}>Save as new asset</button></form></StudioDialog>}

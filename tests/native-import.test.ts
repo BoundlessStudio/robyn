@@ -93,3 +93,21 @@ test("SubCraft intake preserves the complete embedded project and excludes unrel
   assert.equal(files[0].file,master.file);
   await assert.rejects(checkNativeImport("subcraft",[{...master,file:new Blob([bytes.subarray(0,100)])}]),/complete native/);
 });
+
+test("DashCraft intake preserves native report/model/offline data bytes and excludes connection settings",async()=>{
+  assert.equal(nativeImportApp("Sales.PBIP")?.id,"dashcraft");
+  assert.equal(nativeImportApp("Sales.PBIT")?.id,"dashcraft");
+  const entry=(path:string,source:string,role="dependency")=>({path,role,file:new Blob([source])});
+  const files=[
+    entry("Sales.pbip",JSON.stringify({version:"1.0",artifacts:[{report:{path:"Sales.Report"}}]}),"master"),
+    entry("Sales.Report/definition.pbir",JSON.stringify({version:"4.0",datasetReference:{byPath:{path:"../Sales.SemanticModel"}}})),
+    entry("Sales.SemanticModel/model.tmdl","model Model\n\tculture: en-US\n"),
+    entry("blob-map.json",JSON.stringify({containers:{"https://example.invalid/reports/":{"sales.csv":"data/sales.csv"}}})),
+    entry("data/sales.csv","id,amount\n1,123.45\n"),
+  ];
+  const settings=entry("connections.json",JSON.stringify({password:"never publish"}));
+  assert.deepEqual(await checkNativeImport("dashcraft",[...files,settings]),files);
+  await assert.rejects(checkNativeImport("dashcraft",files.filter(file=>!file.path.endsWith("model.tmdl"))),/missing its linked model/);
+  await assert.rejects(checkNativeImport("dashcraft",files.filter(file=>!file.path.endsWith("sales.csv"))),/missing an exact offline data/);
+  await assert.rejects(checkNativeImport("dashcraft",[entry("Secrets.bim",JSON.stringify({password:"never publish"}),"master")]),/credentials/);
+});
