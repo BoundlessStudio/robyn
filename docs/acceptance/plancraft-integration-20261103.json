@@ -1,0 +1,282 @@
+{
+  "appId": "plancraft",
+  "status": "verified",
+  "integrationStatus": "verified",
+  "roundTrip": "verified",
+  "checkedAt": "2026-11-03T15:16:12.662510+00:00",
+  "upstream": "v0.1.0",
+  "sourceCommit": "7cf3e28d3de99e9767afeed79cf1b96448e57058",
+  "adapterVersion": "0.1.0",
+  "browserBundleSha256": "38eaa7836aa8bb2f0a1a4ef51062cc10e184e3c855fc11d1a8fd04135f197a6f",
+  "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/plancraft/v0.1.0-0.1.0/",
+  "sourcePatchSha256": "e38461ede0d612655c67d74f29e62deca4c6cf6cf9020fbbe4cda8678cece899",
+  "cargoLockSha256": "4f5409bfa9e283519563dd18705be1b3407b99e66854a8c2df394ff33e5d5e35",
+  "nativeCargoLockSha256": "d7f2968cf3914cac9b3e9e51e0d3c20d9339b2dbbefe5e7e4d7ed9676b236335",
+  "imageInstallation": {
+    "template": "robyn-studio-0-3-0@1",
+    "digest": "sha256:46c6006a4612aa3bd3786ef0c8029791b4d18d12d89bfb42443cdad82409a818",
+    "evidence": "workstations/studio-0.3.0/verification.json in the companion robyn-artcraft-runtime repository"
+  },
+  "scope": "Original Rust/egui interface, project scheduler and native JSON writer, compiled to WASM. Real authenticated Next.js BFF and private Storage commits in a local acceptance host; original hosted editor and installed-native continuation. This is source acceptance, separate from deployment of the web application.",
+  "reproducibility": {
+    "checkedAt": "2026-11-03T14:40:43.867Z",
+    "scope": "Two independent Rust target directories, same pinned Linux builder and sources, every browser file byte-identical",
+    "files": 345,
+    "bytes": 9199198,
+    "browserBundleSha256": "38eaa7836aa8bb2f0a1a4ef51062cc10e184e3c855fc11d1a8fd04135f197a6f"
+  },
+  "nativeContinuations": [
+    {
+      "case": "canonical",
+      "inputSha256": "5ac76848ccce8e50c2c93fce0feff0ae9493b15dc41485871e936942e443a337",
+      "nativeContinuedSha256": "4648574a26a39a5d7932a0c35983a9cf159ce3f3aff5e43b131a9a01f4556930",
+      "retainedBrowserEdit": true,
+      "percentComplete": 45,
+      "dependencies": []
+    },
+    {
+      "case": "linked",
+      "inputSha256": "72fedfbe526368ccb376cd66b067214a9228c5b14c944ff89f8210ecd4f8267f",
+      "nativeContinuedSha256": "4b0d3ae7b964bc70270088eb8d3688f17557b19d32a8b0c506ec5159943e6388",
+      "retainedBrowserEdit": true,
+      "percentComplete": 55,
+      "dependencies": [
+        {
+          "path": "dependencies/Supplier.plancraft",
+          "sha256": "dab8b91cfcaaccb7b2088548e3139c16bcb4abe74261af22c751d4a16198f2e8"
+        }
+      ]
+    },
+    {
+      "case": "hosted",
+      "inputSha256": "fc63597747aef0aa53e5a89e5ae8df7337cac05081f9f13465d29a6a737823a0",
+      "nativeContinuedSha256": "5544e048d749e1417be235bc8ed0e5dc647be58926fae7370dcdc0cfffd8e6ae",
+      "retainedBrowserEdit": true,
+      "percentComplete": 65,
+      "dependencies": []
+    },
+    {
+      "case": "handoff",
+      "inputSha256": "ab32ca4f82779d0f62dd8f60dc9fd1239e3d473da422f29f40385c65abf72025",
+      "nativeContinuedSha256": "9d9c09984550b75ac187294b1d92167bf6f4afa48e531be2679361252afd58b3",
+      "retainedBrowserEdit": true,
+      "percentComplete": 75,
+      "dependencies": []
+    },
+    {
+      "case": "blank",
+      "inputSha256": "d8a4694f595bd6aaaa71ab11cad9ab7c43fa505e12efacaa1c2ae85681460c7a",
+      "nativeContinuedSha256": "c5887db0f75d8797dac0b87f84ba030309c63d481342377fd49e3bc59ada5779",
+      "retainedBrowserEdit": true,
+      "percentComplete": 75,
+      "dependencies": []
+    }
+  ],
+  "checks": {
+    "nativeBlankEditSaveReload": true,
+    "focusedTaskSave": true,
+    "nativeSaveAndSaveAsControls": true,
+    "saveAsExactAssetReload": true,
+    "relativeLinkedProjectEditSaveReload": true,
+    "linkedDependencyBytesUnchanged": true,
+    "originalLinksDialogSelectedInput": true,
+    "revisionLostAckSameSnapshot": true,
+    "saveAsLostAck": {
+      "checkedAt": "2026-11-03T15:03:53.107Z",
+      "state": {
+        "path": "Launch handoff.plancraft",
+        "dirty": true,
+        "pending": false,
+        "revision": "2"
+      },
+      "commitPosts": 1,
+      "uniqueCreationIds": 1,
+      "creationRequests": 2
+    },
+    "laterEditSavedAsNextRevision": true,
+    "conflictRemainsDirty": true,
+    "conflictRecoveredWithSaveAs": true,
+    "windowsOriginalGuiContinuationScreenshotSha256": "9067d9f8e2b5443ab6ecdb389cf7ae6f087c8419bc9631747ece135707a0ca3a"
+  },
+  "workstationClient": {
+    "version": "0.9.0",
+    "fingerprint": "7154c050e8d10dd15b23f71aca77c41f3d9363ef5a688c232da142554cbdca42",
+    "sha256": "761a981dc745f103728cba1b4901abe2c4d10b07ee84b1d354efad0b0c835f67",
+    "craftSkills": 27
+  },
+  "tests": {
+    "runtime": 150,
+    "rustCoreMcpAndDoctests": 111,
+    "wasmClippyWarningsDenied": true,
+    "rustFormatting": true,
+    "linuxTaskProfiles": 4,
+    "web": 249,
+    "webTypecheck": true,
+    "productionBuildStaticPages": 45,
+    "publicBrowserViewportPages": 18,
+    "publicKeyboardPassed": 14,
+    "publicPlatformKeyboardExclusions": 4,
+    "runtimeAuditVulnerabilities": 0,
+    "webAuditHighOrCritical": 0,
+    "webExistingModerateAuditFindings": 23
+  },
+  "limits": [
+    "Desktop Chromium is the native browser acceptance baseline; public-page checks cover Chromium, Firefox and WebKit.",
+    "Browser private inputs stay in bounded memory; confirmed library revisions survive reloads. Native recovery folders and browser MCP listeners are disabled.",
+    "File Open selects one root with exact same-folder inputs; nested folders use the Assets folder import.",
+    "Recorded round trips do not accept every scheduling option, GPU, physical device or screen reader."
+  ],
+  "sourceState": {
+    "webBaseCommit": "4ac6b10ea5a11702ec69ff7f9d3183b659016e7f",
+    "runtimeBaseCommit": "a02fe2e0d47d449701ddb7ee929943116d214e7b",
+    "candidate": "Uncommitted source changes in the paired checkouts; no production web release is claimed."
+  },
+  "catalog": {
+    "ready": 27,
+    "Creative": 10,
+    "Drafting": 9,
+    "Analysis": 8
+  },
+  "distribution": {
+    "checkedAt": "2026-11-03T14:51:36.156Z",
+    "origin": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev",
+    "accountId": "ad511085f517f4740591851cad7686eb",
+    "bucket": "robyn-editor-artifacts",
+    "releases": 100,
+    "files": 45673,
+    "uniqueObjects": 3118,
+    "bytes": 2463461767,
+    "catalogSha256": "bfd4dcfcb92c5cb826750c6c3e6bae251ef882a2fe3a976d5c0db251d1e48d69",
+    "uploaded": 9,
+    "existing": 3109,
+    "allHostedBytesVerified": true,
+    "sourceBaseline": false,
+    "uploadOnly": false,
+    "privateBucket": true,
+    "readOnlyServingWorker": true
+  },
+  "publishedWorkstation": {
+    "checkedAt": "2026-11-03T15:16:12.662510+00:00",
+    "template": "robyn-studio-0-3-0@1",
+    "digest": "sha256:46c6006a4612aa3bd3786ef0c8029791b4d18d12d89bfb42443cdad82409a818",
+    "buildId": "tb_0ceda4663d83d79d7b77",
+    "sourceContextSha256": "1d59eefccdae5b01b9cb1e375c2525db24eb12d654fdb1ae546c4b496318598d",
+    "sourceFingerprint": "0d25636889d7a8ddb40bb64f3d7caa884cd40c753ca152e25ed94b02c71c1af5",
+    "contextFiles": [
+      {
+        "name": "Dockerfile",
+        "bytes": 23393,
+        "sha256": "a88d37971043394faf581bc7bc82c253f271c7033a0205d85cc29b000ed95146"
+      },
+      {
+        "name": "desktop-entrypoint.sh",
+        "bytes": 2256,
+        "sha256": "48ed032a2a34ef5675475dfaffcf4050c65b2092ecebef992b63d409cc345601"
+      },
+      {
+        "name": "release.json",
+        "bytes": 25133,
+        "sha256": "fe9bd871237743f78687e89f91f44b368c0489ecd5763187adaa09805549875b"
+      },
+      {
+        "name": "build-matcraft.py",
+        "bytes": 6255,
+        "sha256": "66905c3739ba5cb00564d4a660856b7985dca1848524baf2ef98537030514a9b"
+      },
+      {
+        "name": "verify-installation.py",
+        "bytes": 3988,
+        "sha256": "4d33063f6564e53bd175f776ec0946fdf29784b5878926cb61886c84e34c47c2"
+      },
+      {
+        "name": "build-plancraft.py",
+        "bytes": 2706,
+        "sha256": "a75efb33787ff729078c7c01e5800e1f04e09063d024f7371ac23afc17db1341"
+      }
+    ],
+    "installedApplications": 27,
+    "studios": {
+      "Creative": 10,
+      "Drafting": 9,
+      "Analysis": 8
+    },
+    "nativeExecutableHashes": "passed",
+    "dynamicLibraries": "passed",
+    "matcraftNumericalSmoke": "passed",
+    "localCombinedImageId": "sha256:9b72333a0bb5d786ff90ab222767c2e0ddd5162daed0a1fe4b2456c4f376ac79",
+    "nativePlanCraftExecutables": {
+      "plancraft": "ddbcd181e82a3acac11deb494449d426dcf8255cb0f738ba94f52a37ba6caf62",
+      "plancraft-mcp": "5a1704691578ed05fb730013d90ca13f083df07bb96a5679b11ddf4f35e0d8b9"
+    },
+    "scope": "Actual local combined image installation checks and five original installed-native continuations; successful cloud build of the identical allowlisted recipe. Web production rollout and existing workstation updates are separate."
+  },
+  "nativeStarter": {
+    "id": "plancraft:8",
+    "appId": "plancraft",
+    "name": "Untitled plan",
+    "description": "Empty project schedule",
+    "files": [
+      {
+        "path": "Untitled plan.plancraft",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 2760,
+        "sha256": "457f5b651e1d589d6c92455f7cd3b8bd319a639a1d237516a00adf3e88c92ecf",
+        "url": "/studio/starters/8/plancraft/Untitled%20plan.plancraft"
+      }
+    ]
+  },
+  "branding": {
+    "icon": {
+      "path": "public/brand/apps/plancraft.webp",
+      "sha256": "0f01efc128a72f54a778002a30f8cf20f7707da734ab63c0d903137914458947"
+    },
+    "editorCapture": {
+      "path": "public/artwork/editors/plancraft.png",
+      "width": 1600,
+      "height": 1000,
+      "sha256": "0b63f5f02ae3ca536757de03af861a63e281c18b49b0fb37cc6bc78600eeaec3",
+      "source": "Actual hosted editor after confirmed Save and exact reload; synthetic example plan."
+    },
+    "socialImage": {
+      "path": "public/brand/robyn-social.png",
+      "sha256": "e73a0e4941e487589dd269ded58492ecffb08531c25c115c99d85d476da19bb5",
+      "craftCount": 27
+    },
+    "desktopAndMobileReviewed": true
+  },
+  "deferred": {
+    "diagramcraft": {
+      "registered": false,
+      "counted": false,
+      "reason": "Owner deferred until an application interface is available."
+    }
+  },
+  "migrationState": {
+    "changed": false,
+    "ledgerReread": false,
+    "lastRecordedCheckpoint": "30 matching checksummed entries through 0029; historical, not reverified in this change."
+  },
+  "deployment": {
+    "editorDistributionPublished": true,
+    "newTemplatePublished": true,
+    "webDeployed": false,
+    "existingProductionWorkstationsChanged": false,
+    "productionWebRollout": "pending"
+  },
+  "runtimeVerificationRecord": "apps/plancraft/verification.json in the companion robyn-artcraft-runtime repository",
+  "cleanup": {
+    "qaBrowsersAndLocalServersClosed": true,
+    "preparedQaAuthSessionRevoked": "local scope only",
+    "existingProductionWorkstationsChanged": false,
+    "syntheticPrivateLibraryFixturesRetained": true
+  },
+  "agentAcceptance": {
+    "architecture": "One Robyn and one shared workstation per creator; no separate PlanCraft agent instance.",
+    "installation": "Native PlanCraft, its original MCP engine and its skill are included in image 0.3.0 and workstation client 0.9.0.",
+    "directMcpProtocol": "Passed against the installed native engine in the local combined Docker image, including five native continuations.",
+    "liveAgent37CreatorInstance": "Not exercised for PlanCraft in this acceptance run.",
+    "modelDrivenRobynTurn": "Not run.",
+    "liveSharedStudioMcpToPrivateLibrarySave": "Not run; outstanding acceptance before production rollout."
+  }
+}

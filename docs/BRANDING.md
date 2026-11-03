@@ -17,6 +17,12 @@ bird to white. The light paper version keeps its forest-coloured body.
   and the generated favicon, touch icon and reusable public logo.
 - `src/config/branding.ts` owns the site name, domain, description and social
   asset references. `social-metadata.ts` supplies consistent Open Graph/X tags.
+- Craft counts come from the independent registry. The source catalog has
+  27 ready Crafts. The homepage, metadata, image alt text and generated social
+  card derive the count from that registry.
+- `public/brand/apps/plancraft.webp` is an original engraved honeybee on jade,
+  matching the existing animal family. Prompts, processing and byte hashes live
+  in `public/brand/apps/sources.json`.
 - `public/brand/robyn-social.png` is a static 1200×630 PNG. The ASCII bird is a
   deterministic still from the actual homepage renderer, with heavier glyphs
   for small link previews. No screenshot of a fake product interface is used.

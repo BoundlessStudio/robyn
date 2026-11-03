@@ -18,6 +18,27 @@ function pendingCatalogue() {
   });
 }
 
+test("verified PlanCraft joins Analysis, native imports and public editor stories", async () => {
+  const plan = studioApps.find(app => app.id === "plancraft");
+  assert.ok(plan);
+  assert.equal(plan.studio, "Analysis");
+  assert.equal(plan.sourceUrl, "https://github.com/rallegretti/PlanCraft");
+  assert.deepEqual(plan.formats.native, [".plancraft"]);
+  assert.equal(isAppReady(plan), true);
+  assert.equal(isEmployeeReady(plan), true);
+  assert.equal(nativeImportApp("Project.PLANCRAFT", studioApps)?.id, "plancraft");
+  assert.equal(studioApps.some(app => app.id === "diagramcraft"), false);
+  const tour = await loadModule("../../src/components/home/craft-tour.ts", {});
+  const { branding } = await loadModule("../../src/config/branding.ts", {});
+  assert.equal(tour.registeredCraftCount, studioApps.length);
+  assert.deepEqual(tour.upcomingCrafts, []);
+  assert.equal(tour.craftTour.some(app => app.id === "plancraft"), true);
+  assert.match(branding.description, /27 Crafts/);
+  assert.doesNotMatch(branding.description, /coming soon/i);
+  assert.match(branding.socialImageAlt, /27 Crafts/);
+  assert.doesNotMatch(branding.socialImageAlt, /coming soon/i);
+});
+
 test("SolidCraft registers as a tool under one Robyn profile while pending imports stay unavailable", async () => {
   const apps = pendingCatalogue(), solid = apps.find(app => app.id === "solidcraft");
   assert.equal(apps.filter(app => app.id === "solidcraft").length, 1);
@@ -34,7 +55,7 @@ test("SolidCraft registers as a tool under one Robyn profile while pending impor
     });
     assert.equal(profiles.length,1);
     assert.deepEqual(profiles.map(({key,kind,appId,role})=>({key,kind,appId,role})),[{key:"robyn",kind:"director",appId:null,role:"Robyn"}]);
-    assert.equal(publicApps().length,apps.length);assert.equal(publicApps().length,26);
+    assert.equal(publicApps().length,apps.length);assert.equal(publicApps().length,27);
     assert.equal(publicApps().some(app=>app.id==="research"),false);
     assert.equal(publicApps().find(app => app.id === "solidcraft").ready, false);
   } finally { delete globalThis.__solidcraftCatalogue; }
@@ -109,9 +130,9 @@ test("pending SolidCraft rejects paid assignment creation before budget or workf
   });
 });
 
-test("all 26 ready Craft hints and an unhinted brief use the same canonical Robyn",async()=>{
+test("all 27 ready Craft hints and an unhinted brief use the same canonical Robyn",async()=>{
   const readyApps=studioApps.filter(isEmployeeReady);
-  assert.equal(readyApps.length,26);
+  assert.equal(readyApps.length,27);
   assert.deepEqual(studioApps.filter(app=>!isAppReady(app)).map(app=>app.id),[]);
   await assignmentBoundary(studioApps,async({submit,employee,created})=>{
     for(const app of readyApps){const response=await submit({appId:app.id,employeeId:employee.id});assert.equal(response.status,202);}

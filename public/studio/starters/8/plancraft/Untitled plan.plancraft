@@ -1,0 +1,141 @@
+{
+  "format": "plancraft",
+  "version": 1,
+  "id": "2dc37429-27b9-4285-903c-cd208b587cf4",
+  "name": "Untitled plan",
+  "author": "",
+  "manager": "",
+  "company": "",
+  "notes": "",
+  "start": "2026-11-03T08:00:00",
+  "calendar": 1,
+  "settings": {
+    "minutes_per_day": 480,
+    "minutes_per_week": 2400,
+    "days_per_month": 20,
+    "default_start_time": 480,
+    "default_finish_time": 1020,
+    "duration_unit": "days",
+    "currency": "$",
+    "minutes_per_point": 240,
+    "critical_slack": 0,
+    "new_tasks_auto": true,
+    "use_resource_calendars": true,
+    "progress_from_time": false
+  },
+  "calendars": [
+    {
+      "id": 1,
+      "name": "Standard",
+      "week": {
+        "monday": [
+          "08:00-12:00",
+          "13:00-17:00"
+        ],
+        "tuesday": [
+          "08:00-12:00",
+          "13:00-17:00"
+        ],
+        "wednesday": [
+          "08:00-12:00",
+          "13:00-17:00"
+        ],
+        "thursday": [
+          "08:00-12:00",
+          "13:00-17:00"
+        ],
+        "friday": [
+          "08:00-12:00",
+          "13:00-17:00"
+        ],
+        "saturday": [],
+        "sunday": []
+      },
+      "exceptions": []
+    },
+    {
+      "id": 2,
+      "name": "24 Hours",
+      "week": {
+        "monday": [
+          "00:00-24:00"
+        ],
+        "tuesday": [
+          "00:00-24:00"
+        ],
+        "wednesday": [
+          "00:00-24:00"
+        ],
+        "thursday": [
+          "00:00-24:00"
+        ],
+        "friday": [
+          "00:00-24:00"
+        ],
+        "saturday": [
+          "00:00-24:00"
+        ],
+        "sunday": [
+          "00:00-24:00"
+        ]
+      },
+      "exceptions": []
+    },
+    {
+      "id": 3,
+      "name": "Night Shift",
+      "week": {
+        "monday": [
+          "23:00-24:00"
+        ],
+        "tuesday": [
+          "00:00-03:00",
+          "04:00-08:00",
+          "23:00-24:00"
+        ],
+        "wednesday": [
+          "00:00-03:00",
+          "04:00-08:00",
+          "23:00-24:00"
+        ],
+        "thursday": [
+          "00:00-03:00",
+          "04:00-08:00",
+          "23:00-24:00"
+        ],
+        "friday": [
+          "00:00-03:00",
+          "04:00-08:00",
+          "23:00-24:00"
+        ],
+        "saturday": [
+          "00:00-03:00",
+          "04:00-08:00"
+        ],
+        "sunday": []
+      },
+      "exceptions": []
+    }
+  ],
+  "tasks": [],
+  "resources": [],
+  "assignments": [],
+  "time_entries": [],
+  "external_projects": [],
+  "ids": {
+    "task": 0,
+    "resource": 0,
+    "calendar": 3,
+    "assignment": 0,
+    "time_entry": 0
+  },
+  "sched": {
+    "start": null,
+    "finish": null,
+    "work": 0,
+    "actual_work": 0,
+    "cost": -0.0,
+    "percent_complete": 0.0,
+    "calculated_at": "2026-11-03T09:20:37"
+  }
+}

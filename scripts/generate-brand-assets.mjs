@@ -11,7 +11,10 @@ const require = createRequire(import.meta.url);
 const { ImageResponse } = require("next/og");
 const mark = JSON.parse(await fs.readFile("src/config/robin-mark.json", "utf8"));
 const craftManifests = await Promise.all((await fs.readdir("src/studio/apps")).filter(name => name.endsWith(".json")).map(async name => JSON.parse(await fs.readFile(`src/studio/apps/${name}`, "utf8"))));
-const craftCount = craftManifests.filter(app => app.formats.verification === "verified" && app.editor.status === "verified" && app.workstation.status === "verified" && app.editor.bundleUrl && app.editor.release && app.workstation.template && app.workstation.release).length;
+const readyCrafts = craftManifests.filter(app => app.formats.verification === "verified" && app.editor.status === "verified" && app.workstation.status === "verified" && app.editor.bundleUrl && app.editor.release && app.workstation.template && app.workstation.release);
+const craftCount = craftManifests.length;
+const upcomingCrafts = craftManifests.filter(app => !readyCrafts.includes(app));
+const availability = upcomingCrafts.length ? `${readyCrafts.length} ready. ${upcomingCrafts.map(app => app.name).join(", ")} coming soon.` : "Real tools. A world of your making.";
 await fs.mkdir("public/brand", { recursive: true });
 const shape = `<g fill="none"><path d="${mark.feet}" stroke="${mark.ink}" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/><path d="${mark.body}" fill="${mark.ink}"/><path d="${mark.breast}" fill="${mark.rust}"/><path d="${mark.feather}" fill="${mark.wing}"/><circle cx="21" cy="18" r="2.4" fill="${mark.paper}"/><circle cx="21.5" cy="18" r="1.1" fill="${mark.ink}"/></g>`;
 const icon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="${mark.paper}"/><g transform="translate(60 4) scale(-.875 .875)">${shape}</g></svg>`;
@@ -74,7 +77,7 @@ const card = h("div", { style: { width: "100%", height: "100%", display: "flex",
     h("div", { style: { fontSize: 88, lineHeight: 1.05, letterSpacing: "-6px" } }, "Ideas have"),
     h("div", { style: { fontFamily: "Instrument Serif", fontStyle: "italic", fontSize: 150, lineHeight: 1.02, color: mark.rust, letterSpacing: "-5px" } }, "wings.")),
   h("div", { style: { position: "absolute", top: 435, left: 64, fontSize: 22, lineHeight: 1.5, display: "flex", flexDirection: "column" } },
-    h("div", {}, "Your AI creative collaborator."), h("div", {}, "Real tools. A world of your making.")),
+    h("div", {}, "Your AI creative collaborator."), h("div", {}, availability)),
   h("div", { style: { position: "absolute", width: 460, height: 460, borderRadius: "50%", border: "1px solid #d2d4c3", left: 671, top: 123 } }),
   h("img", { src: data("image/png", robinPng), width: 590, height: 531, style: { position: "absolute", top: 87, left: 590 } }),
   h("div", { style: { position: "absolute", bottom: 38, left: 64, fontSize: 13, letterSpacing: "1px" } }, "ROBYN.ACADEMY"),

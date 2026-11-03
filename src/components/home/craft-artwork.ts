@@ -177,6 +177,13 @@ export const craftArtwork: Record<string, CraftArtwork> = {
     "tools": "SQL / DATABASES / EDITABLE TABLES",
     "fullFrame": true
   },
+  "plancraft": {
+    "src": "/artwork/editors/plancraft.png",
+    "title": "Give every idea a plan.",
+    "alt": "PlanCraft's original project editor showing an editable task schedule, working dates, dependencies, assigned people, milestones and its Gantt chart.",
+    "tools": "TASKS / DEPENDENCIES / GANTT CHARTS",
+    "fullFrame": true
+  },
   "dashcraft": {
     "src": "/artwork/editors/dashcraft.png",
     "title": "See the story in the report.",
