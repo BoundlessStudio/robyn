@@ -1,7 +1,7 @@
 {
   "retrieved": "2026-10-27",
   "catalogue": "https://getartcraft.com/apps",
-  "note": "Nine unchanged ArtCraft originals plus eighteen Robyn animal illustrations requested by the owner; twenty-six Craft icons and the Notes/Research raven. Sixteen generated backgrounds were repaired on October 31; previous source prompts and hashes remain recorded.",
+  "note": "Nine unchanged ArtCraft originals plus nineteen Robyn animal illustrations requested by the owner; twenty-seven Craft icons and the Notes/Research raven. Sixteen generated backgrounds were repaired on October 31; previous source prompts and hashes remain recorded. PlanCraft adds an original honeybee on November 3; DiagramCraft remains deferred.",
   "icons": [
     {
       "id": "photocraft",
@@ -444,6 +444,18 @@
           "processing": "Resized to 256 × 256 and encoded as WebP; alpha preserved."
         }
       ]
+    },
+    {
+      "id": "plancraft",
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-11-03",
+      "prompt": "Use case: logo-brand. Asset type: one production application icon for PlanCraft in Robyn's existing engraved animal Craft family. The three supplied images are STYLE REFERENCES only. Create a honeybee in a graceful compact three-quarter side view, head at upper left, striped abdomen toward lower right, exactly six naturally jointed legs, two delicate translucent-looking wings rendered as opaque ivory-and-black engraving, and two antennae. It suggests coordinated work and careful planning. Match the references: intricate antique natural-history wood engraving, dense fine black crosshatching and warm ivory highlights, crisp natural anatomy, bold recognizable silhouette legible at 32 pixels. Bee fills most of the square with comfortable margins; no scenery, flowers, hive, honeycomb, tools or text. Background must be perfectly uniform flat opaque jade green #409F82 across the ENTIRE square including every corner. Every pixel fully opaque. No rounded corners (the app will apply them), no gradient, shadow, vignette, texture, sticker rim, framing or outside margin. Single square 1024x1024 icon only.",
+      "width": 256,
+      "height": 256,
+      "processing": "Resized to 256 × 256 and encoded as WebP with the shared 22% rounded-corner mask. The interior remains opaque; alpha is confined to the outer corners.",
+      "sourceSha256": "6be69104acab0f8853821e46529d0ad1a715b48a189fb357a69ece6bf3664d83",
+      "bytes": 24318,
+      "sha256": "0f01efc128a72f54a778002a30f8cf20f7707da734ab63c0d903137914458947"
     }
   ]
 }

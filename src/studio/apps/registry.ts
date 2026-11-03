@@ -26,6 +26,7 @@ import app22 from "./wordcraft.json";
 import app23 from "./dashcraft.json";
 import app24 from "./matcraft.json";
 import app25 from "./datacraft.json";
+import app26 from "./plancraft.json";
 
 export const studioApps: readonly StudioAppManifest[] = [
   app0 as StudioAppManifest,
@@ -54,4 +55,5 @@ export const studioApps: readonly StudioAppManifest[] = [
   app23 as StudioAppManifest,
   app24 as StudioAppManifest,
   app25 as StudioAppManifest,
+  app26 as StudioAppManifest,
 ];

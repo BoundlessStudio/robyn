@@ -1,5 +1,21 @@
 [
   {
+    "id": "plancraft:8",
+    "appId": "plancraft",
+    "name": "Untitled plan",
+    "description": "Empty project schedule",
+    "files": [
+      {
+        "path": "Untitled plan.plancraft",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 2760,
+        "sha256": "457f5b651e1d589d6c92455f7cd3b8bd319a639a1d237516a00adf3e88c92ecf",
+        "url": "/studio/starters/8/plancraft/Untitled%20plan.plancraft"
+      }
+    ]
+  },
+  {
     "id": "datacraft:7",
     "appId": "datacraft",
     "name": "Untitled database",

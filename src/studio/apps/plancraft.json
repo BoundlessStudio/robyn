@@ -1,0 +1,40 @@
+{
+  "id": "plancraft",
+  "version": "0.1.0",
+  "order": 27,
+  "name": "PlanCraft",
+  "category": "Project planning",
+  "monogram": "Pl",
+  "color": "#409f82",
+  "artwork": "grid",
+  "sourceUrl": "https://github.com/rallegretti/PlanCraft",
+  "tagline": "Give every idea a plan.",
+  "capabilities": [
+    "project-planning",
+    "gantt-charts",
+    "resource-planning",
+    "critical-path"
+  ],
+  "employee": {
+    "role": "Project Planner",
+    "instructions": "Use PlanCraft for editable project schedules, task dependencies, milestones, resource assignments and workload analysis. Preserve the native .plancraft document and exact linked project inputs. State working calendars, duration units, resource assumptions and critical-path limitations. Keep scheduling changes within the creator's authorized scope and preserve existing baselines. Work only in the assigned project and task working folder, using studio-mcp for private-library access. Report a library save only after its immutable revision is confirmed; preserve conflicts and uncertain saves without repeating the operation."
+  },
+  "formats": {
+    "native": [
+      ".plancraft"
+    ],
+    "verification": "verified"
+  },
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": "38eaa7836aa8bb2f0a1a4ef51062cc10e184e3c855fc11d1a8fd04135f197a6f",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/plancraft/v0.1.0-0.1.0/",
+    "status": "verified"
+  },
+  "workstation": {
+    "template": "robyn-studio-0-3-0@1",
+    "release": "sha256:46c6006a4612aa3bd3786ef0c8029791b4d18d12d89bfb42443cdad82409a818",
+    "status": "verified"
+  },
+  "studio": "Analysis"
+}

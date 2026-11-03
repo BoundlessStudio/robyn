@@ -1,6 +1,14 @@
 # Current pilot acceptance
 
-Updated November 1, 2026 (UTC). This page indexes recorded release evidence and remaining gaps. [Architecture and scope](ARCHITECTURE.md) describes the current system; [operations](OPERATIONS.md) owns recovery procedures. Documentation maintenance does not imply a new deployment or a fresh live check. Earlier release summaries and the R01–R18 review are in the [archive](archive/README.md).
+Updated November 3, 2026 (UTC). This page indexes recorded release evidence and remaining gaps. [Architecture and scope](ARCHITECTURE.md) describes the current system; [operations](OPERATIONS.md) owns recovery procedures. Documentation maintenance does not imply a new deployment or a fresh live check. Earlier release summaries and the R01–R18 review are in the [archive](archive/README.md).
+
+## PlanCraft source acceptance, November 3
+
+PlanCraft is accepted in source, bringing the ready catalog to **27 Crafts: Creative 10, Drafting 9 and Analysis 8**. Its original Rust/egui interface is compiled to WASM from commit `7cf3e28d3de99e9767afeed79cf1b96448e57058`; original File/Save actions, shortcuts, Save As, exact linked projects and confirmed private-library saves pass native continuation. Two independent builds are byte-identical. The [source acceptance record](acceptance/plancraft-integration-20261103.json) pins its public **0.1.0** adapter, the published **0.3.0** shared image and immutable workstation client **0.9.0**, with 27 Craft skills and native blank version 8.
+
+The original engraved honeybee icon, genuine hosted-editor capture, homepage, descriptions, metadata and social card now reflect 27 ready Crafts. The new editor distribution and workstation template are published. Direct MCP calls passed in the local combined image; a real Robyn model turn through the shared Agent37 workstation, PlanCraft MCP and a confirmed private-library save remains untested. **Production web rollout remains pending**; the deployed 26-Craft boundary below retains its historical scope. Existing workstation upgrades use the maintained ownership, idle-generation and uncertain-dispatch fences. This change applied no migrations; the ledger was not reread.
+
+DiagramCraft was explicitly deferred by the owner on November 3 because the linked MisterDiagram project is headless and has no interface to integrate. It is not registered or counted. Existing release pins and evidence below retain their original scope.
 
 ## Recorded release boundary
 
@@ -64,7 +72,7 @@ The original review marked R01, R02, R03, R04, R05, R07, R08, R10, R11, R12, R14
 
 | Finding | Remaining boundary |
 | --- | --- |
-| New Craft integrations | Complete DataCraft's independent browser/library/native gate. DashCraft source acceptance satisfies the owner-approved read-only scope: exact report inputs, computation, display and interactions, with no report editing or library save-back. SubCraft browser painting requires an available desktop WebGPU adapter. DataCraft installation alone does not promote editor readiness. Finish the all-twenty-six-ready showcase after the remaining gates pass |
+| New Craft integrations | PlanCraft browser/native edit-save acceptance passed. A live Robyn/Agent37 MCP task and confirmed library save remain outstanding before the production rollout and existing fenced workstation upgrade. The recorded production boundary remains 26 Crafts until that rollout is verified. DiagramCraft remains owner-deferred until an interface is available. SubCraft retains its desktop WebGPU requirement |
 | R06 — capacity recovery, partial | Recover an already-purchased result after a real space failure. Controlled reservation refusal/recovery does not complete that case |
 | R09 — workstation recovery, partial | Broader self-service recovery, lost persistent state and active/unsettled external work. Accepted idle replacement, image update and retirement do not complete those cases |
 | R13 — provider promotion, partial | Gemini image, image edit and sound effects remain disabled; their prepared **$0.13** acceptance batch still awaits approval. Additional options require bounded acquisition, final cost, provenance/rights and editable-file acceptance. Generated music is not implemented; video reference inputs are rejected |

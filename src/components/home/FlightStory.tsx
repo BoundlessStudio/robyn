@@ -4,8 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowDownRight, ArrowUpRight, Monitor } from "lucide-react";
 import { AsciiRobin, type FlightState } from "./AsciiRobin";
 import { InvitationForm } from "./InvitationForm";
-import { craftTour, studioTour } from "./craft-tour";
+import { craftTour, studioTour, registeredCraftCount, upcomingCrafts } from "./craft-tour";
 import { CraftArtwork } from "./CraftArtwork";
+import { AppIcon } from "@/components/studio/AppIcon";
 
 const chapters = [{ id: "an-idea", label: "Meet Robyn" }, ...studioTour.map(app => ({ id: app.id, label: app.name })), { id: "invitation", label: "Your invitation" }];
 
@@ -70,7 +71,7 @@ export function FlightStory() {
     <svg className="craft-ink-filter" width="0" height="0" aria-hidden="true"><defs><filter id="craft-paper-ink" colorInterpolationFilters="sRGB"><feColorMatrix type="saturate" values="0" /><feComponentTransfer><feFuncR type="linear" slope=".808" intercept=".106" /><feFuncG type="linear" slope=".745" intercept=".165" /><feFuncB type="linear" slope=".737" intercept=".125" /></feComponentTransfer></filter></defs></svg>
     <div className="flight-panels">
       <section className="flight-chapter chapter-idea" id="an-idea" aria-labelledby="idea-heading">
-        <div className="chapter-copy"><span className="flight-kicker">AN AI CREATIVE STUDIO WITH A MIND OF YOUR OWN.</span><h1 id="idea-heading">Ideas<br />have<br /><em>wings.</em><svg className="heading-star" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M20 0v40M0 20h40M6 6l28 28M6 34L34 6" /></svg></h1><p>One Robyn. {craftTour.length} real creative tools.<br />Research with browser tools and Brave Search.<br />A world of your making.</p><a className="flight-link" href={`#${studioTour[0].id}`}>Follow the bird <ArrowDownRight size={21} /></a><a className="hero-invite" href="#invitation">Request an invite <ArrowUpRight size={14} /></a><span className="desktop-note"><Monitor size={14} aria-hidden="true" /> A desktop studio. Explore it anywhere.</span></div>
+        <div className="chapter-copy"><span className="flight-kicker">AN AI CREATIVE STUDIO WITH A MIND OF YOUR OWN.</span><h1 id="idea-heading">Ideas<br />have<br /><em>wings.</em><svg className="heading-star" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M20 0v40M0 20h40M6 6l28 28M6 34L34 6" /></svg></h1><p>One Robyn. {registeredCraftCount} Crafts.<br />{upcomingCrafts.length > 0 && <>{craftTour.length} ready. {upcomingCrafts.map(app => app.name).join(", ")} coming soon.<br /></>}Research with browser tools and Brave Search.<br />A world of your making.</p><a className="flight-link" href={`#${studioTour[0].id}`}>Follow the bird <ArrowDownRight size={21} /></a><a className="hero-invite" href="#invitation">Request an invite <ArrowUpRight size={14} /></a><span className="desktop-note"><Monitor size={14} aria-hidden="true" /> A desktop studio. Explore it anywhere.</span></div>
         <span className="hero-marginal">ONE COLLABORATOR / EVERY CREATIVE TOOL</span>
       </section>
       {studioTour.map((app, i) => <section key={app.id} className="flight-chapter craft-chapter" id={app.id} aria-labelledby={`${app.id}-heading`}>
@@ -82,7 +83,7 @@ export function FlightStory() {
           <a className="flight-link craft-next" href={`#${studioTour[i + 1]?.id ?? "invitation"}`}>{studioTour[i + 1] ? `Next, ${studioTour[i + 1].name}` : "Make room for your imagination"}<ArrowDown size={16} /></a>
         </div>
       </section>)}
-      <section className="flight-chapter chapter-invitation" id="invitation" aria-labelledby="invitation-heading"><div className="chapter-copy"><span className="flight-kicker">ROBYN BRINGS IT ALL TOGETHER.</span><h2 id="invitation-heading">Bring your<br /><em>strange ideas.</em></h2><InvitationForm /><p className="pilot-note">The private studio currently works only on desktop and laptop computers with a keyboard and mouse. Explore the tools and request your invitation on any device.</p></div></section>
+      <section className="flight-chapter chapter-invitation" id="invitation" aria-labelledby="invitation-heading"><div className="chapter-copy"><span className="flight-kicker">ROBYN BRINGS IT ALL TOGETHER.</span><h2 id="invitation-heading">Bring your<br /><em>strange ideas.</em></h2>{upcomingCrafts.length > 0 && <div className="upcoming-crafts" aria-label="Coming soon">{upcomingCrafts.map(app => <a key={app.id} href={app.sourceUrl} className="upcoming-craft"><AppIcon app={app} /><span><strong>{app.name}</strong><small>{app.category} · Coming to {app.studio}</small></span><ArrowUpRight size={18} aria-hidden="true" /></a>)}</div>}<InvitationForm /><p className="pilot-note">The private studio currently works only on desktop and laptop computers with a keyboard and mouse. Explore the tools and request your invitation on any device.</p></div></section>
     </div>
   </section>;
 }

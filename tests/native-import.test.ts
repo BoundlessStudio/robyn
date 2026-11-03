@@ -94,6 +94,21 @@ test("SubCraft intake preserves the complete embedded project and excludes unrel
   await assert.rejects(checkNativeImport("subcraft",[{...master,file:new Blob([bytes.subarray(0,100)])}]),/complete native/);
 });
 
+test("PlanCraft preflight preserves the native blank and exact linked projects",async()=>{
+  assert.equal(nativeImportApp("Schedule.PLANCRAFT")?.id,"plancraft");
+  const bytes=await readFile(new URL('../public/studio/starters/8/plancraft/Untitled%20plan.plancraft',import.meta.url));
+  const blank={path:"Blank.plancraft",role:"master",file:new Blob([bytes])};
+  assert.deepEqual(await checkNativeImport("plancraft",[blank]),[blank]);
+  const text='{"format":"plancraft","version":1,"ids":{"task":18446744073709551614},"external_projects":[{"path":"../inputs/Linked.plancraft"}]}';
+  const master={path:"plans/Schedule.plancraft",role:"master",file:new Blob([text])};
+  const linked={path:"inputs/Linked.plancraft",role:"dependency",file:new Blob([bytes])};
+  const unrelated={path:"private.env",role:"dependency",file:new Blob(["unrelated"])};
+  const selected=await checkNativeImport("plancraft",[master,linked,unrelated]);
+  assert.deepEqual(selected,[master,linked]);
+  assert.equal(await selected[0].file.text(),text);
+  await assert.rejects(checkNativeImport("plancraft",[master]),/missing/);
+});
+
 test("DashCraft intake preserves native report/model/offline data bytes and excludes connection settings",async()=>{
   assert.equal(nativeImportApp("Sales.PBIP")?.id,"dashcraft");
   assert.equal(nativeImportApp("Sales.PBIT")?.id,"dashcraft");
