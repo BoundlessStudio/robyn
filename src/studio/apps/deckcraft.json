@@ -1,6 +1,6 @@
 {
   "id": "deckcraft",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "order": 21,
   "name": "DeckCraft",
   "category": "Publishing",
@@ -15,19 +15,21 @@
   },
   "formats": {
     "native": [
-      ".deckcraft"
+      ".deckcraft",
+      ".pptm"
     ],
     "verification": "verified"
   },
   "capabilities": [
     "presentation",
     "slide-design",
-    "storytelling"
+    "storytelling",
+    "vba-macros"
   ],
   "editor": {
-    "adapterVersion": "0.3.1",
-    "release": "deckcraft-v0.12.0-robyn-0.3.1",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/deckcraft/v0.12.0-0.3.1/?robyn",
+    "adapterVersion": "0.4.1",
+    "release": "deckcraft-v0.12.0-robyn-0.4.1",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/deckcraft/v0.12.0-0.4.1/?robyn",
     "status": "verified"
   },
   "workstation": {

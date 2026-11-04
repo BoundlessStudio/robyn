@@ -1,0 +1,97 @@
+{
+  "checkedAt": "2026-11-04T18:15:00Z",
+  "scope": "Static source compatibility assessment only; VBA integration and native/browser/private-library acceptance have not been performed.",
+  "status": "awaiting-owner-direction",
+  "sourceState": {
+    "webBaseCommit": "2b800ee7827eef2ce25e6021f117032e759553ed",
+    "runtimeBaseCommit": "4a9e34248c2c4f9ddbbcc33f8c49b6b99851950b",
+    "runtimeTrackedSourceChanged": false
+  },
+  "requestedAddon": {
+    "repository": "https://github.com/sirmmo/craft-vba",
+    "version": "0.1.5",
+    "tag": "v0.1.5",
+    "commit": "155b224fb9857d3254c36b74634986036bb66951",
+    "license": "MIT OR Apache-2.0",
+    "transport": "Craft plugin protocol 1.1, JSON-RPC over a separate process's standard input/output",
+    "hostIdSelectsObjectModel": {
+      "gridcraft": "Excel",
+      "wordcraft": "Word",
+      "deckcraft": "PowerPoint"
+    },
+    "sourceFileSha256": {
+      "Cargo.toml": "504cc789f422f3189dc4127f546c5cb42978aee9fcf2346ee005964f61f44857",
+      "src/main.rs": "7d7faf17208c46c9a2604f24a44471ba5343d8416eed8f868157667ccee3f4e2",
+      "src/plugin.rs": "a63471ca2bb913e19acf3bbe9b7ef2b9ea3b8e20ed730ea51600b474469335a8"
+    }
+  },
+  "applicationSources": [
+    {
+      "appId": "gridcraft",
+      "currentPinnedUpstreamRelease": "v0.13.0",
+      "currentPinnedSourceCommit": "43284377d2466037628e57d8ad0c891778fdb45c",
+      "inspectedRepository": "https://github.com/sirmmo/gridcraft",
+      "inspectedBranch": "feat/officejs",
+      "inspectedCommit": "7a3075640c5cf11393da0528a2405fd34ed58e43",
+      "browserConnectionSource": "crates/plugin/src/process.rs",
+      "browserConnectionSourceSha256": "bf4b3a8c367b099049ec7c8310a3ae33c81417cc4335807efc29a64c027ce334",
+      "documentationSource": "docs/plugins.md",
+      "documentationSourceSha256": "9f077d24bf309e974c5200da925ea0d2acf5e8f11c570cfbdc4a89794e0df7f8"
+    },
+    {
+      "appId": "wordcraft",
+      "currentPinnedUpstreamRelease": "v0.12.0",
+      "currentPinnedSourceCommit": "3de6ff95af86c19d67030cd96dba15cd6a45a25e",
+      "inspectedRepository": "https://github.com/sirmmo/wordcraft",
+      "inspectedBranch": "feat/plugin-host",
+      "inspectedCommit": "ce0704a9cf40eab7fe7ba068d44ba7224900b9a9",
+      "browserConnectionSource": "crates/plugin/src/process.rs",
+      "browserConnectionSourceSha256": "d20d25419d455659ac61ced499ead4952017ae10f048efcec15a7376ed473966",
+      "documentationSource": "docs/plugins.md",
+      "documentationSourceSha256": "d770fdd27169d3cab970bc5773391a6a16f267df755136d8009ab47ef9fa4de4"
+    },
+    {
+      "appId": "deckcraft",
+      "currentPinnedUpstreamRelease": "v0.12.0",
+      "currentPinnedSourceCommit": "29f0f7772c47aa2bfb74fcbb0c4d3b1503300849",
+      "inspectedRepository": "https://github.com/sirmmo/deckcraft",
+      "inspectedBranch": "feat/plugin-host",
+      "inspectedCommit": "4763e9497687ac260d6cb5d83f3f86c3ea3206d1",
+      "browserConnectionSource": "crates/plugin/src/process.rs",
+      "browserConnectionSourceSha256": "f438c643b80bef17db3f28c567f78cf336be1df053a66537f5a400ac6b7942d9",
+      "documentationSource": "docs/plugins.md",
+      "documentationSourceSha256": "9d570440ef52ce357de037b6917bb3eab3ffc29329703e16ca16d3f52fee29d6"
+    }
+  ],
+  "hashMethod": "SHA-256 of original committed file bytes returned by git show HEAD:<path>, before checkout line-ending conversion",
+  "blocker": {
+    "target": "Robyn's existing desktop-browser/WASM editors",
+    "evidence": "All three inspected plugin hosts select web::Connection for target_arch=wasm32; start, request and request_with return an error rather than execute an add-in.",
+    "error": "plugins need the desktop app or the CLI",
+    "nativeDeveloperControlsExistInInspectedForks": true,
+    "directInstallationEnablesBrowserVba": false,
+    "ownerRuleSource": "AGENTS.md, Current scope; companion runtime AGENTS.md has the same requirement",
+    "ownerRule": "If direct integration is blocked, stop work on that integration, explain the concrete limitation to the owner, and obtain direction before attempting a workaround."
+  },
+  "directionNeeded": [
+    "Develop a browser-compatible execution backend for craft-vba while retaining each application's original Developer controls, macro security and confirmed library saves; feasibility and implementation remain unverified.",
+    "Limit the integration to Robyn's native workstation, explicitly excluding VBA execution in creator browser editors; native host upgrades and task-confined operation still require implementation and acceptance."
+  ],
+  "verification": {
+    "staticSourceInspection": true,
+    "sourceFileHashesRecorded": true,
+    "addonBuilt": false,
+    "nativeAddonExecutionTested": false,
+    "browserAddonExecutionTested": false,
+    "confirmedLibrarySaveTested": false,
+    "nativeContinuationTested": false,
+    "vbaAccepted": false
+  },
+  "releaseChanges": {
+    "manifestsChanged": false,
+    "publishedArtifactsChanged": false,
+    "workstationsChanged": false,
+    "migrationsChanged": false,
+    "deployed": false
+  }
+}

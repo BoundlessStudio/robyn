@@ -15,6 +15,7 @@ test("the vendored native inspector retains its exact generated provenance bytes
 test("native recognition handles filenames but refuses conversion, ambiguous formats and unverified editors", () => {
   assert.equal(nativeImportApp("Autumn exhibition.DOCX")?.id, "wordcraft");
   assert.equal(nativeImportApp("Budget.v2.xlsx")?.id, "gridcraft");
+  for(const [file,app] of [["Budget.xlsm","gridcraft"],["Brief.docm","wordcraft"],["Macros.pptm","deckcraft"]]) assert.equal(directNativeImportApp(file)?.id,app);
   assert.equal(nativeImportApp("Print.pdf")?.id, "pdfcraft");
   assert.equal(directNativeImportApp("Brief.docx")?.id, "wordcraft");
   assert.equal(directNativeImportApp("Budget.xlsx")?.id, "gridcraft");
@@ -23,7 +24,7 @@ test("native recognition handles filenames but refuses conversion, ambiguous for
     assert.ok(nativeImportApp(file));
     assert.equal(directNativeImportApp(file)?.id, nativeImportApp(file)?.id, "The intake checks linked media before writing");
   }
-  for (const file of ["Slides.pptx", "Layers.psd", "Photo.jpg", "Notes", "fake.docx.exe"]) assert.equal(nativeImportApp(file), null);
+  for (const file of ["Slides.odp", "Layers.psd", "Photo.jpg", "Notes", "fake.docx.exe"]) assert.equal(nativeImportApp(file), null);
   const word = studioApps.find(app => app.id === "wordcraft")!;
   assert.equal(nativeImportApp("Brief.docx", [word, {...word, id:"other"}]), null);
   assert.equal(nativeImportApp("Brief.docx", [word, {...word, id:"pending",editor:{...word.editor,status:"pending"}}])?.id,"wordcraft");

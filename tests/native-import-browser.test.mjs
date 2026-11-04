@@ -96,11 +96,11 @@ test('unrecognised and mixed files stay editable in the detailed import without 
   const browser=await browserType.launch({headless:true});
   try{
     const {page,state}=await nativeImportFixture(browser);
-    await dropDocument(page,'Slides.pptx','Unsupported transport fixture');
+    await dropDocument(page,'Slides.odp','Unsupported transport fixture');
     await page.getByRole('dialog').waitFor();
     assert.match(await page.getByRole('status').innerText(),/recognised/);
     assert.equal(await page.getByLabel('Application',{exact:true}).inputValue(),'');
-    assert.equal(await page.getByLabel('Native master',{exact:true}).inputValue(),'Slides.pptx');
+    assert.equal(await page.getByLabel('Native master',{exact:true}).inputValue(),'Slides.odp');
     assert.equal(await page.getByRole('button',{name:'Save native package'}).isDisabled(),true);
     assert.equal(state.assets.size,0);
     await page.keyboard.press('Escape');

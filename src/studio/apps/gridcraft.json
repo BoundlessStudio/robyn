@@ -1,6 +1,6 @@
 {
   "id": "gridcraft",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "order": 20,
   "name": "GridCraft",
   "category": "Publishing",
@@ -15,19 +15,21 @@
   },
   "formats": {
     "native": [
-      ".xlsx"
+      ".xlsx",
+      ".xlsm"
     ],
     "verification": "verified"
   },
   "capabilities": [
     "spreadsheets",
     "formulas",
-    "data-layout"
+    "data-layout",
+    "vba-macros"
   ],
   "editor": {
-    "adapterVersion": "0.3.1",
-    "release": "gridcraft-v0.13.0-robyn-0.3.1",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/gridcraft/v0.13.0-0.3.1/?robyn",
+    "adapterVersion": "0.4.1",
+    "release": "gridcraft-v0.13.0-robyn-0.4.1",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/gridcraft/v0.13.0-0.4.1/?robyn",
     "status": "verified"
   },
   "workstation": {
