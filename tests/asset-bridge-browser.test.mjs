@@ -36,6 +36,7 @@ test('directory upload preserves every file and resumes unknown creation and com
     assert.equal(state.assets.size,1);assert.equal(state.revisions.size,1);
     await page.getByRole('link').filter({has:page.getByRole('heading',{name:'Research inputs',exact:true})}).click();
     await page.getByRole('heading',{name:'Uploaded files',exact:true}).waitFor();
+    await page.getByRole('link',{name:`Download ${revision.package.files[0].path}`,exact:true}).waitFor();
     assert.equal(await page.getByRole('link',{name:/^Download /}).count(),expected.size);
     const download=page.waitForEvent('download');await page.getByRole('button',{name:'Download folder',exact:true}).click();
     const downloaded=await download,files=await extractBridgeZip(new Blob([await readFile(await downloaded.path())]));
