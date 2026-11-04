@@ -1,15 +1,15 @@
 {
-  "version": "0.10.1",
-  "directory": "vendor/robyn-workstation/0.10.1-75e51f18c68a",
-  "fingerprint": "75e51f18c68a5abb93683c2a93beb875b9e2271d21f47647238783e12ca25f16",
+  "version": "0.11.0",
+  "directory": "vendor/robyn-workstation/0.11.0-cac49235ca02",
+  "fingerprint": "cac49235ca02e9c5a3ab1c9c97ee93d9900049010f97362c843534fd717794f2",
   "files": {
     "studio-mcp.cjs": {
-      "bytes": 2301296,
-      "sha256": "0863937ecc01780f981e413f67a07e9a107a5f6b15a162d7aa148ef6184d4873"
+      "bytes": 2303451,
+      "sha256": "0dc9cd46912bc37ad8ac9d3f834a0c17300047c343da3b6e943d556b9813e7c7"
     },
     "configure-hermes.py": {
       "bytes": 10689,
-      "sha256": "5c34864af853ce130ae7b17a81767f5f9d815376df6064c3f7410b05f4f91ea9"
+      "sha256": "9d3fccd28838b5bac69036b18e0f8e28627d5bc6fe9a57d537d93a0a14122c67"
     },
     "skills/bimcraft.md": {
       "bytes": 2483,
@@ -32,8 +32,8 @@
       "sha256": "a7baffcee83d345abbf4bb55e423b6d12ce66f60ac0784a8c404b70c8344fed9"
     },
     "skills/deckcraft.md": {
-      "bytes": 2232,
-      "sha256": "0eca77621dcadf5a8138f56232898e21a1acfe787a26d19d50a10c986e88bc43"
+      "bytes": 3462,
+      "sha256": "3af743060ad135ce83745c196f77c3607cc4652b4755ea7cd626e3779d0699e8"
     },
     "skills/designcraft.md": {
       "bytes": 1986,
@@ -60,8 +60,8 @@
       "sha256": "84eff64e64a07f75eea6e051a41ef2795167b415cdc067687f81190cb72ef3f1"
     },
     "skills/gridcraft.md": {
-      "bytes": 2563,
-      "sha256": "da3029fbb26ee0a6b0a4e5014ca0a19259405ef86ab5da33fbeeda56c9bb941b"
+      "bytes": 3825,
+      "sha256": "3d7f020f5b2cfa1ce5d21fc8a7b85cf964156b8ef8737f8f8fc428aef3b17a42"
     },
     "skills/lightcraft.md": {
       "bytes": 2632,
@@ -120,8 +120,8 @@
       "sha256": "0f0f7fbee79a3330d3701011a388ba54191ec1010b030e52490e4e8a70c2a73d"
     },
     "skills/wordcraft.md": {
-      "bytes": 2148,
-      "sha256": "49fed4362d7b2a9da7f8a0e974c1b46ff22e56ec3d8f9fdc1d0dbeb4a0e69672"
+      "bytes": 3375,
+      "sha256": "31326645a25a2f53d6de5a659138653e2cd11c2c9e9849813ddd7f07638c0d25"
     },
     "skills/research.md": {
       "bytes": 2255,

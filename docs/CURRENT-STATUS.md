@@ -90,6 +90,7 @@ The original review marked R01, R02, R03, R04, R05, R07, R08, R10, R11, R12, R14
 
 | Finding | Remaining boundary |
 | --- | --- |
+| Office VBA — owner-approved implementation in progress | The owner approved integrating pinned `craft-vba` **0.1.5** in GridCraft, WordCraft and DeckCraft for both browser and native workstation, through original Developer controls and confirmed library saves. The [initial compatibility assessment](acceptance/office-vba-compatibility-20261104.json) retains its pre-approval scope. Candidate source builds and native interpreter tests exist; browser/private-library/native acceptance and deployment remain pending. Existing published releases retain their recorded scope. |
 | New Craft integrations | GeoCraft production image/client, original-editor library saves/reload, actual MCP/BFF connection and native continuation are complete. A model-driven GeoCraft job was not run; PlanCraft retains its separately recorded AI acceptance. DiagramCraft remains owner-deferred until an interface is available. SubCraft retains its desktop WebGPU requirement |
 | R06 — capacity recovery, partial | Recover an already-purchased result after a real space failure. Controlled reservation refusal/recovery does not complete that case |
 | R09 — workstation recovery, partial | Broader self-service recovery, lost persistent state and active/unsettled external work. Accepted idle replacement, image update and retirement do not complete those cases |
