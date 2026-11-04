@@ -184,6 +184,13 @@ export const craftArtwork: Record<string, CraftArtwork> = {
     "tools": "TASKS / DEPENDENCIES / GANTT CHARTS",
     "fullFrame": true
   },
+  "geocraft": {
+    "src": "/artwork/editors/geocraft.png",
+    "title": "Find the story in a place.",
+    "alt": "GeoCraft's original RustGIS editor showing an editable map, geographic layers and the official Basemaps controls.",
+    "tools": "MAPS / LAYERS / SPATIAL ANALYSIS",
+    "fullFrame": true
+  },
   "dashcraft": {
     "src": "/artwork/editors/dashcraft.png",
     "title": "See the story in the report.",

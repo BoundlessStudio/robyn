@@ -1,6 +1,14 @@
 # Current pilot acceptance
 
-Updated November 3, 2026 (UTC). This page indexes recorded release evidence and remaining gaps. [Architecture and scope](ARCHITECTURE.md) describes the current system; [operations](OPERATIONS.md) owns recovery procedures. Documentation maintenance does not imply a new deployment or a fresh live check. Earlier release summaries and the R01–R18 review are in the [archive](archive/README.md).
+Updated November 4, 2026 (UTC). This page indexes recorded release evidence and remaining gaps. [Architecture and scope](ARCHITECTURE.md) describes the current system; [operations](OPERATIONS.md) owns recovery procedures. Documentation maintenance does not imply a new deployment or a fresh live check. Earlier release summaries and the R01–R18 review are in the [archive](archive/README.md).
+
+## GeoCraft source acceptance
+
+GeoCraft, based on [RustGIS](https://github.com/opengeos/RustGIS), joins Analysis after PlanCraft. The source catalog contains **28 ready Crafts: Creative 10, Drafting 9 and Analysis 9**. Its original Rust/egui interface and native engine are pinned to commit `e3f6c734685f6fa61c92e39bb3ffc1eb1043bf97`. Original Save/Save As actions and shortcuts wait for confirmed immutable private-library revisions. Focused attribute edits, large integers, Unicode, coordinates, linked raster bytes, conflict recovery, lost-acknowledgement retry, immediate Save As reload and actual native continuation pass. Its original native MCP engine preserves task boundaries, active selections and upstream plugin restrictions. The [source acceptance record](acceptance/geocraft-integration-20261103.json) pins the published **0.1.0** browser, **0.4.1** shared image, immutable **0.10.0** client and native blank version **9**.
+
+Official **Basemaps 0.1.2** is included by default in native and browser builds. Its checksummed package is **65,048 bytes** and uses RustGIS's existing WASM plugin runtime; the installed native footprint grows by approximately **207 KiB**, including redistribution files. Real OpenStreetMap, Esri World Imagery and NASA Blue Marble tiles load successfully, and the NASA preset survives a confirmed save and exact reload. Tile datasets are loaded on demand. Native database/program providers, local tile archives and folder-backed Zarr stores remain native; browser opening refuses partial inputs.
+
+The engraved Arctic tern icon, genuine saved World Atlas capture, homepage, descriptions, Open Graph/X metadata and generated social image show 28 Crafts. Hosted editor bytes and all 28 installed native packages are verified. This source acceptance used the real authenticated BFF/private library and original application engines; **production web deployment, existing workstation maintenance and a production Robyn AI job were not performed**. The last paired production release below remains the 27-Craft PlanCraft release. No migrations were applied and the ledger was not reread. The earlier [registration record](acceptance/geocraft-registration-20261103.json) retains its historical pending scope.
 
 ## PlanCraft, deployed November 3
 
@@ -73,7 +81,7 @@ The original review marked R01, R02, R03, R04, R05, R07, R08, R10, R11, R12, R14
 
 | Finding | Remaining boundary |
 | --- | --- |
-| New Craft integrations | PlanCraft live workstation/MCP/library-save and production rollout are complete. DiagramCraft remains owner-deferred until an interface is available. SubCraft retains its desktop WebGPU requirement |
+| New Craft integrations | GeoCraft source/browser/library/native acceptance is complete; its paired production web/workstation rollout and live Robyn job remain separate. PlanCraft live workstation/MCP/library-save and production rollout are complete. DiagramCraft remains owner-deferred until an interface is available. SubCraft retains its desktop WebGPU requirement |
 | R06 — capacity recovery, partial | Recover an already-purchased result after a real space failure. Controlled reservation refusal/recovery does not complete that case |
 | R09 — workstation recovery, partial | Broader self-service recovery, lost persistent state and active/unsettled external work. Accepted idle replacement, image update and retirement do not complete those cases |
 | R13 — provider promotion, partial | Gemini image, image edit and sound effects remain disabled; their prepared **$0.13** acceptance batch still awaits approval. Additional options require bounded acquisition, final cost, provenance/rights and editable-file acceptance. Generated music is not implemented; video reference inputs are rejected |

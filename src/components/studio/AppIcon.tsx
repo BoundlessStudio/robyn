@@ -7,7 +7,7 @@ const illustratedBackgrounds: Record<string, string> = {
   cadcraft: "#16a8c2", solidcraft: "#3487e8",
   bimcraft: "#c6a34f", modelcraft: "#cf617a", markupcraft: "#e85f54", takeoffcraft: "#d6ae35",
   civilcraft: "#7d9d45", detailcraft: "#36a6c9", partcraft: "#4686c8", subcraft: "#7a65d7",
-  materialcraft: "#c47739", dashcraft: "#aa6ccc", matcraft: "#39a59d", datacraft: "#586ed9", plancraft: "#409f82",
+  materialcraft: "#c47739", dashcraft: "#aa6ccc", matcraft: "#39a59d", datacraft: "#586ed9", plancraft: "#409f82", geocraft: "#238f9b",
 };
 
 /** Shared application artwork; adjacent text supplies the accessible name. */

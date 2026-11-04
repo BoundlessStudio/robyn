@@ -1,7 +1,7 @@
 {
   "retrieved": "2026-10-27",
   "catalogue": "https://getartcraft.com/apps",
-  "note": "Nine unchanged ArtCraft originals plus nineteen Robyn animal illustrations requested by the owner; twenty-seven Craft icons and the Notes/Research raven. Sixteen generated backgrounds were repaired on October 31; previous source prompts and hashes remain recorded. PlanCraft adds an original honeybee on November 3; DiagramCraft remains deferred.",
+  "note": "Nine unchanged ArtCraft originals plus twenty Robyn animal illustrations requested by the owner; twenty-eight Craft icons and the Notes/Research raven. Sixteen generated backgrounds were repaired on October 31; previous source prompts and hashes remain recorded. PlanCraft adds an original honeybee and GeoCraft adds an original Arctic tern on November 3; DiagramCraft remains deferred.",
   "icons": [
     {
       "id": "photocraft",
@@ -456,6 +456,19 @@
       "sourceSha256": "6be69104acab0f8853821e46529d0ad1a715b48a189fb357a69ece6bf3664d83",
       "bytes": 24318,
       "sha256": "0f01efc128a72f54a778002a30f8cf20f7707da734ab63c0d903137914458947"
+    },
+    {
+      "id": "geocraft",
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-11-03",
+      "animal": "Arctic tern",
+      "prompt": "Use case: logo-brand. Asset type: one production application icon for GeoCraft, a GIS/mapping app in Robyn's existing engraved animal Craft family. The three supplied images are STYLE REFERENCES only. Create a single Arctic tern's head and upper breast in graceful three-quarter profile facing left, slender pointed beak, characteristic black crown and ivory neck with finely engraved layered feathers. A natural navigator, calm and observant. Match the references: intricate antique natural-history wood engraving, dense fine black crosshatching and warm ivory highlights, crisp plausible anatomy, bold recognizable silhouette legible at 32 pixels. Bird fills most of the square with comfortable margins. Background must be perfectly uniform flat opaque ocean teal #238F9B across the ENTIRE square including every corner. Every pixel fully opaque. No rounded corners (the app applies those), no scenery, maps, globe, tools, text, extra animals, gradient, shadow, vignette, texture, sticker rim, frame or outside margin. Single square 1024x1024 icon only.",
+      "width": 256,
+      "height": 256,
+      "processing": "Encoded as 256 × 256 WebP with the existing 22% rounded-corner mask. Alpha is confined to the outer corners.",
+      "sourceSha256": "d5a5fd21c25bb6cda6548932c459ce6fbb6128a313a2729c09e21ade46698ac3",
+      "bytes": 23480,
+      "sha256": "60f043223f3e0e002151ec19032ddc6d40b448836b53f2007012f1aba6b67722"
     }
   ]
 }

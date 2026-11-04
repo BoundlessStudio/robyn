@@ -1,0 +1,127 @@
+{
+  "appId": "geocraft",
+  "name": "GeoCraft",
+  "checkedAt": "2026-11-03T23:37:12.593Z",
+  "scope": "Local catalog registration and branding only. Native/browser/private-library integration and deployment remain pending.",
+  "sourceState": {
+    "webBaseCommit": "e036c325fd19f7e52f80763f0625b4ba9666ccca",
+    "runtimeBaseCommit": "ee4f6cc6a92e66529c1e27661a1010efc1aa8756",
+    "runtimeSourceChanged": false
+  },
+  "upstream": {
+    "repository": "https://github.com/opengeos/RustGIS",
+    "inspectedCommit": "e3f6c734685f6fa61c92e39bb3ffc1eb1043bf97",
+    "version": "0.5.0",
+    "pristineWasmCargoCheck": {
+      "passed": true,
+      "command": "cargo check --locked --target wasm32-unknown-unknown -p rustgis-web",
+      "rust": "1.95.0",
+      "scope": "Compiler feasibility only; no Robyn adapter or round-trip acceptance."
+    }
+  },
+  "catalog": {
+    "registered": 28,
+    "ready": 27,
+    "pending": [
+      "geocraft"
+    ],
+    "Creative": 10,
+    "Drafting": 9,
+    "Analysis": 9
+  },
+  "integration": {
+    "formats": "pending",
+    "editor": "pending",
+    "workstation": "pending",
+    "roundTrip": "not performed",
+    "reason": "Upstream browser Save submits a download and immediately calls mark_saved. Its own Save, Save As and shortcuts need an explicit asynchronous private-library acknowledgement hook and real native continuation before activation.",
+    "pendingNativeImportsRejected": true,
+    "pendingLaunchDisabled": true,
+    "pendingPaidAssignmentsRejectedBeforeBudgetOrDispatch": true,
+    "editorCaptureAdded": false
+  },
+  "branding": {
+    "icon": {
+      "path": "public/brand/apps/geocraft.webp",
+      "sha256": "60f043223f3e0e002151ec19032ddc6d40b448836b53f2007012f1aba6b67722",
+      "animal": "Arctic tern",
+      "generator": "Built-in image_gen tool",
+      "promptAndSourceHash": "public/brand/apps/sources.json"
+    },
+    "socialImage": {
+      "path": "public/brand/robyn-social.png",
+      "sha256": "2d41a0e269e225e252701d98d762562aef9b557701ea667baaab39f270c5f5e5",
+      "width": 1200,
+      "height": 630,
+      "total": 28,
+      "ready": 27,
+      "pendingLabel": "GeoCraft coming soon."
+    },
+    "metadata": {
+      "description": "Give your ideas wings with Robyn: 28 Crafts, browser tools and Brave Search in one desktop AI creative studio. GeoCraft coming soon.",
+      "openGraph": "Give your ideas wings with Robyn: 28 Crafts, browser tools and Brave Search in one desktop AI creative studio. GeoCraft coming soon.",
+      "twitter": "Give your ideas wings with Robyn: 28 Crafts, browser tools and Brave Search in one desktop AI creative studio. GeoCraft coming soon.",
+      "socialImage": "https://robyn.academy/brand/robyn-social.png?v=28-27"
+    }
+  },
+  "verification": {
+    "node": "24.18.0",
+    "npmCi": true,
+    "typecheck": true,
+    "tests": 250,
+    "testsFailed": 0,
+    "productionBuildStaticPages": 45,
+    "publicBrowserViewportPages": 18,
+    "publicKeyboardPassed": 14,
+    "publicPlatformKeyboardUnverified": 4,
+    "visualReview": {
+      "scope": "Local catalog registration and branding; GeoCraft editor and native save integration remain pending.",
+      "checkedAt": "2026-11-03T23:37:12.593Z",
+      "viewports": [
+        {
+          "width": 1440,
+          "height": 1000
+        },
+        {
+          "width": 390,
+          "height": 844
+        }
+      ],
+      "metadata": {
+        "description": "Give your ideas wings with Robyn: 28 Crafts, browser tools and Brave Search in one desktop AI creative studio. GeoCraft coming soon.",
+        "openGraph": "Give your ideas wings with Robyn: 28 Crafts, browser tools and Brave Search in one desktop AI creative studio. GeoCraft coming soon.",
+        "twitter": "Give your ideas wings with Robyn: 28 Crafts, browser tools and Brave Search in one desktop AI creative studio. GeoCraft coming soon.",
+        "socialImage": "https://robyn.academy/brand/robyn-social.png?v=28-27"
+      },
+      "screenshots": [
+        {
+          "name": "desktop-hero",
+          "sha256": "d72c5b7fbdb235e5921d601ff28a0f2c1258c5862c06e691bd48a10b48bdd783"
+        },
+        {
+          "name": "desktop-invitation",
+          "sha256": "23b5e3f1f747dc54284d5ad002ce7a9fa0b038003e88162ecb18c86810cf4fd4"
+        },
+        {
+          "name": "mobile-hero",
+          "sha256": "e2fe1843b179a32bc646d1cbf9853e6a0a55e941be71aa2ee050d0b5038ecb76"
+        },
+        {
+          "name": "mobile-invitation",
+          "sha256": "3a0b624341ee08213e22ececbabd47e66d763041b9edd605186c22012aaf44b8"
+        }
+      ]
+    },
+    "visualFindings": "Hero count and availability, upcoming Analysis card, animal icon, metadata and social card reviewed at desktop/mobile widths. No horizontal overflow or clipped GeoCraft card was found. Invitation links exercised with normal browser input."
+  },
+  "migrationState": {
+    "changed": false,
+    "ledgerReread": false
+  },
+  "deployment": {
+    "webDeployed": false,
+    "editorDistributionPublished": false,
+    "workstationPublished": false,
+    "existingWorkstationsChanged": false
+  }
+}

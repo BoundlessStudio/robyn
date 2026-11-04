@@ -1,0 +1,349 @@
+{
+  "appId": "geocraft",
+  "status": "verified",
+  "integrationStatus": "verified",
+  "roundTrip": "verified",
+  "checkedAt": "2026-11-04T02:57:53.933Z",
+  "upstream": "v0.5.0",
+  "sourceCommit": "e3f6c734685f6fa61c92e39bb3ffc1eb1043bf97",
+  "adapterVersion": "0.1.0",
+  "browserBundleSha256": "47d0383ba1078e1d45638beca2a1cf85c0aa7c0e88e33b387008a05f05ced9d0",
+  "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/geocraft/v0.5.0-0.1.0/?robyn",
+  "sourcePatchSha256": "8d12debfe1d637ef7fddc243bade3006f063220795ae43bc08ee556492ebb423",
+  "cargoLockSha256": "c8e25692f1fdc3282a3d4579fce0ec2a4c60e2bed17706f763473165bf04a2a3",
+  "nativeExecutables": {
+    "rustgis": "77a439f270640a114b3d88135bc5505449d7f23ca020e675457c9430cb372cb1",
+    "rustgis-cli": "b1b684b67939d687b7d16393f61210bc02e26d5d43d23591b0016e1781d37a94"
+  },
+  "imageInstallation": {
+    "version": "0.4.1",
+    "template": "robyn-studio-0-4-1@1",
+    "digest": "sha256:e49c72c877372a644cd0924e526ace01b1449a22d48a4a62229fadbe7134a19d",
+    "sourceFingerprint": "155c8ab28fcf76af31a02e742736eddb4d05fb4c672cd1f226cc5c3145d007e2",
+    "contextSha256": "e8cc6efcb15740b3bdddc27726424788949c83674b1e0cbbd18912c9d3b200fc",
+    "applicationCount": 28,
+    "studios": {
+      "Creative": 10,
+      "Drafting": 9,
+      "Analysis": 9
+    },
+    "nativePackages": "hash-verified",
+    "dynamicLibraries": "passed",
+    "nativeMcpSmoke": "passed",
+    "compilerCachesRetained": false
+  },
+  "workstationClient": {
+    "version": "0.10.0",
+    "fingerprint": "cd043b09e8b125b2c87b134eacf69b63707ad1fe21767b4ddc3049cab87b5779",
+    "bundleSha256": "4de57da34a94be11e788ef7c8b99d1bb092e99d02d4205ad8bbbe992e839c06b"
+  },
+  "scope": "Source acceptance using the real authenticated Next.js BFF and private Storage, original hosted RustGIS UI and installed original native engine. Separate from deployment of the web application and maintenance of existing production workstations.",
+  "sourcePair": {
+    "webBaseCommit": "e036c325fd19f7e52f80763f0625b4ba9666ccca",
+    "runtimeBaseCommit": "ee4f6cc6a92e66529c1e27661a1010efc1aa8756",
+    "changes": "Local reviewed working trees; no paired production rollout claimed"
+  },
+  "nativeBlank": {
+    "version": 9,
+    "id": "geocraft:9",
+    "appId": "geocraft",
+    "name": "Untitled map",
+    "description": "Blank map project",
+    "files": [
+      {
+        "path": "Untitled map.rgis",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 1167,
+        "sha256": "471f1f31d833e0770e1c5fd11a221c0e3c15fbf15f7dfccc01b184609d642db9",
+        "url": "/studio/starters/9/geocraft/Untitled%20map.rgis"
+      }
+    ]
+  },
+  "nativeContinuations": [
+    {
+      "case": "canonical",
+      "inputSha256": "a320090653138d808f50e414f28ea2d6fa01146674749df53f67c75baaa1cf80",
+      "continuedSha256": "9329add3194f5c2d64dc5a780e2211cc61a2db4f9eb40917cb179a93c6ff66f5",
+      "files": [
+        "maps/Study.rgis"
+      ],
+      "checks": {
+        "browserMapName": true,
+        "nativeNewMap": true,
+        "exactInteger": true,
+        "coordinate": true,
+        "unicode": true,
+        "bundledBasemaps": true,
+        "linkedBytes": true
+      }
+    },
+    {
+      "case": "linked",
+      "inputSha256": "6290145ce02919d664c0e333538dc28c75c921ab246fb8505a80860b18545f12",
+      "continuedSha256": "07ac1cb368d7dfebedade458568e3adb2453e60ee7e8854fede47c5b1e6c6822",
+      "files": [
+        "maps/Study.rgis",
+        "inputs/Height.asc"
+      ],
+      "checks": {
+        "browserMapName": true,
+        "nativeNewMap": true,
+        "exactInteger": true,
+        "coordinate": true,
+        "unicode": true,
+        "bundledBasemaps": true,
+        "linkedBytes": true
+      }
+    },
+    {
+      "case": "hosted canonical",
+      "inputSha256": "3415acc18b882e6d2ad9594012236562e8464bf782c0c7bf45d64da2fa88eb2b",
+      "continuedSha256": "245ce45d31dec60eada9a98e32a6d231e8b321834aff347bbd0efdea56b1ba6b",
+      "operation": {
+        "tool": "buffer",
+        "distance": 1000,
+        "units": "Meters",
+        "inputFeatures": 3,
+        "selectedFeatures": 1,
+        "outputPolygons": 1
+      },
+      "checks": {
+        "retainedHostedEdit": true,
+        "retainedInteger": true,
+        "retainedUnicode": true,
+        "nativeContinuation": true,
+        "bufferFeatures": true,
+        "bufferGeometry": true,
+        "sourcePoints": true,
+        "coordinate": true
+      }
+    }
+  ],
+  "browserLibrary": {
+    "originalToolbarSave": true,
+    "originalKeyboardSave": true,
+    "focusedAttributeCommit": true,
+    "originalSaveAs": true,
+    "immediateSaveAsReload": true,
+    "saveAsNewAsset": true,
+    "uncertainCommitRetainsSnapshotAndIdentity": true,
+    "conflictPreservedAndRecoveredBySaveAs": true,
+    "linkedRasterBytesPreserved": true,
+    "exactInteger": "9223372036854775806",
+    "unicodeAndCoordinatesPreserved": true,
+    "blankAndOriginalWorldAtlas": true,
+    "temporaryNarrowingPreservesFrame": true,
+    "finalHostedRuntimeErrors": 0,
+    "finalHostedConsoleErrors": 0
+  },
+  "basemaps": {
+    "id": "basemaps",
+    "version": "0.1.2",
+    "url": "https://github.com/opengeos/rustgis-official-plugins/releases/download/basemaps-v0.1.2/basemaps-0.1.2.rgplugin",
+    "bytes": 65048,
+    "sha256": "bd9b0817158424aa8ab6bff958067a1a4948199595097eb0ed16a4219f209cb6",
+    "expandedBytes": 266425,
+    "license": "MIT",
+    "licenseSha256": "e79a50c62f1c137d93a4fb5e982b5d915d49bf88f7dc3997d77775678bffab77",
+    "runtime": "existing RustGIS WebAssembly plugin runtime",
+    "additionalRuntimeDependencies": [],
+    "tiles": "loaded on demand; no downloaded map datasets bundled",
+    "nativeAndBrowserDefault": true,
+    "presetsChecked": [
+      "OpenStreetMap",
+      "Esri World Imagery",
+      "NASA Blue Marble"
+    ],
+    "realTileResponses": 200,
+    "confirmedSaveAndExactReload": true,
+    "additionalInstalledBytesComparedWithGeoCraftBeforeBundling": 211964,
+    "additionalInstalledKiB": 206.99609375,
+    "footprintScope": "Native executables, source/redistribution notices and plugin license/metadata; no downloaded tile datasets",
+    "nativeTaskPermissionFloor": "Original MCP restrictions preserved; plugin execution and management remain user-only"
+  },
+  "naturalEarth": {
+    "repository": "https://github.com/opengeos/rustgis-assets",
+    "commit": "cae4058c8effed366d3c46ccfa7de03f797eb8a0",
+    "license": "public domain (Natural Earth)",
+    "files": [
+      {
+        "name": "countries.geojson",
+        "url": "https://raw.githubusercontent.com/opengeos/rustgis-assets/cae4058c8effed366d3c46ccfa7de03f797eb8a0/data/countries.geojson",
+        "bytes": 225883,
+        "sha256": "bef8ee61e46685049d47b577b86fb76e9f67af41a3d4c38acb67f0021bf31b36"
+      },
+      {
+        "name": "countries_chn.geojson",
+        "url": "https://raw.githubusercontent.com/opengeos/rustgis-assets/cae4058c8effed366d3c46ccfa7de03f797eb8a0/data/countries_chn.geojson",
+        "bytes": 216082,
+        "sha256": "5248ed3c99667a348a8f14f86c272508d18473fe188d8ac3a4e780ec913fc2ea"
+      },
+      {
+        "name": "cities.geojson",
+        "url": "https://raw.githubusercontent.com/opengeos/rustgis-assets/cae4058c8effed366d3c46ccfa7de03f797eb8a0/data/cities.geojson",
+        "bytes": 50822,
+        "sha256": "28c87845799741b198122a3e9ab2b1a14a1504eb74187aaf1db0d3af8a758b1e"
+      },
+      {
+        "name": "rivers.geojson",
+        "url": "https://raw.githubusercontent.com/opengeos/rustgis-assets/cae4058c8effed366d3c46ccfa7de03f797eb8a0/data/rivers.geojson",
+        "bytes": 20721,
+        "sha256": "897111f4b3f2bddc98c78993b848d1ad18ceb90bbb3ec9d703888c90edf70e73"
+      },
+      {
+        "name": "lakes.geojson",
+        "url": "https://raw.githubusercontent.com/opengeos/rustgis-assets/cae4058c8effed366d3c46ccfa7de03f797eb8a0/data/lakes.geojson",
+        "bytes": 10495,
+        "sha256": "11f49ab1f71a3ff95fae07f81c9051db6c0d88e51ebd665e28c10c2f11b8dd24"
+      }
+    ]
+  },
+  "distribution": {
+    "workerVersion": "d4218765-c0ec-4364-abc4-6d4049225090",
+    "retainedReleases": 101,
+    "retainedPaths": 46285,
+    "verifiedUniqueObjects": 3154,
+    "newObjects": 36,
+    "catalogSha256": "f71e7c3048f346da25fba54a88949575054fd184befa57479899e625a732497f",
+    "allHostedBytesVerified": true,
+    "geocraft": {
+      "checkedAt": "2026-11-04T02:23:26.722Z",
+      "files": 612,
+      "bytes": 55422632,
+      "allHostedBytesVerified": true,
+      "pinnedProviderPolicy": true,
+      "frameAncestorsPreserved": true,
+      "immutable": true
+    },
+    "policy": "GeoCraft-only named public tile/style providers and official RustGIS registry/blocklist; existing iframe protections retained"
+  },
+  "capture": {
+    "source": "Published original RustGIS/GeoCraft editor after exact confirmed NASA-basemap project reload",
+    "sourceEditor": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/geocraft/v0.5.0-0.1.0/?robyn",
+    "sourceCommit": "e3f6c734685f6fa61c92e39bb3ffc1eb1043bf97",
+    "browserBundleSha256": "47d0383ba1078e1d45638beca2a1cf85c0aa7c0e88e33b387008a05f05ced9d0",
+    "width": 1600,
+    "height": 1000,
+    "bytes": 1068188,
+    "sha256": "40ebc64ecd6a448be82996d4d0095f7f772aa33e8b2cc9cfe33792fe9f1297fa",
+    "unchanged": true,
+    "providerCreditsPreserved": true
+  },
+  "publicVisualReview": {
+    "checkedAt": "2026-11-04T02:57:53.035Z",
+    "scope": "Built source preview; no production web deployment",
+    "desktop": {
+      "viewport": {
+        "width": 1600,
+        "height": 1000
+      },
+      "reviewed": true,
+      "geoChapterVisible": true,
+      "originalColourPreview": true,
+      "focusReturned": true,
+      "runtimeErrors": 0
+    },
+    "mobile": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "reviewed": true,
+      "geoChapterVisible": true,
+      "originalColourPreview": true,
+      "previewFitsWidth": true,
+      "focusReturned": true,
+      "horizontalOverflow": false,
+      "runtimeErrors": 0
+    },
+    "metadata": {
+      "hero": "One Robyn. 28 Crafts.Research with browser tools and Brave Search.A world of your making.",
+      "title": "Robyn — Ideas have wings. | AI Creative Studio",
+      "description": "Give your ideas wings with Robyn: 28 Crafts, browser tools and Brave Search in one desktop AI creative studio.",
+      "ogDescription": "Give your ideas wings with Robyn: 28 Crafts, browser tools and Brave Search in one desktop AI creative studio.",
+      "twitterDescription": "Give your ideas wings with Robyn: 28 Crafts, browser tools and Brave Search in one desktop AI creative studio.",
+      "social": "https://robyn.academy/brand/robyn-social.png?v=28-28",
+      "socialAlt": "Robyn — Ideas have wings. An orange-breasted ASCII robin on warm paper. One Robyn, 28 Crafts.",
+      "hasGeo": true,
+      "overflow": false
+    },
+    "socialCard": {
+      "width": 1200,
+      "height": 630,
+      "reviewed": true,
+      "crafts": 28,
+      "bytes": 169010,
+      "sha256": "4052953631737d0e5007ffdd72911c28c9b97435cf14f60ee86947410d09d266"
+    },
+    "images": [
+      {
+        "file": "final-desktop-hero.png",
+        "bytes": 247603,
+        "sha256": "fbdb0e1177d421fefadf408364e8da12e042c2c75951d64ee8095649029de7bb"
+      },
+      {
+        "file": "final-desktop-geocraft.png",
+        "bytes": 484309,
+        "sha256": "3713836c016893d50fe863e8b2b63cf26f50975da4255043f2eb7ab6f5102980"
+      },
+      {
+        "file": "final-desktop-original.png",
+        "bytes": 803202,
+        "sha256": "e73861d77047cedac872eb9186883352dac7b1fdf8815ef57bc7e031dcc5745a"
+      },
+      {
+        "file": "final-mobile-hero.png",
+        "bytes": 61525,
+        "sha256": "5ba34032c8cf2acaa8ac6cd8ab733bc8dc0b5a055b1c0d9de70cc7cd15bed211"
+      },
+      {
+        "file": "final-mobile-geocraft.png",
+        "bytes": 126216,
+        "sha256": "1de45a5099a8e30f40fde5a734c1d616e1a96c29b9399d8c194b77d06f45a8ff"
+      },
+      {
+        "file": "final-mobile-original.png",
+        "bytes": 140176,
+        "sha256": "02938aea71719c221a7678f992e95549c865b37c67cbff32b2bc7c3e33a98943"
+      }
+    ]
+  },
+  "qaSessionCleanup": {
+    "checkedAt": "2026-11-04T02:48:11.640Z",
+    "revoked": 2,
+    "unavailable": 0,
+    "scope": "Only task QA sessions; no global sign-out"
+  },
+  "verification": {
+    "node": "24",
+    "python": "3",
+    "typecheck": "passed",
+    "webTests": 251,
+    "runtimeTests": 156,
+    "hermesConfigurationTests": 4,
+    "saveHookRustUnitTests": 3,
+    "nativeBinariesReproducedByCanonicalSourceRecipe": true,
+    "productionBuild": "passed",
+    "publicPageViewportEngineChecks": 18,
+    "publicKeyboardChecks": 14,
+    "publicPlatformLimitations": 4,
+    "desktopAndMobileVisualReview": true
+  },
+  "browserLimits": [
+    "Native database/program providers (including GDAL/DuckDB and database servers), local tile archives and folder-backed Zarr stores remain native; browser opening refuses partial inputs",
+    "Private work and preferences are memory-only; only confirmed library revisions survive reload",
+    "Native exports and downloads do not constitute a library save"
+  ],
+  "releaseBoundary": {
+    "schemaChanges": false,
+    "migrationsApplied": false,
+    "migrationLedgerRead": false,
+    "productionWebDeployed": false,
+    "existingWorkstationsUpdated": false,
+    "productionAiJobStarted": false,
+    "previousDeployedCatalog": 27,
+    "sourceReadyCatalog": 28
+  },
+  "privateEvidence": "Task authentication, signed transfer material, exact asset references and private receipts stay in ignored artifacts/qa/geocraft directories; this record contains sanitized hashes and summaries."
+}
