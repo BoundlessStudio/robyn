@@ -1,0 +1,541 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-04T09:56:04.166Z",
+  "localDate": "2026-11-04",
+  "timezone": "America/Toronto",
+  "stage": "verified-production-release",
+  "scope": "Owner-authorized commit, push and deployment of Asset Bridge. Real production file/folder snapshots, ZIP extraction, exact private-library downloads and installed task-scoped MCP collection materialization. No model turn or image change.",
+  "webCommit": "afc7ef1e6993bdd4d1c0320e8a780819b01597f8",
+  "webSourceCommit": "90de3810da00240d3aeb0dfa56c2c9b5bef8e498",
+  "webPullRequest": "https://github.com/BoundlessStudio/robyn/pull/67",
+  "runtimeCommit": "299b2fafd0ed70147990909e8db1f6d58fa824bd",
+  "runtimeSourceCommit": "b009f4d325c386c1cf2179c4fe79682a90f883f8",
+  "runtimePullRequest": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/22",
+  "webCi": {
+    "pullRequestRunId": 41809584017,
+    "productionPushRunId": 41810103275,
+    "conclusion": "success",
+    "tests": 262,
+    "typecheck": true,
+    "build": true,
+    "highAuditFindings": 0,
+    "publicBrowsers": [
+      "chromium",
+      "firefox",
+      "webkit"
+    ]
+  },
+  "runtimeCi": {
+    "pullRequestRunId": 41808521588,
+    "conclusion": "success",
+    "tests": 157,
+    "linuxProfileTests": 4,
+    "highAuditFindings": 0,
+    "reproducibleClientBuildSha256": "0863937ecc01780f981e413f67a07e9a107a5f6b15a162d7aa148ef6184d4873"
+  },
+  "webDeployment": {
+    "provider": "Vercel",
+    "id": "Eh7HigBMbjNmtphWrot5JyEXdkau",
+    "url": "https://vercel.com/venatio-studios/robyn-creative-studio/Eh7HigBMbjNmtphWrot5JyEXdkau",
+    "status": "success",
+    "production": "https://robyn.academy",
+    "source": "Production-branch commit status and actual authenticated production UI/BFF/Storage verification"
+  },
+  "migration": {
+    "checkedAt": "2026-11-04T09:36:42.100Z",
+    "beforeEntries": 30,
+    "afterEntries": 31,
+    "allChecksumsMatch": true,
+    "applied": [
+      "0030_asset_bridge.sql"
+    ],
+    "target": {
+      "filename": "0030_asset_bridge.sql",
+      "checksum": "5bfd361ee49efe36a8d3273aab95593e38bdf05188d321a32b9f09f1e8f72248"
+    },
+    "historicalFilesReplayed": false
+  },
+  "workstationClient": {
+    "version": "0.10.1",
+    "directory": "vendor/robyn-workstation/0.10.1-75e51f18c68a",
+    "fingerprint": "75e51f18c68a5abb93683c2a93beb875b9e2271d21f47647238783e12ca25f16",
+    "bundle": {
+      "bytes": 2301296,
+      "sha256": "0863937ecc01780f981e413f67a07e9a107a5f6b15a162d7aa148ef6184d4873"
+    },
+    "helper": {
+      "bytes": 10689,
+      "sha256": "5c34864af853ce130ae7b17a81767f5f9d815376df6064c3f7410b05f4f91ea9"
+    },
+    "installed": {
+      "checkedAt": "2026-11-04T09:37:29.329Z",
+      "clientVersion": "0.10.1",
+      "clientBundleSha256": "0863937ecc01780f981e413f67a07e9a107a5f6b15a162d7aa148ef6184d4873",
+      "skills": 29,
+      "installedApplications": 28,
+      "immutableTaskBindingVerified": true,
+      "modelTurns": 0
+    }
+  },
+  "workstationImage": {
+    "version": "0.4.1",
+    "template": "robyn-studio-0-4-1@1",
+    "digest": "sha256:e49c72c877372a644cd0924e526ace01b1449a22d48a4a62229fadbe7134a19d",
+    "changed": false
+  },
+  "catalog": {
+    "registered": 28,
+    "ready": 28
+  },
+  "editorPins": [
+    {
+      "appId": "bimcraft",
+      "editor": {
+        "adapterVersion": "0.1.1",
+        "release": "bimcraft-v0.7.0-robyn-0.1.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/bimcraft/v0.7.0-0.1.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".ifc"
+      ]
+    },
+    {
+      "appId": "cadcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "cadcraft-v0.14.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/cadcraft/v0.14.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".dxf"
+      ]
+    },
+    {
+      "appId": "civilcraft",
+      "editor": {
+        "adapterVersion": "0.1.1",
+        "release": "civilcraft-v0.7.0-robyn-0.1.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/civilcraft/v0.7.0-0.1.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".civilcraft.json"
+      ]
+    },
+    {
+      "appId": "dashcraft",
+      "editor": {
+        "mode": "readOnly",
+        "adapterVersion": "0.1.0",
+        "release": "dashcraft-v0.2.0-robyn-0.1.0",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/dashcraft/v0.2.0-0.1.0/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".pbix",
+        ".pbip",
+        ".pbit",
+        ".bim",
+        ".tmdl"
+      ]
+    },
+    {
+      "appId": "datacraft",
+      "editor": {
+        "adapterVersion": "0.1.0",
+        "release": "datacraft-v0.11.0-robyn-0.1.0",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/datacraft/v0.11.0-0.1.0/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".sqlite",
+        ".sqlite3",
+        ".db",
+        ".db3"
+      ]
+    },
+    {
+      "appId": "deckcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "deckcraft-v0.12.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/deckcraft/v0.12.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".deckcraft"
+      ]
+    },
+    {
+      "appId": "designcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "designcraft-v0.14.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/designcraft/v0.14.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".designcraft"
+      ]
+    },
+    {
+      "appId": "detailcraft",
+      "editor": {
+        "adapterVersion": "0.1.1",
+        "release": "detailcraft-v0.7.0-robyn-0.1.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/detailcraft/v0.7.0-0.1.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".detailcraft.json"
+      ]
+    },
+    {
+      "appId": "effectcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "effectcraft-v0.18.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/effectcraft/v0.18.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".ecproj"
+      ]
+    },
+    {
+      "appId": "figcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "figcraft-v0.12.1-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/figcraft/v0.12.1-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".figcraft"
+      ]
+    },
+    {
+      "appId": "filmcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "filmcraft-v0.14.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/filmcraft/v0.14.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".fcproj"
+      ]
+    },
+    {
+      "appId": "geocraft",
+      "editor": {
+        "adapterVersion": "0.1.0",
+        "release": "47d0383ba1078e1d45638beca2a1cf85c0aa7c0e88e33b387008a05f05ced9d0",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/geocraft/v0.5.0-0.1.0/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".rgis"
+      ]
+    },
+    {
+      "appId": "gridcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "gridcraft-v0.13.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/gridcraft/v0.13.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".xlsx"
+      ]
+    },
+    {
+      "appId": "lightcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "lightcraft-v0.15.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/lightcraft/v0.15.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".snap"
+      ]
+    },
+    {
+      "appId": "markupcraft",
+      "editor": {
+        "adapterVersion": "0.1.1",
+        "release": "markupcraft-v0.7.0-robyn-0.1.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/markupcraft/v0.7.0-0.1.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".pdf"
+      ]
+    },
+    {
+      "appId": "matcraft",
+      "editor": {
+        "adapterVersion": "0.1.0",
+        "release": "matcraft-v0.1.0-robyn-0.1.0",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/matcraft/v0.1.0-0.1.0/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".m",
+        ".mat"
+      ]
+    },
+    {
+      "appId": "materialcraft",
+      "editor": {
+        "adapterVersion": "0.1.0",
+        "release": "materialcraft-v0.5.0-robyn-0.1.0",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/materialcraft/v0.5.0-0.1.0/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".sbs"
+      ]
+    },
+    {
+      "appId": "modelcraft",
+      "editor": {
+        "adapterVersion": "0.1.1",
+        "release": "modelcraft-v0.7.0-robyn-0.1.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/modelcraft/v0.7.0-0.1.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".modelcraft"
+      ]
+    },
+    {
+      "appId": "partcraft",
+      "editor": {
+        "adapterVersion": "0.1.1",
+        "release": "partcraft-v0.7.0-robyn-0.1.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/partcraft/v0.7.0-0.1.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".partcraft.json",
+        ".partcraft-asm.json"
+      ]
+    },
+    {
+      "appId": "pdfcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "pdfcraft-v0.15.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/pdfcraft/v0.15.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".pdf"
+      ]
+    },
+    {
+      "appId": "photocraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "photocraft-v0.17.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/photocraft/v0.17.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".pcraft"
+      ]
+    },
+    {
+      "appId": "plancraft",
+      "editor": {
+        "adapterVersion": "0.1.0",
+        "release": "38eaa7836aa8bb2f0a1a4ef51062cc10e184e3c855fc11d1a8fd04135f197a6f",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/plancraft/v0.1.0-0.1.0/",
+        "status": "verified"
+      },
+      "formats": [
+        ".plancraft"
+      ]
+    },
+    {
+      "appId": "solidcraft",
+      "editor": {
+        "adapterVersion": "0.1.2",
+        "release": "solidcraft-v0.27.1-robyn-0.1.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/solidcraft/v0.27.1-0.1.2/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".sc",
+        ".solidcraft",
+        ".solvecraft"
+      ]
+    },
+    {
+      "appId": "soundcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "soundcraft-v0.14.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/soundcraft/v0.14.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".scraft"
+      ]
+    },
+    {
+      "appId": "subcraft",
+      "editor": {
+        "adapterVersion": "0.1.0",
+        "release": "subcraft-v0.1.8-robyn-0.1.0",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/subcraft/v0.1.8-0.1.0/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".subcraft"
+      ]
+    },
+    {
+      "appId": "takeoffcraft",
+      "editor": {
+        "adapterVersion": "0.1.1",
+        "release": "takeoffcraft-v0.7.0-robyn-0.1.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/takeoffcraft/v0.7.0-0.1.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".takeoff.json"
+      ]
+    },
+    {
+      "appId": "vectorcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "vectorcraft-v0.18.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/vectorcraft/v0.18.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".vectorcraft",
+        ".drawcraft"
+      ]
+    },
+    {
+      "appId": "wordcraft",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "wordcraft-v0.12.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/wordcraft/v0.12.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".docx"
+      ]
+    }
+  ],
+  "uploadPolicy": {
+    "path": "src/studio/upload-policy.ts",
+    "normalizedSha256": "7601f4f5040d5b9c5c20ae9b04c3717da28cb74164c9944227ebb4a8556bc7be",
+    "blocks": "Executable binaries and installers by file extension and application-bundle path",
+    "scriptsAllowed": true,
+    "allRegisteredCraftNativeFormatsPass": true,
+    "selectedZipExpandedOnce": true,
+    "nestedArchivesPreservedAsFiles": true,
+    "maxFiles": 200,
+    "maxFileBytes": 536870912,
+    "maxTotalBytes": 1073741824
+  },
+  "verification": {
+    "browser": {
+      "checkedAt": "2026-11-04T09:51:49.904Z",
+      "production": "https://robyn.academy",
+      "collections": 2,
+      "filesPerCollection": 4,
+      "folderSelection": true,
+      "zipExtraction": true,
+      "matlabScriptAndWorkspacePreserved": true,
+      "emptyFilesPreserved": true,
+      "executableFileAndZipRefusedBeforeUpload": true,
+      "allDownloadHashesVerified": true,
+      "completeZipDownloadsVerified": true,
+      "fullReload": true,
+      "exactInputToRobyn": true,
+      "pageErrors": 0,
+      "source": "Actual production UI, BFF, direct private Storage and full reload; no fixture server or mocked requests."
+    },
+    "bff": {
+      "checkedAt": "2026-11-04T09:52:37.868Z",
+      "executableMetadataRejected": true,
+      "noAssetCreatedForRefusedUpload": true,
+      "unownedProjectRejected": true
+    },
+    "mcp": {
+      "checkedAt": "2026-11-04T09:52:43.594Z",
+      "stdioMcpHandshake": true,
+      "productionBffContext": true,
+      "productionAssetDiscovery": true,
+      "collectionsMaterialized": 2,
+      "verifiedFiles": 8,
+      "verifiedEmptyFiles": 2,
+      "exactRevisionReopen": true,
+      "relativePathsPreserved": true,
+      "immutableProfileBinding": true,
+      "clientVersion": "0.10.1",
+      "modelTurns": 0
+    },
+    "preservation": {
+      "checkedAt": "2026-11-04T09:39:01.644Z",
+      "beforeFiles": 2149,
+      "byteIdenticalExistingFiles": 2135,
+      "changedFiles": 14,
+      "changedControlFiles": 2,
+      "cronTimestampFiles": 12,
+      "existingWorkTaskAndClientFilesUnchanged": true,
+      "resourcesUnchanged": true,
+      "imageUnchanged": true,
+      "allowanceUnchanged": true,
+      "cronTimestampsVerified": 12,
+      "originalRestartHookPrefixUnchanged": true,
+      "newGenerationConfirmed": true
+    },
+    "authCleanup": {
+      "checkedAt": "2026-11-04T09:53:29.953Z",
+      "scope": "Current generated QA Auth session only; no account or other session deletion.",
+      "signedOut": true,
+      "localCookieFileCleared": true
+    }
+  },
+  "finalScope": {
+    "checkedAt": "2026-11-04T09:53:28.597Z",
+    "maintenanceState": "cancelled",
+    "maintenanceDispatched": false,
+    "generation": 33,
+    "modelTurns": 0,
+    "taskCredentialsRevoked": true,
+    "revokedTaskCredentials": 1,
+    "activeOrUncertainAssignments": 0,
+    "unsettledMedia": 0,
+    "pendingOrDispatchedUpgrades": 0,
+    "browserControl": "agent",
+    "existingInstanceReused": true,
+    "instanceIdentitySha256": "e6ed8bc1c9bb6255ffc8fe636b5d612baa3fa0b379aecc8fa2e24edf5f375d96",
+    "template": "robyn-studio-0-4-1@1",
+    "imageDigest": "sha256:e49c72c877372a644cd0924e526ace01b1449a22d48a4a62229fadbe7134a19d",
+    "resourcesUnchanged": true,
+    "resources": {
+      "disk": 10,
+      "cpu": 4,
+      "memory": 16
+    },
+    "allowanceUnchanged": true,
+    "monthlyCapMicros": 75000000,
+    "policySync": "synced"
+  },
+  "privateEvidence": "Session cookies, exact owner/project/asset references, screenshots, signed URLs, full file inventories and operation journals remain outside version control. Only synthetic input summaries and sanitized verification are recorded here.",
+  "acceptanceBoundary": "Actual hosted acceptance covers the recorded Chromium folder/ZIP/download/reload paths and installed MCP client operations. Three-engine ZIP checks are local fixtures. No AI model turn or new native/editor integration acceptance is claimed."
+}
