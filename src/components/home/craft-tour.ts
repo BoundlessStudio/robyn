@@ -29,6 +29,7 @@ const stories: Record<string, { lines: string[]; accent: string; copy: string; d
   dashcraft: { lines: ["See the story"], accent: "in the report.", copy: "Explore a report with Robyn in DashCraft. Compute results, follow a filter and query the model while the original report stays unchanged.", details: ["REPORT ANALYSIS", "DAX & POWER QUERY", "READ-ONLY VIEWING"] },
   datacraft: { lines: ["Find the idea"], accent: "in the data.", copy: "Work through tables and queries with Robyn in DataCraft. Keep the database and saved SQL ready to inspect, edit and continue.", details: ["SQL QUERIES", "EDITABLE TABLES", "SAVED DATABASES"] },
   plancraft: { lines: ["Give an idea"], accent: "a plan.", copy: "Connect tasks, people and milestones in PlanCraft. Explore the schedule with Robyn, then keep shaping the path from an idea to its next achievement.", details: ["PROJECT PLANNING", "GANTT CHARTS", "RESOURCES & MILESTONES"] },
+  geocraft: { lines: ["Find the story"], accent: "in a place.", copy: "Explore maps, layers and spatial relationships with Robyn in GeoCraft. Keep the source data, attributes and native project ready for your next discovery.", details: ["MAPS & CARTOGRAPHY", "SPATIAL ANALYSIS", "EDITABLE GIS PROJECTS"] },
 };
 
 // Presentation order is editorial; identity and the application count

@@ -1,0 +1,40 @@
+{
+  "id": "geocraft",
+  "version": "0.1.0",
+  "order": 28,
+  "name": "GeoCraft",
+  "category": "Maps and spatial analysis",
+  "monogram": "Gc",
+  "color": "#238f9b",
+  "artwork": "grid",
+  "sourceUrl": "https://github.com/opengeos/RustGIS",
+  "tagline": "Find the story in a place.",
+  "capabilities": [
+    "gis",
+    "cartography",
+    "spatial-analysis",
+    "geospatial-data"
+  ],
+  "employee": {
+    "role": "Geospatial Analyst",
+    "instructions": "Use GeoCraft, based on RustGIS, for authorized mapping, cartography and spatial analysis. Preserve the native .rgis project, exact source data, relative dependencies, coordinate reference systems and attribute types. State coordinate systems, distance and area units, active selections, data sources and analytical assumptions; report missing inputs or lossy conversions. Work only in the assigned project and task working folder, using studio-mcp for private-library access. Keep connection credentials out of saved packages. Use the application's own commands and Save actions; report a library save only after its immutable revision is confirmed. Preserve conflicts and uncertain saves without repeating the operation."
+  },
+  "formats": {
+    "native": [
+      ".rgis"
+    ],
+    "verification": "verified"
+  },
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": "47d0383ba1078e1d45638beca2a1cf85c0aa7c0e88e33b387008a05f05ced9d0",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/geocraft/v0.5.0-0.1.0/?robyn",
+    "status": "verified"
+  },
+  "workstation": {
+    "template": "robyn-studio-0-4-1@1",
+    "release": "sha256:e49c72c877372a644cd0924e526ace01b1449a22d48a4a62229fadbe7134a19d",
+    "status": "verified"
+  },
+  "studio": "Analysis"
+}

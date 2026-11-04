@@ -1,15 +1,15 @@
 {
-  "version": "0.9.0",
-  "directory": "vendor/robyn-workstation/0.9.0-7154c050e8d1",
-  "fingerprint": "7154c050e8d10dd15b23f71aca77c41f3d9363ef5a688c232da142554cbdca42",
+  "version": "0.10.0",
+  "directory": "vendor/robyn-workstation/0.10.0-cd043b09e8b1",
+  "fingerprint": "cd043b09e8b125b2c87b134eacf69b63707ad1fe21767b4ddc3049cab87b5779",
   "files": {
     "studio-mcp.cjs": {
-      "bytes": 2287227,
-      "sha256": "761a981dc745f103728cba1b4901abe2c4d10b07ee84b1d354efad0b0c835f67"
+      "bytes": 2301183,
+      "sha256": "4de57da34a94be11e788ef7c8b99d1bb092e99d02d4205ad8bbbe992e839c06b"
     },
     "configure-hermes.py": {
-      "bytes": 10676,
-      "sha256": "4e78638f6744293c27e26c1c6106b55dc81113953e6fd869619f8357d78f94fa"
+      "bytes": 10689,
+      "sha256": "ca9f344664ecfa92886746d9ea0ad188aa44d912c895e6e82bb84ab21d855fa9"
     },
     "skills/bimcraft.md": {
       "bytes": 2483,
@@ -54,6 +54,10 @@
     "skills/filmcraft.md": {
       "bytes": 3238,
       "sha256": "0e636265041381d189cfdf0d608c7d0d75ab0e4aa0ff4ff1fffefd9f5144f962"
+    },
+    "skills/geocraft.md": {
+      "bytes": 3453,
+      "sha256": "84eff64e64a07f75eea6e051a41ef2795167b415cdc067687f81190cb72ef3f1"
     },
     "skills/gridcraft.md": {
       "bytes": 2563,

@@ -1,5 +1,21 @@
 [
   {
+    "id": "geocraft:9",
+    "appId": "geocraft",
+    "name": "Untitled map",
+    "description": "Blank map project",
+    "files": [
+      {
+        "path": "Untitled map.rgis",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 1167,
+        "sha256": "471f1f31d833e0770e1c5fd11a221c0e3c15fbf15f7dfccc01b184609d642db9",
+        "url": "/studio/starters/9/geocraft/Untitled%20map.rgis"
+      }
+    ]
+  },
+  {
     "id": "plancraft:8",
     "appId": "plancraft",
     "name": "Untitled plan",
