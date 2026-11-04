@@ -6,6 +6,8 @@ The authenticated pilot is **desktop-only**. The public homepage is a mobile-cap
 
 The deployed catalog groups **28 ready Crafts into Creative (10), Drafting (9) and Analysis (9)**. **GeoCraft (RustGIS)** adds mapping, spatial analysis and the official Basemaps plugin. Twenty-seven support verified native/browser/private-library editing loops; DashCraft uses its owner-approved read-only report computation and viewing. GeoCraft preserves the original editor, Save actions, exact native projects and linked data, with confirmed production library saves and continuation on the updated owned workstation. Its installed MCP client connects to the production BFF and invokes the native tool without a model turn. PlanCraft retains its separately recorded real Robyn AI turn and confirmed library save. DiagramCraft remains owner-deferred. [Current acceptance](docs/CURRENT-STATUS.md) records the deployed web/runtime sources, migration state, editor/workstation pins and acceptance limits. The [operator runbook](docs/OPERATIONS.md) covers support and recovery; [archived records](docs/archive/README.md) preserve dated release and rollback evidence. Support is **support@robyn.academy**.
 
+GridCraft, WordCraft and DeckCraft support **VBA** through their original Developer controls in the browser and Robyn's native workstation. Macros require per-document consent; original Save actions confirm private-library revisions. [The deployed VBA receipt](docs/acceptance/office-vba-deployed-20261104.json) records the supported interpreter subset and actual round trips.
+
 ## Develop and verify
 
 Use Node 24 and Python 3. Browser regression fixtures require Playwright Chromium, Firefox and WebKit.
