@@ -1,0 +1,962 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-04T03:30:04.519Z",
+  "localDate": "2026-11-03",
+  "timezone": "America/Toronto",
+  "stage": "verified-production-release",
+  "scope": "Owner-authorized commit, push and deployment of GeoCraft. Same existing owned workstation, confirmed original-editor production saves, exact native continuation, actual installed Studio MCP/BFF handshake and native tool. No AI model turn.",
+  "webCommit": "b498858a07d6e9fca0477db3c1ab40a0859f770d",
+  "webSourceCommit": "3e6e5c1a906050ed1dc2f6ab35b17b0a0d3d1fe6",
+  "webPullRequest": "https://github.com/BoundlessStudio/robyn/pull/65",
+  "webCi": {
+    "pullRequestRunId": 41765115641,
+    "productionPushRunId": 41765643710,
+    "conclusion": "success",
+    "tests": 251,
+    "typecheck": true,
+    "build": true,
+    "publicBrowsers": [
+      "chromium",
+      "firefox",
+      "webkit"
+    ],
+    "highAuditFindings": 0
+  },
+  "webDeployment": {
+    "provider": "Vercel",
+    "id": "DLHTH1H3f6AE9uftLzgUVMKx6HLp",
+    "url": "https://vercel.com/venatio-studios/robyn-creative-studio/DLHTH1H3f6AE9uftLzgUVMKx6HLp",
+    "status": "success",
+    "production": "https://robyn.academy",
+    "source": "Production-branch commit status, live authenticated BFF and exact deployed asset verification"
+  },
+  "runtimeCommit": "fdf26642390c6945de72fabda7947561d5f70219",
+  "runtimeSourceCommit": "1225815c876436bc2bea01e10ffb9ad21418f0b1",
+  "runtimePullRequest": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/20",
+  "runtimeCi": {
+    "pullRequestRunId": 41765112093,
+    "conclusion": "success",
+    "tests": 156,
+    "linuxProfileTests": 4,
+    "highAuditFindings": 0
+  },
+  "sourceRecords": [
+    {
+      "repository": "BoundlessStudio/robyn",
+      "commit": "3e6e5c1a906050ed1dc2f6ab35b17b0a0d3d1fe6",
+      "path": "docs/acceptance/geocraft-integration-20261103.json",
+      "sha256": "81ea33bbcc3648c0d99016a1617dfb0adb2239353532a2746ef719bbd747e2ae",
+      "scope": "Exact committed source acceptance blob; its original local/deployment boundary is retained."
+    },
+    {
+      "repository": "BoundlessStudio/robyn-artcraft-runtime",
+      "commit": "1225815c876436bc2bea01e10ffb9ad21418f0b1",
+      "path": "apps/geocraft/verification.json",
+      "sha256": "fafeacc0789d0bac124e228567583cecffa10f1842bc46bcc5fc9c5d12ade2b2",
+      "scope": "Exact committed source acceptance blob; its original local/deployment boundary is retained."
+    }
+  ],
+  "catalog": {
+    "count": 28,
+    "ready": 28,
+    "groups": {
+      "Creative": 10,
+      "Drafting": 9,
+      "Analysis": 9
+    },
+    "canonicalRobynsPerStudio": 1,
+    "provisionedCanonicalWorkstations": 1,
+    "retainedPreviousEditorPins": 27,
+    "deferred": [
+      "diagramcraft"
+    ]
+  },
+  "editorPins": [
+    {
+      "appId": "bimcraft",
+      "studio": "Drafting",
+      "editor": {
+        "adapterVersion": "0.1.1",
+        "release": "bimcraft-v0.7.0-robyn-0.1.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/bimcraft/v0.7.0-0.1.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".ifc"
+      ]
+    },
+    {
+      "appId": "cadcraft",
+      "studio": "Drafting",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "cadcraft-v0.14.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/cadcraft/v0.14.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".dxf"
+      ]
+    },
+    {
+      "appId": "civilcraft",
+      "studio": "Drafting",
+      "editor": {
+        "adapterVersion": "0.1.1",
+        "release": "civilcraft-v0.7.0-robyn-0.1.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/civilcraft/v0.7.0-0.1.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".civilcraft.json"
+      ]
+    },
+    {
+      "appId": "dashcraft",
+      "studio": "Analysis",
+      "editor": {
+        "mode": "readOnly",
+        "adapterVersion": "0.1.0",
+        "release": "dashcraft-v0.2.0-robyn-0.1.0",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/dashcraft/v0.2.0-0.1.0/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".pbix",
+        ".pbip",
+        ".pbit",
+        ".bim",
+        ".tmdl"
+      ]
+    },
+    {
+      "appId": "datacraft",
+      "studio": "Analysis",
+      "editor": {
+        "adapterVersion": "0.1.0",
+        "release": "datacraft-v0.11.0-robyn-0.1.0",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/datacraft/v0.11.0-0.1.0/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".sqlite",
+        ".sqlite3",
+        ".db",
+        ".db3"
+      ]
+    },
+    {
+      "appId": "deckcraft",
+      "studio": "Analysis",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "deckcraft-v0.12.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/deckcraft/v0.12.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".deckcraft"
+      ]
+    },
+    {
+      "appId": "designcraft",
+      "studio": "Creative",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "designcraft-v0.14.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/designcraft/v0.14.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".designcraft"
+      ]
+    },
+    {
+      "appId": "detailcraft",
+      "studio": "Drafting",
+      "editor": {
+        "adapterVersion": "0.1.1",
+        "release": "detailcraft-v0.7.0-robyn-0.1.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/detailcraft/v0.7.0-0.1.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".detailcraft.json"
+      ]
+    },
+    {
+      "appId": "effectcraft",
+      "studio": "Creative",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "effectcraft-v0.18.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/effectcraft/v0.18.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".ecproj"
+      ]
+    },
+    {
+      "appId": "figcraft",
+      "studio": "Creative",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "figcraft-v0.12.1-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/figcraft/v0.12.1-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".figcraft"
+      ]
+    },
+    {
+      "appId": "filmcraft",
+      "studio": "Creative",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "filmcraft-v0.14.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/filmcraft/v0.14.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".fcproj"
+      ]
+    },
+    {
+      "appId": "geocraft",
+      "studio": "Analysis",
+      "editor": {
+        "adapterVersion": "0.1.0",
+        "release": "47d0383ba1078e1d45638beca2a1cf85c0aa7c0e88e33b387008a05f05ced9d0",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/geocraft/v0.5.0-0.1.0/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".rgis"
+      ]
+    },
+    {
+      "appId": "gridcraft",
+      "studio": "Analysis",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "gridcraft-v0.13.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/gridcraft/v0.13.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".xlsx"
+      ]
+    },
+    {
+      "appId": "lightcraft",
+      "studio": "Creative",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "lightcraft-v0.15.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/lightcraft/v0.15.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".snap"
+      ]
+    },
+    {
+      "appId": "markupcraft",
+      "studio": "Drafting",
+      "editor": {
+        "adapterVersion": "0.1.1",
+        "release": "markupcraft-v0.7.0-robyn-0.1.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/markupcraft/v0.7.0-0.1.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".pdf"
+      ]
+    },
+    {
+      "appId": "matcraft",
+      "studio": "Analysis",
+      "editor": {
+        "adapterVersion": "0.1.0",
+        "release": "matcraft-v0.1.0-robyn-0.1.0",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/matcraft/v0.1.0-0.1.0/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".m",
+        ".mat"
+      ]
+    },
+    {
+      "appId": "materialcraft",
+      "studio": "Creative",
+      "editor": {
+        "adapterVersion": "0.1.0",
+        "release": "materialcraft-v0.5.0-robyn-0.1.0",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/materialcraft/v0.5.0-0.1.0/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".sbs"
+      ]
+    },
+    {
+      "appId": "modelcraft",
+      "studio": "Drafting",
+      "editor": {
+        "adapterVersion": "0.1.1",
+        "release": "modelcraft-v0.7.0-robyn-0.1.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/modelcraft/v0.7.0-0.1.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".modelcraft"
+      ]
+    },
+    {
+      "appId": "partcraft",
+      "studio": "Drafting",
+      "editor": {
+        "adapterVersion": "0.1.1",
+        "release": "partcraft-v0.7.0-robyn-0.1.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/partcraft/v0.7.0-0.1.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".partcraft.json",
+        ".partcraft-asm.json"
+      ]
+    },
+    {
+      "appId": "pdfcraft",
+      "studio": "Analysis",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "pdfcraft-v0.15.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/pdfcraft/v0.15.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".pdf"
+      ]
+    },
+    {
+      "appId": "photocraft",
+      "studio": "Creative",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "photocraft-v0.17.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/photocraft/v0.17.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".pcraft"
+      ]
+    },
+    {
+      "appId": "plancraft",
+      "studio": "Analysis",
+      "editor": {
+        "adapterVersion": "0.1.0",
+        "release": "38eaa7836aa8bb2f0a1a4ef51062cc10e184e3c855fc11d1a8fd04135f197a6f",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/plancraft/v0.1.0-0.1.0/",
+        "status": "verified"
+      },
+      "formats": [
+        ".plancraft"
+      ]
+    },
+    {
+      "appId": "solidcraft",
+      "studio": "Drafting",
+      "editor": {
+        "adapterVersion": "0.1.2",
+        "release": "solidcraft-v0.27.1-robyn-0.1.2",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/solidcraft/v0.27.1-0.1.2/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".sc",
+        ".solidcraft",
+        ".solvecraft"
+      ]
+    },
+    {
+      "appId": "soundcraft",
+      "studio": "Creative",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "soundcraft-v0.14.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/soundcraft/v0.14.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".scraft"
+      ]
+    },
+    {
+      "appId": "subcraft",
+      "studio": "Creative",
+      "editor": {
+        "adapterVersion": "0.1.0",
+        "release": "subcraft-v0.1.8-robyn-0.1.0",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/subcraft/v0.1.8-0.1.0/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".subcraft"
+      ]
+    },
+    {
+      "appId": "takeoffcraft",
+      "studio": "Drafting",
+      "editor": {
+        "adapterVersion": "0.1.1",
+        "release": "takeoffcraft-v0.7.0-robyn-0.1.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/takeoffcraft/v0.7.0-0.1.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".takeoff.json"
+      ]
+    },
+    {
+      "appId": "vectorcraft",
+      "studio": "Creative",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "vectorcraft-v0.18.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/vectorcraft/v0.18.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".vectorcraft",
+        ".drawcraft"
+      ]
+    },
+    {
+      "appId": "wordcraft",
+      "studio": "Analysis",
+      "editor": {
+        "adapterVersion": "0.3.1",
+        "release": "wordcraft-v0.12.0-robyn-0.3.1",
+        "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/wordcraft/v0.12.0-0.3.1/?robyn",
+        "status": "verified"
+      },
+      "formats": [
+        ".docx"
+      ]
+    }
+  ],
+  "geocraft": {
+    "upstream": "v0.5.0",
+    "sourceCommit": "e3f6c734685f6fa61c92e39bb3ffc1eb1043bf97",
+    "sourcePatchSha256": "8d12debfe1d637ef7fddc243bade3006f063220795ae43bc08ee556492ebb423",
+    "cargoLockSha256": "c8e25692f1fdc3282a3d4579fce0ec2a4c60e2bed17706f763473165bf04a2a3",
+    "nativeExecutables": {
+      "rustgis": "77a439f270640a114b3d88135bc5505449d7f23ca020e675457c9430cb372cb1",
+      "rustgis-cli": "b1b684b67939d687b7d16393f61210bc02e26d5d43d23591b0016e1781d37a94"
+    },
+    "browserBundleSha256": "47d0383ba1078e1d45638beca2a1cf85c0aa7c0e88e33b387008a05f05ced9d0",
+    "adapterVersion": "0.1.0",
+    "nativeBlank": {
+      "version": 9,
+      "id": "geocraft:9",
+      "appId": "geocraft",
+      "name": "Untitled map",
+      "description": "Blank map project",
+      "files": [
+        {
+          "path": "Untitled map.rgis",
+          "role": "master",
+          "mimeType": "application/octet-stream",
+          "bytes": 1167,
+          "sha256": "471f1f31d833e0770e1c5fd11a221c0e3c15fbf15f7dfccc01b184609d642db9",
+          "url": "/studio/starters/9/geocraft/Untitled%20map.rgis"
+        }
+      ]
+    },
+    "basemaps": {
+      "id": "basemaps",
+      "version": "0.1.2",
+      "url": "https://github.com/opengeos/rustgis-official-plugins/releases/download/basemaps-v0.1.2/basemaps-0.1.2.rgplugin",
+      "bytes": 65048,
+      "sha256": "bd9b0817158424aa8ab6bff958067a1a4948199595097eb0ed16a4219f209cb6",
+      "expandedBytes": 266425,
+      "license": "MIT",
+      "licenseSha256": "e79a50c62f1c137d93a4fb5e982b5d915d49bf88f7dc3997d77775678bffab77",
+      "runtime": "existing RustGIS WebAssembly plugin runtime",
+      "additionalRuntimeDependencies": [],
+      "tiles": "loaded on demand; no downloaded map datasets bundled",
+      "nativeAndBrowserDefault": true,
+      "presetsChecked": [
+        "OpenStreetMap",
+        "Esri World Imagery",
+        "NASA Blue Marble"
+      ],
+      "realTileResponses": 200,
+      "confirmedSaveAndExactReload": true,
+      "additionalInstalledBytesComparedWithGeoCraftBeforeBundling": 211964,
+      "additionalInstalledKiB": 206.99609375,
+      "footprintScope": "Native executables, source/redistribution notices and plugin license/metadata; no downloaded tile datasets",
+      "nativeTaskPermissionFloor": "Original MCP restrictions preserved; plugin execution and management remain user-only"
+    },
+    "browserLimits": [
+      "Native database/program providers (including GDAL/DuckDB and database servers), local tile archives and folder-backed Zarr stores remain native; browser opening refuses partial inputs",
+      "Private work and preferences are memory-only; only confirmed library revisions survive reload",
+      "Native exports and downloads do not constitute a library save"
+    ]
+  },
+  "migrationState": {
+    "applied": [],
+    "ledgerReread": false,
+    "lastRecordedEntries": 30,
+    "lastRecordedMigration": "0029",
+    "evidence": "docs/acceptance/settings-budget-release-20261030.json"
+  },
+  "workstation": {
+    "image": {
+      "version": "0.4.1",
+      "template": "robyn-studio-0-4-1@1",
+      "release": "sha256:e49c72c877372a644cd0924e526ace01b1449a22d48a4a62229fadbe7134a19d",
+      "resources": {
+        "cpu": 4,
+        "memory": 16,
+        "disk": 10
+      },
+      "applications": 28,
+      "previousReleases": [
+        {
+          "template": "robyn-studio-0-3-0@1",
+          "release": "sha256:46c6006a4612aa3bd3786ef0c8029791b4d18d12d89bfb42443cdad82409a818"
+        },
+        {
+          "template": "robyn-studio-0-2-1@1",
+          "release": "sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da"
+        },
+        {
+          "template": "robyn-studio-0-1-1@1",
+          "release": "sha256:23622a922f2ab7df9a45d6cfe64f42247954b31843e228ded96619ccefbbea0d"
+        }
+      ]
+    },
+    "client": {
+      "version": "0.10.0",
+      "fingerprint": "cd043b09e8b125b2c87b134eacf69b63707ad1fe21767b4ddc3049cab87b5779",
+      "bundle": {
+        "bytes": 2301183,
+        "sha256": "4de57da34a94be11e788ef7c8b99d1bb092e99d02d4205ad8bbbe992e839c06b"
+      },
+      "configurationHelper": {
+        "bytes": 10689,
+        "sha256": "ca9f344664ecfa92886746d9ea0ad188aa44d912c895e6e82bb84ab21d855fa9"
+      },
+      "craftSkills": 28,
+      "researchSkill": true
+    },
+    "rollout": {
+      "checkedAt": "2026-11-04T03:16:58.014Z",
+      "status": "running",
+      "current": true,
+      "digest": "sha256:e49c72c877372a644cd0924e526ace01b1449a22d48a4a62229fadbe7134a19d",
+      "healthy": true,
+      "preservedFiles": 2056,
+      "bootChangedFiles": 36,
+      "mirrorConfirmed": true,
+      "template": "robyn-studio-0-4-1@1",
+      "resourcesUnchanged": true,
+      "metadataUnchanged": true,
+      "managedBudgetUnchanged": true,
+      "providerUpdatePosts": 1,
+      "instanceIdentitySha256": "e6ed8bc1c9bb6255ffc8fe636b5d612baa3fa0b379aecc8fa2e24edf5f375d96",
+      "ownedIdentityChecks": true,
+      "existingInstanceReused": true,
+      "newInstanceCreated": false,
+      "maintenanceGeneration": 32,
+      "maintenanceDispatched": false,
+      "taskCredentialRevoked": true,
+      "preservation": {
+        "checkedAt": "2026-11-04T03:17:04.104Z",
+        "beforeFiles": 2092,
+        "byteIdenticalExistingFiles": 2056,
+        "bootChangedFiles": 36,
+        "allExistingWorkAndTaskFilesByteIdentical": true,
+        "categories": {
+          "profile managed credential refresh": 5,
+          "MCP schema cache": 5,
+          "cron runtime timestamps": 10,
+          "appended runtime logs": 10,
+          "rotated historical config backups": 3,
+          "Hermes runtime database": 1,
+          "default managed model configuration": 1,
+          "image boot marker": 1
+        },
+        "profileConfigurations": 5,
+        "profileMcpBindingsUnchanged": true,
+        "onlyProfileChanges": "managed model key and existing Composio/Perflo authorization credentials refreshed",
+        "profileDatabasesIntegral": 5,
+        "defaultManagedProviderMatchesEnvironment": true,
+        "defaultHasNoTaskBinding": true
+      },
+      "profileSettingsRestoration": {
+        "checkedAt": "2026-11-04T03:16:55.899Z",
+        "restoredProfiles": 2,
+        "profiles": [
+          {
+            "originalSha256": "d1e24690ed9dc541ba6ec77fad6e6c3bf8a0de3d0fc2056b30322c0264f8665c",
+            "bootModifiedSha256": "e488d9dc166e66a8027b518c4318eb7574ed6b4bc9856e84e3b3f6fc7c1643e9",
+            "restoredSha256": "b17bc25893b95e76e91ed1b777de4526395d260bc34258e8c4db336d72e49e4c",
+            "originalSettingsRestored": true,
+            "studioMcpBindingPreserved": true,
+            "newConnectedToolEntriesRemoved": true,
+            "onlyRemainingDifference": "Current managed model credential"
+          },
+          {
+            "originalSha256": "f7a02b073e11474e7c74f2c4a519ac9f5ae9d4c24411b04870f854e91f151e39",
+            "bootModifiedSha256": "19f4d17a76798368b381e220e1721398ede879357e5a1727b4378c0555944054",
+            "restoredSha256": "79e762972ac47df1ac61d0e5a319f03e7d4343d52a3dbcfc96162d2f635c0712",
+            "originalSettingsRestored": true,
+            "studioMcpBindingPreserved": true,
+            "newConnectedToolEntriesRemoved": true,
+            "onlyRemainingDifference": "Current managed model credential"
+          }
+        ],
+        "privateBootConfigurationsPreserved": true
+      },
+      "connectedAccountScopeUnchanged": true
+    },
+    "clientInstallation": {
+      "checkedAt": "2026-11-04T03:20:35.853Z",
+      "ok": true,
+      "checks": {
+        "clientVersion": true,
+        "clientBundleSha256": true,
+        "skills": true,
+        "taskIdentity": true,
+        "applications": true,
+        "nativeHashes": true,
+        "nativeVersion": true,
+        "basemapsDefault": true,
+        "basemapsPin": true,
+        "clientDispatch": true
+      },
+      "clientVersion": "0.10.0",
+      "clientBundleSha256": "4de57da34a94be11e788ef7c8b99d1bb092e99d02d4205ad8bbbe992e839c06b",
+      "skills": 29,
+      "craftSkills": 28,
+      "researchSkill": true,
+      "installedApplications": 28,
+      "nativeVersionsAndHashesVerified": true,
+      "basemapsDefaultVerified": true,
+      "immutableTaskBindingVerified": true,
+      "nativeClientDispatchVerified": true,
+      "modelTurns": 0
+    }
+  },
+  "productionMcp": {
+    "checkedAt": "2026-11-04T03:27:48.021Z",
+    "stdioMcpHandshake": true,
+    "productionBffContext": true,
+    "nativeGeoCraftTool": true,
+    "immutableProfileBinding": true,
+    "clientVersion": "0.10.0",
+    "toolCount": 13,
+    "modelTurns": 0
+  },
+  "productionLibrarySave": {
+    "checkedAt": "2026-11-04T03:24:00.050Z",
+    "state": "committed",
+    "appId": "geocraft",
+    "files": [
+      {
+        "path": "Production GIS map.rgis",
+        "role": "master",
+        "bytes": 305581,
+        "sha256": "6ed599abdc7ea02f6d7d261d798abba89735f760a8462454bf9879c342423f66",
+        "mimeType": "application/json"
+      }
+    ],
+    "maps": 1,
+    "layers": 1,
+    "countries": 177,
+    "unauthenticatedRevisionStatus": 401,
+    "exactBytesVerified": true
+  },
+  "productionNativeContinuation": {
+    "checkedAt": "2026-11-04T03:25:22.074Z",
+    "productionExistingWorkstation": true,
+    "source": "Exact confirmed production private-library revision",
+    "inputSha256": "6ed599abdc7ea02f6d7d261d798abba89735f760a8462454bf9879c342423f66",
+    "continuedSha256": "ce84613c671868ad23b10297bc09a094969945a4dbafd8d2510a7686ef746379",
+    "nativeTool": "Original MCP run_command/map.new",
+    "nativeWorkingFileSaveConfirmed": true,
+    "maps": 2,
+    "countries": 177,
+    "originalDatasetPreserved": true,
+    "clientVersion": "0.10.0",
+    "clientBundleSha256": "4de57da34a94be11e788ef7c8b99d1bb092e99d02d4205ad8bbbe992e839c06b",
+    "modelTurns": 0
+  },
+  "productionBrowser": {
+    "checkedAt": "2026-11-04T03:25:17.531Z",
+    "productionBff": true,
+    "registeredCrafts": 28,
+    "groups": [
+      {
+        "name": "Creative studio",
+        "count": 10
+      },
+      {
+        "name": "Drafting studio",
+        "count": 9
+      },
+      {
+        "name": "Analysis studio",
+        "count": 9
+      }
+    ],
+    "originalNativeBlank": true,
+    "originalSave": true,
+    "originalKeyboardSaveAs": true,
+    "newConfirmedAsset": true,
+    "exactSaveAsReload": true,
+    "temporaryNarrowingPreserved": true,
+    "dirtyAfterReload": false,
+    "pendingAfterReload": false,
+    "runtimeErrors": 0,
+    "consoleErrors": 0
+  },
+  "publicPresentation": {
+    "checkedAt": "2026-11-04T03:29:59.914Z",
+    "origin": "https://robyn.academy",
+    "desktopViewport": [
+      1440,
+      1000
+    ],
+    "mobileViewport": [
+      390,
+      844
+    ],
+    "metadata": {
+      "description": "Give your ideas wings with Robyn: 28 Crafts, browser tools and Brave Search in one desktop AI creative studio.",
+      "ogDescription": "Give your ideas wings with Robyn: 28 Crafts, browser tools and Brave Search in one desktop AI creative studio.",
+      "twitterDescription": "Give your ideas wings with Robyn: 28 Crafts, browser tools and Brave Search in one desktop AI creative studio.",
+      "socialImage": "https://robyn.academy/brand/robyn-social.png?v=28-28",
+      "socialAlt": "Robyn — Ideas have wings. An orange-breasted ASCII robin on warm paper. One Robyn, 28 Crafts.",
+      "crafts28": true,
+      "geoChapter": true,
+      "overflow": false
+    },
+    "mobile": {
+      "horizontalOverflow": false,
+      "previewFits": true,
+      "originalColour": true
+    },
+    "desktopVisualReviewed": true,
+    "mobileVisualReviewed": true,
+    "runtimeErrors": 0,
+    "assets": [
+      {
+        "path": "/brand/robyn-social.png?v=28-28",
+        "status": 200,
+        "authenticated": false,
+        "bytes": 169010,
+        "sha256": "4052953631737d0e5007ffdd72911c28c9b97435cf14f60ee86947410d09d266",
+        "exact": true
+      },
+      {
+        "path": "/brand/apps/geocraft.webp",
+        "status": 200,
+        "authenticated": false,
+        "bytes": 23480,
+        "sha256": "60f043223f3e0e002151ec19032ddc6d40b448836b53f2007012f1aba6b67722",
+        "exact": true
+      },
+      {
+        "path": "/artwork/editors/geocraft.png",
+        "status": 200,
+        "authenticated": false,
+        "bytes": 1068188,
+        "sha256": "40ebc64ecd6a448be82996d4d0095f7f772aa33e8b2cc9cfe33792fe9f1297fa",
+        "exact": true
+      },
+      {
+        "path": "/studio/starters/9/geocraft/Untitled%20map.rgis",
+        "status": 200,
+        "authenticated": true,
+        "bytes": 1167,
+        "sha256": "471f1f31d833e0770e1c5fd11a221c0e3c15fbf15f7dfccc01b184609d642db9",
+        "exact": true
+      }
+    ],
+    "screenshots": [
+      {
+        "originalPath": "artifacts/qa/geocraft-live/production-project.png",
+        "bytes": 526629,
+        "sha256": "a067ea70cd381dbe1132453afdefc584d821dfcff83f558a1ac05e357fb97e18"
+      },
+      {
+        "originalPath": "artifacts/qa/geocraft-live/production-native-blank.png",
+        "bytes": 279281,
+        "sha256": "b723d50b25794ce5d1f6854432e86f69a63948a1c71531a9a4f0d36a14fde1a7"
+      },
+      {
+        "originalPath": "artifacts/qa/geocraft-live/production-first-save.png",
+        "bytes": 318274,
+        "sha256": "f64a390f0dabdbb25bafe6705cfbc88a79256774a7f67c25d9513788863f694b"
+      },
+      {
+        "originalPath": "artifacts/qa/geocraft-live/production-save-as-reloaded.png",
+        "bytes": 302199,
+        "sha256": "34bb53c0eafc762353538cf68621f54107e00829361b25081db17cb6d0ebeafb"
+      },
+      {
+        "originalPath": "artifacts/qa/geocraft-live/home-desktop.png",
+        "bytes": 221440,
+        "sha256": "2952b92461238f19596ab9475280ff47143fcc0aa3d8a8f9be720db25d2886e2"
+      },
+      {
+        "originalPath": "artifacts/qa/geocraft-live/home-mobile.png",
+        "bytes": 61526,
+        "sha256": "f1c6b5487b72357ba47e5e99f9b785f1c39f1500b62baa6e717c4ecb659c9f7e"
+      },
+      {
+        "originalPath": "artifacts/qa/geocraft-live/home-geocraft-desktop.png",
+        "bytes": 423066,
+        "sha256": "397dffe68930ad6fbc07634dcf226e009469080bb3df870179b85541062405c0"
+      },
+      {
+        "originalPath": "artifacts/qa/geocraft-live/home-geocraft-mobile.png",
+        "bytes": 126216,
+        "sha256": "1de45a5099a8e30f40fde5a734c1d616e1a96c29b9399d8c194b77d06f45a8ff"
+      },
+      {
+        "originalPath": "artifacts/qa/geocraft-live/home-geocraft-mobile-original.png",
+        "bytes": 140176,
+        "sha256": "02938aea71719c221a7678f992e95549c865b37c67cbff32b2bc7c3e33a98943"
+      }
+    ]
+  },
+  "allowance": {
+    "policyMonthlyLimitMicros": 75000000,
+    "limitUnchanged": true,
+    "consumedMicros": 11297,
+    "remainingMicros": 74988703,
+    "unchangedDuringRollout": true,
+    "operatorCapWrites": 0,
+    "modelTurns": 0,
+    "syncState": "synced"
+  },
+  "cleanup": {
+    "checkedAt": "2026-11-04T03:30:04.519Z",
+    "maintenanceState": "cancelled",
+    "maintenanceDispatched": false,
+    "generation": 32,
+    "modelTurns": 0,
+    "taskCredentialsRevoked": true,
+    "revokedTaskCredentials": 1,
+    "activeOrUncertainAssignments": 0,
+    "unsettledMedia": 0,
+    "pendingOrDispatchedUpgrades": 0,
+    "browserControl": "agent",
+    "provisionedCanonicalWorkstations": 1,
+    "existingInstanceReused": true,
+    "instanceIdentitySha256": "e6ed8bc1c9bb6255ffc8fe636b5d612baa3fa0b379aecc8fa2e24edf5f375d96",
+    "template": "robyn-studio-0-4-1@1",
+    "imageDigest": "sha256:e49c72c877372a644cd0924e526ace01b1449a22d48a4a62229fadbe7134a19d",
+    "resourcesUnchanged": true,
+    "resources": {
+      "disk": 10,
+      "cpu": 4,
+      "memory": 16
+    },
+    "allowanceUnchanged": true,
+    "monthlyCapMicros": 75000000,
+    "monthlyConsumedMicros": 11297,
+    "monthlyRemainingMicros": 74988703,
+    "policySync": "synced",
+    "qaAuthSession": {
+      "checkedAt": "2026-11-04T03:30:05.786Z",
+      "scope": "Current generated QA Auth session only; no account or other session deletion.",
+      "signedOut": true,
+      "localCookieFileCleared": true
+    },
+    "taskBrowserClosed": true
+  },
+  "privateEvidence": [
+    {
+      "originalPath": "artifacts/qa/geocraft-live/inspection.private.json",
+      "bytes": 4280,
+      "sha256": "bd1df22695c8dbfe3e68364de15c72f2516ede722b395f0d83afce0466916252"
+    },
+    {
+      "originalPath": "artifacts/qa/geocraft-live/rollout-before.private.json",
+      "bytes": 1470,
+      "sha256": "59d937588192902a915567525a36337a2b499981f23e7b62efe76f88aaa506a8"
+    },
+    {
+      "originalPath": "artifacts/qa/geocraft-live/image-update.private.json",
+      "bytes": 544,
+      "sha256": "cffbd01e1ab23b2e69aaa2db0becf995061b8a1cf0384abe70ba63f5cac593c2"
+    },
+    {
+      "originalPath": "artifacts/qa/geocraft-live/home-before.private.json",
+      "bytes": 592930,
+      "sha256": "8c059d7e53541630fd63a0916b3a4caa3c0cb3eed5504353f9712ac334431dff"
+    },
+    {
+      "originalPath": "artifacts/qa/geocraft-live/home-after-boot-before-repair.private.json",
+      "bytes": 593388,
+      "sha256": "8cebe140e7c8debce497bfdefaaa41814940ebd2aa2cc2b1506fa68710ad65b4"
+    },
+    {
+      "originalPath": "artifacts/qa/geocraft-live/home-after-image.private.json",
+      "bytes": 593838,
+      "sha256": "9b1c0a463e720abc2f756d95ba0276c6943bce1bbc6c2625eb60d37ca399be8e"
+    },
+    {
+      "originalPath": "artifacts/qa/geocraft-live/image-file-differences.private.json",
+      "bytes": 12320,
+      "sha256": "6584c76deae576662746830cda95cc0dfd3c591838e564a6bbc03ba7cf846510"
+    },
+    {
+      "originalPath": "artifacts/qa/geocraft-live/profile-repair-intent.private.json",
+      "bytes": 995,
+      "sha256": "dbe6f2e2b1630d0469d8b824cef8381a796d32d2a5b873749f28fd5f1ce8d9c3"
+    },
+    {
+      "originalPath": "artifacts/qa/geocraft-live/maintenance.private.json",
+      "bytes": 434,
+      "sha256": "73de73f4926ae3d9b5749a10ac12a7baabef821de592d5a3dffc51d97fbbab62"
+    },
+    {
+      "originalPath": "artifacts/qa/geocraft-live/saved-package.private.json",
+      "bytes": 1997,
+      "sha256": "13ae0524959d316580979b43d156a6f7181e72c9250eafc27e8428f5bbb01de3"
+    },
+    {
+      "originalPath": "artifacts/qa/geocraft-live/production-save-as.private.json",
+      "bytes": 336,
+      "sha256": "527a49679e04c0689c8be8f8ef8d848aa2b0332dd3b6fe44307b0b83ad81fdc5"
+    },
+    {
+      "originalPath": "artifacts/qa/geocraft-live/native-continuation-intent.private.json",
+      "bytes": 343,
+      "sha256": "9c9eadb5061aed753e0a9ef44a5476aa5ed69c563e997d1112c75bd2161035e0"
+    },
+    {
+      "originalPath": "artifacts/qa/geocraft-live/budget-final.private.json",
+      "bytes": 880,
+      "sha256": "60d92527c5ad91509beee36cb708f46fc7f6c16f86fce717d45ce92a1e3be710"
+    }
+  ],
+  "limits": [
+    "No model-driven GeoCraft job was started. Original PlanCraft AI acceptance remains separately recorded.",
+    "The source record retains canonical and linked-data round trips, conflict and lost-acknowledgement checks. Production adds the named original-UI, real MCP/BFF and existing-instance native continuation checks.",
+    "Two historical Robyn profiles received extra platform boot defaults; verified pre-update settings were restored before client activation. Only managed credential refreshes remain, and task identity/MCP bindings and work files are preserved.",
+    "Private task/session identifiers, signed transfers, credentials and raw provider traces remain outside Git.",
+    "Publication and this controlled idle update do not establish broader active-work or lost-disk disaster recovery."
+  ]
+}
