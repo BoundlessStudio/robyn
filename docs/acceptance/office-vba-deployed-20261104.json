@@ -1,0 +1,506 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-04T22:27:50.089657+00:00",
+  "localDate": "2026-11-04",
+  "timezone": "America/Toronto",
+  "stage": "verified-production-release",
+  "scope": "Original Developer controls, macro execution and source edits in GridCraft, WordCraft and DeckCraft; actual installed native MCP saves, production browser saves, exact library revisions and native continuation. No model turn.",
+  "webCommit": "9e5782f77ad958e80584b415192e85ddb731a0b8",
+  "runtimeCommit": "6ce3d56099408fce531a9347fe124240efa799d7",
+  "webPullRequest": "https://github.com/BoundlessStudio/robyn/pull/69",
+  "runtimePullRequest": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/24",
+  "webDeployment": {
+    "provider": "Vercel",
+    "id": "6Maomh3hZ9TsiEG98QxexFGxwEud",
+    "url": "https://vercel.com/venatio-studios/robyn-creative-studio/6Maomh3hZ9TsiEG98QxexFGxwEud",
+    "production": "https://robyn.academy",
+    "status": "success"
+  },
+  "webCi": {
+    "productionPushRunId": 41923446156,
+    "pullRequestRunIds": [
+      41921648539,
+      41921660409
+    ],
+    "conclusion": "success",
+    "tests": 262,
+    "typecheck": true,
+    "build": true,
+    "highAuditFindings": 0,
+    "publicBrowsers": [
+      "chromium",
+      "firefox",
+      "webkit"
+    ],
+    "publicUiCombinations": 18
+  },
+  "runtimeCi": {
+    "productionPushRunId": 41920695245,
+    "conclusion": "success",
+    "tests": 165,
+    "linuxProfileTests": 4,
+    "highAuditFindings": 0
+  },
+  "migrationState": {
+    "changed": false,
+    "sqlApplied": [],
+    "sourceBaseline": "31 matching ledger entries through 0030, verified in the preceding Asset Bridge receipt",
+    "baselineReceipt": "asset-bridge-deployed-20261104.json"
+  },
+  "vba": {
+    "id": "office-vba",
+    "version": "0.1.0",
+    "source": {
+      "repository": "https://github.com/sirmmo/craft-vba",
+      "tag": "v0.1.5",
+      "commit": "155b224fb9857d3254c36b74634986036bb66951",
+      "version": "0.1.5",
+      "license": "MIT OR Apache-2.0"
+    },
+    "applications": [
+      "gridcraft",
+      "wordcraft",
+      "deckcraft"
+    ],
+    "execution": "Pinned interpreter library, original application macro commands and host callbacks",
+    "nativeStackBytes": 268435456,
+    "wasmStackBytes": 268435456,
+    "browserRuntime": {
+      "version": "0.1.0",
+      "sourceArchive": {
+        "url": "https://codeload.github.com/sirmmo/craft-vba/tar.gz/155b224fb9857d3254c36b74634986036bb66951",
+        "bytes": 147461,
+        "sha256": "003947cbceb63ecde6e86df4edb0a1d3fba450e4f15145ad9261821126c75da4"
+      },
+      "patch": {
+        "path": "patches/0001-browser-clock.patch",
+        "sha256": "6717c6d2af1d5b4c2ecab2ed5b3f6510488a58888e6f948957beb49bd3b719f1"
+      },
+      "sourceTreeSha256": "26189f70d2d2d5d64f3909d0db2634ea15561c4edfb2614b65d27f1b3c0aa134",
+      "change": "Use web-time 1.1.0 for new VBA project IDs and VBA date/time builtins in WebAssembly; the pinned interpreter and object models are retained."
+    }
+  },
+  "applications": {
+    "gridcraft": {
+      "source": {
+        "repository": "https://github.com/storytold/gridcraft",
+        "tag": "v0.13.0",
+        "commit": "43284377d2466037628e57d8ad0c891778fdb45c"
+      },
+      "editor": {
+        "adapterVersion": "0.4.1",
+        "sha256": "6a9ec9531ac52db8d800af2f64d7f303dc8cfebb7825be30971a38349085bf4e",
+        "url": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/gridcraft/v0.13.0-0.4.1/?robyn"
+      },
+      "nativeSourcePatchSha256": "a7ae4a81a77e9a82b2fb9e4b5cb75e39f9c233a6e99a69bab13a9a8fd64a8405",
+      "browserSourcePatch": {
+        "file": "patches/0002-robyn-browser-vba.patch",
+        "bytes": 502868,
+        "sha256": "f4af7be8387e3daf4f2322f53b5d255388f5301c9daa7e790eb1cac86b53d99e"
+      },
+      "nativeExecutables": {
+        "gridcraft": "8e9bd87e2c0e3c6fec42c81f9e3fe8fad913c3abb656171f3a705ca84412d63b",
+        "gridcraft-cli": "602151a6edde9b97e71d0765b581ff852cb6d6a9ca7ea804ff1f08ff6d52e10c"
+      }
+    },
+    "wordcraft": {
+      "source": {
+        "repository": "https://github.com/storytold/wordcraft",
+        "tag": "v0.12.0",
+        "commit": "3de6ff95af86c19d67030cd96dba15cd6a45a25e"
+      },
+      "editor": {
+        "adapterVersion": "0.4.1",
+        "sha256": "0b16489ffbf9093f340c3e325c78dac4ae27f738d9617940b103c53145ffa2ff",
+        "url": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/wordcraft/v0.12.0-0.4.1/?robyn"
+      },
+      "nativeSourcePatchSha256": "ed6b2efef140268ac3d5a99b8f011ae56a564b7eae98d59fa0d41f0b1d2153da",
+      "browserSourcePatch": {
+        "file": "patches/0002-robyn-browser-vba.patch",
+        "bytes": 589527,
+        "sha256": "36dfd033cc467492c2e1b74a1162526796c0334d3a066bc842a2afe30aef8d14"
+      },
+      "nativeExecutables": {
+        "wordcraft": "e966e9133403d631f65af71805a0dc3610033d8f30310fdefc634131d640113f",
+        "wordcraft-cli": "a71780edb16c8f897777bbb328bc652923e7b5410a19205a4271ed91df8d9dc2"
+      }
+    },
+    "deckcraft": {
+      "source": {
+        "repository": "https://github.com/storytold/deckcraft",
+        "tag": "v0.12.0",
+        "commit": "29f0f7772c47aa2bfb74fcbb0c4d3b1503300849"
+      },
+      "editor": {
+        "adapterVersion": "0.4.1",
+        "sha256": "a3310699f1246e66074c030aa1cb3d598ac7dc49362022751966bd45c087ce61",
+        "url": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/deckcraft/v0.12.0-0.4.1/?robyn"
+      },
+      "nativeSourcePatchSha256": "8304f9b2ce96549b371574d36a4c55a5437147a3b17bfd0ab08324a66ea1524d",
+      "browserSourcePatch": {
+        "file": "patches/0002-robyn-browser-vba.patch",
+        "bytes": 601910,
+        "sha256": "89f861c16c1ea16735f75a4e1b7320580242234320b3d8d827eaad4faae68ffd"
+      },
+      "nativeExecutables": {
+        "deckcraft": "885393d84d25b782eb4f96afa8256b38b1bc76dc7fd4cc5b38bc1db122268045",
+        "deckcraft-cli": "c036317273104aefb7192270d13f64b96c84b9dde1979e24ab29163b1dea384e"
+      }
+    }
+  },
+  "nativeImage": {
+    "version": "0.5.2",
+    "template": "robyn-studio-0-5-2@1",
+    "release": "sha256:97edcac5afa5108dbc485d65ebfc4133821c9d9efc116ff3391a8f9619f05149",
+    "resources": {
+      "cpu": 4,
+      "memory": 16,
+      "disk": 10
+    },
+    "applications": 28,
+    "previousReleases": [
+      {
+        "template": "robyn-studio-0-4-1@1",
+        "release": "sha256:e49c72c877372a644cd0924e526ace01b1449a22d48a4a62229fadbe7134a19d"
+      },
+      {
+        "template": "robyn-studio-0-3-0@1",
+        "release": "sha256:46c6006a4612aa3bd3786ef0c8029791b4d18d12d89bfb42443cdad82409a818"
+      },
+      {
+        "template": "robyn-studio-0-2-1@1",
+        "release": "sha256:c0f4f0707be549203a9d586e84fb8373732a04947389b390e231f9cc81ead9da"
+      },
+      {
+        "template": "robyn-studio-0-1-1@1",
+        "release": "sha256:23622a922f2ab7df9a45d6cfe64f42247954b31843e228ded96619ccefbbea0d"
+      }
+    ]
+  },
+  "nativeSourceFingerprint": "b5ed7a05470568248989e1bc6a3e4ff34a60591e4d8907ef7771a2f460f9cc7b",
+  "nativeBuild": {
+    "status": "succeeded",
+    "version": "0.5.2",
+    "applications": 28,
+    "officeExecutableHashesVerified": 6
+  },
+  "workstationClient": {
+    "version": "0.11.0",
+    "directory": "vendor/robyn-workstation/0.11.0-cac49235ca02",
+    "fingerprint": "cac49235ca02e9c5a3ab1c9c97ee93d9900049010f97362c843534fd717794f2",
+    "files": {
+      "studio-mcp.cjs": {
+        "bytes": 2303451,
+        "sha256": "0dc9cd46912bc37ad8ac9d3f834a0c17300047c343da3b6e943d556b9813e7c7"
+      },
+      "configure-hermes.py": {
+        "bytes": 10689,
+        "sha256": "9d3fccd28838b5bac69036b18e0f8e28627d5bc6fe9a57d537d93a0a14122c67"
+      },
+      "skills/bimcraft.md": {
+        "bytes": 2483,
+        "sha256": "50b126d71b29f9c6a992896b966fa850f984d8857d6f4288846d810490e6904e"
+      },
+      "skills/cadcraft.md": {
+        "bytes": 2033,
+        "sha256": "f06797192538fa358eb18e02ca241d7dc54ed67f15f1e984f3e197a406a5f351"
+      },
+      "skills/civilcraft.md": {
+        "bytes": 2635,
+        "sha256": "eea8e334f71dd3679cde8086985d30f08b809c7c9d6411063f0d316b6071a865"
+      },
+      "skills/dashcraft.md": {
+        "bytes": 3139,
+        "sha256": "dbaa3ca247b303fe68c97befc4ba75cc7c02a7c8bfcdc727e80e4f9f93318cb5"
+      },
+      "skills/datacraft.md": {
+        "bytes": 3445,
+        "sha256": "a7baffcee83d345abbf4bb55e423b6d12ce66f60ac0784a8c404b70c8344fed9"
+      },
+      "skills/deckcraft.md": {
+        "bytes": 3462,
+        "sha256": "3af743060ad135ce83745c196f77c3607cc4652b4755ea7cd626e3779d0699e8"
+      },
+      "skills/designcraft.md": {
+        "bytes": 1986,
+        "sha256": "03c03624fb33855e0e1568536ed8756b8a0776eb25e56228f0a41667fb88eeec"
+      },
+      "skills/detailcraft.md": {
+        "bytes": 2660,
+        "sha256": "824a547bb775b343188bf884ab743055e1fa81736e0d114289cf7a0802b94716"
+      },
+      "skills/effectcraft.md": {
+        "bytes": 2241,
+        "sha256": "19e97607142561bade2ce226dd0d421229b76f989526fe2930f8a9062f3db247"
+      },
+      "skills/figcraft.md": {
+        "bytes": 2065,
+        "sha256": "5e3ed3becf2db79dbd828744d5d85dcd7874f7a7247d878f267ea7f278384127"
+      },
+      "skills/filmcraft.md": {
+        "bytes": 3238,
+        "sha256": "0e636265041381d189cfdf0d608c7d0d75ab0e4aa0ff4ff1fffefd9f5144f962"
+      },
+      "skills/geocraft.md": {
+        "bytes": 3453,
+        "sha256": "84eff64e64a07f75eea6e051a41ef2795167b415cdc067687f81190cb72ef3f1"
+      },
+      "skills/gridcraft.md": {
+        "bytes": 3825,
+        "sha256": "3d7f020f5b2cfa1ce5d21fc8a7b85cf964156b8ef8737f8f8fc428aef3b17a42"
+      },
+      "skills/lightcraft.md": {
+        "bytes": 2632,
+        "sha256": "5ce555cb1fb30e75ee51bdb6b6ab170e6b2076dfb9c6ab3e236a13cb8a50bf28"
+      },
+      "skills/markupcraft.md": {
+        "bytes": 2629,
+        "sha256": "b9171f75e8309cf8f6bb9c72add9d6ab706696c00e9e5c77e104c68df59a0779"
+      },
+      "skills/matcraft.md": {
+        "bytes": 2578,
+        "sha256": "8d448523366a77ef2bf8385f1a64670fe44515f5f7a2328b5bd594d28c005fbc"
+      },
+      "skills/materialcraft.md": {
+        "bytes": 2855,
+        "sha256": "a1a102e1f0116ee68ca7264dba073e870f62472b7925f814f78efca926e1b067"
+      },
+      "skills/modelcraft.md": {
+        "bytes": 2520,
+        "sha256": "5d2c0a3c461c5e62003a3293148e99551865a9f193afc59ab64b3e29a75004bc"
+      },
+      "skills/partcraft.md": {
+        "bytes": 2892,
+        "sha256": "afecf2b2b238708cdc02cb20b34ca4e05d2c65cec7d8de276b3e549a04594a4d"
+      },
+      "skills/pdfcraft.md": {
+        "bytes": 3745,
+        "sha256": "a83ed785dfe68c59085a8405ff96357ceccc6809de5809db2019651d9fe43106"
+      },
+      "skills/photocraft.md": {
+        "bytes": 3618,
+        "sha256": "bb12de1e9f2af34698c6804b23ec27fedae12d5110830b02bac039ad1aa12f66"
+      },
+      "skills/plancraft.md": {
+        "bytes": 2291,
+        "sha256": "f0942d3f06ee3f8958b34dda603223d54ce8d8c21fd5c26f34891d187942ecd6"
+      },
+      "skills/solidcraft.md": {
+        "bytes": 1811,
+        "sha256": "d88fddcaae2d67f6558af45ca5b5fd2443628d7891b25c5028c19e12a10265db"
+      },
+      "skills/soundcraft.md": {
+        "bytes": 2428,
+        "sha256": "30e7d0c75a7832952ae1971fdb857a03bda99a04538351b6251bd129fadea7bf"
+      },
+      "skills/subcraft.md": {
+        "bytes": 2617,
+        "sha256": "c3f64a8607c86e214845ba849fe8bdbe293f6134f7baf2e3d186884c2277f1f3"
+      },
+      "skills/takeoffcraft.md": {
+        "bytes": 2855,
+        "sha256": "ff355a942ca38bace959b28a789f8d99d7d0b31a711ff475733e922b496684a8"
+      },
+      "skills/vectorcraft.md": {
+        "bytes": 3454,
+        "sha256": "0f0f7fbee79a3330d3701011a388ba54191ec1010b030e52490e4e8a70c2a73d"
+      },
+      "skills/wordcraft.md": {
+        "bytes": 3375,
+        "sha256": "31326645a25a2f53d6de5a659138653e2cd11c2c9e9849813ddd7f07638c0d25"
+      },
+      "skills/research.md": {
+        "bytes": 2255,
+        "sha256": "d42dd3e14a55b5756348a698528541f888fe529d25a04834ee4cbe4e008091cd"
+      }
+    }
+  },
+  "installation": {
+    "checkedAt": "2026-11-04T22:15:13.299Z",
+    "clientVersion": "0.11.0",
+    "clientBundleSha256": "0dc9cd46912bc37ad8ac9d3f834a0c17300047c343da3b6e943d556b9813e7c7",
+    "skills": 29,
+    "installedApplications": 28,
+    "nativeOfficeExecutableHashesVerified": 6,
+    "immutableTaskBindingVerified": true,
+    "modelTurns": 0
+  },
+  "preservation": {
+    "checkedAt": "2026-11-04T22:12:36.521Z",
+    "beforeFiles": 2211,
+    "byteIdenticalExistingFiles": 2154,
+    "bootChangedFiles": 57,
+    "allExistingWorkAndTaskFilesByteIdentical": true,
+    "categories": {
+      "Hermes runtime database": 7,
+      "profile managed credential refresh": 7,
+      "MCP schema cache": 7,
+      "cron runtime timestamps": 14,
+      "appended runtime logs": 14,
+      "rotated historical config backups": 3,
+      "Hermes configuration history rotation": 3,
+      "default managed model configuration": 1,
+      "image boot marker": 1
+    },
+    "profileConfigurations": 7,
+    "profileMcpBindingsUnchanged": true,
+    "onlyProfileChanges": "managed Agent37 model credential and endpoint refreshed; all original MCP bindings preserved",
+    "profileDatabasesIntegral": 7,
+    "defaultManagedProviderMatchesEnvironment": true,
+    "defaultHasNoTaskBinding": true
+  },
+  "profileRestoration": {
+    "originalProfileSettingsRestored": 7,
+    "originalMcpBindingsPreserved": true,
+    "taskConfigurationsByteIdentical": true,
+    "managedCredentialAndEndpointRefreshed": true,
+    "hermesConfigurationHistoryRotation": 6
+  },
+  "finalScope": {
+    "checkedAt": "2026-11-04T22:23:37.360Z",
+    "maintenanceState": "cancelled",
+    "maintenanceDispatched": false,
+    "generation": 34,
+    "modelTurns": 0,
+    "taskCredentialsRevoked": true,
+    "revokedTaskCredentials": 1,
+    "activeOrUncertainAssignments": 0,
+    "unsettledMedia": 0,
+    "pendingOrDispatchedUpgrades": 0,
+    "browserControl": "agent",
+    "existingInstanceReused": true,
+    "instanceIdentitySha256": "e6ed8bc1c9bb6255ffc8fe636b5d612baa3fa0b379aecc8fa2e24edf5f375d96",
+    "template": "robyn-studio-0-5-2@1",
+    "imageDigest": "sha256:97edcac5afa5108dbc485d65ebfc4133821c9d9efc116ff3391a8f9619f05149",
+    "resourcesUnchanged": true,
+    "resources": {
+      "disk": 10,
+      "cpu": 4,
+      "memory": 16
+    },
+    "allowanceUnchanged": true,
+    "policySync": "synced"
+  },
+  "productionBrowser": {
+    "checkedAt": "2026-11-04T22:21:49.357Z",
+    "production": true,
+    "editorVersion": "0.4.1",
+    "applications": [
+      {
+        "appId": "gridcraft",
+        "sha256": "758f75cff36b3c3008eb7cae8b993cefbd936aca02dbd66062e01487ec9e3322",
+        "originalDeveloperEdit": true,
+        "originalMacroRun": true,
+        "originalSaveConfirmed": true
+      },
+      {
+        "appId": "wordcraft",
+        "sha256": "73b45abb3f329b1402e2a9e5dfd672be750de607017a9832670c284797769a4b",
+        "originalDeveloperEdit": true,
+        "originalMacroRun": true,
+        "originalSaveConfirmed": true
+      },
+      {
+        "appId": "deckcraft",
+        "sha256": "684b3870d9b22491b73908bd9bb49691bb7f4f9ae38240fea56fb8810fc06105",
+        "originalDeveloperEdit": true,
+        "originalMacroRun": true,
+        "originalSaveConfirmed": true
+      }
+    ],
+    "consoleErrors": [],
+    "desktop": {
+      "width": 1280,
+      "height": 800
+    },
+    "noWrapperControlsAdded": true
+  },
+  "roundTrips": [
+    {
+      "appId": "gridcraft",
+      "nativeToBrowserSha256": "fe24fe6f6549e4c790e2a0c07cb2f160de67adaffcfb255e9dc2f1c41a987d23",
+      "browserSavedSha256": "758f75cff36b3c3008eb7cae8b993cefbd936aca02dbd66062e01487ec9e3322",
+      "nativeContinuedSha256": "758f75cff36b3c3008eb7cae8b993cefbd936aca02dbd66062e01487ec9e3322",
+      "finalMasterPath": "VBA-loop-gridcraft.xlsm",
+      "finalBytes": 5395,
+      "originalDeveloperControls": true,
+      "browserMacroExecuted": true,
+      "focusedEditorCtrlSSaved": true,
+      "browserSourceCommentPreservedInNativeModules": true,
+      "nativeMacroExecuted": true,
+      "productionPrivateLibraryConfirmed": true,
+      "exactSavedBytesVerified": true,
+      "modelTurns": 0
+    },
+    {
+      "appId": "wordcraft",
+      "nativeToBrowserSha256": "90fabee13075f62e2a3fc2e933b51e4923a621c0bee41e1a6229c43ca52b6e02",
+      "browserSavedSha256": "73b45abb3f329b1402e2a9e5dfd672be750de607017a9832670c284797769a4b",
+      "nativeContinuedSha256": "1c47a6d75d21ca125d87fc335ccd477dcefa6e146616090a2a4d7658cdbaf35b",
+      "finalMasterPath": "VBA-loop-wordcraft.docm",
+      "finalBytes": 7966,
+      "originalDeveloperControls": true,
+      "browserMacroExecuted": true,
+      "focusedEditorCtrlSSaved": true,
+      "browserSourceCommentPreservedInNativeModules": true,
+      "nativeMacroExecuted": true,
+      "productionPrivateLibraryConfirmed": true,
+      "exactSavedBytesVerified": true,
+      "modelTurns": 0
+    },
+    {
+      "appId": "deckcraft",
+      "nativeToBrowserSha256": "a01b91e1733f06997ee385f6011f3d5b7a9476d0213b93b8ef8b276a53c12ce9",
+      "browserSavedSha256": "684b3870d9b22491b73908bd9bb49691bb7f4f9ae38240fea56fb8810fc06105",
+      "nativeContinuedSha256": "d73cc7cfa9efb0be264bf1e35e1421b5ad0564709ef1a40555a4d6c5a7b018ba",
+      "finalMasterPath": "VBA-loop-deckcraft.pptm",
+      "finalBytes": 43270,
+      "originalDeveloperControls": true,
+      "browserMacroExecuted": true,
+      "focusedEditorCtrlSSaved": true,
+      "browserSourceCommentPreservedInNativeModules": true,
+      "nativeMacroExecuted": true,
+      "productionPrivateLibraryConfirmed": true,
+      "exactSavedBytesVerified": true,
+      "modelTurns": 0
+    }
+  ],
+  "publicDistribution": {
+    "catalogSha256": "b1ca2cfd9a22309a626452f72daa45fc7dc62b4f3e00918cee42bd303a1b5755",
+    "allHostedBytesVerified": true,
+    "releases": 107,
+    "files": 49420,
+    "uniqueObjects": 3185
+  },
+  "limits": [
+    "Pinned craft-vba language and Office object subsets",
+    "COM, Shell, external DLLs, UserForms and automatic document events unsupported",
+    "Macro-internal Document.Save cannot acknowledge a browser library write; use original application File Save"
+  ],
+  "screenshots": [
+    {
+      "path": "production-deckcraft-browser.png",
+      "sha256": "4dc6054697837797cecfd6de623b9e5a5e4c1ec5dbf795b1d94fc86efcc125eb"
+    },
+    {
+      "path": "production-deckcraft-result.png",
+      "sha256": "296bf11da87a3c8ea96d875ca3eef9b53e0d3ed3590dfe6c7a80882c1ea07bad"
+    },
+    {
+      "path": "production-deckcraft-vbe-save.png",
+      "sha256": "4012d2b5d4901607471c5493831479afc50f747b57e10184e8d0917cccd59270"
+    },
+    {
+      "path": "production-gridcraft-browser.png",
+      "sha256": "cefe580c02cde2fb3e30ab36bdfdd489ac2166f464a54c86c5a40d3a5e28884b"
+    },
+    {
+      "path": "production-wordcraft-browser.png",
+      "sha256": "30ab36f47fa1ba913778333b4cdb282aa0f27707d5b01d8603892f0e689aa2ee"
+    },
+    {
+      "path": "production-wordcraft-vbe-save.png",
+      "sha256": "b867a0d6dd5446a3aa3615ec323e6947c2d5417d4eaceef1f970590a52147a72"
+    }
+  ]
+}
