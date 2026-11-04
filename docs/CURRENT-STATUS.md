@@ -1,6 +1,12 @@
 # Current pilot acceptance
 
-Updated November 3, 2026 (Toronto). This page indexes recorded release evidence and remaining gaps. [Architecture and scope](ARCHITECTURE.md) describes the current system; [operations](OPERATIONS.md) owns recovery procedures. Documentation maintenance does not imply a new deployment or a fresh live check. Earlier release summaries and the R01–R18 review are in the [archive](archive/README.md).
+Updated November 4, 2026 (Toronto). This page indexes recorded release evidence and remaining gaps. [Architecture and scope](ARCHITECTURE.md) describes the current system; [operations](OPERATIONS.md) owns recovery procedures. Documentation maintenance does not imply a new deployment or a fresh live check. Earlier release summaries and the R01–R18 review are in the [archive](archive/README.md).
+
+## Asset Bridge, local source acceptance
+
+Asset Bridge adds complete directory/file snapshots and browser-side ZIP extraction to Assets. Originals, relative paths, empty files and exact revisions are available through web downloads and the existing project-scoped Robyn tools. The owner-selected denylist blocks executable binaries and installers; scripts remain allowed. Every current Craft native extension passes the compatibility regression. Local verification covers real component/request transitions and direct TUS bytes, lost creation/commit replies, reselection after reload, ZIP integrity/path/expansion failures, BFF and database ownership, immutable commits and the runtime client's exact collection materialization. ZIP upload/refusal passes Chromium, Firefox and WebKit; the desktop dialog was visually reviewed.
+
+This is not deployed acceptance. The rollout requires checked incremental migration **0030_asset_bridge.sql**, the web changes and a new immutable workstation client **0.10.1** (locally built SHA-256 `0863937ecc01780f981e413f67a07e9a107a5f6b15a162d7aa148ef6184d4873`). The deployed client remains **0.10.0**, which rejects zero-byte input files. No production migration, Storage write, workstation update or model turn was performed for this source work. Apply the normal owned-idle maintenance and paired release procedure before claiming hosted readiness.
 
 ## GeoCraft, deployed November 3
 

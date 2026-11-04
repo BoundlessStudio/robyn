@@ -74,21 +74,21 @@ function ProjectAsset({projectId,assetId,initialRevisionId}:{projectId:string;as
       await saved(result);
     }catch(reason){setError((reason as Error).message);}finally{setBusy(false);}
   }
-  const app=studioTools.find(row=>row.id===asset?.app_id),native=!asset?.asset_kind||asset.asset_kind==="native";
-  const preview=pkg?.files.find(file=>file.role==="preview"&&/^(image|audio|video)\//.test(file.mimeType))??pkg?.files.find(file=>file.role==="export"&&/^(image|audio|video)\//.test(file.mimeType))??(!native?pkg?.files.find(file=>file.role==="master"):undefined);
+  const app=studioTools.find(row=>row.id===asset?.app_id),native=!asset?.asset_kind||asset.asset_kind==="native",collection=asset?.asset_kind==="file";
+  const preview=pkg?.files.find(file=>file.role==="preview"&&/^(image|audio|video)\//.test(file.mimeType))??pkg?.files.find(file=>file.role==="export"&&/^(image|audio|video)\//.test(file.mimeType))??(!native&&!collection?pkg?.files.find(file=>file.role==="master"):undefined);
   const exports=pkg?.files.filter(file=>file.role==="export")??[];
   return <div className="studio-page library-asset-page">
     <Link className="library-back" href={`/dashboard/projects/${projectId}/library`}><ArrowLeft size={15}/>Back to assets</Link>
     {error&&<p role="alert" className="studio-error">{error}</p>}
     {notice&&<p role="status" className="studio-success">{notice}</p>}
     {!asset?(!error&&<p role="status">Loading asset…</p>):<>
-      <header className="studio-page-heading"><div><span className="studio-eyebrow">{app?.name??`${asset.asset_kind} SOURCE`}</span><h1>{asset.name}</h1><DocumentName asset={asset} onSaved={setAsset}/></div><Link className="studio-button primary" href={`/dashboard/projects/${asset.project_id}?${new URLSearchParams({asset:asset.id,...(revisionId?{revision:revisionId}:{})})}`}>Open {app?`in ${app.name}`:"in project"}<ArrowUpRight size={16}/></Link></header>
+      <header className="studio-page-heading"><div><span className="studio-eyebrow">{app?.name??(collection?"FILES & FOLDERS":`${asset.asset_kind} SOURCE`)}</span><h1>{asset.name}</h1><DocumentName asset={asset} onSaved={setAsset}/></div>{collection?<Link className="studio-button primary" href={`/dashboard/projects/${asset.project_id}/employees?${new URLSearchParams({asset:asset.id,...(revisionId?{revision:revisionId}:{})})}`}>Use with Robyn<ArrowUpRight size={16}/></Link>:<Link className="studio-button primary" href={`/dashboard/projects/${asset.project_id}?${new URLSearchParams({asset:asset.id,...(revisionId?{revision:revisionId}:{})})}`}>Open {app?`in ${app.name}`:"in project"}<ArrowUpRight size={16}/></Link>}</header>
       <div className="library-asset-layout">
         <section className="library-asset-main" aria-label="Asset files">
-          <div className="library-preview">{preview&&revisionId?<SavedMedia key={`${revisionId}:${preview.path}`} revisionId={revisionId} file={preview} name={asset.name}/>:<div className="library-preview-placeholder"><AppIcon app={app}/><p>{pkg?"Native document · ready to open":revisionId?"Loading saved files…":"Awaiting first saved revision"}</p></div>}</div>
-          <section className="library-file-section"><div className="library-section-heading"><div><h2>{native?"Exports":"Original & editing copies"}</h2><p className="studio-muted">{native?"Use these files in compatible Crafts or download them to share.":"The original stays unchanged. Use Place from studio in a compatible Craft."}</p></div>{native&&pkg&&revisionId===asset.current_revision_id&&<button className="studio-button" disabled={busy} onClick={()=>setAddingExports(true)}><Plus size={15}/>Add exports</button>}</div>
+          <div className="library-preview">{preview&&revisionId?<SavedMedia key={`${revisionId}:${preview.path}`} revisionId={revisionId} file={preview} name={asset.name}/>:<div className="library-preview-placeholder">{collection?<File size={32}/>:<AppIcon app={app}/>}<p>{pkg?(collection?"Saved files · available to you and Robyn":"Native document · ready to open"):revisionId?"Loading saved files…":"Awaiting first saved revision"}</p></div>}</div>
+          <section className="library-file-section"><div className="library-section-heading"><div><h2>{collection?"Uploaded files":native?"Exports":"Original & editing copies"}</h2><p className="studio-muted">{collection?"Original bytes and relative paths are preserved. Robyn can open this exact saved collection.":native?"Use these files in compatible Crafts or download them to share.":"The original stays unchanged. Use Place from studio in a compatible Craft."}</p></div>{collection&&<button className="studio-button" disabled={!pkg||busy} onClick={()=>void exportPackage()}><Download size={15}/>Download folder</button>}{native&&pkg&&revisionId===asset.current_revision_id&&<button className="studio-button" disabled={busy} onClick={()=>setAddingExports(true)}><Plus size={15}/>Add exports</button>}</div>
             {native&&!exports.length&&<p className="studio-muted">No exports saved yet. Export from {app?.name??"your Craft"}, then add the result here.</p>}
-            <FileList files={native?exports:pkg?.files.filter(file=>file.role!=="preview")??[]} revisionId={revisionId}/>
+            <FileList files={native?exports:pkg?.files.filter(file=>file.role!=="preview")??[]} revisionId={revisionId} showRoles={!collection}/>
           </section>
           {native&&<section className="library-file-section"><div className="library-section-heading"><div><h2>Native package</h2><p className="studio-muted">Keep the document and its linked files together when opening it elsewhere.</p></div><button className="studio-button" disabled={!pkg||busy} onClick={()=>void exportPackage()}><Download size={15}/>Download package</button></div><FileList files={pkg?.files.filter(file=>file.role!=="export")??[]} revisionId={revisionId}/></section>}
           {busy&&status&&<div role="status" className="studio-note">{status}<button className="studio-button" onClick={()=>download.current?.abort()}>Cancel download</button></div>}
@@ -109,6 +109,6 @@ function ProjectAsset({projectId,assetId,initialRevisionId}:{projectId:string;as
   </div>;
 }
 
-function FileList({files,revisionId}:{files:OpenAssetResult["files"];revisionId?:string|null}){
-  return <ul className="library-file-list">{files.map(file=><li key={file.path}><File size={18}/><div><strong>{file.path}</strong><small>{file.role} · {file.bytes<1024**2?`${(file.bytes/1024).toFixed(1)} KB`:`${(file.bytes/1024**2).toFixed(1)} MB`}</small></div>{revisionId&&<a className="studio-button" href={savedFileUrl(revisionId,file.path)} download aria-label={`Download ${file.path}`}><Download size={15}/>Download</a>}</li>)}</ul>;
+function FileList({files,revisionId,showRoles=true}:{files:OpenAssetResult["files"];revisionId?:string|null;showRoles?:boolean}){
+  return <ul className="library-file-list">{files.map(file=><li key={file.path}><File size={18}/><div><strong>{file.path}</strong><small>{showRoles&&`${file.role} · `}{file.bytes<1024**2?`${(file.bytes/1024).toFixed(1)} KB`:`${(file.bytes/1024**2).toFixed(1)} MB`}</small></div>{revisionId&&<a className="studio-button" href={savedFileUrl(revisionId,file.path)} download aria-label={`Download ${file.path}`}><Download size={15}/>Download</a>}</li>)}</ul>;
 }

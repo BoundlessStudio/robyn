@@ -164,12 +164,12 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
         if(state.failCreationReply){state.failCreationReply=false;return route.abort('failed');}
         return route.fulfill({json:{revisionId:revision.id}});
       }
-      if(url.pathname==='/api/studio/sources'){
+      if(url.pathname==='/api/studio/sources'||url.pathname==='/api/studio/imports'){
         assert.equal(input.projectId,projectId);
         const id=input.creationId;
         let revision=[...state.revisions.values()].find(row=>row.assetId===id);
         if(!revision){
-          const kind=input.package.files.find(file=>file.role==='master').mimeType.split('/')[0];
+          const kind=url.pathname==='/api/studio/imports'?'file':input.package.files.find(file=>file.role==='master').mimeType.split('/')[0];
           state.assets.set(id,{id,project_id:projectId,app_id:null,name:input.name,asset_kind:kind,current_revision_id:null,created_at:project.created_at});
           revision={id:randomUUID(),assetId:id,state:'uploading',revision_number:1,created_at:project.created_at,package:input.package};
           state.revisions.set(revision.id,revision);
