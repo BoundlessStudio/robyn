@@ -1,0 +1,274 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-04T21:23:50.336174+00:00",
+  "stage": "verified-source-and-hosted-roundtrip",
+  "scope": "Original Developer controls in GridCraft, WordCraft and DeckCraft; native Linux GUI and CLI, browser WASM, owner-authenticated BFF/private-library revisions, exact reload and native continuation. Production workstation rollout recorded separately.",
+  "vba": {
+    "id": "office-vba",
+    "version": "0.1.0",
+    "source": {
+      "repository": "https://github.com/sirmmo/craft-vba",
+      "tag": "v0.1.5",
+      "commit": "155b224fb9857d3254c36b74634986036bb66951",
+      "version": "0.1.5",
+      "license": "MIT OR Apache-2.0"
+    },
+    "applications": [
+      "gridcraft",
+      "wordcraft",
+      "deckcraft"
+    ],
+    "execution": "Pinned interpreter library, original application macro commands and host callbacks",
+    "nativeStackBytes": 268435456,
+    "wasmStackBytes": 268435456,
+    "browserRuntime": {
+      "version": "0.1.0",
+      "sourceArchive": {
+        "url": "https://codeload.github.com/sirmmo/craft-vba/tar.gz/155b224fb9857d3254c36b74634986036bb66951",
+        "bytes": 147461,
+        "sha256": "003947cbceb63ecde6e86df4edb0a1d3fba450e4f15145ad9261821126c75da4"
+      },
+      "patch": {
+        "path": "patches/0001-browser-clock.patch",
+        "sha256": "6717c6d2af1d5b4c2ecab2ed5b3f6510488a58888e6f948957beb49bd3b719f1"
+      },
+      "sourceTreeSha256": "26189f70d2d2d5d64f3909d0db2634ea15561c4edfb2614b65d27f1b3c0aa134",
+      "change": "Use web-time 1.1.0 for new VBA project IDs and VBA date/time builtins in WebAssembly; the pinned interpreter and object models are retained."
+    }
+  },
+  "applications": {
+    "gridcraft": {
+      "source": {
+        "repository": "https://github.com/storytold/gridcraft",
+        "tag": "v0.13.0",
+        "commit": "43284377d2466037628e57d8ad0c891778fdb45c"
+      },
+      "editor": {
+        "adapterVersion": "0.4.1",
+        "sha256": "6a9ec9531ac52db8d800af2f64d7f303dc8cfebb7825be30971a38349085bf4e",
+        "url": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/gridcraft/v0.13.0-0.4.1/?robyn"
+      },
+      "nativeSourcePatchSha256": "a7ae4a81a77e9a82b2fb9e4b5cb75e39f9c233a6e99a69bab13a9a8fd64a8405",
+      "browserSourcePatch": {
+        "file": "patches/0002-robyn-browser-vba.patch",
+        "bytes": 502868,
+        "sha256": "f4af7be8387e3daf4f2322f53b5d255388f5301c9daa7e790eb1cac86b53d99e"
+      },
+      "nativeExecutables": {
+        "gridcraft": "8e9bd87e2c0e3c6fec42c81f9e3fe8fad913c3abb656171f3a705ca84412d63b",
+        "gridcraft-cli": "602151a6edde9b97e71d0765b581ff852cb6d6a9ca7ea804ff1f08ff6d52e10c"
+      }
+    },
+    "wordcraft": {
+      "source": {
+        "repository": "https://github.com/storytold/wordcraft",
+        "tag": "v0.12.0",
+        "commit": "3de6ff95af86c19d67030cd96dba15cd6a45a25e"
+      },
+      "editor": {
+        "adapterVersion": "0.4.1",
+        "sha256": "0b16489ffbf9093f340c3e325c78dac4ae27f738d9617940b103c53145ffa2ff",
+        "url": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/wordcraft/v0.12.0-0.4.1/?robyn"
+      },
+      "nativeSourcePatchSha256": "ed6b2efef140268ac3d5a99b8f011ae56a564b7eae98d59fa0d41f0b1d2153da",
+      "browserSourcePatch": {
+        "file": "patches/0002-robyn-browser-vba.patch",
+        "bytes": 589527,
+        "sha256": "36dfd033cc467492c2e1b74a1162526796c0334d3a066bc842a2afe30aef8d14"
+      },
+      "nativeExecutables": {
+        "wordcraft": "e966e9133403d631f65af71805a0dc3610033d8f30310fdefc634131d640113f",
+        "wordcraft-cli": "a71780edb16c8f897777bbb328bc652923e7b5410a19205a4271ed91df8d9dc2"
+      }
+    },
+    "deckcraft": {
+      "source": {
+        "repository": "https://github.com/storytold/deckcraft",
+        "tag": "v0.12.0",
+        "commit": "29f0f7772c47aa2bfb74fcbb0c4d3b1503300849"
+      },
+      "editor": {
+        "adapterVersion": "0.4.1",
+        "sha256": "a3310699f1246e66074c030aa1cb3d598ac7dc49362022751966bd45c087ce61",
+        "url": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/deckcraft/v0.12.0-0.4.1/?robyn"
+      },
+      "nativeSourcePatchSha256": "8304f9b2ce96549b371574d36a4c55a5437147a3b17bfd0ab08324a66ea1524d",
+      "browserSourcePatch": {
+        "file": "patches/0002-robyn-browser-vba.patch",
+        "bytes": 601910,
+        "sha256": "89f861c16c1ea16735f75a4e1b7320580242234320b3d8d827eaad4faae68ffd"
+      },
+      "nativeExecutables": {
+        "deckcraft": "885393d84d25b782eb4f96afa8256b38b1bc76dc7fd4cc5b38bc1db122268045",
+        "deckcraft-cli": "c036317273104aefb7192270d13f64b96c84b9dde1979e24ab29163b1dea384e"
+      }
+    }
+  },
+  "localValidation": {
+    "runtimeTests": 165,
+    "typecheck": true,
+    "webBuild": true,
+    "targetedNativeImportTests": 17,
+    "componentTests": 4,
+    "nativeInstalledApplications": 28,
+    "nativeExecutableHashes": 6,
+    "deterministicNativeDistributions": 3,
+    "publicUi": {
+      "browsers": [
+        "chromium",
+        "firefox",
+        "webkit"
+      ],
+      "pageViewportEngineCombinations": 18,
+      "keyboardFocusCasesPassed": 14,
+      "platformCasesUnverified": 4
+    }
+  },
+  "controls": [
+    "Developer",
+    "Visual Basic module insert/select/edit/save/close",
+    "Enable Content",
+    "Macros/Run",
+    "File Save",
+    "Ctrl+S",
+    "Save As"
+  ],
+  "cases": {
+    "macrosInitiallyDisabled": true,
+    "newProjectAndDateTimeBuiltins": true,
+    "importedMacroProjectsPreserved": true,
+    "switchedModuleDraftsPreserved": true,
+    "focusedEditorSave": "Browser Ctrl+S from the focused original VBA editor, including WordCraft",
+    "failedMacroRollback": true,
+    "conflictPreservesSeparateRevision": true,
+    "lostAcknowledgementUsesSameIdentity": true,
+    "laterEditsRemainDirty": true,
+    "exactCommittedByteHashes": true,
+    "originalNativeGuiSave": true,
+    "nativeContinuation": true
+  },
+  "nativeDateContinuation": [
+    {
+      "appId": "gridcraft",
+      "browserNewProjectMacroAndDatesPreserved": true,
+      "nativeMacroExecuted": true,
+      "nativeSaveReopen": true,
+      "inputSha256": "39429d88a0aa7a0c42fc751057c1aa384ee33bbdf669dc48c8b109ce66312c3f",
+      "continuedSha256": "39429d88a0aa7a0c42fc751057c1aa384ee33bbdf669dc48c8b109ce66312c3f"
+    },
+    {
+      "appId": "wordcraft",
+      "browserNewProjectMacroAndDatesPreserved": true,
+      "nativeMacroExecuted": true,
+      "nativeSaveReopen": true,
+      "inputSha256": "edab0d13eb861ddad0740b01a6132186baaf2e272c8ae02af248d63a39e097e7",
+      "continuedSha256": "1062cd1baf09ec730fa785c6054a7ee481a63b77563ce69ad34118007e5aa648"
+    },
+    {
+      "appId": "deckcraft",
+      "browserNewProjectMacroAndDatesPreserved": true,
+      "nativeMacroExecuted": true,
+      "nativeSaveReopen": true,
+      "inputSha256": "8fe8007c4792ed79a7d6003a235ee202621270bd6ebcbcd85f7b42b95f4916e8",
+      "continuedSha256": "f47ec55f2c219fd41c4a7fc93014d1e1cfbe889f675048ed13b6a2f6bdbad5c8"
+    }
+  ],
+  "publicDistribution": {
+    "catalogSha256": "b1ca2cfd9a22309a626452f72daa45fc7dc62b4f3e00918cee42bd303a1b5755",
+    "allHostedBytesVerified": true,
+    "releases": 107,
+    "files": 49420,
+    "uniqueObjects": 3185
+  },
+  "limits": [
+    "Pinned craft-vba language and Office object subsets",
+    "COM, Shell, external DLLs, UserForms and automatic document events unsupported",
+    "Macro-internal Document.Save cannot acknowledge a browser library write; use original application File Save"
+  ],
+  "screenshots": [
+    {
+      "path": "native-deck-launch.png",
+      "sha256": "e6e60b163e3b645004294c248885e54ab2b989b54ad11c96a01b56d37610dc63"
+    },
+    {
+      "path": "native-deck-macros-ready.png",
+      "sha256": "f31aef4b87ec943c1db16209f8f48f78299a6cca6bb8dd0e1feee6b18f486fec"
+    },
+    {
+      "path": "native-deck-macros.png",
+      "sha256": "ac47b386e26d6ff005723131dbeb173117bae0b0a99fc039053ea60fcbf1eea8"
+    },
+    {
+      "path": "native-deck-result.png",
+      "sha256": "3fa1c709eade8a2724c757a9b4499b1e4697fc12821d640e5baba736bf2bbb64"
+    },
+    {
+      "path": "native-grid-enabled-macros.png",
+      "sha256": "bbf2bb50ac21670fc11b6c963ace057e73aa426e1e8dde56858d8a7264604867"
+    },
+    {
+      "path": "native-grid-gl.png",
+      "sha256": "9c351847ba88854c9c4ca87dc65c60991915fc73bae4d0fe8f30d1f21308055b"
+    },
+    {
+      "path": "native-grid-launch.png",
+      "sha256": "1ee3a19c2b86f9269f41a7074e09cbe7475b8c8f8c52bf84439e82521c84a136"
+    },
+    {
+      "path": "native-grid-macros.png",
+      "sha256": "4ff315fd7b2c1b63a391df5f4a765a1f6f65d12d658dfe91b18ec4715d2e32d9"
+    },
+    {
+      "path": "native-grid-result.png",
+      "sha256": "1fe687b872ab0b3fa9810d2300cc7b33718cc9699002f6f6ddf39e5fa33fb0d0"
+    },
+    {
+      "path": "native-word-launch.png",
+      "sha256": "220c911ca97c071510691fce1fbc7e8fbdcccf8732557f57293938bf6b9e515f"
+    },
+    {
+      "path": "native-word-macros-final.png",
+      "sha256": "64da0c679b1c6ed963c83d2a737f4d60a6d08c1daa154bfb997143214e0872be"
+    },
+    {
+      "path": "native-word-macros-ready.png",
+      "sha256": "a240fa26c9042560aeb438867f2a577edecf1ae1a1f079e3e7140c722b8b36e1"
+    },
+    {
+      "path": "native-word-macros.png",
+      "sha256": "a240fa26c9042560aeb438867f2a577edecf1ae1a1f079e3e7140c722b8b36e1"
+    },
+    {
+      "path": "native-word-result.png",
+      "sha256": "ab41b4ae20aed3dfca733fdf36e726437043dafd89760d0e92ab91a8e06cf7d0"
+    },
+    {
+      "path": "hosted-wordcraft-vbe.png",
+      "sha256": "bc0a90389b7c0a24813dfdd8e5b4c928a2cbdb019a8d3adf0b9483f4ca240b0b"
+    },
+    {
+      "path": "hosted-deckcraft-confirmed.png",
+      "sha256": "634250dfc80fe69ecb05700909e682ab378032c6aa41016d1295a785b7d94b7a"
+    },
+    {
+      "path": "gridcraft-new-confirmed.png",
+      "sha256": "fded21eeb4924ac0250cf4ac9d7a2e64d3294a6f7187705a3d6db808821aaccb"
+    },
+    {
+      "path": "wordcraft-new-confirmed.png",
+      "sha256": "7d57d9dedd63c55e154dd59574cb83f0038c7474a996776f2a3fe8fbd9792eed"
+    },
+    {
+      "path": "deckcraft-new-confirmed.png",
+      "sha256": "dacbe4474b39464de30f1faf13ad96eed4ad2f6da261be700bfe414e87c6114c"
+    }
+  ],
+  "runtimeCommit": "6ce3d56099408fce531a9347fe124240efa799d7",
+  "publishedNativeImage": {
+    "version": "0.5.2",
+    "template": "robyn-studio-0-5-2@1",
+    "digest": "sha256:97edcac5afa5108dbc485d65ebfc4133821c9d9efc116ff3391a8f9619f05149",
+    "sourceFingerprint": "b5ed7a05470568248989e1bc6a3e4ff34a60591e4d8907ef7771a2f460f9cc7b",
+    "scope": "Published full-source installation; owned workstation rollout recorded separately"
+  }
+}

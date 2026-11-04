@@ -33,6 +33,8 @@ The public homepage is a continuous, scroll-driven ASCII robin tour with twenty-
 
 Independent [Craft manifests](../src/studio/apps/) own identity, skill instructions, formats, capabilities, editor/native pins and readiness. Registry generation supplies discovery and routing. The source catalog registers 28 accepted integrations, including GeoCraft based on RustGIS. Adding a Craft adds a tool and an on-demand skill to Robyn. It does not create another employee.
 
+GridCraft, WordCraft and DeckCraft use pinned `sirmmo/craft-vba` 0.1.5 through their original Developer controls and document hosts. Macros begin disabled and require per-document consent. Source drafts are captured by the original File Save and keyboard shortcuts; browser saves become clean only after an immutable private-library revision is confirmed. Macro-enabled `.xlsm`, `.docm` and `.pptm` inputs preserve VBA for native continuation; DeckCraft also preserves it in `.deckcraft`. The interpreter supports its documented language and Office object subsets. COM, external DLLs, Shell, UserForms and automatic document events remain unsupported. Native images, browser compatibility patches and build pins live in the companion runtime. [Source acceptance](acceptance/office-vba-source-20261104.json) separates tested round trips from deployment.
+
 The registry's `studio` and `order` fields define the launcher and Skills directory:
 
 | Studio | Applications, in display order |
