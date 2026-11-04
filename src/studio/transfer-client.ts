@@ -36,15 +36,15 @@ function uploadFile(file:Blob,transfer:Transfer,endpoint:string,bucket:string,si
 }
 
 /** Check the complete selection before creating an asset or freezing a retry. */
-export async function describeLocalPackage(input:{files:LocalPackageFile[];dependencies:AssetRef[];message:string;signal?:AbortSignal;onProgress?:(message:string,percent:number)=>void}):Promise<RevisionPackage>{
+export async function describeLocalPackage(input:{files:LocalPackageFile[];dependencies:AssetRef[];message:string;bridgeImport?:{projectId:string;name:string};signal?:AbortSignal;onProgress?:(message:string,percent:number)=>void}):Promise<RevisionPackage>{
   const files=[];
   for(const file of input.files){input.onProgress?.(`Checking ${file.path}…`,0);files.push({path:file.path,role:file.role,bytes:file.file.size,mimeType:file.file.type||"application/octet-stream",sha256:await digestFile(file.file,input.signal)});}
-  return validateRevisionPackage({files,dependencies:input.dependencies,message:input.message});
+  return validateRevisionPackage({files,dependencies:input.dependencies,message:input.message},{allowEmptyFiles:Boolean(input.bridgeImport)});
 }
 
 /** File bytes go straight from the browser to private Storage. Local resume
  * state contains a revision ID, never a credential or a copy of the media. */
-export async function savePackage(input:{assetId:string;expectedBaseRevisionId:string|null;files:LocalPackageFile[];dependencies:AssetRef[];message:string;sourceImport?:{projectId:string;name:string};blankStart?:{projectId:string;templateId:string};signal?:AbortSignal;onProgress?:(message:string,percent:number)=>void}):Promise<SaveResult> {
+export async function savePackage(input:{assetId:string;expectedBaseRevisionId:string|null;files:LocalPackageFile[];dependencies:AssetRef[];message:string;sourceImport?:{projectId:string;name:string};bridgeImport?:{projectId:string;name:string};blankStart?:{projectId:string;templateId:string};signal?:AbortSignal;onProgress?:(message:string,percent:number)=>void}):Promise<SaveResult> {
   const pkg=await describeLocalPackage(input),files=pkg.files;
   const fingerprint=sha256(new TextEncoder().encode(JSON.stringify({base:input.expectedBaseRevisionId,pkg})));
   const key=`robyn-save:${input.assetId}:${Array.from(fingerprint,b=>b.toString(16).padStart(2,"0")).join("")}`;
@@ -56,13 +56,18 @@ export async function savePackage(input:{assetId:string;expectedBaseRevisionId:s
     if(prior?.state==="committed"||prior?.state==="conflict"){try{localStorage.removeItem(key);}catch{}return{assetId:input.assetId,revisionId,status:prior.state};}
     if(!prior||prior.state!=="uploading")revisionId=null;
   }
-  if(!revisionId){const revision=await apiFetch<{revisionId:string}>(input.blankStart?"/api/studio/starters":input.sourceImport?"/api/studio/sources":`/api/studio/assets/${input.assetId}/revisions`,{method:"POST",body:JSON.stringify(input.blankStart?{...input.blankStart,creationId:input.assetId,package:pkg}:input.sourceImport?{...input.sourceImport,creationId:input.assetId,package:pkg}:{expectedBaseRevisionId:input.expectedBaseRevisionId,package:pkg}),signal:input.signal});revisionId=revision.revisionId;try{localStorage.setItem(key,revisionId);}catch{}}
+  if(!revisionId){
+    const creation=input.blankStart??input.sourceImport??input.bridgeImport;
+    const endpoint=input.blankStart?"/api/studio/starters":input.sourceImport?"/api/studio/sources":input.bridgeImport?"/api/studio/imports":`/api/studio/assets/${input.assetId}/revisions`;
+    const revision=await apiFetch<{revisionId:string}>(endpoint,{method:"POST",body:JSON.stringify(creation?{...creation,creationId:input.assetId,package:pkg}:{expectedBaseRevisionId:input.expectedBaseRevisionId,package:pkg}),signal:input.signal});
+    revisionId=revision.revisionId;try{localStorage.setItem(key,revisionId);}catch{}
+  }
   const ticket=await apiFetch<{bucket:string;resumableEndpoint:string;transfers:Transfer[]}>(`/api/studio/revisions/${revisionId}/transfers`,{method:"POST",body:"{}",signal:input.signal});
   const total=files.reduce((sum,file)=>sum+file.bytes,0);let completed=0;
   for(const transfer of ticket.transfers){
     input.signal?.throwIfAborted();
     const file=input.files.find(file=>file.path===transfer.path);if(!file)throw new Error(`Select the original file for “${transfer.path}”.`);
-    if(!transfer.uploaded)await uploadFile(file.file,transfer,ticket.resumableEndpoint,ticket.bucket,input.signal,sent=>input.onProgress?.(`Uploading ${transfer.path}…`,Math.min(99,Math.round((completed+sent)/total*100))));
+    if(!transfer.uploaded)await uploadFile(file.file,transfer,ticket.resumableEndpoint,ticket.bucket,input.signal,sent=>input.onProgress?.(`Uploading ${transfer.path}…`,Math.min(99,Math.round((completed+sent)/(total||1)*100))));
     completed+=file.file.size;
   }
   input.onProgress?.("Confirming the saved revision…",99);

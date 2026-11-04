@@ -14,6 +14,7 @@ import {ImportDocumentDialog} from "./ImportDocumentDialog";
 import {UploadPackageDialog} from "./UploadPackageDialog";
 import {MediaPanel} from "./MediaPanel";
 import {ProjectSection} from "./ProjectSection";
+import {AssetBridgeDialog} from "./AssetBridgeDialog";
 
 export function StudioLibrary({projectId}:{projectId:string}) {
   return <ProjectSection projectId={projectId}>{project=><ProjectLibrary project={project}/>}</ProjectSection>;
@@ -25,6 +26,8 @@ function ProjectLibrary({project}:{project:ProjectSummary}) {
   const [view,setView]=useState<"grid"|"list">("grid"),[notice,setNotice]=useState("");
   const [intake,setIntake]=useState<{files:File[];folder:boolean}|null>(null),[media,setMedia]=useState<{projectId:string;assets:AssetSummary[]}|null>(null);
   const [loadingMedia,setLoadingMedia]=useState(false),[mediaError,setMediaError]=useState("");
+  const [bridge,setBridge]=useState(false);
+  const bridgeButton=useRef<HTMLButtonElement>(null);
   const input=useRef<HTMLInputElement>(null),importButton=useRef<HTMLButtonElement>(null);
   const params=new URLSearchParams({q:search,projectId,...(kind?{kind}:{}),...(appId?{appId}:{})});
   const library=usePagedStudioList<AssetSummary>(`/api/studio/assets?${params}`,"assets");
@@ -45,11 +48,12 @@ function ProjectLibrary({project}:{project:ProjectSummary}) {
   const simple=intake&&(intake.folder||intake.files.some(file=>nativeImportApp(file.name))||intake.files.every(file=>sourceFormat(file.name)));
   return <div className="studio-page library-page">
     <header className="studio-page-heading"><div><span className="studio-eyebrow">YOUR PROJECT LIBRARY</span><h1>Assets.</h1><p>Bring files in. Keep your versions together. Take your work anywhere.</p></div><div className="studio-action-row">
+      <button ref={bridgeButton} className="studio-button" disabled={!writable} onClick={()=>setBridge(true)}><Upload size={15}/>Asset Bridge</button>
       <button ref={importButton} className="studio-button primary" disabled={!writable} onClick={()=>input.current?.click()}><Upload size={15}/>Import files</button>
     </div></header>
     <input ref={input} type="file" multiple hidden aria-label="Import assets" onChange={event=>{const files=Array.from(event.currentTarget.files??[]);if(files.length)setIntake({files,folder:false});event.currentTarget.value="";}}/>
     <div className="library-filters">
-      <label>Type<select aria-label="Filter by asset type" value={kind} onChange={event=>setKind(event.target.value)}><option value="">All types</option><option value="native">Native documents</option><option value="image">Images</option><option value="audio">Audio</option><option value="video">Video</option></select></label>
+      <label>Type<select aria-label="Filter by asset type" value={kind} onChange={event=>setKind(event.target.value)}><option value="">All types</option><option value="native">Native documents</option><option value="file">Files & folders</option><option value="image">Images</option><option value="audio">Audio</option><option value="video">Video</option></select></label>
       <label>Application<select aria-label="Filter by application" value={appId} onChange={event=>setAppId(event.target.value)}><option value="">All applications</option>{studioTools.map(app=><option key={app.id} value={app.id}>{app.name}</option>)}</select></label>
       <label className="studio-search"><Search size={16}/><input aria-label="Search assets" placeholder="Search your library" value={search} onChange={event=>setSearch(event.target.value)}/></label>
     </div>
@@ -59,10 +63,11 @@ function ProjectLibrary({project}:{project:ProjectSummary}) {
     {library.error&&<p role="alert" className="studio-error">{library.error}</p>}
     {library.loading&&!library.rows.length?<p role="status" className="studio-muted">Loading your library…</p>:library.rows.length?<div className={view==="grid"?"studio-library-grid":"library-list"}>{library.rows.map(asset=>{const app=studioTools.find(app=>app.id===asset.app_id);return <Link className="studio-library-piece" href={`/dashboard/projects/${projectId}/library/${asset.id}`} key={asset.id}>
       <div className="library-art">{asset.preview_url?<img src={asset.preview_url} alt="" loading="lazy"/>:app?<AppIcon app={app} className="library-app-icon"/>:<span className="library-file-mark">{asset.asset_kind?.slice(0,2).toUpperCase()}</span>}</div>
-      <div className="library-piece-info"><div className="library-piece-heading"><h2>{asset.name}</h2><ArrowUpRight size={18}/></div><p>{asset.project?.name??project?.name??"Project"}</p><small>{app?.name??`${asset.asset_kind} source`} · {asset.current_revision_id?"Saved":"Awaiting first save"}</small></div>
+      <div className="library-piece-info"><div className="library-piece-heading"><h2>{asset.name}</h2><ArrowUpRight size={18}/></div><p>{asset.project?.name??project?.name??"Project"}</p><small>{app?.name??(asset.asset_kind==="file"?"Files & folders":`${asset.asset_kind} source`)} · {asset.current_revision_id?"Saved":"Awaiting first save"}</small></div>
     </Link>;})}</div>:<div className="library-empty-message"><Images size={32}/><h2>{search||kind||appId?"No matching assets.":"Make room for your next idea."}</h2><p>{search||kind||appId?"Try another search or filter.":"Import native projects, images, audio or video. Open an asset to rename it, manage versions or download its files."}</p></div>}
     {library.nextCursor&&<button className="studio-button library-load-more" disabled={library.loading} onClick={()=>void library.loadMore()}>Load more assets</button>}
     {intake&&(simple?<ImportDocumentDialog projectId={projectId} initialFiles={intake.files} folder={intake.folder} close={()=>{setIntake(null);void library.reload();}} saved={imported} returnFocusRef={importButton}/>:<UploadPackageDialog projectId={projectId} initialFiles={intake.files} close={()=>setIntake(null)} saved={imported} returnFocusRef={importButton}/>)}
+    {bridge&&<AssetBridgeDialog projectId={projectId} close={()=>setBridge(false)} saved={async()=>{await library.reload();setBridge(false);setNotice("All files are saved in your private library and available to Robyn.");}} returnFocusRef={bridgeButton}/>}
     {media&&<MediaPanel projectId={media.projectId} assets={media.assets} close={()=>setMedia(null)} onSaved={async()=>{await library.reload();await showMedia(media.projectId);}} onOpen={async ref=>{window.location.assign(`/dashboard/projects/${projectId}/library/${ref.assetId}?revision=${ref.revisionId}`);}}/>}
   </div>;
 }

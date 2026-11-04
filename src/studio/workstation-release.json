@@ -1,15 +1,15 @@
 {
-  "version": "0.10.0",
-  "directory": "vendor/robyn-workstation/0.10.0-cd043b09e8b1",
-  "fingerprint": "cd043b09e8b125b2c87b134eacf69b63707ad1fe21767b4ddc3049cab87b5779",
+  "version": "0.10.1",
+  "directory": "vendor/robyn-workstation/0.10.1-75e51f18c68a",
+  "fingerprint": "75e51f18c68a5abb93683c2a93beb875b9e2271d21f47647238783e12ca25f16",
   "files": {
     "studio-mcp.cjs": {
-      "bytes": 2301183,
-      "sha256": "4de57da34a94be11e788ef7c8b99d1bb092e99d02d4205ad8bbbe992e839c06b"
+      "bytes": 2301296,
+      "sha256": "0863937ecc01780f981e413f67a07e9a107a5f6b15a162d7aa148ef6184d4873"
     },
     "configure-hermes.py": {
       "bytes": 10689,
-      "sha256": "ca9f344664ecfa92886746d9ea0ad188aa44d912c895e6e82bb84ab21d855fa9"
+      "sha256": "5c34864af853ce130ae7b17a81767f5f9d815376df6064c3f7410b05f4f91ea9"
     },
     "skills/bimcraft.md": {
       "bytes": 2483,

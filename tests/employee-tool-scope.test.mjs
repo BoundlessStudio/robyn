@@ -86,6 +86,18 @@ test('reading a project asset does not make a different asset or project revisio
   });
 });
 
+test('uploaded file collections are readable in the assigned project without granting native writes',async()=>{
+  await toolBoundary(async({employeeToolCall,auth,asset,revision,state})=>{
+    asset.asset_kind='file';asset.app_id=null;
+    const opened=await employeeToolCall(auth,'studio_open_asset',{assetId:asset.id,revisionId:revision.id});
+    assert.equal(opened.appId,null);assert.deepEqual(opened.ref,{assetId:asset.id,revisionId:revision.id});
+    await assert.rejects(employeeToolCall(auth,'studio_begin_revision',{operationId:randomUUID(),assetId:asset.id,expectedBaseRevisionId:null,package:{}}),error=>error.code==='application_not_allowed');
+    asset.project_id=randomUUID();
+    await assert.rejects(employeeToolCall(auth,'studio_open_asset',{assetId:asset.id,revisionId:revision.id}),error=>error.status===404);
+    assert.deepEqual(state.calls.map(call=>call.name),['read']);
+  });
+});
+
 test('a revocation during Storage verification is checked again before committing',async()=>{
   await toolBoundary(async({employeeToolCall,auth,revision,state})=>{
     state.revokeDuringVerify=true;

@@ -69,7 +69,7 @@ function EmployeeProject({project,selection,view,clearInput}:{project:ProjectSum
 
   if(error)return <div className="employees-workspace"><p role="alert" className="studio-error">{error}</p>{(assetId||revisionId)&&<button className="studio-button" onClick={clearInput}>Continue without the included file</button>}</div>;
   if(!context)return <p role="status" className="studio-muted">Opening your conversation with Robyn…</p>;
-  const openRevision=(ref:AssetRef)=>window.open(`/dashboard/projects/${projectId}?${new URLSearchParams({asset:ref.assetId,revision:ref.revisionId})}`,"_blank","noopener");
+  const openRevision=(ref:AssetRef)=>window.open(context.asset?.asset_kind==="file"&&ref.assetId===context.asset.id?`/dashboard/projects/${projectId}/library/${ref.assetId}?revision=${ref.revisionId}`:`/dashboard/projects/${projectId}?${new URLSearchParams({asset:ref.assetId,revision:ref.revisionId})}`,"_blank","noopener");
   return <section className="employees-workspace" aria-label={`${context.project.name} with Robyn`}>
     {context.ref&&context.asset&&<div className="employees-input"><FileText size={18}/><div><strong>{context.asset.name}</strong><p>This exact saved revision is available to include in your brief. Save any newer editor changes before sharing them.</p></div><button className="studio-button" onClick={()=>openRevision(context.ref!)}>Open saved revision <ArrowUpRight size={14}/></button><button className="studio-button" onClick={clearInput}>Remove file</button></div>}
     {context.project.status==="archived"&&<p className="studio-note">This project is archived. Reactivate it in <Link href={`/dashboard/projects/${projectId}/settings#project-details`}>Settings</Link> before sending a brief.</p>}

@@ -13,7 +13,7 @@ export async function GET(request: Request) {
     if (projectId) query = query.eq("project_id", projectId);
     const kind = params.get("kind"), appId = params.get("appId");
     if (kind) {
-      if (!["native", "image", "audio", "video"].includes(kind)) throw new ApiError(400,"invalid_kind","Choose a supported asset type.");
+      if (!["native", "image", "audio", "video", "file"].includes(kind)) throw new ApiError(400,"invalid_kind","Choose a supported asset type.");
       query = query.eq("asset_kind",kind);
     }
     if (appId) query = query.eq("app_id",appFor(appId).id);
