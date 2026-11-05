@@ -1,0 +1,518 @@
+{
+  "schemaVersion": 1,
+  "appId": "ledgercraft",
+  "checkedAt": "2026-11-05T02:43:13.981039+00:00",
+  "localDate": "2026-11-04",
+  "timezone": "America/Toronto",
+  "stage": "verified-production-release",
+  "scope": "Actual installed original native company creation → production original Svelte invoice/settings edits and Save As → confirmed immutable private-library revision → installed original native GUI continuation → exact native library save and production browser reopen. No model turn.",
+  "webCommit": "88c351f07eb7cb18e3439b5d4dbad3cb7f6b8776",
+  "runtimeCommit": "b3cb5413843a82f2238a7714fb4b8e1cf9c63e0b",
+  "initialIntegration": {
+    "webCommit": "80144b945f0f1c63bc466f903889174415bcaccb",
+    "runtimeCommit": "dad0b200fa872d5bcb0fb9a492f2f0b411f3667c",
+    "webPullRequest": "https://github.com/BoundlessStudio/robyn/pull/71",
+    "runtimePullRequest": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/26",
+    "sourceAcceptance": "ledgercraft-integration-20261104.json"
+  },
+  "webPullRequest": "https://github.com/BoundlessStudio/robyn/pull/72",
+  "runtimePullRequest": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/27",
+  "webDeployment": {
+    "provider": "Vercel",
+    "id": "5Zj1GMv1ViDEgu2eD7c9ZAB7zSqQ",
+    "url": "https://vercel.com/venatio-studios/robyn-creative-studio/5Zj1GMv1ViDEgu2eD7c9ZAB7zSqQ",
+    "production": "https://robyn.academy",
+    "status": "success"
+  },
+  "webCi": {
+    "productionPushRunId": 41955570328,
+    "pullRequestRunIds": [
+      41954937612,
+      41955040151
+    ],
+    "conclusion": "success",
+    "tests": 263,
+    "typecheck": true,
+    "build": true,
+    "highAuditFindings": 0,
+    "publicBrowsers": [
+      "chromium",
+      "firefox",
+      "webkit"
+    ],
+    "publicUiCombinations": 18
+  },
+  "runtimeCi": {
+    "productionPushRunId": 41955229036,
+    "pullRequestRunIds": [
+      41954930593,
+      41955035387
+    ],
+    "conclusion": "success",
+    "tests": 172,
+    "linuxProfileTests": 4,
+    "highAuditFindings": 0
+  },
+  "migrationState": {
+    "changed": false,
+    "sqlApplied": [],
+    "sourceBaseline": "31 matching ledger entries through 0030, verified in the preceding Asset Bridge receipt; ledger not reread for this rollout",
+    "baselineReceipt": "asset-bridge-deployed-20261104.json"
+  },
+  "upstream": {
+    "repository": "https://github.com/Wr3nch98DEV/LedgerCraft",
+    "commit": "e2fe64dc9111d3effcc4b3d232927ec519092fa7",
+    "archive": {
+      "name": "ledgercraft-e2fe64dc9111d3effcc4b3d232927ec519092fa7.zip",
+      "url": "https://codeload.github.com/Wr3nch98DEV/LedgerCraft/zip/e2fe64dc9111d3effcc4b3d232927ec519092fa7",
+      "bytes": 919300,
+      "sha256": "df63d7b06348e2e7577aea504b8c3bbaba40d1e92795afbe4ed6011e0d4f4c69"
+    }
+  },
+  "adapterVersion": "0.1.0",
+  "browserBundleSha256": "cc7e1ec683664019baf67f859dc45cdd590ac0e4d56c6ba06407057f263554dd",
+  "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/ledgercraft/v0.1.0-0.1.0/?robyn",
+  "sourcePatchSha256": "7f3739d3aace5d5e1f3373dae54b7b7410b7504299b61c7faf49801232aa9cc8",
+  "format": {
+    "extension": ".lcdb",
+    "container": "Original LedgerCraft SQLite company",
+    "singleMaster": true,
+    "embeddedAttachments": true,
+    "maxBytes": 268435456,
+    "hotJournalsRefused": true,
+    "localHttpServerRequired": false
+  },
+  "catalog": {
+    "ready": 29,
+    "creative": 10,
+    "drafting": 9,
+    "analysis": 10,
+    "ledgercraftGroup": "analysis",
+    "nativeStarterVersion": 10
+  },
+  "image": {
+    "version": "0.6.0",
+    "template": "robyn-studio-0-6-0@1",
+    "imageDigest": "sha256:5f5ad12a65d1d7ceb8c605405f9b6ba63712531a83f38538ae1fdfbf052ee08c",
+    "sourceFingerprint": "49168d7e886459ba0f6e96c9919e2ed1f0ca734c56074c83dbf8667b07a654eb",
+    "contextSha256": "dd8d33cc56615abd497753d96cb002e51c366e895a7427c0830550afbe154cb0",
+    "installedApplications": 29,
+    "groups": {
+      "Creative": 10,
+      "Drafting": 9,
+      "Analysis": 10
+    },
+    "nativeExecutables": {
+      "ledgercraft": "c09f0c38cf333c32e7259894084dfecd994e357a122affdf1a559322ca996d4d",
+      "ledgercraft-file-engine": "e993edb86826627fb2bf2d07791e08744d8ba25f35e0498458b579663d3ffc6c"
+    },
+    "originalGuiContinuations": true,
+    "productionRollout": {
+      "checkedAt": "2026-11-05T02:18:00.828Z",
+      "status": "running",
+      "current": true,
+      "digest": "sha256:5f5ad12a65d1d7ceb8c605405f9b6ba63712531a83f38538ae1fdfbf052ee08c",
+      "healthy": true,
+      "preservedFiles": 2257,
+      "bootChangedFiles": 51,
+      "mirrorConfirmed": true,
+      "template": "robyn-studio-0-6-0@1",
+      "resourcesUnchanged": true,
+      "metadataUnchanged": true,
+      "managedBudgetUnchanged": true,
+      "providerUpdatePosts": 1,
+      "instanceIdentitySha256": "e6ed8bc1c9bb6255ffc8fe636b5d612baa3fa0b379aecc8fa2e24edf5f375d96"
+    }
+  },
+  "workstationClient": {
+    "version": "0.12.1",
+    "fingerprint": "5016428278803d32d4fe1b25e818b32eafd8d74267e7228e06cc0722d5dcc211",
+    "bundleSha256": "235db019e774d58ef93d1175a278a3e83e63dae21ce4edce0430360daf3e9f2e",
+    "installation": {
+      "checkedAt": "2026-11-05T02:30:42.664Z",
+      "clientVersion": "0.12.1",
+      "clientBundleSha256": "235db019e774d58ef93d1175a278a3e83e63dae21ce4edce0430360daf3e9f2e",
+      "skills": 30,
+      "installedApplications": 29,
+      "nativeLedgerExecutableHashesVerified": 2,
+      "immutableTaskBindingVerified": true,
+      "modelTurns": 0
+    },
+    "nativePathFix": {
+      "trigger": "studio_open_asset returns an absolute task working-copy path; the original LedgerCraft packager rejected that path before upload",
+      "behavior": "Accept the task-confined absolute working path and package canonical relative names, retaining real-path confinement and hot-journal refusal",
+      "regression": "Materialize an exact company and repackage its returned absolute working-copy path; reject an absolute file outside the task",
+      "priorReleaseRetained": "0.12.0 remains byte-identical"
+    }
+  },
+  "roundTrip": {
+    "initialNativeCompany": {
+      "sha256": "a2b7d186e6e7c941324a59a45d1411a8d72127926c254ff1aacb5751d7683d89",
+      "invoiceId": 126,
+      "invoiceNumber": "INV-0053",
+      "invoiceTotalMinorUnits": 95700,
+      "embeddedAttachmentSha256": "6c77a1cfed78d452239dddcdcb2eccd6862f2e2cb5aa6d68bc24a62734e710b7",
+      "originalNativeEngine": true,
+      "stdioMcpHandshake": true,
+      "productionBffSaveConfirmed": true
+    },
+    "productionBrowser": {
+      "productionOrigin": "https://robyn.academy",
+      "originalHostedEditor": true,
+      "ctrlSConfirmed": true,
+      "saveAsConfirmed": true,
+      "fullReload": true,
+      "copyFilename": "Cedar Studio — saved copy.lcdb",
+      "unicodeNameAddressReference": true,
+      "invoiceTotalMinorUnits": 95700,
+      "narrowedEditorPreserved": true,
+      "masterSha256": "2e755892bba46a2cc10b2c836d8aa0f2e2517b1743244563579744cec5649753",
+      "bytes": 1028096
+    },
+    "confirmationGate": {
+      "realCommitHeld": true,
+      "savedMessageBeforeConfirmation": false,
+      "invoiceSaveDisabledWhilePending": true,
+      "savedMessageAfterConfirmation": true,
+      "originalControl": "Reference field Ctrl+S",
+      "browserReference": "LIVE — Montréal browser confirmed",
+      "confirmedCommitCount": 1
+    },
+    "installedNativeRead": {
+      "exactBrowserRevisionOpened": true,
+      "originalFinancialReportComputed": true,
+      "clientVersion": "0.12.1"
+    },
+    "nativeGuiContinuation": {
+      "originalInstalledGui": true,
+      "originalSettingsSaveButton": true,
+      "nativeExitCode": 0,
+      "guiPhoneSaved": true,
+      "inputSha256": "2e755892bba46a2cc10b2c836d8aa0f2e2517b1743244563579744cec5649753",
+      "continuedSha256": "10327a459bbdc8daf9c684d468356fd01815f1f99f6679765346d15f5e7ee86a",
+      "absoluteWorkingCopyPathAccepted": true,
+      "exactInputRevisionBound": true,
+      "privateLibraryCommitted": true,
+      "attachments": [
+        {
+          "filename": "Notes — Montréal.txt",
+          "sha256": "6c77a1cfed78d452239dddcdcb2eccd6862f2e2cb5aa6d68bc24a62734e710b7"
+        }
+      ],
+      "journalsBalanced": true,
+      "counts": {
+        "documents": 127,
+        "journal_lines": 776,
+        "attachments": 1,
+        "audit_log": 328
+      }
+    },
+    "accountingPreservation": {
+      "allExistingAccountingRowsAndAttachmentsIdentical": true,
+      "tablesChecked": 95,
+      "tablesAndExistingRows": {
+        "accounts": 62,
+        "api_tokens": 0,
+        "approval_rules": 0,
+        "assembly_builds": 0,
+        "asset_types": 3,
+        "attachments": 1,
+        "audit_log": 326,
+        "bank_rules": 2,
+        "bank_transactions": 36,
+        "batch_payments": 0,
+        "branding_themes": 1,
+        "budget_lines": 60,
+        "budgets": 1,
+        "contact_group_members": 0,
+        "contact_groups": 0,
+        "contact_people": 0,
+        "contacts": 21,
+        "credit_allocations": 1,
+        "csv_mappings": 0,
+        "currencies": 155,
+        "custom_fields": 0,
+        "custom_values": 0,
+        "deposits": 0,
+        "depreciation_runs": 1,
+        "documents": 127,
+        "email_templates": 8,
+        "employees": 2,
+        "exchange_rates": 0,
+        "file_inbox": 0,
+        "fixed_assets": 2,
+        "fx_revaluations": 0,
+        "inventory_movements": 17,
+        "item_components": 0,
+        "item_receipt_lines": 0,
+        "item_receipts": 0,
+        "items": 4,
+        "journal_lines": 776,
+        "journals": 281,
+        "landed_cost_lines": 0,
+        "landed_costs": 0,
+        "leave_balances": 0,
+        "leave_requests": 0,
+        "leave_types": 2,
+        "line_items": 193,
+        "locations": 0,
+        "lots": 0,
+        "manual_journals": 1,
+        "notes": 436,
+        "order_deposits": 0,
+        "outbox": 0,
+        "pay_calendars": 2,
+        "pay_items": 9,
+        "pay_runs": 0,
+        "payments": 116,
+        "payslips": 0,
+        "prepayment_allocations": 0,
+        "price_levels": 0,
+        "price_rules": 0,
+        "project_costs": 1,
+        "project_tasks": 2,
+        "projects": 1,
+        "receipts": 1,
+        "reconciliation_items": 0,
+        "reconciliation_matches": 140,
+        "reconciliations": 0,
+        "reminder_rules": 1,
+        "reminders_sent": 0,
+        "repeating_templates": 1,
+        "report_layouts": 0,
+        "revenue_entries": 0,
+        "revenue_schedules": 0,
+        "schema_migrations": 21,
+        "search_index": 253,
+        "search_index_config": 1,
+        "search_index_content": 253,
+        "search_index_data": 12,
+        "search_index_docsize": 253,
+        "search_index_idx": 10,
+        "search_keys": 253,
+        "sequences": 9,
+        "statement_imports": 2,
+        "statement_lines": 147,
+        "tax_agencies": 0,
+        "tax_components": 10,
+        "tax_rates": 10,
+        "tax_returns": 0,
+        "time_entries": 3,
+        "timesheets": 0,
+        "tracking_categories": 1,
+        "tracking_options": 3,
+        "transfers": 1,
+        "users": 1,
+        "webhook_deliveries": 0,
+        "webhooks": 0,
+        "workpapers": 0
+      },
+      "nativeGuiAddedDefaultAccount": {
+        "id": 63,
+        "code": "095",
+        "name": "Undeposited Funds",
+        "existingRowsChanged": false
+      },
+      "addedRows": {
+        "accounts": 1,
+        "audit_log": 2
+      },
+      "onlyChangedCompanySetting": "phone",
+      "integrity": "ok"
+    },
+    "productionBrowserFinalReopen": {
+      "nativeGuiPhoneReopened": true,
+      "exactNativeAndLibraryBytes": true,
+      "sha256": "10327a459bbdc8daf9c684d468356fd01815f1f99f6679765346d15f5e7ee86a",
+      "bytes": 1028096,
+      "fullProductionNativeBrowserLoop": true,
+      "clientVersion": "0.12.1"
+    }
+  },
+  "preservation": {
+    "inventoryAfterImage": {
+      "checkedAt": "2026-11-05T02:18:06.706Z",
+      "beforeFiles": 2308,
+      "byteIdenticalExistingFiles": 2257,
+      "bootChangedFiles": 51,
+      "allExistingWorkAndTaskFilesByteIdentical": true,
+      "categories": {
+        "profile managed credential refresh": 8,
+        "MCP schema cache": 8,
+        "cron runtime timestamps": 16,
+        "appended runtime logs": 16,
+        "Hermes runtime database": 1,
+        "default managed model configuration": 1,
+        "image boot marker": 1
+      },
+      "profileConfigurations": 8,
+      "profileMcpBindingsUnchanged": true,
+      "onlyProfileChanges": "managed Agent37 model credential and endpoint refreshed; all original MCP bindings preserved",
+      "profileDatabasesIntegral": 8,
+      "defaultManagedProviderMatchesEnvironment": true,
+      "defaultHasNoTaskBinding": true
+    },
+    "profileRestoration": {
+      "checkedAt": "2026-11-05T02:17:59.475Z",
+      "restoredConfigurations": 9,
+      "restoredHistoricalBackups": 5,
+      "originalMcpBindingsPreserved": true,
+      "onlyRemainingDifference": "current managed Agent37 model credential and endpoint",
+      "privateBootConfigurationsPreserved": true
+    },
+    "final": {
+      "checkedAt": "2026-11-05T02:38:24.554Z",
+      "beforeFiles": 2308,
+      "byteIdenticalExistingFiles": 2245,
+      "changedExistingFiles": 63,
+      "allExistingWorkAndImmutableTaskFilesByteIdentical": true,
+      "managedGenerationAndAppendedStartupHooksAccounted": true,
+      "originalProfileSettingsPreserved": 9,
+      "originalMcpBindingsPreserved": true,
+      "restartHookOriginalPrefixPreserved": true,
+      "taskGenerationAdvancedUnderLease": true,
+      "resourcesAndAllowanceUnchanged": true
+    }
+  },
+  "maintenance": {
+    "generations": [
+      35,
+      36
+    ],
+    "initialLease": {
+      "checkedAt": "2026-11-05T02:29:21.968Z",
+      "generation": 35,
+      "dispatched": false,
+      "modelTurns": 0,
+      "taskCredentialsRevoked": true,
+      "revokedTaskCredentials": 1,
+      "activeOrUncertainAssignments": 0,
+      "resourcesUnchanged": true,
+      "allowanceUnchanged": true
+    },
+    "finalScope": {
+      "checkedAt": "2026-11-05T02:38:47.886Z",
+      "maintenanceState": "cancelled",
+      "maintenanceDispatched": false,
+      "generation": 36,
+      "modelTurns": 0,
+      "taskCredentialsRevoked": true,
+      "revokedTaskCredentials": 1,
+      "activeOrUncertainAssignments": 0,
+      "unsettledMedia": 0,
+      "pendingOrDispatchedUpgrades": 0,
+      "browserControl": "agent",
+      "existingInstanceReused": true,
+      "instanceIdentitySha256": "e6ed8bc1c9bb6255ffc8fe636b5d612baa3fa0b379aecc8fa2e24edf5f375d96",
+      "template": "robyn-studio-0-6-0@1",
+      "imageDigest": "sha256:5f5ad12a65d1d7ceb8c605405f9b6ba63712531a83f38538ae1fdfbf052ee08c",
+      "resourcesUnchanged": true,
+      "resources": {
+        "disk": 10,
+        "cpu": 4,
+        "memory": 16
+      },
+      "allowanceUnchanged": true,
+      "monthlyCapMicros": 75000000,
+      "monthlyConsumedMicros": 11297,
+      "monthlyRemainingMicros": 74988703,
+      "policySync": "synced"
+    },
+    "nativeCleanup": {
+      "checkedAt": "2026-11-05T02:36:52.379Z",
+      "nativeGuiExitedCleanly": true,
+      "taskDisplayStopped": true,
+      "sharedDesktopUntouched": true
+    },
+    "browserCleanup": {
+      "qaBrowserClosed": true,
+      "onlyTaskOwnedProcessesClosed": true,
+      "sharedBrowserUnchanged": true
+    },
+    "authCleanup": {
+      "qaSessionRevoked": true,
+      "scope": "local",
+      "otherSessionsChanged": false
+    },
+    "modelTurns": 0
+  },
+  "publicPresentation": {
+    "originalSquirrelIcon": {
+      "path": "public/brand/apps/ledgercraft.webp",
+      "animal": "red squirrel",
+      "bytes": 26738,
+      "sha256": "695923b034d59ee7eac234a46fad5bf35ec1f46e9d10df437cdc2abe60fa405c"
+    },
+    "originalEditorCapture": {
+      "path": "public/artwork/editors/ledgercraft.png",
+      "width": 1600,
+      "height": 1000,
+      "sha256": "969517cf92d2c20f148efa676716a0295eda3315da202e766b30b6e24956087b",
+      "source": "Unmodified original hosted application after confirmed company Save As and exact reload"
+    },
+    "productionDesktopReviewed": true,
+    "productionMobileReviewed": true,
+    "expandedOriginalColourReviewed": true,
+    "readyAnalysisEntryAndIconReviewed": true,
+    "horizontalOverflow": false
+  },
+  "evidenceImages": {
+    "home-ledgercraft-desktop.png": {
+      "bytes": 337291,
+      "sha256": "7fc480d3fbf54f5246e3b07904abe196adeddf2bca9662a83f49ed248c1a848b"
+    },
+    "home-ledgercraft-mobile.png": {
+      "bytes": 96143,
+      "sha256": "19549727625b74e221a17117d68eee4152b588a35ea3413b3451207f818b070d"
+    },
+    "home-ledgercraft-expanded.png": {
+      "bytes": 209310,
+      "sha256": "2d398a3ca48def94ffe8b7531b847fa71d8aa1d2b0fc92f2b8804e10ff837d0d"
+    },
+    "home-ledgercraft-original-colour.png": {
+      "bytes": 287545,
+      "sha256": "860a671e54e8927b279eb4952fad3e572de03746050b88809f7795c9dbcfac50"
+    },
+    "home-ledgercraft-mobile-expanded.png": {
+      "bytes": 57770,
+      "sha256": "0238baf39914f566d7c4fe1260f2eaeaf53c81be57f2315f16abb1301d5c3c3b"
+    },
+    "ctrl-s-awaiting-commit.png": {
+      "bytes": 93378,
+      "sha256": "f78705c9b589a030cd8147caf4360de1ac25421e147f6ae0c19a24942702dd68"
+    },
+    "ctrl-s-confirmed.png": {
+      "bytes": 97219,
+      "sha256": "8689635e3bdb466e469edd6992aea8b86c3e06a6766362d0fcc0a4c674d71cbd"
+    },
+    "browser-exact-reload.png": {
+      "bytes": 94760,
+      "sha256": "5d19d8ca37285b679fa94cfa225ed89be89e1635be5b075a3e82301d239bb69c"
+    },
+    "browser-preserved-narrowed.png": {
+      "bytes": 56345,
+      "sha256": "5f13951ff6f0baa495875d3184a8f172d72f08e81436c75f5167ffe20543542c"
+    },
+    "native-gui-initial.png": {
+      "bytes": 102699,
+      "sha256": "387d6a023206c91c3fec92c1910aa3b93a44b02101bee42949dc3c784a385f9e"
+    },
+    "native-gui-company.png": {
+      "bytes": 113303,
+      "sha256": "ec7834d825bdc8b81f464de580d6fc6ec3ee87ed830231c8b2158fdf3dc3e993"
+    },
+    "native-gui-saved.png": {
+      "bytes": 115322,
+      "sha256": "fb38ce76d37e5e0a4c447a488d1bbb04fd253dae810b4b1fdddcb640cf59a088"
+    },
+    "final-browser-native-continuation.png": {
+      "bytes": 89574,
+      "sha256": "0407eefd3a3a9956a71ef4a226236965124a510fb6377147c431666e12850c6a"
+    },
+    "ready-analysis-ledgercraft.png": {
+      "bytes": 247589,
+      "sha256": "ad14103fc807419fe3418554c324755116076771e01da3a2ef5cc8a5d9c9a9e2"
+    }
+  },
+  "privateEvidence": "Original operation intents, signed transfers, owner/assignment/revision identities, cookies, profile configuration backups and screenshots remain outside version control; this record contains sanitized outcomes and hashes."
+}
