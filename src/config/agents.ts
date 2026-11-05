@@ -15,7 +15,7 @@ export const SHAPE_PRESETS: Shape[] = [
 
 // Provisioning policy is independent of the immutable workstation image release.
 export const STUDIO_WORKSTATION_DEFAULTS = {
-  resources: { cpu: 4, memory: 16, disk: 10 },
+  resources: { cpu: 4, memory: 32, disk: 80 },
   type: "default",
   region: "us",
   auto_sleep: true,
