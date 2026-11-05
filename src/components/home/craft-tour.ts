@@ -30,6 +30,7 @@ const stories: Record<string, { lines: string[]; accent: string; copy: string; d
   datacraft: { lines: ["Find the idea"], accent: "in the data.", copy: "Work through tables and queries with Robyn in DataCraft. Keep the database and saved SQL ready to inspect, edit and continue.", details: ["SQL QUERIES", "EDITABLE TABLES", "SAVED DATABASES"] },
   plancraft: { lines: ["Give an idea"], accent: "a plan.", copy: "Connect tasks, people and milestones in PlanCraft. Explore the schedule with Robyn, then keep shaping the path from an idea to its next achievement.", details: ["PROJECT PLANNING", "GANTT CHARTS", "RESOURCES & MILESTONES"] },
   geocraft: { lines: ["Find the story"], accent: "in a place.", copy: "Explore maps, layers and spatial relationships with Robyn in GeoCraft. Keep the source data, attributes and native project ready for your next discovery.", details: ["MAPS & CARTOGRAPHY", "SPATIAL ANALYSIS", "EDITABLE GIS PROJECTS"] },
+  ledgercraft: { lines: ["Keep your books"], accent: "in balance.", copy: "Work through invoices, bills and bank reconciliation with Robyn in LedgerCraft. Explore the financial reports, then keep the company file ready to review and continue.", details: ["BOOKKEEPING & INVOICES", "BANK RECONCILIATION", "EDITABLE COMPANY FILES"] },
 };
 
 // Presentation order is editorial; identity and the application count

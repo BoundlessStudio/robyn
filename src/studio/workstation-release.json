@@ -1,15 +1,15 @@
 {
-  "version": "0.11.0",
-  "directory": "vendor/robyn-workstation/0.11.0-cac49235ca02",
-  "fingerprint": "cac49235ca02e9c5a3ab1c9c97ee93d9900049010f97362c843534fd717794f2",
+  "version": "0.12.0",
+  "directory": "vendor/robyn-workstation/0.12.0-b43252220ee4",
+  "fingerprint": "b43252220ee48a1a07c62fd05a4139c31339eba81a3e9138635567b1515b0f28",
   "files": {
     "studio-mcp.cjs": {
-      "bytes": 2303451,
-      "sha256": "0dc9cd46912bc37ad8ac9d3f834a0c17300047c343da3b6e943d556b9813e7c7"
+      "bytes": 2315131,
+      "sha256": "820b2080a7dbe040d196321a5f6a468a8b09640e6c45504dec5be27a5e56d1ec"
     },
     "configure-hermes.py": {
-      "bytes": 10689,
-      "sha256": "9d3fccd28838b5bac69036b18e0f8e28627d5bc6fe9a57d537d93a0a14122c67"
+      "bytes": 10704,
+      "sha256": "e0eba15d6f8560035bae6df09c4fe5985dd661c2e17e77b84fb70ac1943ffc20"
     },
     "skills/bimcraft.md": {
       "bytes": 2483,
@@ -62,6 +62,10 @@
     "skills/gridcraft.md": {
       "bytes": 3825,
       "sha256": "3d7f020f5b2cfa1ce5d21fc8a7b85cf964156b8ef8737f8f8fc428aef3b17a42"
+    },
+    "skills/ledgercraft.md": {
+      "bytes": 2696,
+      "sha256": "0a99ee873b9652de34e647524e702e7a2b0ef41ff951a9a806fd586b3b1357d8"
     },
     "skills/lightcraft.md": {
       "bytes": 2632,

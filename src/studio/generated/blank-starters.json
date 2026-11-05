@@ -1,5 +1,21 @@
 [
   {
+    "id": "ledgercraft:10",
+    "appId": "ledgercraft",
+    "name": "Untitled company",
+    "description": "New company books",
+    "files": [
+      {
+        "path": "Untitled company.lcdb",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 675840,
+        "sha256": "6f6063d9b13e5d8b35bded2d62ad277817718684fc9ac92e64c43252c0eecbb9",
+        "url": "/studio/starters/10/ledgercraft/Untitled%20company.lcdb"
+      }
+    ]
+  },
+  {
     "id": "geocraft:9",
     "appId": "geocraft",
     "name": "Untitled map",

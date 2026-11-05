@@ -12,6 +12,8 @@ The controlled idle primary replacement and in-place image update preserve exact
 
 Owner: the Robyn pilot operator, reached at **support@robyn.academy**. Mail forwards to **developer@venatiostudios.com**. Access to Supabase, Vercel, Agent37, Cloudflare and Resend remains with their existing account owners; the web application does not grant creators provider-admin access. No guaranteed response or recovery time is offered during the pilot.
 
+LedgerCraft source acceptance prepares a 29-Craft catalog, shared image **0.6.0** and immutable client **0.12.0**. The hosted editor and template are published, but the production web/owned-workstation rollout has not run. Follow the same fenced maintenance and preservation procedure below when promoting it; source readiness does not authorize repeating an uncertain update. See [LedgerCraft acceptance](acceptance/ledgercraft-integration-20261104.json).
+
 ## Shared workstation ownership and task recovery
 
 Server provisioning defaults are **4 vCPU, 16 GB RAM, 10 GB persistent disk, `default` shared cores and US region**, with auto-sleep enabled after **3,600 idle seconds (one hour)**. `src/config/agents.ts` owns this policy independently of the immutable image's original build resources. A later default change applies to new workstations; resize existing ones only during an owned idle maintenance assignment, reconcile the provider result before updating the resource mirror, and preserve the same disk, identity, task configuration and allowance. Disk can grow but cannot shrink.

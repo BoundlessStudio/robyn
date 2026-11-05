@@ -1,7 +1,7 @@
 {
   "retrieved": "2026-10-27",
   "catalogue": "https://getartcraft.com/apps",
-  "note": "Nine unchanged ArtCraft originals plus twenty Robyn animal illustrations requested by the owner; twenty-eight Craft icons and the Notes/Research raven. Sixteen generated backgrounds were repaired on October 31; previous source prompts and hashes remain recorded. PlanCraft adds an original honeybee and GeoCraft adds an original Arctic tern on November 3; DiagramCraft remains deferred.",
+  "note": "Nine unchanged ArtCraft originals plus twenty Robyn animal illustrations requested by the owner; twenty-eight Craft icons and the Notes/Research raven. Sixteen generated backgrounds were repaired on October 31; previous source prompts and hashes remain recorded. PlanCraft adds an original honeybee and GeoCraft adds an original Arctic tern on November 3; DiagramCraft remains deferred. LedgerCraft adds an original engraved red squirrel on copper on November 4.",
   "icons": [
     {
       "id": "photocraft",
@@ -469,6 +469,19 @@
       "sourceSha256": "d5a5fd21c25bb6cda6548932c459ce6fbb6128a313a2729c09e21ade46698ac3",
       "bytes": 23480,
       "sha256": "60f043223f3e0e002151ec19032ddc6d40b448836b53f2007012f1aba6b67722"
+    },
+    {
+      "id": "ledgercraft",
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-11-04",
+      "animal": "red squirrel",
+      "prompt": "Use case: logo-brand. Asset: one production application icon for LedgerCraft, an accounting app in Robyn's engraved-animal Craft family. Create a single red squirrel's head, shoulders and a hint of its bushy tail, in a compact three-quarter profile facing left. Alert, calm, careful and resourceful; anatomically plausible squirrel, distinct pointed tufted ears and a bright eye. Intricate antique natural-history wood engraving, dense fine black ink crosshatching and warm ivory highlights, crisp fur detail, strong recognizable silhouette that remains legible at 32 pixels. Fill most of the square with comfortable margins. Background must be perfectly uniform flat opaque warm copper #AD7648 across the ENTIRE square including all four corners. Every pixel fully opaque. No rounded corners (the app applies these), no text or lettering, no books, ledger, money, tools, nuts, scenery, extra animals, gradients, shadows, vignette, texture in background, sticker rim, frame, outside margin or 3D effect. Single square 1024x1024 icon only.",
+      "width": 256,
+      "height": 256,
+      "processing": "Encoded as 256 × 256 WebP with the existing 22% rounded-corner mask. Alpha is confined to the outer corners.",
+      "sourceSha256": "6d20eb0fa9c92672d6820af44b643f7ca49788f81be188bd081e07d7922a9554",
+      "bytes": 26738,
+      "sha256": "695923b034d59ee7eac234a46fad5bf35ec1f46e9d10df437cdc2abe60fa405c"
     }
   ]
 }
