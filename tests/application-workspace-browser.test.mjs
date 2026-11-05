@@ -18,7 +18,7 @@ test('empty and populated projects list the independent catalogue and launch rea
   try{
     const {page,state}=await nativeImportFixture(browser);state.allowance=0;
     assert.deepEqual(await page.locator('.application-grid button').evaluateAll(nodes=>nodes.map(node=>node.querySelector('strong').textContent)),studioApps.map(app=>app.name));
-    for(const [name,count] of [['Creative',10],['Drafting',9],['Analysis',9]]){
+    for(const [name,count] of [['Creative',10],['Drafting',9],['Analysis',10]]){
       const group=page.getByRole('region',{name:`${name} studio`,exact:true});
       assert.equal(await group.locator('button').count(),count);
       assert.deepEqual(await group.locator('strong').allTextContents(),studioApps.filter(app=>app.studio===name).map(app=>app.name));

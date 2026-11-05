@@ -18,7 +18,7 @@ bird to white. The light paper version keeps its forest-coloured body.
 - `src/config/branding.ts` owns the site name, domain, description and social
   asset references. `social-metadata.ts` supplies consistent Open Graph/X tags.
 - Craft counts come from the independent registry. The source catalog has
-  28 ready Crafts: Creative 10, Drafting 9 and Analysis 9. The homepage,
+  29 ready Crafts: Creative 10, Drafting 9 and Analysis 10. The homepage,
   metadata, image alt text and generated social card derive the count and
   availability from that registry.
 - `public/brand/apps/plancraft.webp` is an original engraved honeybee on jade,
@@ -27,6 +27,9 @@ bird to white. The light paper version keeps its forest-coloured body.
 - `public/brand/apps/geocraft.webp` adds an original engraved Arctic tern on
   ocean teal for RustGIS mapping and spatial analysis, using the same animal
   family, 256px WebP format and rounded tile mask.
+- `public/brand/apps/ledgercraft.webp` adds an original engraved red squirrel
+  on warm cinnamon for bookkeeping and accounting, with the same 256px WebP
+  format and rounded tile mask. Its generation and byte hashes are in the shared source record.
 - `public/brand/robyn-social.png` is a static 1200×630 PNG. The ASCII bird is a
   deterministic still from the actual homepage renderer, with heavier glyphs
   for small link previews. No screenshot of a fake product interface is used.

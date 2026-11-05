@@ -1,0 +1,40 @@
+{
+  "id": "ledgercraft",
+  "version": "0.1.0",
+  "order": 29,
+  "name": "LedgerCraft",
+  "studio": "Analysis",
+  "category": "Bookkeeping and accounting",
+  "monogram": "Lc",
+  "color": "#ad7648",
+  "artwork": "grid",
+  "sourceUrl": "https://github.com/Wr3nch98DEV/LedgerCraft",
+  "tagline": "Keep your books in balance.",
+  "capabilities": [
+    "bookkeeping",
+    "invoices-and-bills",
+    "bank-reconciliation",
+    "financial-reports"
+  ],
+  "employee": {
+    "role": "Bookkeeping Analyst",
+    "instructions": "Use LedgerCraft's original accounting engine and native .lcdb company files for authorized bookkeeping, invoices, bills, reconciliation and financial reports. Preserve the exact company file, integer monetary amounts, attachments, audit trail, lock dates and accounting assumptions. Work only in the assigned project and task working folder. Use studio-mcp for private-library access and report a save only after its immutable revision is confirmed. Preserve pending snapshots and conflicts without repeating a financial write. Email, webhooks, bank connections, scheduled jobs, external commands and statutory filing are not authorized by opening a file. Payroll tax tables are approximate; do not present them as verified statutory calculations."
+  },
+  "formats": {
+    "native": [
+      ".lcdb"
+    ],
+    "verification": "verified"
+  },
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": "cc7e1ec683664019baf67f859dc45cdd590ac0e4d56c6ba06407057f263554dd",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/ledgercraft/v0.1.0-0.1.0/?robyn",
+    "status": "verified"
+  },
+  "workstation": {
+    "template": "robyn-studio-0-6-0@1",
+    "release": "sha256:5f5ad12a65d1d7ceb8c605405f9b6ba63712531a83f38538ae1fdfbf052ee08c",
+    "status": "verified"
+  }
+}

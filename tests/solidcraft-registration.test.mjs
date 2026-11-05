@@ -18,6 +18,23 @@ function pendingCatalogue() {
   });
 }
 
+test("LedgerCraft joins Analysis only with pinned file, editor and native round-trip acceptance", async () => {
+  const ledger=studioApps.find(app=>app.id==="ledgercraft");
+  assert.ok(ledger);assert.equal(ledger.studio,"Analysis");assert.deepEqual(ledger.formats.native,[".lcdb"]);
+  assert.equal(isAppReady(ledger),true);assert.equal(nativeImportApp("Company.LCDB",studioApps)?.id,"ledgercraft");
+  assert.match(ledger.editor.bundleUrl,/\/ledgercraft\/v0\.1\.0-0\.1\.0\/\?robyn$/);
+  assert.match(ledger.editor.release,/^[a-f0-9]{64}$/);assert.match(ledger.workstation.template,/^robyn-studio-0-6-0@1$/);
+  const sources=JSON.parse(await fs.readFile(new URL("../public/brand/apps/sources.json",import.meta.url),"utf8"));
+  assert.equal(sources.icons.filter(icon=>icon.id==="ledgercraft").length,1);
+  const pending=studioApps.map(app=>app.id!=="ledgercraft"?app:{...app,formats:{...app.formats,verification:"pending"},editor:{...app.editor,status:"pending"},workstation:{...app.workstation,status:"pending"}});
+  assert.equal(nativeImportApp("Company.lcdb",pending),null);
+  await assignmentBoundary(pending,async({submit,calls,created})=>{
+    const response=await submit({appId:"ledgercraft",brief:"Review the company books."});
+    assert.equal(response.status,409);assert.equal((await response.json()).error.code,"integration_pending");
+    assert.deepEqual(calls,["studio_assignments","studio_employees"]);assert.deepEqual(created,[]);
+  });
+});
+
 test("verified GeoCraft joins Analysis with its native format, animal icon and public editor story", async () => {
   const geo = studioApps.find(app => app.id === "geocraft");
   assert.ok(geo);
@@ -32,10 +49,10 @@ test("verified GeoCraft joins Analysis with its native format, animal icon and p
   assert.match(geo.workstation.template, /^robyn-studio-0-4-1@1$/);
   assert.match(geo.workstation.release, /^sha256:[a-f0-9]{64}$/);
   const tour = await loadModule("../../src/components/home/craft-tour.ts", {});
-  assert.equal(tour.registeredCraftCount, 28);
+  assert.equal(tour.registeredCraftCount, 29);
   assert.equal(tour.craftTour.some(app => app.id === "geocraft"), true);
   const { branding } = await loadModule("../../src/config/branding.ts", {});
-  assert.equal(branding.socialImage, "/brand/robyn-social.png?v=28-28");
+  assert.equal(branding.socialImage, "/brand/robyn-social.png?v=29-29");
   const sources = JSON.parse(await fs.readFile(new URL("../public/brand/apps/sources.json", import.meta.url), "utf8"));
   assert.equal(sources.icons.filter(icon => icon.id === "geocraft").length, 1);
 });
@@ -70,9 +87,9 @@ test("verified PlanCraft joins Analysis, native imports and public editor storie
   assert.equal(tour.registeredCraftCount, studioApps.length);
   assert.deepEqual(tour.upcomingCrafts.map(app=>app.id), []);
   assert.equal(tour.craftTour.some(app => app.id === "plancraft"), true);
-  assert.match(branding.description, /28 Crafts/);
+  assert.match(branding.description, /29 Crafts/);
   assert.doesNotMatch(branding.description, /coming soon/);
-  assert.match(branding.socialImageAlt, /28 Crafts/);
+  assert.match(branding.socialImageAlt, /29 Crafts/);
   assert.doesNotMatch(branding.socialImageAlt, /coming soon/);
 });
 
@@ -92,7 +109,7 @@ test("SolidCraft registers as a tool under one Robyn profile while pending impor
     });
     assert.equal(profiles.length,1);
     assert.deepEqual(profiles.map(({key,kind,appId,role})=>({key,kind,appId,role})),[{key:"robyn",kind:"director",appId:null,role:"Robyn"}]);
-    assert.equal(publicApps().length,apps.length);assert.equal(publicApps().length,28);
+    assert.equal(publicApps().length,apps.length);assert.equal(publicApps().length,29);
     assert.equal(publicApps().some(app=>app.id==="research"),false);
     assert.equal(publicApps().find(app => app.id === "solidcraft").ready, false);
   } finally { delete globalThis.__solidcraftCatalogue; }
@@ -167,9 +184,9 @@ test("pending SolidCraft rejects paid assignment creation before budget or workf
   });
 });
 
-test("all 28 ready Craft hints and an unhinted brief use the same canonical Robyn",async()=>{
+test("all 29 ready Craft hints and an unhinted brief use the same canonical Robyn",async()=>{
   const readyApps=studioApps.filter(isEmployeeReady);
-  assert.equal(readyApps.length,28);
+  assert.equal(readyApps.length,29);
   assert.deepEqual(studioApps.filter(app=>!isAppReady(app)).map(app=>app.id),[]);
   await assignmentBoundary(studioApps,async({submit,employee,created})=>{
     for(const app of readyApps){const response=await submit({appId:app.id,employeeId:employee.id});assert.equal(response.status,202);}

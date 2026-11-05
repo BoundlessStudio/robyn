@@ -9,6 +9,13 @@ export interface CraftArtwork {
 // Actual editor screenshots from our own QA project. CSS crops the studio shell
 // and applies the ink palette. Provenance: docs/HOMEPAGE-ARTWORK.md.
 export const craftArtwork: Record<string, CraftArtwork> = {
+  "ledgercraft": {
+    "src": "/artwork/editors/ledgercraft.png",
+    "title": "Keep your books in balance.",
+    "alt": "LedgerCraft's original accounting dashboard with sample company accounts, bank reconciliation, invoices, bills and financial reports.",
+    "tools": "INVOICES / RECONCILIATION / FINANCIAL REPORTS",
+    "fullFrame": true
+  },
   "research": {
     "src": "/artwork/editors/research.jpg",
     "title": "A question. Something worth making.",

@@ -2,3 +2,5 @@
 vendor/** -text whitespace=-blank-at-eof
 src/studio/generated/native-inspector* -text
 public/studio/starters/** binary
+# Retain the copied Office skill CRLF bytes in the new immutable client.
+vendor/robyn-workstation/0.12.0-b43252220ee4/** -text whitespace=cr-at-eol,-blank-at-eof

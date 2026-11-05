@@ -1,0 +1,253 @@
+{
+  "appId": "ledgercraft",
+  "status": "verified",
+  "integrationStatus": "verified",
+  "roundTrip": "verified",
+  "checkedAt": "2026-11-05T00:56:58.002782+00:00",
+  "scope": "Accepted source integration and published immutable editor/template. Actual original native engine/UI, hosted original Svelte UI, authenticated Next.js BFF, private Storage commits and installed native GUI continuation. Production web/owned-workstation rollout is separate.",
+  "source": {
+    "repository": "https://github.com/Wr3nch98DEV/LedgerCraft",
+    "commit": "e2fe64dc9111d3effcc4b3d232927ec519092fa7",
+    "archive": {
+      "name": "ledgercraft-e2fe64dc9111d3effcc4b3d232927ec519092fa7.zip",
+      "url": "https://codeload.github.com/Wr3nch98DEV/LedgerCraft/zip/e2fe64dc9111d3effcc4b3d232927ec519092fa7",
+      "bytes": 919300,
+      "sha256": "df63d7b06348e2e7577aea504b8c3bbaba40d1e92795afbe4ed6011e0d4f4c69"
+    }
+  },
+  "adapterVersion": "0.1.0",
+  "browserBundleSha256": "cc7e1ec683664019baf67f859dc45cdd590ac0e4d56c6ba06407057f263554dd",
+  "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/ledgercraft/v0.1.0-0.1.0/?robyn",
+  "sourcePatchSha256": "7f3739d3aace5d5e1f3373dae54b7b7410b7504299b61c7faf49801232aa9cc8",
+  "dependencyLocks": {
+    "cargo": "59fca3e9f32a2852f5ba0fae813b5d19f7ea8347cfc5a6ba651f220a922c26b5",
+    "npm": "c3c18c5ffd5db105df5f533cafe64ecdba6ee200d4d059062910939426ba999e"
+  },
+  "format": {
+    "extension": ".lcdb",
+    "container": "Original LedgerCraft SQLite company",
+    "singleMaster": true,
+    "embeddedAttachments": true,
+    "maxBytes": 268435456,
+    "hotJournalsRefused": true,
+    "localHttpServerRequired": false
+  },
+  "imageInstallation": {
+    "version": "0.6.0",
+    "template": "robyn-studio-0-6-0@1",
+    "imageDigest": "sha256:5f5ad12a65d1d7ceb8c605405f9b6ba63712531a83f38538ae1fdfbf052ee08c",
+    "sourceFingerprint": "49168d7e886459ba0f6e96c9919e2ed1f0ca734c56074c83dbf8667b07a654eb",
+    "contextSha256": "dd8d33cc56615abd497753d96cb002e51c366e895a7427c0830550afbe154cb0",
+    "installedApplications": 29,
+    "groups": {
+      "Creative": 10,
+      "Drafting": 9,
+      "Analysis": 10
+    },
+    "nativeExecutables": {
+      "ledgercraft": "c09f0c38cf333c32e7259894084dfecd994e357a122affdf1a559322ca996d4d",
+      "ledgercraft-file-engine": "e993edb86826627fb2bf2d07791e08744d8ba25f35e0498458b579663d3ffc6c"
+    },
+    "originalGuiContinuations": true
+  },
+  "workstationClient": {
+    "version": "0.12.0",
+    "fingerprint": "b43252220ee48a1a07c62fd05a4139c31339eba81a3e9138635567b1515b0f28",
+    "bundleSha256": "820b2080a7dbe040d196321a5f6a468a8b09640e6c45504dec5be27a5e56d1ec",
+    "installedCraftSkills": 29,
+    "nativeCommandSmoke": true,
+    "nativeWorkingFileSaveIsLibrarySave": false
+  },
+  "nativeStarter": {
+    "id": "ledgercraft:10",
+    "appId": "ledgercraft",
+    "name": "Untitled company",
+    "description": "New company books",
+    "files": [
+      {
+        "path": "Untitled company.lcdb",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 675840,
+        "sha256": "6f6063d9b13e5d8b35bded2d62ad277817718684fc9ac92e64c43252c0eecbb9",
+        "url": "/studio/starters/10/ledgercraft/Untitled%20company.lcdb"
+      }
+    ]
+  },
+  "roundTripCases": {
+    "nativeInputSha256": "0a29ed6efa11dfd510e332aaa4ddfb1ec1a1377a01da904ceb70955b6c2deac7",
+    "confirmedHostedMaster": {
+      "bytes": 1032192,
+      "sha256": "86a0ee03fd2d10c844934c14e4c06b4f4f71624c782e47fde1c7fd327e2d5650"
+    },
+    "hostedNativeContinuation": {
+      "case": "original native company -> hosted browser Ctrl+S and Save As -> confirmed private-library revision -> installed native GUI reopen and save",
+      "browserNameRetained": true,
+      "browserUnicodeAddressRetained": true,
+      "browserInvoiceReferenceRetained": true,
+      "invoiceTotalMinorUnits": 95700,
+      "invoiceStatus": "DRAFT",
+      "nativeGuiPhoneSaved": true,
+      "attachments": [
+        {
+          "filename": "Notes \u2014 Montr\u00e9al.txt",
+          "sha256": "1af077361ff35eef7b73680d304ba5764b091eb588d5da6a7b8408ea7f53cdd5"
+        }
+      ],
+      "journalsBalanced": true,
+      "integrity": "ok",
+      "nativeExitCode": 0,
+      "nativeContinuedSha256": "d31872be130bc52e86450b0286f66215cbfa8a6e1c867adc09d8930d15e919c5"
+    },
+    "nativeBlankBrowserSetupAndNativeContinuation": {
+      "case": "native blank -> original browser setup -> confirmed BFF save -> installed native GUI continuation",
+      "browserNameRetained": true,
+      "currencyRetained": true,
+      "nativeGuiPhoneSaved": true,
+      "integrity": "ok",
+      "sha256": "0459523f93cfa5f88982afc32fe2ba341a519c3b83a73d7c5e2f0f8d8dbd4d07",
+      "nativeExitCode": 0
+    },
+    "hostedUi": {
+      "hostedBrowser": true,
+      "ctrlSWaitedForCommit": true,
+      "prematureSuccess": false,
+      "exactInvoiceReload": true,
+      "saveAsAdoptedAndReloaded": true,
+      "contactFormCommitted": true,
+      "profitAndLossComputed": true,
+      "reportCreatedNoRevision": true,
+      "narrowedExistingSessionPreserved": true,
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    "recovery": {
+      "originalEditorLocalBff": {
+        "lostAcknowledgement": {
+          "durableCommit": true,
+          "retryUi": true,
+          "noRepeatedRpc": true,
+          "clean": true
+        },
+        "laterEdits": {
+          "retained": true,
+          "secondSaveCommitted": true
+        }
+      },
+      "conflictPreservedAndSavedAsNewAsset": true,
+      "conflictExactReload": true,
+      "finalSerializedSnapshotRegressions": true
+    },
+    "engineFences": {
+      "wrongSqliteRefusedWithoutWrite": true,
+      "externalOperationsRefused": true,
+      "existingNativeCompanyOpened": true
+    }
+  },
+  "accountingScope": {
+    "originalRustEngine": true,
+    "salesOrderDepositSubtypeCorrection": true,
+    "invoiceTotalMinorUnits": 95700,
+    "exactMoneyAndAttachmentPreserved": true,
+    "journalsBalanced": true,
+    "financialReportComputedWithoutLibraryWrite": true,
+    "scheduledJobsAndExternalDeliveryDisabled": true,
+    "statutoryPayrollAccuracyAccepted": false
+  },
+  "checks": {
+    "webTypecheck": "passed",
+    "webTests": {
+      "passed": 263,
+      "failed": 0
+    },
+    "runtimeTests": {
+      "passed": 172,
+      "failed": 0
+    },
+    "originalAccountingAndNativeTests": {
+      "passed": 237,
+      "ignored": 17,
+      "failed": 0
+    },
+    "webProductionBuild": "passed",
+    "publicPages": {
+      "combinations": 18,
+      "browsers": [
+        "chromium",
+        "firefox",
+        "webkit"
+      ],
+      "axeViolations": 0,
+      "horizontalOverflow": false,
+      "keyboardFocusPassed": 14,
+      "platformKeyboardCasesUnverified": 4
+    },
+    "desktopAndMobileChapterVisualReview": true,
+    "expandedAndOriginalColourReview": true,
+    "linuxTaskProfileTests": {
+      "passed": 4,
+      "failed": 0,
+      "all29CapabilitiesAndLedgerCraftSkill": true
+    },
+    "workstationCredentialRegressionTests": {
+      "passed": 4,
+      "failed": 0
+    },
+    "npmAuditHighThreshold": {
+      "web": "passed; 20 moderate advisories in the unchanged workflow dependency tree, zero high/critical",
+      "runtime": "passed; zero vulnerabilities"
+    }
+  },
+  "artwork": {
+    "icon": {
+      "path": "public/brand/apps/ledgercraft.webp",
+      "animal": "red squirrel",
+      "bytes": 26738,
+      "sha256": "695923b034d59ee7eac234a46fad5bf35ec1f46e9d10df437cdc2abe60fa405c"
+    },
+    "capture": {
+      "path": "public/artwork/editors/ledgercraft.png",
+      "width": 1600,
+      "height": 1000,
+      "sha256": "969517cf92d2c20f148efa676716a0295eda3315da202e766b30b6e24956087b",
+      "source": "Unmodified original hosted application after confirmed company Save As and exact reload"
+    },
+    "social": {
+      "path": "public/brand/robyn-social.png",
+      "sha256": "344c7bc22ffac5f832c7d188e070792e05834d2c531054499b72677d2e5d4dcb",
+      "readyCrafts": 29
+    }
+  },
+  "publication": {
+    "workerVersion": "fc6e6b99-9813-4675-8d25-3991d49a07c9",
+    "catalogSha256": "3577b5cc8281e2baf3bd68c44f833290a59d6da24e1a7d6b025595a582d65c8d",
+    "releases": 108,
+    "paths": 50237,
+    "uniqueObjects": 3314,
+    "allHostedBytesVerified": true,
+    "retainedReleaseBytesUnchanged": true
+  },
+  "productionBoundary": {
+    "webDeployed": false,
+    "ownedWorkstationUpdated": false,
+    "modelTurnRun": false,
+    "migrationsApplied": false,
+    "migrationLedgerReread": false,
+    "precedingRecordedMigrationBaseline": "31 checksummed entries through 0030; unchanged, not re-verified by this integration",
+    "physicalDevicesAndAdditionalNativeBrowserEnginesAccepted": false
+  },
+  "sourceBases": {
+    "web": "ae26e2c088afc7217516649b2909939d863bee50",
+    "runtime": "a870299dcab4cd420b3b9b64514d7dec239d23a5"
+  },
+  "evidencePolicy": "Sanitized hashes and scoped outcomes only. Auth cookies, signed transfer URLs, private AssetRefs and raw QA receipts remain ignored and outside version control.",
+  "qaCleanup": {
+    "sessionRevoked": true,
+    "otherSessionsPreserved": true,
+    "qaBrowserAndServersClosed": true,
+    "nativeGuiProcessesExitedCleanly": true
+  },
+  "sourceCommits": {
+    "runtime": "20e40fcf462ee0c10016d5b33cbb55fbeb6f819e"
+  }
+}
