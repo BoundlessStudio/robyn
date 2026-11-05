@@ -248,6 +248,8 @@
     "nativeGuiProcessesExitedCleanly": true
   },
   "sourceCommits": {
+    "web": "f8d0e310764fcfe18b9721ed49107b2e64e5fb97",
     "runtime": "20e40fcf462ee0c10016d5b33cbb55fbeb6f819e"
-  }
+  },
+  "sourceCommitScope": "These commits contain the tested implementation. A following receipt-only commit records this pair; production rollout remains separate."
 }
