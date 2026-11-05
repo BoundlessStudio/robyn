@@ -16,7 +16,7 @@ LedgerCraft native commands update a task working file; a library save still req
 
 ## Shared workstation ownership and task recovery
 
-Server provisioning defaults are **4 vCPU, 16 GB RAM, 10 GB persistent disk, `default` shared cores and US region**, with auto-sleep enabled after **3,600 idle seconds (one hour)**. `src/config/agents.ts` owns this policy independently of the immutable image's original build resources. A later default change applies to new workstations; resize existing ones only during an owned idle maintenance assignment, reconcile the provider result before updating the resource mirror, and preserve the same disk, identity, task configuration and allowance. Disk can grow but cannot shrink.
+The server provisions new workstations with **4 vCPU, 32 GB RAM, 80 GB persistent disk, `default` shared cores and US region** and enables auto-sleep after **3,600 idle seconds (one hour)**. `src/config/agents.ts` owns this policy independently of the immutable image's original build resources. Resize existing workstations only during an owned idle maintenance assignment. Reconcile the provider result before updating the resource mirror and preserve the disk, instance identity, task configuration and allowance. Disk can grow but cannot shrink.
 
 The current project menu is **Dashboard, Assets, Robyn, Settings**. Robyn contains **Conversation, Jobs, Review and Skills**, its browser control and one AI allowance summary. Applications are tools; there is no Researcher or employee picker. The legacy `research` document format remains readable as Notes and must not be removed with retired employee records.
 
