@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-06T04:37:05Z",
+  "localDate": "2026-11-05",
+  "timezone": "America/Toronto",
+  "stage": "production-deployed-mcp-discovery-verified",
+  "webCommit": "5e3f2bad197680ad48bf1d26ec9986aa65c71bcf",
+  "runtimeCommit": "2be04d0abac48e7f7be203557267675d458ab787",
+  "webPullRequest": "https://github.com/BoundlessStudio/robyn/pull/75",
+  "runtimePullRequest": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/29",
+  "webDeployment": {
+    "provider": "Vercel",
+    "id": "7FvLXjEQsAtpQHSLqpGodWccCsfQ",
+    "url": "https://vercel.com/venatio-studios/robyn-creative-studio/7FvLXjEQsAtpQHSLqpGodWccCsfQ",
+    "production": "https://robyn.academy",
+    "status": "ready-current",
+    "mcpEndpoint": "https://robyn.academy/mcp"
+  },
+  "ci": {
+    "webMatchingTreePushRun": 42161847398,
+    "webMatchingTreeConclusion": "success",
+    "webPullRequestRun": 42161854198,
+    "webPullRequestRunStatusAtMerge": "in progress installing Playwright dependencies",
+    "webProductionPushRun": 42163057170,
+    "webProductionConclusion": "success",
+    "runtimeProductionPushRun": 42162233534,
+    "runtimeProductionConclusion": "success"
+  },
+  "migrationState": {
+    "method": "Supabase SQL Editor with the shared migration ledger lock",
+    "priorLedgerEntries": 31,
+    "priorHead": "0030_asset_bridge.sql",
+    "priorLedgerSha256": "f1fc99f6fc416c4682aa29e580e78fe267621f90c67fbf72a5b58dc2f3866ecf",
+    "verifiedLedgerEntries": 33,
+    "ledgerSha256": "a201ecb24310a185c2597bceb39b9357716ee91c17f2b8dfe5eb6bc1ab0825b3",
+    "digestInput": "Ordered filename:checksum entries joined by LF without a trailing LF",
+    "appliedAtomically": {
+      "0031_external_mcp_oauth.sql": "b398808c5d5f64de8a3c5507de421f45bd137e51a3b5b5863251b0b772dc5233",
+      "0032_external_mcp_commands.sql": "b07bd127dbcc2fd45ed1a767a6234c47f30b308c657442be151b4d785bf74629"
+    },
+    "mcpTablesPrivateWithRls": true,
+    "mcpAdmissionRpcsRestricted": true
+  },
+  "workstationImage": {
+    "version": "0.6.0",
+    "template": "robyn-studio-0-6-0@1",
+    "digest": "sha256:5f5ad12a65d1d7ceb8c605405f9b6ba63712531a83f38538ae1fdfbf052ee08c"
+  },
+  "workstationClient": {
+    "version": "0.12.1",
+    "fingerprint": "5016428278803d32d4fe1b25e818b32eafd8d74267e7228e06cc0722d5dcc211"
+  },
+  "directWorker": {
+    "version": "1.0.0",
+    "fingerprint": "e898213a7a03aa55ec2cf3bec31fc31a04e0bbd3a3df458437fa776fbcf9e482",
+    "applications": 29
+  },
+  "editorPins": {
+    "manifestPath": "src/studio/apps",
+    "gitTree": "71bbd43e1bb2db12f2261e2d7718d9d2e8921d8c",
+    "applications": 29
+  },
+  "productionSmoke": {
+    "homepage": 200,
+    "authorizationServerMetadata": 200,
+    "protectedResourceMetadata": 200,
+    "canonicalIssuerAndResource": true,
+    "s256PkceAndDynamicRegistrationAdvertised": true,
+    "unauthenticatedMcpGetAndInitializeChallenge": 401,
+    "unknownBearerRejectedAfterIdentityLookup": 401,
+    "untrustedOrigin": 403,
+    "workerCallWithoutCapability": 401,
+    "publicSignupDisabled": true,
+    "emailProviderEnabled": true
+  },
+  "hostedAcceptancePending": [
+    "Invited passwordless ChatGPT connection and grant revocation",
+    "Zero allowance job refusal with direct Craft control in the same account",
+    "Command discovery on the shared workstation across the full Craft catalog",
+    "Direct command with confirmed private-library save and exact browser and native reopen",
+    "DashCraft exact-input read-only operation",
+    "Bounded Robyn job with approved positive QA allowance"
+  ]
+}
