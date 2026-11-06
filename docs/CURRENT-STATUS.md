@@ -1,6 +1,10 @@
 # Current pilot acceptance
 
-Updated November 5, 2026 (Toronto). This page indexes recorded release evidence and remaining gaps. [Architecture and scope](ARCHITECTURE.md) describes the current system. [Operations](OPERATIONS.md) owns recovery procedures. Documentation maintenance does not imply a new deployment or a fresh live check. Earlier release summaries and the R01–R18 review are in the [archive](archive/README.md).
+Updated November 6, 2026 (Toronto). This page indexes recorded release evidence and remaining gaps. [Architecture and scope](ARCHITECTURE.md) describes the current system. [Operations](OPERATIONS.md) owns recovery procedures. Documentation maintenance does not imply a new deployment or a fresh live check. Earlier release summaries and the R01–R18 review are in the [archive](archive/README.md).
+
+## External MCP settings, deployed November 6
+
+Studio settings and project settings have a dedicated External MCP section with the server URL, ChatGPT setup steps and allowance behavior. Seven new browser versions hide their own MCP setup controls. The signed-in settings and the hosted editor save and native continuation checks passed. [Production release record](acceptance/external-mcp-settings-deployed-20261106.json)
 
 ## LedgerCraft, deployed November 4
 
