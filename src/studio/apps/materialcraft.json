@@ -26,9 +26,9 @@
     "verification": "verified"
   },
   "editor": {
-    "adapterVersion": "0.1.0",
-    "release": "materialcraft-v0.5.0-robyn-0.1.0",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/materialcraft/v0.5.0-0.1.0/?robyn",
+    "adapterVersion": "0.1.1",
+    "release": "materialcraft-v0.5.0-robyn-0.1.1",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/materialcraft/v0.5.0-0.1.1/?robyn",
     "status": "verified"
   },
   "workstation": {
