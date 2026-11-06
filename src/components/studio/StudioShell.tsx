@@ -15,7 +15,10 @@ export function StudioShell({ children }: { children: React.ReactNode }) {
     <a href="#studio-content" className="studio-skip">Skip to workspace</a>
     {!projectMode&&<aside className="studio-sidebar" aria-label="Studio identity and navigation">
       <Link className="studio-logo" href="/dashboard" aria-label="Robyn studio"><RobinMark/> robyn <span className="studio-pilot">STUDIO</span></Link>
-      <div className="studio-identity"><span className="studio-avatar" aria-hidden="true">{(userEmail[0] ?? "R").toUpperCase()}</span><div><strong>{current?.name}</strong><small>Private creative studio</small></div></div>
+      <Link href="/dashboard/settings" className="studio-identity" aria-current={path === "/dashboard/settings" ? "page" : undefined}>
+        <span className="studio-avatar" aria-hidden="true">{(userEmail[0] ?? "R").toUpperCase()}</span>
+        <div><strong>{current?.name}</strong><small>Studio settings</small></div>
+      </Link>
       <nav aria-label="Studio navigation">{studioNavigation.map(({href,label,icon:Icon}) => {
         const active = href === "/dashboard" ? path === href || path.startsWith("/dashboard/projects/") : path.startsWith(href);
         return <Link href={href} key={href} aria-current={active ? "page" : undefined}><Icon size={17} aria-hidden="true"/>{label}</Link>;

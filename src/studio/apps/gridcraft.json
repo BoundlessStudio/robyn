@@ -27,9 +27,9 @@
     "vba-macros"
   ],
   "editor": {
-    "adapterVersion": "0.4.1",
-    "release": "gridcraft-v0.13.0-robyn-0.4.1",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/gridcraft/v0.13.0-0.4.1/?robyn",
+    "adapterVersion": "0.4.2",
+    "release": "gridcraft-v0.13.0-robyn-0.4.2",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/gridcraft/v0.13.0-0.4.2/?robyn",
     "status": "verified"
   },
   "workstation": {

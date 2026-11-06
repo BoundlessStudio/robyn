@@ -26,9 +26,9 @@
     "verification": "verified"
   },
   "editor": {
-    "adapterVersion": "0.1.0",
-    "release": "38eaa7836aa8bb2f0a1a4ef51062cc10e184e3c855fc11d1a8fd04135f197a6f",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/plancraft/v0.1.0-0.1.0/",
+    "adapterVersion": "0.1.1",
+    "release": "deb365522663aa31609c062ac1cd2b96ca709b337009808d2448a265ad8a771b",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/plancraft/v0.1.0-0.1.1/",
     "status": "verified"
   },
   "workstation": {

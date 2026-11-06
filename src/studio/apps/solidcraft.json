@@ -29,9 +29,9 @@
     "cad"
   ],
   "editor": {
-    "adapterVersion": "0.1.2",
-    "release": "solidcraft-v0.27.1-robyn-0.1.2",
-    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/solidcraft/v0.27.1-0.1.2/?robyn",
+    "adapterVersion": "0.1.3",
+    "release": "solidcraft-v0.27.1-robyn-0.1.3",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/solidcraft/v0.27.1-0.1.3/?robyn",
     "status": "verified"
   },
   "workstation": {

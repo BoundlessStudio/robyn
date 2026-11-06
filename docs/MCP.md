@@ -4,10 +4,11 @@ Robyn exposes the private Studio at `https://robyn.academy/mcp` when the product
 
 ## Connect ChatGPT
 
-1. In ChatGPT web, open **Plugins → + → Add custom MCP server**. Name it **Robyn**, enter the deployed `/mcp` HTTPS URL and choose **OAuth** with dynamic client registration.
-2. Create and install the plugin. When ChatGPT asks you to connect, sign in with the email from your Robyn invitation, open the sign-in link and confirm the connection. The Robyn consent screen identifies the client and callback host.
-3. In a new **Work** chat, select **@Robyn**. Try “List my Robyn projects and find the saved spreadsheet in my project.” Ask for a specific Craft action to have ChatGPT call that application directly. Ask to delegate a job when you want Robyn to use its Studio AI allowance.
-4. Revoke access under **Studio → Settings → MCP connections**, or visit `/oauth/connections` on your Studio.
+1. On the Robyn Projects page, choose **Studio settings** in the top-right corner. Open **External MCP** and copy the server URL. This section is also available in each project's **Settings**.
+2. In ChatGPT web, choose **Plugins → Add → Add custom MCP server**. Name it **Robyn**, paste the URL, and choose **OAuth** with dynamic client registration. Review the warning and select **Create as a plugin**.
+3. Choose **Connect Robyn**. If asked to sign in, use the email from your Robyn invitation and open the sign-in link. Approve the connection in Robyn after checking the client and callback host.
+4. In a new **Work** chat, select **@Robyn**. Try “List my Robyn projects and find the saved spreadsheet in my project.” Ask for a specific Craft action to have ChatGPT call that application directly. Ask to delegate a job when you want Robyn to use its Studio AI allowance.
+5. Review or revoke access under **Settings → External MCP → Manage MCP connections**, or visit `/oauth/connections` on your Studio.
 
 [OpenAI’s custom MCP connection guide](https://developers.openai.com/plugins/deploy/connect-chatgpt)
 
