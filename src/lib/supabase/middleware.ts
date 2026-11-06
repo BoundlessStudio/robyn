@@ -14,6 +14,11 @@ export async function updateSession(request: NextRequest) {
   // This one endpoint authenticates a revocable assignment capability in its
   // handler. Employee workstations never receive a creator's session cookie.
   if (pathname === "/api/studio/mcp") return response;
+  // External MCP and OAuth machine endpoints authenticate in their handlers.
+  if (pathname === "/mcp" || pathname === "/api/studio/external-mcp" || pathname === "/api/studio/mcp-runtime"
+    || pathname === "/.well-known/oauth-authorization-server" || pathname === "/.well-known/oauth-protected-resource"
+    || pathname === "/.well-known/oauth-protected-resource/mcp"
+    || /^\/api\/studio\/mcp-oauth\/(register|token|revoke)$/.test(pathname)) return response;
   const isPublic = pathname === "/login" || pathname.startsWith("/auth/") || pathname === "/reset-password" || pathname.startsWith("/invite/");
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
     if (isPublic) return response;

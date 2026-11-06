@@ -43,7 +43,7 @@ export async function readStudioBody(request: Request): Promise<Record<string, u
 }
 
 /** Bounded metadata parser shared by cookie and employee authentication paths. */
-export async function readMetadataBody(request: Request): Promise<Record<string, unknown>> {
+export async function readMetadataBody(request: Request, maxBytes = 262144): Promise<Record<string, unknown>> {
   if (!request.headers.get("content-type")?.startsWith("application/json")) throw new ApiError(415, "invalid_content_type", "Send a JSON request.");
   const reader = request.body?.getReader();
   if (!reader) throw new ApiError(400, "invalid_request", "A request body is required.");
@@ -52,7 +52,7 @@ export async function readMetadataBody(request: Request): Promise<Record<string,
     const { done, value } = await reader.read();
     if (done) break;
     size += value.byteLength;
-    if (size > 262144) { await reader.cancel(); throw new ApiError(413, "request_too_large", "Transfer media directly to private Storage. This endpoint accepts metadata only."); }
+    if (size > maxBytes) { await reader.cancel(); throw new ApiError(413, "request_too_large", "Transfer media directly to private Storage. This endpoint accepts metadata only."); }
     chunks.push(value);
   }
   try {
