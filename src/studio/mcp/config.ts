@@ -23,6 +23,15 @@ export function mcpConfig() {
   return { issuer, resource: issuer + mcpPath };
 }
 
+export function mcpSetupEndpoint() {
+  try {
+    const { resource } = mcpConfig();
+    return resource.startsWith("https://") ? resource : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 export function workerToken(operationId: string, instanceId: string) {
   const { resource } = mcpConfig();
   return "rbw_" + createHmac("sha256", Buffer.from(process.env.ROBYN_MCP_RUNTIME_SECRET!, "base64url"))

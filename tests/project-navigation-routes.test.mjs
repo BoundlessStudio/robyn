@@ -3,12 +3,21 @@ import assert from 'node:assert/strict';
 import {randomUUID} from 'node:crypto';
 import {loadModule} from './helpers/module.mjs';
 
-test('legacy project-tool URLs preserve known project context or return to projects',async()=>{
+test('legacy project-tool URLs preserve project context and Studio settings open without a project',async()=>{
   const projectId=randomUUID(),asset=randomUUID(),revision=randomUUID();
-  const mocks={'next/navigation':'export function redirect(location){throw Object.assign(new Error("Redirect"),{location})}'};
+  const mocks={
+    'next/navigation':'export function redirect(location){throw Object.assign(new Error("Redirect"),{location})}',
+    '@/components/studio/StudioSettings':'export const StudioSettings="studio-settings-fixture";',
+    '@/studio/mcp/config':'export const mcpSetupEndpoint=()=>"https://studio.test/mcp";',
+  };
   for(const section of ['library','employees','research','applications','settings']){
     const {default:page}=await loadModule(`../../src/app/dashboard/(fleet)/${section}/page.tsx`,mocks);
-    await assert.rejects(page({searchParams:Promise.resolve({})}),{location:'/dashboard'});
+    const withoutProject=page({searchParams:Promise.resolve({})});
+    if(section==='settings'){
+      const settings=await withoutProject;
+      assert.equal(settings.type,'studio-settings-fixture');
+      assert.equal(settings.props.mcpEndpoint,'https://studio.test/mcp');
+    }else await assert.rejects(withoutProject,{location:'/dashboard'});
     const searchParams=Promise.resolve({projectId,asset,revision,view:'review'});
     await assert.rejects(page({searchParams}),error=>{
       const url=new URL(error.location,'https://studio.test');assert.equal(url.pathname,`/dashboard/projects/${projectId}${section==='applications'?'':`/${section}`}`);
