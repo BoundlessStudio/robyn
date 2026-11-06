@@ -1,5 +1,9 @@
 import { safeNextPath } from "./site-url";
 
+export function isMcpAuthReturn(path: string) {
+  return path.split(/[?#]/, 1)[0] === "/oauth/authorize";
+}
+
 /** Email templates receive an absolute RedirectTo; only our own origin is trusted. */
 export function authReturnPath(raw: string | null, origin: string): string {
   let next = raw;

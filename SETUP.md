@@ -134,7 +134,7 @@ backend or register your sign-in URLs. Run setup locally once first, then:
 
 1. Run `npm run setup` locally (creates Supabase + schema + auth config).
 2. Push your fork to GitHub, then in Vercel: **Add New → Project → Import Git Repository**.
-3. Add **only these** env vars: `AGENT37_API_KEY`, `NEXT_PUBLIC_SUPABASE_URL`,
+3. Add the required env vars `AGENT37_API_KEY`, `NEXT_PUBLIC_SUPABASE_URL`,
    `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` (server-only — the runtime needs
    it for all DB access), `NEXT_PUBLIC_SITE_URL` (your prod URL).
    **Never add** `SUPABASE_ACCESS_TOKEN` — it's setup-only (used to create/configure the project,
@@ -142,3 +142,5 @@ backend or register your sign-in URLs. Run setup locally once first, then:
    (Branding is code-side now — edit `src/config/branding.ts`, not env.)
 4. Register your prod sign-in URL with Supabase: set `NEXT_PUBLIC_SITE_URL` to your prod URL
    in `.env.local` and re-run `npm run setup` (it adds `<prod>/auth/callback` for you).
+
+To enable the optional external MCP endpoint, follow the [MCP deployment and acceptance procedure](docs/MCP.md).

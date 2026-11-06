@@ -14,6 +14,8 @@ export function assignmentFenceArgs(fence: AssignmentFence) {
 export async function assignmentRpc<T>(db: DB, name: string, args: Record<string, unknown>): Promise<T> {
   const { data, error } = await db.rpc(name, args);
   if (error?.message.includes("operation key reused")) throw new ApiError(409, "operation_key_reused", "This request was already used for a different assignment.");
+  if (error?.message.includes("mcp ai helper disabled")) throw new ApiError(409, "ai_helper_disabled", "The Studio AI allowance is $0. Use direct Craft commands or update the allowance in Studio Settings.");
+  if (error?.message.includes("mcp budget sync pending")) throw new ApiError(409, "studio_budget_sync_required", "Finish the saved Studio allowance update before starting Robyn.");
   dbFailure(error);
   return data as T;
 }

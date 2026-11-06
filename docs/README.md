@@ -10,6 +10,7 @@ Start with [architecture and scope](ARCHITECTURE.md) for how Robyn works, [setup
 | [Current acceptance](CURRENT-STATUS.md) | Release evidence, verification scope and outstanding acceptance or policy work |
 | [Operations](OPERATIONS.md) | Provisioning, stalled jobs, uncertain payments, retention, recovery, export and account closure |
 | [Passwordless authentication](PASSWORDLESS-AUTH.md) | Invitation and sign-in confirmation flow |
+| [External MCP](MCP.md) | Connect ChatGPT or another MCP client to Robyn, the Crafts and the private library |
 | [Domain configuration](DOMAIN-SETUP.md) | Website, editor distribution, DNS, authentication mail and support forwarding |
 | [Browser support](BROWSER-SUPPORT.md) | Desktop entry rules, tested browser scope and accessibility limits |
 | [Media acceptance](MEDIA-ACCEPTANCE.md) | Enabled generation profiles, provider gates and promotion requirements |

@@ -93,6 +93,10 @@ Settings exposes one monthly AI limit for Robyn, spending, reservations and avai
 
 Persist the owner's request, expected policy operation and exact instance/period/target before a cap write. Recover a lost response by observing the saved intent. An expired lease cannot authorize another write, and a newer change waits until the earlier outcome is resolved. New paid actions require verified headroom and account for unsettled media reservations. Manual editing, saving, exports, existing assets and direct free Commons browsing remain available when allowance is exhausted. Collection of a known purchased result remains recoverable without another purchase.
 
+## External MCP
+
+External MCP is a separate creator-authorized entry point. OAuth grants are scoped to the deployed `/mcp` resource and one owned Studio. A direct Craft operation gets a separate workstation credential, isolated working copy and immutable save base. It shares the workstation slot with Robyn and media jobs. Robyn job requests use the same allowance and assignment workflow as the Studio. See [External MCP](MCP.md) for connection, supported commands and deployment acceptance.
+
 ## Verification and scope limits
 
 Every Craft requires an actual native creation → browser edit → confirmed private-library save → native continuation, with editability and exact dependencies preserved. Record editor loops, operator-controlled MCP saves and ordinary AI activity as separate acceptance scopes. Test ownership, interrupted uploads, missing dependencies, save conflicts, restoration, cancellation and duplicate-run prevention. Isolated tests and recorded historical acceptance do not establish a deployed release. Release records pair web/runtime sources, migration state, editor pins and workstation client. Follow [setup](../SETUP.md) for the private checksummed migration ledger and required verification commands.

@@ -26,7 +26,7 @@ export function employeeTemplate(employee: StudioEmployee) {
 
 /** Creation is claimed before POST. An unknown result is reconciled through
  * exact persisted ownership metadata, never another create request. */
-export async function ensureEmployeeInstance(db: DB, identity: AssignmentIdentity, employee: StudioEmployee, _options?: { allowPreviousForMediaRecovery: true }): Promise<Agent | null> {
+export async function ensureEmployeeInstance(db: DB, identity: Pick<AssignmentIdentity, "workspaceId" | "userId"> & { assignmentId?: string }, employee: StudioEmployee, _options?: { allowPreviousForMediaRecovery: true }): Promise<Agent | null> {
   const template = employeeTemplate(employee);
   const {data:policy,error}=await db.from("studio_managed_budgets").select("sync_state,cap_sync").eq("workspace_id",identity.workspaceId).maybeSingle();
   if(error)throw new Error("Studio budget unavailable");
