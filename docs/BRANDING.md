@@ -15,6 +15,8 @@ bird to white. The light paper version keeps its forest-coloured body.
 - Space Grotesk wordmark and body; Instrument Serif italic editorial accents.
 - `src/config/robin-mark.json` is the geometry/palette source for `RobinMark`
   and the generated favicon, touch icon and reusable public logo.
+- `public/brand/robyn-chatgpt.png` uses the same mark at 256 × 256 pixels,
+  within ChatGPT’s 10 KB limit for custom MCP server icons.
 - `src/config/branding.ts` owns the site name, domain, description and social
   asset references. `social-metadata.ts` supplies consistent Open Graph/X tags.
 - Craft counts come from the independent registry. The source catalog has
