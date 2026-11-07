@@ -1,10 +1,14 @@
 # Current pilot acceptance
 
-Updated November 6, 2026 (Toronto). This page indexes recorded release evidence and remaining gaps. [Architecture and scope](ARCHITECTURE.md) describes the current system. [Operations](OPERATIONS.md) owns recovery procedures. Documentation maintenance does not imply a new deployment or a fresh live check. Earlier release summaries and the R01–R18 review are in the [archive](archive/README.md).
+Updated November 7, 2026 (Toronto). This page indexes recorded release evidence and remaining gaps. [Architecture and scope](ARCHITECTURE.md) describes the current system. [Operations](OPERATIONS.md) owns recovery procedures. Documentation maintenance does not imply a new deployment or a fresh live check. Earlier release summaries and the R01–R18 review are in the [archive](archive/README.md).
 
-## External MCP settings, deployed November 6
+## External MCP
 
-Studio settings and project settings have a dedicated External MCP section with the server URL, ChatGPT setup steps and allowance behavior. Seven new browser versions hide their own MCP setup controls. The signed-in settings and the hosted editor save and native continuation checks passed. [Production release record](acceptance/external-mcp-settings-deployed-20261106.json)
+The November 7 production release adds project tools, library search, job history and cancellation, and original attachment import, rename and download. Migrations `0033` and `0034` are confirmed in the production ledger. The OAuth endpoints and access challenge passed, and the earlier pilot grant was revoked. The 48-tool catalog and attachment byte preservation passed in local fixtures. Fresh ChatGPT connection and file input checks await hosted acceptance. [Production release record](acceptance/external-mcp-assets-deployed-20261107.json)
+
+The setup guide now follows the ChatGPT custom server dialog, with separate copy actions and an upload-ready Robyn icon. The signed-in guide, hosted PNG and OAuth discovery passed production checks. This follow-up requires no new migration or connection.
+
+The November 6 settings release placed the External MCP connection steps and allowance behavior in Studio and project settings. Seven browser versions hide their own MCP setup controls. Signed-in settings, hosted editor save and native continuation checks passed. [Settings release record](acceptance/external-mcp-settings-deployed-20261106.json)
 
 ## LedgerCraft, deployed November 4
 
@@ -109,7 +113,7 @@ The original review marked R01, R02, R03, R04, R05, R07, R08, R10, R11, R12, R14
 
 | Finding | Remaining boundary |
 | --- | --- |
-| External MCP | [Production deployment and HTTPS checks](acceptance/external-mcp-deployed-20261105.json) verify the OAuth discovery endpoints, access challenge and checked migrations. Local OAuth, exact-library and zero-allowance tests pass. The pinned PhotoCraft CLI edited and reopened a native working copy under gVisor, with an isolated fixture confirming save and replay behavior. Hosted ChatGPT sign-in, direct control and job refusal at zero allowance, command discovery across all Crafts, and a private-library round trip await [hosted acceptance](MCP.md#deploy-and-verify). |
+| External MCP | [Production evidence](acceptance/external-mcp-assets-deployed-20261107.json) records the current deploy and checked migrations. The [earlier PhotoCraft fixture](acceptance/external-mcp-deployed-20261105.json) verified direct save and replay under gVisor. Fresh ChatGPT consent, raw attachment round trips, command discovery across all Crafts, job refusal at zero allowance and a bounded cancellation await [hosted acceptance](MCP.md#deploy-and-verify). |
 | Office VBA — deployed | GridCraft, WordCraft and DeckCraft use pinned craft-vba **0.1.5** through original Developer controls and confirmed library saves in browser **0.4.1** and native image **0.5.2**, client **0.11.0**. [Production acceptance](acceptance/office-vba-deployed-20261104.json) includes actual MCP saves, browser source edits and exact native continuation. The [initial assessment](acceptance/office-vba-compatibility-20261104.json) retains its pre-approval scope. |
 | New Craft integrations | LedgerCraft source/browser/native acceptance is complete; its production web/workstation rollout remains pending. GeoCraft production image/client, original-editor library saves/reload, actual MCP/BFF connection and native continuation are complete. A model-driven GeoCraft job was not run; PlanCraft retains its separately recorded AI acceptance. DiagramCraft remains owner-deferred until an interface is available. SubCraft retains its desktop WebGPU requirement |
 | R06 — capacity recovery, partial | Recover an already-purchased result after a real space failure. Controlled reservation refusal/recovery does not complete that case |

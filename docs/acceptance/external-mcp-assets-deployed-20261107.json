@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-07T17:03:13Z",
+  "localDate": "2026-11-07",
+  "timezone": "America/Toronto",
+  "stage": "production-deployed-external-mcp-tools-and-oauth-verified",
+  "webCommit": "c448f885adf39cf7a2f0826f0ca26bd1fd0e6b05",
+  "webTree": "5a5f7ac9f975138a74f234c4c5e863c7d2369f43",
+  "webPullRequest": "https://github.com/BoundlessStudio/robyn/pull/79",
+  "webDeployment": {
+    "provider": "Vercel",
+    "id": "4UiDs9G7biqCK5mfLfAzuEedVFEo",
+    "url": "https://vercel.com/venatio-studios/robyn-creative-studio/4UiDs9G7biqCK5mfLfAzuEedVFEo",
+    "production": "https://robyn.academy",
+    "status": "ready-current"
+  },
+  "ci": {
+    "verifiedTreeHead": "3f976e81ba42ac978bc94ff34c94201a9b71dcc3",
+    "webMatchingTreePushRun": 42393407202,
+    "webMatchingTreeConclusion": "success",
+    "webPullRequestRun": 42393486240,
+    "webPullRequestConclusion": "success",
+    "webProductionPushRun": 42394190374,
+    "webProductionRunStatusAtVerification": "in_progress"
+  },
+  "migrationState": {
+    "method": "Supabase SQL Editor with the shared advisory lock and checksum checks",
+    "baselineReceipt": "external-mcp-deployed-20261105.json",
+    "priorLedgerEntries": 33,
+    "priorLedgerSha256": "a201ecb24310a185c2597bceb39b9357716ee91c17f2b8dfe5eb6bc1ab0825b3",
+    "verifiedLedgerEntries": 35,
+    "ledgerSha256": "ba7185a11cdaa7c9bc600a2f84388b6c3ea4132cf9bf84d086302c6a45e92ec4",
+    "digestInput": "Ordered filename:checksum entries joined by LF without a trailing LF",
+    "appliedAtomically": {
+      "0033_external_mcp_studio_tools.sql": "0fb00a6078a44768c43cef3b1cd25a88430140e3cca660d0719bf8e96ab4c168",
+      "0034_external_mcp_asset_tools.sql": "985541335613d3bb7a9f7164297137704c6f9c06d7d2e0ea5bcb4459ea2fd88a"
+    },
+    "serviceRoleOnlyMcpWriteFunctionsVerified": 6
+  },
+  "runtimeCommit": "aa5d5bec6a19580fb82334b968883bf4ccf550ed",
+  "runtimePinReceipt": "external-mcp-settings-deployed-20261106.json",
+  "workstationImage": {
+    "version": "0.6.0",
+    "template": "robyn-studio-0-6-0@1",
+    "digest": "sha256:5f5ad12a65d1d7ceb8c605405f9b6ba63712531a83f38538ae1fdfbf052ee08c"
+  },
+  "workstationClient": {
+    "version": "0.12.1",
+    "fingerprint": "5016428278803d32d4fe1b25e818b32eafd8d74267e7228e06cc0722d5dcc211"
+  },
+  "directWorker": {
+    "version": "1.0.0",
+    "fingerprint": "e898213a7a03aa55ec2cf3bec31fc31a04e0bbd3a3df458437fa776fbcf9e482",
+    "applications": 29
+  },
+  "editorPins": {
+    "gitTree": "e028d5378211a1da794be7c39a3ea30666fa0f5b",
+    "catalogApplications": 29,
+    "catalogSha256": "2ada01eab3997fb64e80e27ecf838817791cadd5e3856c4a848158bf9c8f6eba",
+    "workerVersion": "4ac077d0-972e-4faa-b1f2-06b7bb82fc6e"
+  },
+  "productionVerification": {
+    "previousChatGptGrantRevoked": true,
+    "pendingCraftOperationsBeforeRevocation": 0,
+    "mcpWithoutBearerStatus": 401,
+    "oauthResourceMetadataStatus": 200,
+    "oauthAuthorizationMetadataStatus": 200,
+    "issuerAndResourceMatched": true,
+    "scope": "studio:mcp",
+    "dynamicRegistration": true,
+    "pkce": "S256"
+  },
+  "localVerification": {
+    "node": "24.18.0",
+    "testsPassed": 267,
+    "typecheck": "passed",
+    "productionBuild": "passed",
+    "publicLayoutAndAxeCombinations": 18,
+    "publicKeyboardFocusUnverifiedOnWindowsWebKit": 4,
+    "mcpDiscoveredTools": 48,
+    "attachmentBytesAndConfirmedRevision": "passed with isolated database and Storage fixture"
+  },
+  "setupGuideFollowUp": {
+    "checkedAt": "2026-11-07T17:52:49Z",
+    "webCommit": "065440b127c11b0b56395e30d4a6eba2aa118b35",
+    "webTree": "71c807740e14b54fba14564155f98e466bf8be12",
+    "webPullRequest": "https://github.com/BoundlessStudio/robyn/pull/81",
+    "webDeployment": {
+      "provider": "Vercel",
+      "url": "https://vercel.com/venatio-studios/robyn-creative-studio/7t83vNAj8gcdTiMW1Ye23mxkTkJ9",
+      "production": "https://robyn.academy",
+      "status": "ready-current"
+    },
+    "runtimeEditorAndMigrationBaseline": "c448f885adf39cf7a2f0826f0ca26bd1fd0e6b05",
+    "ci": {
+      "verifiedTreeHead": "aa775f31a9e36914b791715c10d2fb9b012e261d",
+      "pushRun": 42397900985,
+      "pullRequestRun": 42397933179,
+      "conclusion": "success"
+    },
+    "localVerification": {
+      "node": "24.18.0",
+      "testsPassed": 268,
+      "typecheckBuildAndPublicLayout": "passed",
+      "settingsAccessibilityAndSeparateCopyActions": "passed",
+      "iconDownloadEngines": ["chromium", "firefox", "webkit"]
+    },
+    "productionVerification": {
+      "signedInStudioSettings": "dialog order, three copy actions, and icon link visible",
+      "icon": {
+        "url": "https://robyn.academy/brand/robyn-chatgpt.png",
+        "status": 200,
+        "pixels": [256, 256],
+        "bytes": 7768,
+        "sha256": "ab5c5d04d9fef677616e92de6ae941f8dcaf563017d8a8ab72c0cbf3e148dafa"
+      },
+      "mcpWithoutBearerStatus": 401,
+      "oauthResourceMetadataStatus": 200,
+      "oauthAuthorizationMetadataStatus": 200
+    },
+    "buttonAlignment": {
+      "checkedAt": "2026-11-07T18:34:38Z",
+      "webCommit": "0c4a8181e62c25c0745f88ff0cd1b1e60efd7861",
+      "webTree": "80882e60bab0e4757c5565157ac5cc8b146dd357",
+      "webPullRequest": "https://github.com/BoundlessStudio/robyn/pull/82",
+      "webDeployment": "https://vercel.com/venatio-studios/robyn-creative-studio/8xAXnN3jHj6wzwdZwW2ZT6M6imSM",
+      "runtimeEditorAndMigrationBaseline": "065440b127c11b0b56395e30d4a6eba2aa118b35",
+      "localVerification": "Four equally wide actions with aligned edges in normal and wrapped layouts in Chromium, Firefox, and WebKit.",
+      "ci": "Branch and pull request checks passed for the deployed tree.",
+      "productionVerification": "Vercel deployment ready. Creator confirmed alignment in the signed-in Studio."
+    }
+  },
+  "hostedAcceptancePending": [
+    "Fresh ChatGPT consent and 48-tool discovery",
+    "Uploaded and generated image file inputs, source preview, rename and original-byte download",
+    "Zero-allowance direct Craft save round trip and bounded Robyn job cancellation with approved allowance"
+  ]
+}
