@@ -14,6 +14,18 @@ export function sourceFormat(filename: string) {
   return format ? {kind:format[0], mimeType:format[1]} : null;
 }
 
+function hasAscii(bytes: Uint8Array, offset: number, text: string) {
+  return Array.from(text).every((char, index) => bytes[offset + index] === char.charCodeAt(0));
+}
+
+export function rasterImageExtension(bytes: Uint8Array) {
+  if ([137,80,78,71,13,10,26,10].every((byte, index) => bytes[index] === byte)) return "png";
+  if (bytes[0] === 255 && bytes[1] === 216 && bytes[2] === 255) return "jpg";
+  if (hasAscii(bytes, 0, "GIF87a") || hasAscii(bytes, 0, "GIF89a")) return "gif";
+  if (hasAscii(bytes, 0, "RIFF") && hasAscii(bytes, 8, "WEBP")) return "webp";
+  return null;
+}
+
 /** Metadata policy is shared with the owner-authorized BFF. Source files never
  * acquire an owning Craft or masquerade as editable native documents. */
 export function validateSourcePackage(pkg: RevisionPackage): SourceKind {
@@ -30,14 +42,11 @@ export async function sourceImportFiles(file:File) {
   const format=sourceFormat(file.name);
   if(!format||!file.size||file.size>256*1024**2)throw Error("Choose a supported image, audio or video file up to 256 MiB.");
   const head=new Uint8Array(await file.slice(0,512).arrayBuffer());
-  const ascii=(offset:number,value:string)=>Array.from(head.slice(offset,offset+value.length),byte=>String.fromCharCode(byte)).join("")===value;
+  const ascii=(offset:number,value:string)=>hasAscii(head,offset,value);
+  const rasterFormat=sourceFormat(rasterImageExtension(head)??"");
   // Catch accidental renames before writing. This is a container signature
   // check; the chosen Craft still determines supported media codecs/content.
   const valid:Record<string,boolean>={
-    "image/png":[137,80,78,71,13,10,26,10].every((b,i)=>head[i]===b),
-    "image/jpeg":head[0]===255&&head[1]===216&&head[2]===255,
-    "image/gif":ascii(0,"GIF87a")||ascii(0,"GIF89a"),
-    "image/webp":ascii(0,"RIFF")&&ascii(8,"WEBP"),
     "audio/wav":ascii(0,"RIFF")&&ascii(8,"WAVE"),
     "audio/mpeg":ascii(0,"ID3")||head[0]===255&&(head[1]&0xe0)===0xe0,
     "audio/flac":ascii(0,"fLaC"), "audio/ogg":ascii(0,"OggS"),
@@ -49,7 +58,9 @@ export async function sourceImportFiles(file:File) {
     if(file.size>32*1024**2)throw Error("SVG sources must be no larger than 32 MiB.");
     const svg=await file.text();
     if(!/<svg(?:\s|>)/i.test(svg)||/<!ENTITY|<!DOCTYPE/i.test(svg))throw Error("Choose a standalone SVG file without an external document definition.");
-  }else if(!valid[format.mimeType])throw Error("The file contents do not match its extension. Export it in its original application and try again.");
+  }else if(format.kind==="image"?rasterFormat?.mimeType!==format.mimeType:!valid[format.mimeType]){
+    throw Error("The file contents do not match its extension. Export it in its original application and try again.");
+  }
   const original=file.slice(0,file.size,format.mimeType);
   // Existing Craft insertion adapters look for an export when placing images.
   // Preserve the exact original as that export; this does not flatten a master.

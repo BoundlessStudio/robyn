@@ -4,14 +4,15 @@ import { CallToolRequestSchema, ListToolsRequestSchema, type CallToolResult, typ
 import { z } from "zod";
 import { ApiError } from "@/lib/api-error";
 import { studioApps } from "@/studio/apps/registry";
-import { ownedAssignment } from "@/studio/assignment-server";
 import { submitRobynAssignment } from "@/studio/assignment-submit";
 import { isEmployeeReady } from "@/studio/manifest";
-import { dbFailure, ownedProject } from "@/studio/server";
+import { dbFailure } from "@/studio/server";
+import { attachmentLimit, importAssets } from "./asset-import";
 import { scope } from "./config";
-import { listAssets, listProjects, listRevisions, openAsset } from "./library";
+import { cancelRobynJob, getRobynJob, listRobynJobs } from "./jobs";
+import { createProject, downloadAsset, getProject, listAssets, listProjects, listRevisions, openAsset, renameAsset, searchLibrary, updateProject } from "./library";
 import type { McpIdentity } from "./oauth";
-import { currentRobyn, getCraftOperation, runCraft } from "./operations";
+import { currentRobyn, getCraftOperation, listCraftOperations, runCraft } from "./operations";
 import runtime from "./runtime-release.json";
 import { assetRef, craftRequest, pageFields, uuid } from "./schemas";
 
@@ -21,15 +22,18 @@ type Definition = { descriptor: Tool; call: (identity: McpIdentity, input: unkno
 function tool<S extends z.ZodType>(
   name: string, title: string, description: string, input: S, readOnly: boolean,
   call: (identity: McpIdentity, args: z.output<S>) => Promise<Result> | Result,
-  openWorld = false,
+  options: { openWorld?: boolean; destructive?: boolean; fileParams?: string[] } = {},
 ): Definition {
   return {
     descriptor: {
       name, title, description,
       inputSchema: z.toJSONSchema(input, { target: "draft-07", io: "input" }) as Tool["inputSchema"],
       outputSchema: { type: "object" },
-      annotations: { readOnlyHint: readOnly, destructiveHint: !readOnly, idempotentHint: true, openWorldHint: openWorld },
-      _meta: { securitySchemes: [{ type: "oauth2", scopes: [scope] }] },
+      annotations: { readOnlyHint: readOnly, destructiveHint: options.destructive ?? !readOnly, idempotentHint: true, openWorldHint: options.openWorld ?? false },
+      _meta: {
+        securitySchemes: [{ type: "oauth2", scopes: [scope] }],
+        ...(options.fileParams ? { "openai/fileParams": options.fileParams } : {}),
+      },
     },
     call(identity, raw) {
       const parsed = input.safeParse(raw ?? {});
@@ -44,18 +48,50 @@ function tool<S extends z.ZodType>(
 
 const crafts = studioApps.filter(app => isEmployeeReady(app) && runtime.applications.includes(app.id));
 const project = { projectId: uuid.describe("The project ID from list_projects.") };
+const projectName = z.string().trim().min(1).max(120);
+const projectBrief = z.string().trim().max(20000);
+const assetName = z.string().trim().min(1).max(160);
+const appIdFilter = z.string().max(80).optional();
+const assetFilters = { appId: appIdFilter, kind: z.enum(["native", "image", "audio", "video", "file"]).optional() };
+const projectPage = { projectId: project.projectId.optional(), cursor: pageFields.cursor };
+const jobRef = z.strictObject({ ...project, assignmentId: uuid });
+const attachment = z.strictObject({
+  download_url: z.string().min(1).max(8192),
+  file_id: z.string().min(1).max(512),
+  mime_type: z.string().max(160).optional(),
+  file_name: z.string().min(1).max(512).optional(),
+});
 const catalog = [
   tool("list_crafts", "List Crafts", "Find the installed Crafts, native file formats and direct command tool names.", z.strictObject({}), true,
     () => ({ crafts: crafts.map(app => ({ appId: app.id, name: app.name, tool: "run_" + app.id, capabilities: app.capabilities,
       nativeFormats: app.formats.native, readOnly: app.editor.mode === "readOnly" })) })),
   tool("list_projects", "List Studio projects", "Find owned Studio projects by name or status. Use projectId to scope file and job requests.",
     z.strictObject({ ...pageFields, status: z.enum(["active", "archived"]).optional() }), true, listProjects),
+  tool("get_project", "Read a Studio project", "Read the project's name, brief, status and timestamps. Use updatedAt when editing the project.",
+    z.strictObject(project), true, getProject),
+  tool("create_project", "Create a Studio project", "Create an active project with a name and optional brief. Retry an interrupted request with the same creationId and arguments.",
+    z.strictObject({ creationId: uuid.describe("A new UUID for this project."), name: projectName, brief: projectBrief.default("") }), false, createProject),
+  tool("update_project", "Edit a Studio project", "Change the name or brief of an owned project. An empty brief clears it. Read the current project again if it changed since you read it.",
+    z.strictObject({ ...project, expectedUpdatedAt: z.iso.datetime({ offset: true }).describe("The exact updatedAt from get_project."),
+      name: projectName.optional(), brief: projectBrief.optional() })
+      .refine(input => input.name !== undefined || input.brief !== undefined, "Supply a project name or brief."), false, updateProject),
   tool("list_assets", "List library assets", "Find saved native files, Notes, media and file collections in the project. Use the exact assetId and revisionId when opening a file.",
-    z.strictObject({ ...project, ...pageFields, appId: z.string().max(80).optional(), kind: z.enum(["native", "image", "audio", "video", "file"]).optional() }), true, listAssets),
+    z.strictObject({ ...project, ...pageFields, ...assetFilters }), true, listAssets),
+  tool("search_library", "Search the Studio library", "Find saved assets by name across active and archived projects. Use the returned projectId and exact revision reference to open a match.",
+    z.strictObject({ ...assetFilters, query: z.string().trim().min(1).max(160), cursor: pageFields.cursor }), true, searchLibrary),
+  tool("import_assets", "Save ChatGPT attachments", "Save the original bytes of uploaded or generated images and other attached files. A single PNG, JPEG, GIF or WebP becomes an image asset. Name a collection when saving several attachments together. To save images as separate assets, call once per image. Pass actual ChatGPT file inputs. The limit is 20 files and 32 MiB total.",
+    z.strictObject({ ...project, creationId: uuid.describe("A new UUID for this import. Retry with the same UUID and attachments."),
+      name: assetName.optional(), files: z.array(attachment).min(1).max(attachmentLimit) })
+      .refine(input => input.files.length === 1 || input.name !== undefined, "Supply a collection name for multiple attachments."),
+    false, importAssets, { openWorld: true, destructive: false, fileParams: ["files"] }),
+  tool("rename_asset", "Rename a saved library asset", "Change the display name of the exact asset. The original filenames and saved revisions are preserved.",
+    z.strictObject({ ...project, assetId: uuid, name: assetName }), false, renameAsset),
   tool("list_asset_revisions", "List asset revisions", "Find confirmed revisions and preserved conflicts for one asset. Use this to choose an exact version.",
     z.strictObject({ ...project, assetId: uuid, cursor: pageFields.cursor }), true, listRevisions),
   tool("open_asset_revision", "Open an exact asset revision", "Read the exact package manifest and dependencies. Set includeDownloads when the user wants short-lived private download links.",
     z.strictObject({ ...project, ...assetRef.shape, includeDownloads: z.boolean().default(false) }), true, openAsset),
+  tool("download_asset", "Download an original library file", "Get one short-lived private download link from an exact saved revision. Use the original master by default. For a collection with multiple files, choose a path from open_asset_revision. Give the link to the creator.",
+    z.strictObject({ ...project, ...assetRef.shape, path: z.string().min(1).max(512).optional() }), true, downloadAsset),
   tool("get_robyn_allowance", "Read the Studio AI allowance", "Check the Studio's configured monthly AI allowance. A zero allowance blocks Robyn jobs. Direct Craft commands and library access use no AI allowance.",
     z.strictObject({}), true, async ({ db, workspaceId }) => {
       const [employee, policy] = await Promise.all([
@@ -71,22 +107,16 @@ const catalog = [
     "Delegate a task to Robyn using the Studio AI allowance. Use direct Craft tools for explicit application commands. Poll get_robyn_job. Retry the same requestId and arguments if the response is interrupted.",
     z.strictObject({ ...project, requestId: uuid, brief: z.string().trim().min(1).max(20000), appId: z.string().max(80).optional(),
       startMode: z.enum(["work", "draft", "plan"]).default("work"), inputs: z.array(assetRef).max(100).default([]) }),
-    false, submitRobynAssignment, true),
+    false, submitRobynAssignment, { openWorld: true }),
+  tool("list_robyn_jobs", "List Robyn jobs", "Find jobs started from Studio or MCP. Filter by project or state and use get_robyn_job for the full result.",
+    z.strictObject({ ...projectPage, state: z.enum(["queued", "running", "cancelling", "cancelled", "awaiting_review", "completed", "failed"]).optional() }),
+    true, listRobynJobs),
   tool("get_robyn_job", "Read a Robyn job", "Read the saved status, result and confirmed output revisions for an existing job.",
-    z.strictObject({ ...project, assignmentId: uuid }), true, async ({ db, workspaceId }, input) => {
-      await ownedProject(db, workspaceId, input.projectId);
-      const job = await ownedAssignment(db, workspaceId, input.assignmentId);
-      if (job.project_id !== input.projectId) throw new ApiError(404, "not_found", "Job not found in this project.");
-      const [revisions, shared] = await Promise.all([
-        db.from("studio_revisions").select("id,asset_id,state").eq("workspace_id", workspaceId).eq("assignment_id", job.id).in("state", ["committed", "conflict"]),
-        db.from("studio_assignment_deliverables").select("asset_id,revision_id").eq("workspace_id", workspaceId).eq("assignment_id", job.id),
-      ]);
-      dbFailure(revisions.error); dbFailure(shared.error);
-      const deliverables = [...(revisions.data ?? []).map(row => ({ assetId: row.asset_id, revisionId: row.id, status: row.state })),
-        ...(shared.data ?? []).map(row => ({ assetId: row.asset_id, revisionId: row.revision_id, status: "committed" }))];
-      return { assignmentId: job.id, projectId: job.project_id, state: job.state, result: job.result_text, errorCode: job.error_code,
-        deliverables: [...new Map(deliverables.map(row => [row.revisionId, row])).values()] };
-    }),
+    jobRef, true, getRobynJob),
+  tool("cancel_robyn_job", "Stop a Robyn job", "Stop the exact job when the creator asks. Saved files remain available. Poll get_robyn_job while the state is cancelling.",
+    jobRef, false, cancelRobynJob),
+  tool("list_craft_operations", "List direct Craft operations", "Find recent operations from this connection. Use the returned operationId with get_craft_operation for output and save receipts.",
+    z.strictObject({ ...projectPage, appId: appIdFilter }), true, listCraftOperations),
   tool("get_craft_operation", "Read a direct Craft operation", "Get native command output, small requested exports and any confirmed saved revision. Reuse the original operationId if the launch response was interrupted.",
     z.strictObject({ operationId: uuid }), true, (identity, input) => getCraftOperation(identity, input.operationId)),
   ...crafts.map(app => tool("run_" + app.id, "Run " + app.name + " commands",

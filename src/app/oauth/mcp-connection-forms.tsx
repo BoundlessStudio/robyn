@@ -27,9 +27,10 @@ export function ConsentForm({ fields }: { fields: string }) {
   return <>
     <p className="mt-5 text-sm leading-6"><strong>{consent.client}</strong> at <strong>{consent.host}</strong> wants to access your Studio as {consent.email}.</p>
     <ul className="my-6 list-disc space-y-2 pl-5 text-sm leading-6">
-      <li>Find your projects and read saved files and revisions.</li>
-      <li>Run Craft commands and save new library revisions.</li>
-      <li>Send Robyn jobs when your Studio AI allowance permits.</li>
+      <li>Find and create projects, and edit their names and briefs.</li>
+      <li>Read and download saved files, import attachments you share with the client, and rename library assets.</li>
+      <li>Run Craft commands, check their results, and save new library revisions.</li>
+      <li>View and stop Robyn jobs. Start jobs when your Studio AI allowance permits.</li>
     </ul>
     <form method="post" action={api + "authorize"} className="flex flex-wrap gap-3">
       {[...new URLSearchParams(fields)].map(([name, value]) => <input key={name} type="hidden" name={name} value={value} />)}

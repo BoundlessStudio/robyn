@@ -8,6 +8,7 @@ import type { DB } from "@/lib/auth";
 import type { AssetRef } from "@/studio/assets";
 import type { StudioEmployee } from "@/studio/assignments";
 import type { StudioAppManifest } from "@/studio/manifest";
+import { finishPage, pageFilter } from "@/studio/pagination";
 import { dbFailure, ownedProject, revisionFiles } from "@/studio/server";
 import { ensureEmployeeInstance } from "@/studio/workstation";
 import { matchingWorkstationRelease, ownedWorkstationMirror } from "@/studio/workstation-upgrades";
@@ -15,6 +16,7 @@ import image from "@/studio/workstation-image.json";
 import { hash, mcpConfig, workerPath, workerToken } from "./config";
 import { readAssetRef } from "./library";
 import type { McpIdentity } from "./oauth";
+import { pageFor } from "./pagination";
 import type { CraftRequest } from "./schemas";
 import runtime from "./runtime-release.json";
 
@@ -116,10 +118,14 @@ async function readOperation(identity: McpIdentity, key: string) {
   return data as DirectOperation | null;
 }
 
+function operationState(finishedAt: string | null, dispatchedAt: string | null, outcome: unknown) {
+  return finishedAt ? outcome ?? "interrupted" : dispatchedAt ? "running" : "preparing";
+}
+
 function publicOperation(op: DirectOperation) {
   return {
     operationId: op.request_key, appId: op.app_id, projectId: op.project_id,
-    state: op.finished_at ? op.result?.outcome ?? "interrupted" : op.dispatched_at ? "running" : "preparing",
+    state: operationState(op.finished_at, op.dispatched_at, op.result?.outcome),
     ...(op.result ? { result: op.result } : {}),
   };
 }
@@ -128,6 +134,31 @@ export async function getCraftOperation(identity: McpIdentity, key: string) {
   const op = await readOperation(identity, key);
   if (!op) throw new ApiError(404, "not_found", "Craft operation not found.");
   return publicOperation(op);
+}
+
+export async function listCraftOperations(
+  { db, workspaceId, grantId }: McpIdentity,
+  input: { projectId?: string; appId?: string; cursor?: string },
+) {
+  const page = pageFor(input);
+  let query = db.from("studio_mcp_operations")
+    .select("id,request_key,project_id,app_id,created_at,dispatched_at,finished_at,outcome:result->>outcome")
+    .eq("workspace_id", workspaceId).eq("grant_id", grantId);
+  if (input.projectId) {
+    await ownedProject(db, workspaceId, input.projectId);
+    query = query.eq("project_id", input.projectId);
+  }
+  if (input.appId) query = query.eq("app_id", input.appId);
+  if (page.after) query = query.or(pageFilter(page.after));
+  const { data, error } = await query.order("created_at", { ascending: false }).order("id", { ascending: false }).limit(page.size + 1);
+  dbFailure(error);
+  const { items, nextCursor } = finishPage(data ?? [], page.size);
+  return {
+    operations: items.map(row => ({ operationId: row.request_key, projectId: row.project_id, appId: row.app_id,
+      state: operationState(row.finished_at, row.dispatched_at, row.outcome),
+      createdAt: row.created_at, finishedAt: row.finished_at })),
+    nextCursor,
+  };
 }
 
 const runtimeFolder = `${root}/runtime/${runtime.fingerprint}`;
