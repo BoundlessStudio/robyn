@@ -80,6 +80,45 @@
     "mcpDiscoveredTools": 48,
     "attachmentBytesAndConfirmedRevision": "passed with isolated database and Storage fixture"
   },
+  "setupGuideFollowUp": {
+    "checkedAt": "2026-11-07T17:52:49Z",
+    "webCommit": "065440b127c11b0b56395e30d4a6eba2aa118b35",
+    "webTree": "71c807740e14b54fba14564155f98e466bf8be12",
+    "webPullRequest": "https://github.com/BoundlessStudio/robyn/pull/81",
+    "webDeployment": {
+      "provider": "Vercel",
+      "url": "https://vercel.com/venatio-studios/robyn-creative-studio/7t83vNAj8gcdTiMW1Ye23mxkTkJ9",
+      "production": "https://robyn.academy",
+      "status": "ready-current"
+    },
+    "runtimeEditorAndMigrationBaseline": "c448f885adf39cf7a2f0826f0ca26bd1fd0e6b05",
+    "ci": {
+      "verifiedTreeHead": "aa775f31a9e36914b791715c10d2fb9b012e261d",
+      "pushRun": 42397900985,
+      "pullRequestRun": 42397933179,
+      "conclusion": "success"
+    },
+    "localVerification": {
+      "node": "24.18.0",
+      "testsPassed": 268,
+      "typecheckBuildAndPublicLayout": "passed",
+      "settingsAccessibilityAndSeparateCopyActions": "passed",
+      "iconDownloadEngines": ["chromium", "firefox", "webkit"]
+    },
+    "productionVerification": {
+      "signedInStudioSettings": "dialog order, three copy actions, and icon link visible",
+      "icon": {
+        "url": "https://robyn.academy/brand/robyn-chatgpt.png",
+        "status": 200,
+        "pixels": [256, 256],
+        "bytes": 7768,
+        "sha256": "ab5c5d04d9fef677616e92de6ae941f8dcaf563017d8a8ab72c0cbf3e148dafa"
+      },
+      "mcpWithoutBearerStatus": 401,
+      "oauthResourceMetadataStatus": 200,
+      "oauthAuthorizationMetadataStatus": 200
+    }
+  },
   "hostedAcceptancePending": [
     "Fresh ChatGPT consent and 48-tool discovery",
     "Uploaded and generated image file inputs, source preview, rename and original-byte download",

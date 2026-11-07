@@ -6,6 +6,8 @@ Updated November 7, 2026 (Toronto). This page indexes recorded release evidence 
 
 The November 7 production release adds project tools, library search, job history and cancellation, and original attachment import, rename and download. Migrations `0033` and `0034` are confirmed in the production ledger. The OAuth endpoints and access challenge passed, and the earlier pilot grant was revoked. The 48-tool catalog and attachment byte preservation passed in local fixtures. Fresh ChatGPT connection and file input checks await hosted acceptance. [Production release record](acceptance/external-mcp-assets-deployed-20261107.json)
 
+The setup guide now follows the ChatGPT custom server dialog, with separate copy actions and an upload-ready Robyn icon. The signed-in guide, hosted PNG and OAuth discovery passed production checks. This follow-up requires no new migration or connection.
+
 The November 6 settings release placed the External MCP connection steps and allowance behavior in Studio and project settings. Seven browser versions hide their own MCP setup controls. Signed-in settings, hosted editor save and native continuation checks passed. [Settings release record](acceptance/external-mcp-settings-deployed-20261106.json)
 
 ## LedgerCraft, deployed November 4
