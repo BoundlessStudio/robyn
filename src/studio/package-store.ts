@@ -1,7 +1,16 @@
 import "server-only";
 import type { DB } from "@/lib/auth";
 import { ApiError } from "@/lib/http";
-import { ownedRevision, revisionFiles, mapInBatches, verifyStoredFiles, dbFailure, STUDIO_BUCKET } from "./server";
+import { ownedRevision, revisionFiles, mapInBatches, verifyStoredFiles, dbFailure, STUDIO_BUCKET, type StoredFile } from "./server";
+
+export const savedDownloadSeconds = 300;
+
+export async function signSavedFile(db: DB, file: Pick<StoredFile, "storage_key" | "path">, inline = false) {
+  const { data, error } = await db.storage.from(STUDIO_BUCKET).createSignedUrl(file.storage_key, savedDownloadSeconds,
+    inline ? undefined : { download: file.path.split("/").pop() });
+  if (error || !data) throw new ApiError(503, "storage_unavailable", "The package could not be opened. Please retry.");
+  return data.signedUrl;
+}
 
 /** Callers authorize the revision before issuing these exact-file tickets.
  * Media bytes never pass through the application server. */
@@ -14,11 +23,10 @@ export async function readSavedPackage(db: DB, workspaceId: string, revisionId: 
   dbFailure(error);
   const { data: sourceCredits, error: creditsError } = dependencies?.length ? await db.rpc("read_source_credits", { p_workspace: workspaceId, p_revision: revisionId }) : { data: [], error: null };
   dbFailure(creditsError);
-  const downloads = await mapInBatches(files, async file => {
-    const { data, error } = await db.storage.from(STUDIO_BUCKET).createSignedUrl(file.storage_key, 300, file.role === "preview" ? undefined : { download: file.path.split("/").pop() });
-    if (error || !data) throw new ApiError(503, "storage_unavailable", "The package could not be opened. Please retry.");
-    return { path: file.path, role: file.role, bytes: Number(file.bytes), sha256: file.sha256, mimeType: file.mime_type, downloadUrl: data.signedUrl };
-  });
+  const downloads = await mapInBatches(files, async file => ({
+    path: file.path, role: file.role, bytes: Number(file.bytes), sha256: file.sha256, mimeType: file.mime_type,
+    downloadUrl: await signSavedFile(db, file, file.role === "preview"),
+  }));
   return { ref: { assetId: revision.asset_id, revisionId }, revision, provenance: revision.provenance ?? {}, sourceCredits, files: downloads, dependencies: (dependencies ?? []).map(ref => ({ assetId: ref.dependency_asset_id, revisionId: ref.dependency_revision_id })) };
 }
 
