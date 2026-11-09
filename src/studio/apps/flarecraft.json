@@ -1,11 +1,11 @@
 {
   "id": "flarecraft",
-  "name": "Flare",
+  "name": "AniCraft",
   "version": "0.1.0",
   "order": 31,
   "studio": "Creative",
   "category": "2D animation",
-  "monogram": "Fl",
+  "monogram": "An",
   "color": "#e9a893",
   "artwork": "effect",
   "sourceUrl": "https://github.com/Flare-Animate/Flare",

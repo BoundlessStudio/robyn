@@ -29,7 +29,7 @@ bird to white. The light paper version keeps its forest-coloured body.
 - `public/brand/apps/geocraft.webp` adds an original engraved Arctic tern on
   ocean teal for RustGIS mapping and spatial analysis, using the same animal
   family, 256px WebP format and rounded tile mask.
-- ScriptCraft, Flare, PCBCraft and LedgerCraft use black-and-white engravings
+- ScriptCraft, AniCraft, PCBCraft and LedgerCraft use black-and-white engravings
   on opaque color tiles. Their 256px WebPs use versioned filenames, and the
   interface rounds the corners. The shared source record contains their
   imagegen prompts and byte hashes for both versions.
