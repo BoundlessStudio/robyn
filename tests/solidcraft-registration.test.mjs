@@ -5,6 +5,7 @@ import { createHash, randomUUID } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { build } from "esbuild";
 import { chromium } from "playwright";
+import sharp from "sharp";
 import { loadModule, httpMock } from "./helpers/module.mjs";
 import { studioApps } from "../src/studio/apps/registry.ts";
 import { research } from "../src/studio/specialists/research.ts";
@@ -145,9 +146,18 @@ test("homepage and icon counts follow registered and ready applications independ
   for(const icon of provenance.icons)assert.ok(registered.has(icon.id));
   for(const app of [...studioApps.filter(isAppReady),research])assert.ok(iconIds.has(app.id),`${app.id} ready icon`);
   for (const icon of provenance.icons) {
-    const bytes = await fs.readFile(new URL(`../public/brand/apps/${icon.id}.webp`, import.meta.url));
-    assert.equal(bytes.byteLength, icon.bytes, `${icon.id} icon bytes`);
-    assert.equal(createHash("sha256").update(bytes).digest("hex"), icon.sha256, `${icon.id} icon digest`);
+    const savedVersions = (icon.previousVersions ?? []).filter(version => version.file);
+    for (const version of [icon, ...savedVersions]) {
+      const file = version.file ?? `${icon.id}.webp`;
+      assert.match(file, /^[a-z0-9-]+\.webp$/);
+      const bytes = await fs.readFile(new URL(`../public/brand/apps/${file}`, import.meta.url));
+      assert.equal(bytes.byteLength, version.bytes, `${file} bytes`);
+      assert.equal(createHash("sha256").update(bytes).digest("hex"), version.sha256, `${file} digest`);
+      if (version.opaque) {
+        const {width,height,hasAlpha} = await sharp(bytes).metadata();
+        assert.deepEqual({width,height,hasAlpha}, {width:256,height:256,hasAlpha:false}, file);
+      }
+    }
   }
 });
 

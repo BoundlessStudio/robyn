@@ -1,7 +1,10 @@
 import iconSources from "../../../public/brand/apps/sources.json";
 import type { StudioAppManifest } from "@/studio/manifest";
 
-const applicationIcons = new Map(iconSources.icons.map(icon => [icon.id, icon.sha256.slice(0, 12)]));
+const applicationIcons = new Map(iconSources.icons.map(icon => [icon.id, {
+  src: `/brand/apps/${icon.file ?? `${icon.id}.webp`}?v=${icon.sha256.slice(0, 12)}`,
+  opaque: icon.opaque,
+}]));
 const illustratedBackgrounds: Record<string, string> = {
   research: "#7472e8", wordcraft: "#3c59dd", deckcraft: "#ff731b", gridcraft: "#209d59",
   cadcraft: "#16a8c2", solidcraft: "#3487e8",
@@ -16,10 +19,10 @@ export function AppIcon({ app, className = "", fallback = "" }: {
   className?: string;
   fallback?: string;
 }) {
-  const version = app && applicationIcons.get(app.id);
-  const source = app && version ? `/brand/apps/${app.id}.webp?v=${version}` : undefined;
-  const illustrated = app && illustratedBackgrounds[app.id];
-  return <span className={`studio-app-icon ${illustrated ? "illustrated " : ""}${className}`} aria-hidden="true" style={{ background: illustrated ?? (source ? undefined : app?.color ?? "#ded4bf") }}>
-    {source ? <img src={source} width={256} height={256} alt="" draggable={false}/> : app?.monogram ?? fallback}
+  const icon = app && applicationIcons.get(app.id);
+  const illustratedBackground = app && illustratedBackgrounds[app.id];
+  const roundTile = illustratedBackground || icon?.opaque;
+  return <span className={`studio-app-icon ${roundTile ? "illustrated " : ""}${className}`} aria-hidden="true" style={{ background: illustratedBackground ?? (icon ? undefined : app?.color ?? "#ded4bf") }}>
+    {icon ? <img src={icon.src} width={256} height={256} alt="" draggable={false}/> : app?.monogram ?? fallback}
   </span>;
 }

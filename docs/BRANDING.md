@@ -29,12 +29,10 @@ bird to white. The light paper version keeps its forest-coloured body.
 - `public/brand/apps/geocraft.webp` adds an original engraved Arctic tern on
   ocean teal for RustGIS mapping and spatial analysis, using the same animal
   family, 256px WebP format and rounded tile mask.
-- `public/brand/apps/ledgercraft.webp` adds an original engraved red squirrel
-  on warm cinnamon for bookkeeping and accounting, with the same 256px WebP
-  format and rounded tile mask. Its generation and byte hashes are in the shared source record.
-- ScriptCraft, Flare and PCBCraft use the same WebP format and rounded mask for
-  an engraved European hare, fire salamander and stag beetle. The shared source
-  record contains the imagegen prompts and byte hashes.
+- ScriptCraft, Flare, PCBCraft and LedgerCraft use black-and-white engravings
+  on opaque color tiles. Their 256px WebPs use versioned filenames, and the
+  interface rounds the corners. The shared source record contains their
+  imagegen prompts and byte hashes for both versions.
 - `public/brand/robyn-social.png` is a static 1200×630 PNG. The ASCII bird is a
   deterministic still from the actual homepage renderer, with heavier glyphs
   for small link previews. No screenshot of a fake product interface is used.
