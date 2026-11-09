@@ -1,0 +1,40 @@
+{
+  "id": "pixelcraft",
+  "name": "PixelCraft",
+  "version": "1.0.0",
+  "order": 33,
+  "studio": "Creative",
+  "category": "Pixel art",
+  "monogram": "Px",
+  "color": "#6869bc",
+  "artwork": "vector",
+  "sourceUrl": "https://github.com/crisprintsstuff/oxypixel",
+  "tagline": "Build a world one pixel at a time.",
+  "capabilities": [
+    "pixel-art",
+    "sprite-editing",
+    "frame-animation",
+    "sprite-sheet-export"
+  ],
+  "employee": {
+    "role": "Pixel Artist",
+    "instructions": "Use the pinned OxyPixel engine for layered .oxypix projects. Keep frame timings, animation tags and exact relative reference files together. Work in the task folder and confirm the immutable private-library revision before reporting a save."
+  },
+  "formats": {
+    "native": [
+      ".oxypix"
+    ],
+    "verification": "verified"
+  },
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": "10cef86b9bb675fcef6cebc4fde9191a767a5f4412a38d297d593dd2df87305c",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/pixelcraft/v1.0.0-0.1.0/?robyn",
+    "status": "verified"
+  },
+  "workstation": {
+    "template": "robyn-studio-0-8-0@1",
+    "release": "sha256:a8f6e65465cab1704b9a83aa5672c95e341abdf6c25985f7ecac75f51e7b9fad",
+    "status": "verified"
+  }
+}

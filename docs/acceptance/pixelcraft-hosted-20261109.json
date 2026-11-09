@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-11-09T15:21:47.291Z",
+  "appId": "pixelcraft",
+  "passed": true,
+  "sourceCommit": "a292c5685499cdf14a7d4e3d4e664bbd5ccc1fe7",
+  "release": "10cef86b9bb675fcef6cebc4fde9191a767a5f4412a38d297d593dd2df87305c",
+  "template": "robyn-studio-0-8-0@1",
+  "image": "sha256:a8f6e65465cab1704b9a83aa5672c95e341abdf6c25985f7ecac75f51e7b9fad",
+  "clientVersion": "0.15.0",
+  "clientSha256": "1c67514da75442846adacaee9ce47dc515578aaebeed1e83984e003836715e5c",
+  "privateLibraryCommit": true,
+  "keyboardSave": true,
+  "waitedForCommit": true,
+  "exactReopen": true,
+  "modelDispatches": 0,
+  "savedFiles": [
+    {
+      "path": "Guide.png",
+      "bytes": 205,
+      "sha256": "d44a1c8c4a2e1ce4ca45f1d38ccddaa7fa69379eab987643e75f48b719922301"
+    },
+    {
+      "path": "Trail.oxypix",
+      "bytes": 9391,
+      "sha256": "7ba2a3d23669f1229406ed1c1d489517c8685d459ed81a359b931ad4ac937f6d"
+    },
+    {
+      "path": "Trail.oxypix.refs",
+      "bytes": 43,
+      "sha256": "fab637fee8bd8887f799f552273cedf236d3f40682d86333ff9fb2593b7489f4"
+    }
+  ],
+  "changedPixel": {
+    "x": 15,
+    "y": 9,
+    "rgba": [
+      232,
+      168,
+      56,
+      255
+    ]
+  },
+  "nativeContinuedSha256": "e4f7c964c013a65d5a572e28eeb4f6666552d709a595d43f05b931e0c13b32dc",
+  "referenceBytesPreserved": true,
+  "spriteSheet": [
+    48,
+    24
+  ],
+  "workerVersion": "f3be317a-8167-4e40-82ec-e9c09ad81cac",
+  "homepageCaptureSha256": "3d04c399c0121ee38e4e658d414bafadbf6abf2c8a7e5df9458ccd6c2e0206d5",
+  "contextSha256": "859b8d2de5b66dcd24d0c180c03c2e7527d4f6762eee03b7c4356c785f81fc4d"
+}

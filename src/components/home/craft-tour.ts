@@ -34,13 +34,14 @@ const stories: Record<string, { lines: string[]; accent: string; copy: string; d
   scriptcraft: { lines: ["Write your"], accent: "next scene.", copy: "Draft a screenplay in ScriptCraft. Navigate scenes, revise dialogue and keep an editable Final Draft or Fountain file.", details: ["SCREENWRITING", "SCENES & DIALOGUE", "FINAL DRAFT & FOUNTAIN"] },
   flarecraft: { lines: ["Draw and animate"], accent: "on the stage.", copy: "Draw vector artwork in AniCraft, organize layers and symbols, and work with keyframes on the timeline.", details: ["2D ANIMATION", "VECTOR DRAWING", "LAYERS & TIMELINES"] },
   pcbcraft: { lines: ["Design a circuit"], accent: "from the schematic.", copy: "Place components, wire a schematic and develop the PCB layout in the same editable PCBCraft project.", details: ["CIRCUIT SCHEMATICS", "PCB LAYOUT", "PACKED PROJECTS"] },
+  pixelcraft: { lines: ["Build a world"], accent: "one pixel at a time.", copy: "Draw layered sprites, animate them frame by frame and export sprite sheets from PixelCraft.", details: ["PIXEL ART", "FRAME ANIMATION", "SPRITE SHEETS"] },
 };
 
 // One line per product family within each Studio group.
 const order = [
   // Creative
   "photocraft", "lightcraft",
-  "vectorcraft", "designcraft", "figcraft",
+  "vectorcraft", "designcraft", "figcraft", "pixelcraft",
   "filmcraft", "effectcraft", "soundcraft", "scriptcraft", "flarecraft",
   "materialcraft", "subcraft",
 

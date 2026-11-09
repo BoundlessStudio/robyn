@@ -5,4 +5,5 @@ public/studio/starters/** binary
 # Retain the copied Office skill CRLF bytes in the new immutable client.
 vendor/robyn-workstation/0.12.0-b43252220ee4/** -text whitespace=cr-at-eol,-blank-at-eof
 vendor/robyn-workstation/0.12.1-501642827880/** -text whitespace=cr-at-eol,-blank-at-eof
+vendor/robyn-workstation/0.15.0-6263f7e42426/** -text whitespace=cr-at-eol,-blank-at-eof
 vendor/robyn-mcp-workstation/**/bubblewrap-*.patch -text whitespace=-blank-at-eol,-blank-at-eof
