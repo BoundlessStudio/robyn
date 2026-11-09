@@ -1,7 +1,7 @@
 {
   "retrieved": "2026-10-27",
   "catalogue": "https://getartcraft.com/apps",
-  "note": "Nine unchanged ArtCraft originals plus twenty Robyn animal illustrations requested by the owner; twenty-eight Craft icons and the Notes/Research raven. Sixteen generated backgrounds were repaired on October 31; previous source prompts and hashes remain recorded. PlanCraft adds an original honeybee and GeoCraft adds an original Arctic tern on November 3; DiagramCraft remains deferred. LedgerCraft adds an original engraved red squirrel on copper on November 4. ScriptCraft, Flare and PCBCraft add an engraved European hare, fire salamander and stag beetle on November 9.",
+  "note": "Nine unchanged ArtCraft originals plus twenty Robyn animal illustrations requested by the owner; twenty-eight Craft icons and the Notes/Research raven. Sixteen generated backgrounds were repaired on October 31; previous source prompts and hashes remain recorded. PlanCraft adds an original honeybee and GeoCraft adds an original Arctic tern on November 3; DiagramCraft remains deferred. LedgerCraft adds an original engraved red squirrel on copper on November 4. ScriptCraft, Flare and PCBCraft add an engraved European hare, fire salamander and stag beetle on November 9. ScriptCraft, Flare, PCBCraft and LedgerCraft have black-and-white engravings on opaque color tiles in version 2.",
   "icons": [
     {
       "id": "photocraft",
@@ -472,55 +472,111 @@
     },
     {
       "id": "ledgercraft",
-      "source": "Generated for Robyn with the built-in image_gen tool",
-      "generated": "2026-11-04",
+      "source": "Edited for Robyn with the built-in image_gen tool",
+      "generated": "2026-11-09",
       "animal": "red squirrel",
-      "prompt": "Use case: logo-brand. Asset: one production application icon for LedgerCraft, an accounting app in Robyn's engraved-animal Craft family. Create a single red squirrel's head, shoulders and a hint of its bushy tail, in a compact three-quarter profile facing left. Alert, calm, careful and resourceful; anatomically plausible squirrel, distinct pointed tufted ears and a bright eye. Intricate antique natural-history wood engraving, dense fine black ink crosshatching and warm ivory highlights, crisp fur detail, strong recognizable silhouette that remains legible at 32 pixels. Fill most of the square with comfortable margins. Background must be perfectly uniform flat opaque warm copper #AD7648 across the ENTIRE square including all four corners. Every pixel fully opaque. No rounded corners (the app applies these), no text or lettering, no books, ledger, money, tools, nuts, scenery, extra animals, gradients, shadows, vignette, texture in background, sticker rim, frame, outside margin or 3D effect. Single square 1024x1024 icon only.",
+      "prompt": "Use the supplied original icon as the exact edit target. Apply selective monochrome color correction only to the red squirrel. Keep its species, pose, scale, placement, silhouette, engraving and individual fine ink lines. The animal is entirely achromatic black, gray and white, with white highlights and black ink strokes like a high-contrast black-and-white print. Use a single perfectly flat copper brown #AD6C3C color as the backdrop, from edge to edge and in all four corners. The deliverable is a completely opaque RGB square. Fill every pixel in the square, including the corners. The colored backdrop is uniform, continuous and opaque, with no holes, gradients, edge fading or shadow. Use square corners. The application will round the tile separately. Preserve the exact original composition and provide no text, border or other additions.",
       "width": 256,
       "height": 256,
-      "processing": "Encoded as 256 × 256 WebP with the existing 22% rounded-corner mask. Alpha is confined to the outer corners.",
-      "sourceSha256": "6d20eb0fa9c92672d6820af44b643f7ca49788f81be188bd081e07d7922a9554",
-      "bytes": 26738,
-      "sha256": "695923b034d59ee7eac234a46fad5bf35ec1f46e9d10df437cdc2abe60fa405c"
+      "processing": "Resized to 256 × 256 and encoded as opaque, lossless WebP. Robyn rounds the corners in the interface.",
+      "sourceSha256": "d69048426ffa2609d20d03d8dc00e3148d0585e6b64c1c0f8af2fd7639773b7d",
+      "bytes": 75424,
+      "sha256": "49035a2ebded7b0fb68317185bdb11564fc87d761f4abce60cc8d6b7a6a3836a",
+      "file": "ledgercraft-v2.webp",
+      "opaque": true,
+      "previousVersions": [
+        {
+          "source": "Generated for Robyn with the built-in image_gen tool",
+          "generated": "2026-11-04",
+          "prompt": "Use case: logo-brand. Asset: one production application icon for LedgerCraft, an accounting app in Robyn's engraved-animal Craft family. Create a single red squirrel's head, shoulders and a hint of its bushy tail, in a compact three-quarter profile facing left. Alert, calm, careful and resourceful; anatomically plausible squirrel, distinct pointed tufted ears and a bright eye. Intricate antique natural-history wood engraving, dense fine black ink crosshatching and warm ivory highlights, crisp fur detail, strong recognizable silhouette that remains legible at 32 pixels. Fill most of the square with comfortable margins. Background must be perfectly uniform flat opaque warm copper #AD7648 across the ENTIRE square including all four corners. Every pixel fully opaque. No rounded corners (the app applies these), no text or lettering, no books, ledger, money, tools, nuts, scenery, extra animals, gradients, shadows, vignette, texture in background, sticker rim, frame, outside margin or 3D effect. Single square 1024x1024 icon only.",
+          "processing": "Encoded as 256 × 256 WebP with the existing 22% rounded-corner mask. Alpha is confined to the outer corners.",
+          "sourceSha256": "6d20eb0fa9c92672d6820af44b643f7ca49788f81be188bd081e07d7922a9554",
+          "bytes": 26738,
+          "sha256": "695923b034d59ee7eac234a46fad5bf35ec1f46e9d10df437cdc2abe60fa405c",
+          "file": "ledgercraft.webp"
+        }
+      ]
     },
     {
       "id": "scriptcraft",
-      "source": "Generated for Robyn with the built-in image_gen tool",
+      "source": "Edited for Robyn with the built-in image_gen tool",
       "generated": "2026-11-09",
       "animal": "European hare",
-      "prompt": "One square production application icon for Robyn's illustrated Craft catalog. Use an antique natural-history wood engraving in very detailed black ink crosshatching with warm ivory highlights, strong recognizable silhouette at 32 px. One animal only, accurately proportioned, centered with comfortable margins, fills the square. The background is a single perfectly flat opaque color edge to edge. The app will round the corners separately. No lettering, objects, scenery, gradients, textures in the background, shadows, frame, or sticker outline. Render a square image. A European hare head and upper shoulders in profile looking left, with long upright black-tipped ears, short muzzle and alert eye. Use a uniform muted wine red #a45667 background.",
+      "prompt": "Use the supplied original icon as the exact edit target. Apply selective monochrome color correction only to the European hare. Keep its species, pose, scale, placement, silhouette, engraving and individual fine ink lines. The animal is entirely achromatic black, gray and white, with white highlights and black ink strokes like a high-contrast black-and-white print. Use a single perfectly flat wine red #9F4F5D color as the backdrop, from edge to edge and in all four corners. The deliverable is a completely opaque RGB square. Fill every pixel in the square, including the corners. The colored backdrop is uniform, continuous and opaque, with no holes, gradients, edge fading or shadow. Use square corners. The application will round the tile separately. Preserve the exact original composition and provide no text, border or other additions.",
       "width": 256,
       "height": 256,
-      "processing": "Resized to 256 × 256 and encoded as WebP with the shared 22% rounded-corner mask.",
-      "sourceSha256": "cecc922f78c10152f6957e7755e3040456cd15a91ee982b334f83fa89362b642",
-      "bytes": 16458,
-      "sha256": "0d0b984ebb819a93d987df17e0c312c30975e48388ad00b59bc2dab8af7902f6"
+      "processing": "Resized to 256 × 256 and encoded as opaque, lossless WebP. Robyn rounds the corners in the interface.",
+      "sourceSha256": "9b553741410f1b299f9acd5a114b03d26b0383bea10413a8873d82d569d0495c",
+      "bytes": 63122,
+      "sha256": "32214fa0a117aece09ad8ce6478e1d79d5e83dcc9359718fe7c9bc3078da5061",
+      "file": "scriptcraft-v2.webp",
+      "opaque": true,
+      "previousVersions": [
+        {
+          "source": "Generated for Robyn with the built-in image_gen tool",
+          "generated": "2026-11-09",
+          "prompt": "One square production application icon for Robyn's illustrated Craft catalog. Use an antique natural-history wood engraving in very detailed black ink crosshatching with warm ivory highlights, strong recognizable silhouette at 32 px. One animal only, accurately proportioned, centered with comfortable margins, fills the square. The background is a single perfectly flat opaque color edge to edge. The app will round the corners separately. No lettering, objects, scenery, gradients, textures in the background, shadows, frame, or sticker outline. Render a square image. A European hare head and upper shoulders in profile looking left, with long upright black-tipped ears, short muzzle and alert eye. Use a uniform muted wine red #a45667 background.",
+          "processing": "Resized to 256 × 256 and encoded as WebP with the shared 22% rounded-corner mask.",
+          "sourceSha256": "cecc922f78c10152f6957e7755e3040456cd15a91ee982b334f83fa89362b642",
+          "bytes": 16458,
+          "sha256": "0d0b984ebb819a93d987df17e0c312c30975e48388ad00b59bc2dab8af7902f6",
+          "file": "scriptcraft.webp"
+        }
+      ]
     },
     {
       "id": "flarecraft",
-      "source": "Generated for Robyn with the built-in image_gen tool",
+      "source": "Edited for Robyn with the built-in image_gen tool",
       "generated": "2026-11-09",
       "animal": "fire salamander",
-      "prompt": "One square production application icon for Robyn's illustrated Craft catalog. Use an antique natural-history wood engraving in very detailed black ink crosshatching with warm ivory highlights, strong recognizable silhouette at 32 px. One animal only, accurately proportioned, centered with comfortable margins, fills the square. The background is a single perfectly flat opaque color edge to edge. The app will round the corners separately. No lettering, objects, scenery, gradients, textures in the background, shadows, frame, or sticker outline. Render a square image. One fire salamander viewed from above at an angle, diagonally coiled with a gently curved tail and four clear small feet, recognizable bold ivory patches across the engraved black body. Use a uniform warm burnt coral #c3603d background.",
+      "prompt": "Use the supplied original icon as the exact edit target. Apply selective monochrome color correction only to the fire salamander. Keep its species, pose, scale, placement, silhouette, engraving and individual fine ink lines. The animal is entirely achromatic black, gray and white, with white highlights and black ink strokes like a high-contrast black-and-white print. Use a single perfectly flat burnt coral #BF5A36 color as the backdrop, from edge to edge and in all four corners. The deliverable is a completely opaque RGB square. Fill every pixel in the square, including the corners. The colored backdrop is uniform, continuous and opaque, with no holes, gradients, edge fading or shadow. Use square corners. The application will round the tile separately. Preserve the exact original composition and provide no text, border or other additions.",
       "width": 256,
       "height": 256,
-      "processing": "Resized to 256 × 256 and encoded as WebP with the shared 22% rounded-corner mask.",
-      "sourceSha256": "7659c4ef58ca2acda7aa93d71cedce4af65c154df6e3ff2558689df790fb57a7",
-      "bytes": 16320,
-      "sha256": "cf68643d084d96936b705c2222334fcb0fb7ad2061a0f95c7a23d859e0274110"
+      "processing": "Resized to 256 × 256 and encoded as opaque, lossless WebP. Robyn rounds the corners in the interface.",
+      "sourceSha256": "b5e79d5830686eda16226ae234615b82ec66e20b3d382422af4fdc8b3924428e",
+      "bytes": 60394,
+      "sha256": "1f201414327bba565bb6ba6b66d76dfbbd6e868df0f2e3e2bbcacd1addd68929",
+      "file": "flarecraft-v2.webp",
+      "opaque": true,
+      "previousVersions": [
+        {
+          "source": "Generated for Robyn with the built-in image_gen tool",
+          "generated": "2026-11-09",
+          "prompt": "One square production application icon for Robyn's illustrated Craft catalog. Use an antique natural-history wood engraving in very detailed black ink crosshatching with warm ivory highlights, strong recognizable silhouette at 32 px. One animal only, accurately proportioned, centered with comfortable margins, fills the square. The background is a single perfectly flat opaque color edge to edge. The app will round the corners separately. No lettering, objects, scenery, gradients, textures in the background, shadows, frame, or sticker outline. Render a square image. One fire salamander viewed from above at an angle, diagonally coiled with a gently curved tail and four clear small feet, recognizable bold ivory patches across the engraved black body. Use a uniform warm burnt coral #c3603d background.",
+          "processing": "Resized to 256 × 256 and encoded as WebP with the shared 22% rounded-corner mask.",
+          "sourceSha256": "7659c4ef58ca2acda7aa93d71cedce4af65c154df6e3ff2558689df790fb57a7",
+          "bytes": 16320,
+          "sha256": "cf68643d084d96936b705c2222334fcb0fb7ad2061a0f95c7a23d859e0274110",
+          "file": "flarecraft.webp"
+        }
+      ]
     },
     {
       "id": "pcbcraft",
-      "source": "Generated for Robyn with the built-in image_gen tool",
+      "source": "Edited for Robyn with the built-in image_gen tool",
       "generated": "2026-11-09",
       "animal": "stag beetle",
-      "prompt": "One square production application icon for Robyn's illustrated Craft catalog. Use an antique natural-history wood engraving in very detailed black ink crosshatching with warm ivory highlights, strong recognizable silhouette at 32 px. One animal only, accurately proportioned, centered with comfortable margins, fills the square. The background is a single perfectly flat opaque color edge to edge. The app will round the corners separately. No lettering, objects, scenery, gradients, textures in the background, shadows, frame, or sticker outline. Render a square image. One stag beetle from above, head at the top, with clearly outlined six legs, veined wing cases, and characteristic branched mandibles. Keep the insect inside the tile. Use a uniform dark jade green #3e896e background.",
+      "prompt": "Use the supplied original icon as the exact edit target. Apply selective monochrome color correction only to the stag beetle. Keep its species, pose, scale, placement, silhouette, engraving and individual fine ink lines. The animal is entirely achromatic black, gray and white, with white highlights and black ink strokes like a high-contrast black-and-white print. Use a single perfectly flat jade green #3B8565 color as the backdrop, from edge to edge and in all four corners. The deliverable is a completely opaque RGB square. Fill every pixel in the square, including the corners. The colored backdrop is uniform, continuous and opaque, with no holes, gradients, edge fading or shadow. Use square corners. The application will round the tile separately. Preserve the exact original composition and provide no text, border or other additions.",
       "width": 256,
       "height": 256,
-      "processing": "Resized to 256 × 256 and encoded as WebP with the shared 22% rounded-corner mask.",
-      "sourceSha256": "c03f1c2fe660c9c676fc6e919afcb382cda488e176050c145019a10a31e38d42",
-      "bytes": 13898,
-      "sha256": "0200ebc17137e90cda0db1c5723174fd4aa457b7a0c5831553b5f51853282cbb"
+      "processing": "Resized to 256 × 256 and encoded as opaque, lossless WebP. Robyn rounds the corners in the interface.",
+      "sourceSha256": "dc7514ded4a6da24bd41467d9479b655af01d7a6b8154f70e51282052e092835",
+      "bytes": 56892,
+      "sha256": "d280798c27e6e23e21df028a773f6ae4063489016746d09c404c4e347461195c",
+      "file": "pcbcraft-v2.webp",
+      "opaque": true,
+      "previousVersions": [
+        {
+          "source": "Generated for Robyn with the built-in image_gen tool",
+          "generated": "2026-11-09",
+          "prompt": "One square production application icon for Robyn's illustrated Craft catalog. Use an antique natural-history wood engraving in very detailed black ink crosshatching with warm ivory highlights, strong recognizable silhouette at 32 px. One animal only, accurately proportioned, centered with comfortable margins, fills the square. The background is a single perfectly flat opaque color edge to edge. The app will round the corners separately. No lettering, objects, scenery, gradients, textures in the background, shadows, frame, or sticker outline. Render a square image. One stag beetle from above, head at the top, with clearly outlined six legs, veined wing cases, and characteristic branched mandibles. Keep the insect inside the tile. Use a uniform dark jade green #3e896e background.",
+          "processing": "Resized to 256 × 256 and encoded as WebP with the shared 22% rounded-corner mask.",
+          "sourceSha256": "c03f1c2fe660c9c676fc6e919afcb382cda488e176050c145019a10a31e38d42",
+          "bytes": 13898,
+          "sha256": "0200ebc17137e90cda0db1c5723174fd4aa457b7a0c5831553b5f51853282cbb",
+          "file": "pcbcraft.webp"
+        }
+      ]
     }
   ]
 }

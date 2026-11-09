@@ -112,7 +112,7 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
     if(url.origin!==workspaceOrigin)return route.fulfill({status:404,body:'No external fixture requests'});
     if(url.pathname==='/brand/robyn-chatgpt.png')return route.fulfill({contentType:'image/png',body:await readFile(root+'public'+url.pathname)});
     if(url.pathname==='/artwork/offscript-bloom.png'||(url.pathname==='/_next/image'&&url.searchParams.get('url')==='/artwork/offscript-bloom.png'))return route.fulfill({contentType:'image/png',body:await readFile(root+'public/artwork/offscript-bloom.png')});
-    if(/^\/brand\/apps\/[a-z]+\.webp$/.test(url.pathname))return route.fulfill({contentType:'image/webp',body:await readFile(root+'public'+url.pathname)});
+    if(/^\/brand\/apps\/[a-z]+(?:-v[1-9][0-9]*)?\.webp$/.test(url.pathname))return route.fulfill({contentType:'image/webp',body:await readFile(root+'public'+url.pathname)});
     if(url.pathname==='/fixture.js')return route.fulfill({contentType:'text/javascript',body:script});
     if(url.pathname==='/studio.css')return route.fulfill({contentType:'text/css',body:css});
     if(url.pathname==='/space.woff2')return route.fulfill({contentType:'font/woff2',body:await readFile(root+'node_modules/@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2')});
