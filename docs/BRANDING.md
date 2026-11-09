@@ -33,7 +33,7 @@ bird to white. The light paper version keeps its forest-coloured body.
   on opaque color tiles. Their 256px WebPs use versioned filenames, and the
   interface rounds the corners. The shared source record contains their
   imagegen prompts and byte hashes for both versions.
-- PixelCraft uses a black-and-white zebra engraving on opaque periwinkle.
+- PixelCraft uses a black-and-white red panda engraving on opaque coral.
   The source record pins its prompt and the 256px lossless WebP bytes.
 - `public/brand/robyn-social.png` is a static 1200×630 PNG. The ASCII bird is a
   deterministic still from the actual homepage renderer, with heavier glyphs
