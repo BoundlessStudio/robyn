@@ -76,7 +76,9 @@ export function FlightStory() {
       </section>
       {studioTour.map((app, i) => <section key={app.id} className="flight-chapter craft-chapter" id={app.id} aria-labelledby={`${app.id}-heading`}>
         <div className="chapter-copy">
-          <span className="flight-kicker">{String(i + 1).padStart(2, "0")} / ROBYN <span>× {app.name}</span></span>
+          <span className="flight-kicker">
+            {String(i + 1).padStart(2, "0")} / ROBYN <span>× <AppIcon app={app} loading="lazy" />{app.name}</span>
+          </span>
           <h2 id={`${app.id}-heading`}>{app.story.lines.join(" ")}<br /><em>{app.story.accent}</em></h2>
           <p>{app.story.copy}</p>
           <CraftArtwork appId={app.id} name={app.name} number={i + 1} nearby={Math.abs(i + 1 - chapter) <= 1} onInspect={open => { flight.current.paused = open; }} />

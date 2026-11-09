@@ -9,7 +9,7 @@ import sharp from "sharp";
 import { loadModule, httpMock } from "./helpers/module.mjs";
 import { studioApps } from "../src/studio/apps/registry.ts";
 import { research } from "../src/studio/specialists/research.ts";
-import { isAppReady, isEmployeeReady } from "../src/studio/manifest.ts";
+import { isAppReady, isEmployeeReady, STUDIO_GROUPS } from "../src/studio/manifest.ts";
 import { nativeImportApp } from "../src/studio/native-import.ts";
 
 function pendingCatalogue() {
@@ -138,6 +138,10 @@ test("homepage and icon counts follow registered and ready applications independ
     });
     assert.equal(ready.craftTour.length, tour.craftTour.length + 1);
     assert.ok(ready.craftTour.find(app => app.id === "solidcraft").story.copy.trim());
+    assert.deepEqual(ready.craftTour.map(app => app.studio), STUDIO_GROUPS.flatMap(studio =>
+      apps.filter(app => app.studio === studio && isAppReady(app)).map(() => studio)));
+    const analysis = ready.craftTour.filter(app => app.studio === "Analysis");
+    assert.deepEqual(analysis.slice(0, 4).map(app => app.id), ["wordcraft", "gridcraft", "deckcraft", "pdfcraft"]);
   } finally { delete globalThis.__solidcraftCatalogue; }
   const provenance = JSON.parse(await fs.readFile(new URL("../public/brand/apps/sources.json", import.meta.url), "utf8"));
   const registered = new Set([...studioApps.map(app => app.id), research.id]);

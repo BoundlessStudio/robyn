@@ -14,15 +14,16 @@ const illustratedBackgrounds: Record<string, string> = {
 };
 
 /** Shared application artwork; adjacent text supplies the accessible name. */
-export function AppIcon({ app, className = "", fallback = "" }: {
+export function AppIcon({ app, className = "", fallback = "", loading }: {
   app?: Pick<StudioAppManifest, "id" | "monogram" | "color">;
   className?: string;
   fallback?: string;
+  loading?: "eager" | "lazy";
 }) {
   const icon = app && applicationIcons.get(app.id);
   const illustratedBackground = app && illustratedBackgrounds[app.id];
   const roundTile = illustratedBackground || icon?.opaque;
   return <span className={`studio-app-icon ${roundTile ? "illustrated " : ""}${className}`} aria-hidden="true" style={{ background: illustratedBackground ?? (icon ? undefined : app?.color ?? "#ded4bf") }}>
-    {icon ? <img src={icon.src} width={256} height={256} alt="" draggable={false}/> : app?.monogram ?? fallback}
+    {icon ? <img src={icon.src} width={256} height={256} alt="" draggable={false} loading={loading}/> : app?.monogram ?? fallback}
   </span>;
 }
