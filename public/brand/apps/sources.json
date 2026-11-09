@@ -582,16 +582,32 @@
       "id": "pixelcraft",
       "source": "Generated for Robyn with the built-in image_gen tool",
       "generated": "2026-11-09",
-      "animal": "plains zebra",
-      "prompt": "Use case: logo-brand. Create a square, full-bleed app icon tile in the style of an engraved natural-history animal portrait. Subject is one plains zebra head and upper neck in three-quarter profile facing right. Make the zebra entirely black and white with crisply carved ink stripes, fine engraved hatching in the mane, and clean, bold contrast readable at 24 px. Large centered head with both ears visible, enough breathing room inside the tile. Uniform solid periwinkle blue background (#6869BC) all the way to every edge and every corner. Fully opaque image, square corners. No transparency, holes, cutouts, gradients, borders, vignettes, shadows, letters, logos, extra objects, scenery, or title.",
+      "animal": "red panda",
+      "prompt": "Use case: logo-brand. Create one square full-bleed app icon for Robyn's PixelCraft tile. A single red panda head and upper shoulders, looking right in three-quarter view, centered and large with comfortable clear space around both ears and the muzzle. Draw the animal as an antique natural-history engraving entirely in black ink and clean white, with crisp woodcut strokes, prominent white ear rims and cheek tufts, distinct dark tear markings beneath the eyes, a short rounded muzzle, and a strong silhouette readable at 24 pixels. Keep fine hatching subordinate to large black and white areas. The entire square behind the animal is one flat, solid muted coral color (#C97B72) reaching all four square corners. Fully opaque. No tail, text, border, shadow, gradient, background texture, transparency, or cutout.",
       "width": 256,
       "height": 256,
       "processing": "Resized to 256 × 256 and encoded as opaque, lossless WebP. Robyn rounds the corners in the interface.",
-      "sourceSha256": "ecfaefa07868bb4456f313d1f9fefed1078bc98dbf31f40710ac3b455d83144b",
-      "bytes": 67398,
-      "sha256": "568f6b4dffedcb5c340099b90b57a5de60d30e623fa85eee7ed990410031417a",
-      "file": "pixelcraft.webp",
-      "opaque": true
+      "sourceSha256": "481a06da6bc7ac70f32094d2ae9820f07d9469837b23ddaa71c9e7b3e18b758d",
+      "bytes": 67372,
+      "sha256": "4822a3c223534ecbc8eb054a4748319fbba8915fdf888cdf7b8f63751784ac78",
+      "file": "pixelcraft-v2.webp",
+      "opaque": true,
+      "previousVersions": [
+        {
+          "source": "Generated for Robyn with the built-in image_gen tool",
+          "generated": "2026-11-09",
+          "animal": "plains zebra",
+          "prompt": "Use case: logo-brand. Create a square, full-bleed app icon tile in the style of an engraved natural-history animal portrait. Subject is one plains zebra head and upper neck in three-quarter profile facing right. Make the zebra entirely black and white with crisply carved ink stripes, fine engraved hatching in the mane, and clean, bold contrast readable at 24 px. Large centered head with both ears visible, enough breathing room inside the tile. Uniform solid periwinkle blue background (#6869BC) all the way to every edge and every corner. Fully opaque image, square corners. No transparency, holes, cutouts, gradients, borders, vignettes, shadows, letters, logos, extra objects, scenery, or title.",
+          "width": 256,
+          "height": 256,
+          "processing": "Resized to 256 × 256 and encoded as opaque, lossless WebP. Robyn rounds the corners in the interface.",
+          "sourceSha256": "ecfaefa07868bb4456f313d1f9fefed1078bc98dbf31f40710ac3b455d83144b",
+          "bytes": 67398,
+          "sha256": "568f6b4dffedcb5c340099b90b57a5de60d30e623fa85eee7ed990410031417a",
+          "file": "pixelcraft.webp",
+          "opaque": true
+        }
+      ]
     }
   ]
 }
