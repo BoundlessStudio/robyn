@@ -1,5 +1,21 @@
 [
   {
+    "id": "pixelcraft:12",
+    "appId": "pixelcraft",
+    "name": "Untitled sprite",
+    "description": "Blank layered pixel sprite",
+    "files": [
+      {
+        "path": "Untitled sprite.oxypix",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 4211,
+        "sha256": "6c23a08a37a4df4545bb8b4fc5fdf5bfd9faee1ac2a3c2217cd5fc04d3bdbbd0",
+        "url": "/studio/starters/12/pixelcraft/Untitled%20sprite.oxypix"
+      }
+    ]
+  },
+  {
     "id": "scriptcraft:11",
     "appId": "scriptcraft",
     "name": "Untitled script",

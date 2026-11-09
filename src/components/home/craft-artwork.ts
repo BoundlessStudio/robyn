@@ -73,6 +73,13 @@ export const craftArtwork: Record<string, CraftArtwork> = {
     "alt": "FigCraft's real interface editor with desktop and mobile design frames, a layers panel and design properties.",
     "tools": "FRAMES / COMPONENTS / PROPERTIES"
   },
+  "pixelcraft": {
+    "src": "/artwork/editors/pixelcraft.png",
+    "title": "Build a world one pixel at a time.",
+    "alt": "PixelCraft's sprite editor with a pixel grid, a colour palette, layers and a two-frame animation timeline.",
+    "tools": "PIXEL GRID / LAYERS / FRAME ANIMATION",
+    "fullFrame": true
+  },
   "filmcraft": {
     "src": "/artwork/editors/filmcraft.png",
     "title": "The story is in the cut.",

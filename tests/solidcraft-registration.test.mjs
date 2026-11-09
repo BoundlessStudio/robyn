@@ -201,10 +201,10 @@ test("pending SolidCraft rejects paid assignment creation before budget or workf
   });
 });
 
-test("all 32 ready Craft hints and an unhinted brief use the same canonical Robyn",async()=>{
+test("all 33 ready Craft hints and an unhinted brief use the same canonical Robyn",async()=>{
   const readyApps=studioApps.filter(isEmployeeReady);
-  assert.equal(readyApps.length,32);
-  for (const id of ["scriptcraft","flarecraft","pcbcraft"]) {
+  assert.equal(readyApps.length,33);
+  for (const id of ["scriptcraft","flarecraft","pcbcraft","pixelcraft"]) {
     const app=readyApps.find(app=>app.id===id);
     assert.ok(app);
     for (const extension of app.formats.native) {

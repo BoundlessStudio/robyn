@@ -32,6 +32,7 @@ import app28 from "./ledgercraft.json";
 import app29 from "./scriptcraft.json";
 import app30 from "./flarecraft.json";
 import app31 from "./pcbcraft.json";
+import app32 from "./pixelcraft.json";
 
 export const studioApps: readonly StudioAppManifest[] = [
   app0 as StudioAppManifest,
@@ -66,4 +67,5 @@ export const studioApps: readonly StudioAppManifest[] = [
   app29 as StudioAppManifest,
   app30 as StudioAppManifest,
   app31 as StudioAppManifest,
+  app32 as StudioAppManifest,
 ];
