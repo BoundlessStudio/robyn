@@ -1,5 +1,5 @@
 import { studioApps } from "@/studio/apps/registry";
-import { isAppReady } from "@/studio/manifest";
+import { isAppReady, STUDIO_GROUPS, type StudioAppManifest } from "@/studio/manifest";
 
 const stories: Record<string, { lines: string[]; accent: string; copy: string; details: string[] }> = {
   photocraft: { lines: ["Reality,"], accent: "reimagined.", copy: "Robyn builds the image you can almost see. Layer, combine and reshape it in PhotoCraft, then put your own hands in the picture.", details: ["LAYERED IMAGES", "COMPOSITING", "YOUR OWN FINAL TOUCH"] },
@@ -36,12 +36,33 @@ const stories: Record<string, { lines: string[]; accent: string; copy: string; d
   pcbcraft: { lines: ["Design a circuit"], accent: "from the schematic.", copy: "Place components, wire a schematic and develop the PCB layout in the same editable PCBCraft project.", details: ["CIRCUIT SCHEMATICS", "PCB LAYOUT", "PACKED PROJECTS"] },
 };
 
-// Presentation order is editorial; identity and the application count
-// still come from the independent integration registry. New apps get a fallback.
-const order = Object.keys(stories);
+// One line per product family within each Studio group.
+const order = [
+  // Creative
+  "photocraft", "lightcraft",
+  "vectorcraft", "designcraft", "figcraft",
+  "filmcraft", "effectcraft", "soundcraft", "scriptcraft", "flarecraft",
+  "materialcraft", "subcraft",
+
+  // Drafting
+  "cadcraft", "modelcraft", "bimcraft", "civilcraft",
+  "detailcraft", "markupcraft", "takeoffcraft",
+  "solidcraft", "partcraft", "pcbcraft",
+
+  // Analysis
+  "wordcraft", "gridcraft", "deckcraft", "pdfcraft",
+  "datacraft", "matcraft", "dashcraft", "geocraft",
+  "plancraft", "ledgercraft",
+];
+const studioPositions = new Map<StudioAppManifest["studio"], number>(STUDIO_GROUPS.map((studio, index) => [studio, index]));
+const craftPositions = new Map(order.map((id, index) => [id, index]));
+
 export const craftTour = studioApps.filter(isAppReady).sort((a, b) => {
-  const ai = order.indexOf(a.id), bi = order.indexOf(b.id);
-  return (ai < 0 ? order.length : ai) - (bi < 0 ? order.length : bi);
+  const studioDifference = (studioPositions.get(a.studio) ?? STUDIO_GROUPS.length)
+    - (studioPositions.get(b.studio) ?? STUDIO_GROUPS.length);
+  const aPosition = craftPositions.get(a.id) ?? order.length;
+  const bPosition = craftPositions.get(b.id) ?? order.length;
+  return studioDifference || aPosition - bPosition;
 }).map(app => ({ ...app, story: stories[app.id] ?? { lines: ["Another way"], accent: "to imagine.", copy: app.tagline, details: [app.category.toUpperCase(), "REAL CREATIVE SOFTWARE", "EDITABLE WORK"] } }));
 
 export const studioTour = craftTour;
