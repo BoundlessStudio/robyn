@@ -1,0 +1,40 @@
+{
+  "id": "pcbcraft",
+  "name": "PCBCraft",
+  "version": "0.0.0",
+  "order": 32,
+  "studio": "Drafting",
+  "category": "Electronics design",
+  "monogram": "Pc",
+  "color": "#a6c7a7",
+  "artwork": "cad",
+  "sourceUrl": "https://github.com/tangency-labs/pcbcraft",
+  "tagline": "Take an idea from schematic to board.",
+  "capabilities": [
+    "electronics-design",
+    "schematic-editing",
+    "pcb-layout",
+    "component-placement"
+  ],
+  "employee": {
+    "role": "Electronics Designer",
+    "instructions": "Use PCBCraft’s native command engine with exact .pc.zip packages. Keep schematic sheets, board geometry and pinned symbol and footprint revisions intact. Use the task working folder and confirm the immutable private-library revision before reporting a save. Report the exact rule checks performed and any unresolved design issues."
+  },
+  "formats": {
+    "native": [
+      ".pc.zip"
+    ],
+    "verification": "verified"
+  },
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": "3e631feef1afe6d798d34920d296cbc8b22c1c2eba9401757a532bd594a58c1b",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/pcbcraft/v0.0.0-0.1.0/?robyn",
+    "status": "verified"
+  },
+  "workstation": {
+    "template": "robyn-studio-0-7-0@1",
+    "release": "sha256:5c4cab10559d0f8449494eb50b70c08eb50f8b59add38abf1c85b059a162af45",
+    "status": "verified"
+  }
+}

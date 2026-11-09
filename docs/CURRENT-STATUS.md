@@ -1,6 +1,12 @@
 # Current pilot acceptance
 
-Updated November 6, 2026 (Toronto). This page indexes recorded release evidence and remaining gaps. [Architecture and scope](ARCHITECTURE.md) describes the current system. [Operations](OPERATIONS.md) owns recovery procedures. Documentation maintenance does not imply a new deployment or a fresh live check. Earlier release summaries and the R01–R18 review are in the [archive](archive/README.md).
+Updated November 9, 2026 (Toronto). This page indexes recorded release evidence and remaining gaps. [Architecture and scope](ARCHITECTURE.md) describes the current system. [Operations](OPERATIONS.md) owns recovery procedures. Documentation maintenance does not imply a new deployment or a fresh live check. Earlier release summaries and the R01–R18 review are in the [archive](archive/README.md).
+
+## ScriptCraft, Flare and PCBCraft, deployed November 9
+
+The hosted Agent37 canary passed four round trips across ScriptCraft’s .fdx and .fountain files, Flare’s .flare projects and PCBCraft’s .pc.zip archives. The original browser shortcuts waited for the authenticated private-library commit. Each saved revision reopened in the hosted editor and continued through the installed native engine. Production has 32 ready Crafts on Studio 0.7.0, client 0.14.0, direct MCP worker 1.1.0 and native starters 11. All four saved files reopened in production, and all three native blank launches committed through the production app. The four provisioned workstations report the new image and closed their maintenance leases without a model turn. [Hosted canary](acceptance/creative-crafts-hosted-20261109.json) · [Production record](acceptance/creative-crafts-production-20261109.json)
+
+Flare fills the animation slot evaluated for AniCraft. The pixel-art port is on hold. [Candidate evaluation](acceptance/craft-candidates-20261109.json)
 
 ## External MCP settings, deployed November 6
 

@@ -1,0 +1,41 @@
+{
+  "id": "scriptcraft",
+  "name": "ScriptCraft",
+  "version": "0.5.0",
+  "order": 30,
+  "studio": "Creative",
+  "category": "Screenwriting",
+  "monogram": "Sc",
+  "color": "#c8bbe3",
+  "artwork": "word",
+  "sourceUrl": "https://github.com/NoJuanNobody/scriptcraft",
+  "tagline": "Write the scene the way you hear it.",
+  "capabilities": [
+    "screenwriting",
+    "screenplay-formatting",
+    "scene-outlines",
+    "script-revisions"
+  ],
+  "employee": {
+    "role": "Screenwriter",
+    "instructions": "Use ScriptCraft’s native engine to write and revise .fdx and .fountain screenplays. Preserve element types, scene order, revision metadata and the exact assigned input. Prefer FDX for new work that needs production metadata. Use only the task working folder and confirm the immutable private-library revision before reporting a save."
+  },
+  "formats": {
+    "native": [
+      ".fdx",
+      ".fountain"
+    ],
+    "verification": "verified"
+  },
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": "1108d2132dbf2768ff05761a570d52d674468522a08831f78857e01a76638f30",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/scriptcraft/v0.5.0-0.1.0/?robyn",
+    "status": "verified"
+  },
+  "workstation": {
+    "template": "robyn-studio-0-7-0@1",
+    "release": "sha256:5c4cab10559d0f8449494eb50b70c08eb50f8b59add38abf1c85b059a162af45",
+    "status": "verified"
+  }
+}

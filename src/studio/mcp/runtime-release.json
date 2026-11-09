@@ -1,7 +1,7 @@
 {
-  "version": "1.0.0",
-  "fingerprint": "e898213a7a03aa55ec2cf3bec31fc31a04e0bbd3a3df458437fa776fbcf9e482",
-  "directory": "vendor/robyn-mcp-workstation/1.0.0-e898213a7a03",
+  "version": "1.1.0",
+  "fingerprint": "ec3223779aedab4f265ea31a656aad92befe3f35215df5b48fa85c8ac984914e",
+  "directory": "vendor/robyn-mcp-workstation/1.1.0-ec3223779aed",
   "applications": [
     "bimcraft",
     "cadcraft",
@@ -14,6 +14,7 @@
     "effectcraft",
     "figcraft",
     "filmcraft",
+    "flarecraft",
     "geocraft",
     "gridcraft",
     "ledgercraft",
@@ -23,9 +24,11 @@
     "materialcraft",
     "modelcraft",
     "partcraft",
+    "pcbcraft",
     "pdfcraft",
     "photocraft",
     "plancraft",
+    "scriptcraft",
     "solidcraft",
     "soundcraft",
     "subcraft",
@@ -35,8 +38,8 @@
   ],
   "files": {
     "studio-mcp.cjs": {
-      "bytes": 1533187,
-      "sha256": "4e780849060808ff5d06678118d56a6d5c5b86f3b383e9a0aab344f7a7467ae2"
+      "bytes": 1549439,
+      "sha256": "b56d6a14912c3e0dbc1bf01a50367889cfa9f7eba0582f2c32a9a0f4eb413404"
     },
     "bwrap": {
       "bytes": 101304,

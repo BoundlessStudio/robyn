@@ -1,0 +1,13 @@
+# LedgerCraft
+
+Use the installed original LedgerCraft accounting engine for authorized bookkeeping, invoices, bills, bank reconciliation and financial reports. One native `.lcdb` file contains the company's books, audit history and attachment bodies.
+
+Read `studio_context` first and work only in its task folder. Open exact private-library inputs with `studio_open_asset`, then use a task working copy. Keep source revisions and monetary amounts exact; requests use decimal strings for money, while returned amounts are integer minor units. Keep a country's tax settings, currency, accounting basis and lock dates explicit.
+
+`studio_run_native` with `appId: "ledgercraft"` takes `args: ["--request", JSON]`. The JSON has `file` (a safe relative `.lcdb` path), `create` (optional, only for a new file) and `steps` (up to 100 `{method, params}` original LedgerCraft RPC commands). The installed `ledgercraft-file-engine` uses the original dispatcher, role checks, accounting engine and SQLite writer. For example, create with `orgs.create`, inspect `accounts.list` / `contacts.list`, edit `docs.save` / `settings.update`, and compute `reports.run` with `{name, params:{from,to,date}}`. Inspect results and existing working bytes after any error or interrupted run; never repeat a financial write merely because a reply is delayed.
+
+Native commands update the working file. They do **not** save to the private library. Close any native GUI session before packaging a company; hot WAL/journal files are refused. Use `studio_save_native_project` for a new asset or `studio_save_input_revision` for an exact continuation. Only a confirmed immutable AssetRef is a library save. Preserve conflicts and uncertain commits; keep the same operation/request identity on retry.
+
+The browser uses the original LedgerCraft Svelte application and original Rust/SQLite engine in a private in-memory worker. Its existing record Save actions and Ctrl+S wait for the confirmed snapshot. Company Save/Save as live in its existing company menu. Save record drafts first; exports and backup downloads are separate from library saves. The exact `.lcdb` reopens in the installed native app.
+
+Opening a file does not authorize email, webhooks, bank connections, repeating jobs, external OCR commands or statutory filing. Those connections are unavailable in this file integration and no background delivery runs. Connection credentials must remain in task-specific private configuration. Payroll tax tables are approximations; do not claim verified statutory payroll or tax calculations. Browser record displays reject integers outside JavaScript's safe range; retain the original bytes and continue natively when needed.

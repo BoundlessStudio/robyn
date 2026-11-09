@@ -49,10 +49,10 @@ test("verified GeoCraft joins Analysis with its native format, animal icon and p
   assert.match(geo.workstation.template, /^robyn-studio-0-4-1@1$/);
   assert.match(geo.workstation.release, /^sha256:[a-f0-9]{64}$/);
   const tour = await loadModule("../../src/components/home/craft-tour.ts", {});
-  assert.equal(tour.registeredCraftCount, 29);
+  assert.equal(tour.registeredCraftCount, studioApps.length);
   assert.equal(tour.craftTour.some(app => app.id === "geocraft"), true);
   const { branding } = await loadModule("../../src/config/branding.ts", {});
-  assert.equal(branding.socialImage, "/brand/robyn-social.png?v=29-29");
+  assert.equal(branding.socialImage, `/brand/robyn-social.png?v=${studioApps.length}-${studioApps.filter(isAppReady).length}`);
   const sources = JSON.parse(await fs.readFile(new URL("../public/brand/apps/sources.json", import.meta.url), "utf8"));
   assert.equal(sources.icons.filter(icon => icon.id === "geocraft").length, 1);
 });
@@ -85,12 +85,15 @@ test("verified PlanCraft joins Analysis, native imports and public editor storie
   const tour = await loadModule("../../src/components/home/craft-tour.ts", {});
   const { branding } = await loadModule("../../src/config/branding.ts", {});
   assert.equal(tour.registeredCraftCount, studioApps.length);
-  assert.deepEqual(tour.upcomingCrafts.map(app=>app.id), []);
+  assert.deepEqual(tour.upcomingCrafts.map(app=>app.id), studioApps.filter(app=>!isAppReady(app)).map(app=>app.id));
   assert.equal(tour.craftTour.some(app => app.id === "plancraft"), true);
-  assert.match(branding.description, /29 Crafts/);
-  assert.doesNotMatch(branding.description, /coming soon/);
-  assert.match(branding.socialImageAlt, /29 Crafts/);
-  assert.doesNotMatch(branding.socialImageAlt, /coming soon/);
+  assert.ok(branding.description.includes(`${studioApps.length} Crafts`));
+  assert.ok(branding.socialImageAlt.includes(`${studioApps.length} Crafts`));
+  for (const app of tour.upcomingCrafts) {
+    assert.ok(branding.description.includes(app.name));
+    assert.ok(branding.socialImageAlt.includes(app.name));
+    assert.equal(tour.craftTour.some(ready=>ready.id===app.id), false);
+  }
 });
 
 test("SolidCraft registers as a tool under one Robyn profile while pending imports stay unavailable", async () => {
@@ -109,7 +112,7 @@ test("SolidCraft registers as a tool under one Robyn profile while pending impor
     });
     assert.equal(profiles.length,1);
     assert.deepEqual(profiles.map(({key,kind,appId,role})=>({key,kind,appId,role})),[{key:"robyn",kind:"director",appId:null,role:"Robyn"}]);
-    assert.equal(publicApps().length,apps.length);assert.equal(publicApps().length,29);
+    assert.equal(publicApps().length,apps.length);
     assert.equal(publicApps().some(app=>app.id==="research"),false);
     assert.equal(publicApps().find(app => app.id === "solidcraft").ready, false);
   } finally { delete globalThis.__solidcraftCatalogue; }
@@ -184,10 +187,16 @@ test("pending SolidCraft rejects paid assignment creation before budget or workf
   });
 });
 
-test("all 29 ready Craft hints and an unhinted brief use the same canonical Robyn",async()=>{
+test("all 32 ready Craft hints and an unhinted brief use the same canonical Robyn",async()=>{
   const readyApps=studioApps.filter(isEmployeeReady);
-  assert.equal(readyApps.length,29);
-  assert.deepEqual(studioApps.filter(app=>!isAppReady(app)).map(app=>app.id),[]);
+  assert.equal(readyApps.length,32);
+  for (const id of ["scriptcraft","flarecraft","pcbcraft"]) {
+    const app=readyApps.find(app=>app.id===id);
+    assert.ok(app);
+    for (const extension of app.formats.native) {
+      assert.equal(nativeImportApp(`Project${extension}`,studioApps)?.id,id);
+    }
+  }
   await assignmentBoundary(studioApps,async({submit,employee,created})=>{
     for(const app of readyApps){const response=await submit({appId:app.id,employeeId:employee.id});assert.equal(response.status,202);}
     const response=await submit();assert.equal(response.status,202);

@@ -1,7 +1,7 @@
 {
   "retrieved": "2026-10-27",
   "catalogue": "https://getartcraft.com/apps",
-  "note": "Nine unchanged ArtCraft originals plus twenty Robyn animal illustrations requested by the owner; twenty-eight Craft icons and the Notes/Research raven. Sixteen generated backgrounds were repaired on October 31; previous source prompts and hashes remain recorded. PlanCraft adds an original honeybee and GeoCraft adds an original Arctic tern on November 3; DiagramCraft remains deferred. LedgerCraft adds an original engraved red squirrel on copper on November 4.",
+  "note": "Nine unchanged ArtCraft originals plus twenty Robyn animal illustrations requested by the owner; twenty-eight Craft icons and the Notes/Research raven. Sixteen generated backgrounds were repaired on October 31; previous source prompts and hashes remain recorded. PlanCraft adds an original honeybee and GeoCraft adds an original Arctic tern on November 3; DiagramCraft remains deferred. LedgerCraft adds an original engraved red squirrel on copper on November 4. ScriptCraft, Flare and PCBCraft add an engraved European hare, fire salamander and stag beetle on November 9.",
   "icons": [
     {
       "id": "photocraft",
@@ -482,6 +482,45 @@
       "sourceSha256": "6d20eb0fa9c92672d6820af44b643f7ca49788f81be188bd081e07d7922a9554",
       "bytes": 26738,
       "sha256": "695923b034d59ee7eac234a46fad5bf35ec1f46e9d10df437cdc2abe60fa405c"
+    },
+    {
+      "id": "scriptcraft",
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-11-09",
+      "animal": "European hare",
+      "prompt": "One square production application icon for Robyn's illustrated Craft catalog. Use an antique natural-history wood engraving in very detailed black ink crosshatching with warm ivory highlights, strong recognizable silhouette at 32 px. One animal only, accurately proportioned, centered with comfortable margins, fills the square. The background is a single perfectly flat opaque color edge to edge. The app will round the corners separately. No lettering, objects, scenery, gradients, textures in the background, shadows, frame, or sticker outline. Render a square image. A European hare head and upper shoulders in profile looking left, with long upright black-tipped ears, short muzzle and alert eye. Use a uniform muted wine red #a45667 background.",
+      "width": 256,
+      "height": 256,
+      "processing": "Resized to 256 × 256 and encoded as WebP with the shared 22% rounded-corner mask.",
+      "sourceSha256": "cecc922f78c10152f6957e7755e3040456cd15a91ee982b334f83fa89362b642",
+      "bytes": 16458,
+      "sha256": "0d0b984ebb819a93d987df17e0c312c30975e48388ad00b59bc2dab8af7902f6"
+    },
+    {
+      "id": "flarecraft",
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-11-09",
+      "animal": "fire salamander",
+      "prompt": "One square production application icon for Robyn's illustrated Craft catalog. Use an antique natural-history wood engraving in very detailed black ink crosshatching with warm ivory highlights, strong recognizable silhouette at 32 px. One animal only, accurately proportioned, centered with comfortable margins, fills the square. The background is a single perfectly flat opaque color edge to edge. The app will round the corners separately. No lettering, objects, scenery, gradients, textures in the background, shadows, frame, or sticker outline. Render a square image. One fire salamander viewed from above at an angle, diagonally coiled with a gently curved tail and four clear small feet, recognizable bold ivory patches across the engraved black body. Use a uniform warm burnt coral #c3603d background.",
+      "width": 256,
+      "height": 256,
+      "processing": "Resized to 256 × 256 and encoded as WebP with the shared 22% rounded-corner mask.",
+      "sourceSha256": "7659c4ef58ca2acda7aa93d71cedce4af65c154df6e3ff2558689df790fb57a7",
+      "bytes": 16320,
+      "sha256": "cf68643d084d96936b705c2222334fcb0fb7ad2061a0f95c7a23d859e0274110"
+    },
+    {
+      "id": "pcbcraft",
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "generated": "2026-11-09",
+      "animal": "stag beetle",
+      "prompt": "One square production application icon for Robyn's illustrated Craft catalog. Use an antique natural-history wood engraving in very detailed black ink crosshatching with warm ivory highlights, strong recognizable silhouette at 32 px. One animal only, accurately proportioned, centered with comfortable margins, fills the square. The background is a single perfectly flat opaque color edge to edge. The app will round the corners separately. No lettering, objects, scenery, gradients, textures in the background, shadows, frame, or sticker outline. Render a square image. One stag beetle from above, head at the top, with clearly outlined six legs, veined wing cases, and characteristic branched mandibles. Keep the insect inside the tile. Use a uniform dark jade green #3e896e background.",
+      "width": 256,
+      "height": 256,
+      "processing": "Resized to 256 × 256 and encoded as WebP with the shared 22% rounded-corner mask.",
+      "sourceSha256": "c03f1c2fe660c9c676fc6e919afcb382cda488e176050c145019a10a31e38d42",
+      "bytes": 13898,
+      "sha256": "0200ebc17137e90cda0db1c5723174fd4aa457b7a0c5831553b5f51853282cbb"
     }
   ]
 }

@@ -1,15 +1,15 @@
 {
-  "version": "0.12.1",
-  "directory": "vendor/robyn-workstation/0.12.1-501642827880",
-  "fingerprint": "5016428278803d32d4fe1b25e818b32eafd8d74267e7228e06cc0722d5dcc211",
+  "version": "0.14.0",
+  "directory": "vendor/robyn-workstation/0.14.0-97ac7c60f4a2",
+  "fingerprint": "97ac7c60f4a2a07aede807d02b540cf15d29e90fa70a43077c58261c619063bf",
   "files": {
     "studio-mcp.cjs": {
-      "bytes": 2315197,
-      "sha256": "235db019e774d58ef93d1175a278a3e83e63dae21ce4edce0430360daf3e9f2e"
+      "bytes": 2330418,
+      "sha256": "bec169264b49e2c87883346b0ecd99c0957f860b709f070919d41b36ac347ef5"
     },
     "configure-hermes.py": {
-      "bytes": 10704,
-      "sha256": "1f18c3598fd0f5cfbef6e131c25ec42b05c2fe765b3e029a2e3e71fd738a8222"
+      "bytes": 10753,
+      "sha256": "a281816f56765f8d52758ba41a6b8b61336da81b19df6a57ba935b1895a18769"
     },
     "skills/bimcraft.md": {
       "bytes": 2483,
@@ -55,6 +55,10 @@
       "bytes": 3238,
       "sha256": "0e636265041381d189cfdf0d608c7d0d75ab0e4aa0ff4ff1fffefd9f5144f962"
     },
+    "skills/flarecraft.md": {
+      "bytes": 705,
+      "sha256": "94e1f3ab92712fe4879f88db91060f9aca290daff510aabce1c60d0f6f298ef1"
+    },
     "skills/geocraft.md": {
       "bytes": 3453,
       "sha256": "84eff64e64a07f75eea6e051a41ef2795167b415cdc067687f81190cb72ef3f1"
@@ -91,6 +95,10 @@
       "bytes": 2892,
       "sha256": "afecf2b2b238708cdc02cb20b34ca4e05d2c65cec7d8de276b3e549a04594a4d"
     },
+    "skills/pcbcraft.md": {
+      "bytes": 780,
+      "sha256": "9b2fe2c494489dbcfbb27e89d4bbbc1a324aee7ae06cf14efc6e5148a8441596"
+    },
     "skills/pdfcraft.md": {
       "bytes": 3745,
       "sha256": "a83ed785dfe68c59085a8405ff96357ceccc6809de5809db2019651d9fe43106"
@@ -102,6 +110,10 @@
     "skills/plancraft.md": {
       "bytes": 2291,
       "sha256": "f0942d3f06ee3f8958b34dda603223d54ce8d8c21fd5c26f34891d187942ecd6"
+    },
+    "skills/scriptcraft.md": {
+      "bytes": 1090,
+      "sha256": "aa707b18b9b893e1f1bf6bcea7f31e4d03d4dfc26a870224ff17811e995e4034"
     },
     "skills/solidcraft.md": {
       "bytes": 1811,

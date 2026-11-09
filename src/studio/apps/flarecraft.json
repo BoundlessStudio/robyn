@@ -1,0 +1,40 @@
+{
+  "id": "flarecraft",
+  "name": "Flare",
+  "version": "0.1.0",
+  "order": 31,
+  "studio": "Creative",
+  "category": "2D animation",
+  "monogram": "Fl",
+  "color": "#e9a893",
+  "artwork": "effect",
+  "sourceUrl": "https://github.com/Flare-Animate/Flare",
+  "tagline": "Bring a drawing to life.",
+  "capabilities": [
+    "vector-animation",
+    "drawing",
+    "timelines",
+    "symbol-animation"
+  ],
+  "employee": {
+    "role": "2D Animator",
+    "instructions": "Use Flare’s native engine and .flare projects for authorized 2D animation. Preserve editable layers, timeline, symbols and exact embedded source assets. Keep work in the task folder and confirm the immutable private-library revision before reporting a save. Describe any format conversion limits."
+  },
+  "formats": {
+    "native": [
+      ".flare"
+    ],
+    "verification": "verified"
+  },
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": "828d70f5b18dab304ad67b6ff12c45f853f2285ca3c828d64724a73d594c613c",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/flarecraft/v0.1.0-0.1.0/?robyn",
+    "status": "verified"
+  },
+  "workstation": {
+    "template": "robyn-studio-0-7-0@1",
+    "release": "sha256:5c4cab10559d0f8449494eb50b70c08eb50f8b59add38abf1c85b059a162af45",
+    "status": "verified"
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-09T12:18:10.176Z",
+  "localDate": "2026-11-09",
+  "timezone": "America/Toronto",
+  "stage": "production-verified",
+  "webCommit": "f145c6d841446162203d2eda4b2e4749890091e2",
+  "runtimeCommit": "689f1679605a33ed04e33b63446e5340204ac977",
+  "webPullRequest": "https://github.com/BoundlessStudio/robyn/pull/83",
+  "runtimePullRequest": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/31",
+  "hostedCanary": "creative-crafts-hosted-20261109.json",
+  "webDeployment": {
+    "provider": "Vercel",
+    "id": "dpl_EBW4vs7ohmok87KsLvr2PQgeD2v7",
+    "previousDeploymentId": "dpl_8xAXnN3jHj6wzwdZwW2ZT6M6imSM",
+    "production": "https://robyn.academy",
+    "inspector": "https://vercel.com/venatio-studios/robyn-creative-studio/EBW4vs7ohmok87KsLvr2PQgeD2v7"
+  },
+  "catalog": {
+    "ready": 32,
+    "Creative": 12,
+    "Drafting": 10,
+    "Analysis": 10,
+    "nativeStarterVersion": 11
+  },
+  "workstation": {
+    "version": "0.7.0",
+    "template": "robyn-studio-0-7-0@1",
+    "release": "sha256:5c4cab10559d0f8449494eb50b70c08eb50f8b59add38abf1c85b059a162af45",
+    "scopedInPlaceUpdates": 4,
+    "verifiedFiles": 1691,
+    "restoredProfileConfigurationsAndBackups": 19,
+    "managedBaseConfigurationRefreshed": true,
+    "allowanceAndResourcesPreserved": true,
+    "mirrorsConfirmed": 4,
+    "undispatchedLeasesClosed": 4,
+    "client": "0.14.0",
+    "directMcpWorker": "1.1.0"
+  },
+  "productionBrowser": {
+    "engine": "Chromium",
+    "checkedAt": "2026-11-09T12:18:10.176Z",
+    "opened": [
+      {
+        "app": "scriptcraft",
+        "format": ".fdx",
+        "sha256": "58b372ca9ed8a40f61771ccd3c364a2ad4a1927e0d968d68d8426bface1ca8d4"
+      },
+      {
+        "app": "scriptcraft",
+        "format": ".fountain",
+        "sha256": "a781168cb5c3b7302d17cd049f21531eef3cb6cd46e11748cfeaa6c0f6fca700"
+      },
+      {
+        "app": "flarecraft",
+        "format": ".flare",
+        "sha256": "29c5156161a811bdf91e714286ec8b15f34eb014353ab13575c31664dda8b5b2"
+      },
+      {
+        "app": "pcbcraft",
+        "format": ".pc.zip",
+        "sha256": "d154e0fce71c3e24e3df0acb2ee2dc8a7903d71b4b6b5ef635da592613877593"
+      }
+    ],
+    "starters": [
+      {
+        "app": "scriptcraft",
+        "bytes": 4186,
+        "sha256": "6f0c1ba60e835e8abd0e461f6a6cd94a7766aaf8b711cfa830dc98df8adc0e83"
+      },
+      {
+        "app": "flarecraft",
+        "bytes": 3072,
+        "sha256": "c0c68fd8fdfe23ad9a5f549325010c2c506116e6ca6b8fb70553621f66bdae8a"
+      },
+      {
+        "app": "pcbcraft",
+        "bytes": 1521,
+        "sha256": "4bc2e5099a856f27f41bdef3e75a56b477b7bcfd1ecbc1b11fc4a9115d59e5e1"
+      }
+    ],
+    "passed": true
+  },
+  "checks": {
+    "webTests": 268,
+    "runtimeTestsPassed": 173,
+    "runtimeWindowsSandboxSkips": 1,
+    "linuxProfileTests": 4,
+    "typecheck": true,
+    "build": true,
+    "publicLayoutAndAxeCases": 18,
+    "publicKeyboardCases": 14,
+    "unverifiedWindowsPublicKeyboardCases": 4,
+    "webBranchCi": [
+      42614992327,
+      42615081977
+    ],
+    "runtimeBranchCi": [
+      42615404230,
+      42615411499
+    ]
+  },
+  "cleanup": {
+    "checkedAt": "2026-11-09T12:18:47.625Z",
+    "canaryProjectArchived": true,
+    "qaSessionRevoked": true,
+    "modelTurns": 0,
+    "temporaryVercelPreviewBypassRevoked": true
+  },
+  "migrationsApplied": []
+}
