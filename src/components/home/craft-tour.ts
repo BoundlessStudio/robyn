@@ -32,7 +32,7 @@ const stories: Record<string, { lines: string[]; accent: string; copy: string; d
   geocraft: { lines: ["Find the story"], accent: "in a place.", copy: "Explore maps, layers and spatial relationships with Robyn in GeoCraft. Keep the source data, attributes and native project ready for your next discovery.", details: ["MAPS & CARTOGRAPHY", "SPATIAL ANALYSIS", "EDITABLE GIS PROJECTS"] },
   ledgercraft: { lines: ["Keep your books"], accent: "in balance.", copy: "Work through invoices, bills and bank reconciliation with Robyn in LedgerCraft. Explore the financial reports, then keep the company file ready to review and continue.", details: ["BOOKKEEPING & INVOICES", "BANK RECONCILIATION", "EDITABLE COMPANY FILES"] },
   scriptcraft: { lines: ["Write your"], accent: "next scene.", copy: "Draft a screenplay in ScriptCraft. Navigate scenes, revise dialogue and keep an editable Final Draft or Fountain file.", details: ["SCREENWRITING", "SCENES & DIALOGUE", "FINAL DRAFT & FOUNTAIN"] },
-  flarecraft: { lines: ["Draw and animate"], accent: "on the stage.", copy: "Draw vector artwork in Flare, organize layers and symbols, and work with keyframes on the timeline.", details: ["2D ANIMATION", "VECTOR DRAWING", "LAYERS & TIMELINES"] },
+  flarecraft: { lines: ["Draw and animate"], accent: "on the stage.", copy: "Draw vector artwork in AniCraft, organize layers and symbols, and work with keyframes on the timeline.", details: ["2D ANIMATION", "VECTOR DRAWING", "LAYERS & TIMELINES"] },
   pcbcraft: { lines: ["Design a circuit"], accent: "from the schematic.", copy: "Place components, wire a schematic and develop the PCB layout in the same editable PCBCraft project.", details: ["CIRCUIT SCHEMATICS", "PCB LAYOUT", "PACKED PROJECTS"] },
 };
 

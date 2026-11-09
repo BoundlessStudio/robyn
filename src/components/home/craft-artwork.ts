@@ -19,7 +19,7 @@ export const craftArtwork: Record<string, CraftArtwork> = {
   "flarecraft": {
     "src": "/artwork/editors/flarecraft.png",
     "title": "Draw and animate on the stage.",
-    "alt": "Flare's original animation workspace showing a red rectangle on the stage, fill and stroke properties and the timeline.",
+    "alt": "AniCraft's animation workspace showing a red rectangle on the stage, fill and stroke properties and the timeline.",
     "tools": "STAGE / VECTOR PROPERTIES / TIMELINE",
     "fullFrame": true
   },
