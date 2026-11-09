@@ -1,14 +1,18 @@
 {
-  "version": "0.6.0",
-  "template": "robyn-studio-0-6-0@1",
-  "release": "sha256:5f5ad12a65d1d7ceb8c605405f9b6ba63712531a83f38538ae1fdfbf052ee08c",
+  "version": "0.7.0",
+  "template": "robyn-studio-0-7-0@1",
+  "release": "sha256:5c4cab10559d0f8449494eb50b70c08eb50f8b59add38abf1c85b059a162af45",
   "resources": {
     "cpu": 4,
     "memory": 16,
     "disk": 10
   },
-  "applications": 29,
+  "applications": 32,
   "previousReleases": [
+    {
+      "template": "robyn-studio-0-6-0@1",
+      "release": "sha256:5f5ad12a65d1d7ceb8c605405f9b6ba63712531a83f38538ae1fdfbf052ee08c"
+    },
     {
       "template": "robyn-studio-0-5-2@1",
       "release": "sha256:97edcac5afa5108dbc485d65ebfc4133821c9d9efc116ff3391a8f9619f05149"

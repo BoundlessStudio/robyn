@@ -5,6 +5,7 @@ import {chromium,firefox,webkit} from 'playwright';
 import {nativeImportFixture,origin,projectId} from './fixtures/native-import.mjs';
 import {applicationLaunchUrl,launchableApps} from '../src/studio/application-launch.ts';
 import {studioApps} from '../src/studio/apps/registry.ts';
+import {STUDIO_GROUPS} from '../src/studio/manifest.ts';
 const browserType=({chromium,firefox,webkit})[process.env.NATIVE_IMPORT_BROWSER??'chromium'];
 const apps=launchableApps.filter(app=>app.editor.mode!=='readOnly').map(app=>app.name);
 const ready=(page,app)=>page.frameLocator(`iframe[title="${app} editor"]`).getByText('Ready',{exact:true}).waitFor();
@@ -17,11 +18,12 @@ test('empty and populated projects list the independent catalogue and launch rea
   const browser=await browserType.launch({headless:true});
   try{
     const {page,state}=await nativeImportFixture(browser);state.allowance=0;
-    assert.deepEqual(await page.locator('.application-grid button').evaluateAll(nodes=>nodes.map(node=>node.querySelector('strong').textContent)),studioApps.map(app=>app.name));
-    for(const [name,count] of [['Creative',10],['Drafting',9],['Analysis',10]]){
+    const groupNames = name => studioApps.filter(app=>app.studio===name).map(app=>app.name);
+    assert.deepEqual(await page.locator('.application-grid button strong').allTextContents(),STUDIO_GROUPS.flatMap(groupNames));
+    for(const name of STUDIO_GROUPS){
       const group=page.getByRole('region',{name:`${name} studio`,exact:true});
-      assert.equal(await group.locator('button').count(),count);
-      assert.deepEqual(await group.locator('strong').allTextContents(),studioApps.filter(app=>app.studio===name).map(app=>app.name));
+      assert.equal(await group.locator('button').count(),groupNames(name).length);
+      assert.deepEqual(await group.locator('strong').allTextContents(),groupNames(name));
     }
     assert.equal(await page.locator('.application-grid a').count(),0);
     assert.equal(await page.getByRole('link',{name:'Talk to Robyn',exact:true}).count(),1);

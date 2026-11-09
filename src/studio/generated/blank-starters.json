@@ -1,5 +1,53 @@
 [
   {
+    "id": "scriptcraft:11",
+    "appId": "scriptcraft",
+    "name": "Untitled script",
+    "description": "Blank screenplay",
+    "files": [
+      {
+        "path": "Untitled script.fdx",
+        "role": "master",
+        "mimeType": "application/xml",
+        "bytes": 4186,
+        "sha256": "6f0c1ba60e835e8abd0e461f6a6cd94a7766aaf8b711cfa830dc98df8adc0e83",
+        "url": "/studio/starters/11/scriptcraft/Untitled%20script.fdx"
+      }
+    ]
+  },
+  {
+    "id": "flarecraft:11",
+    "appId": "flarecraft",
+    "name": "Untitled animation",
+    "description": "Blank animation",
+    "files": [
+      {
+        "path": "Untitled animation.flare",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 3072,
+        "sha256": "c0c68fd8fdfe23ad9a5f549325010c2c506116e6ca6b8fb70553621f66bdae8a",
+        "url": "/studio/starters/11/flarecraft/Untitled%20animation.flare"
+      }
+    ]
+  },
+  {
+    "id": "pcbcraft:11",
+    "appId": "pcbcraft",
+    "name": "Untitled board",
+    "description": "Blank schematic and board",
+    "files": [
+      {
+        "path": "Untitled board.pc.zip",
+        "role": "master",
+        "mimeType": "application/zip",
+        "bytes": 1521,
+        "sha256": "4bc2e5099a856f27f41bdef3e75a56b477b7bcfd1ecbc1b11fc4a9115d59e5e1",
+        "url": "/studio/starters/11/pcbcraft/Untitled%20board.pc.zip"
+      }
+    ]
+  },
+  {
     "id": "ledgercraft:10",
     "appId": "ledgercraft",
     "name": "Untitled company",

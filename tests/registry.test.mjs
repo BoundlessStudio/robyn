@@ -39,7 +39,7 @@ test("readiness cannot be asserted without pinned artifacts", () => {
 
 test("Craft studios are explicit and unknown group names are rejected", () => {
   const entries=readManifests(path.resolve("src/studio/apps"));
-  assert.deepEqual(Object.fromEntries(["Creative","Drafting","Analysis"].map(name=>[name,entries.filter(({app})=>app.studio===name).length])),{Creative:10,Drafting:9,Analysis:10});
+  assert.deepEqual(Object.fromEntries(["Creative","Drafting","Analysis"].map(name=>[name,entries.filter(({app})=>app.studio===name).length])),{Creative:12,Drafting:10,Analysis:10});
   const app=structuredClone(entries[0].app);
   for(const studio of [undefined,"Engineering","creative",""])assert.throws(()=>validateManifest({...app,studio}),/invalid studio/);
 });

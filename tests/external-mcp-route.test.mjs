@@ -6,6 +6,9 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
 import { loadModule } from "./helpers/module.mjs";
 
+const workstationImage = JSON.parse(await readFile(new URL("../src/studio/workstation-image.json", import.meta.url), "utf8"));
+const [workstationTemplate, workstationRevision] = workstationImage.template.split("@");
+
 test("a Streamable HTTP client discovers Studio and Craft tools within the owner and zero-allowance boundaries", async () => {
   const issuer = "https://robyn.example";
   const resource = issuer + "/mcp";
@@ -52,7 +55,7 @@ test("a Streamable HTTP client discovers Studio and Craft tools within the owner
       { ...runningJob, id: randomUUID(), project_id: archivedProject, state: "completed", finished_at: timestamp }],
     studio_assignment_deliverables: [{ workspace_id: workspaceId, assignment_id: assignmentId, asset_id: assetId, revision_id: revisionId }],
     studio_mcp_operations: [oldOperation, otherGrantOperation],
-    agents: [{ agent37_id: "owned-studio", workspace_id: workspaceId, template: "robyn-studio-0-6-0@1" }],
+    agents: [{ agent37_id: "owned-studio", workspace_id: workspaceId, template: workstationImage.template }],
   };
   const rpcCalls = [];
   globalThis.__externalMcpDb = {
@@ -166,7 +169,7 @@ test("a Streamable HTTP client discovers Studio and Craft tools within the owner
       providerCalls.push("getAgent");
       assert.equal(id, "owned-studio");
       return { id, status: "running", metadata: { app_workspace: workspaceId, studio_employee: employeeId },
-        template: "robyn-studio-0-6-0", template_revision: 1, image_digest: "sha256:5f5ad12a65d1d7ceb8c605405f9b6ba63712531a83f38538ae1fdfbf052ee08c" };
+        template: workstationTemplate, template_revision: Number(workstationRevision), image_digest: workstationImage.release };
     },
     async exec(id, command) {
       assert.equal(id, "owned-studio");
@@ -208,7 +211,7 @@ test("a Streamable HTTP client discovers Studio and Craft tools within the owner
       assert.equal(client.getServerVersion().name, "robyn");
       const { tools } = await client.listTools();
       const pin = JSON.parse(await readFile(new URL("../src/studio/mcp/runtime-release.json", import.meta.url), "utf8"));
-      assert.equal(tools.length, 48);
+      assert.equal(tools.length, 19 + pin.applications.length);
       for (const name of ["get_project", "create_project", "update_project", "search_library", "list_robyn_jobs", "list_craft_operations", "cancel_robyn_job"]) {
         assert.ok(tools.some(tool => tool.name === name), `${name} appears in tool discovery`);
       }

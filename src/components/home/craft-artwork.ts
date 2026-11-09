@@ -9,6 +9,27 @@ export interface CraftArtwork {
 // Actual editor screenshots from our own QA project. CSS crops the studio shell
 // and applies the ink palette. Provenance: docs/HOMEPAGE-ARTWORK.md.
 export const craftArtwork: Record<string, CraftArtwork> = {
+  "scriptcraft": {
+    "src": "/artwork/editors/scriptcraft.png",
+    "title": "Write your next scene.",
+    "alt": "ScriptCraft's original screenplay editor showing a title page, the scene navigator and editable action text.",
+    "tools": "SCREENPLAY / SCENE NAVIGATOR / ACTION",
+    "fullFrame": true
+  },
+  "flarecraft": {
+    "src": "/artwork/editors/flarecraft.png",
+    "title": "Draw and animate on the stage.",
+    "alt": "Flare's original animation workspace showing a red rectangle on the stage, fill and stroke properties and the timeline.",
+    "tools": "STAGE / VECTOR PROPERTIES / TIMELINE",
+    "fullFrame": true
+  },
+  "pcbcraft": {
+    "src": "/artwork/editors/pcbcraft.png",
+    "title": "Design a circuit from the schematic.",
+    "alt": "PCBCraft's original schematic editor showing a wired indicator circuit, project sheets and board navigation.",
+    "tools": "SCHEMATIC / COMPONENTS / BOARD",
+    "fullFrame": true
+  },
   "ledgercraft": {
     "src": "/artwork/editors/ledgercraft.png",
     "title": "Keep your books in balance.",

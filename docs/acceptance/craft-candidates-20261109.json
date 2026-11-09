@@ -1,0 +1,87 @@
+{
+  "checkedOn": "2026-11-09",
+  "scope": "Local candidate evaluation with original editors, Linux engines, the Studio editor host and isolated BFF and Storage fixtures.",
+  "catalog": {
+    "listedCrafts": 32,
+    "readyCrafts": 29,
+    "candidates": [
+      {"id": "scriptcraft", "status": "pending", "native": [".fdx", ".fountain"], "starter": "scriptcraft:11"},
+      {"id": "flarecraft", "status": "pending", "native": [".flare"], "starter": "flarecraft:11"},
+      {"id": "pcbcraft", "status": "pending", "native": [".pc.zip"], "starter": "pcbcraft:11"}
+    ]
+  },
+  "localAcceptance": {
+    "nativeBlankOpenedInOriginalEditor": true,
+    "fileSaveWaitedForFixtureCommit": true,
+    "confirmedRevisionReopenedInBrowser": true,
+    "confirmedRevisionContinuedInLinuxEngine": true,
+    "saveAsCreatedSeparateAsset": true,
+    "receipts": "robyn-artcraft-runtime/apps/{scriptcraft,flarecraft,pcbcraft}/verification.json"
+  },
+  "localWorkstationCandidate": {
+    "version": "0.7.0",
+    "installedApplications": 32,
+    "scope": "The checksummed 0.7.0 addition layer was built on the locally available Studio 0.6.0 image.",
+    "imageId": "sha256:33aa94edc01b7d96cd36ac5ff1713413c0cd17859ef5fb993aa8ad9c9934ac14",
+    "clientVersion": "0.14.0",
+    "clientSha256": "bec169264b49e2c87883346b0ecd99c0957f860b709f070919d41b36ac347ef5",
+    "installedBinariesAndDynamicLibrariesChecked": true,
+    "allThreeClientCommandsContinuedBrowserFilesOffline": true,
+    "fullSourceBuild": {
+      "platform": "linux/amd64",
+      "allowlistedContextFiles": 45,
+      "contextBytes": 181793370,
+      "contextSha256": "331d891055610bff5499506f2b55f66b59c6dbb8d05dba47bc4d77e0d2ef68f8",
+      "sourceFingerprint": "d664a52dfba5f45b44e6b975851ab11ccf61137633f7e47362b4e0334844b502",
+      "localImageId": "sha256:99d238be43d9951ba615011f038361bf9e60b52f0488d33d2f3b26dfc2969e68",
+      "offlineNativeContinuation": [".fdx", ".fountain", ".flare", ".pc.zip"],
+      "cloudBuildSubmitted": false
+    }
+  },
+  "editorPublicationPreflight": {
+    "retainedReleases": 115,
+    "retainedFilePaths": 53293,
+    "candidateReleases": [
+      "flarecraft/v0.1.0-0.1.0/",
+      "pcbcraft/v0.0.0-0.1.0/",
+      "scriptcraft/v0.5.0-0.1.0/"
+    ],
+    "addedFilePaths": 94,
+    "newContentObjects": 79,
+    "newContentBytes": 93903106,
+    "combinedCatalogSha256": "33743f6efb51698a9b03822ba1dae9df733cbffdccc81e00648339c27f92345b",
+    "retainedReleaseAndFileDescriptorsUnchanged": true,
+    "wranglerDryRun": "passed",
+    "localBrowserScope": "Actual Cloudflare Worker code and serving headers with a local file-backed artifact binding and isolated BFF and Storage fixtures.",
+    "wasmByteRangeAndMimeChecks": "passed",
+    "browserEditSaveAndExactReopen": [".fdx", ".fountain", ".flare", ".pc.zip"]
+  },
+  "nativeDesktopSmoke": {
+    "scriptcraft": "Opened the browser-saved FDX in the original Linux window.",
+    "flarecraft": "Opened the exact browser-saved animation and rendered its editable stage rectangle in the original Linux window.",
+    "pcbcraft": "Opened the original Linux workspace. Packed-project continuation was verified separately in its native command engine."
+  },
+  "upstreamChecks": [
+    {
+      "app": "AniCraft",
+      "sourceCommit": "9d7172d9f9c0ffcf0cf6a1ae28cbb3f6b533ad4a",
+      "check": "cargo check --locked --target wasm32-unknown-unknown -p anicraft",
+      "result": "mio fails on the browser target",
+      "replacement": "flarecraft"
+    },
+    {
+      "app": "PixelCraft",
+      "sourceCommit": "686b887a7ba0956743c2f0ac0807e042630e4f8c",
+      "check": "Locked editor build check for wasm32-unknown-unknown",
+      "result": "Updater dependency chain fails in getrandom. The editor also uses native Lua and WebP libraries and file dialogs."
+    },
+    {
+      "app": "OxyPixel",
+      "sourceCommit": "a292c5685499cdf14a7d4e3d4e664bbd5ccc1fe7",
+      "check": "cargo check --locked --target wasm32-unknown-unknown for oxypixel-core and oxypixel",
+      "result": "Core passes. The editor fails in the native updater TLS chain and needs browser file, clipboard and reference sidecar handling."
+    }
+  ],
+  "hostedAcceptance": "pending",
+  "ownedWorkstationCanary": "pending"
+}

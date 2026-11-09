@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "stage": "hosted-canary-passed",
+  "checkedAt": "2026-11-09T12:02:21.380Z",
+  "scope": "Real hosted Agent37 installed native engines, Cloudflare original editor builds and authenticated Studio BFF and private Storage",
+  "nativeExecutables": 8,
+  "clientBundleSha256": "bec169264b49e2c87883346b0ecd99c0957f860b709f070919d41b36ac347ef5",
+  "cases": [
+    {
+      "app": "scriptcraft",
+      "format": ".fdx",
+      "initial": {
+        "bytes": 10812,
+        "sha256": "0c53812c18e26c917d70107cdb0fac9336722ff065a01ba487166e5947353cf7"
+      },
+      "browser": {
+        "bytes": 10829,
+        "sha256": "58b372ca9ed8a40f61771ccd3c364a2ad4a1927e0d968d68d8426bface1ca8d4",
+        "originalShortcut": true,
+        "waitedForCommit": true,
+        "exactReopen": true
+      },
+      "native": {
+        "bytes": 10850,
+        "sha256": "d97ef2ad60fd519e96c6f1b1ba58e1d157c351c8a70de5358bbb13d0ec099830"
+      }
+    },
+    {
+      "app": "scriptcraft",
+      "format": ".fountain",
+      "initial": {
+        "bytes": 103,
+        "sha256": "569b34c8c8eac3f40b82aae4b683a280a7ea74a18f231f1f04edbe622fb5e513"
+      },
+      "browser": {
+        "bytes": 120,
+        "sha256": "a781168cb5c3b7302d17cd049f21531eef3cb6cd46e11748cfeaa6c0f6fca700",
+        "originalShortcut": true,
+        "waitedForCommit": true,
+        "exactReopen": true
+      },
+      "native": {
+        "bytes": 141,
+        "sha256": "fe5dfea25a322c3c550f63c66f77b632a93b4b3f3b5c930f00e614171dc9276c"
+      }
+    },
+    {
+      "app": "flarecraft",
+      "format": ".flare",
+      "initial": {
+        "bytes": 3072,
+        "sha256": "d42c7140e4db168f6f619f619f88da00389c27f77c08e6c162a4723ebe691033"
+      },
+      "browser": {
+        "bytes": 4096,
+        "sha256": "29c5156161a811bdf91e714286ec8b15f34eb014353ab13575c31664dda8b5b2",
+        "originalShortcut": true,
+        "waitedForCommit": true,
+        "exactReopen": true
+      },
+      "native": {
+        "bytes": 4096,
+        "sha256": "978c6e841f71d9e2d480a8606e721d8f7fd55584710783d7ada7f6af264d11f4"
+      }
+    },
+    {
+      "app": "pcbcraft",
+      "format": ".pc.zip",
+      "initial": {
+        "bytes": 27428,
+        "sha256": "e8e15f5a5e8ffdd61387eac591e5abf52ee43a3f727c89f81ac868e5cf447449"
+      },
+      "browser": {
+        "bytes": 27430,
+        "sha256": "d154e0fce71c3e24e3df0acb2ee2dc8a7903d71b4b6b5ef635da592613877593",
+        "originalShortcut": true,
+        "waitedForCommit": true,
+        "exactReopen": true
+      },
+      "native": {
+        "bytes": 27435,
+        "sha256": "bf10f9d9dde0df2c80899ec79a62b62bfa4ef091dd6efcd7dbff43ba4c57a54f"
+      }
+    }
+  ],
+  "passed": true,
+  "worker": {
+    "origin": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev",
+    "version": "ab510df8-6539-4bbf-9919-e635bff77982",
+    "catalogSha256": "33743f6efb51698a9b03822ba1dae9df733cbffdccc81e00648339c27f92345b",
+    "candidatePaths": 94,
+    "newObjects": 79,
+    "releases": 118,
+    "paths": 53387,
+    "objects": 3413,
+    "bytes": 3396162695
+  },
+  "releases": [
+    {
+      "app": "scriptcraft",
+      "prefix": "scriptcraft/v0.5.0-0.1.0/",
+      "sourceCommit": "fce1d3c57a1964742d989d6488df638fc97f089d",
+      "browserSha256": "1108d2132dbf2768ff05761a570d52d674468522a08831f78857e01a76638f30"
+    },
+    {
+      "app": "flarecraft",
+      "prefix": "flarecraft/v0.1.0-0.1.0/",
+      "sourceCommit": "a1f025f93f21df17c3de4d14d233880bb3838de5",
+      "browserSha256": "828d70f5b18dab304ad67b6ff12c45f853f2285ca3c828d64724a73d594c613c"
+    },
+    {
+      "app": "pcbcraft",
+      "prefix": "pcbcraft/v0.0.0-0.1.0/",
+      "sourceCommit": "11da527240d6f134681d16a1bf4f2a6bf2a52012",
+      "browserSha256": "3e631feef1afe6d798d34920d296cbc8b22c1c2eba9401757a532bd594a58c1b"
+    }
+  ],
+  "workstation": {
+    "checkedAt": "2026-11-09T11:58:36.728Z",
+    "template": "robyn-studio-0-7-0@1",
+    "release": "sha256:5c4cab10559d0f8449494eb50b70c08eb50f8b59add38abf1c85b059a162af45",
+    "buildId": "tb_59607211eccc13a9aae3",
+    "healthy": true,
+    "identitySha256": "e6ed8bc1c9bb6255ffc8fe636b5d612baa3fa0b379aecc8fa2e24edf5f375d96",
+    "preserved": {
+      "tracked": 1648,
+      "restored": 17,
+      "baseModelRefreshed": true
+    },
+    "allowanceAndResourcesPreserved": true,
+    "contextSha256": "331d891055610bff5499506f2b55f66b59c6dbb8d05dba47bc4d77e0d2ef68f8",
+    "sourceFingerprint": "d664a52dfba5f45b44e6b975851ab11ccf61137633f7e47362b4e0334844b502",
+    "applications": 32
+  },
+  "starterVersion": 11,
+  "clientVersion": "0.14.0",
+  "directClientVersion": "1.1.0",
+  "modelTurns": 0,
+  "migrationsApplied": [],
+  "homepageCaptures": {
+    "scriptcraft": {
+      "path": "public/artwork/editors/scriptcraft.png",
+      "sha256": "6a9a675708ae43fe608edc00a1ac6874ebb91300475a2042ece55d0c003ab32c",
+      "width": 1600,
+      "height": 1000
+    },
+    "flarecraft": {
+      "path": "public/artwork/editors/flarecraft.png",
+      "sha256": "fecc0c8424f0135e17e992ce257ae13d67be3fc37a8cd46e024122cf44521ce1",
+      "width": 1600,
+      "height": 1000
+    },
+    "pcbcraft": {
+      "path": "public/artwork/editors/pcbcraft.png",
+      "sha256": "87d679f404c5bc9e825adcb72682601b2b5985cbc377230a7517a7fffb74ad02",
+      "width": 1600,
+      "height": 1000
+    }
+  }
+}
