@@ -6,6 +6,7 @@ import {validatePackagePath,type AssetSummary} from "@/studio/assets";
 import {checkNativeImport,importPath,importedDocumentName,nativeImportApp,nativeImportApps} from "@/studio/native-import";
 import {sourceFormat,sourceImportFiles} from "@/studio/source-import";
 import {savePackage,type LocalPackageFile,type SaveResult} from "@/studio/transfer-client";
+import {AssetBridgeDialog,type BridgeSelection} from "./AssetBridgeDialog";
 import {StudioDialog} from "./StudioDialog";
 
 interface ImportTask {id:string;name:string;appId:string|null;files:LocalPackageFile[];created?:boolean;result?:SaveResult}
@@ -20,6 +21,7 @@ export function ImportDocumentDialog({projectId,initialFiles,folder=false,close,
   const [application,setApplication]=useState("");
   const [busy,setBusy]=useState(false),[error,setError]=useState(""),[progress,setProgress]=useState(0),[status,setStatus]=useState("");
   const [locked,setLocked]=useState(false),[completed,setCompleted]=useState(0);
+  const [bridgeSelection,setBridgeSelection]=useState<BridgeSelection|null>(null);
   const started=useRef(false),running=useRef(false),tasks=useRef<ImportTask[]|null>(null),controller=useRef<AbortController|null>(null);
   const extraFiles=useRef<HTMLInputElement>(null),folderPicker=useRef<HTMLInputElement>(null);
   const candidates=files.filter(file=>nativeImportApps(file.name).length),choices=nativeImportApps(master);
@@ -29,7 +31,9 @@ export function ImportDocumentDialog({projectId,initialFiles,folder=false,close,
   async function run(selected:File[]=files,main:string=master,chosen:string=application) {
     if(running.current||!selected.length)return;
     if(!main&&!selected.every(file=>sourceFormat(file.name))){
-      if(!selected.some(file=>nativeImportApp(file.name)))setError("No supported project was found. Choose a native Craft project, or supported images, audio and video.");
+      if(!selected.some(file=>nativeImportApps(file.name).length)){
+        setBridgeSelection({files:selected,mode:selected.every(file=>file.webkitRelativePath)?"folder":"files"});
+      }
       return;
     }
     const available=nativeImportApps(main);
@@ -90,6 +94,8 @@ export function ImportDocumentDialog({projectId,initialFiles,folder=false,close,
     setFiles(selected);setMaster(main);setApplication(chosen);setError("");void run(selected,main,chosen);
   }
   useEffect(()=>{if(started.current)return;started.current=true;void run(initialFiles,master);},[]);
+
+  if(bridgeSelection)return <AssetBridgeDialog projectId={projectId} initialSelection={bridgeSelection} close={close} saved={saved} returnFocusRef={returnFocusRef}/>;
 
   return <StudioDialog title={busy?(app?`Opening in ${app.name}…`:"Adding to your library…"):error?"Let’s finish this import.":folder&&!files.length?"Bring the whole project.":"Choose what to open."} eyebrow="BRING EXISTING FILES" close={close} busy={busy} returnFocusRef={returnFocusRef}>
     {files.length>0&&<p className="studio-import-filename">{master||files[0].name}{files.length>1&&<small> · {files.length} files selected</small>}</p>}

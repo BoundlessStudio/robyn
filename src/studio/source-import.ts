@@ -10,7 +10,8 @@ const formats: Record<string, [SourceKind, string]> = {
 };
 
 export function sourceFormat(filename: string) {
-  const format = formats[filename.split(".").pop()?.toLowerCase() ?? ""];
+  const extension = /\.([^./]+)$/.exec(filename)?.[1].toLowerCase() ?? "";
+  const format = Object.hasOwn(formats, extension) ? formats[extension] : undefined;
   return format ? {kind:format[0], mimeType:format[1]} : null;
 }
 
@@ -43,7 +44,8 @@ export async function sourceImportFiles(file:File) {
   if(!format||!file.size||file.size>256*1024**2)throw Error("Choose a supported image, audio or video file up to 256 MiB.");
   const head=new Uint8Array(await file.slice(0,512).arrayBuffer());
   const ascii=(offset:number,value:string)=>hasAscii(head,offset,value);
-  const rasterFormat=sourceFormat(rasterImageExtension(head)??"");
+  const rasterExtension=rasterImageExtension(head);
+  const rasterFormat=rasterExtension?sourceFormat(`image.${rasterExtension}`):null;
   // Catch accidental renames before writing. This is a container signature
   // check; the chosen Craft still determines supported media codecs/content.
   const valid:Record<string,boolean>={

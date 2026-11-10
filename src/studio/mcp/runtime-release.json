@@ -1,7 +1,7 @@
 {
-  "version": "1.2.0",
-  "fingerprint": "ef686b08822830ca863a899ab38d1c67c4a3c8718b9c096de33bf8e3f24181e2",
-  "directory": "vendor/robyn-mcp-workstation/1.2.0-ef686b088228",
+  "version": "1.2.1",
+  "fingerprint": "8acb4493e73b5bd61d6572f7bf37c8283d2671c1aa803e04138681150a0bc507",
+  "directory": "vendor/robyn-mcp-workstation/1.2.1-8acb4493e73b",
   "applications": [
     "bimcraft",
     "cadcraft",
@@ -39,8 +39,8 @@
   ],
   "files": {
     "studio-mcp.cjs": {
-      "bytes": 1560503,
-      "sha256": "053e4725a59dd327b70744da0f72f0e4b6a3dd5d9ea4b1613b368e91043712e1"
+      "bytes": 1565316,
+      "sha256": "f5b726ff7f0c42d9f08b39771f5f3f71d50fb8e68f236bed63fbbfee92b1a171"
     },
     "bwrap": {
       "bytes": 101304,

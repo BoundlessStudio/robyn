@@ -5,9 +5,11 @@ import { ownedRevision, revisionFiles, mapInBatches, verifyStoredFiles, dbFailur
 
 export const savedDownloadSeconds = 300;
 
-export async function signSavedFile(db: DB, file: Pick<StoredFile, "storage_key" | "path">, inline = false) {
+export async function signSavedFile(db: DB, file: Pick<StoredFile, "storage_key" | "path" | "mime_type">, inline = false) {
+  // Opaque uploads and exports stay downloads even when a caller asks to preview them.
+  const preview = inline && /^(image|audio|video)\//.test(file.mime_type);
   const { data, error } = await db.storage.from(STUDIO_BUCKET).createSignedUrl(file.storage_key, savedDownloadSeconds,
-    inline ? undefined : { download: file.path.split("/").pop() });
+    preview ? undefined : { download: file.path.split("/").pop() });
   if (error || !data) throw new ApiError(503, "storage_unavailable", "The package could not be opened. Please retry.");
   return data.signedUrl;
 }

@@ -1,0 +1,12 @@
+--- a/bubblewrap.c
++++ b/bubblewrap.c
+@@ -3245,8 +3245,7 @@
+   switch_to_user_with_privs ();
+ 
+-  if (opt_unshare_net)
+-    loopback_setup (); /* Will exit if unsuccessful */
++  /* Direct Craft commands use a new network namespace with no interfaces up. */
+ 
+   ns_uid = opt_sandbox_uid;
+   ns_gid = opt_sandbox_gid;
+   if (opt_unshare_user && opt_userns_block_fd == -1)

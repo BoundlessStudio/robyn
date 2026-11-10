@@ -5,13 +5,10 @@ import Link from "next/link";
 import {Search,ArrowUpRight,Upload,FolderOpen,Images,LayoutGrid,List} from "lucide-react";
 import {studioTools} from "@/studio/tools";
 import type {AssetSummary,ProjectSummary} from "@/studio/assets";
-import {nativeImportApp} from "@/studio/native-import";
-import {sourceFormat} from "@/studio/source-import";
 import {apiFetch} from "@/lib/api";
 import {AppIcon} from "./AppIcon";
 import {usePagedStudioList} from "./usePagedStudioList";
 import {ImportDocumentDialog} from "./ImportDocumentDialog";
-import {UploadPackageDialog} from "./UploadPackageDialog";
 import {MediaPanel} from "./MediaPanel";
 import {ProjectSection} from "./ProjectSection";
 import {AssetBridgeDialog} from "./AssetBridgeDialog";
@@ -45,7 +42,6 @@ function ProjectLibrary({project}:{project:ProjectSummary}) {
       setMedia({projectId:id,assets});
     }catch(reason){setMediaError((reason as Error).message);}finally{setLoadingMedia(false);}
   }
-  const simple=intake&&(intake.folder||intake.files.some(file=>nativeImportApp(file.name))||intake.files.every(file=>sourceFormat(file.name)));
   return <div className="studio-page library-page">
     <header className="studio-page-heading"><div><span className="studio-eyebrow">YOUR PROJECT LIBRARY</span><h1>Assets.</h1><p>Bring files in. Keep your versions together. Take your work anywhere.</p></div><div className="studio-action-row">
       <button ref={bridgeButton} className="studio-button" disabled={!writable} onClick={()=>setBridge(true)}><Upload size={15}/>Asset Bridge</button>
@@ -66,7 +62,7 @@ function ProjectLibrary({project}:{project:ProjectSummary}) {
       <div className="library-piece-info"><div className="library-piece-heading"><h2>{asset.name}</h2><ArrowUpRight size={18}/></div><p>{asset.project?.name??project?.name??"Project"}</p><small>{app?.name??(asset.asset_kind==="file"?"Files & folders":`${asset.asset_kind} source`)} · {asset.current_revision_id?"Saved":"Awaiting first save"}</small></div>
     </Link>;})}</div>:<div className="library-empty-message"><Images size={32}/><h2>{search||kind||appId?"No matching assets.":"Make room for your next idea."}</h2><p>{search||kind||appId?"Try another search or filter.":"Import native projects, images, audio or video. Open an asset to rename it, manage versions or download its files."}</p></div>}
     {library.nextCursor&&<button className="studio-button library-load-more" disabled={library.loading} onClick={()=>void library.loadMore()}>Load more assets</button>}
-    {intake&&(simple?<ImportDocumentDialog projectId={projectId} initialFiles={intake.files} folder={intake.folder} close={()=>{setIntake(null);void library.reload();}} saved={imported} returnFocusRef={importButton}/>:<UploadPackageDialog projectId={projectId} initialFiles={intake.files} close={()=>setIntake(null)} saved={imported} returnFocusRef={importButton}/>)}
+    {intake&&<ImportDocumentDialog projectId={projectId} initialFiles={intake.files} folder={intake.folder} close={()=>{setIntake(null);void library.reload();}} saved={imported} returnFocusRef={importButton}/>}
     {bridge&&<AssetBridgeDialog projectId={projectId} close={()=>setBridge(false)} saved={async()=>{await library.reload();setBridge(false);setNotice("All files are saved in your private library and available to Robyn.");}} returnFocusRef={bridgeButton}/>}
     {media&&<MediaPanel projectId={media.projectId} assets={media.assets} close={()=>setMedia(null)} onSaved={async()=>{await library.reload();await showMedia(media.projectId);}} onOpen={async ref=>{window.location.assign(`/dashboard/projects/${projectId}/library/${ref.assetId}?revision=${ref.revisionId}`);}}/>}
   </div>;
