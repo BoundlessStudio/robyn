@@ -7,7 +7,7 @@ import {nativeImportFixture,origin,projectId,selectStudioMenuItem} from './fixtu
 const browserType=({chromium,firefox,webkit})[process.env.NATIVE_IMPORT_BROWSER??'chromium'];
 const projectPath = `/dashboard/projects/${projectId}`;
 const studioItems = [['Projects','/dashboard'],['Studio settings','/dashboard/settings']];
-const projectItems = [['Dashboard',projectPath],['Assets',`${projectPath}/library`],['Robyn',`${projectPath}/employees`],['Settings',`${projectPath}/settings`]];
+const projectItems = [['Dashboard',projectPath],['Assets',`${projectPath}/library`],['Robyn',`${projectPath}/employees`],['Project settings',`${projectPath}/settings`]];
 const triggerFor = page => page.getByRole('button', { name:'Robyn studio menu', exact:true });
 const menuFor = page => page.getByRole('menu', { name:'Robyn studio menu', exact:true });
 
@@ -95,13 +95,13 @@ test('the shared Studio menu navigates in the same tab with unsaved-work protect
     const requests=state.requests.filter(row=>['/api/studio/research/browser','/api/studio/assets','/api/studio/assignments'].includes(row.path));
     assert.ok(requests.length>4);assert.ok(requests.every(row=>new URLSearchParams(row.search).get('projectId')===projectId));
     const controls=requests.filter(row=>['take','return'].includes(row.input?.action));assert.equal(controls.length,2);assert.equal(controls[0].input.controlId,controls[1].input.controlId);
-    await selectStudioMenuItem(tools,'Settings');
+    await selectStudioMenuItem(tools,'Project settings');
     await tools.getByLabel('Project name',{exact:true}).waitFor();
-    await inspectMenu(page,'Settings',true);
+    await inspectMenu(page,'Project settings',true);
     for(const width of [1440,1200]){
       await tools.setViewportSize({width,height:960});
       assert.equal(await tools.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
-      await inspectMenu(page,'Settings',true);
+      await inspectMenu(page,'Project settings',true);
     }
     await selectStudioMenuItem(tools,'Robyn');
     await tools.getByLabel('Your idea',{exact:true}).waitFor();
@@ -136,7 +136,7 @@ test('Studio and project pages share one keyboard-accessible menu in the same he
         assert.equal(await header.count(),1);
         assert.equal(await header.getByRole('button',{name:'Robyn studio menu',exact:true}).count(),1);
         assert.equal(await header.getByRole('navigation').count(),0);
-        assert.equal(await header.getByRole('link',{name:/^(Projects|Profile|Studio settings|Dashboard|Assets|Robyn|Settings)$/}).count(),0);
+        assert.equal(await header.getByRole('link',{name:/^(Projects|Profile|Studio settings|Dashboard|Assets|Robyn|Project settings)$/}).count(),0);
         const current = await trigger.boundingBox();
         if(position)assert.deepEqual(current,position);else position=current;
         assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);

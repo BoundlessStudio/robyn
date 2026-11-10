@@ -13,7 +13,7 @@ test('Settings saves project details, hides activity and archives or reactivates
     const {page,state}=await nativeImportFixture(browser);
     const otherId=randomUUID();state.projects.set(otherId,{...state.project,id:otherId,name:'Another project',brief:'Keep this brief.'});
     state.activity.push({id:randomUUID(),kind:'revision.committed',created_at:state.project.created_at,details:{}});
-    await selectStudioMenuItem(page,'Settings');
+    await selectStudioMenuItem(page,'Project settings');
     await page.getByRole('heading',{name:'Project settings.',exact:true}).waitFor();
     await page.getByRole('heading',{name:'Project details',exact:true}).waitFor();
     assert.equal(await page.getByRole('heading',{name:'Project activity',exact:true,includeHidden:true}).count(),0);

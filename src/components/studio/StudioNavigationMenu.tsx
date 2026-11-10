@@ -21,7 +21,7 @@ function projectNavigation(home: string, savedRevision?: AssetRef) {
     { href: home, label: "Dashboard", icon: LayoutDashboard },
     { href: `${home}/library`, label: "Assets", icon: Images },
     { href: `${home}/employees${selection}`, label: "Robyn", icon: MessageCircle },
-    { href: `${home}/settings`, label: "Settings", icon: Settings },
+    { href: `${home}/settings`, label: "Project settings", icon: Settings },
   ];
 }
 
