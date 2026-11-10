@@ -211,7 +211,7 @@ test("a Streamable HTTP client discovers Studio and Craft tools within the owner
       assert.equal(client.getServerVersion().name, "robyn");
       const { tools } = await client.listTools();
       const pin = JSON.parse(await readFile(new URL("../src/studio/mcp/runtime-release.json", import.meta.url), "utf8"));
-      assert.equal(tools.length, 19 + pin.applications.length);
+      assert.equal(tools.length, 21 + pin.applications.length);
       for (const name of ["get_project", "create_project", "update_project", "search_library", "list_robyn_jobs", "list_craft_operations", "cancel_robyn_job"]) {
         assert.ok(tools.some(tool => tool.name === name), `${name} appears in tool discovery`);
       }

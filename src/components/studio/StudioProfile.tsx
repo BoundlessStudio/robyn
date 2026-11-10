@@ -99,6 +99,9 @@ export function StudioProfile({ mailcraftBundle = null }: { mailcraftBundle?: st
             connect={() => void change(provider, { action: "connect", provider })}
             disconnect={connectionId => void change(connectionId, { action: "disconnect", connectionId })} />)}
         </div>}
+        {state && hasActiveMailbox(state.connections) && <p className="studio-note">
+          <Link href="/oauth/connections">Manage MailCraft read access for MCP clients</Link>
+        </p>}
         {error && <p className="studio-error studio-mail-message" role="alert">{error}</p>}
       </section>
     </div></div>

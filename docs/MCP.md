@@ -35,6 +35,7 @@ Review or revoke access under **Settings → External MCP → Manage MCP connect
 | `download_asset` | Get one private download link for an original file in an exact revision. Supply a path when choosing from a collection. |
 | `list_asset_revisions`, `open_asset_revision` | Inspect an exact immutable file package and dependencies. Request short-lived private download links explicitly with `includeDownloads`. |
 | `list_crafts`, `run_<craft>` | Discover the installed Craft tools and native formats. Start a direct call with `commands: [{ argv: ["--help"] }]` to see the application’s commands. |
+| `list_mailcraft_accounts`, `read_mailcraft` | List the active mailboxes approved for this MCP connection and read a MailCraft view from one exact account. |
 | `list_craft_operations`, `get_craft_operation` | Recover operation IDs for this connection and read native output and confirmed revision receipts. |
 | `get_robyn_allowance`, `start_robyn_job` | Read the configured AI allowance and delegate work. Job admission also checks remaining headroom and provider funding. |
 | `list_robyn_jobs`, `get_robyn_job`, `cancel_robyn_job` | Find jobs started in Studio or through MCP, read their results, and stop a job by its project and assignment IDs. |
@@ -53,11 +54,28 @@ With a **$0 Studio AI allowance**, project tools, library access, direct Craft c
 
 Each direct operation accepts up to 12 exact input packages totaling 1 GiB and up to eight ordered commands. Its native processes have two minutes per command and three minutes across the batch. Use `returnFiles` to retrieve up to four small exports totaling 128 KiB as MCP resources. Writable Crafts can include larger exports in a confirmed library save through `save.derivedFiles`. Editor windows in Studio are separate from a direct operation’s working copy.
 
+## Choose a MailCraft account
+
+1. Connect Gmail or Microsoft 365 in **Profile → Connected mail**.
+2. Open **Manage MailCraft read access for MCP clients**. Under the client you want to use, select **Allow reads** beside each mailbox you choose to share. Every MCP connection starts with its mailboxes private. **Remove access** revokes that mailbox for the selected client.
+3. In an MCP chat, ask “Use MailCraft to read my work Gmail.” If several approved accounts share the same provider, use the label shown in Robyn, such as **Gmail · work1234**.
+
+Call `list_mailcraft_accounts` to discover approved active accounts. Copy the chosen `mailConnectionId` into every `read_mailcraft` call. For example, these arguments request the Inbox of a fictional Gmail account.
+
+```json
+{
+  "mailConnectionId": "ca_work1234",
+  "view": { "kind": "mail" }
+}
+```
+
+Use `{ "kind": "message", "id": "…" }` with an ID returned by the same mailbox. Contacts, calendar and tasks depend on the provider grant. A calendar view takes `from` and `to` as Unix seconds for a range of up to 93 days. MailCraft reads use the managed allowance on your shared Agent37 workstation. To request a provider draft in Robyn’s Studio, choose **Mailbox for this brief**.
+
 ## Deploy and verify
 
 For the pilot rollout of the expanded catalog, collect any pending Craft receipts, remove the earlier connection in ChatGPT, and revoke its grant if it still appears under **MCP connections** in Studio. Reconnect after deployment to approve the expanded tools. Each grant has its own Craft operation history.
 
-1. Apply the migrations through `0034_external_mcp_asset_tools.sql` using the checked migration ledger. Keep the Studio origin and passwordless redirects configured through [setup](../SETUP.md).
+1. Apply the migrations through `0036_external_mcp_mailboxes.sql` using the checked migration ledger. Keep the Studio origin and passwordless redirects configured through [setup](../SETUP.md).
 2. Deploy the web source and its checksummed `vendor/robyn-mcp-workstation` artifact together. The release manifest names the direct worker, sandbox binary and supported applications. The worker is delivered server-side to the current verified Studio workstation image. Use the matching sources in the companion runtime repository when preparing a new worker release.
 3. Set the server-only `ROBYN_MCP_RUNTIME_SECRET` to a fresh random 32-byte base64url value. The endpoint responds with OAuth discovery only on enabled deployments. Drain unsettled direct operations before rotating the secret.
 4. Check the resource and authorization metadata at `/.well-known/oauth-protected-resource/mcp` and `/.well-known/oauth-authorization-server`. Confirm that an unauthenticated `/mcp` request returns the OAuth challenge. Use a designated invited QA creator for connection and ownership checks.
