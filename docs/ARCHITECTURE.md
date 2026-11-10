@@ -17,7 +17,7 @@ The Robyn dropdown is shared across the Projects dashboard, Studio settings, and
 | Dashboard | Crafts grouped by studio, new native files in ready applications and existing-file import |
 | Assets | Files, Notes, source media, imports, exact versions, exports and downloads |
 | Robyn | Conversation, Jobs, Review and Skills, browser control and one AI allowance summary |
-| Settings | Project name, brief, archive and reactivation |
+| Project settings | Project name, brief, archive and reactivation |
 
 New file stays with the editor's document controls. Navigation protects unsaved work. Project activity is hidden from Settings while stored history remains preserved. Old Applications links return to Dashboard. There is no employee picker or separate Researcher. Saved research notebooks remain editable as Notes; Notes is a document format, not another Craft.
 
