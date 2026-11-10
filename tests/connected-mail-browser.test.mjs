@@ -50,3 +50,33 @@ test("Profile manages both providers and a brief retries with its original mailb
     assert.deepEqual(state.mailConnections.map(item => item.provider), ["outlook"]);
   } finally { await browser.close(); }
 });
+
+test("Connected mail groups clear provider status and the available actions", async () => {
+  const browser = await chromium.launch({ headless: true });
+  try {
+    const { page, state } = await nativeImportFixture(browser, { initialPath: "/dashboard/profile", viewport: { width: 1366, height: 850 } });
+    const mail = page.getByRole("region", { name: "Connected mail" });
+    const gmail = mail.getByRole("group", { name: "Gmail", exact: true });
+    const microsoft = mail.getByRole("group", { name: "Microsoft 365", exact: true });
+    await gmail.getByText("Not connected", { exact: true }).waitFor();
+    await microsoft.getByText("Not connected", { exact: true }).waitFor();
+    await gmail.getByRole("button", { name: "Connect Gmail", exact: true }).waitFor();
+    await microsoft.getByRole("button", { name: "Connect Microsoft 365", exact: true }).waitFor();
+    assert.equal(await mail.getByRole("button", { name: "Refresh connections" }).count(), 0);
+
+    state.mailConnections.push(
+      { id: "ca_qa_gmail", provider: "gmail", status: "pending" },
+      { id: "ca_qa_microsoft", provider: "outlook", status: "active" },
+    );
+    await page.reload();
+    await gmail.getByText("Sign-in pending", { exact: true }).waitFor();
+    await gmail.getByRole("button", { name: /^Cancel sign-in Gmail/ }).waitFor();
+    assert.equal(await gmail.getByRole("button", { name: "Connect Gmail", exact: true }).count(), 0);
+    await microsoft.getByText("Connected", { exact: true }).waitFor();
+    await microsoft.getByRole("link", { name: "Open Microsoft 365 Drafts" }).waitFor();
+    state.mailConnections[0].status = "active";
+    await mail.getByRole("button", { name: "Refresh connections" }).click();
+    await gmail.getByText("Connected", { exact: true }).waitFor();
+    await gmail.getByRole("link", { name: "Open Gmail Drafts" }).waitFor();
+  } finally { await browser.close(); }
+});

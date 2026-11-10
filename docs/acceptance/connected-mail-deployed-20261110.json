@@ -1,0 +1,28 @@
+{
+  "webCommit": "2e744c259b52c2b0919a90b72b96f3684e2871fe",
+  "runtimeCommit": "9c54cda288cb5ccbe552451e7ec6a7b66a277a8e",
+  "workstationClient": "0.16.0",
+  "migration": {
+    "file": "0035_connected_mail.sql",
+    "sha256": "94ee0925b32ac3c0e6c5715c7a6645fecc9c171969eb87d50a5c68c1179fe28e",
+    "ledgerEntries": 36,
+    "ledgerSha256": "8e6ed3485f4defba50de0ae4a2c3f736f9bf6d282530be4146d1aff68c1aa086",
+    "browserTableSelectDenied": true
+  },
+  "production": {
+    "deployment": "https://vercel.com/venatio-studios/robyn-creative-studio/Amh5QAk3F4quM4W55CNsRJhKLxfb",
+    "unauthenticatedMailApiStatus": 401,
+    "signedInProfileProviders": [
+      "gmail",
+      "outlook"
+    ]
+  },
+  "qa": {
+    "workstationTemplate": "robyn-studio-0-8-0@1",
+    "gmailDraftAndReadback": true,
+    "outlookDraftAndReadback": true,
+    "syntheticSendsConfirmed": 2,
+    "browserTakeoverFenced": true,
+    "retirementPendingMailcraftChecks": true
+  }
+}

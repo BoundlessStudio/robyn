@@ -1,10 +1,10 @@
 # Current pilot acceptance
 
-Updated November 9, 2026 (Toronto). This page indexes recorded release evidence and remaining gaps. [Architecture and scope](ARCHITECTURE.md) describes the current system. [Operations](OPERATIONS.md) owns recovery procedures. Documentation maintenance does not imply a new deployment or a fresh live check. Earlier release summaries and the R01–R18 review are in the [archive](archive/README.md).
+Updated November 10, 2026 (Toronto). This page indexes recorded release evidence and remaining gaps. [Architecture and scope](ARCHITECTURE.md) describes the current system. [Operations](OPERATIONS.md) owns recovery procedures. Documentation maintenance does not imply a new deployment or a fresh live check. Earlier release summaries and the R01–R18 review are in the [archive](archive/README.md).
 
-## Connected mail, QA November 9
+## Connected mail, deployed November 10
 
-Profile manages Gmail and Microsoft 365 on each creator's Agent37 workstation. Mail-enabled briefs select immutable client **0.16.0**. Migration **0035** stores private assignment grants and draft receipts. Both providers completed live Composio consent on an isolated Studio **0.8.0** Agent37 instance. Robyn's installed MCP client saved one synthetic draft per provider and read back both exact drafts through the Studio MCP route with an isolated migrated database. Both draft receipts were confirmed. The operator sent the two verified drafts with explicit authorization and confirmed their provider Sent records. Shared Chrome accepted keyboard input during takeover and blocked it before and after. Local fixtures cover lost acknowledgements and assignment access. Production deployment is pending.
+Profile manages Gmail and Microsoft 365 on each creator's Agent37 workstation. Mail-enabled briefs select immutable client **0.16.0**. Migration **0035** stores private assignment grants and draft receipts. Both providers completed live Composio consent on an isolated Studio **0.8.0** Agent37 instance. Robyn's installed MCP client saved one synthetic draft per provider and read back both exact drafts through the Studio MCP route with an isolated migrated database. Both draft receipts were confirmed. The operator sent the two verified drafts with explicit authorization and confirmed their provider Sent records. Shared Chrome accepted keyboard input during takeover and blocked it before and after. Local fixtures cover lost acknowledgements and assignment access. The [production receipt](acceptance/connected-mail-deployed-20261110.json) records the paired commits, migration ledger and signed-in Profile verification. The QA workstation remains available for MailCraft checks.
 
 ## PixelCraft, verified November 9
 
