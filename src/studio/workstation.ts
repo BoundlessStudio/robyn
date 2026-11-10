@@ -102,7 +102,10 @@ export async function prepareEmployeeAssignment(db:DB,identity:AssignmentIdentit
   if(storage.hostname.endsWith(".supabase.co"))storageOrigins.push(`https://${storage.hostname.replace(/\.supabase\.co$/,".storage.supabase.co")}`);
   const mailbox=await assignmentMailbox(db,identity.workspaceId,assignment.id);
   if(mailbox&&mailbox.instanceId!==instance.id)throw new WorkstationConfigurationError("mail_workstation_changed");
-  const pin=assignment.allowed_app_ids.includes("mailcraft")?mailcraftRelease:mailbox?mailRelease:release;
+  // Client 0.15.0 shipped the PixelCraft skill but its profile helper rejects
+  // the PixelCraft app ID. Keep that pin only for older, already-bound scopes.
+  const pin=assignment.allowed_app_ids.includes("mailcraft")?mailcraftRelease
+    :mailbox||assignment.allowed_app_ids.includes("pixelcraft")?mailRelease:release;
   const directory=`/home/node/.robyn/setup/${randomUUID()}`;
   const artifacts=new Map<string,Buffer>([["studio-mcp.cjs",await runtimeFile("studio-mcp.cjs",pin)],["configure-hermes.py",await runtimeFile("configure-hermes.py",pin)]]);
   for(const name of Object.keys(release.files).filter(name=>name.startsWith("skills/")))artifacts.set(name,await runtimeFile(name));

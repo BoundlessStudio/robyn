@@ -1,11 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {spawnSync} from 'node:child_process';
 import {createHash,randomUUID} from 'node:crypto';
 import path from 'node:path';
+import {studioApps} from '../src/studio/apps/registry.ts';
+import {isEmployeeReady} from '../src/studio/manifest.ts';
 import {loadModule} from './helpers/module.mjs';
 
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
-async function credentialBoundary(run){
+async function credentialBoundary(run,{published=false}={}){
   const assignment={id:randomUUID(),execution_model:'robyn',employee_generation:7,workstation_profile:'robyn-job-one-7',allowed_app_ids:['wordcraft'],app_id:'wordcraft'};
   const employee={id:randomUUID(),employee_key:'robyn',kind:'director',app_id:null,retired_at:null};
   const instance={id:'persistent'};
@@ -21,10 +24,12 @@ async function credentialBoundary(run){
   try{
     const {prepareEmployeeAssignment}=await loadModule('../../src/studio/workstation.ts',{
       'server-only':'',
-      'node:fs/promises':"import path from 'node:path';export const readFile=async file=>{const bytes=globalThis.__taskCredentialBoundary.files[path.basename(file)];if(!bytes)throw Error('Unexpected artifact');return bytes;};",
-      './workstation-release.json':'export default globalThis.__taskCredentialBoundary.release;',
-      './workstation-mail-release.json':'export default {...globalThis.__taskCredentialBoundary.release,version:"0.16.0"};',
-      './workstation-mailcraft-release.json':'export default globalThis.__taskCredentialBoundary.mailcraftRelease;',
+      ...(!published&&{
+        'node:fs/promises':"import path from 'node:path';export const readFile=async file=>{const bytes=globalThis.__taskCredentialBoundary.files[path.basename(file)];if(!bytes)throw Error('Unexpected artifact');return bytes;};",
+        './workstation-release.json':'export default globalThis.__taskCredentialBoundary.release;',
+        './workstation-mail-release.json':'export default {...globalThis.__taskCredentialBoundary.release,version:"0.16.0"};',
+        './workstation-mailcraft-release.json':'export default globalThis.__taskCredentialBoundary.mailcraftRelease;',
+      }),
       './connected-mail-server':'export const assignmentMailbox=async()=>globalThis.__taskCredentialBoundary.mailbox;',
       './workstation-image.json':`export default {template:'robyn-studio-0-1-0@1',release:'sha256:${'a'.repeat(64)}'};`,
       './employee-auth':`import {createHash} from 'node:crypto';export const hashEmployeeToken=value=>createHash('sha256').update(value).digest('hex');export const issueEmployeeToken=async(_db,assignmentId,instanceId,binding)=>{const s=globalThis.__taskCredentialBoundary;s.issued.push({assignmentId,instanceId,binding});return s.token;};`,
@@ -73,6 +78,39 @@ test('mail capability is pinned to this workstation and disabled for planning wr
     assert.deepEqual(config.mailbox,state.mailbox);assert.equal(config.mailCanDraft,false);
     assert.ok(state.exec.some(call=>call.command.includes('studio-mcp-v0.16.0.cjs')));
   });
+});
+
+test('the published profile helper accepts the full ordinary Robyn scope without a mailbox',async()=>{
+  await credentialBoundary(async({state,prepare})=>{
+    state.assignment.app_id='pixelcraft';
+    state.assignment.allowed_app_ids=studioApps.filter(app=>isEmployeeReady(app)&&app.id!=='mailcraft').map(app=>app.id);
+    assert.ok(state.assignment.allowed_app_ids.includes('pixelcraft'));
+    assert.equal(await prepare(),true);
+    const uploaded=suffix=>state.uploads.find(item=>item.file.endsWith(suffix))?.bytes.toString();
+    const config=JSON.parse(uploaded('/assignment.json'));
+    assert.equal(config.mailbox,undefined);
+    for(const app of config.allowedAppIds)assert.ok(uploaded(`/skills/${app}.md`),`Missing skill for ${app}`);
+    // Run the shipped helper's actual scope validation. This part does not
+    // need its Linux file locking or YAML dependencies.
+    const validated=spawnSync(process.env.PYTHON??(process.platform==='win32'?'python':'python3'),['-c',`
+import json, sys, types
+from pathlib import PurePosixPath
+for module in ("fcntl", "yaml"):
+    sys.modules[module] = types.ModuleType(module)
+payload = json.load(sys.stdin)
+helper = {"__name__": "profile_fixture"}
+exec(compile(payload["helper"], "configure-hermes.py", "exec"), helper)
+helper["Path"] = PurePosixPath
+config = payload["config"]
+helper["task_identity"](config, types.SimpleNamespace(
+    expected_assignment=config["assignmentId"],
+    expected_generation=config["generation"],
+    expected_profile=config["profile"],
+))
+`],{input:JSON.stringify({config,helper:uploaded('/configure-hermes.py')}),encoding:'utf8'});
+    assert.ifError(validated.error);
+    assert.equal(validated.status,0,validated.stderr);
+  },{published:true});
 });
 
 test('expired or revoked immutable credentials never mark the workstation ready or bind a replacement token',async()=>{
