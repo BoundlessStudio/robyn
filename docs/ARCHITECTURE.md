@@ -6,6 +6,8 @@ Robyn is an invitation-only, passwordless studio for an individual creator. One 
 
 Public signup is disabled. Each invited creator receives a private studio and one canonical Robyn. The separate beta administrator manages access requests and invitations; a creator's workspace role does not grant that access.
 
+The default studio name comes from the invited account’s email handle, without the domain or plus alias. Creators can choose their own name in Settings. Robyn’s Agent37 label uses `Robyn — <studio name>`, shortened if needed to fit the provider’s limit.
+
 The authenticated studio, Crafts, Notes and Robyn's browser tools are desktop-only. First entry requires at least 1200 CSS pixels, a fine pointer and hover, with a keyboard and mouse intended. Explain the requirement before mounting an editor on an unsupported screen. Temporarily narrowing an already-open editor preserves its session and unsaved work. This presentation check does not replace authorization or establish graphics/codec support. The public homepage supports mobile presentation.
 
 Studio navigation opens Projects. Every project uses the same menu and current-page state:

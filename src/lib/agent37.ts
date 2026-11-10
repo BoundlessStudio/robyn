@@ -172,11 +172,11 @@ function execInstance(id: string, command: string, user?: "root") {
 
 export const agent37 = {
   listAgents: () => call<{ data: Agent[] }>("/instances"),
-  getAgent: (id: string) => call<Agent>(`/instances/${id}`),
+  getAgent: (id: string, signal?: AbortSignal) => call<Agent>(`/instances/${id}`, { signal }),
   createAgent: (body: CreateAgentInput) =>
     call<Agent>("/instances", { method: "POST", body: JSON.stringify(body) }),
   editAgent: (id: string, body: {name?:string;user?:string;metadata?:Record<string,unknown>;auto_sleep?:boolean;idle_timeout_seconds?:number}) =>
-    call<Agent>(`/instances/${id}`, {method:"PATCH",body:JSON.stringify(body)}),
+    call<Agent>(`/instances/${id}`, {method:"PATCH",body:JSON.stringify(body),signal:AbortSignal.timeout(10_000)}),
   deleteAgent: (id: string) =>
     call<{ id: string; deleted: boolean }>(`/instances/${id}`, { method: "DELETE" }),
 

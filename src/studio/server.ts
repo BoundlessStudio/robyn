@@ -7,6 +7,7 @@ import { robyn } from "./robyn";
 import { studioApps as craftApps } from "./apps/registry";
 import { isAppReady } from "./manifest";
 import { requireUuid } from "./assets";
+import { syncOwnedWorkstationName } from "./workstation-name";
 
 export const STUDIO_BUCKET = "studio-assets";
 export const profiles = [
@@ -20,6 +21,20 @@ export async function requireStudio() {
   const { data: workspace, error: readError } = await db.from("workspaces").select("*").eq("id", workspaceId).eq("owner_id", user.id).single();
   if (readError || !workspace) throw new ApiError(404, "not_found", "Studio not found.");
   return { db, user, workspace, workspaceId: workspaceId as string };
+}
+
+export async function saveStudioName(db: DB, workspaceId: string, userId: string, value: unknown) {
+  const name = textField(value, 120, "Studio name");
+  const { data: workspace, error } = await db.from("workspaces").update({ name })
+    .eq("id", workspaceId).eq("owner_id", userId).select("*").single();
+  dbFailure(error);
+  try {
+    await syncOwnedWorkstationName(db, { workspaceId, userId });
+    return { workspace, workstationNameSynced: true };
+  } catch {
+    console.warn("[studio] Workstation name sync pending");
+    return { workspace, workstationNameSynced: false };
+  }
 }
 
 export function id(value: unknown, label?: string) {

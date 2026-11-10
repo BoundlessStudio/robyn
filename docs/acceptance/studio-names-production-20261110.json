@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-10",
+  "scope": "Production studio names and Agent37 labels only. No web or runtime release was deployed, and no migration was applied by this operation.",
+  "sourceBase": "90c45b4941608322558630a7f74089b9f52e6b06",
+  "nameDerivationSourceSha256": "a12c1af1361db384ea47398098b6e86023047d30bdab772ed9137add44bd49f7",
+  "privatePlanSha256": "467cfb4b69114225cbda06e8e02786d0fca8c4072b6c06c464c0df472fa98183",
+  "productionChecks": {
+    "defaultStudioNamesBackfilled": 5,
+    "customStudioNamesPreserved": 1,
+    "studioNamesConfirmed": 6,
+    "existingAgent37LabelsEditedAndReadBack": 4,
+    "agentMirrorsConfirmed": 4,
+    "supportedImagePinsConfirmedAfterRename": 4,
+    "studiosWithoutWorkstations": 2
+  },
+  "ownership": "Each label edit matched the canonical employee binding, workspace and employee metadata, and database mirror. Every edited label was read back from the same instance."
+}
