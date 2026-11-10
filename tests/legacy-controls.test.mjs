@@ -11,7 +11,7 @@ test("legacy lifecycle routes refuse Studio employees and unavailable authorizat
   const mocks={"@/lib/http":httpMock,"@/lib/auth":`export const requireAgentAccess=async()=>({db:globalThis.${key}.db,row:{workspace_id:'workspace'}});`,
     "@/lib/agent37":`export class Agent37Error extends Error{};const call=(...args)=>globalThis.${key}.call(...args);export const agent37={start:call,stop:call,restart:call,update:call,deleteAgent:call,resize:call};`};
   try {
-    for(const [file,method,actions] of [["[action]/route.ts","POST",["start","stop","restart","update"]],["route.ts","DELETE",[null]],["resize/route.ts","POST",[null]]]){
+    for(const [file,method,actions] of [["[action]/route.ts","POST",["start","stop","restart","update"]],["route.ts","DELETE",[null]],["route.ts","PATCH",[null]],["resize/route.ts","POST",[null]]]){
       const route=await loadModule(`../../src/app/api/agents/[id]/${file}`,mocks);
       for(const action of actions){
         const invoke=()=>route[method](new Request("https://robyn.test/",{method:"POST",body:JSON.stringify({disk:20})}),{params:Promise.resolve({id:"instance",action})});

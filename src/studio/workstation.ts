@@ -10,6 +10,7 @@ import { hashEmployeeToken, issueEmployeeToken } from "./employee-auth";
 import { assignmentRpc } from "./assignment-server";
 import type { Assignment, AssignmentIdentity, StudioEmployee } from "./assignments";
 import { matchingInstalledWorkstation, matchingWorkstationRelease, ownedWorkstation, ownedWorkstationMirror, WorkstationConfigurationError } from "./workstation-upgrades";
+import { readWorkstationName, readWorkstationNameMirror, syncWorkstationName } from "./workstation-name";
 import { initialWorkstationCap, confirmInitialWorkstationCap } from "./paid-capacity";
 import { robyn } from "./robyn";
 import release from "./workstation-release.json";
@@ -38,20 +39,21 @@ export async function ensureEmployeeInstance(db: DB, identity: Pick<AssignmentId
   employee=await assignmentRpc<StudioEmployee>(db,"claim_studio_employee_provision",args);
   employeeTemplate(employee);
   let instance:Agent;
+  let mirror:Awaited<ReturnType<typeof readWorkstationNameMirror>>=null;
   if(employee.instance_id){
     instance=await agent37.getAgent(employee.instance_id);
-    const {data:mirror,error}=await db.from("agents").select("agent37_id,workspace_id,template").eq("workspace_id",identity.workspaceId).eq("agent37_id",employee.instance_id).maybeSingle();
-    if(error)throw new Error("Studio workstation mirror unavailable");
+    mirror=await readWorkstationNameMirror(db,identity.workspaceId,employee.instance_id);
     ownedWorkstationMirror(instance,identity,employee,mirror);
     if(!matchingInstalledWorkstation(instance,mirror,image))throw new WorkstationConfigurationError("workstation_release_mismatch");
     await confirmInitialWorkstationCap(db,employee);
   }else{
     if(!employee.provision_attempt)throw new WorkstationConfigurationError("workstation_provision_failed");
+    const name=await readWorkstationName(db,identity);
     const creation={...args,p_attempt:employee.provision_attempt};
     const mayCreate=await assignmentRpc<boolean>(db,"claim_studio_employee_creation",creation);
     if(mayCreate){
       const cap=await initialWorkstationCap(db,employee);
-      instance=await agent37.createAgent({...STUDIO_WORKSTATION_DEFAULTS,template,name:"Robyn",user:identity.userId,budget:{monthly_cap_micros:cap},
+      instance=await agent37.createAgent({...STUDIO_WORKSTATION_DEFAULTS,template,name,user:identity.userId,budget:{monthly_cap_micros:cap},
         metadata:{app_workspace:identity.workspaceId,studio_employee:employee.id,studio_provision_attempt:employee.provision_attempt}});
     }else{
       const matches=(await agent37.listAgents()).data.filter(i=>i.metadata?.app_workspace===identity.workspaceId&&i.metadata?.studio_employee===employee.id&&i.metadata?.studio_provision_attempt===employee.provision_attempt);
@@ -65,7 +67,14 @@ export async function ensureEmployeeInstance(db: DB, identity: Pick<AssignmentId
     const budget=await agent37.getBudget(instance.id);
     const {error}=await db.from("studio_employees").update({budget_cap_period:budget.monthly_period,budget_cap_micros:budget.monthly_cap_micros}).eq("workspace_id",identity.workspaceId).eq("id",employee.id).eq("instance_id",instance.id);
     if(error)throw new Error("Studio budget receipt unavailable");
+    employee={...employee,instance_id:instance.id};
   }
+  // Label drift never blocks assignment readiness or recovery. The next
+  // preparation observes the provider before attempting a label edit again.
+  try {
+    const name=await readWorkstationName(db,identity);
+    await syncWorkstationName(db,identity,employee,instance,mirror??await readWorkstationNameMirror(db,identity.workspaceId,instance.id),name);
+  } catch { console.warn("[studio] Workstation name sync pending"); }
   if(["stopped","sleeping"].includes(instance.status)){await agent37.start(instance.id);return null;}
   if(instance.status!=="running")return null;
   const health=await agent37.health(instance.id);

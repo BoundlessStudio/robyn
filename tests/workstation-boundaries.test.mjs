@@ -6,15 +6,23 @@ async function workstationBoundary(run) {
   const image={template:"robyn-studio-0-1-0@1",release:`sha256:${"a".repeat(64)}`,resources:{cpu:2,memory:4,disk:6}};
   const employee = { id: "employee", workspace_id: "studio", kind: "director", app_id: null, instance_id: "persistent",
     provision_state: "ready", provision_attempt: null, employee_key: "robyn", role: "Robyn", retired_at:null, instructions: "Use the shared creative tools." };
-  const instance = { id: "persistent", name:"Robyn", status: "running", template: "robyn-studio-0-1-0", template_revision: 1,
+  const studio={name:"Jamie's Studio"};
+  const label="Robyn — Jamie's Studio";
+  const instance = { id: "persistent", name:label, status: "running", template: "robyn-studio-0-1-0", template_revision: 1,
     image_ref: null, image_digest:image.release, resources:{...image.resources}, metadata: { app_workspace: "studio", studio_employee: employee.id } };
-  const mirror = { agent37_id: instance.id, workspace_id: "studio", template: image.template };
+  const mirror = { agent37_id: instance.id, workspace_id: "studio", template: image.template, name: label };
   const calls = [],writes=[];
-  const state={image,employee,instance,mirror,policy:null,healthy:true,ready:true,mayCreate:true,matches:[]};
+  const state={image,employee,instance,mirror,studio,policy:null,healthy:true,ready:true,mayCreate:true,confirmEdit:true,afterEdit:null,matches:[]};
   const db = { from(table) {
-    assert.ok(["studio_managed_budgets", "agents","studio_employees"].includes(table), `Unexpected workstation query: ${table}`);
-    return { select() { return this; }, eq() { return this; }, update(value){writes.push({table,value});return this;},
-      async maybeSingle() { return { data: table === "agents" ? state.mirror : state.policy, error: null }; },
+    assert.ok(["studio_managed_budgets", "agents","studio_employees","workspaces"].includes(table), `Unexpected workstation query: ${table}`);
+    const filters={};let update;
+    return { select() { return this; }, eq(key,value) { filters[key]=value;return this; },
+      update(value){update=value;writes.push({table,value,filters});return this;},
+      async maybeSingle() {
+        if(table==="workspaces")return {data:filters.id==="studio"&&filters.owner_id==="owner"?studio:null,error:null};
+        if(table==="agents"&&update)Object.assign(state.mirror,update);
+        return { data: table === "agents" ? state.mirror : state.policy, error: null };
+      },
       then(resolve){return Promise.resolve({error:null}).then(resolve);},
     };
   } };
@@ -28,6 +36,12 @@ async function workstationBoundary(run) {
     },
     agent37: {
       getAgent: async id => { calls.push(`get:${id}`); return instance; },
+      editAgent: async (id, body) => {
+        calls.push(`edit:${id}`);writes.push({edit:body});
+        if(state.confirmEdit)instance.name=body.name;
+        state.afterEdit?.();
+        return instance;
+      },
       health: async id => { calls.push(`health:${id}`); return { ok: true, healthy: state.healthy }; },
       start:async id=>{calls.push(`start:${id}`);},
       createAgent:async body=>{calls.push("create");writes.push({create:body});return instance;},
@@ -44,17 +58,46 @@ async function workstationBoundary(run) {
       "./paid-capacity":"export const initialWorkstationCap=async()=>5000000;export const confirmInitialWorkstationCap=async()=>{};",
       "./connected-mail-server":"export const assignmentMailbox=()=>{throw Error('Unexpected mailbox lookup');};",
     });
-    await run({ ...workstation, state,image,employee,instance,mirror,calls,writes,db, identity: { workspaceId: "studio", userId: "owner", assignmentId: "assignment" } });
+    await run({ ...workstation, state,image,employee,instance,mirror,label,calls,writes,db, identity: { workspaceId: "studio", userId: "owner", assignmentId: "assignment" } });
   } finally { delete globalThis.__workstationBoundary; }
 }
 
 test("canonical Robyn reuses the owned shared workstation at its exact published image", async () => {
-  await workstationBoundary(async ({ ensureEmployeeInstance, employeeTemplate,image,employee,instance,calls,writes,db,identity }) => {
+  await workstationBoundary(async ({ ensureEmployeeInstance, employeeTemplate,image,employee,instance,label,calls,writes,db,identity }) => {
     assert.equal(employeeTemplate(employee),image.template);
     assert.equal(await ensureEmployeeInstance(db, identity, employee), instance);
     assert.deepEqual(calls, ["get:persistent", "health:persistent"]);
-    assert.equal(instance.name,"Robyn");assert.deepEqual(instance.resources,image.resources);
+    assert.equal(instance.name,label);assert.deepEqual(instance.resources,image.resources);
     assert.deepEqual(writes.map(write=>write.rpc),["claim_studio_employee_provision","ready_studio_employee"]);
+  });
+});
+
+test("existing Robyn labels sync in place and only a confirmed provider name reaches the mirror",async()=>{
+  await workstationBoundary(async({ensureEmployeeInstance,state,employee,instance,mirror,label,calls,writes,db,identity})=>{
+    instance.name=mirror.name="Robyn";
+    state.confirmEdit=false;
+    assert.equal(await ensureEmployeeInstance(db,identity,employee),instance);
+    assert.equal(mirror.name,"Robyn");
+    assert.deepEqual(calls,["get:persistent","edit:persistent","health:persistent"]);
+    assert.ok(!writes.some(write=>write.table==="agents"));
+    state.confirmEdit=true;calls.length=0;
+    assert.equal(await ensureEmployeeInstance(db,identity,employee),instance);
+    assert.equal(instance.name,label);assert.equal(mirror.name,label);
+    assert.deepEqual(calls,["get:persistent","edit:persistent","health:persistent"]);
+    assert.deepEqual(writes.find(write=>write.edit).edit,{name:label});
+    assert.deepEqual(writes.find(write=>write.table==="agents").filters,{workspace_id:identity.workspaceId,agent37_id:instance.id});
+  });
+});
+
+test("an overlapping studio rename finishes with the latest saved name", async () => {
+  await workstationBoundary(async ({ ensureEmployeeInstance, state, employee, instance, mirror, label, calls, writes, db, identity }) => {
+    instance.name = mirror.name = "Robyn";
+    state.afterEdit = () => { state.studio.name = "North Star Studio"; };
+    assert.equal(await ensureEmployeeInstance(db, identity, employee), instance);
+    assert.deepEqual(calls, ["get:persistent", "edit:persistent", "get:persistent", "edit:persistent", "health:persistent"]);
+    assert.deepEqual(writes.flatMap(write => write.edit ? [write.edit.name] : []), [label, "Robyn — North Star Studio"]);
+    assert.equal(instance.name, "Robyn — North Star Studio");
+    assert.equal(mirror.name, instance.name);
   });
 });
 
@@ -124,12 +167,12 @@ test("only explicitly compatible existing workstations retain their exact image 
   });
 });
 
-test("one claimed Robyn creation uses the shared image and server resources with exact ownership",async()=>{
-  await workstationBoundary(async({ensureEmployeeInstance,image,employee,instance,calls,writes,db,identity})=>{
+test("one claimed Robyn creation uses the saved Studio name, shared image and server resources",async()=>{
+  await workstationBoundary(async({ensureEmployeeInstance,image,employee,instance,label,calls,writes,db,identity})=>{
     employee.instance_id=null;employee.provision_attempt="attempt";instance.metadata.studio_provision_attempt="attempt";
     assert.equal(await ensureEmployeeInstance(db,identity,employee),instance);
     const created=writes.find(write=>write.create).create;
-    assert.deepEqual(created,{template:image.template,name:"Robyn",user:"owner",resources:{cpu:4,memory:32,disk:80},type:"default",region:"us",budget:{monthly_cap_micros:5000000},auto_sleep:true,idle_timeout_seconds:3600,metadata:{app_workspace:"studio",studio_employee:"employee",studio_provision_attempt:"attempt"}});
+    assert.deepEqual(created,{template:image.template,name:label,user:"owner",resources:{cpu:4,memory:32,disk:80},type:"default",region:"us",budget:{monthly_cap_micros:5000000},auto_sleep:true,idle_timeout_seconds:3600,metadata:{app_workspace:"studio",studio_employee:"employee",studio_provision_attempt:"attempt"}});
     assert.deepEqual(calls,["create","budget:persistent","health:persistent"]);
     assert.deepEqual(writes.filter(write=>write.rpc).map(write=>write.rpc),["claim_studio_employee_provision","claim_studio_employee_creation","bind_studio_employee_instance","ready_studio_employee"]);
   });

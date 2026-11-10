@@ -1,7 +1,6 @@
 import { requireAdmin, requireUser } from "@/lib/auth";
 import { ApiError, handleError, json } from "@/lib/http";
-import { readStudioBody, textField } from "@/studio/server";
-import type { Workspace } from "@/lib/types";
+import { readStudioBody, saveStudioName } from "@/studio/server";
 
 type Ctx = { params: Promise<{ id: string }> };
 
@@ -12,17 +11,7 @@ export async function PATCH(request: Request, { params }: Ctx) {
     await requireAdmin(db, id, user.id);
 
     const { name } = await readStudioBody(request);
-    const trimmed = textField(name, 120, "Studio name");
-
-    const { data, error } = await db
-      .from("workspaces")
-      .update({ name: trimmed })
-      .eq("id", id)
-      .select("*")
-      .single();
-    if (error) throw new ApiError(500, "db_error", error.message);
-
-    return json({ workspace: data as Workspace });
+    return json(await saveStudioName(db, id, user.id, name));
   } catch (e) {
     return handleError(e);
   }
