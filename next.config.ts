@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
   },
   outputFileTracingIncludes: {
     "/.well-known/workflow/**": ["./vendor/robyn-workstation/**/*", "./src/studio/media-worker.py"],
-    "/api/studio/external-mcp": ["./vendor/robyn-mcp-workstation/**/*"],
+    "/api/studio/external-mcp": ["./vendor/robyn-mcp-workstation/**/*", "./vendor/robyn-mailcraft/managed-read.mjs"],
     "/api/studio/mailcraft/read": ["./vendor/robyn-mailcraft/managed-read.mjs"],
   },
   async headers() {

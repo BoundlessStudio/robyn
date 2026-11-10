@@ -42,17 +42,48 @@ export function ConsentForm({ fields }: { fields: string }) {
 }
 
 export function Connections() {
-  const { value, failed } = useConnectionData<{ connections: { id: string; client: { name: string } }[] }>("connections");
+  const { value, failed } = useConnectionData<{
+    connections: { id: string; client: { name: string }; mailboxes: (MailboxChoice & { active: boolean })[] }[];
+    mailboxes: MailboxChoice[];
+    mailboxesUnavailable: boolean;
+  }>("connections");
   if (failed) return <p className="mt-5 text-sm" role="alert">MCP connections are unavailable. Reload to try again.</p>;
   if (!value) return <p className="mt-5 text-sm" role="status">Loading MCP connections…</p>;
   if (!value.connections.length) return <p className="mt-5 text-sm">You have no active MCP connections.</p>;
-  return <ul className="mt-6 divide-y divide-[#aaa99e]">
-    {value.connections.map(connection => <li key={connection.id} className="flex items-center justify-between gap-4 py-4 text-sm">
-      <strong>{connection.client.name}</strong>
-      <form method="post" action={api + "disconnect"}>
-        <input type="hidden" name="connection" value={connection.id} />
-        <button className="border border-[#aaa99e] px-4 py-2">Revoke</button>
-      </form>
-    </li>)}
-  </ul>;
+  return <>
+    <p className="mt-5 text-sm leading-6">Choose which linked mailboxes each client can read through MailCraft. Manage linked accounts in <a className="underline" href="/dashboard/profile">Profile</a>.</p>
+    {value.mailboxesUnavailable && <p className="mt-3 text-sm" role="status">Linked mailbox status is temporarily unavailable.</p>}
+    <ul className="mt-6 divide-y divide-[#aaa99e]">
+      {value.connections.map(connection => {
+        const choices = new Map(value.mailboxes.map(mailbox => [mailbox.mailConnectionId, { ...mailbox, active: true, allowed: false }]));
+        for (const mailbox of connection.mailboxes) choices.set(mailbox.mailConnectionId, { ...mailbox, allowed: true });
+        return <li key={connection.id} className="py-4 text-sm">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <strong>{connection.client.name}</strong>
+            <form method="post" action={api + "disconnect"}>
+              <input type="hidden" name="connection" value={connection.id} />
+              <button className="border border-[#aaa99e] px-4 py-2">Revoke connection</button>
+            </form>
+          </div>
+          <h2 className="mt-4 text-sm font-medium">MailCraft read access</h2>
+          {choices.size === 0 && !value.mailboxesUnavailable && <p className="mt-2 text-xs">Link Gmail or Microsoft 365 in Profile to choose a mailbox.</p>}
+          {choices.size > 0 && <ul className="mt-2 space-y-2">
+            {[...choices.values()].map(mailbox => <li key={mailbox.mailConnectionId} className="flex flex-wrap items-center justify-between gap-2">
+              <span>{mailbox.label} <small className="ml-1">{mailbox.allowed ? mailbox.active ? "Allowed" : "Unavailable" : "Private"}</small></span>
+              <form method="post" action={api + "mailbox"}>
+                <input type="hidden" name="connection" value={connection.id} />
+                <input type="hidden" name="mailConnectionId" value={mailbox.mailConnectionId} />
+                <button name="decision" value={mailbox.allowed ? "remove" : "allow"} className="border border-[#aaa99e] px-3 py-1.5"
+                  aria-label={`${mailbox.allowed ? "Remove access to" : "Allow reads from"} ${mailbox.label} for ${connection.client.name}`}>
+                  {mailbox.allowed ? "Remove access" : "Allow reads"}
+                </button>
+              </form>
+            </li>)}
+          </ul>}
+        </li>;
+      })}
+    </ul>
+  </>;
 }
+
+type MailboxChoice = { mailConnectionId: string; label: string };
