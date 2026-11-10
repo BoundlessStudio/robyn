@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {randomUUID,createHash} from 'node:crypto';
 import {chromium,firefox,webkit} from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
-import {nativeImportFixture,openEmployeeWorkspace,origin,projectId} from './fixtures/native-import.mjs';
+import {nativeImportFixture,openEmployeeWorkspace,origin,projectId,selectStudioMenuItem} from './fixtures/native-import.mjs';
 import {studioApps} from '../src/studio/apps/registry.ts';
 const browserType=({chromium,firefox,webkit})[process.env.NATIVE_IMPORT_BROWSER??'chromium'];
 
@@ -17,7 +17,9 @@ test('Robyn stays in the same tab and keeps the exact saved revision after prote
     await editor.getByLabel('Document text').fill('Save these words before opening the team page.');
     await workspace.locator('.project-save-state[data-state="dirty"]').waitFor();
     workspace.once('dialog',dialog=>dialog.dismiss());
-    await workspace.locator('.project-header').getByRole('link',{name:'Robyn',exact:true}).click();
+    await selectStudioMenuItem(workspace,'Robyn');
+    await workspace.keyboard.press('Escape');
+    await workspace.getByRole('menu',{name:'Robyn studio menu',exact:true}).waitFor({state:'hidden'});
     assert.equal(await workspace.locator('iframe').getAttribute('src'),source);assert.equal(await editor.getByLabel('Document text').inputValue(),'Save these words before opening the team page.');
     await editor.getByRole('button',{name:'Save document',exact:true}).click();await editor.getByText('Saved',{exact:true}).waitFor();
     const revisionId=asset.current_revision_id;

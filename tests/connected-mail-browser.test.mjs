@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { chromium } from "playwright";
-import { nativeImportFixture, origin, projectId } from "./fixtures/native-import.mjs";
+import { nativeImportFixture, origin, projectId, selectStudioMenuItem } from "./fixtures/native-import.mjs";
 
 test("Profile manages both providers and a brief retries with its original mailbox", async () => {
   const browser = await chromium.launch({ headless: true });
@@ -15,7 +15,7 @@ test("Profile manages both providers and a brief retries with its original mailb
       connection.status = "active";
       await route.fulfill({ contentType: "text/html", body: "<script>location.replace(" + JSON.stringify(origin + "/dashboard/profile?mail=return") + ")</script>" });
     });
-    await page.getByRole("link", { name: "Profile", exact: true }).click();
+    await selectStudioMenuItem(page, "Profile");
     const mail = page.getByRole("region", { name: "Connected mail" });
     await mail.getByRole("button", { name: "Connect Gmail", exact: true }).click();
     await mail.getByRole("link", { name: /Open Gmail Drafts/ }).waitFor();

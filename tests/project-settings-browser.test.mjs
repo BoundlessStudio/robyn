@@ -4,7 +4,7 @@ import {randomUUID} from 'node:crypto';
 import {chromium,firefox,webkit} from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
 import sharp from 'sharp';
-import {nativeImportFixture,projectId} from './fixtures/native-import.mjs';
+import {nativeImportFixture,projectId,selectStudioMenuItem} from './fixtures/native-import.mjs';
 const browserType=({chromium,firefox,webkit})[process.env.NATIVE_IMPORT_BROWSER??'chromium'];
 
 test('Settings saves project details, hides activity and archives or reactivates the same project',async()=>{
@@ -13,7 +13,7 @@ test('Settings saves project details, hides activity and archives or reactivates
     const {page,state}=await nativeImportFixture(browser);
     const otherId=randomUUID();state.projects.set(otherId,{...state.project,id:otherId,name:'Another project',brief:'Keep this brief.'});
     state.activity.push({id:randomUUID(),kind:'revision.committed',created_at:state.project.created_at,details:{}});
-    await page.getByRole('navigation',{name:'Project navigation'}).getByRole('link',{name:'Settings',exact:true}).click();
+    await selectStudioMenuItem(page,'Settings');
     await page.getByRole('heading',{name:'Project details',exact:true}).waitFor();
     assert.equal(await page.getByRole('heading',{name:'Project activity',exact:true,includeHidden:true}).count(),0);
     assert.equal(await page.getByText('A new revision was saved',{exact:true}).count(),0);
@@ -49,7 +49,7 @@ test('Settings saves project details, hides activity and archives or reactivates
     assert.equal(state.project.status,'archived');
     assert.equal(await page.getByRole('textbox',{name:'Project brief',exact:true}).inputValue(),'Keep this unsaved refinement.');
     assert.equal(state.project.brief,'Warm colours. A film and a poster for the exhibition.');
-    await page.getByRole('navigation',{name:'Project navigation'}).getByRole('link',{name:'Dashboard',exact:true}).click();
+    await selectStudioMenuItem(page,'Dashboard');
     await page.getByRole('button',{name:'WordCraft',exact:false}).waitFor();
     await page.locator('.project-header .project-archive-label').waitFor();
     assert.equal(await page.getByRole('button',{name:'WordCraft',exact:false}).isDisabled(),true);
@@ -58,7 +58,7 @@ test('Settings saves project details, hides activity and archives or reactivates
     await page.getByRole('status').filter({hasText:'Project reactivated.'}).waitFor();
     assert.equal(await page.locator('.project-header .project-archive-label').count(),0);
     assert.equal(state.project.status,'active');
-    await page.getByRole('navigation',{name:'Project navigation'}).getByRole('link',{name:'Dashboard',exact:true}).click();
+    await selectStudioMenuItem(page,'Dashboard');
     await page.getByRole('button',{name:'WordCraft',exact:false,disabled:false}).waitFor();
     assert.equal(await page.getByRole('button',{name:'WordCraft',exact:false}).isEnabled(),true);
     assert.ok(state.requests.filter(row=>row.method==='PATCH').every(row=>row.path===`/api/studio/projects/${projectId}`));
