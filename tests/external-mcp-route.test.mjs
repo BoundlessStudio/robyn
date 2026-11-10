@@ -227,6 +227,20 @@ test("a Streamable HTTP client discovers Studio and Craft tools within the owner
       assert.equal(tools.find(tool => tool.name === "list_assets").annotations.readOnlyHint, true);
       assert.equal(tools.find(tool => tool.name === "cancel_robyn_job").annotations.destructiveHint, true);
       const invoke = (name, args) => client.callTool({ name, arguments: args });
+      const { crafts } = (await invoke("list_crafts", {})).structuredContent;
+      for (const [appId, name, formats] of [
+        ["scriptcraft", "ScriptCraft", [".fdx", ".fountain"]],
+        ["flarecraft", "AniCraft", [".flare"]],
+        ["pcbcraft", "PCBCraft", [".pc.zip"]],
+        ["pixelcraft", "PixelCraft", [".oxypix"]],
+      ]) {
+        const command = "run_" + appId;
+        const craft = crafts.find(entry => entry.appId === appId);
+        assert.equal(craft?.name, name);
+        assert.equal(craft.tool, command);
+        assert.deepEqual([...craft.nativeFormats].sort(), formats);
+        assert.equal(tools.find(entry => entry.name === command)?.title, "Run " + name + " commands");
+      }
       const expectError = async (name, args, code) => {
         const result = await invoke(name, args);
         assert.equal(result.isError, true);
