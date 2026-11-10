@@ -4,7 +4,7 @@ Robyn exposes the private Studio at `https://robyn.academy/mcp` when the product
 
 ## Connect ChatGPT
 
-On the Robyn Projects page, open **Studio settings → External MCP**. The same section is available in each project's **Settings**. In [ChatGPT web](https://chatgpt.com/plugins), open **Plugins**, select **+**, then choose **Add custom MCP server**. Keep Robyn open so you can copy each value as you need it.
+Open **Studio settings → External MCP** from the Robyn menu. In [ChatGPT web](https://chatgpt.com/plugins), open **Plugins**, select **+**, then choose **Add custom MCP server**. Keep Robyn open so you can copy each value as you need it.
 
 | ChatGPT field | What to enter |
 | --- | --- |

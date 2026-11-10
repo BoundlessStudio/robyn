@@ -30,7 +30,7 @@ AniCraft is the Robyn display name for the pinned Flare integration. [Candidate 
 
 ## External MCP settings, deployed November 6
 
-Studio settings and project settings have a dedicated External MCP section with the server URL, ChatGPT setup steps and allowance behavior. Seven new browser versions hide their own MCP setup controls. The signed-in settings and the hosted editor save and native continuation checks passed. [Production release record](acceptance/external-mcp-settings-deployed-20261106.json)
+Studio settings has a dedicated External MCP section with the server URL, ChatGPT setup steps and allowance behavior. Seven new browser versions hide their own MCP setup controls. The signed-in settings and the hosted editor save and native continuation checks passed. [Production release record](acceptance/external-mcp-settings-deployed-20261106.json)
 
 ## LedgerCraft, deployed November 4
 

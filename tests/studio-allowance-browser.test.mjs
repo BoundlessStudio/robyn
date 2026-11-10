@@ -5,15 +5,21 @@ import {chromium,firefox,webkit} from 'playwright';
 import {nativeImportFixture,origin,projectId} from './fixtures/native-import.mjs';
 
 const browserType=({chromium,firefox,webkit})[process.env.NATIVE_IMPORT_BROWSER??'chromium'];
-const settings=`/dashboard/projects/${projectId}/settings`;
+const settings='/dashboard/settings';
+const projectSettings=`/dashboard/projects/${projectId}/settings`;
 const pendingKey='robyn-budget-pending:22222222-2222-4222-8222-222222222222';
 
 test('settings support the $20 default, enforce $0–$100 and preserve a saved AI opt-out',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
-    const {page,state}=await nativeImportFixture(browser,{initialPath:settings});
+    const {page,state}=await nativeImportFixture(browser,{initialPath:`${projectSettings}#studio-budget`});
+    await page.waitForURL(`${origin}${settings}#studio-budget`);
     const section=page.locator('#studio-budget'),input=section.getByLabel('Monthly AI allowance (USD)');
     assert.equal(await input.inputValue(),'20');assert.equal(await input.getAttribute('min'),'0');assert.equal(await input.getAttribute('max'),'100');
+    const budgetSave=await section.getByRole('button',{name:'Save Studio budget',exact:true}).boundingBox();
+    const studioSave=await page.getByRole('button',{name:'Save changes',exact:true}).boundingBox();
+    const allowance=await input.boundingBox();
+    assert.equal(budgetSave.height,studioSave.height);assert.ok(budgetSave.width<allowance.width);
     for(const value of ['-1','100.01']){
       await input.fill(value);
       assert.equal(await section.getByRole('button',{name:'Save Studio budget',exact:true}).isDisabled(),true);
@@ -35,10 +41,10 @@ test('settings support the $20 default, enforce $0–$100 and preserve a saved A
   }finally{await browser.close();}
 });
 
-test('settings hide project activity and keep project and budget controls usable',async()=>{
+test('Project settings show only project controls and hide activity',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
-    const {page,state}=await nativeImportFixture(browser,{initialPath:settings,viewport:{width:1600,height:1000}});
+    const {page,state}=await nativeImportFixture(browser,{initialPath:projectSettings,viewport:{width:1600,height:1000}});
     state.activity=Array.from({length:100},(_,index)=>({id:randomUUID(),kind:'revision.committed',created_at:new Date(2026,9,30,12,index).toISOString()}));
     await page.reload();
     const details=page.locator('#project-details');await details.waitFor();
@@ -46,10 +52,8 @@ test('settings hide project activity and keep project and budget controls usable
     assert.equal(await page.getByRole('heading',{name:'Project activity',includeHidden:true}).count(),0);
     const main=await details.boundingBox(),layout=await page.locator('.studio-settings-layout').boundingBox();
     assert.ok(Math.abs(main.width-layout.width)<1);
-    const budgetSave=await page.getByRole('button',{name:'Save Studio budget',exact:true}).boundingBox();
-    const studioSave=await page.getByRole('button',{name:'Save changes',exact:true}).boundingBox();
-    const allowance=await page.getByLabel('Monthly AI allowance (USD)').boundingBox();
-    assert.equal(budgetSave.height,studioSave.height);assert.ok(budgetSave.width<allowance.width);
+    assert.deepEqual(await page.locator('.studio-settings-main h2').allTextContents(),['Project details']);
+    assert.equal(state.requests.filter(request=>request.path==='/api/studio/budgets').length,0);
     await page.getByLabel('Project name',{exact:true}).fill('Settings still work');
     await page.getByRole('button',{name:'Save project details',exact:true}).click();
     await page.getByRole('status').filter({hasText:'Project details saved.'}).waitFor();

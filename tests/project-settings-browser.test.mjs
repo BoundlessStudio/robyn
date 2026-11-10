@@ -4,7 +4,7 @@ import {randomUUID} from 'node:crypto';
 import {chromium,firefox,webkit} from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
 import sharp from 'sharp';
-import {nativeImportFixture,projectId,selectStudioMenuItem} from './fixtures/native-import.mjs';
+import {nativeImportFixture,origin,projectId,selectStudioMenuItem} from './fixtures/native-import.mjs';
 const browserType=({chromium,firefox,webkit})[process.env.NATIVE_IMPORT_BROWSER??'chromium'];
 
 test('Settings saves project details, hides activity and archives or reactivates the same project',async()=>{
@@ -14,11 +14,11 @@ test('Settings saves project details, hides activity and archives or reactivates
     const otherId=randomUUID();state.projects.set(otherId,{...state.project,id:otherId,name:'Another project',brief:'Keep this brief.'});
     state.activity.push({id:randomUUID(),kind:'revision.committed',created_at:state.project.created_at,details:{}});
     await selectStudioMenuItem(page,'Settings');
+    await page.getByRole('heading',{name:'Project settings.',exact:true}).waitFor();
     await page.getByRole('heading',{name:'Project details',exact:true}).waitFor();
     assert.equal(await page.getByRole('heading',{name:'Project activity',exact:true,includeHidden:true}).count(),0);
     assert.equal(await page.getByText('A new revision was saved',{exact:true}).count(),0);
     assert.equal(state.activity.length,1);
-    assert.equal(await page.getByLabel('Studio name',{exact:true}).isVisible(),true);
     await page.getByLabel('Project name',{exact:true}).fill('Autumn launch');
     await page.getByRole('textbox',{name:'Project brief',exact:true}).fill('Warm colours. A film and a poster for the exhibition.');
     await page.getByRole('button',{name:'Save project details',exact:true}).click();
@@ -69,7 +69,8 @@ test('Settings saves project details, hides activity and archives or reactivates
 test('External MCP presents the ChatGPT fields in order and copies or downloads each separately',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
-    const {page,state}=await nativeImportFixture(browser,{initialPath:'/dashboard/settings#external-mcp'});
+    const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/projects/${projectId}/settings#external-mcp`});
+    await page.waitForURL(`${origin}/dashboard/settings#external-mcp`);
     const setup=page.getByRole('region',{name:'External MCP',exact:true});
     await setup.getByRole('heading',{name:'Connect in ChatGPT'}).waitFor();
     assert.deepEqual(await setup.getByRole('heading',{level:4}).allTextContents(),[

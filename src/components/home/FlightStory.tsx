@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowDown, ArrowDownRight, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react";
 import { AsciiRobin, type FlightState } from "./AsciiRobin";
 import { InvitationForm } from "./InvitationForm";
 import { craftTour, studioTour, registeredCraftCount, upcomingCrafts } from "./craft-tour";
@@ -86,8 +86,8 @@ export function FlightStory() {
           </p>
           <nav className="craft-group-links" aria-label="Craft groups">{tourGroups.map(group => <a key={group.name} href={`#${group.chapters[0].id}`}>{group.name}</a>)}</nav>
           <div className="hero-actions">
-            <a className="flight-link" href={`#${studioTour[0].id}`}>Follow the bird <ArrowDownRight size={16} aria-hidden="true" /></a>
-            <a className="flight-link hero-invite" href="#invitation">Request an invite <ArrowUpRight size={16} aria-hidden="true" /></a>
+            <a className="flight-link hero-invite" href="#invitation">Request an invite <ArrowDown size={16} aria-hidden="true" /></a>
+            <a className="flight-link hero-follow" href={`#${studioTour[0].id}`}>Follow the bird <ArrowRight size={16} aria-hidden="true" /></a>
           </div>
         </div>
       </section>
