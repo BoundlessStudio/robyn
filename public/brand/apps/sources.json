@@ -611,18 +611,33 @@
     },
     {
       "id": "mailcraft",
-      "source": "https://github.com/UCS-Care-Group/mailcraft/blob/8e47c8d4f9422822a86d873710a6936cf1cc7043/assets/app-icon/hicolor/256x256/apps/io.github.billsecond.mailcraft.png",
-      "attribution": "Martin Ball and the MailCraft contributors",
-      "license": "MIT",
-      "licenseFile": "/brand/apps/licenses/mailcraft-MIT.txt",
-      "sourceSha256": "be68b96c4bca24d7e495c7daaece600450284dca1580b6ca1b8df476cc755f1d",
+      "source": "Generated for Robyn with the built-in image_gen tool",
+      "subject": "Homing pigeon with a letter",
+      "prompt": "Use case: logo-brand. Create a square app tile for Robyn’s MailCraft, in an established series of Victorian natural-history animal engravings. On a perfectly flat, solid steel-blue background (#617DA0), show one homing pigeon in three-quarter profile facing right, carrying a single small, unmistakable ivory envelope lightly in its beak. The pigeon’s head, breast and folded wing should be distinct, with the pigeon’s plump silhouette and subtle neck feather bands. Use crisp black and ivory ink, fine cross-hatching and carved feather detail, a strong dark outline and readable broad shapes at 32 px. Frame as a centered head-and-shoulders portrait filling about 85% of the square, with breathing room above and on either side; the lower breast can meet the bottom. Render the animal and envelope in monochrome only. The steel-blue field reaches all four square corners without borders, paper grain, shading or gradients. No text, logos, watermark, drop shadow, 3D effects or modern cartoon style.",
+      "sourceSha256": "88436e3b9ba8fb43517cea731df87586a8e569dc6ebce32f216a51a57ac4c0bc",
       "width": 256,
       "height": 256,
-      "processing": "Encoded the original 256 × 256 upstream PNG as lossless WebP.",
-      "opaque": false,
-      "bytes": 25814,
-      "sha256": "124488bfce637e78c2d389e0096a8e9c0990654add835287e78468ce79ee72d6",
-      "file": "mailcraft.webp"
+      "processing": "Resized to 256 × 256 and encoded as opaque, lossless WebP. Robyn rounds the corners in the interface.",
+      "opaque": true,
+      "bytes": 76518,
+      "sha256": "696146d4ba8923057e8c428baa5e906f1727442cd2b336718fb4f8d74249dd3d",
+      "file": "mailcraft-v2.webp",
+      "previousVersions": [
+        {
+          "source": "https://github.com/UCS-Care-Group/mailcraft/blob/8e47c8d4f9422822a86d873710a6936cf1cc7043/assets/app-icon/hicolor/256x256/apps/io.github.billsecond.mailcraft.png",
+          "attribution": "Martin Ball and the MailCraft contributors",
+          "license": "MIT",
+          "licenseFile": "/brand/apps/licenses/mailcraft-MIT.txt",
+          "sourceSha256": "be68b96c4bca24d7e495c7daaece600450284dca1580b6ca1b8df476cc755f1d",
+          "width": 256,
+          "height": 256,
+          "processing": "Encoded the original 256 × 256 upstream PNG as lossless WebP.",
+          "opaque": false,
+          "bytes": 25814,
+          "sha256": "124488bfce637e78c2d389e0096a8e9c0990654add835287e78468ce79ee72d6",
+          "file": "mailcraft.webp"
+        }
+      ]
     }
   ]
 }

@@ -4,6 +4,7 @@ export interface CraftArtwork {
   alt: string;
   tools: string;
   fullFrame?: boolean;
+  example?: string;
 }
 
 // Actual editor screenshots from our own QA project. CSS crops the studio shell
@@ -36,6 +37,14 @@ export const craftArtwork: Record<string, CraftArtwork> = {
     "alt": "LedgerCraft's original accounting dashboard with sample company accounts, bank reconciliation, invoices, bills and financial reports.",
     "tools": "INVOICES / RECONCILIATION / FINANCIAL REPORTS",
     "fullFrame": true
+  },
+  "mailcraft": {
+    "src": "/artwork/editors/mailcraft.png",
+    "title": "Keep up with what comes in.",
+    "alt": "MailCraft's original interface showing a sample inbox, folder navigation and an open email about print proofs.",
+    "tools": "FOLDERS / INBOX / MESSAGE PREVIEW",
+    "fullFrame": true,
+    "example": "Sample inbox"
   },
   "research": {
     "src": "/artwork/editors/research.jpg",

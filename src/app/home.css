@@ -91,6 +91,8 @@ html:has(.craft-lightbox[open]) { overflow: hidden; }
 .flight-chapter h1 em,.flight-chapter h2 em { display: inline; font-size: 1.16em; letter-spacing: -.045em; line-height: .97; color: var(--rust); }
 .heading-star { display: inline-block; width: .34em; height: .34em; vertical-align: top; margin-top: .14em; margin-left: .18em; color: var(--rust); }
 .chapter-copy > p { font-size: clamp(14px,1.1vw,18px); line-height: 1.65; max-width: min(360px,95%); margin-top: 32px; letter-spacing: -.015em; }
+.craft-group-links { display: flex; flex-wrap: wrap; gap: 0 16px; margin-top: 10px; }
+.craft-group-links a { display: inline-flex; align-items: center; min-height: 32px; font: 11px/1.4 "Courier New",monospace; text-decoration: underline; text-underline-offset: 4px; }
 .flight-link { display: inline-flex; align-items: center; gap: 26px; border-bottom: 1px solid currentColor; padding: 12px 0 10px; margin-top: 18px; font-size: 13px; }
 .flight-link svg { transition: transform .25s; flex-shrink: 0; }
 .flight-link:hover svg { transform: translate(3px,3px); }
@@ -104,8 +106,8 @@ html:has(.craft-lightbox[open]) { overflow: hidden; }
 .craft-next { font-size: 11px; margin-top: 27px; }
 .flight-controls { position: absolute; z-index: 5; bottom: 0; left: 0; right: 0; display: flex; gap: 24px; align-items: center; padding: 19px 4.5vw 20px; min-height: 70px; color: var(--ink); background: var(--paper); pointer-events: auto; }
 .flight-controls::before { content: ""; position: absolute; top: 0; left: 4.5vw; right: 4.5vw; border-top: 1px solid #52614644; }
-.flight-controls nav { display: flex; gap: 3px; }
-.flight-controls nav a { display: grid; place-items: center; width: 30px; height: 30px; font: 10px "Courier New",monospace; color: #4d5a46; }
+.flight-controls nav { display: flex; gap: 3px; min-width: 0; }
+.flight-controls nav a { display: grid; place-items: center; width: 30px; min-width: 0; height: 30px; font: 10px "Courier New",monospace; color: #4d5a46; }
 .flight-controls nav a[aria-current] { color: var(--paper); background: var(--ink); border-radius: 50%; }
 .flight-controls nav a:hover:not([aria-current]) { background: #1b2a2010; border-radius: 50%; }
 .tour-progress { font: 11px "Courier New",monospace; }
@@ -186,6 +188,7 @@ html:has(.craft-lightbox[open]) { overflow: hidden; }
   .flight-chapter h1 { font-size: clamp(76px,18vw,120px); line-height: .85; }
   .flight-chapter.craft-chapter .chapter-copy > h2 { font-size: clamp(40px,10.5vw,72px); line-height: .98; }
   .chapter-copy > p,.craft-chapter .chapter-copy > p { font-size: 15px; line-height: 1.65; max-width: 540px; margin-top: 24px; }
+  .craft-group-links a { min-height: 44px; }
   .hero-marginal { display: none; }
   .flight-link,.craft-chapter .craft-next { min-height: 44px; font-size: 13px; padding: 12px 0; margin-top: 18px; }
   .hero-invite { min-height: 44px; font-size: 13px; margin-top: 8px; }

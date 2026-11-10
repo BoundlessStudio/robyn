@@ -1,5 +1,7 @@
+import { STUDIO_GROUPS } from "./studio-groups.mjs";
+
 export type IntegrationStatus = "pending" | "verified";
-export const STUDIO_GROUPS = ["Creative", "Drafting", "Analysis"] as const;
+export { STUDIO_GROUPS };
 export type StudioGroup = typeof STUDIO_GROUPS[number];
 
 export interface StudioAppManifest {

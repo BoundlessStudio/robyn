@@ -19,9 +19,9 @@ function pendingCatalogue() {
   });
 }
 
-test("LedgerCraft joins Analysis only with pinned file, editor and native round-trip acceptance", async () => {
+test("LedgerCraft is in Operations with pinned file, editor and native round-trip acceptance", async () => {
   const ledger=studioApps.find(app=>app.id==="ledgercraft");
-  assert.ok(ledger);assert.equal(ledger.studio,"Analysis");assert.deepEqual(ledger.formats.native,[".lcdb"]);
+  assert.ok(ledger);assert.equal(ledger.studio,"Operations");assert.deepEqual(ledger.formats.native,[".lcdb"]);
   assert.equal(isAppReady(ledger),true);assert.equal(nativeImportApp("Company.LCDB",studioApps)?.id,"ledgercraft");
   assert.match(ledger.editor.bundleUrl,/\/ledgercraft\/v0\.1\.0-0\.1\.0\/\?robyn$/);
   assert.match(ledger.editor.release,/^[a-f0-9]{64}$/);assert.match(ledger.workstation.template,/^robyn-studio-0-6-0@1$/);
@@ -53,7 +53,7 @@ test("verified GeoCraft joins Analysis with its native format, animal icon and p
   assert.equal(tour.registeredCraftCount, studioApps.length);
   assert.equal(tour.craftTour.some(app => app.id === "geocraft"), true);
   const { branding } = await loadModule("../../src/config/branding.ts", {});
-  assert.equal(branding.socialImage, `/brand/robyn-social.png?v=${studioApps.length}-${studioApps.filter(isAppReady).length}`);
+  assert.equal(branding.socialImage, `/brand/robyn-social.png?v=${studioApps.length}-${studioApps.filter(isAppReady).length}-${STUDIO_GROUPS.length}`);
   const sources = JSON.parse(await fs.readFile(new URL("../public/brand/apps/sources.json", import.meta.url), "utf8"));
   assert.equal(sources.icons.filter(icon => icon.id === "geocraft").length, 1);
 });
@@ -73,10 +73,10 @@ test("an unverified GeoCraft fixture rejects imports and paid work before side e
   });
 });
 
-test("verified PlanCraft joins Analysis, native imports and public editor stories", async () => {
+test("verified PlanCraft appears in Operations, native imports and public editor stories", async () => {
   const plan = studioApps.find(app => app.id === "plancraft");
   assert.ok(plan);
-  assert.equal(plan.studio, "Analysis");
+  assert.equal(plan.studio, "Operations");
   assert.equal(plan.sourceUrl, "https://github.com/rallegretti/PlanCraft");
   assert.deepEqual(plan.formats.native, [".plancraft"]);
   assert.equal(isAppReady(plan), true);
@@ -87,7 +87,7 @@ test("verified PlanCraft joins Analysis, native imports and public editor storie
   const { branding } = await loadModule("../../src/config/branding.ts", {});
   assert.equal(tour.registeredCraftCount, studioApps.length);
   assert.deepEqual(tour.upcomingCrafts.map(app=>app.id), studioApps.filter(app=>!isAppReady(app)).map(app=>app.id));
-  assert.equal(tour.craftTour.some(app => app.id === "plancraft"), true);
+  assert.equal(tour.craftTour.find(app => app.id === "plancraft")?.studio, "Operations");
   assert.ok(branding.description.includes(`${studioApps.length} Crafts`));
   assert.ok(branding.socialImageAlt.includes(`${studioApps.length} Crafts`));
   for (const app of tour.upcomingCrafts) {

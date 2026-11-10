@@ -20,9 +20,9 @@ bird to white. The light paper version keeps its forest-coloured body.
 - `src/config/branding.ts` owns the site name, domain, description and social
   asset references. `social-metadata.ts` supplies consistent Open Graph/X tags.
 - Craft counts come from the independent registry. The source catalog has
-  33 ready Crafts across Creative (13), Drafting (10) and Analysis (10). The homepage,
-  metadata, image alt text and generated social card derive the count and
-  availability from that registry.
+  34 ready Crafts across Creative (13), Drafting (10), Analysis (8) and
+  Operations (3). The homepage, metadata, image alt text and generated social
+  card derive the count, groups and availability from that registry.
 - `public/brand/apps/plancraft.webp` is an original engraved honeybee on jade,
   matching the existing animal family. Prompts, processing and byte hashes live
   in `public/brand/apps/sources.json`.
@@ -35,6 +35,8 @@ bird to white. The light paper version keeps its forest-coloured body.
   imagegen prompts and byte hashes for both versions.
 - PixelCraft uses a black-and-white red panda engraving on opaque coral.
   The source record pins its prompt and the 256px lossless WebP bytes.
+- MailCraft uses an engraved homing pigeon carrying a letter on steel blue.
+  The original upstream icon and its license are retained in the source record.
 - `public/brand/robyn-social.png` is a static 1200×630 PNG. The ASCII bird is a
   deterministic still from the actual homepage renderer, with heavier glyphs
   for small link previews. No screenshot of a fake product interface is used.
