@@ -58,6 +58,8 @@ Open **Settings → Studio health** in the owning studio. It reports the safe jo
 
 Failures back off from 15 seconds to 15 minutes. Five consecutive failures, an uncertain outcome, or 30 minutes without progress produces a **Needs attention** indicator. Intentional budget/capacity waits and completed/review states are treated separately. This indicator does not release Robyn's assignment lease, reset a dispatch fence or authorize another payment. A database outage can prevent the health row itself from updating; compare it with Vercel Workflow status using the saved workflow ID.
 
+**Reconnecting** can mean the workstation is still preparing. If the saved job has `workstation_recovering`, an idle dispatch fence, and no dispatch timestamp or response ID, inspect task setup before investigating a model turn. Repeated setup traffic can keep an otherwise idle instance awake. Vercel pins an active workflow to its original deployment. After shipping a confirmed setup fix, verify the exact owned job is still undispatched, cancel only its old workflow run, and reconnect the original job on the current deployment. The replacement workflow keeps the job's attempt, generation and session. Do not use this procedure to clear an uncertain dispatch.
+
 | Observation | Recovery action and stopping condition |
 | --- | --- |
 | Budget wait | Check the Studio allowance and Robyn's remaining headroom, including archived spending. Resume the saved change after a partial budget update; do not create a different operation while it is pending |
