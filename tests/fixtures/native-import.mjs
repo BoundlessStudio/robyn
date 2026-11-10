@@ -24,6 +24,7 @@ async function bundle() {
       import {LibraryAsset} from './src/components/studio/LibraryAsset';
       import {StudioShell} from './src/components/studio/StudioShell';
       import {StudioSettings} from './src/components/studio/StudioSettings';
+      import {StudioProfile} from './src/components/studio/StudioProfile';
       import {StudioEmployees} from './src/components/studio/StudioEmployees';
       import {StudioProjects} from './src/components/studio/StudioProjects';
       import {ResearchBrowser} from './src/components/studio/ResearchBrowser';
@@ -31,7 +32,7 @@ async function bundle() {
       import {DesktopStudioGate} from './src/components/studio/DesktopStudioGate';
       const params=new URLSearchParams(location.search),parts=location.pathname.split('/'),currentProjectId=parts[3],section=parts[4];
       const selected={initialAssetId:params.get('asset')??undefined,initialRevisionId:params.get('revision')??undefined};
-      const content=location.pathname==='/dashboard'?<StudioProjects/>:location.pathname==='/dashboard/settings'?<StudioSettings mcpEndpoint="https://studio.example.test/mcp"/>:location.pathname.startsWith('/dashboard/library/')?<LibraryAssetRedirect assetId={parts[3]} revisionId={params.get('revision')??undefined}/>:section==='settings'?<StudioSettings projectId={currentProjectId}/>:section==='library'?(parts[5]?<LibraryAsset projectId={currentProjectId} assetId={parts[5]} initialRevisionId={params.get('revision')??undefined}/>:<StudioLibrary projectId={currentProjectId}/>):section==='employees'?<StudioEmployees projectId={currentProjectId} {...selected} initialView={params.get('view')??undefined}/>:section==='research'?<ResearchBrowser projectId={currentProjectId}/>:<ProjectWorkspace projectId={currentProjectId??"${projectId}"} {...selected} initialAppId={params.get('app')??undefined} initialLaunchId={params.get('launch')??undefined}/>;
+      const content=location.pathname==='/dashboard'?<StudioProjects/>:location.pathname==='/dashboard/profile'?<StudioProfile/>:location.pathname==='/dashboard/settings'?<StudioSettings mcpEndpoint="https://studio.example.test/mcp"/>:location.pathname.startsWith('/dashboard/library/')?<LibraryAssetRedirect assetId={parts[3]} revisionId={params.get('revision')??undefined}/>:section==='settings'?<StudioSettings projectId={currentProjectId}/>:section==='library'?(parts[5]?<LibraryAsset projectId={currentProjectId} assetId={parts[5]} initialRevisionId={params.get('revision')??undefined}/>:<StudioLibrary projectId={currentProjectId}/>):section==='employees'?<StudioEmployees projectId={currentProjectId} {...selected} initialView={params.get('view')??undefined}/>:section==='research'?<ResearchBrowser projectId={currentProjectId}/>:<ProjectWorkspace projectId={currentProjectId??"${projectId}"} {...selected} initialAppId={params.get('app')??undefined} initialLaunchId={params.get('launch')??undefined}/>;
       createRoot(document.getElementById('root')).render(<StrictMode><WorkspaceProvider initialWorkspaces={[]} userEmail="fixture@example.test"><DesktopStudioGate><StudioShell>{content}</StudioShell></DesktopStudioGate></WorkspaceProvider></StrictMode>);
     `, resolveDir:root, sourcefile:'native-import-fixture.tsx', loader:'tsx'},
     jsx:'automatic', bundle:true, write:false, platform:'browser', format:'iife', tsconfig:root+'tsconfig.json',
@@ -72,7 +73,7 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
   // Only this isolated QA context may reach its temporary loopback TUS server.
   const context=await browser.newContext({viewport,permissions:browser.browserType().name()==='chromium'?['local-network-access']:[]});
   const page=await context.newPage();page.setDefaultTimeout(realEditor?60000:10000);
-  const state={assets:new Map(),revisions:new Map(),bytes:new Map(),requests:[],errors:[],activity:[],assignments:new Map(),allowance,failAllowance:false,failAssignmentReply:false,failBudgetReply:false,budgetChanges:new Map(),failStarterDownload:false,failCreationReply:false,failCommitReply:false,holdTransfers:false,releaseTransfers:null};
+  const state={assets:new Map(),revisions:new Map(),bytes:new Map(),requests:[],errors:[],activity:[],assignments:new Map(),allowance,mailConnections:[],failAllowance:false,failAssignmentReply:false,failBudgetReply:false,budgetChanges:new Map(),failStarterDownload:false,failCreationReply:false,failCommitReply:false,holdTransfers:false,releaseTransfers:null};
   // WebKit's interception API omits Blob request bodies. Receive real TUS bytes
   // on loopback for every engine instead of substituting the selected input.
   const transferServer=createServer(async(req,res)=>{
@@ -125,6 +126,19 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
     if(url.pathname.startsWith('/api/')){
       const input=['POST','PATCH'].includes(method)?req.postDataJSON():null;
       state.requests.push({path:url.pathname,search:url.search,method,input});
+      if(url.pathname==='/api/studio/mail-connections'){
+        if(input?.action==='connect'){
+          assert.ok(['gmail','outlook'].includes(input.provider));
+          state.mailConnections.push({id:'ca_fixture_'+input.provider,provider:input.provider,status:'pending'});
+          return route.fulfill({json:{redirectUrl:'https://connect.composio.dev/link/fixture-'+input.provider}});
+        }
+        if(input?.action==='disconnect'){
+          assert.ok(state.mailConnections.some(connection=>connection.id===input.connectionId));
+          state.mailConnections=state.mailConnections.filter(connection=>connection.id!==input.connectionId);
+          return route.fulfill({json:{disconnected:true}});
+        }
+        return route.fulfill({json:{workstationReady:true,connections:state.mailConnections}});
+      }
       if(url.pathname==='/api/studio/projects')return route.fulfill({json:{projects:[...state.projects.values()].filter(row=>row.status==='active'),nextCursor:null}});
       if(url.pathname==='/api/studio/research/browser'){assert.ok(state.projects.has(url.searchParams.get('projectId')));state.researchControl??={control:'agent',controlId:null};if(input?.action==='take')state.researchControl={control:'human',controlId:input.controlId};if(input?.action==='return'){assert.equal(input.controlId,state.researchControl.controlId);state.researchControl={control:'agent',controlId:null};}return route.fulfill({json:{...state.researchControl,...(input?.action==='connect'?{ws:'wss://isolated-research.test'}:{})}});}
       if(url.pathname==='/api/studio/bootstrap')return route.fulfill({json:{apps:studioApps,employees:employees.map(employee=>({...employee,employee_key:'robyn',kind:'director',app_id:null,provision_state:'pending'}))}});

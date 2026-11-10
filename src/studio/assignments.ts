@@ -1,4 +1,5 @@
 import type { AssetRef } from "./assets";
+import type { MailProvider } from "./connected-mail";
 
 export type AssignmentState = "queued" | "running" | "cancelling" | "cancelled" | "awaiting_review" | "completed" | "failed";
 export interface Assignment {
@@ -41,6 +42,7 @@ export interface AssignmentSummary {
   result: string | null; errorCode: string | null; createdAt: string; finishedAt: string | null;
   recovering: boolean; deliverables: Array<AssetRef & { name: string; state: "committed" | "conflict" }>;
   browserPaused?: boolean;
+  mailDrafts?: { provider: MailProvider; saved: number; unconfirmed: boolean } | null;
   reviewDecision?: "approved" | "changes_requested" | null;
   purpose?: Assignment["purpose"];
   startMode?: Assignment["start_mode"];

@@ -303,7 +303,7 @@ export const agent37 = {
     const q = opts.search ? `?search=${encodeURIComponent(opts.search)}` : "";
     return call<IntegrationToolkitsResult>(`/instances/${id}/integrations/toolkits${q}`);
   },
-  connectIntegration: (id: string, body: { toolkit: string }) =>
+  connectIntegration: (id: string, body: { toolkit: string; callbackUrl?: string }) =>
     call<IntegrationConnectResult>(`/instances/${id}/integrations/connect`, {
       method: "POST",
       body: JSON.stringify(body),

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FolderOpen, LayoutDashboard, Images, MessageCircle, Settings, ChevronDown, ArrowUpRight } from "lucide-react";
+import { FolderOpen, LayoutDashboard, Images, MessageCircle, Settings, ChevronDown, ArrowUpRight, UserRound } from "lucide-react";
 import { useWorkspace } from "@/components/WorkspaceProvider";
 import { RobinMark } from "@/components/brand/RobinMark";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
@@ -10,6 +10,7 @@ import type { AssetRef } from "@/studio/assets";
 
 export const studioNavigation = [
   { href: "/dashboard", label: "Projects", icon: FolderOpen },
+  { href: "/dashboard/profile", label: "Profile", icon: UserRound },
 ];
 
 export const projectNavigation = (projectId:string,savedRevision?:AssetRef) => [

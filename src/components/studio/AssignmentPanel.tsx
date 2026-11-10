@@ -9,6 +9,7 @@ import { Markdown } from "@/components/Markdown";
 import { acknowledgeAssignmentDraft, emptyAssignmentDraft, readAssignmentDraft, saveAssignmentDraft, type AssignmentDraft } from "@/studio/assignment-draft";
 import { readReviewDrafts, saveReviewDrafts, type ReviewDrafts, type ReviewDecision } from "@/studio/review-draft";
 import type { StartMode } from "@/studio/start-mode";
+import { mailConnectionLabel, mailProviders, type MailConnection, type MailConnectionList } from "@/studio/connected-mail";
 
 type Employee = { id: string; role: string; appId: string | null; ready: boolean };
 type PanelMode = "director" | "assignments" | "review";
@@ -27,6 +28,7 @@ function AssignmentComposer({ projectId, mode, canvas=false, canAssign=true, pre
   const [assignments, setAssignments] = useState<AssignmentSummary[]>([]);
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [draft, setDraft] = useState<AssignmentDraft>(emptyAssignmentDraft);
+  const [mailboxes, setMailboxes] = useState<MailConnection[]>([]);
   const [draftReady, setDraftReady] = useState(false);
   const { brief, includeOpen, pending } = draft;
   const [capacity,setCapacity]=useState<{availableMicros:number;reason:string|null}|null>(null);
@@ -43,6 +45,14 @@ function AssignmentComposer({ projectId, mode, canvas=false, canAssign=true, pre
     try { setDraft(readAssignmentDraft(localStorage, projectId, mode)); setDraftReady(true); }
     catch { setError("Your saved brief could not be read. Restore access to this browser’s storage and reload before sending work."); }
   }, [projectId, mode]);
+  useEffect(() => {
+    if (mode === "review" || !canAssign) return;
+    const controller = new AbortController();
+    void apiFetch<MailConnectionList>("/api/studio/mail-connections", { signal: controller.signal })
+      .then(data => { if (!controller.signal.aborted) setMailboxes(data.connections.filter(connection => connection.status === "active")); })
+      .catch(() => {});
+    return () => controller.abort();
+  }, [mode, canAssign]);
   useEffect(() => {
     if (mode !== "review") return;
     try { setReviews(readReviewDrafts(localStorage, projectId)); setReviewsReady(true); }
@@ -74,7 +84,7 @@ function AssignmentComposer({ projectId, mode, canvas=false, canAssign=true, pre
     catch { setError("Your draft could not be saved in this browser. Sending will wait until it can be saved for recovery."); }
   }
   function newBrief() {
-    const next = { ...draft, brief: "", pending: null };
+    const next = { ...draft, brief: "", pending: null, mailConnectionId: undefined };
     try { saveAssignmentDraft(localStorage, projectId, mode, next); setDraft(next); setError(""); setNotice(""); }
     catch { setError("The previous request is still saved. Restore browser storage before starting a different brief."); }
   }
@@ -86,7 +96,10 @@ function AssignmentComposer({ projectId, mode, canvas=false, canAssign=true, pre
       // Read again in case another mounted panel already saved this request.
       const saved = readAssignmentDraft(localStorage, projectId, mode);
       if (!saved.pending && !pending && (!chosen?.ready || !brief.trim() || !capacity?.availableMicros)) return;
-      const request = saved.pending ?? pending ?? { projectId, employeeId: chosen!.id, ...(preferredAppId ? { appId: preferredAppId } : {}), brief: brief.trim(), inputs: selectedRef && includeOpen ? [{ ...selectedRef }] : [], requestId: crypto.randomUUID(), startMode };
+      if (!saved.pending && !pending && draft.mailConnectionId && !mailboxes.some(connection => connection.id === draft.mailConnectionId)) {
+        throw new Error("This mailbox is unavailable. Choose an active connection or No mailbox for this brief.");
+      }
+      const request = saved.pending ?? pending ?? { projectId, employeeId: chosen!.id, ...(preferredAppId ? { appId: preferredAppId } : {}), ...(draft.mailConnectionId ? { mailConnectionId: draft.mailConnectionId } : {}), brief: brief.trim(), inputs: selectedRef && includeOpen ? [{ ...selectedRef }] : [], requestId: crypto.randomUUID(), startMode };
       const frozen = { ...draft, brief: request.brief, employeeId: request.employeeId, pending: request };
       // A storage failure stops BEFORE POST: no request can lose its identity.
       saveAssignmentDraft(localStorage, projectId, mode, frozen);
@@ -94,7 +107,7 @@ function AssignmentComposer({ projectId, mode, canvas=false, canAssign=true, pre
       const result = await apiFetch<{ assignmentId: string }>("/api/studio/assignments", { method: "POST", body: JSON.stringify(request) });
       if (!result.assignmentId) throw new Error("The acknowledgement was incomplete. Reconnect this same brief.");
       const cleared = acknowledgeAssignmentDraft(localStorage, projectId, mode, request.requestId);
-      setDraft(cleared); setNotice(request.startMode==="plan"?"Robyn is exploring the idea. Production is paused until you ask for a first draft.":request.startMode==="draft"?"Robyn is taking it from here. Saved work will appear below and in your library.":"Your brief is in the studio."); await load();
+      setDraft(cleared); setNotice(request.startMode==="plan"?"Robyn is exploring the idea. Production is paused until you ask for a first draft.":request.startMode==="draft"?(request.mailConnectionId?"Robyn is taking it from here. Confirmed mail drafts will appear in your mailbox.":"Robyn is taking it from here. Saved work will appear below and in your library."):"Your brief is in the studio."); await load();
     } catch (error) { setError((error as Error).message); }
     finally { submitting.current = false; setBusy(""); }
   }
@@ -137,6 +150,14 @@ function AssignmentComposer({ projectId, mode, canvas=false, canAssign=true, pre
     {mode !== "review" && <form className="studio-form assignment-composer" onSubmit={event=>void submit(event)}>
       <label>{canvas?"Your idea":mode === "director" ? "Tell Robyn what you have in mind" : "The brief"}<textarea ref={ideaInput} aria-label={canvas?"Your idea":mode==="director"?"Tell Robyn what you have in mind":"The brief"} rows={5} maxLength={20000} value={brief} disabled={!draftReady} readOnly={Boolean(pending) || Boolean(busy)} onChange={event => updateDraft({ ...draft, brief: event.target.value })} placeholder={canvas?"A welcoming one-page guide for people visiting our community garden…":"What are we making, and what should it feel like?"} required/></label>
       {pending ? pending.inputs.map(ref => <button key={ref.revisionId} type="button" className="studio-button" onClick={() => onOpen(ref)}>Open included revision <ArrowUpRight size={14}/></button>) : selectedRef && <label className="assignment-input-check"><input type="checkbox" checked={includeOpen} disabled={!draftReady || Boolean(busy)} onChange={event => updateDraft({ ...draft, includeOpen: event.target.checked })}/> Include this saved revision</label>}
+      {!pending && (mailboxes.length > 0 || draft.mailConnectionId) && <label>Mailbox for this brief
+        <select value={draft.mailConnectionId ?? ""} disabled={!draftReady || Boolean(busy)} onChange={event => updateDraft({ ...draft, mailConnectionId: event.target.value || undefined })}>
+          <option value="">No mailbox</option>
+          {draft.mailConnectionId && !mailboxes.some(connection => connection.id === draft.mailConnectionId) && <option value={draft.mailConnectionId}>Unavailable mailbox</option>}
+          {mailboxes.map(connection => <option key={connection.id} value={connection.id}>{mailConnectionLabel(connection)}</option>)}
+        </select>
+      </label>}
+      {pending?.mailConnectionId && <p className="studio-muted">Mailbox included in the saved brief.</p>}
       {pending && <p role="status" className="studio-muted">This brief may already be underway. Reconnect to the same request with its original saved inputs.</p>}
       {capacity&&!capacity.availableMicros&&<p role="status" className="studio-note">{capacity.reason} <a href={`/dashboard/projects/${projectId}/settings#studio-budget`} target="_blank" rel="noreferrer">Manage budget ↗</a></p>}
       {canvas&&<div className="canvas-allowance" role="status"><strong>{capacity?.availableMicros?`${new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:2}).format(capacity.availableMicros/1_000_000)} available to Robyn`:capacity?"AI allowance needed":"Checking AI allowance…"}</strong><p>Planning, research and creative work share one AI allowance. Work pauses when it runs out.</p><a href={`/dashboard/projects/${projectId}/settings#studio-budget`} target="_blank" rel="noreferrer">View and manage AI allowance ↗</a></div>}
@@ -158,8 +179,17 @@ function AssignmentComposer({ projectId, mode, canvas=false, canAssign=true, pre
         {job.result && <details open={canvas||mode === "review"}><summary>{job.startMode==="plan"?"Robyn’s plan":"Robyn’s notes"}</summary><Markdown className="assignment-result" content={job.result.trim()}/></details>}
         {canvas&&job.startMode==="plan"&&job.result&&!active(job)&&<button className="studio-button" disabled={Boolean(pending)||Boolean(busy)||!draftReady} onClick={()=>{updateDraft({...draft,brief:`Make a first draft from this direction.\n\nOriginal idea: ${job.brief}\n\nRobyn’s proposed direction:\n${job.result}`.slice(0,20000)});ideaInput.current?.focus();}}>Use this plan for a first draft</button>}
         {job.deliverables.length > 0 && <ul className="assignment-deliverables">{job.deliverables.map(ref => <li key={ref.revisionId}><button onClick={() => onOpen(ref)}><span>{ref.name}{ref.state === "conflict" && <small>Preserved conflict</small>}</span><ArrowUpRight size={16}/></button></li>)}</ul>}
+        {job.mailDrafts && (job.mailDrafts.saved > 0 || !active(job)) && <div className="studio-action-row">
+          {job.mailDrafts.saved > 0 && <span>{job.mailDrafts.saved === 1 ? "1 mail draft saved" : `${job.mailDrafts.saved} mail drafts saved`}</span>}
+          {job.mailDrafts.unconfirmed && !active(job) && <span>Check Drafts before starting this request again.</span>}
+          <a className="studio-button" href={mailProviders[job.mailDrafts.provider].draftsUrl} target="_blank" rel="noreferrer">Open {mailProviders[job.mailDrafts.provider].name} Drafts ↗</a>
+        </div>}
         {active(job) && <div className="studio-action-row"><button className="studio-button" disabled={Boolean(busy) || stopping(job)} onClick={() => action(job, "cancel")}><Square size={12}/>{stopping(job) ? "Stopping…" : job.campaign ? "Stop this plan" : "Stop assignment"}</button><button className="studio-icon-button" aria-label={`Reconnect ${job.role} assignment`} title="Reconnect assignment" disabled={Boolean(busy)} onClick={() => action(job, "reconnect")}><RefreshCw size={14}/></button></div>}
-        {mode === "review" && <div className="assignment-review"><label>Notes for the next pass<textarea rows={3} maxLength={10000} disabled={!reviewsReady} readOnly={Boolean(busy) || Boolean(reviews[job.id]?.pending)} value={reviews[job.id]?.feedback ?? ""} onChange={event => editReview(job.id,event.target.value)} placeholder="Keep this. Push that a little further…"/></label><div className="studio-action-row">{reviews[job.id]?.pending ? <><p className="studio-muted">This review may already be saved. Reconnect the same decision and notes.</p><button className="studio-button" disabled={Boolean(busy) || !reviewsReady} onClick={() => review(job,reviews[job.id].pending!.decision)}>Reconnect review</button></> : <><button className="studio-button primary" disabled={Boolean(busy) || !reviewsReady} onClick={() => review(job, "approved")}><Check size={14}/>Approve</button><button className="studio-button" disabled={Boolean(busy) || !reviewsReady || !reviews[job.id]?.feedback.trim()} onClick={() => review(job, "changes_requested")}>Request changes</button></>}</div></div>}
+        {mode === "review" && <div className="assignment-review">
+          {job.mailDrafts?.saved && !job.deliverables.length ? <p className="studio-muted">Edit the draft directly in your mailbox.</p> : <label>Notes for the next pass<textarea rows={3} maxLength={10000} disabled={!reviewsReady} readOnly={Boolean(busy) || Boolean(reviews[job.id]?.pending)} value={reviews[job.id]?.feedback ?? ""} onChange={event => editReview(job.id,event.target.value)} placeholder="Keep this. Push that a little further…"/></label>}
+          <div className="studio-action-row">{reviews[job.id]?.pending ? <><p className="studio-muted">This review may already be saved. Reconnect the same decision and notes.</p><button className="studio-button" disabled={Boolean(busy) || !reviewsReady} onClick={() => review(job,reviews[job.id].pending!.decision)}>Reconnect review</button></> : <><button className="studio-button primary" disabled={Boolean(busy) || !reviewsReady} onClick={() => review(job, "approved")}><Check size={14}/>Approve</button>
+            {(!job.mailDrafts?.saved || job.deliverables.length > 0) && <button className="studio-button" disabled={Boolean(busy) || !reviewsReady || !reviews[job.id]?.feedback.trim()} onClick={() => review(job, "changes_requested")}>Request changes</button>}</>}</div>
+        </div>}
       </article>)}
     </div>
   </div>;

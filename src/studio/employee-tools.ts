@@ -13,6 +13,7 @@ import { launchCampaign } from "./campaign-launch";
 import { createMediaJob, ownedMediaJob, searchMedia } from "./media-server";
 import { launchMediaJob } from "./media-launch";
 import { publicMediaJob } from "./media";
+import { employeeMailTool } from "./connected-mail-tools";
 
 const uuid={type:"string",format:"uuid"};
 const tool=(name:string,description:string,properties:Record<string,unknown>,required:string[]=[])=>({name,description,inputSchema:{type:"object",properties,required,additionalProperties:false}});
@@ -43,6 +44,7 @@ function writableApp(scope:EmployeeScope, appId:string|null) {
 
 export async function employeeToolCall(auth:{db:DB;tokenHash:string;scope:EmployeeScope},name:string,args:Record<string,unknown>) {
   const {db,tokenHash,scope:s}=auth;
+  if(name==="studio_mail_access"||name==="studio_mail_reserve_draft"||name==="studio_mail_finish_draft")return employeeMailTool(auth,name,args);
   if(s.startMode==="plan"&&["studio_plan","import_media","generate_media","studio_create_asset","studio_begin_revision","studio_upload_transfers","studio_commit_revision"].includes(name))
     throw new ApiError(409,"planning_only","This request is for planning. Return your advice to the creator; production needs a new Make a first draft request.");
   const mediaIdentity={workspaceId:s.workspaceId,userId:s.userId,projectId:s.projectId};

@@ -39,7 +39,7 @@ function SettingsContent({ projectDetails, mcpEndpoint }: { projectDetails?: Rea
         <StudioBudget/>
         <section className="studio-setting-section"><h2>Work and support</h2><p><Link href="/dashboard/health">Studio health and recovery</Link> · <Link href="/support">Contact support</Link> · <Link href="/privacy">Privacy and data handling</Link></p></section>
         <section className="studio-setting-section"><h2>Private by design</h2><p>This pilot gives each invited creator a private studio. Files, project conversations and Robyn’s workstation belong to that studio.</p><p>Saved revisions keep each creative direction recoverable. You and Robyn can continue from any saved revision.</p></section>
-        <section className="studio-setting-section"><h2>Your account</h2><p>{userEmail}</p><button className="studio-button" onClick={signOut} disabled={busy}>Sign out</button></section>
+        <section className="studio-setting-section"><h2>Your account</h2><p>{userEmail}</p><div className="studio-action-row"><Link href="/dashboard/profile" className="studio-button">Manage profile and connected mail</Link><button className="studio-button" onClick={signOut} disabled={busy}>Sign out</button></div></section>
       </div>
     </div>
   </div>;
