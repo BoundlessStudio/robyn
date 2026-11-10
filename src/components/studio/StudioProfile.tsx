@@ -8,12 +8,15 @@ import { createClient } from "@/lib/supabase/client";
 import { useWorkspace } from "@/components/WorkspaceProvider";
 import { mailConnectionLabel, mailProviders, type MailConnection, type MailConnectionList, type MailProvider } from "@/studio/connected-mail";
 
+import { MailcraftFrame } from "./MailcraftFrame";
+
 const endpoint = "/api/studio/mail-connections";
 const providers = Object.keys(mailProviders) as MailProvider[];
 
-export function StudioProfile() {
+export function StudioProfile({ mailcraftBundle = null }: { mailcraftBundle?: string | null } = {}) {
   const { userEmail } = useWorkspace();
   const [state, setState] = useState<MailConnectionList | null>(null);
+  const [opened, setOpened] = useState<MailConnection | null>(null);
   const [busy, setBusy] = useState("");
   const [error, setError] = useState("");
 
@@ -63,6 +66,11 @@ export function StudioProfile() {
     else window.location.assign("/login");
   }
 
+  if (opened && mailcraftBundle) return <div className="studio-page">
+    <button type="button" className="studio-button" onClick={() => setOpened(null)}>Back to Profile</button>
+    <MailcraftFrame key={opened.id} bundle={mailcraftBundle} connection={opened} />
+  </div>;
+
   return <div className="studio-page studio-settings">
     <header className="studio-page-heading"><div><span className="studio-eyebrow">YOUR ROBYN ACCOUNT</span><h1>Profile.</h1><p>Manage the mail accounts connected to your workstation.</p></div></header>
     <div className="studio-settings-layout"><div className="studio-settings-main">
@@ -81,9 +89,12 @@ export function StudioProfile() {
         {state && !state.workstationReady && <p className="studio-note">
           Your shared workstation starts with your first brief. Once it’s ready, return here to connect mail. <Link href="/dashboard">Open Projects</Link>
         </p>}
+        {mailcraftBundle && state?.workstationReady && !state.connections.some(connection => connection.status === "active")
+          && <p className="studio-mail-message">Connect Gmail or Microsoft 365 to open MailCraft.</p>}
         {state?.workstationReady && <div className="studio-mail-grid">
           {providers.map(provider => <MailProviderCard key={provider} provider={provider} busy={busy}
             connections={state.connections.filter(connection => connection.provider === provider)}
+            openMailcraft={mailcraftBundle ? setOpened : undefined}
             connect={() => void change(provider, { action: "connect", provider })}
             disconnect={connectionId => void change(connectionId, { action: "disconnect", connectionId })} />)}
         </div>}
@@ -99,12 +110,13 @@ const connectionStatus = {
   unavailable: "Reconnect needed",
 } as const;
 
-function MailProviderCard({ provider, connections, busy, connect, disconnect }: {
+function MailProviderCard({ provider, connections, busy, connect, disconnect, openMailcraft }: {
   provider: MailProvider;
   connections: MailConnection[];
   busy: string;
   connect: () => void;
   disconnect: (connectionId: string) => void;
+  openMailcraft?: (connection: MailConnection) => void;
 }) {
   const { name, draftsUrl } = mailProviders[provider];
   const active = connections.filter(connection => connection.status === "active").length;
@@ -128,6 +140,10 @@ function MailProviderCard({ provider, connections, busy, connect, disconnect }: 
         const action = connection.status === "active" ? "Disconnect" : connection.status === "pending" ? "Cancel sign-in" : "Remove";
         return <li key={connection.id} className="studio-mail-account">
           {connections.length > 1 && <span>{mailConnectionLabel(connection)} · {connectionStatus[connection.status]}</span>}
+          {openMailcraft && connection.status === "active" && <button type="button" className="studio-button primary"
+            disabled={Boolean(busy)} onClick={() => openMailcraft(connection)}>
+            Open in MailCraft
+          </button>}
           {connections.length === 1 && connection.status === "active" && draftsLink}
           <button type="button" className="studio-button" disabled={Boolean(busy)}
             aria-label={`${action} ${connections.length === 1 ? name : mailConnectionLabel(connection)}`} onClick={() => disconnect(connection.id)}>

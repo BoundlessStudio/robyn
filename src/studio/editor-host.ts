@@ -55,6 +55,7 @@ export function createEditorHost(options:{projectId:string;initialRef:AssetRef;s
     options.signal.throwIfAborted();
     if(options.readOnly&&["saveAsset","importAsset","requestAgentEdit"].includes(message.operation))throw Error("This read-only application opens library inputs without changing them.");
     switch(message.operation){
+      case "mailcraftRead": throw Error("Open a connected mailbox from Profile.");
       case "openAsset": return open(assetRef(message.payload));
       case "insertAsset": return open(assetRef(message.payload));
       case "activateAsset": {
