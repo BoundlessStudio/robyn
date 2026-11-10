@@ -11,6 +11,31 @@ import {extractBridgeZip} from '../src/studio/archive-import.ts';
 const browsers=process.env.BRIDGE_TEST_BROWSERS?.split(',')??['chromium'];
 async function openBridge(page){await page.getByRole('button',{name:'Asset Bridge',exact:true}).click();await page.getByRole('dialog').waitFor();}
 
+test('Import files preserves unfamiliar raw media and refuses executables before saving',async()=>{
+  const browser=await chromium.launch({headless:true});
+  try {
+    const {page,state}=await nativeImportFixture(browser,{initialPath:`/dashboard/projects/${projectId}/library`});
+    const picker=page.getByLabel('Import assets',{exact:true});
+    const raw=Buffer.from([0,118,47,49,128,255]);
+    await picker.setInputFiles([
+      {name:'render.exr',mimeType:'application/octet-stream',buffer:raw},
+      {name:'setup.EXE',mimeType:'application/octet-stream',buffer:Buffer.from('blocked')},
+    ]);
+    await page.getByRole('alert').filter({hasText:'Blocked: setup.EXE'}).waitFor();
+    assert.equal(state.requests.filter(request=>request.method==='POST').length,0);
+    await page.keyboard.press('Escape');
+    await picker.setInputFiles({name:'render.exr',mimeType:'application/octet-stream',buffer:raw});
+    await page.getByRole('button',{name:'Upload all files',exact:true}).click();
+    await page.getByText('Your files are saved in the asset library.',{exact:true}).waitFor();
+    const asset=[...state.assets.values()][0],revision=[...state.revisions.values()][0];
+    assert.equal(asset.asset_kind,'file');
+    assert.equal(asset.app_id,null);
+    assert.equal(revision.package.files[0].mimeType,'application/octet-stream');
+    assert.deepEqual(state.bytes.get(revision.id+'/render.exr'),raw);
+    assert.deepEqual(state.errors,[]);
+  }finally{await browser.close();}
+});
+
 test('directory upload preserves every file and resumes unknown creation and commit replies without duplicates',async()=>{
   const browser=await chromium.launch({headless:true}),parent=resolve(tmpdir()),folder=await mkdtemp(join(parent,'robyn-bridge-'));
   try{

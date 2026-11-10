@@ -21,7 +21,7 @@ test("common files stay reusable sources with exact originals and honest media t
     assert.throws(()=>validateSourcePackage({...pkg,files:pkg.files.map(f=>({...f,mimeType:"text/html"}))}),/supported/);
     if(pkg.files.length>1)assert.throws(()=>validateSourcePackage({...pkg,files:pkg.files.map((f,i)=>i?{...f,sha256:"f".repeat(64)}:f)}),/preserve/);
   }
-  for(const name of ["file.psd","file.pptx","file.docx","file.exe","file.html"])assert.equal(sourceFormat(name),null);
+  for(const name of ["file.psd","file.pptx","file.docx","file.exe","file.html","png","file.constructor"])assert.equal(sourceFormat(name),null);
   await assert.rejects(sourceImportFiles(new File(['not PNG'],'fake.png')),/contents do not match/);
   await assert.rejects(sourceImportFiles(new File(['<!DOCTYPE svg><svg/>'],'external.svg')),/standalone SVG/);
 });

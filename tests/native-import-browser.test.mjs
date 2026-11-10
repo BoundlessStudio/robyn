@@ -92,16 +92,15 @@ test('PDF import requires an explicit Craft and preserves that choice through an
   }finally{await browser.close();}
 });
 
-test('unrecognised and mixed files stay editable in the detailed import without starting a save',async()=>{
+test('unrecognised files route to Asset Bridge and native project choices stay intact',async()=>{
   const browser=await browserType.launch({headless:true});
   try{
     const {page,state}=await nativeImportFixture(browser);
     await dropDocument(page,'Slides.odp','Unsupported transport fixture');
-    await page.getByRole('dialog').waitFor();
-    assert.match(await page.getByRole('status').innerText(),/recognised/);
-    assert.equal(await page.getByLabel('Application',{exact:true}).inputValue(),'');
-    assert.equal(await page.getByLabel('Native master',{exact:true}).inputValue(),'Slides.odp');
-    assert.equal(await page.getByRole('button',{name:'Save native package'}).isDisabled(),true);
+    await page.getByLabel('Upload name',{exact:true}).waitFor();
+    assert.equal(await page.getByLabel('Upload name',{exact:true}).inputValue(),'Slides.odp');
+    assert.equal(await page.getByLabel('Application',{exact:true}).count(),0);
+    assert.equal(await page.getByRole('button',{name:'Upload all files'}).isEnabled(),true);
     assert.equal(state.assets.size,0);
     await page.keyboard.press('Escape');
     await page.getByRole('button',{name:'Open existing files',exact:true}).and(page.locator(':focus')).waitFor();

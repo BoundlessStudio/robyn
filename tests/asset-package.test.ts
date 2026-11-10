@@ -8,6 +8,9 @@ test("native package paths remain relative and portable across browser and works
   const file={path:"master.native",role:"master",bytes:42,mimeType:"application/octet-stream",sha256:"a".repeat(64)};
   const pkg={files:[file],dependencies:[],message:"Native save"};
   assert.equal(validateRevisionPackage(pkg).files.length,1);
+  const output={...file,path:"exports/camera-original.dng",role:"export"};
+  assert.deepEqual(validateRevisionPackage({...pkg,files:[file,output]}).files[1],output);
+  assert.throws(()=>validateRevisionPackage({...pkg,files:[file,{...output,path:"exports/Setup.EXE"}]}),/Executable files/);
   assert.throws(()=>validateRevisionPackage({...pkg,files:[file,{...file,path:"MASTER.native",role:"dependency"}]}),/unique/);
   assert.throws(()=>validateRevisionPackage({...pkg,files:[{...file,role:"preview"}]}),/native master/);
   assert.throws(()=>validateRevisionPackage({...pkg,dependencies:[{assetId:"latest",revisionId:"latest"}]}),/Invalid/);

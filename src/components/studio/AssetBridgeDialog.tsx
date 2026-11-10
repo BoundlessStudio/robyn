@@ -7,13 +7,21 @@ import {BLOCKED_UPLOAD_EXTENSIONS} from "@/studio/upload-policy";
 import {describeLocalPackage,digestFile,savePackage,type LocalPackageFile,type SaveResult} from "@/studio/transfer-client";
 import {StudioDialog} from "./StudioDialog";
 
-export function AssetBridgeDialog({projectId,close,saved,returnFocusRef}:{projectId:string;close:()=>void;saved:(result:SaveResult)=>Promise<void>;returnFocusRef:React.RefObject<HTMLElement|null>}) {
+export interface BridgeSelection { files: File[]; mode: "files" | "folder" }
+
+export function AssetBridgeDialog({projectId,close,saved,returnFocusRef,initialSelection}:{projectId:string;close:()=>void;saved:(result:SaveResult)=>Promise<void>;returnFocusRef:React.RefObject<HTMLElement|null>;initialSelection?:BridgeSelection}) {
   const [files,setFiles]=useState<LocalPackageFile[]>([]),[name,setName]=useState("");
   const [busy,setBusy]=useState(false),[locked,setLocked]=useState(false),[error,setError]=useState("");
   const [status,setStatus]=useState(""),[progress,setProgress]=useState(0);
   const filePicker=useRef<HTMLInputElement>(null),folderPicker=useRef<HTMLInputElement>(null),archivePicker=useRef<HTMLInputElement>(null);
   const controller=useRef<AbortController|null>(null),running=useRef(false),pending=useRef<{id:string;name:string;key:string}|null>(null);
-  useEffect(()=>()=>controller.current?.abort(),[]);
+  const initial=useRef(initialSelection);
+  useEffect(()=>{
+    const selection=initial.current;
+    initial.current=undefined;
+    if(selection)void choose(selection.files,selection.mode);
+    return()=>controller.current?.abort();
+  },[]);
 
   async function choose(selected:File[],mode:"files"|"folder"|"archive") {
     if(!selected.length||running.current||pending.current)return;
