@@ -1,0 +1,15 @@
+{
+  "version": "0.16.0",
+  "directory": "vendor/robyn-workstation/0.16.0-7a49e664ef5a",
+  "fingerprint": "7a49e664ef5a1e5af11425981c40c48a75f91b77d844fe2e5fe89588ba2dce55",
+  "files": {
+    "studio-mcp.cjs": {
+      "bytes": 2353791,
+      "sha256": "7eaf56c2d19588f6c6f5ede6394f672adc377b7cf8776ba4011f13dd1f98f2f3"
+    },
+    "configure-hermes.py": {
+      "bytes": 11949,
+      "sha256": "9d5b5d7cb43195c107c717a4c6c6baeca446fa80603f7fa2fa8f167a69651f1f"
+    }
+  }
+}

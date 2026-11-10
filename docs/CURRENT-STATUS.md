@@ -2,6 +2,10 @@
 
 Updated November 9, 2026 (Toronto). This page indexes recorded release evidence and remaining gaps. [Architecture and scope](ARCHITECTURE.md) describes the current system. [Operations](OPERATIONS.md) owns recovery procedures. Documentation maintenance does not imply a new deployment or a fresh live check. Earlier release summaries and the R01–R18 review are in the [archive](archive/README.md).
 
+## Connected mail, QA November 9
+
+Profile manages Gmail and Microsoft 365 on each creator's Agent37 workstation. Mail-enabled briefs select immutable client **0.16.0**. Migration **0035** stores private assignment grants and draft receipts. Both providers completed live Composio consent on an isolated Studio **0.8.0** Agent37 instance. Robyn's installed MCP client saved one synthetic draft per provider and read back both exact drafts through the Studio MCP route with an isolated migrated database. Both draft receipts were confirmed. The operator sent the two verified drafts with explicit authorization and confirmed their provider Sent records. Shared Chrome accepted keyboard input during takeover and blocked it before and after. Local fixtures cover lost acknowledgements and assignment access. Production deployment is pending.
+
 ## PixelCraft, verified November 9
 
 PixelCraft runs the original OxyPixel editor with layered sprites, frame animation and sprite sheet exports. The hosted Agent37 canary created a two-layer, two-frame project with a linked PNG and edited a pixel in the published editor. Ctrl+S waited for the private-library commit. The exact saved revision reopened in the browser and continued in the installed native engine. Studio 0.8.0 carries 33 ready Crafts, workstation client 0.15.0, direct MCP worker 1.2.0 and native starters 12. [Hosted canary](acceptance/pixelcraft-hosted-20261109.json)

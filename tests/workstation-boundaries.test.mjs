@@ -42,6 +42,7 @@ async function workstationBoundary(run) {
       "./assignment-server": "export const assignmentRpc=(...args)=>globalThis.__workstationBoundary.rpc(...args);",
       "./employee-auth": "export const issueEmployeeToken=()=>{throw Error('Unexpected capability issue');};export const hashEmployeeToken=()=>{throw Error('Unexpected token mutation');};",
       "./paid-capacity":"export const initialWorkstationCap=async()=>5000000;export const confirmInitialWorkstationCap=async()=>{};",
+      "./connected-mail-server":"export const assignmentMailbox=()=>{throw Error('Unexpected mailbox lookup');};",
     });
     await run({ ...workstation, state,image,employee,instance,mirror,calls,writes,db, identity: { workspaceId: "studio", userId: "owner", assignmentId: "assignment" } });
   } finally { delete globalThis.__workstationBoundary; }

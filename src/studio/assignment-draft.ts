@@ -1,4 +1,5 @@
 import type { AssetRef } from "./assets";
+import { isMailConnectionId } from "./connected-mail";
 
 export interface PendingAssignment {
   projectId: string;
@@ -8,12 +9,14 @@ export interface PendingAssignment {
   requestId: string;
   startMode?: import("./start-mode").StartMode;
   appId?: string;
+  mailConnectionId?: string;
 }
 export interface AssignmentDraft {
   version: 1;
   brief: string;
   employeeId: string;
   includeOpen: boolean;
+  mailConnectionId?: string;
   pending: PendingAssignment | null;
 }
 export const emptyAssignmentDraft = (): AssignmentDraft => ({ version: 1, brief: "", employeeId: "", includeOpen: true, pending: null });
@@ -25,12 +28,14 @@ export function readAssignmentDraft(storage: Pick<Storage, "getItem">, projectId
   if (raw === null) return { ...emptyAssignmentDraft(), brief: storage.getItem(`robyn-brief:${projectId}:${mode}`) ?? "" };
   const draft = JSON.parse(raw) as AssignmentDraft;
   if (!draft || draft.version !== 1 || typeof draft.brief !== "string" || typeof draft.employeeId !== "string" || typeof draft.includeOpen !== "boolean"
+    || (draft.mailConnectionId !== undefined && !isMailConnectionId(draft.mailConnectionId))
     || draft.pending === undefined) throw new Error("Invalid saved assignment draft");
   const request = draft.pending;
   if (request !== null && (typeof request !== "object" || request.projectId !== projectId || !uuid(request.requestId) || !uuid(request.employeeId)
     || typeof request.brief !== "string" || !request.brief.trim() || !Array.isArray(request.inputs) || request.inputs.length > 100
     || (request.startMode !== undefined && !["work", "draft", "plan"].includes(request.startMode))
     || (request.appId !== undefined && (typeof request.appId !== "string" || !/^[a-z]+craft$/.test(request.appId)))
+    || (request.mailConnectionId !== undefined && !isMailConnectionId(request.mailConnectionId))
     || request.inputs.some(ref => !ref || !uuid(ref.assetId) || !uuid(ref.revisionId)))) throw new Error("Invalid saved assignment request");
   // The frozen payload is authoritative, even if another editor is now open.
   return request ? { ...draft, brief: request.brief, employeeId: request.employeeId, includeOpen: request.inputs.length > 0 } : draft;
@@ -46,7 +51,7 @@ export function acknowledgeAssignmentDraft(storage: Pick<Storage, "getItem" | "s
   const current = readAssignmentDraft(storage, projectId, mode);
   // An older mounted panel's late acknowledgement must not erase a newer brief.
   if (current.pending?.requestId !== requestId) return current;
-  const cleared = { ...current, brief: "", pending: null };
+  const cleared = { ...current, brief: "", pending: null, mailConnectionId: undefined };
   saveAssignmentDraft(storage, projectId, mode, cleared);
   return cleared;
 }

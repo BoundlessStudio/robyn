@@ -12,7 +12,7 @@ async function credentialBoundary(run){
   const token='rbs_'+'a'.repeat(43);
   const files={'studio-mcp.cjs':Buffer.from('fixture client'),'configure-hermes.py':Buffer.from('fixture configuration'),'wordcraft.md':Buffer.from('fixture application instructions')};
   const release={version:'0.2.0',directory:'vendor/robyn-workstation/fixture',files:Object.fromEntries(['studio-mcp.cjs','configure-hermes.py','skills/wordcraft.md'].map(name=>{const bytes=files[path.basename(name)];return [name,{bytes:bytes.length,sha256:hash(bytes)}];}))};
-  const state={assignment,employee,instance,token,files,release,reused:false,installedHash:hash(token),uploads:[],exec:[],revocations:[],issued:[],scopeCalls:[],ready:0,scopeError:null,scope:{kind:'robyn',assignmentId:assignment.id,generation:7,profile:assignment.workstation_profile,instanceId:instance.id}};
+  const state={assignment,employee,instance,token,files,release,mailbox:null,reused:false,installedHash:hash(token),uploads:[],exec:[],revocations:[],issued:[],scopeCalls:[],ready:0,scopeError:null,scope:{kind:'robyn',assignmentId:assignment.id,generation:7,profile:assignment.workstation_profile,instanceId:instance.id}};
   const db={from(table){assert.equal(table,'studio_employee_tokens');const revoked={filters:[]};state.revocations.push(revoked);return {update(value){revoked.value=value;return this;},eq(key,value){revoked.filters.push([key,value]);return this;},then(resolve){return Promise.resolve({error:null}).then(resolve);}};},async rpc(name,args){assert.equal(name,'studio_employee_scope');state.scopeCalls.push(args);return {data:state.scope,error:state.scopeError};}};
   globalThis.__taskCredentialBoundary=state;
   const previousSite=process.env.NEXT_PUBLIC_SITE_URL,previousStorage=process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -22,6 +22,8 @@ async function credentialBoundary(run){
       'server-only':'',
       'node:fs/promises':"import path from 'node:path';export const readFile=async file=>{const bytes=globalThis.__taskCredentialBoundary.files[path.basename(file)];if(!bytes)throw Error('Unexpected artifact');return bytes;};",
       './workstation-release.json':'export default globalThis.__taskCredentialBoundary.release;',
+      './workstation-mail-release.json':'export default {...globalThis.__taskCredentialBoundary.release,version:"0.16.0"};',
+      './connected-mail-server':'export const assignmentMailbox=async()=>globalThis.__taskCredentialBoundary.mailbox;',
       './workstation-image.json':`export default {template:'robyn-studio-0-1-0@1',release:'sha256:${'a'.repeat(64)}'};`,
       './employee-auth':`import {createHash} from 'node:crypto';export const hashEmployeeToken=value=>createHash('sha256').update(value).digest('hex');export const issueEmployeeToken=async(_db,assignmentId,instanceId,binding)=>{const s=globalThis.__taskCredentialBoundary;s.issued.push({assignmentId,instanceId,binding});return s.token;};`,
       './paid-capacity':"export const initialWorkstationCap=()=>{throw Error('Unexpected provisioning');};export const confirmInitialWorkstationCap=()=>{throw Error('Unexpected provisioning');};",
@@ -43,6 +45,7 @@ test('new task readiness rechecks its exact installed credential hash and immuta
     assert.deepEqual(state.issued,[{assignmentId:state.assignment.id,instanceId:'persistent',binding:{generation:7,profile:'robyn-job-one-7'}}]);
     const config=JSON.parse(state.uploads.find(item=>item.file.endsWith('/assignment.json')).bytes.toString());
     assert.equal(config.assignmentId,state.assignment.id);assert.equal(config.generation,7);assert.equal(config.profile,'robyn-job-one-7');
+    assert.equal(config.mailbox,undefined);assert.equal(config.mailCanDraft,undefined);
     assert.equal(config.workRoot,`/home/node/.robyn/work/${state.assignment.id}`);assert.equal(config.stateRoot,`/home/node/.robyn/state/${state.assignment.id}/7`);
     assert.ok(state.exec.every(call=>!call.command.includes(state.token)),'credential bytes never enter shell commands');
   });
@@ -53,6 +56,20 @@ test('retrying immutable task configuration validates the old token and revokes 
     state.reused=true;state.installedHash='b'.repeat(64);
     assert.equal(await prepare(),true);assert.deepEqual(state.scopeCalls,[{p_hash:'b'.repeat(64)}]);assert.equal(state.ready,1);
     assert.equal(state.revocations.length,1);assert.deepEqual(state.revocations[0].filters,[['assignment_id',state.assignment.id],['token_hash',hash(state.token)]]);
+  });
+});
+
+test('mail capability is pinned to this workstation and disabled for planning writes',async()=>{
+  await credentialBoundary(async({state,prepare})=>{
+    state.mailbox={instanceId:'wrong-workstation',provider:'outlook',connectionId:'ca_fixture'};
+    await assert.rejects(prepare(),/mail_workstation_changed/);
+    assert.deepEqual(state.exec,[]);assert.deepEqual(state.issued,[]);
+    state.mailbox.instanceId=state.instance.id;
+    state.assignment.start_mode='plan';
+    assert.equal(await prepare(),true);
+    const config=JSON.parse(state.uploads.find(item=>item.file.endsWith('/assignment.json')).bytes.toString());
+    assert.deepEqual(config.mailbox,state.mailbox);assert.equal(config.mailCanDraft,false);
+    assert.ok(state.exec.some(call=>call.command.includes('studio-mcp-v0.16.0.cjs')));
   });
 });
 

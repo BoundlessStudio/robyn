@@ -187,6 +187,7 @@ async function assignmentBoundary(apps,run){
       "@/studio/assignment-server": `export const assignmentRpc=async(_db,name,args)=>{const s=globalThis.__solidcraftAssignment;s.calls.push(name);s.created.push(args);return {id:args.p_request,state:'queued',employee_id:args.p_employee,execution_model:'robyn',app_id:args.p_app,allowed_app_ids:args.p_allowed_apps};};`,
       "@/studio/assignment-launch": "export const launchAssignment=async()=>{globalThis.__solidcraftAssignment.calls.push('launch');};",
       "@/studio/paid-capacity": "export const paidCapacity=async()=>{globalThis.__solidcraftAssignment.calls.push('budget');return {availableMicros:5000000};};",
+      "./connected-mail-server": "export const assignmentMailbox=async()=>null;export const ownedMailWorkstation=()=>{throw Error('Unexpected mail workstation lookup');};export const requireActiveMailConnection=()=>{throw Error('Unexpected mail connection lookup');};",
     });
     const submit=(input={})=>POST(new Request("https://studio.example/api/studio/assignments",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({projectId,brief:"Make editable work.",requestId:randomUUID(),inputs:[],...input})}));
     await run({...state,submit});
@@ -217,6 +218,7 @@ test("all 33 ready Craft hints and an unhinted brief use the same canonical Roby
     assert.deepEqual(created.map(args=>args.p_app),[...readyApps.map(app=>app.id),null]);
     assert.deepEqual([...new Set(created.map(args=>args.p_employee))],[employee.id]);
     assert.ok(created.every(args=>JSON.stringify(args.p_allowed_apps)===JSON.stringify(readyApps.map(app=>app.id))));
+    assert.ok(created.every(args=>args.p_mail===null));
   });
 });
 

@@ -7,6 +7,8 @@ import { assignmentRpc } from "@/studio/assignment-server";
 import { launchAssignment } from "@/studio/assignment-launch";
 import { paidCapacity } from "@/studio/paid-capacity";
 import type { Assignment, StudioEmployee } from "./assignments";
+import { isMailConnectionId, type AssignmentMailbox } from "./connected-mail";
+import { assignmentMailbox, ownedMailWorkstation, requireActiveMailConnection } from "./connected-mail-server";
 
 export async function submitRobynAssignment(
   { db, userId, workspaceId, grantId }: { db: DB; userId: string; workspaceId: string; grantId?: string },
@@ -21,6 +23,10 @@ export async function submitRobynAssignment(
   const requestId = id(input.requestId, "request ID");
   const {data:prior,error:existingError}=await db.from("studio_assignments").select("*").eq("workspace_id",workspaceId).eq("request_key",requestId).maybeSingle();dbFailure(existingError);
   const existing=prior as Assignment|null;
+  const mailConnectionId = input.mailConnectionId;
+  if (mailConnectionId !== undefined && (!isMailConnectionId(mailConnectionId) || grantId)) {
+    throw new ApiError(400, "invalid_mail_connection", "Choose a connected mailbox in Robyn’s Studio.");
+  }
   if (!Array.isArray(input.inputs) || input.inputs.length > 100) throw new ApiError(400, "invalid_inputs", "Supply up to 100 exact saved revisions.");
   const inputs = input.inputs.map(ref => {
     if (!ref || typeof ref !== "object" || Array.isArray(ref)) throw new ApiError(400, "invalid_inputs", "Choose an exact saved revision.");
@@ -31,7 +37,7 @@ export async function submitRobynAssignment(
   if(existing&&existing.execution_model!=="robyn"){
     const {data:refs,error:refsError}=await db.from("studio_assignment_inputs").select("asset_id,revision_id").eq("workspace_id",workspaceId).eq("assignment_id",existing.id);dbFailure(refsError);
     const exact=(rows:Array<{assetId:string;revisionId:string}>)=>JSON.stringify([...rows].sort((a,b)=>a.revisionId.localeCompare(b.revisionId)));
-    if(existing.project_id!==projectId||existing.employee_id!==requestedEmployee||existing.brief!==brief||(existing.start_mode??"work")!==startMode||input.appId!==undefined||exact(inputs)!==exact((refs??[]).map(r=>({assetId:r.asset_id,revisionId:r.revision_id}))))throw new ApiError(409,"operation_key_reused","Retry the saved request without changing it.");
+    if(existing.project_id!==projectId||existing.employee_id!==requestedEmployee||existing.brief!==brief||(existing.start_mode??"work")!==startMode||input.appId!==undefined||mailConnectionId!==undefined||exact(inputs)!==exact((refs??[]).map(r=>({assetId:r.asset_id,revisionId:r.revision_id}))))throw new ApiError(409,"operation_key_reused","Retry the saved request without changing it.");
     // A lost acknowledgement of a historical request is still its original
     // operation. Never retarget it to the new agent or issue a second job.
     return {assignmentId:existing.id,state:existing.state};
@@ -44,8 +50,20 @@ export async function submitRobynAssignment(
   const app=studioApps.find(app=>app.id===appId);
   if(appId!==null&&!app)throw new ApiError(400,"invalid_application","Choose a Craft tool in this Studio.");
   if(app&&!existing&&!isEmployeeReady(app))throw new ApiError(409,"integration_pending","This application is still being verified. Your draft is preserved.");
+  let mailbox: AssignmentMailbox | null = null;
+  if (existing) {
+    mailbox = await assignmentMailbox(db, workspaceId, existing.id);
+    if (mailbox?.connectionId !== mailConnectionId) {
+      throw new ApiError(409, "operation_key_reused", "Retry the saved request with its original mailbox.");
+    }
+  } else if (isMailConnectionId(mailConnectionId)) {
+    const instance = await ownedMailWorkstation(db, workspaceId);
+    if (!instance || instance.id !== employee.instance_id) throw new ApiError(409, "mail_workstation_changed", "Robyn’s mail workstation is unavailable. Check Profile.");
+    const connection = await requireActiveMailConnection(instance.id, mailConnectionId);
+    mailbox = { instanceId: instance.id, connectionId: connection.id, provider: connection.provider };
+  }
   if(!existing||grantId){const capacity=await paidCapacity(db,employee);if(!capacity.availableMicros)throw new ApiError(409,capacity.code??"employee_budget_required",`${capacity.reason} Manage budget in Studio settings; your draft is preserved.`);}
-  const assignment = await assignmentRpc<Assignment>(db, grantId ? "create_studio_mcp_job" : "create_robyn_assignment", { p_workspace: workspaceId, p_user: userId, ...(grantId ? { p_grant: grantId } : {}), p_project: projectId, p_employee: employee.id, p_request: requestId, p_brief: brief, p_inputs: inputs, p_app:appId,p_allowed_apps:existing?.allowed_app_ids??studioApps.filter(isEmployeeReady).map(app=>app.id),p_mode:startMode });
+  const assignment = await assignmentRpc<Assignment>(db, grantId ? "create_studio_mcp_job" : "create_robyn_assignment_with_mail", { p_workspace: workspaceId, p_user: userId, ...(grantId ? { p_grant: grantId } : { p_mail: mailbox }), p_project: projectId, p_employee: employee.id, p_request: requestId, p_brief: brief, p_inputs: inputs, p_app:appId,p_allowed_apps:existing?.allowed_app_ids??studioApps.filter(isEmployeeReady).map(app=>app.id),p_mode:startMode });
   await launchAssignment(db, { workspaceId, userId, assignmentId: assignment.id }, assignment);
   return { assignmentId: assignment.id, state: assignment.state };
 }
