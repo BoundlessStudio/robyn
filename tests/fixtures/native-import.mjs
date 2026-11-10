@@ -8,6 +8,13 @@ import {studioApps} from '../../src/studio/apps/registry.ts';
 
 export const projectId = '11111111-1111-4111-8111-111111111111';
 export const origin = 'http://127.0.0.1:3000';
+
+export async function selectStudioMenuItem(page, name) {
+  await page.getByRole('button', { name: 'Robyn studio menu', exact: true }).click();
+  const menu = page.getByRole('menu', { name: 'Robyn studio menu', exact: true });
+  await menu.getByRole('menuitem', { name, exact: true }).click();
+}
+
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const starters=JSON.parse(await readFile(root+'src/studio/generated/blank-starters.json','utf8'));
 const director='bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb';
@@ -246,7 +253,7 @@ export async function dropDocument(page, filename, content, target='.project-sta
 }
 
 export async function openEmployeeWorkspace(page) {
-  await page.locator('.project-header').getByRole('link',{name:'Robyn',exact:true}).click();
+  await selectStudioMenuItem(page,'Robyn');
   await page.getByRole('heading',{name:'Robyn.',exact:true}).waitFor();
   return page;
 }

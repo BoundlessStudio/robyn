@@ -10,7 +10,7 @@ The default studio name comes from the invited account’s email handle, without
 
 The authenticated studio, Crafts, Notes and Robyn's browser tools are desktop-only. First entry requires at least 1200 CSS pixels, a fine pointer and hover, with a keyboard and mouse intended. Explain the requirement before mounting an editor on an unsupported screen. Temporarily narrowing an already-open editor preserves its session and unsaved work. This presentation check does not replace authorization or establish graphics/codec support. The public homepage supports mobile presentation.
 
-Studio navigation opens Projects. Every project uses the same menu and current-page state:
+The Robyn dropdown is shared across the Projects dashboard, Profile, Studio settings, and project pages. Inside a project it adds these destinations and highlights the current page.
 
 | Destination | Responsibility |
 | --- | --- |
