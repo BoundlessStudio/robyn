@@ -18,6 +18,8 @@ test('empty and populated projects list the independent catalogue and launch rea
   const browser=await browserType.launch({headless:true});
   try{
     const {page,state}=await nativeImportFixture(browser);state.allowance=0;
+    state.mailConnections=[{id:'ca_launch_fixture',provider:'gmail',status:'active'}];
+    await page.evaluate(()=>window.dispatchEvent(new Event('focus')));
     const groupNames = name => studioApps.filter(app=>app.studio===name).map(app=>app.name);
     assert.deepEqual(await page.locator('.application-grid button strong').allTextContents(),STUDIO_GROUPS.flatMap(groupNames));
     for(const name of STUDIO_GROUPS){

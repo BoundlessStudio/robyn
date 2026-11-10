@@ -21,14 +21,16 @@ if (!configuration.includes(`studio-mcp-v${release.version}.cjs`) && !configurat
 if (!mail) {
   for (const entry of (await fs.readdir("src/studio/apps")).filter(name => name.endsWith(".json")).sort()) {
     const app = JSON.parse(await fs.readFile(`src/studio/apps/${entry}`, "utf8"));
+    if (mailcraft && app.id !== "mailcraft") continue;
     // Installed applications with pending editor/library adapters are catalog
     // entries, not supported capabilities of this immutable client release.
     if (app.formats.verification !== "verified" || app.editor.status !== "verified" || app.workstation.status !== "verified"
       || !app.editor.release || !app.editor.bundleUrl || !app.workstation.template || !app.workstation.release) continue;
     files.set(`skills/${app.id}.md`, await fs.readFile(path.join(source, `apps/${app.id}/SKILL.md`)));
   }
-  files.set("skills/research.md", await fs.readFile(path.join(source, "apps/research/SKILL.md")));
+  if (!mailcraft) files.set("skills/research.md", await fs.readFile(path.join(source, "apps/research/SKILL.md")));
 }
+if (mailcraft && !files.has("skills/mailcraft.md")) throw Error("MailCraft requires its exact verified application pins");
 const hashes = Object.fromEntries([...files].map(([name, bytes]) => [name, { bytes: bytes.length, sha256: digest(bytes) }]));
 const fingerprint = digest(JSON.stringify(hashes));
 const directory = `vendor/robyn-workstation/${release.version}-${fingerprint.slice(0, 12)}`;

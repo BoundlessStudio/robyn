@@ -23,17 +23,17 @@
     "native": [
       ".mailcraft"
     ],
-    "verification": "pending"
+    "verification": "verified"
   },
   "editor": {
     "adapterVersion": "0.1.0",
-    "release": null,
-    "bundleUrl": null,
-    "status": "pending"
+    "release": "046734d9ab7e6d8e2e5ad4f20de8f65af572d5a4bf2af35905e27e7b5a478e89",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/mailcraft/v0.11.1-0.1.0/?webgl",
+    "status": "verified"
   },
   "workstation": {
-    "template": null,
-    "release": null,
-    "status": "pending"
+    "template": "robyn-studio-0-9-0@1",
+    "release": "sha256:2aab4b59baf30b1d1568c9d7f13cd62201f23bcf315964ccf7713af870a66eee",
+    "status": "verified"
   }
 }

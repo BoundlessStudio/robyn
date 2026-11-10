@@ -69,7 +69,10 @@ export async function submitRobynAssignment(
   }
   let allowedApps = existing?.allowed_app_ids ?? studioApps.filter(isEmployeeReady).map(app => app.id);
   if (!existing && mailcraft && allowedApps.includes("mailcraft")) {
-    const linked = mailboxWorkstation ?? await linkedMailWorkstation(db, workspaceId).catch(() => null);
+    if (grantId && appId === "mailcraft") {
+      throw new ApiError(403, "mailcraft_studio_required", "Start MailCraft briefs from Robyn’s Studio.");
+    }
+    const linked = grantId ? null : mailboxWorkstation ?? await linkedMailWorkstation(db, workspaceId).catch(() => null);
     const { template, release } = mailcraft.workstation;
     if (!linked || !template || !release || !matchingWorkstationRelease(linked, { template, release })) {
       if (appId === "mailcraft") {

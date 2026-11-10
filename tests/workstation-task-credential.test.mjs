@@ -10,9 +10,10 @@ async function credentialBoundary(run){
   const employee={id:randomUUID(),employee_key:'robyn',kind:'director',app_id:null,retired_at:null};
   const instance={id:'persistent'};
   const token='rbs_'+'a'.repeat(43);
-  const files={'studio-mcp.cjs':Buffer.from('fixture client'),'configure-hermes.py':Buffer.from('fixture configuration'),'wordcraft.md':Buffer.from('fixture application instructions')};
+  const files={'studio-mcp.cjs':Buffer.from('fixture client'),'configure-hermes.py':Buffer.from('fixture configuration'),'wordcraft.md':Buffer.from('fixture application instructions'),'mailcraft.md':Buffer.from('fixture MailCraft instructions')};
   const release={version:'0.2.0',directory:'vendor/robyn-workstation/fixture',files:Object.fromEntries(['studio-mcp.cjs','configure-hermes.py','skills/wordcraft.md'].map(name=>{const bytes=files[path.basename(name)];return [name,{bytes:bytes.length,sha256:hash(bytes)}];}))};
-  const state={assignment,employee,instance,token,files,release,mailbox:null,reused:false,installedHash:hash(token),uploads:[],exec:[],revocations:[],issued:[],scopeCalls:[],ready:0,scopeError:null,scope:{kind:'robyn',assignmentId:assignment.id,generation:7,profile:assignment.workstation_profile,instanceId:instance.id}};
+  const mailcraftRelease={...release,version:"0.17.0",files:{...release.files,'skills/mailcraft.md':{bytes:files['mailcraft.md'].length,sha256:hash(files['mailcraft.md'])}}};
+  const state={assignment,employee,instance,token,files,release,mailcraftRelease,mailbox:null,reused:false,installedHash:hash(token),uploads:[],exec:[],revocations:[],issued:[],scopeCalls:[],ready:0,scopeError:null,scope:{kind:'robyn',assignmentId:assignment.id,generation:7,profile:assignment.workstation_profile,instanceId:instance.id}};
   const db={from(table){assert.equal(table,'studio_employee_tokens');const revoked={filters:[]};state.revocations.push(revoked);return {update(value){revoked.value=value;return this;},eq(key,value){revoked.filters.push([key,value]);return this;},then(resolve){return Promise.resolve({error:null}).then(resolve);}};},async rpc(name,args){assert.equal(name,'studio_employee_scope');state.scopeCalls.push(args);return {data:state.scope,error:state.scopeError};}};
   globalThis.__taskCredentialBoundary=state;
   const previousSite=process.env.NEXT_PUBLIC_SITE_URL,previousStorage=process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -23,7 +24,7 @@ async function credentialBoundary(run){
       'node:fs/promises':"import path from 'node:path';export const readFile=async file=>{const bytes=globalThis.__taskCredentialBoundary.files[path.basename(file)];if(!bytes)throw Error('Unexpected artifact');return bytes;};",
       './workstation-release.json':'export default globalThis.__taskCredentialBoundary.release;',
       './workstation-mail-release.json':'export default {...globalThis.__taskCredentialBoundary.release,version:"0.16.0"};',
-      './workstation-mailcraft-release.json':'export default {...globalThis.__taskCredentialBoundary.release,version:"0.17.0"};',
+      './workstation-mailcraft-release.json':'export default globalThis.__taskCredentialBoundary.mailcraftRelease;',
       './connected-mail-server':'export const assignmentMailbox=async()=>globalThis.__taskCredentialBoundary.mailbox;',
       './workstation-image.json':`export default {template:'robyn-studio-0-1-0@1',release:'sha256:${'a'.repeat(64)}'};`,
       './employee-auth':`import {createHash} from 'node:crypto';export const hashEmployeeToken=value=>createHash('sha256').update(value).digest('hex');export const issueEmployeeToken=async(_db,assignmentId,instanceId,binding)=>{const s=globalThis.__taskCredentialBoundary;s.issued.push({assignmentId,instanceId,binding});return s.token;};`,
@@ -80,6 +81,16 @@ test('expired or revoked immutable credentials never mark the workstation ready 
     await assert.rejects(prepare(),/assignment_credential_expired/);assert.equal(state.ready,0);
     assert.deepEqual(state.scopeCalls,[{p_hash:'b'.repeat(64)}]);assert.equal(state.revocations.length,1);
     assert.deepEqual(state.revocations[0].filters,[['assignment_id',state.assignment.id],['token_hash',hash(state.token)]]);
+  });
+});
+
+test('only a task authorized for MailCraft uses its new client and additional skill',async()=>{
+  await credentialBoundary(async({state,prepare})=>{
+    state.assignment.allowed_app_ids.push('mailcraft');
+    assert.equal(await prepare(),true);
+    assert.ok(state.exec.some(call=>call.command.includes('studio-mcp-v0.17.0.cjs')));
+    assert.ok(state.uploads.some(item=>item.file.endsWith('/skills/wordcraft.md')));
+    assert.ok(state.uploads.some(item=>item.file.endsWith('/skills/mailcraft.md')));
   });
 });
 
