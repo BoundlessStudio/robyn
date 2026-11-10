@@ -4,7 +4,7 @@ import type { DB } from "@/lib/auth";
 import { ApiError } from "@/lib/api-error";
 import type { IntegrationConnection } from "@/lib/types";
 import type { StudioEmployee } from "./assignments";
-import { isMailConnectionId, isMailProvider, type AssignmentMailbox, type MailConnection, type MailProvider } from "./connected-mail";
+import { hasActiveMailbox, MAILCRAFT_LOCKED, isMailConnectionId, isMailProvider, type AssignmentMailbox, type MailConnection, type MailProvider } from "./connected-mail";
 import { dbFailure } from "./server";
 import { ownedWorkstationMirror } from "./workstation-upgrades";
 
@@ -53,6 +53,17 @@ export async function managedMailConnections(instanceId: string): Promise<MailCo
     throw new ApiError(502, "mail_provider_unavailable", "Agent37 did not return the mail connection list.");
   }
   return result.connections.flatMap(publicConnection);
+}
+
+export async function linkedMailWorkstation(db: DB, workspaceId: string) {
+  const instance = await ownedMailWorkstation(db, workspaceId);
+  return instance && hasActiveMailbox(await managedMailConnections(instance.id)) ? instance : null;
+}
+
+export async function requireMailcraftAccess(db: DB, workspaceId: string, appId: unknown) {
+  if (appId === "mailcraft" && !await linkedMailWorkstation(db, workspaceId)) {
+    throw new ApiError(409, "mailcraft_connection_required", MAILCRAFT_LOCKED);
+  }
 }
 
 export async function requireActiveMailConnection(instanceId: string, connectionId: string) {

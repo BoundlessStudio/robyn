@@ -3,6 +3,7 @@ import {requireStudio,readStudioBody,ownedProject,id,dbFailure,appFor} from "@/s
 import {validateRevisionPackage} from "@/studio/assets";
 import catalog from "@/studio/generated/blank-starters.json";
 import type {BlankStarter} from "@/studio/blank-starters";
+import {requireMailcraftAccess} from "@/studio/connected-mail-server";
 import {isAppReady} from "@/studio/manifest";
 
 export async function POST(request:Request){
@@ -14,6 +15,7 @@ export async function POST(request:Request){
     const starter=(catalog as BlankStarter[]).find(item=>item.id===input.templateId);
     if(!starter)throw new ApiError(400,"invalid_starter","This blank document is unavailable. Reload the studio.");
     if(!isAppReady(appFor(starter.appId)))throw new ApiError(409,"application_unavailable","This application is unavailable.");
+    await requireMailcraftAccess(db,workspaceId,starter.appId);
     let pkg;
     try{pkg=validateRevisionPackage(input.package);}catch{throw new ApiError(400,"invalid_starter","The blank document could not be verified.");}
     if(pkg.files.length!==starter.files.length||pkg.files.some((file,index)=>{

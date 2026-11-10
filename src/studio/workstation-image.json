@@ -1,14 +1,24 @@
 {
-  "version": "0.8.0",
-  "template": "robyn-studio-0-8-0@1",
-  "release": "sha256:a8f6e65465cab1704b9a83aa5672c95e341abdf6c25985f7ecac75f51e7b9fad",
+  "version": "0.9.0",
+  "template": "robyn-studio-0-9-0@1",
+  "release": "sha256:2aab4b59baf30b1d1568c9d7f13cd62201f23bcf315964ccf7713af870a66eee",
   "resources": {
     "cpu": 4,
     "memory": 16,
     "disk": 10
   },
-  "applications": 33,
+  "applications": 34,
+  "compatibleExistingReleases": [
+    {
+      "template": "robyn-studio-0-8-0@1",
+      "release": "sha256:a8f6e65465cab1704b9a83aa5672c95e341abdf6c25985f7ecac75f51e7b9fad"
+    }
+  ],
   "previousReleases": [
+    {
+      "template": "robyn-studio-0-8-0@1",
+      "release": "sha256:a8f6e65465cab1704b9a83aa5672c95e341abdf6c25985f7ecac75f51e7b9fad"
+    },
     {
       "template": "robyn-studio-0-7-0@1",
       "release": "sha256:5c4cab10559d0f8449494eb50b70c08eb50f8b59add38abf1c85b059a162af45"

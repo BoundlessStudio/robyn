@@ -45,6 +45,12 @@ export function matchingWorkstationRelease(instance: Agent, target: WorkstationR
   return matchingWorkstationTemplate(instance, target.template) && observedDigest(instance) === target.release;
 }
 
+export function matchingInstalledWorkstation(instance: Agent, mirror: WorkstationMirror | null,
+  target: WorkstationRelease & { compatibleExistingReleases?: readonly WorkstationRelease[] }) {
+  return [target, ...(target.compatibleExistingReleases ?? [])].some(release =>
+    mirror?.template === release.template && matchingWorkstationRelease(instance, release));
+}
+
 function hasAssignmentFence(identity: AssignmentIdentity): identity is AssignmentFence {
   return "workflowId" in identity && typeof identity.workflowId === "string" && Boolean(identity.workflowId)
     && "attemptId" in identity && typeof identity.attemptId === "string" && Boolean(identity.attemptId);

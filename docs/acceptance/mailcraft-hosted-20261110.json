@@ -1,0 +1,167 @@
+{
+  "checkedAt": "2026-11-10T06:26:07.554Z",
+  "scope": "hosted-canary",
+  "runtimeCommit": "8b512e2071307d9785d3c1e80c26792435179cfa",
+  "runtimePullRequest": "https://github.com/BoundlessStudio/robyn-artcraft-runtime/pull/36",
+  "sourceCommit": "8e47c8d4f9422822a86d873710a6936cf1cc7043",
+  "sourcePatchSha256": "d88f4e5be09294f3f25c958a339d26afeff31b04210e623cf79ba2d7cf8a098f",
+  "browser": {
+    "release": "046734d9ab7e6d8e2e5ad4f20de8f65af572d5a4bf2af35905e27e7b5a478e89",
+    "origin": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev",
+    "worker": "d9ad7fdc-f216-48d2-b961-d203429c633a",
+    "releasePath": "mailcraft/v0.11.1-0.1.0/",
+    "catalogSha256": "6308720702a9773ac3dfecc1ef8f69c98473e098701ce2801497cb0aaea5491a",
+    "verifiedObjects": 3432,
+    "retainedReleases": 119,
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/mailcraft/v0.11.1-0.1.0/?webgl"
+  },
+  "workstation": {
+    "template": "robyn-studio-0-9-0@1",
+    "release": "sha256:2aab4b59baf30b1d1568c9d7f13cd62201f23bcf315964ccf7713af870a66eee",
+    "healthy": true,
+    "sameInstance": true,
+    "grantsPreserved": true,
+    "client": {
+      "version": "0.17.0",
+      "directory": "vendor/robyn-workstation/0.17.0-d5bf8c141483",
+      "fingerprint": "d5bf8c1414831e3985ddfa865f6aabbe75ef9760db318a06259c7f141e39f5d5",
+      "files": {
+        "studio-mcp.cjs": {
+          "bytes": 2357970,
+          "sha256": "e5f9afa907082abeb949d31b3c7eed884dbe75d5ae988662d2e829f5ca7068e8"
+        },
+        "configure-hermes.py": {
+          "bytes": 11962,
+          "sha256": "2be033e07c2befb43f103069166ec29248ef1e952df286a20f14b90a926a9323"
+        },
+        "skills/mailcraft.md": {
+          "bytes": 765,
+          "sha256": "26c4b8e42816821d302097605928a006a8b1fe04fa73e805822aef54ef250d42"
+        }
+      }
+    }
+  },
+  "compatibility": {
+    "existingWorkstations": [
+      {
+        "template": "robyn-studio-0-8-0@1",
+        "release": "sha256:a8f6e65465cab1704b9a83aa5672c95e341abdf6c25985f7ecac75f51e7b9fad"
+      }
+    ],
+    "mailcraftNativeTasksRequire": "robyn-studio-0-9-0@1"
+  },
+  "profile": {
+    "providerConnectionRequired": true,
+    "sameManagedGrant": true,
+    "noGrantLocked": true,
+    "pendingLocked": true,
+    "activeUnlocks": true,
+    "unauthenticatedRejected": true,
+    "unknownGrantRejected": true
+  },
+  "connectedViews": [
+    {
+      "kind": "mail",
+      "provider": "gmail",
+      "status": 200,
+      "result": {
+        "kind": "mail",
+        "messages": 1
+      }
+    },
+    {
+      "kind": "contacts",
+      "provider": "gmail",
+      "status": 200,
+      "error": "This Gmail grant covers mail. Contacts, Calendar, and Tasks require their own Google connections."
+    },
+    {
+      "kind": "calendar",
+      "provider": "gmail",
+      "status": 200,
+      "error": "This Gmail grant covers mail. Contacts, Calendar, and Tasks require their own Google connections."
+    },
+    {
+      "kind": "tasks",
+      "provider": "gmail",
+      "status": 200,
+      "error": "This Gmail grant covers mail. Contacts, Calendar, and Tasks require their own Google connections."
+    },
+    {
+      "kind": "mail",
+      "provider": "outlook",
+      "status": 200,
+      "result": {
+        "kind": "mail",
+        "messages": 1
+      }
+    },
+    {
+      "kind": "contacts",
+      "provider": "outlook",
+      "status": 200,
+      "result": {
+        "kind": "contacts",
+        "contacts": 1
+      }
+    },
+    {
+      "kind": "calendar",
+      "provider": "outlook",
+      "status": 200,
+      "result": {
+        "kind": "calendar",
+        "calendars": 1,
+        "events": 0
+      }
+    },
+    {
+      "kind": "tasks",
+      "provider": "outlook",
+      "status": 200,
+      "error": "The existing grant does not allow this read."
+    }
+  ],
+  "portableMailbox": {
+    "nativeSource": "f017297d5862e2108e7c4aaf1bd597beae7f6878c5ebe441d74acbfa077a3585",
+    "browserRevision": {
+      "bytes": 29814,
+      "sha256": "5391d9f1fa4ea76f2c70807659a47237da0caf5dfd5d7740e113470a872cd6c8"
+    },
+    "libraryAcknowledgement": true,
+    "checksummedMigrations": 36,
+    "waitedForCommit": true,
+    "downloads": 0,
+    "nativeReopenSha256": "5391d9f1fa4ea76f2c70807659a47237da0caf5dfd5d7740e113470a872cd6c8",
+    "nativeContinuedSha256": "e9d591025810b3da88c794efb261f66a0f64c30ac834a70fc5eb34eb9a3933c7",
+    "continuedBytes": 29902,
+    "installedBinary": true,
+    "hostedBrowser": true,
+    "confirmedLibraryRevision": true,
+    "saveAs": {
+      "confirmedSeparateAsset": true,
+      "waitedForCommit": true,
+      "originalUnchanged": true,
+      "downloads": 0,
+      "copy": {
+        "bytes": 29182,
+        "sha256": "ec9f5d8b122893207218d75d7e0beb5a2eed47b1fd820f20dcba133755589836"
+      }
+    },
+    "starter": {
+      "activeGmailUnlocks": true,
+      "unlinkedDisabled": true,
+      "hostedEditorOpened": true,
+      "starterCommitted": true,
+      "starterSha256": "141b9acfc76805227a5e0a1dfbb9a4f77a354931f9a88113f87514229266e3cb"
+    }
+  },
+  "qaRetirement": {
+    "disconnected": [
+      "gmail",
+      "outlook"
+    ],
+    "instanceVerifiedAbsent": true,
+    "checkedAt": "2026-11-10T06:25:15.136Z"
+  }
+}

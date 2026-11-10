@@ -14,9 +14,10 @@ export async function signSavedFile(db: DB, file: Pick<StoredFile, "storage_key"
 
 /** Callers authorize the revision before issuing these exact-file tickets.
  * Media bytes never pass through the application server. */
-export async function readSavedPackage(db: DB, workspaceId: string, revisionId: string) {
+export async function readSavedPackage(db: DB, workspaceId: string, revisionId: string, authorizeAsset?: (assetId: string) => Promise<void>) {
   const revision = await ownedRevision(db, workspaceId, revisionId);
   if (revision.state !== "committed" && revision.state !== "conflict") throw new ApiError(409, "revision_not_saved", "This revision is not saved yet. Finish or resume its upload.");
+  await authorizeAsset?.(revision.asset_id);
   const files = await revisionFiles(db, workspaceId, revisionId);
   await verifyStoredFiles(db, files);
   const { data: dependencies, error } = await db.from("studio_revision_dependencies").select("dependency_asset_id,dependency_revision_id").eq("workspace_id", workspaceId).eq("revision_id", revisionId);

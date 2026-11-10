@@ -187,7 +187,7 @@ async function assignmentBoundary(apps,run){
       "@/studio/assignment-server": `export const assignmentRpc=async(_db,name,args)=>{const s=globalThis.__solidcraftAssignment;s.calls.push(name);s.created.push(args);return {id:args.p_request,state:'queued',employee_id:args.p_employee,execution_model:'robyn',app_id:args.p_app,allowed_app_ids:args.p_allowed_apps};};`,
       "@/studio/assignment-launch": "export const launchAssignment=async()=>{globalThis.__solidcraftAssignment.calls.push('launch');};",
       "@/studio/paid-capacity": "export const paidCapacity=async()=>{globalThis.__solidcraftAssignment.calls.push('budget');return {availableMicros:5000000};};",
-      "./connected-mail-server": "export const assignmentMailbox=async()=>null;export const ownedMailWorkstation=()=>{throw Error('Unexpected mail workstation lookup');};export const requireActiveMailConnection=()=>{throw Error('Unexpected mail connection lookup');};",
+      "./connected-mail-server": "export const assignmentMailbox=async()=>null;export const linkedMailWorkstation=async()=>globalThis.__solidcraftAssignment.linkedMailWorkstation??null;export const ownedMailWorkstation=()=>{throw Error('Unexpected mail workstation lookup');};export const requireActiveMailConnection=()=>{throw Error('Unexpected mail connection lookup');};",
     });
     const submit=(input={})=>POST(new Request("https://studio.example/api/studio/assignments",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({projectId,brief:"Make editable work.",requestId:randomUUID(),inputs:[],...input})}));
     await run({...state,submit});
@@ -202,8 +202,8 @@ test("pending SolidCraft rejects paid assignment creation before budget or workf
   });
 });
 
-test("all 33 ready Craft hints and an unhinted brief use the same canonical Robyn",async()=>{
-  const readyApps=studioApps.filter(isEmployeeReady);
+test("all other ready Craft hints and an unhinted brief use the same canonical Robyn",async()=>{
+  const readyApps=studioApps.filter(app=>isEmployeeReady(app)&&app.id!=="mailcraft");
   assert.equal(readyApps.length,33);
   for (const id of ["scriptcraft","flarecraft","pcbcraft","pixelcraft"]) {
     const app=readyApps.find(app=>app.id===id);
@@ -219,6 +219,29 @@ test("all 33 ready Craft hints and an unhinted brief use the same canonical Roby
     assert.deepEqual([...new Set(created.map(args=>args.p_employee))],[employee.id]);
     assert.ok(created.every(args=>JSON.stringify(args.p_allowed_apps)===JSON.stringify(readyApps.map(app=>app.id))));
     assert.ok(created.every(args=>args.p_mail===null));
+  });
+});
+
+test("native MailCraft briefs require an active mailbox and the exact installed MailCraft image",async()=>{
+  const app=studioApps.find(item=>item.id==="mailcraft");
+  assert.ok(app && isEmployeeReady(app));
+  await assignmentBoundary(studioApps,async({submit,created})=>{
+    const locked=await submit({appId:"mailcraft"});
+    assert.equal(locked.status,409);
+    assert.equal((await locked.json()).error.code,"mailcraft_connection_required");
+    assert.equal(created.length,0);
+
+    const instance={template:app.workstation.template,template_revision:1,image_digest:"sha256:"+"a".repeat(64)};
+    globalThis.__solidcraftAssignment.linkedMailWorkstation=instance;
+    const outdated=await submit({appId:"mailcraft"});
+    assert.equal(outdated.status,409);
+    assert.equal((await outdated.json()).error.code,"mailcraft_workstation_update_required");
+    assert.equal((await submit()).status,202);
+    assert.equal(created[0].p_allowed_apps.includes("mailcraft"),false);
+
+    instance.image_digest=app.workstation.release;
+    assert.equal((await submit({appId:"mailcraft"})).status,202);
+    assert.equal(created[1].p_allowed_apps.includes("mailcraft"),true);
   });
 });
 

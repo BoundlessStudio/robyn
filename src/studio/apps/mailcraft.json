@@ -1,0 +1,39 @@
+{
+  "id": "mailcraft",
+  "name": "MailCraft",
+  "version": "0.11.1",
+  "order": 34,
+  "studio": "Analysis",
+  "category": "Mail, contacts and calendar",
+  "monogram": "Mc",
+  "color": "#617da0",
+  "artwork": "vector",
+  "sourceUrl": "https://github.com/UCS-Care-Group/mailcraft",
+  "tagline": "Read connected mail, contacts and calendar from your workstation.",
+  "capabilities": [
+    "connected-mail",
+    "contacts",
+    "calendar"
+  ],
+  "employee": {
+    "role": "MailCraft",
+    "instructions": "Open portable .mailcraft files with the pinned native engine. Use only the mailbox authorized for this brief when working with connected mail. Keep live provider data in its connected window and confirm an immutable library revision for any saved mailbox file."
+  },
+  "formats": {
+    "native": [
+      ".mailcraft"
+    ],
+    "verification": "verified"
+  },
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": "046734d9ab7e6d8e2e5ad4f20de8f65af572d5a4bf2af35905e27e7b5a478e89",
+    "bundleUrl": "https://robyn-artcraft-editors.robyn-artcraft-runtime.workers.dev/mailcraft/v0.11.1-0.1.0/?webgl",
+    "status": "verified"
+  },
+  "workstation": {
+    "template": "robyn-studio-0-9-0@1",
+    "release": "sha256:2aab4b59baf30b1d1568c9d7f13cd62201f23bcf315964ccf7713af870a66eee",
+    "status": "verified"
+  }
+}

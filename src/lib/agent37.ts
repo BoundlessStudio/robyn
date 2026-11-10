@@ -164,6 +164,12 @@ function assignmentProfile(profile?: string | null) {
   return profile ? `&profile=${encodeURIComponent(profile)}` : "";
 }
 
+function execInstance(id: string, command: string, user?: "root") {
+  return call<{ exit_code: number; stdout: string; stderr: string; truncated: boolean }>(
+    "/instances/" + id + "/exec", { method: "POST", body: JSON.stringify({ command, ...(user ? { user } : {}) }) },
+  );
+}
+
 export const agent37 = {
   listAgents: () => call<{ data: Agent[] }>("/instances"),
   getAgent: (id: string) => call<Agent>(`/instances/${id}`),
@@ -196,11 +202,26 @@ export const agent37 = {
   // its own call. Here it is how the Messaging tab reaches the harness's own messaging API, which
   // listens on a loopback port inside the sandbox. A command that exits nonzero is a normal 200 with
   // its exit_code, so read that rather than relying on a throw.
-  exec: (id: string, command: string, user?: "root") =>
-    call<{ exit_code: number; stdout: string; stderr: string; truncated: boolean }>(
-      `/instances/${id}/exec`,
-      { method: "POST", body: JSON.stringify({ command, ...(user ? { user } : {}) }) }
-    ),
+  exec: execInstance,
+
+  async readMailcraft(id: string, helper: Uint8Array, input: object) {
+    const moduleUrl = "data:text/javascript;base64," + Buffer.from(helper).toString("base64");
+    const payload = Buffer.from(JSON.stringify(input)).toString("base64");
+    const program = [
+      "const {readRequest}=await import(" + JSON.stringify(moduleUrl) + ");",
+      "const input=Buffer.from(" + JSON.stringify(payload) + ', "base64").toString("utf8");',
+      "process.stdout.write(JSON.stringify(await readRequest(input)));",
+    ].join("");
+    // The shell sees fixed code and base64. Mailbox IDs, dates, and provider
+    // content are never interpreted as shell arguments or a tool name.
+    const result = await execInstance(id, "node --input-type=module -e '" + program + "'");
+    if (result.exit_code !== 0 || result.truncated || Buffer.byteLength(result.stdout) > 256 * 1024) {
+      throw new Error("MailCraft workstation response unavailable");
+    }
+    const reply: unknown = JSON.parse(result.stdout);
+    if (!reply || typeof reply !== "object" || Array.isArray(reply)) throw new Error("Invalid MailCraft workstation response");
+    return reply as { result?: unknown; error?: unknown };
+  },
 
   signedUrl: (id: string, port: number, ttlSeconds?: number) =>
     call<{ url: string; port: number; expires_at: number }>(`/instances/${id}/signed-url`, {

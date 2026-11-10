@@ -111,6 +111,19 @@ test("sleeping Robyn starts once and waits for a later healthy observation",asyn
   });
 });
 
+test("only explicitly compatible existing workstations retain their exact image during rollout",async()=>{
+  await workstationBoundary(async({ensureEmployeeInstance,image,employee,instance,mirror,db,identity})=>{
+    const previous={template:"robyn-studio-0-0-1@1",release:"sha256:"+"b".repeat(64)};
+    image.compatibleExistingReleases=[previous];
+    mirror.template=previous.template;
+    instance.template=previous.template;
+    instance.image_digest=previous.release;
+    assert.equal(await ensureEmployeeInstance(db,identity,employee),instance);
+    mirror.template=image.template;
+    await assert.rejects(ensureEmployeeInstance(db,identity,employee),/workstation_release_mismatch/);
+  });
+});
+
 test("one claimed Robyn creation uses the shared image and server resources with exact ownership",async()=>{
   await workstationBoundary(async({ensureEmployeeInstance,image,employee,instance,calls,writes,db,identity})=>{
     employee.instance_id=null;employee.provision_attempt="attempt";instance.metadata.studio_provision_attempt="attempt";

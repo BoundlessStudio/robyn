@@ -1,0 +1,19 @@
+{
+  "version": "0.17.0",
+  "directory": "vendor/robyn-workstation/0.17.0-d5bf8c141483",
+  "fingerprint": "d5bf8c1414831e3985ddfa865f6aabbe75ef9760db318a06259c7f141e39f5d5",
+  "files": {
+    "studio-mcp.cjs": {
+      "bytes": 2357970,
+      "sha256": "e5f9afa907082abeb949d31b3c7eed884dbe75d5ae988662d2e829f5ca7068e8"
+    },
+    "configure-hermes.py": {
+      "bytes": 11962,
+      "sha256": "2be033e07c2befb43f103069166ec29248ef1e952df286a20f14b90a926a9323"
+    },
+    "skills/mailcraft.md": {
+      "bytes": 765,
+      "sha256": "26c4b8e42816821d302097605928a006a8b1fe04fa73e805822aef54ef250d42"
+    }
+  }
+}

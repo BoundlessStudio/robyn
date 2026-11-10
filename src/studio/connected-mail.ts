@@ -21,6 +21,12 @@ export type MailConnection = {
 
 export type MailConnectionList = { workstationReady: boolean; connections: MailConnection[] };
 
+export function hasActiveMailbox(connections: readonly MailConnection[]) {
+  return connections.some(connection => connection.status === "active" && isMailProvider(connection.provider));
+}
+
+export const MAILCRAFT_LOCKED = "Connect Gmail or Microsoft 365 in Profile to open MailCraft.";
+
 export type AssignmentMailbox = { connectionId: string; instanceId: string; provider: MailProvider };
 
 export function mailConnectionLabel(connection: Pick<MailConnection, "id" | "provider">) {

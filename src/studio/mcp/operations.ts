@@ -11,7 +11,7 @@ import type { StudioAppManifest } from "@/studio/manifest";
 import { finishPage, pageFilter } from "@/studio/pagination";
 import { dbFailure, ownedProject, revisionFiles } from "@/studio/server";
 import { ensureEmployeeInstance } from "@/studio/workstation";
-import { matchingWorkstationRelease, ownedWorkstationMirror } from "@/studio/workstation-upgrades";
+import { matchingInstalledWorkstation, ownedWorkstationMirror } from "@/studio/workstation-upgrades";
 import image from "@/studio/workstation-image.json";
 import { hash, mcpConfig, workerPath, workerToken } from "./config";
 import { readAssetRef } from "./library";
@@ -72,7 +72,7 @@ async function ownedInstance(identity: McpIdentity, instanceId?: string) {
   ]);
   dbFailure(mirror.error);
   ownedWorkstationMirror(instance, identity, employee, mirror.data);
-  if (mirror.data?.template !== image.template || !matchingWorkstationRelease(instance, image)) {
+  if (!matchingInstalledWorkstation(instance, mirror.data, image)) {
     throw new ApiError(409, "workstation_release_mismatch", "Direct commands require the current verified Studio workstation.");
   }
   if (instance.status === "stopped") {

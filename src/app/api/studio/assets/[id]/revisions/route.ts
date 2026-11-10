@@ -1,6 +1,7 @@
 import { json, handleError, ApiError } from "@/lib/http";
 import { validateRevisionPackage } from "@/studio/assets";
 import { requireStudio, readStudioBody, ownedAsset, id, dbFailure } from "@/studio/server";
+import { requireMailcraftAccess } from "@/studio/connected-mail-server";
 import { readPage, pageFilter, finishPage } from "@/studio/pagination";
 
 export async function GET(request: Request, context: { params: Promise<{ id: string }> }) {
@@ -23,6 +24,7 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
   try {
     const { db, user, workspaceId } = await requireStudio(); const { id: assetId } = await context.params;
     const asset = await ownedAsset(db, workspaceId, assetId);
+    await requireMailcraftAccess(db, workspaceId, asset.app_id);
     if (asset.asset_kind && asset.asset_kind !== "native") throw new ApiError(409, "source_media_immutable", "Acquire a new media source through the media panel. Saved source versions remain immutable.");
     const input = await readStudioBody(request);
     if (input.expectedBaseRevisionId === undefined) throw new ApiError(400, "base_required", "Supply the exact base revision, or null for the first save.");

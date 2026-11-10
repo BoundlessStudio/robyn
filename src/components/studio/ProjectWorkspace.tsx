@@ -14,6 +14,7 @@ import Link from "next/link";
 import { Plus, File, X, History, Upload, ArrowUpRight, RefreshCw, MoreHorizontal, Maximize2, Info, Images } from "lucide-react";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
 import { apiFetch, readApiError } from "@/lib/api";
+import { hasActiveMailbox, MAILCRAFT_LOCKED, type MailConnectionList } from "@/studio/connected-mail";
 import { studioTools as studioApps } from "@/studio/tools";
 import type { AssetSummary, ProjectSummary, AssetRef } from "@/studio/assets";
 import type { SaveResult } from "@/studio/transfer-client";
@@ -30,6 +31,7 @@ import { SourceProvenance, SourceCredits, type SourceCredit } from "./SourceProv
 interface Revision {id:string;state:string;revision_number:number|null;message:string;created_at:string}
 interface OpenPackage {ref:AssetRef;revision:Revision;files:Array<{path:string;role:string;mimeType:string;bytes:number;downloadUrl:string}>;dependencies:AssetRef[];provenance?:Record<string,unknown>;sourceCredits?:SourceCredit[]}
 // Candidate bundles can be reviewed together without promoting their manifests.
+const mailcraftRegistered = studioApps.some(app => app.id === "mailcraft" && app.editor.status === "verified");
 const previewEditors:Record<string,string>=process.env.NODE_ENV==="development"?JSON.parse(process.env.NEXT_PUBLIC_EDITOR_PREVIEW_URLS??"{}"):{};
 
 export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,initialAppId,initialLaunchId}:{projectId:string;initialAssetId?:string;initialRevisionId?:string;initialAppId?:string;initialLaunchId?:string}) {
@@ -46,6 +48,7 @@ export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,ini
   const [fork,setFork]=useState<string|null>(null);
   const [applicationsOpen,setApplicationsOpen]=useState(false);
   const [readOnlyApplication,setReadOnlyApplication]=useState("");
+  const [mailcraftLinked, setMailcraftLinked] = useState<boolean | null>(null);
   const readOnlyApp=studioApps.find(app=>app.id===readOnlyApplication&&app.editor.mode==="readOnly");
   const applicationsButton=useRef<HTMLButtonElement>(null);
   const initialLaunchHandled=useRef(false);
@@ -64,8 +67,25 @@ export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,ini
     if(url.href!==window.location.href)window.history.replaceState(null,"",url.pathname+url.search+url.hash);
   },[selected,focusedRevision]);
   const asset=assets.find(row=>row.id===selected);const app=studioApps.find(app=>app.id===asset?.app_id);
+  const mailcraftAsset = asset?.app_id === "mailcraft";
+  const canOpenAsset = !mailcraftAsset || mailcraftLinked === true;
+  useEffect(() => {
+    if (!mailcraftRegistered && !mailcraftAsset && initialAppId !== "mailcraft") return;
+    let request: AbortController | undefined;
+    async function check() {
+      request?.abort();
+      const controller = new AbortController();
+      request = controller;
+      const result = await apiFetch<MailConnectionList>("/api/studio/mail-connections", { signal: controller.signal }).catch(() => null);
+      if (controller.signal.aborted) return;
+      setMailcraftLinked(previous => result ? hasActiveMailbox(result.connections) : previous ?? false);
+    }
+    window.addEventListener("focus", check);
+    void check();
+    return () => { request?.abort(); window.removeEventListener("focus", check); };
+  }, [mailcraftAsset, initialAppId]);
   const previewEditorUrl=process.env.NODE_ENV==="development"&&app?(app.id===process.env.NEXT_PUBLIC_EDITOR_PREVIEW_APP?process.env.NEXT_PUBLIC_EDITOR_PREVIEW_URL:previewEditors[app.id]):null;
-  const editorUrl=previewEditorUrl??(app?.editor.status==="verified"?app.editor.bundleUrl:null);
+  const editorUrl=canOpenAsset ? (previewEditorUrl??(app?.editor.status==="verified"?app.editor.bundleUrl:null)) : null;
   const targetRevision=focusedRevision&&focusedRevision.assetId===asset?.id?focusedRevision.revisionId:asset?.current_revision_id;
   const packageData=loadedPackage&&loadedPackage.ref.assetId===asset?.id&&loadedPackage.ref.revisionId===targetRevision?loadedPackage:null;
   const reload=useCallback(async()=>{const data=await apiFetch<{project:ProjectSummary;assets:AssetSummary[]}>(`/api/studio/projects/${projectId}`);
@@ -81,10 +101,10 @@ export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,ini
     setRevisionId(target??null);
     if(!asset){setOpening(false);return;}
     apiFetch<{revisions:Revision[];nextCursor:string|null}>(`/api/studio/assets/${asset.id}/revisions`).then(data=>{if(live){setRevisions(data.revisions);setRevisionCursor(data.nextCursor);}}).catch(error=>{if(live)setError(error.message);});
-    if(target){setOpening(true);apiFetch<OpenPackage>(`/api/studio/revisions/${target}`).then(data=>{if(data.ref.assetId!==asset.id||data.ref.revisionId!==target)throw Error("The revision does not belong to this asset.");if(live)setPackageData(data);}).catch(error=>{if(live)setError(error.message);}).finally(()=>{if(live)setOpening(false);});}
+    if(target&&canOpenAsset){setOpening(true);apiFetch<OpenPackage>(`/api/studio/revisions/${target}`).then(data=>{if(data.ref.assetId!==asset.id||data.ref.revisionId!==target)throw Error("The revision does not belong to this asset.");if(live)setPackageData(data);}).catch(error=>{if(live)setError(error.message);}).finally(()=>{if(live)setOpening(false);});}
     else setOpening(false);
     return()=>{live=false;};
-  },[asset?.id,asset?.current_revision_id,focusedRevision]);
+  },[asset?.id,asset?.current_revision_id,focusedRevision,canOpenAsset]);
   function leaveEditor(){return !editorDirty.current||window.confirm("This editor has unsaved work. Leave without saving?");}
   function select(id:string){if(id===selected){return true;}if(!leaveEditor())return false;setEditorEpoch(value=>value+1);setSelected(id);setTabs(current=>current.includes(id)?current:[...current,id]);setFocusedRevision(null);setError("");setHistory(false);setFileDetails(false);return true;}
   function closeTab(id:string){if(id===selected&&!leaveEditor())return;setTabs(current=>current.filter(tab=>tab!==id));if(selected===id){setEditorEpoch(value=>value+1);setFocusedRevision(null);setSelected(tabs.find(tab=>tab!==id)??"");}}
@@ -141,15 +161,24 @@ export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,ini
   async function forkRevision(event:React.FormEvent<HTMLFormElement>){event.preventDefault();if(!fork||!leaveEditor())return;const data=new FormData(event.currentTarget);setBusy(true);try{const result=await apiFetch<SaveResult>(`/api/studio/revisions/${fork}/fork`,{method:"POST",body:JSON.stringify({name:data.get("name")})});setFork(null);await saved(result);}catch(error){setError((error as Error).message);}finally{setBusy(false);}}
   const launch=useApplicationLaunch({projectId,ready:project?.status==="active",onSaved:saved,onOpenReadOnly:appId=>{setApplicationsOpen(false);setReadOnlyApplication(appId);}});
   function launchApplication(appId:string){
+    if (appId === "mailcraft" && mailcraftLinked !== true) {
+      setError(MAILCRAFT_LOCKED);
+      return;
+    }
     if(launch.busy||(studioApps.find(app=>app.id===appId)?.editor.mode!=="readOnly"&&!leaveEditor()))return;
     if(asset)setApplicationsOpen(true);
     void launch.launch(appId);
   }
   useEffect(()=>{
     if(!project||!launch.storageReady||!initialAppId||initialAssetId||initialLaunchHandled.current)return;
+    if (initialAppId === "mailcraft" && mailcraftLinked === null) return;
     initialLaunchHandled.current=true;
+    if (initialAppId === "mailcraft" && !mailcraftLinked) {
+      setError(MAILCRAFT_LOCKED);
+      return;
+    }
     void launch.launch(initialAppId,initialLaunchId);
-  },[project,launch.storageReady,initialAppId,initialLaunchId,initialAssetId]);
+  },[project,launch.storageReady,initialAppId,initialLaunchId,initialAssetId,mailcraftLinked]);
   // Dashboard shares this route with the editor. Clear its local selection even
   // when Next keeps the component mounted during a same-route navigation.
   function showDashboard(){setReadOnlyApplication("");setEditorEpoch(value=>value+1);setSelected("");setFocusedRevision(null);setApplicationsOpen(false);setHistory(false);setFileDetails(false);setError("");}
@@ -157,7 +186,7 @@ export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,ini
   const employeeParams=new URLSearchParams();
   if(asset&&targetRevision){employeeParams.set("asset",asset.id);employeeParams.set("revision",targetRevision);}
   const employeesHref=`/dashboard/projects/${projectId}/employees${employeeParams.size?`?${employeeParams}`:""}`;
-  const launcher=<ApplicationLauncher projectId={projectId} launch={launch} ready={project?.status==="active"} onLaunch={launchApplication} onFiles={()=>chooseFiles()} onFolder={()=>chooseFiles(true)} importButtonRef={importButton} employeesHref={employeesHref} compact={Boolean(asset)}/>;
+  const launcher=<ApplicationLauncher projectId={projectId} launch={launch} ready={project?.status==="active"} onLaunch={launchApplication} onFiles={()=>chooseFiles()} onFolder={()=>chooseFiles(true)} importButtonRef={importButton} employeesHref={employeesHref} compact={Boolean(asset)} mailcraftLinked={mailcraftLinked}/>;
   const importReturnFocus=asset?applicationsButton:importButton;
   const sourceMedia=Boolean(asset?.asset_kind&&asset.asset_kind!=="native");
   const preview=sourceMedia?(packageData?.files.find(file=>file.role==="preview")??packageData?.files.find(file=>file.role==="export"&&file.mimeType.startsWith(`${asset?.asset_kind}/`))??packageData?.files.find(file=>file.role==="master")):packageData?.files.find(file=>file.role==="preview");
@@ -191,7 +220,7 @@ export function ProjectWorkspace({projectId,initialAssetId,initialRevisionId,ini
         </div>}
       </div>}
     {!asset?<div className="project-start">{launcher}</div>:<>
-      {asset.app_id==="research"&&targetRevision?<ResearchNotebook ref={embeddedEditor} key={editorEpoch} initialRef={{assetId:asset.id,revisionId:targetRevision}} onState={setEditorState} onDirty={dirty=>{editorDirty.current=dirty;}} onSaved={editorSaved} onRequest={()=>{window.open(`${employeesHref}&view=jobs`,"_blank","noopener");}}/>:editorUrl&&targetRevision?<EmbeddedEditor ref={embeddedEditor} onLibraryChanged={()=>{void reload().catch(error=>setError(error.message));}} onState={setEditorState} key={editorEpoch} projectId={projectId} initialRef={{assetId:asset.id,revisionId:targetRevision}} bundleUrl={editorUrl} readOnly={app?.editor.mode==="readOnly"} name={app?.name??"Creative"} onSaved={editorSaved} onDirty={dirty=>{editorDirty.current=dirty;}}/>:opening?<p role="status" className="studio-empty">Opening the native package…</p>:<div className="asset-preview">{sourceMedia&&<div className="source-import-note"><strong>{asset.name}</strong><p>Saved as reusable source media. Use Place from studio in a compatible Craft to add it to your work.</p><a href={savedFileUrl(revisionId!,packageData?.files.find(file=>file.role==="master")?.path??preview?.path??"")}>Download original</a></div>}{preview?.mimeType.startsWith("image/")?<SavedMedia key={`${revisionId}:${preview.path}`} revisionId={revisionId!} file={preview} name={asset.name}/>:preview&&(preview.mimeType.startsWith("video/")||preview.mimeType.startsWith("audio/"))?<SavedMedia key={`${revisionId}:${preview.path}`} revisionId={revisionId!} file={preview} name={asset.name}/>:<div className="asset-native-placeholder"><AppIcon app={app}/><h2>{asset.name}</h2><p>{packageData?"Your native package is saved.":"Import the native master to create its first saved revision."}</p><p className="studio-muted">{app?.editor.status==="verified"?"The browser editor is ready to connect.":`${app?.name}'s browser integration is being prepared.`}</p></div>}</div>}
+      {asset.app_id==="research"&&targetRevision?<ResearchNotebook ref={embeddedEditor} key={editorEpoch} initialRef={{assetId:asset.id,revisionId:targetRevision}} onState={setEditorState} onDirty={dirty=>{editorDirty.current=dirty;}} onSaved={editorSaved} onRequest={()=>{window.open(`${employeesHref}&view=jobs`,"_blank","noopener");}}/>:editorUrl&&targetRevision?<EmbeddedEditor ref={embeddedEditor} onLibraryChanged={()=>{void reload().catch(error=>setError(error.message));}} onState={setEditorState} key={editorEpoch} projectId={projectId} initialRef={{assetId:asset.id,revisionId:targetRevision}} bundleUrl={editorUrl} readOnly={app?.editor.mode==="readOnly"} name={app?.name??"Creative"} onSaved={editorSaved} onDirty={dirty=>{editorDirty.current=dirty;}}/>:!canOpenAsset?<div className="asset-native-placeholder"><AppIcon app={app}/><h2>{asset.name}</h2><p className="studio-muted">{mailcraftLinked === null ? "Checking connected mail…" : <Link href="/dashboard/profile">{MAILCRAFT_LOCKED}</Link>}</p></div>:opening?<p role="status" className="studio-empty">Opening the native package…</p>:<div className="asset-preview">{sourceMedia&&<div className="source-import-note"><strong>{asset.name}</strong><p>Saved as reusable source media. Use Place from studio in a compatible Craft to add it to your work.</p><a href={savedFileUrl(revisionId!,packageData?.files.find(file=>file.role==="master")?.path??preview?.path??"")}>Download original</a></div>}{preview?.mimeType.startsWith("image/")?<SavedMedia key={`${revisionId}:${preview.path}`} revisionId={revisionId!} file={preview} name={asset.name}/>:preview&&(preview.mimeType.startsWith("video/")||preview.mimeType.startsWith("audio/"))?<SavedMedia key={`${revisionId}:${preview.path}`} revisionId={revisionId!} file={preview} name={asset.name}/>:<div className="asset-native-placeholder"><AppIcon app={app}/><h2>{asset.name}</h2><p>{packageData?"Your native package is saved.":"Import the native master to create its first saved revision."}</p><p className="studio-muted">{app?.editor.status==="verified"?"The browser editor is ready to connect.":`${app?.name}'s browser integration is being prepared.`}</p></div>}</div>}
       {fileDetails&&<StudioDialog title="Files & revisions." eyebrow={asset.name} close={()=>{setFileDetails(false);setHistory(false);}} returnFocusRef={documentMenuButton}>{assetDetails}</StudioDialog>}
     </>}</section>
     </div>
