@@ -36,7 +36,7 @@ function ProjectEmployees({project,initialAssetId="",initialRevisionId="",initia
     window.history.replaceState(null,"",`/dashboard/projects/${project.id}/employees${params.size?`?${params}`:""}`);
   }
   return <div className="studio-page employees-page">
-    <header className="studio-page-heading"><div><span className="studio-eyebrow">YOUR CREATIVE COLLABORATOR</span><h1>Robyn.</h1><p>Share an idea. Follow the work. Review every saved revision.</p></div><div className="studio-action-row"><ResearchBrowserButton projectId={project.id}/><Link href={`/dashboard/projects/${project.id}/settings#studio-budget`} className="studio-button">Manage AI allowance <ArrowUpRight size={15}/></Link></div></header>
+    <header className="studio-page-heading"><div><span className="studio-eyebrow">YOUR CREATIVE COLLABORATOR</span><h1>Robyn.</h1><p>Share an idea. Follow the work. Review every saved revision.</p></div><div className="studio-action-row"><ResearchBrowserButton projectId={project.id}/><Link href="/dashboard/settings#studio-budget" className="studio-button">Manage AI allowance <ArrowUpRight size={15}/></Link></div></header>
     <div className="employees-toolbar"><nav className="employees-views" aria-label="Robyn workspace">{views.map(name=><button key={name} aria-pressed={view===name} onClick={()=>navigate(selection,name)}>{name}</button>)}</nav></div>
     {view==="Skills"?<SkillsDirectory/>:<EmployeeProject key={`${selection.assetId}:${selection.revisionId}`} project={project} selection={selection} view={view} clearInput={()=>navigate({...selection,assetId:"",revisionId:""})}/>}
   </div>;

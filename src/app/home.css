@@ -97,7 +97,8 @@ html:has(.craft-lightbox[open]) { overflow: hidden; }
 .flight-link:hover svg { transform: translate(3px,3px); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 4px 24px; margin-top: 18px; }
 .hero-actions .flight-link { gap: 14px; margin-top: 0; }
-.hero-invite:hover svg { transform: translate(3px,-3px); }
+.hero-invite:hover svg { transform: translateY(3px); }
+.hero-follow:hover svg { transform: translateX(3px); }
 .mobile-tour-select { display: none; }
 .craft-details { display: flex; flex-wrap: wrap; gap: 9px 14px; margin-top: 30px; max-width: 350px; }
 .craft-details > span { font: 9px/1.5 "Courier New",monospace; letter-spacing: .02em; }

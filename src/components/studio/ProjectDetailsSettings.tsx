@@ -1,6 +1,6 @@
 "use client";
 
-import {useState} from "react";
+import {useEffect,useState} from "react";
 import {apiFetch} from "@/lib/api";
 import type {ProjectSummary} from "@/studio/assets";
 import type {ProjectSectionDetails} from "./ProjectSection";
@@ -8,6 +8,15 @@ import type {ProjectSectionDetails} from "./ProjectSection";
 export function ProjectDetailsSettings({project,onProjectChange}:{project:ProjectSummary}&Pick<ProjectSectionDetails,"onProjectChange">) {
   const [name,setName]=useState(project.name),[brief,setBrief]=useState(project.brief);
   const [busy,setBusy]=useState<"save"|"status"|null>(null),[error,setError]=useState(""),[notice,setNotice]=useState("");
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash === "#project-details") {
+      document.getElementById("project-details")?.scrollIntoView();
+    } else if (hash === "#studio-budget" || hash === "#external-mcp") {
+      window.location.replace(`/dashboard/settings${hash}`);
+    }
+  }, []);
 
   async function save(event:React.FormEvent){
     event.preventDefault();if(busy||!name.trim())return;

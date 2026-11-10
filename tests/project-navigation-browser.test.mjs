@@ -96,8 +96,7 @@ test('the shared Studio menu navigates in the same tab with unsaved-work protect
     assert.ok(requests.length>4);assert.ok(requests.every(row=>new URLSearchParams(row.search).get('projectId')===projectId));
     const controls=requests.filter(row=>['take','return'].includes(row.input?.action));assert.equal(controls.length,2);assert.equal(controls[0].input.controlId,controls[1].input.controlId);
     await selectStudioMenuItem(tools,'Settings');
-    await tools.getByLabel('Studio name',{exact:true}).waitFor();
-    assert.equal(await tools.getByRole('link',{name:'Manage connected mail',exact:true}).getAttribute('href'),'/dashboard/settings#connected-mail');
+    await tools.getByLabel('Project name',{exact:true}).waitFor();
     await inspectMenu(page,'Settings',true);
     for(const width of [1440,1200]){
       await tools.setViewportSize({width,height:960});
@@ -106,7 +105,9 @@ test('the shared Studio menu navigates in the same tab with unsaved-work protect
     }
     await selectStudioMenuItem(tools,'Robyn');
     await tools.getByLabel('Your idea',{exact:true}).waitFor();
-    assert.equal(await tools.getByRole('link',{name:'Manage AI allowance',exact:true}).getAttribute('href'),`/dashboard/projects/${projectId}/settings#studio-budget`);
+    await tools.getByRole('link',{name:'Manage AI allowance',exact:true}).click();
+    await tools.waitForURL(`${origin}/dashboard/settings#studio-budget`);
+    await tools.getByLabel('Monthly AI allowance (USD)',{exact:true}).waitFor();
     assert.equal(state.assignments.size,0);
     assert.equal(page.context().pages().length,1);assert.deepEqual(state.errors,[]);
   }finally{await browser.close();}
