@@ -2,7 +2,7 @@
 
 Updated November 10, 2026 (Toronto). This page indexes recorded release evidence and remaining gaps. [Architecture and scope](ARCHITECTURE.md) describes the current system. [Operations](OPERATIONS.md) owns recovery procedures. Documentation maintenance does not imply a new deployment or a fresh live check. Earlier release summaries and the R01–R18 review are in the [archive](archive/README.md).
 
-The [November 10 production naming backfill](acceptance/studio-names-production-20261110.json) personalized the existing default studio names and confirmed matching Agent37 labels. It was a data change with no web or workstation release.
+The [November 10 studio naming release](acceptance/studio-naming-deployed-20261110.json) applied migration **0037** and deployed email-derived studio defaults and Agent37 label sync. All six live workstation labels matched their studios during verification. The earlier [production backfill](acceptance/studio-names-production-20261110.json) records the names updated before the web release.
 
 ## Connected mail, deployed November 10
 
