@@ -7,8 +7,15 @@ import { InvitationForm } from "./InvitationForm";
 import { craftTour, studioTour, registeredCraftCount, upcomingCrafts } from "./craft-tour";
 import { CraftArtwork } from "./CraftArtwork";
 import { AppIcon } from "@/components/studio/AppIcon";
+import { STUDIO_GROUPS } from "@/studio/manifest";
 
-const chapters = [{ id: "an-idea", label: "Meet Robyn" }, ...studioTour.map(app => ({ id: app.id, label: app.name })), { id: "invitation", label: "Your invitation" }];
+const introChapter = { id: "an-idea", label: "Meet Robyn", number: 0 };
+const craftChapters = studioTour.map((app, index) => ({ id: app.id, label: app.name, studio: app.studio, number: index + 1 }));
+const invitationChapter = { id: "invitation", label: "Your invitation", number: studioTour.length + 1 };
+const chapters = [introChapter, ...craftChapters, invitationChapter];
+const tourGroups = STUDIO_GROUPS.map(name => ({ name, chapters: craftChapters.filter(chapter => chapter.studio === name) }))
+  .filter(group => group.chapters.length > 0);
+const chapterOption = ({ id, label, number }: typeof introChapter) => <option key={id} value={id}>{String(number).padStart(2, "0")} / {label}</option>;
 
 export function FlightStory() {
   const storyRef = useRef<HTMLElement>(null);
@@ -59,25 +66,30 @@ export function FlightStory() {
       </div>
       <div className="bird-caption" aria-hidden="true"><span className="bird-caption-number">{String(Math.min(chapter, studioTour.length)).padStart(2, "0")}</span><div><span>{currentApp ? `ROBYN × ${currentApp.name}` : chapter === 0 ? "YOUR IMAGINATION. ONE CREATIVE COLLABORATOR." : "A LITTLE ROOM FOR YOUR NEXT BIG IDEA."}</span><small>{currentApp ? currentApp.tagline : "One Robyn. Real creative tools. Your direction."}</small></div></div>
       <div className="flight-controls">
-        <nav aria-label="Creative tools">{chapters.map((item, i) => <a key={item.id} href={`#${item.id}`} aria-label={`${String(i).padStart(2, "0")} ${item.label}`} aria-current={chapter === i ? "step" : undefined} title={item.label}><span>{i === chapters.length - 1 ? "↗" : String(i).padStart(2, "0")}</span></a>)}</nav>
+        <nav aria-label="Craft tour">{chapters.map((item, i) => <a key={item.id} href={`#${item.id}`} aria-label={`${String(i).padStart(2, "0")} ${item.label}`} aria-current={chapter === i ? "step" : undefined} title={item.label}><span>{i === chapters.length - 1 ? "↗" : String(i).padStart(2, "0")}</span></a>)}</nav>
         <label className="mobile-tour-select"><span>FOLLOW THE BIRD</span><select aria-label="Choose a studio chapter" value={chapters[chapter].id} onChange={event => {
           const target = document.getElementById(event.target.value);
           target?.scrollIntoView({ behavior: reduced ? "instant" : "smooth", block: "start" });
           window.history.replaceState(null, "", `#${event.target.value}`);
-        }}>{chapters.map((item, i) => <option key={item.id} value={item.id}>{String(i).padStart(2, "0")} / {item.label}</option>)}</select></label>
+        }}>{chapterOption(introChapter)}{tourGroups.map(group => <optgroup key={group.name} label={group.name}>{group.chapters.map(chapterOption)}</optgroup>)}{chapterOption(invitationChapter)}</select></label>
         <span className="tour-progress">{chapters[chapter].label}</span>
       </div>
     </div>
     <svg className="craft-ink-filter" width="0" height="0" aria-hidden="true"><defs><filter id="craft-paper-ink" colorInterpolationFilters="sRGB"><feColorMatrix type="saturate" values="0" /><feComponentTransfer><feFuncR type="linear" slope=".808" intercept=".106" /><feFuncG type="linear" slope=".745" intercept=".165" /><feFuncB type="linear" slope=".737" intercept=".125" /></feComponentTransfer></filter></defs></svg>
     <div className="flight-panels">
       <section className="flight-chapter chapter-idea" id="an-idea" aria-labelledby="idea-heading">
-        <div className="chapter-copy"><span className="flight-kicker">AN AI CREATIVE STUDIO WITH A MIND OF YOUR OWN.</span><h1 id="idea-heading">Ideas<br />have<br /><em>wings.</em><svg className="heading-star" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M20 0v40M0 20h40M6 6l28 28M6 34L34 6" /></svg></h1><p>One Robyn. {registeredCraftCount} Crafts.<br />{upcomingCrafts.length > 0 && <>{craftTour.length} ready. {upcomingCrafts.map(app => app.name).join(", ")} coming soon.<br /></>}Research with browser tools and Brave Search.<br />A world of your making.</p><a className="flight-link" href={`#${studioTour[0].id}`}>Follow the bird <ArrowDownRight size={21} /></a><a className="hero-invite" href="#invitation">Request an invite <ArrowUpRight size={14} /></a><span className="desktop-note"><Monitor size={14} aria-hidden="true" /> A desktop studio. Explore it anywhere.</span></div>
+        <div className="chapter-copy">
+          <span className="flight-kicker">AN AI CREATIVE STUDIO WITH A MIND OF YOUR OWN.</span><h1 id="idea-heading">Ideas<br />have<br /><em>wings.</em><svg className="heading-star" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M20 0v40M0 20h40M6 6l28 28M6 34L34 6" /></svg></h1>
+          <p>One Robyn. {registeredCraftCount} Crafts.<br />{upcomingCrafts.length > 0 && <>{craftTour.length} ready. {upcomingCrafts.map(app => app.name).join(", ")} coming soon.<br /></>}A world of your making.</p>
+          <nav className="craft-group-links" aria-label="Craft groups">{tourGroups.map(group => <a key={group.name} href={`#${group.chapters[0].id}`}>{group.name}</a>)}</nav>
+          <a className="flight-link" href={`#${studioTour[0].id}`}>Follow the bird <ArrowDownRight size={21} /></a><a className="hero-invite" href="#invitation">Request an invite <ArrowUpRight size={14} /></a><span className="desktop-note"><Monitor size={14} aria-hidden="true" /> A desktop studio. Explore it anywhere.</span>
+        </div>
         <span className="hero-marginal">ONE COLLABORATOR / EVERY CREATIVE TOOL</span>
       </section>
       {studioTour.map((app, i) => <section key={app.id} className="flight-chapter craft-chapter" id={app.id} aria-labelledby={`${app.id}-heading`}>
         <div className="chapter-copy">
           <span className="flight-kicker">
-            {String(i + 1).padStart(2, "0")} / ROBYN <span>× <AppIcon app={app} loading="lazy" />{app.name}</span>
+            {String(i + 1).padStart(2, "0")} / {app.studio?.toUpperCase()} <span><AppIcon app={app} loading="lazy" />{app.name}</span>
           </span>
           <h2 id={`${app.id}-heading`}>{app.story.lines.join(" ")}<br /><em>{app.story.accent}</em></h2>
           <p>{app.story.copy}</p>

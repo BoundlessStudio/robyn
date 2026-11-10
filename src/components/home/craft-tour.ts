@@ -31,6 +31,7 @@ const stories: Record<string, { lines: string[]; accent: string; copy: string; d
   plancraft: { lines: ["Give an idea"], accent: "a plan.", copy: "Connect tasks, people and milestones in PlanCraft. Explore the schedule with Robyn, then keep shaping the path from an idea to its next achievement.", details: ["PROJECT PLANNING", "GANTT CHARTS", "RESOURCES & MILESTONES"] },
   geocraft: { lines: ["Find the story"], accent: "in a place.", copy: "Explore maps, layers and spatial relationships with Robyn in GeoCraft. Keep the source data, attributes and native project ready for your next discovery.", details: ["MAPS & CARTOGRAPHY", "SPATIAL ANALYSIS", "EDITABLE GIS PROJECTS"] },
   ledgercraft: { lines: ["Keep your books"], accent: "in balance.", copy: "Work through invoices, bills and bank reconciliation with Robyn in LedgerCraft. Explore the financial reports, then keep the company file ready to review and continue.", details: ["BOOKKEEPING & INVOICES", "BANK RECONCILIATION", "EDITABLE COMPANY FILES"] },
+  mailcraft: { lines: ["Keep up with"], accent: "what comes in.", copy: "Read mail from a connected Gmail or Microsoft 365 account in MailCraft. Browse contacts and calendars where your connection allows, or work with a portable mailbox file in your project.", details: ["CONNECTED MAIL", "CONTACTS & CALENDAR", "PORTABLE MAILBOXES"] },
   scriptcraft: { lines: ["Write your"], accent: "next scene.", copy: "Draft a screenplay in ScriptCraft. Navigate scenes, revise dialogue and keep an editable Final Draft or Fountain file.", details: ["SCREENWRITING", "SCENES & DIALOGUE", "FINAL DRAFT & FOUNTAIN"] },
   flarecraft: { lines: ["Draw and animate"], accent: "on the stage.", copy: "Draw vector artwork in AniCraft, organize layers and symbols, and work with keyframes on the timeline.", details: ["2D ANIMATION", "VECTOR DRAWING", "LAYERS & TIMELINES"] },
   pcbcraft: { lines: ["Design a circuit"], accent: "from the schematic.", copy: "Place components, wire a schematic and develop the PCB layout in the same editable PCBCraft project.", details: ["CIRCUIT SCHEMATICS", "PCB LAYOUT", "PACKED PROJECTS"] },
@@ -53,7 +54,9 @@ const order = [
   // Analysis
   "wordcraft", "gridcraft", "deckcraft", "pdfcraft",
   "datacraft", "matcraft", "dashcraft", "geocraft",
-  "plancraft", "ledgercraft",
+
+  // Operations
+  "plancraft", "ledgercraft", "mailcraft",
 ];
 const studioPositions = new Map<StudioAppManifest["studio"], number>(STUDIO_GROUPS.map((studio, index) => [studio, index]));
 const craftPositions = new Map(order.map((id, index) => [id, index]));

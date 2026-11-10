@@ -12,4 +12,6 @@ The twelve additional Crafts have matching engraved animal illustrations generat
 
 The owner reported background fringes and dark holes in the generated tiles. Sixteen affected assets were repaired with the built-in `image_gen` tool on October 31: the four older WordCraft, DeckCraft, GridCraft and CADCraft illustrations and all twelve additions. Their backgrounds are opaque throughout the tile; a clean 22% rounded-corner mask confines transparency to the outside corners. This fixes the image files themselves, including use outside the web component. `sources.json` retains the previous generation prompts and hashes. The shared component versions image URLs by content hash so a changed asset refreshes cached artwork.
 
+MailCraft uses an engraved homing pigeon carrying a letter, generated with the built-in `image_gen` tool and encoded as an opaque 256 × 256 WebP on steel blue. `sources.json` retains the original upstream icon and MIT attribution under the new asset's previous versions.
+
 The shared `src/components/studio/AppIcon.tsx` renders these assets locally. Adjacent application or file names provide accessible labels; icon images are decorative. Published editor packages, native starters and workstation pins are independent of these interface assets.

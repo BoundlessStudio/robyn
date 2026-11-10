@@ -1,5 +1,6 @@
 import { studioApps } from "@/studio/apps/registry";
-import { isAppReady } from "@/studio/manifest";
+import { isAppReady, STUDIO_GROUPS } from "@/studio/manifest";
+import { studioGroupList } from "@/studio/studios";
 
 const upcomingCrafts = studioApps.filter(app => !isAppReady(app));
 const comingSoon = upcomingCrafts.length ? ` ${upcomingCrafts.map(app => app.name).join(", ")} coming soon.` : "";
@@ -12,7 +13,7 @@ export const branding = {
   logoUrl: "/brand/robin-icon.svg",
   siteUrl: "https://robyn.academy",
   title: "Robyn — Ideas have wings. | AI Creative Studio",
-  description: `Give your ideas wings with Robyn: ${studioApps.length} Crafts, browser tools and Brave Search in one desktop AI creative studio.${comingSoon}`,
-  socialImage: `/brand/robyn-social.png?v=${studioApps.length}-${studioApps.length - upcomingCrafts.length}`,
-  socialImageAlt: `Robyn — Ideas have wings. An orange-breasted ASCII robin on warm paper. One Robyn, ${studioApps.length} Crafts.${comingSoon}`,
+  description: `Robyn is a desktop AI creative studio with ${studioApps.length} Crafts across ${studioGroupList}, including PlanCraft, LedgerCraft, and MailCraft.${comingSoon}`,
+  socialImage: `/brand/robyn-social.png?v=${studioApps.length}-${studioApps.length - upcomingCrafts.length}-${STUDIO_GROUPS.length}`,
+  socialImageAlt: `Robyn — Ideas have wings. An orange-breasted ASCII robin on warm paper. One Robyn, ${studioApps.length} Crafts across ${studioGroupList}.${comingSoon}`,
 } as const;

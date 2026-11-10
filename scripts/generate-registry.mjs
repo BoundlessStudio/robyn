@@ -1,10 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { STUDIO_GROUPS } from "../src/studio/studio-groups.mjs";
 
 export function validateManifest(app) {
   if (!/^[a-z][a-z0-9-]*$/.test(app.id ?? "")) throw new Error("Invalid application ID");
-  if (!["Creative", "Drafting", "Analysis"].includes(app.studio)) throw new Error(app.id + ": invalid studio");
+  if (!STUDIO_GROUPS.includes(app.studio)) throw new Error(app.id + ": invalid studio");
   for (const field of ["name", "category", "monogram", "artwork", "tagline", "version", "sourceUrl"]) {
     if (typeof app[field] !== "string" || !app[field].trim()) throw new Error(app.id + ": missing " + field);
   }

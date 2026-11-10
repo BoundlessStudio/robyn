@@ -73,6 +73,13 @@ try{
           assert.deepEqual(violations,[],`${name} ${path} at ${viewport.width}px`);
           assert.equal(entry.horizontalOverflow,false,`${name} ${path}: horizontal overflow`);
           if(!keyboardLimitation)assert.equal(keyboardFocus,true,`${name} ${path}: keyboard focus must be visible`);
+          if (path === '/') {
+            await page.goto(`${origin}/#mailcraft`);
+            const capture = page.getByRole('button', { name: 'Explore the MailCraft interface' }).locator('img');
+            await capture.waitFor({ timeout: 10000 });
+            await capture.evaluate(image => image.decode());
+            if (output) await page.screenshot({ path: resolve(output, `${name}-${viewport.width}-mailcraft.png`) });
+          }
           assert.deepEqual(pageErrors,[]);
           await context.close();
         }
