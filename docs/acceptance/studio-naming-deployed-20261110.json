@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-10",
+  "scope": "Email-derived studio defaults and Agent37 label synchronization.",
+  "pullRequest": "https://github.com/BoundlessStudio/robyn/pull/94",
+  "testedCommit": "75adab16c12c39aac779f8f761bc773ae4e3d33d",
+  "webCommit": "f91e20afb78281acf0764259f60c7e87455f9df7",
+  "runtimeCommit": "8b512e2071307d9785d3c1e80c26792435179cfa",
+  "workstationImage": {
+    "template": "robyn-studio-0-9-0@1",
+    "digest": "sha256:2aab4b59baf30b1d1568c9d7f13cd62201f23bcf315964ccf7713af870a66eee"
+  },
+  "workstationClients": {
+    "standard": "0.15.0",
+    "mail": "0.16.0",
+    "mailcraft": "0.17.0"
+  },
+  "editorPins": {
+    "count": 34,
+    "sha256": "a376ec24d89790dd7083dd65efde32d616519ea293975471608268f6c53533de",
+    "digestInput": "JSON array of [app ID, editor object] pairs ordered by application manifest filename."
+  },
+  "migration": {
+    "file": "0037_studio_names.sql",
+    "sha256": "a12c1af1361db384ea47398098b6e86023047d30bdab772ed9137add44bd49f7",
+    "executionSqlSha256": "7b20397af54e64c988bc850bb18f6a15c070b6a2dfb1cd6f9925dfcfaafe86a0",
+    "method": "Supabase SQL Editor using the shared migration ledger lock and exact prefix checksum.",
+    "priorLedgerEntries": 37,
+    "priorLedgerHead": "0036_external_mcp_mailboxes.sql",
+    "priorLedgerSha256": "91e88bc5ca75b8312a7e0063a6b5447c47efe92020ecc6d29cb3fcdc006bf32a",
+    "verifiedLedgerEntries": 38,
+    "verifiedLedgerSha256": "71444a7103743dca770b41f7bf628164e19532abdfb0744650e5e03e5e838e11",
+    "digestInput": "Ordered filename:checksum entries joined by LF without a trailing LF.",
+    "newStudioNameVerifiedInRollbackTest": true,
+    "customNamePreservationVerifiedInRollbackTest": true,
+    "privateGrantsVerified": true,
+    "syntheticRecordsRolledBack": true
+  },
+  "deployment": {
+    "url": "https://vercel.com/venatio-studios/robyn-creative-studio/Dhpy6zf9oRjrrLHrY78QhpGDSksh",
+    "productionDomain": "https://robyn.academy",
+    "status": "Ready and serving the production domain"
+  },
+  "verification": {
+    "localTestsPassed": 281,
+    "localTypecheck": "success",
+    "previewBuild": "success",
+    "branchChecksAtMerge": "Both hosted branch jobs were in Playwright setup.",
+    "productionCommitRun": "https://github.com/BoundlessStudio/robyn/actions/runs/42823102126",
+    "productionCommitCi": "success",
+    "siteStatus": 200,
+    "anonymousStudioSettingsStatus": 401,
+    "publicSignupDisabled": true,
+    "studios": 6,
+    "workstations": 6,
+    "labelsMatched": 6,
+    "supportedPins": 6
+  }
+}
