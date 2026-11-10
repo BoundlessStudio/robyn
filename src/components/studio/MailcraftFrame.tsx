@@ -12,7 +12,7 @@ export function MailcraftFrame({ bundle, connection }: { bundle: string; connect
   useEffect(() => {
     const url = new URL(bundle);
     const origin = url.origin;
-    if (origin === window.location.origin) return;
+    if (connection.status !== "active" || origin === window.location.origin) return;
     const channel = crypto.randomUUID();
     url.hash = new URLSearchParams({ channel, parentOrigin: window.location.origin, mailcraft: connection.provider }).toString();
     const controller = new AbortController();
@@ -42,7 +42,7 @@ export function MailcraftFrame({ bundle, connection }: { bundle: string; connect
     window.addEventListener("message", receive);
     setSrc(url.href);
     return () => { controller.abort(); window.removeEventListener("message", receive); };
-  }, [bundle, connection.id, connection.provider]);
+  }, [bundle, connection.id, connection.provider, connection.status]);
 
   return <div className="embedded-editor">
     {src && <iframe ref={frame} src={src} title="Connected MailCraft" sandbox="allow-scripts allow-same-origin" referrerPolicy="no-referrer" />}

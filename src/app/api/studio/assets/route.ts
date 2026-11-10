@@ -1,5 +1,6 @@
 import { json, handleError, ApiError } from "@/lib/http";
 import { requireStudio, readStudioBody, textField, appFor, id, ownedProject, dbFailure, withAssetPreviews } from "@/studio/server";
+import { requireMailcraftAccess } from "@/studio/connected-mail-server";
 import { readPage, pageFilter, finishPage, literalSearch } from "@/studio/pagination";
 
 export async function GET(request: Request) {
@@ -34,6 +35,7 @@ export async function POST(request: Request) {
     const projectId = id(input.projectId);
     await ownedProject(db, workspaceId, projectId);
     const app = appFor(input.appId);
+    await requireMailcraftAccess(db, workspaceId, app.id);
     const name = textField(input.name, 160, "Asset name");
     // A client-generated ID makes Save As / Copy retries safe after a lost reply.
     // It never grants access to an existing asset from another studio.

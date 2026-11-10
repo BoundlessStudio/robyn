@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import { apiFetch } from "@/lib/api";
 import { createClient } from "@/lib/supabase/client";
 import { useWorkspace } from "@/components/WorkspaceProvider";
-import { mailConnectionLabel, mailProviders, type MailConnection, type MailConnectionList, type MailProvider } from "@/studio/connected-mail";
+import { hasActiveMailbox, MAILCRAFT_LOCKED, mailConnectionLabel, mailProviders, type MailConnection, type MailConnectionList, type MailProvider } from "@/studio/connected-mail";
 
 import { MailcraftFrame } from "./MailcraftFrame";
 
@@ -16,7 +16,7 @@ const providers = Object.keys(mailProviders) as MailProvider[];
 export function StudioProfile({ mailcraftBundle = null }: { mailcraftBundle?: string | null } = {}) {
   const { userEmail } = useWorkspace();
   const [state, setState] = useState<MailConnectionList | null>(null);
-  const [opened, setOpened] = useState<MailConnection | null>(null);
+  const [openedId, setOpenedId] = useState<string | null>(null);
   const [busy, setBusy] = useState("");
   const [error, setError] = useState("");
 
@@ -66,8 +66,9 @@ export function StudioProfile({ mailcraftBundle = null }: { mailcraftBundle?: st
     else window.location.assign("/login");
   }
 
+  const opened = state?.connections.find(connection => connection.id === openedId && connection.status === "active");
   if (opened && mailcraftBundle) return <div className="studio-page">
-    <button type="button" className="studio-button" onClick={() => setOpened(null)}>Back to Profile</button>
+    <button type="button" className="studio-button" onClick={() => setOpenedId(null)}>Back to Profile</button>
     <MailcraftFrame key={opened.id} bundle={mailcraftBundle} connection={opened} />
   </div>;
 
@@ -89,12 +90,12 @@ export function StudioProfile({ mailcraftBundle = null }: { mailcraftBundle?: st
         {state && !state.workstationReady && <p className="studio-note">
           Your shared workstation starts with your first brief. Once it’s ready, return here to connect mail. <Link href="/dashboard">Open Projects</Link>
         </p>}
-        {mailcraftBundle && state?.workstationReady && !state.connections.some(connection => connection.status === "active")
-          && <p className="studio-mail-message">Connect Gmail or Microsoft 365 to open MailCraft.</p>}
+        {mailcraftBundle && state?.workstationReady && !hasActiveMailbox(state.connections)
+          && <p className="studio-mail-message">{MAILCRAFT_LOCKED}</p>}
         {state?.workstationReady && <div className="studio-mail-grid">
           {providers.map(provider => <MailProviderCard key={provider} provider={provider} busy={busy}
             connections={state.connections.filter(connection => connection.provider === provider)}
-            openMailcraft={mailcraftBundle ? setOpened : undefined}
+            openMailcraft={mailcraftBundle ? connection => setOpenedId(connection.id) : undefined}
             connect={() => void change(provider, { action: "connect", provider })}
             disconnect={connectionId => void change(connectionId, { action: "disconnect", connectionId })} />)}
         </div>}

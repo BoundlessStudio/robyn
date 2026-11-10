@@ -23,6 +23,7 @@ async function credentialBoundary(run){
       'node:fs/promises':"import path from 'node:path';export const readFile=async file=>{const bytes=globalThis.__taskCredentialBoundary.files[path.basename(file)];if(!bytes)throw Error('Unexpected artifact');return bytes;};",
       './workstation-release.json':'export default globalThis.__taskCredentialBoundary.release;',
       './workstation-mail-release.json':'export default {...globalThis.__taskCredentialBoundary.release,version:"0.16.0"};',
+      './workstation-mailcraft-release.json':'export default {...globalThis.__taskCredentialBoundary.release,version:"0.17.0"};',
       './connected-mail-server':'export const assignmentMailbox=async()=>globalThis.__taskCredentialBoundary.mailbox;',
       './workstation-image.json':`export default {template:'robyn-studio-0-1-0@1',release:'sha256:${'a'.repeat(64)}'};`,
       './employee-auth':`import {createHash} from 'node:crypto';export const hashEmployeeToken=value=>createHash('sha256').update(value).digest('hex');export const issueEmployeeToken=async(_db,assignmentId,instanceId,binding)=>{const s=globalThis.__taskCredentialBoundary;s.issued.push({assignmentId,instanceId,binding});return s.token;};`,

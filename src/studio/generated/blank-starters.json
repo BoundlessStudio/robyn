@@ -1,5 +1,21 @@
 [
   {
+    "id": "mailcraft:13",
+    "appId": "mailcraft",
+    "name": "Untitled mailbox",
+    "description": "Empty portable mailbox",
+    "files": [
+      {
+        "path": "Untitled mailbox.mailcraft",
+        "role": "master",
+        "mimeType": "application/octet-stream",
+        "bytes": 1070,
+        "sha256": "141b9acfc76805227a5e0a1dfbb9a4f77a354931f9a88113f87514229266e3cb",
+        "url": "/studio/starters/13/mailcraft/Untitled%20mailbox.mailcraft"
+      }
+    ]
+  },
+  {
     "id": "pixelcraft:12",
     "appId": "pixelcraft",
     "name": "Untitled sprite",

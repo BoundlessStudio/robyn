@@ -5,7 +5,9 @@ import path from "node:path";
 import { createHash } from "node:crypto";
 const args = process.argv.slice(2);
 const mail = args.includes("--mail");
-const source = path.resolve(args.find(arg => arg !== "--mail") ?? "../robyn-artcraft-runtime");
+const mailcraft = args.includes("--mailcraft");
+if (mail && mailcraft) throw Error("Choose one workstation client variant");
+const source = path.resolve(args.find(arg => !arg.startsWith("--")) ?? "../robyn-artcraft-runtime");
 const digest = bytes => createHash("sha256").update(bytes).digest("hex");
 const release = JSON.parse(await fs.readFile(path.join(source, "build/workstation/release.json"), "utf8"));
 if (!/^\d+\.\d+\.\d+$/.test(release.version)) throw Error("Invalid runtime release");
@@ -36,6 +38,7 @@ for (const [name, bytes] of files) {
   try { const old = await fs.readFile(destination); if (!old.equals(bytes)) throw Error("Immutable runtime release differs"); }
   catch (error) { if (error.code !== "ENOENT") throw error; await fs.writeFile(destination, bytes, { flag: "wx" }); }
 }
-await fs.writeFile(mail ? "src/studio/workstation-mail-release.json" : "src/studio/workstation-release.json",
+const variant = mail ? "-mail" : mailcraft ? "-mailcraft" : "";
+await fs.writeFile(`src/studio/workstation${variant}-release.json`,
   JSON.stringify({ version: release.version, directory, fingerprint, files: hashes }, null, 2) + "\n");
 console.log({ version: release.version, directory, files: files.size, fingerprint });

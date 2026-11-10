@@ -38,7 +38,8 @@ export async function POST(request: Request) {
     if (!isMailConnectionId(input.connectionId)) throw new ApiError(400, "mailcraft_invalid_connection", "Choose a connected mailbox in Profile.");
     const view = mailcraftRead(input.view);
     const instance = await ownedMailWorkstation(db, workspaceId);
-    if (!instance || instance.status !== "running") {
+    // Exec wakes a sleeping Agent37 instance after its grant is checked.
+    if (!instance || !["running", "sleeping"].includes(instance.status)) {
       throw new ApiError(409, "mailcraft_workstation_asleep", "Start your shared Robyn workstation before opening connected MailCraft.");
     }
     const connection = await requireActiveMailConnection(instance.id, input.connectionId);

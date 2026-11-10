@@ -7,8 +7,11 @@ import { assignmentRpc } from "@/studio/assignment-server";
 import { launchAssignment } from "@/studio/assignment-launch";
 import { paidCapacity } from "@/studio/paid-capacity";
 import type { Assignment, StudioEmployee } from "./assignments";
-import { isMailConnectionId, type AssignmentMailbox } from "./connected-mail";
-import { assignmentMailbox, ownedMailWorkstation, requireActiveMailConnection } from "./connected-mail-server";
+import { MAILCRAFT_LOCKED, isMailConnectionId, type AssignmentMailbox } from "./connected-mail";
+import { assignmentMailbox, linkedMailWorkstation, ownedMailWorkstation, requireActiveMailConnection } from "./connected-mail-server";
+import { matchingWorkstationRelease } from "./workstation-upgrades";
+
+const mailcraft = studioApps.find(app => app.id === "mailcraft");
 
 export async function submitRobynAssignment(
   { db, userId, workspaceId, grantId }: { db: DB; userId: string; workspaceId: string; grantId?: string },
@@ -51,6 +54,7 @@ export async function submitRobynAssignment(
   if(appId!==null&&!app)throw new ApiError(400,"invalid_application","Choose a Craft tool in this Studio.");
   if(app&&!existing&&!isEmployeeReady(app))throw new ApiError(409,"integration_pending","This application is still being verified. Your draft is preserved.");
   let mailbox: AssignmentMailbox | null = null;
+  let mailboxWorkstation: Awaited<ReturnType<typeof ownedMailWorkstation>> = null;
   if (existing) {
     mailbox = await assignmentMailbox(db, workspaceId, existing.id);
     if (mailbox?.connectionId !== mailConnectionId) {
@@ -61,9 +65,22 @@ export async function submitRobynAssignment(
     if (!instance || instance.id !== employee.instance_id) throw new ApiError(409, "mail_workstation_changed", "Robyn’s mail workstation is unavailable. Check Profile.");
     const connection = await requireActiveMailConnection(instance.id, mailConnectionId);
     mailbox = { instanceId: instance.id, connectionId: connection.id, provider: connection.provider };
+    mailboxWorkstation = instance;
+  }
+  let allowedApps = existing?.allowed_app_ids ?? studioApps.filter(isEmployeeReady).map(app => app.id);
+  if (!existing && mailcraft && allowedApps.includes("mailcraft")) {
+    const linked = mailboxWorkstation ?? await linkedMailWorkstation(db, workspaceId).catch(() => null);
+    const { template, release } = mailcraft.workstation;
+    if (!linked || !template || !release || !matchingWorkstationRelease(linked, { template, release })) {
+      if (appId === "mailcraft") {
+        if (!linked) throw new ApiError(409, "mailcraft_connection_required", MAILCRAFT_LOCKED);
+        throw new ApiError(409, "mailcraft_workstation_update_required", "MailCraft is available in Profile. Robyn’s workstation needs the MailCraft update before it can run native mailbox tasks.");
+      }
+      allowedApps = allowedApps.filter(id => id !== "mailcraft");
+    }
   }
   if(!existing||grantId){const capacity=await paidCapacity(db,employee);if(!capacity.availableMicros)throw new ApiError(409,capacity.code??"employee_budget_required",`${capacity.reason} Manage budget in Studio settings; your draft is preserved.`);}
-  const assignment = await assignmentRpc<Assignment>(db, grantId ? "create_studio_mcp_job" : "create_robyn_assignment_with_mail", { p_workspace: workspaceId, p_user: userId, ...(grantId ? { p_grant: grantId } : { p_mail: mailbox }), p_project: projectId, p_employee: employee.id, p_request: requestId, p_brief: brief, p_inputs: inputs, p_app:appId,p_allowed_apps:existing?.allowed_app_ids??studioApps.filter(isEmployeeReady).map(app=>app.id),p_mode:startMode });
+  const assignment = await assignmentRpc<Assignment>(db, grantId ? "create_studio_mcp_job" : "create_robyn_assignment_with_mail", { p_workspace: workspaceId, p_user: userId, ...(grantId ? { p_grant: grantId } : { p_mail: mailbox }), p_project: projectId, p_employee: employee.id, p_request: requestId, p_brief: brief, p_inputs: inputs, p_app:appId,p_allowed_apps:allowedApps,p_mode:startMode });
   await launchAssignment(db, { workspaceId, userId, assignmentId: assignment.id }, assignment);
   return { assignmentId: assignment.id, state: assignment.state };
 }
