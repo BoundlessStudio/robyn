@@ -149,6 +149,23 @@
 .studio-setting-section h2 { font-size:18px; margin-bottom:18px; letter-spacing:-.5px; }
 .studio-setting-section p,.studio-mcp-settings ol { font-size:12px; line-height:1.7; color:#aebca0; }
 .studio-setting-section .studio-button { margin-top:16px; }
+.studio-mail-header { display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:12px 20px; max-width:700px; }
+.studio-mail-header > div { flex:1 1 360px; }
+.studio-mail-header h2 { margin:0 0 6px; }
+.studio-mail-connections .studio-button { margin:0; }
+.studio-mail-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr)); gap:12px; max-width:700px; margin-top:16px; }
+.studio-mail-provider { display:flex; flex-direction:column; gap:12px; min-width:0; padding:16px; border:1px solid var(--studio-line); border-radius:8px; background:#201f1d; }
+.studio-mail-provider-heading { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:6px 12px; }
+.studio-mail-provider h3 { margin:0; font-size:14px; font-weight:600; }
+.studio-mail-status { display:inline-flex; align-items:center; gap:6px; padding:3px 8px; border:1px solid #4c4740; border-radius:999px; color:#c4b9ac; font-size:11px; }
+.studio-mail-status::before { content:""; width:6px; height:6px; border-radius:50%; background:currentColor; }
+.studio-mail-status[data-state="active"] { color:#bcdbab; border-color:#47613e; }
+.studio-mail-status[data-state="pending"],.studio-mail-status[data-state="unavailable"] { color:#e6c58e; border-color:#675434; }
+.studio-mail-accounts { display:grid; gap:8px; margin:0; padding:0; list-style:none; }
+.studio-mail-account,.studio-mail-actions { display:flex; align-items:center; flex-wrap:wrap; gap:8px; }
+.studio-mail-account > span { margin-inline-end:auto; font-size:11px; color:#b0a89b; }
+.studio-mail-actions { margin-top:auto; }
+.studio-mail-message { margin-top:12px; }
 .studio-mcp-settings { scroll-margin-top:110px; }
 .studio-mcp-settings h3 { font-size:14px; margin:20px 0 8px; }
 .studio-mcp-settings a { text-decoration:underline; text-underline-offset:3px; }
