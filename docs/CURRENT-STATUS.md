@@ -6,11 +6,11 @@ Updated November 10, 2026 (Toronto). This page indexes recorded release evidence
 
 Profile manages Gmail and Microsoft 365 on each creator's Agent37 workstation. Mail-enabled briefs select immutable client **0.16.0**. Migration **0035** stores private assignment grants and draft receipts. Both providers completed live Composio consent on an isolated Studio **0.8.0** Agent37 instance. Robyn's installed MCP client saved one synthetic draft per provider and read back both exact drafts through the Studio MCP route with an isolated migrated database. Both draft receipts were confirmed. The operator sent the two verified drafts with explicit authorization and confirmed their provider Sent records. Shared Chrome accepted keyboard input during takeover and blocked it before and after. Local fixtures cover lost acknowledgements and assignment access. The [production receipt](acceptance/connected-mail-deployed-20261110.json) records the paired commits, migration ledger and signed-in Profile verification.
 
-## MailCraft, verified November 10
+## MailCraft, deployed November 10
 
 MailCraft opens from an active Gmail or Microsoft 365 connection in Profile. The project launcher and server also require an active connection. The hosted editor uses the creator's Robyn session and the exact Agent37 Composio grant. Live views are read-only. Gmail mail and Microsoft 365 mail, People and Calendar passed. Google Contacts, Calendar and Tasks require separate Google grants. The existing Outlook grant denied Tasks.
 
-The hosted MailCraft adapter **0.1.0** confirmed a private-library save before the installed native app reopened and continued the same revision. Native mailbox tasks use **Studio 0.9.0** and immutable client **0.17.0**. The exact Studio **0.8.0** image remains supported for existing work during the phased update. The QA instance and both test connections were retired after the read and save checks. [Hosted canary](acceptance/mailcraft-hosted-20261110.json)
+The hosted MailCraft adapter **0.1.0** confirmed a private-library save before the installed native app reopened and continued the same revision. Native mailbox tasks use **Studio 0.9.0** and immutable client **0.17.0**. Three idle production workstations completed their in-place updates. One workstation with an active assignment uses the exact compatible Studio **0.8.0** image until its maintenance window. The QA instance and both test connections were retired after the read and save checks. [Hosted canary](acceptance/mailcraft-hosted-20261110.json) · [Production record](acceptance/mailcraft-production-20261110.json)
 
 ## PixelCraft, verified November 9
 
