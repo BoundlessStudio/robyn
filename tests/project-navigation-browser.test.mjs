@@ -148,7 +148,7 @@ test('Studio and project pages share one keyboard-accessible menu in the same he
         await trigger.focus();await page.keyboard.press('Enter');
         const menu = await assertOpenMenu(page,active,inProject);
         await page.keyboard.press('Escape');await menu.waitFor({state:'hidden'});
-        assert.equal(await trigger.evaluate(element=>element===document.activeElement),true);
+        await trigger.and(page.locator(':focus')).waitFor();
       }
     }
     await triggerFor(page).focus();await page.keyboard.press('Enter');
