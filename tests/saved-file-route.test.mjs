@@ -35,11 +35,10 @@ test("opaque library files download even when inline is requested",async()=>{
     export const requireStudio=async()=>({db:globalThis.__savedFileFixture,workspaceId:"workspace"});
     export const ownedRevision=async()=>({state:"committed"});
     export const dbFailure=error=>{if(error)throw error;};
-    export const revisionFiles=()=>[],mapInBatches=()=>[],verifyStoredFiles=()=>[];
   `;
   try{
     const {GET}=await loadModule("../../src/app/api/studio/revisions/[id]/file/route.ts",{
-      "server-only":"","@/lib/http":httpMock,"@/studio/server":server,"./server":server,
+      "@/lib/http":httpMock,"@/studio/server":server,
     });
     const open=(path,inline)=>GET(new Request(`https://studio.example/file?${new URLSearchParams({path,inline})}`),{params:Promise.resolve({id:"revision"})});
     assert.equal((await open("render.exr","1")).status,307);
