@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-10",
+  "scope": "Production assignment setup recovery and local native animation export verification.",
+  "setupFix": {
+    "pullRequest": "https://github.com/BoundlessStudio/robyn/pull/96",
+    "webCommit": "4e8ea49293cf512036b1dcca59924dc340690bc6",
+    "deploymentId": "dpl_3aoWuGeCorNu5ae1KEQ5yReEuFgC",
+    "runtimeClient": "0.16.0",
+    "runtimeCommit": "9c54cda288cb5ccbe552451e7ec6a7b66a277a8e",
+    "mainCi": "https://github.com/BoundlessStudio/robyn/actions/runs/42832481472",
+    "cause": "The 0.15.0 profile helper rejected the PixelCraft app ID during ordinary assignment setup.",
+    "oldHelperRejectedSavedScope": true,
+    "newHelperAcceptedSameScope": true,
+    "originalWorkflowCancelled": true,
+    "sameAssignmentAttemptSessionProfileAndGeneration": true,
+    "dispatchedFirstModelTurn": true,
+    "outcome": "failed",
+    "errorCode": "no_committed_deliverable",
+    "confirmedRevisions": 0,
+    "activeTaskCredentialsAfterFinish": 0,
+    "failedStagingFoldersRemoved": 1270,
+    "failedStagingBytesRemoved": 3101972460,
+    "preservedTaskWorkingFiles": true
+  },
+  "workstation": {
+    "template": "robyn-studio-0-8-0@1",
+    "imageDigest": "sha256:a8f6e65465cab1704b9a83aa5672c95e341abdf6c25985f7ecac75f51e7b9fad",
+    "sameInstance": true,
+    "restartedOrUpgraded": false
+  },
+  "editor": {
+    "adapterVersion": "0.1.0",
+    "release": "10cef86b9bb675fcef6cebc4fde9191a767a5f4412a38d297d593dd2df87305c",
+    "unchanged": true
+  },
+  "migrations": {
+    "changed": false,
+    "lastRecordedLedgerHead": "0037_studio_names.sql",
+    "lastRecordedLedgerEntries": 38,
+    "source": "studio-naming-deployed-20261110.json"
+  },
+  "animationExportFix": {
+    "runtimeSourceCommit": "a1315da526dd5d3539a33863c8ac8f405ed71c68",
+    "workstationClient": "0.18.0",
+    "bundleSha256": "47126392337e4b4aa086f0cc28eb4d2f91cc69aacf17d75a0b8d7efbd5b7aa23",
+    "localNativeSize": [48, 48],
+    "localNativeFrames": 2,
+    "reopenedEditableMaster": true,
+    "packagedPngAndLoopingGif": true,
+    "outsideTaskPathRejected": true,
+    "newProductionModelTurn": false
+  }
+}

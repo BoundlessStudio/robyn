@@ -5,8 +5,9 @@ import path from "node:path";
 import { createHash } from "node:crypto";
 const args = process.argv.slice(2);
 const mail = args.includes("--mail");
-const mailcraft = args.includes("--mailcraft");
-if (mail && mailcraft) throw Error("Choose one workstation client variant");
+const craftVariants = ["mailcraft", "pixelcraft"].filter(id => args.includes(`--${id}`));
+if (craftVariants.length + Number(mail) > 1) throw Error("Choose one workstation client variant");
+const [craft] = craftVariants;
 const source = path.resolve(args.find(arg => !arg.startsWith("--")) ?? "../robyn-artcraft-runtime");
 const digest = bytes => createHash("sha256").update(bytes).digest("hex");
 const release = JSON.parse(await fs.readFile(path.join(source, "build/workstation/release.json"), "utf8"));
@@ -21,16 +22,16 @@ if (!configuration.includes(`studio-mcp-v${release.version}.cjs`) && !configurat
 if (!mail) {
   for (const entry of (await fs.readdir("src/studio/apps")).filter(name => name.endsWith(".json")).sort()) {
     const app = JSON.parse(await fs.readFile(`src/studio/apps/${entry}`, "utf8"));
-    if (mailcraft && app.id !== "mailcraft") continue;
+    if (craft && app.id !== craft) continue;
     // Installed applications with pending editor/library adapters are catalog
     // entries, not supported capabilities of this immutable client release.
     if (app.formats.verification !== "verified" || app.editor.status !== "verified" || app.workstation.status !== "verified"
       || !app.editor.release || !app.editor.bundleUrl || !app.workstation.template || !app.workstation.release) continue;
     files.set(`skills/${app.id}.md`, await fs.readFile(path.join(source, `apps/${app.id}/SKILL.md`)));
   }
-  if (!mailcraft) files.set("skills/research.md", await fs.readFile(path.join(source, "apps/research/SKILL.md")));
+  if (!craft) files.set("skills/research.md", await fs.readFile(path.join(source, "apps/research/SKILL.md")));
 }
-if (mailcraft && !files.has("skills/mailcraft.md")) throw Error("MailCraft requires its exact verified application pins");
+if (craft && !files.has(`skills/${craft}.md`)) throw Error(`${craft} requires its exact verified application pins`);
 const hashes = Object.fromEntries([...files].map(([name, bytes]) => [name, { bytes: bytes.length, sha256: digest(bytes) }]));
 const fingerprint = digest(JSON.stringify(hashes));
 const directory = `vendor/robyn-workstation/${release.version}-${fingerprint.slice(0, 12)}`;
@@ -40,7 +41,7 @@ for (const [name, bytes] of files) {
   try { const old = await fs.readFile(destination); if (!old.equals(bytes)) throw Error("Immutable runtime release differs"); }
   catch (error) { if (error.code !== "ENOENT") throw error; await fs.writeFile(destination, bytes, { flag: "wx" }); }
 }
-const variant = mail ? "-mail" : mailcraft ? "-mailcraft" : "";
+const variant = mail ? "-mail" : craft ? `-${craft}` : "";
 await fs.writeFile(`src/studio/workstation${variant}-release.json`,
   JSON.stringify({ version: release.version, directory, fingerprint, files: hashes }, null, 2) + "\n");
 console.log({ version: release.version, directory, files: files.size, fingerprint });

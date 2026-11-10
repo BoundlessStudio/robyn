@@ -81,9 +81,9 @@ test('mail capability is pinned to this workstation and disabled for planning wr
 });
 
 test('the published profile helper accepts the full ordinary Robyn scope without a mailbox',async()=>{
-  await credentialBoundary(async({state,prepare})=>{
+  for (const mailcraft of [false, true]) await credentialBoundary(async({state,prepare})=>{
     state.assignment.app_id='pixelcraft';
-    state.assignment.allowed_app_ids=studioApps.filter(app=>isEmployeeReady(app)&&app.id!=='mailcraft').map(app=>app.id);
+    state.assignment.allowed_app_ids=studioApps.filter(app=>isEmployeeReady(app)&&(mailcraft||app.id!=='mailcraft')).map(app=>app.id);
     assert.ok(state.assignment.allowed_app_ids.includes('pixelcraft'));
     assert.equal(await prepare(),true);
     const uploaded=suffix=>state.uploads.find(item=>item.file.endsWith(suffix))?.bytes.toString();

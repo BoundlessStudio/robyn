@@ -1,0 +1,19 @@
+{
+  "version": "0.18.0",
+  "directory": "vendor/robyn-workstation/0.18.0-19ac70f24555",
+  "fingerprint": "19ac70f2455555fd1ff26c6045d21dbe319270cbe59be0f913ab376bdbb653e6",
+  "files": {
+    "studio-mcp.cjs": {
+      "bytes": 2358030,
+      "sha256": "47126392337e4b4aa086f0cc28eb4d2f91cc69aacf17d75a0b8d7efbd5b7aa23"
+    },
+    "configure-hermes.py": {
+      "bytes": 11962,
+      "sha256": "657bc3eb96d3f15aecd6038a41b35466e7a9cf23f694f33d094e62bc6fa224d0"
+    },
+    "skills/pixelcraft.md": {
+      "bytes": 2682,
+      "sha256": "5894fba665d2f395bcdc0b5d61fec1908e3397cc409206d74cd803db12b77d73"
+    }
+  }
+}
