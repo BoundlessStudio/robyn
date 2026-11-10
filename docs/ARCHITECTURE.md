@@ -10,7 +10,7 @@ The default studio name comes from the invited account’s email handle, without
 
 The authenticated studio, Crafts, Notes and Robyn's browser tools are desktop-only. First entry requires at least 1200 CSS pixels, a fine pointer and hover, with a keyboard and mouse intended. Explain the requirement before mounting an editor on an unsupported screen. Temporarily narrowing an already-open editor preserves its session and unsaved work. This presentation check does not replace authorization or establish graphics/codec support. The public homepage supports mobile presentation.
 
-The Robyn dropdown is shared across the Projects dashboard, Profile, Studio settings, and project pages. Inside a project it adds these destinations and highlights the current page.
+The Robyn dropdown is shared across the Projects dashboard, Studio settings, and project pages. Studio settings includes the account and connected mail. Inside a project it adds these destinations and highlights the current page.
 
 | Destination | Responsibility |
 | --- | --- |
@@ -76,7 +76,7 @@ One production job owns a workspace at a time. Its own fenced media child may ru
 
 Freeze each task's revocable credential, allowed application IDs, claimed generation, internal Hermes profile, work folder and transfer folder. Persist workflow, assignment, attempt, session and response identities. A new task cannot adopt another task's configuration or response, and an old process cannot broaden its capability. Historical pending requests retain their original bodies. Reconcile an interrupted or unknown dispatch before retrying; elapsed time does not authorize another external action.
 
-Profile manages Gmail and Microsoft 365 through the canonical workstation's Agent37-managed Composio connections. The BFF matches the owner, employee, provider metadata and mirror before managing a connection. The creator selects one active mailbox for a brief. The assignment freezes that connection and instance, and the mail-enabled workstation client rechecks the assignment and connection before use. The assignment MCP supports search, read and unsent draft creation. A planning brief can search and read. The external Studio MCP does not receive mailbox access.
+Studio settings manages Gmail and Microsoft 365 through the canonical workstation's Agent37-managed Composio connections. The BFF matches the owner, employee, provider metadata and mirror before managing a connection. The creator selects one active mailbox for a brief. The assignment freezes that connection and instance, and the mail-enabled workstation client rechecks the assignment and connection before use. The assignment MCP supports search, read and unsent draft creation. A planning brief can search and read. The external Studio MCP does not receive mailbox access.
 
 Agent37 manages provider OAuth on the creator's instance. The web application records the assignment grant, operation fingerprint and provider draft receipt. Drafts live in the provider's Drafts folder. A confirmed provider receipt satisfies delivery for an unhinted mail draft brief. A brief that targets a Craft still requires its committed native output. The shared Chrome session uses its own provider browser sign-in. [Agent37 managed integrations](https://www.agent37.com/docs/agents-api/integrations)
 

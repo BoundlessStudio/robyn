@@ -12,7 +12,7 @@ export async function POST(request: Request) {
     const { db, workspaceId } = await requireStudio();
     if (!mailcraftBrowserBundle()) throw new ApiError(404, "mailcraft_unavailable", "MailCraft is not available in this studio.");
     const input = await readStudioBody(request);
-    if (!isMailConnectionId(input.connectionId)) throw new ApiError(400, "mailcraft_invalid_connection", "Choose a connected mailbox in Profile.");
+    if (!isMailConnectionId(input.connectionId)) throw new ApiError(400, "mailcraft_invalid_connection", "Choose a connected mailbox in Studio settings.");
     return json(await readConnectedMailcraft(db, workspaceId, input.connectionId, mailcraftRead(input.view)));
   } catch (error) { return handleError(error); }
 }

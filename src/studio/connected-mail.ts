@@ -25,7 +25,8 @@ export function hasActiveMailbox(connections: readonly MailConnection[]) {
   return connections.some(connection => connection.status === "active" && isMailProvider(connection.provider));
 }
 
-export const MAILCRAFT_LOCKED = "Connect Gmail or Microsoft 365 in Profile to open MailCraft.";
+export const CONNECTED_MAIL_SETTINGS_HREF = "/dashboard/settings#connected-mail";
+export const MAILCRAFT_LOCKED = "Connect Gmail or Microsoft 365 in Studio settings to open MailCraft.";
 
 export type AssignmentMailbox = { connectionId: string; instanceId: string; provider: MailProvider };
 

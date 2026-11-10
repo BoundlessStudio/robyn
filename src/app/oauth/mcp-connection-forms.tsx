@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { CONNECTED_MAIL_SETTINGS_HREF } from "@/studio/connected-mail";
 
 const api = "/api/studio/mcp-oauth/";
 
@@ -51,7 +52,7 @@ export function Connections() {
   if (!value) return <p className="mt-5 text-sm" role="status">Loading MCP connections…</p>;
   if (!value.connections.length) return <p className="mt-5 text-sm">You have no active MCP connections.</p>;
   return <>
-    <p className="mt-5 text-sm leading-6">Choose which linked mailboxes each client can read through MailCraft. Manage linked accounts in <a className="underline" href="/dashboard/profile">Profile</a>.</p>
+    <p className="mt-5 text-sm leading-6">Choose which linked mailboxes each client can read through MailCraft. Manage linked accounts in <a className="underline" href={CONNECTED_MAIL_SETTINGS_HREF}>Studio settings</a>.</p>
     {value.mailboxesUnavailable && <p className="mt-3 text-sm" role="status">Linked mailbox status is temporarily unavailable.</p>}
     <ul className="mt-6 divide-y divide-[#aaa99e]">
       {value.connections.map(connection => {
@@ -66,7 +67,7 @@ export function Connections() {
             </form>
           </div>
           <h2 className="mt-4 text-sm font-medium">MailCraft read access</h2>
-          {choices.size === 0 && !value.mailboxesUnavailable && <p className="mt-2 text-xs">Link Gmail or Microsoft 365 in Profile to choose a mailbox.</p>}
+          {choices.size === 0 && !value.mailboxesUnavailable && <p className="mt-2 text-xs">Link Gmail or Microsoft 365 in Studio settings to choose a mailbox.</p>}
           {choices.size > 0 && <ul className="mt-2 space-y-2">
             {[...choices.values()].map(mailbox => <li key={mailbox.mailConnectionId} className="flex flex-wrap items-center justify-between gap-2">
               <span>{mailbox.label} <small className="ml-1">{mailbox.allowed ? mailbox.active ? "Allowed" : "Unavailable" : "Private"}</small></span>

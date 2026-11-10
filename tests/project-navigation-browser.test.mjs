@@ -6,7 +6,7 @@ import AxeBuilder from '@axe-core/playwright';
 import {nativeImportFixture,origin,projectId,selectStudioMenuItem} from './fixtures/native-import.mjs';
 const browserType=({chromium,firefox,webkit})[process.env.NATIVE_IMPORT_BROWSER??'chromium'];
 const projectPath = `/dashboard/projects/${projectId}`;
-const studioItems = [['Projects','/dashboard'],['Profile','/dashboard/profile'],['Studio settings','/dashboard/settings']];
+const studioItems = [['Projects','/dashboard'],['Studio settings','/dashboard/settings']];
 const projectItems = [['Dashboard',projectPath],['Assets',`${projectPath}/library`],['Robyn',`${projectPath}/employees`],['Settings',`${projectPath}/settings`]];
 const triggerFor = page => page.getByRole('button', { name:'Robyn studio menu', exact:true });
 const menuFor = page => page.getByRole('menu', { name:'Robyn studio menu', exact:true });
@@ -97,6 +97,7 @@ test('the shared Studio menu navigates in the same tab with unsaved-work protect
     const controls=requests.filter(row=>['take','return'].includes(row.input?.action));assert.equal(controls.length,2);assert.equal(controls[0].input.controlId,controls[1].input.controlId);
     await selectStudioMenuItem(tools,'Settings');
     await tools.getByLabel('Studio name',{exact:true}).waitFor();
+    assert.equal(await tools.getByRole('link',{name:'Manage connected mail',exact:true}).getAttribute('href'),'/dashboard/settings#connected-mail');
     await inspectMenu(page,'Settings',true);
     for(const width of [1440,1200]){
       await tools.setViewportSize({width,height:960});

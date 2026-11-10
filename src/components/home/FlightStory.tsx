@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowDown, ArrowDownRight, ArrowUpRight, Monitor } from "lucide-react";
+import { ArrowDown, ArrowDownRight, ArrowUpRight } from "lucide-react";
 import { AsciiRobin, type FlightState } from "./AsciiRobin";
 import { InvitationForm } from "./InvitationForm";
 import { craftTour, studioTour, registeredCraftCount, upcomingCrafts } from "./craft-tour";
@@ -79,12 +79,17 @@ export function FlightStory() {
     <div className="flight-panels">
       <section className="flight-chapter chapter-idea" id="an-idea" aria-labelledby="idea-heading">
         <div className="chapter-copy">
-          <span className="flight-kicker">AN AI CREATIVE STUDIO WITH A MIND OF YOUR OWN.</span><h1 id="idea-heading">Ideas<br />have<br /><em>wings.</em><svg className="heading-star" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M20 0v40M0 20h40M6 6l28 28M6 34L34 6" /></svg></h1>
-          <p>One Robyn. {registeredCraftCount} Crafts.<br />{upcomingCrafts.length > 0 && <>{craftTour.length} ready. {upcomingCrafts.map(app => app.name).join(", ")} coming soon.<br /></>}A world of your making.</p>
+          <span className="flight-kicker">AN AI CREATIVE STUDIO</span>
+          <h1 id="idea-heading">Ideas<br />have<br /><em>wings.</em><svg className="heading-star" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M20 0v40M0 20h40M6 6l28 28M6 34L34 6" /></svg></h1>
+          <p>One Robyn. {registeredCraftCount} Crafts.
+            {upcomingCrafts.length > 0 && <><br />{craftTour.length} ready. {upcomingCrafts.map(app => app.name).join(", ")} coming soon.</>}
+          </p>
           <nav className="craft-group-links" aria-label="Craft groups">{tourGroups.map(group => <a key={group.name} href={`#${group.chapters[0].id}`}>{group.name}</a>)}</nav>
-          <a className="flight-link" href={`#${studioTour[0].id}`}>Follow the bird <ArrowDownRight size={21} /></a><a className="hero-invite" href="#invitation">Request an invite <ArrowUpRight size={14} /></a><span className="desktop-note"><Monitor size={14} aria-hidden="true" /> A desktop studio. Explore it anywhere.</span>
+          <div className="hero-actions">
+            <a className="flight-link" href={`#${studioTour[0].id}`}>Follow the bird <ArrowDownRight size={16} aria-hidden="true" /></a>
+            <a className="flight-link hero-invite" href="#invitation">Request an invite <ArrowUpRight size={16} aria-hidden="true" /></a>
+          </div>
         </div>
-        <span className="hero-marginal">ONE COLLABORATOR / EVERY CREATIVE TOOL</span>
       </section>
       {studioTour.map((app, i) => <section key={app.id} className="flight-chapter craft-chapter" id={app.id} aria-labelledby={`${app.id}-heading`}>
         <div className="chapter-copy">

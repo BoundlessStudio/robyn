@@ -136,6 +136,7 @@
 .studio-mail-header { display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:12px 20px; max-width:700px; }
 .studio-mail-header > div { flex:1 1 360px; }
 .studio-mail-header h2 { margin:0 0 6px; }
+.studio-mail-header + .embedded-editor { margin-top:16px; }
 .studio-mail-connections .studio-button { margin:0; }
 .studio-mail-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr)); gap:12px; max-width:700px; margin-top:16px; }
 .studio-mail-provider { display:flex; flex-direction:column; gap:12px; min-width:0; padding:16px; border:1px solid var(--studio-line); border-radius:8px; background:#201f1d; }
@@ -150,7 +151,7 @@
 .studio-mail-account > span { margin-inline-end:auto; font-size:11px; color:#b0a89b; }
 .studio-mail-actions { margin-top:auto; }
 .studio-mail-message { margin-top:12px; }
-.studio-mcp-settings { scroll-margin-top:110px; }
+.studio-mail-connections,.studio-mcp-settings { scroll-margin-top:110px; }
 .studio-mcp-settings h3 { font-size:14px; margin:20px 0 8px; }
 .studio-mcp-settings a { text-decoration:underline; text-underline-offset:3px; }
 .studio-mcp-fields { max-width:700px; margin:12px 0 14px; border:1px solid var(--studio-line); border-radius:4px; background:#24231f; }

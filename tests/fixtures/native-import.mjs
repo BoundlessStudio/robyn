@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 import {createServer} from 'node:http';
 import {build} from 'esbuild';
 import {studioApps} from '../../src/studio/apps/registry.ts';
+import {CONNECTED_MAIL_SETTINGS_HREF} from '../../src/studio/connected-mail.ts';
 
 export const projectId = '11111111-1111-4111-8111-111111111111';
 export const origin = 'http://127.0.0.1:3000';
@@ -31,7 +32,6 @@ async function bundle() {
       import {LibraryAsset} from './src/components/studio/LibraryAsset';
       import {StudioShell} from './src/components/studio/StudioShell';
       import {StudioSettings} from './src/components/studio/StudioSettings';
-      import {StudioProfile} from './src/components/studio/StudioProfile';
       import {StudioEmployees} from './src/components/studio/StudioEmployees';
       import {StudioProjects} from './src/components/studio/StudioProjects';
       import {ResearchBrowser} from './src/components/studio/ResearchBrowser';
@@ -39,7 +39,7 @@ async function bundle() {
       import {DesktopStudioGate} from './src/components/studio/DesktopStudioGate';
       const params=new URLSearchParams(location.search),parts=location.pathname.split('/'),currentProjectId=parts[3],section=parts[4];
       const selected={initialAssetId:params.get('asset')??undefined,initialRevisionId:params.get('revision')??undefined};
-      const content=location.pathname==='/dashboard'?<StudioProjects/>:location.pathname==='/dashboard/profile'?<StudioProfile mailcraftBundle={params.get('mailcraftBundle')}/>:location.pathname==='/dashboard/settings'?<StudioSettings mcpEndpoint="https://studio.example.test/mcp"/>:location.pathname.startsWith('/dashboard/library/')?<LibraryAssetRedirect assetId={parts[3]} revisionId={params.get('revision')??undefined}/>:section==='settings'?<StudioSettings projectId={currentProjectId}/>:section==='library'?(parts[5]?<LibraryAsset projectId={currentProjectId} assetId={parts[5]} initialRevisionId={params.get('revision')??undefined}/>:<StudioLibrary projectId={currentProjectId}/>):section==='employees'?<StudioEmployees projectId={currentProjectId} {...selected} initialView={params.get('view')??undefined}/>:section==='research'?<ResearchBrowser projectId={currentProjectId}/>:<ProjectWorkspace projectId={currentProjectId??"${projectId}"} {...selected} initialAppId={params.get('app')??undefined} initialLaunchId={params.get('launch')??undefined}/>;
+      const content=location.pathname==='/dashboard'?<StudioProjects/>:location.pathname==='/dashboard/settings'?<StudioSettings mcpEndpoint="https://studio.example.test/mcp" mailcraftBundle={params.get('mailcraftBundle')}/>:location.pathname.startsWith('/dashboard/library/')?<LibraryAssetRedirect assetId={parts[3]} revisionId={params.get('revision')??undefined}/>:section==='settings'?<StudioSettings projectId={currentProjectId}/>:section==='library'?(parts[5]?<LibraryAsset projectId={currentProjectId} assetId={parts[5]} initialRevisionId={params.get('revision')??undefined}/>:<StudioLibrary projectId={currentProjectId}/>):section==='employees'?<StudioEmployees projectId={currentProjectId} {...selected} initialView={params.get('view')??undefined}/>:section==='research'?<ResearchBrowser projectId={currentProjectId}/>:<ProjectWorkspace projectId={currentProjectId??"${projectId}"} {...selected} initialAppId={params.get('app')??undefined} initialLaunchId={params.get('launch')??undefined}/>;
       createRoot(document.getElementById('root')).render(<StrictMode><WorkspaceProvider initialWorkspaces={[]} userEmail="fixture@example.test"><DesktopStudioGate><StudioShell>{content}</StudioShell></DesktopStudioGate></WorkspaceProvider></StrictMode>);
     `, resolveDir:root, sourcefile:'native-import-fixture.tsx', loader:'tsx'},
     jsx:'automatic', bundle:true, write:false, platform:'browser', format:'iife', tsconfig:root+'tsconfig.json',
@@ -236,6 +236,10 @@ export async function nativeImportFixture(browser, {realEditor=false, viewport={
         return route.fulfill({json:{ref:{assetId:asset.id,revisionId:revision.id},revision,dependencies:revision.package.dependencies,files:revision.package.files.map(file=>({...file,downloadUrl:fileOrigin+'/stored/'+encodeURIComponent(revision.id+'/'+file.path)}))}});
       }
       return route.fulfill({status:404,json:{error:{message:'Unexpected fixture API request'}}});
+    }
+    if(url.pathname==='/dashboard/profile'){
+      // A fulfilled HTTP redirect would send the follow-up request outside this fixture.
+      return route.fulfill({contentType:'text/html',body:`<script>location.replace(${JSON.stringify(CONNECTED_MAIL_SETTINGS_HREF)})</script>`});
     }
     if(url.pathname.startsWith('/dashboard'))return route.fulfill({contentType:'text/html',body:`<!doctype html><html lang="en"><head><title>Import workspace fixture</title><style>*,*::before,*::after{box-sizing:border-box}body,h1,h2,h3,p{margin:0}button{border:0;background:none;color:inherit;cursor:pointer}a{color:inherit}.studio-shell.project-mode{display:block}</style><link rel="stylesheet" href="/studio.css"></head><body><div id="root"></div><script>window.process={env:{NODE_ENV:'development'}};</script><script src="/fixture.js"></script></body></html>`});
     return route.fulfill({status:404,body:'Isolated fixture'});

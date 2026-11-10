@@ -23,7 +23,7 @@ export async function employeeMailTool(
     }
     const connection = await requireActiveMailConnection(instance.id, mailbox.connectionId);
     if (connection.provider !== mailbox.provider) {
-      throw new ApiError(409, "mail_connection_changed", "This assignment’s mailbox changed. Check Profile.");
+      throw new ApiError(409, "mail_connection_changed", "This assignment’s mailbox changed. Check Connected mail in Studio settings.");
     }
     if (name === "studio_mail_access") {
       // Ownership and the provider list are checked over the network. Recheck

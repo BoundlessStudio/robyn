@@ -1,9 +1,7 @@
-import type { Metadata } from "next";
-import { mailcraftBrowserBundle } from "@/studio/mailcraft-browser";
-import { StudioProfile } from "@/components/studio/StudioProfile";
-
-export const metadata: Metadata = { title: "Profile · Robyn", referrer: "no-referrer" };
+import { redirect } from "next/navigation";
+import { CONNECTED_MAIL_SETTINGS_HREF } from "@/studio/connected-mail";
 
 export default function Page() {
-  return <StudioProfile mailcraftBundle={mailcraftBrowserBundle()} />;
+  // Existing mailbox consent returns and bookmarks still use this route.
+  redirect(CONNECTED_MAIL_SETTINGS_HREF);
 }

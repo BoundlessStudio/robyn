@@ -4,8 +4,6 @@ import { ArrowUpRight, Plus, RefreshCw } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { apiFetch } from "@/lib/api";
-import { createClient } from "@/lib/supabase/client";
-import { useWorkspace } from "@/components/WorkspaceProvider";
 import { hasActiveMailbox, MAILCRAFT_LOCKED, mailConnectionLabel, mailProviders, type MailConnection, type MailConnectionList, type MailProvider } from "@/studio/connected-mail";
 
 import { MailcraftFrame } from "./MailcraftFrame";
@@ -13,8 +11,7 @@ import { MailcraftFrame } from "./MailcraftFrame";
 const endpoint = "/api/studio/mail-connections";
 const providers = Object.keys(mailProviders) as MailProvider[];
 
-export function StudioProfile({ mailcraftBundle = null }: { mailcraftBundle?: string | null } = {}) {
-  const { userEmail } = useWorkspace();
+export function StudioConnectedMail({ mailcraftBundle }: { mailcraftBundle?: string | null }) {
   const [state, setState] = useState<MailConnectionList | null>(null);
   const [openedId, setOpenedId] = useState<string | null>(null);
   const [busy, setBusy] = useState("");
@@ -27,8 +24,6 @@ export function StudioProfile({ mailcraftBundle = null }: { mailcraftBundle?: st
 
   useEffect(() => {
     const controller = new AbortController();
-    const returned = new URL(window.location.href).searchParams.get("mail") === "return";
-    if (returned) window.history.replaceState(null, "", "/dashboard/profile");
     void refresh(controller.signal).catch(reason => {
       if (!controller.signal.aborted) setError(reason.message);
     });
@@ -59,53 +54,48 @@ export function StudioProfile({ mailcraftBundle = null }: { mailcraftBundle?: st
     finally { setBusy(""); }
   }
 
-  async function signOut() {
-    setBusy("sign-out");
-    const { error } = await createClient().auth.signOut();
-    if (error) { setError(error.message); setBusy(""); }
-    else window.location.assign("/login");
+  function openMailbox(connection: MailConnection) {
+    document.getElementById("connected-mail")?.scrollIntoView();
+    setOpenedId(connection.id);
   }
 
   const opened = state?.connections.find(connection => connection.id === openedId && connection.status === "active");
-  if (opened && mailcraftBundle) return <div className="studio-page">
-    <button type="button" className="studio-button" onClick={() => setOpenedId(null)}>Back to Profile</button>
+  if (opened && mailcraftBundle) return <section id="connected-mail" className="studio-setting-section studio-mail-connections" aria-labelledby="connected-mail-heading">
+    <div className="studio-mail-header">
+      <h2 id="connected-mail-heading">MailCraft</h2>
+      <button type="button" className="studio-button" autoFocus onClick={() => setOpenedId(null)}>Back to connected mail</button>
+    </div>
     <MailcraftFrame key={opened.id} bundle={mailcraftBundle} connection={opened} />
-  </div>;
+  </section>;
 
-  return <div className="studio-page studio-settings">
-    <header className="studio-page-heading"><div><span className="studio-eyebrow">YOUR ROBYN ACCOUNT</span><h1>Profile.</h1><p>Manage the mail accounts connected to your workstation.</p></div></header>
-    <div className="studio-settings-layout"><div className="studio-settings-main">
-      <section className="studio-setting-section"><h2>Your account</h2><p>{userEmail}</p><button type="button" className="studio-button" disabled={Boolean(busy)} onClick={() => void signOut()}>Sign out</button></section>
-      <section className="studio-setting-section studio-mail-connections" aria-labelledby="connected-mail-heading">
-        <div className="studio-mail-header">
-          <div>
-            <h2 id="connected-mail-heading">Connected mail</h2>
-            <p>Connect a mailbox so Robyn can search email and save drafts for review. You choose the mailbox for each brief.</p>
-          </div>
-          {(Boolean(state?.connections.length) || error) && <button type="button" className="studio-button" disabled={Boolean(busy)} onClick={() => void check()}>
-            <RefreshCw size={13} aria-hidden="true" />{busy === "refresh" ? "Checking…" : "Refresh connections"}
-          </button>}
-        </div>
-        {!state && !error && <p role="status" className="studio-mail-message">Checking mailbox connections…</p>}
-        {state && !state.workstationReady && <p className="studio-note">
-          Your shared workstation starts with your first brief. Once it’s ready, return here to connect mail. <Link href="/dashboard">Open Projects</Link>
-        </p>}
-        {mailcraftBundle && state?.workstationReady && !hasActiveMailbox(state.connections)
-          && <p className="studio-mail-message">{MAILCRAFT_LOCKED}</p>}
-        {state?.workstationReady && <div className="studio-mail-grid">
-          {providers.map(provider => <MailProviderCard key={provider} provider={provider} busy={busy}
-            connections={state.connections.filter(connection => connection.provider === provider)}
-            openMailcraft={mailcraftBundle ? connection => setOpenedId(connection.id) : undefined}
-            connect={() => void change(provider, { action: "connect", provider })}
-            disconnect={connectionId => void change(connectionId, { action: "disconnect", connectionId })} />)}
-        </div>}
-        {state && hasActiveMailbox(state.connections) && <p className="studio-note">
-          <Link href="/oauth/connections">Manage MailCraft read access for MCP clients</Link>
-        </p>}
-        {error && <p className="studio-error studio-mail-message" role="alert">{error}</p>}
-      </section>
-    </div></div>
-  </div>;
+  return <section id="connected-mail" className="studio-setting-section studio-mail-connections" aria-labelledby="connected-mail-heading">
+    <div className="studio-mail-header">
+      <div>
+        <h2 id="connected-mail-heading">Connected mail</h2>
+        <p>Connect a mailbox so Robyn can search email and save drafts for review. You choose the mailbox for each brief.</p>
+      </div>
+      {(Boolean(state?.connections.length) || error) && <button type="button" className="studio-button" disabled={Boolean(busy)} onClick={() => void check()}>
+        <RefreshCw size={13} aria-hidden="true" />{busy === "refresh" ? "Checking…" : "Refresh connections"}
+      </button>}
+    </div>
+    {!state && !error && <p role="status" className="studio-mail-message">Checking mailbox connections…</p>}
+    {state && !state.workstationReady && <p className="studio-note">
+      Your shared workstation starts with your first brief. Once it’s ready, return here to connect mail. <Link href="/dashboard">Open Projects</Link>
+    </p>}
+    {mailcraftBundle && state?.workstationReady && !hasActiveMailbox(state.connections)
+      && <p className="studio-mail-message">{MAILCRAFT_LOCKED}</p>}
+    {state?.workstationReady && <div className="studio-mail-grid">
+      {providers.map(provider => <MailProviderCard key={provider} provider={provider} busy={busy}
+        connections={state.connections.filter(connection => connection.provider === provider)}
+        openMailcraft={mailcraftBundle ? openMailbox : undefined}
+        connect={() => void change(provider, { action: "connect", provider })}
+        disconnect={connectionId => void change(connectionId, { action: "disconnect", connectionId })} />)}
+    </div>}
+    {state && hasActiveMailbox(state.connections) && <p className="studio-note">
+      <Link href="/oauth/connections">Manage MailCraft read access for MCP clients</Link>
+    </p>}
+    {error && <p className="studio-error studio-mail-message" role="alert">{error}</p>}
+  </section>;
 }
 
 const connectionStatus = {
@@ -129,7 +119,7 @@ function MailProviderCard({ provider, connections, busy, connect, disconnect, op
   const label = active > 1 ? `${active} connected` : status === "empty" ? "Not connected" : connectionStatus[status];
 
   const draftsLink = <a className="studio-button" href={draftsUrl} target="_blank" rel="noreferrer"
-    aria-label={`Open ${name} Drafts`}>
+    aria-label={`Open drafts in ${name}`}>
     Open drafts <ArrowUpRight size={13} aria-hidden="true" />
   </a>;
 

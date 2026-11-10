@@ -16,7 +16,7 @@ export async function assignmentRpc<T>(db: DB, name: string, args: Record<string
   if (error?.message.includes("operation key reused")) throw new ApiError(409, "operation_key_reused", "This request was already used for a different assignment.");
   if (error?.message.includes("mcp ai helper disabled")) throw new ApiError(409, "ai_helper_disabled", "The Studio AI allowance is $0. Use direct Craft commands or update the allowance in Studio Settings.");
   if (error?.message.includes("mcp budget sync pending")) throw new ApiError(409, "studio_budget_sync_required", "Finish the saved Studio allowance update before starting Robyn.");
-  if (error?.message.includes("mail workstation changed")) throw new ApiError(409, "mail_workstation_changed", "Robyn’s workstation changed. Check your connections in Profile before starting new mail work.");
+  if (error?.message.includes("mail workstation changed")) throw new ApiError(409, "mail_workstation_changed", "Robyn’s workstation changed. Check Connected mail in Studio settings before starting new mail work.");
   dbFailure(error);
   return data as T;
 }

@@ -11,7 +11,7 @@ import helperPin from "./mailcraft-helper.json";
 import type { MailcraftRead } from "./mailcraft-read";
 
 const publicErrors = new Set([
-  "This mailbox needs to be reconnected in Profile.",
+  "Reconnect this mailbox in Studio settings.",
   "The existing grant does not allow this read.",
   "The workstation’s AI allowance is exhausted.",
   "This Gmail grant covers mail. Contacts, Calendar, and Tasks require their own Google connections.",

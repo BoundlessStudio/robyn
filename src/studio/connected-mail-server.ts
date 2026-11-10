@@ -36,7 +36,7 @@ function workstationUnavailable() {
 async function managedCall<T>(call: () => Promise<T>): Promise<T> {
   try { return await call(); }
   catch {
-    throw new ApiError(502, "mail_provider_unavailable", "Agent37 could not confirm the mail connection request. Refresh Profile to check its state.");
+    throw new ApiError(502, "mail_provider_unavailable", "Agent37 could not confirm the mail connection request. Refresh the mailbox connections in Studio settings.");
   }
 }
 
@@ -69,7 +69,7 @@ export async function requireMailcraftAccess(db: DB, workspaceId: string, appId:
 export async function requireActiveMailConnection(instanceId: string, connectionId: string) {
   const connections = await managedMailConnections(instanceId);
   const connection = connections.find(item => item.id === connectionId && item.status === "active");
-  if (!connection) throw new ApiError(409, "mail_connection_inactive", "Connect this mailbox in Profile before giving it to Robyn.");
+  if (!connection) throw new ApiError(409, "mail_connection_inactive", "Connect this mailbox in Studio settings before giving it to Robyn.");
   return connection;
 }
 
@@ -103,6 +103,6 @@ export async function disconnectManagedMail(instanceId: string, connectionId: st
   if (!existing) throw new ApiError(404, "mail_connection_not_found", "Mail connection not found.");
   await managedCall(() => agent37.disconnectIntegration(instanceId, existing.id));
   if ((await managedMailConnections(instanceId)).some(connection => connection.id === existing.id)) {
-    throw new ApiError(502, "mail_disconnect_unconfirmed", "Agent37 has not confirmed the disconnect. Refresh Profile to check its state.");
+    throw new ApiError(502, "mail_disconnect_unconfirmed", "Agent37 has not confirmed the disconnect. Refresh the mailbox connections in Studio settings.");
   }
 }

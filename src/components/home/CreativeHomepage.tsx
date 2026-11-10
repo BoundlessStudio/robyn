@@ -9,7 +9,6 @@ export function CreativeHomepage() {
     <a href="#idea-heading" className="home-skip">Skip to content</a>
     <header className="ascii-header">
       <Link href="/" className="ascii-wordmark" aria-label="Robyn, home">robyn</Link>
-      <span className="header-edition">A LITTLE WILD.<br />MADE FOR DESKTOP.</span>
       <nav aria-label="Main navigation"><a href={`#${studioTour[0].id}`}>Explore Robyn’s tools</a><a href="#invitation">Your invitation</a></nav>
       <Link className="studio-entry" href="/login">Desktop studio <ArrowUpRight size={18} /></Link>
     </header>
