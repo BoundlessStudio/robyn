@@ -8,6 +8,7 @@ test('legacy project-tool URLs preserve project context and Studio settings open
   const mocks={
     'next/navigation':'export function redirect(location){throw Object.assign(new Error("Redirect"),{location})}',
     '@/components/studio/StudioSettings':'export const StudioSettings="studio-settings-fixture";',
+    '@/studio/mailcraft-browser':'export const mailcraftBrowserBundle=()=>"https://mailcraft-fixture.test/index.html";',
     '@/studio/mcp/config':'export const mcpSetupEndpoint=()=>"https://studio.test/mcp";',
   };
   for(const section of ['library','employees','research','applications','settings']){
@@ -17,6 +18,7 @@ test('legacy project-tool URLs preserve project context and Studio settings open
       const settings=await withoutProject;
       assert.equal(settings.type,'studio-settings-fixture');
       assert.equal(settings.props.mcpEndpoint,'https://studio.test/mcp');
+      assert.equal(settings.props.mailcraftBundle,'https://mailcraft-fixture.test/index.html');
     }else await assert.rejects(withoutProject,{location:'/dashboard'});
     const searchParams=Promise.resolve({projectId,asset,revision,view:'review'});
     await assert.rejects(page({searchParams}),error=>{
@@ -27,6 +29,8 @@ test('legacy project-tool URLs preserve project context and Studio settings open
   }
   const {default:applications}=await loadModule('../../src/app/dashboard/(fleet)/projects/[id]/applications/page.tsx',mocks);
   await assert.rejects(applications({params:Promise.resolve({id:projectId})}),{location:`/dashboard/projects/${projectId}`});
+  const {default:profile}=await loadModule('../../src/app/dashboard/(fleet)/profile/page.tsx',mocks);
+  assert.throws(()=>profile({searchParams:Promise.resolve({mail:'return'})}),{location:'/dashboard/settings#connected-mail'});
 });
 
 test('Robyn verifies project ownership and its shared workstation before providing browser access',async()=>{

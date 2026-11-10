@@ -62,7 +62,7 @@ export async function submitRobynAssignment(
     }
   } else if (isMailConnectionId(mailConnectionId)) {
     const instance = await ownedMailWorkstation(db, workspaceId);
-    if (!instance || instance.id !== employee.instance_id) throw new ApiError(409, "mail_workstation_changed", "Robyn’s mail workstation is unavailable. Check Profile.");
+    if (!instance || instance.id !== employee.instance_id) throw new ApiError(409, "mail_workstation_changed", "Robyn’s mail workstation is unavailable. Check Connected mail in Studio settings.");
     const connection = await requireActiveMailConnection(instance.id, mailConnectionId);
     mailbox = { instanceId: instance.id, connectionId: connection.id, provider: connection.provider };
     mailboxWorkstation = instance;
@@ -77,7 +77,7 @@ export async function submitRobynAssignment(
     if (!linked || !template || !release || !matchingWorkstationRelease(linked, { template, release })) {
       if (appId === "mailcraft") {
         if (!linked) throw new ApiError(409, "mailcraft_connection_required", MAILCRAFT_LOCKED);
-        throw new ApiError(409, "mailcraft_workstation_update_required", "MailCraft is available in Profile. Robyn’s workstation needs the MailCraft update before it can run native mailbox tasks.");
+        throw new ApiError(409, "mailcraft_workstation_update_required", "MailCraft is available in Studio settings. Robyn’s workstation needs the MailCraft update before it can run native mailbox tasks.");
       }
       allowedApps = allowedApps.filter(id => id !== "mailcraft");
     }

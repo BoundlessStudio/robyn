@@ -4,7 +4,7 @@ import { randomUUID } from "node:crypto";
 import { chromium } from "playwright";
 import { nativeImportFixture, origin, projectId, selectStudioMenuItem } from "./fixtures/native-import.mjs";
 
-test("Profile manages both providers and a brief retries with its original mailbox", async () => {
+test("Studio settings manages both providers and a brief retries with its original mailbox", async () => {
   const browser = await chromium.launch({ headless: true });
   try {
     const { page, state } = await nativeImportFixture(browser, { initialPath: "/dashboard" });
@@ -15,13 +15,17 @@ test("Profile manages both providers and a brief retries with its original mailb
       connection.status = "active";
       await route.fulfill({ contentType: "text/html", body: "<script>location.replace(" + JSON.stringify(origin + "/dashboard/profile?mail=return") + ")</script>" });
     });
-    await selectStudioMenuItem(page, "Profile");
+    await selectStudioMenuItem(page, "Studio settings");
+    await page.getByRole("heading", { name: "Studio settings.", exact: true }).waitFor();
+    await page.getByRole("heading", { name: "Your account", exact: true }).waitFor();
+    assert.equal(await page.getByRole("button", { name: "Sign out", exact: true }).count(), 1);
+    await page.getByLabel("Studio name", { exact: true }).waitFor();
     const mail = page.getByRole("region", { name: "Connected mail" });
     await mail.getByRole("button", { name: "Connect Gmail", exact: true }).click();
-    await mail.getByRole("link", { name: /Open Gmail Drafts/ }).waitFor();
+    await mail.getByRole("link", { name: "Open drafts in Gmail", exact: true }).waitFor();
     await mail.getByRole("button", { name: "Connect Microsoft 365", exact: true }).click();
-    await mail.getByRole("link", { name: /Open Microsoft 365 Drafts/ }).waitFor();
-    assert.equal(new URL(page.url()).search, "");
+    await mail.getByRole("link", { name: "Open drafts in Microsoft 365", exact: true }).waitFor();
+    assert.equal(page.url(), origin + "/dashboard/settings#connected-mail");
     assert.deepEqual(state.mailConnections.map(item => item.provider), ["gmail", "outlook"]);
 
     await page.goto(origin + "/dashboard/projects/" + projectId + "/employees");
@@ -45,9 +49,10 @@ test("Profile manages both providers and a brief retries with its original mailb
     assert.equal(await mailbox.inputValue(), "");
 
     await page.goto(origin + "/dashboard/profile");
+    await page.waitForURL(origin + "/dashboard/settings#connected-mail");
     await mail.getByRole("button", { name: /^Disconnect Gmail/ }).click();
     await mail.getByRole("button", { name: "Connect Gmail", exact: true }).waitFor();
-    await mail.getByRole("link", { name: /Open Gmail Drafts/ }).waitFor({ state: "detached" });
+    await mail.getByRole("link", { name: "Open drafts in Gmail", exact: true }).waitFor({ state: "detached" });
     assert.deepEqual(state.mailConnections.map(item => item.provider), ["outlook"]);
   } finally { await browser.close(); }
 });
@@ -55,7 +60,7 @@ test("Profile manages both providers and a brief retries with its original mailb
 test("Connected mail groups clear provider status and the available actions", async () => {
   const browser = await chromium.launch({ headless: true });
   try {
-    const { page, state } = await nativeImportFixture(browser, { initialPath: "/dashboard/profile", viewport: { width: 1366, height: 850 } });
+    const { page, state } = await nativeImportFixture(browser, { initialPath: "/dashboard/settings#connected-mail", viewport: { width: 1366, height: 850 } });
     const mail = page.getByRole("region", { name: "Connected mail" });
     const gmail = mail.getByRole("group", { name: "Gmail", exact: true });
     const microsoft = mail.getByRole("group", { name: "Microsoft 365", exact: true });
@@ -74,11 +79,11 @@ test("Connected mail groups clear provider status and the available actions", as
     await gmail.getByRole("button", { name: /^Cancel sign-in Gmail/ }).waitFor();
     assert.equal(await gmail.getByRole("button", { name: "Connect Gmail", exact: true }).count(), 0);
     await microsoft.getByText("Connected", { exact: true }).waitFor();
-    await microsoft.getByRole("link", { name: "Open Microsoft 365 Drafts" }).waitFor();
+    await microsoft.getByRole("link", { name: "Open drafts in Microsoft 365", exact: true }).waitFor();
     state.mailConnections[0].status = "active";
     await mail.getByRole("button", { name: "Refresh connections" }).click();
     await gmail.getByText("Connected", { exact: true }).waitFor();
-    await gmail.getByRole("link", { name: "Open Gmail Drafts" }).waitFor();
+    await gmail.getByRole("link", { name: "Open drafts in Gmail", exact: true }).waitFor();
   } finally { await browser.close(); }
 });
 
@@ -87,10 +92,10 @@ test("MailCraft stays locked until an owned mailbox becomes active", async () =>
   try {
     const bundle = "https://mailcraft-fixture.test/index.html";
     const { page, state } = await nativeImportFixture(browser, {
-      initialPath: "/dashboard/profile?mailcraftBundle=" + encodeURIComponent(bundle),
+      initialPath: "/dashboard/settings?mailcraftBundle=" + encodeURIComponent(bundle) + "#connected-mail",
     });
     await page.route(bundle, route => route.fulfill({ contentType: "text/html", body: "<title>Transport fixture</title>" }));
-    const locked = page.getByText("Connect Gmail or Microsoft 365 in Profile to open MailCraft.", { exact: true });
+    const locked = page.getByText("Connect Gmail or Microsoft 365 in Studio settings to open MailCraft.", { exact: true });
     const open = page.getByRole("button", { name: "Open in MailCraft", exact: true });
     await locked.waitFor();
     assert.equal(await open.count(), 0);
@@ -109,7 +114,7 @@ test("MailCraft stays locked until an owned mailbox becomes active", async () =>
       assert.equal(binding.get("mailcraft"), provider);
       assert.equal(binding.get("parentOrigin"), origin);
       assert.equal(source.href.includes("ca_active_mailcraft"), false);
-      await page.getByRole("button", { name: "Back to Profile" }).click();
+      await page.getByRole("button", { name: "Back to connected mail" }).click();
     }
     state.mailConnections[0].status = "unavailable";
     await page.getByRole("button", { name: "Refresh connections" }).click();
@@ -123,7 +128,7 @@ test("The project launcher and direct links require an active MailCraft connecti
   try {
     const { page, state } = await nativeImportFixture(browser);
     const tile = page.getByRole("button", { name: /^MailCraft / });
-    const locked = tile.getByText("Connect Gmail or Microsoft 365 in Profile to open MailCraft.", { exact: true });
+    const locked = tile.getByText("Connect Gmail or Microsoft 365 in Studio settings to open MailCraft.", { exact: true });
     await locked.waitFor();
     assert.equal(await tile.isDisabled(), true);
 

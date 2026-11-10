@@ -77,7 +77,7 @@ export async function changeMcpMailboxAccess(identity: McpIdentity, connectionId
     dbFailure(error);
     if (!data) throw new ApiError(404, "mcp_connection_unavailable", "Choose an active MCP connection.");
     const instance = await ownedMailWorkstation(db, workspaceId);
-    if (!instance) throw new ApiError(409, "mail_workstation_unavailable", "Connect a mailbox on your workstation in Profile.");
+    if (!instance) throw new ApiError(409, "mail_workstation_unavailable", "Connect a mailbox on your workstation in Studio settings.");
     const connection = await requireActiveMailConnection(instance.id, connectionId);
     mailbox = { connectionId, instanceId: instance.id, provider: connection.provider };
   }

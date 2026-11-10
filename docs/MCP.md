@@ -56,7 +56,7 @@ Each direct operation accepts up to 12 exact input packages totaling 1 GiB and u
 
 ## Choose a MailCraft account
 
-1. Connect Gmail or Microsoft 365 in **Profile → Connected mail**.
+1. Connect Gmail or Microsoft 365 in **Studio settings → Connected mail**.
 2. Open **Manage MailCraft read access for MCP clients**. Under the client you want to use, select **Allow reads** beside each mailbox you choose to share. Every MCP connection starts with its mailboxes private. **Remove access** revokes that mailbox for the selected client.
 3. In an MCP chat, ask “Use MailCraft to read my work Gmail.” If several approved accounts share the same provider, use the label shown in Robyn, such as **Gmail · work1234**.
 
