@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-13",
+  "scope": "A private custom MCP plugin in live desktop ChatGPT with a disposable PhotoCraft sample, a local database using the checked migrations through 0038, and a Storage fixture",
+  "webBase": "4290fbb194c835f14ad3007aacba3e4255342ad3",
+  "runtimeBase": "4a068100a046838de1a23a14e98ca0e371455bbb",
+  "photoCraft": {
+    "upstream": "0.17.0",
+    "nativeSourceCommit": "b8c3f3aa8e2918032cadc0e042664414a03be333",
+    "adapterCandidate": "0.3.2",
+    "executableSha256": "0a686430ae9a76a5480b94475e3a515a559ac8ef12f0bc5ebddd0a0ec66e56b7"
+  },
+  "checks": {
+    "liveChatGPTEditor": "The original PhotoCraft canvas opened beside a Work conversation from the MCP Apps resource",
+    "fileMenuSave": "Added a layer and a brush stroke. File > Save committed one revision and the editor displayed Saved to your library",
+    "shortcutSave": "Painted a second stroke on the same layer. Ctrl+S committed another revision and the editor displayed Saved to your library",
+    "nativeContinuation": "The pinned native CLI opened both browser revisions, verified the painted layer expanded after the second stroke, and saved a third layer while preserving the painted layer",
+    "studioOAuthAndHostedStorage": "pending"
+  },
+  "sha256": {
+    "nativeInput": "1d36c44321bb302c9e8f7c4e175bcc80ad85e85daab8e78caca2108ffc081624",
+    "fileMenuSave": "ae2d4636774d1b073bbd8a8f69823f46899c1c2084016ccfbbb8aff59fba5191",
+    "shortcutSave": "6d2aff472371befdf2f99e7fbe538bd6ee90dce347cdf5b6aad6cd77e968c765",
+    "nativeContinuation": "ba23fcafc295d17e643578733cbc4cbab0cda91ee0be6037be5b96c4beb42786",
+    "screenshot": "66fc1427321cbfd29e582f6375a2a93c51ff587f2601e0e9e4b5e22c1ef02c0a"
+  }
+}

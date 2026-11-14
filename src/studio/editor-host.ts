@@ -1,4 +1,4 @@
-import { apiFetch } from "@/lib/api";
+import { apiFetch, type ApiFetch } from "@/lib/api";
 import { requireUuid, validatePackagePath, type AssetRef, type AssetSummary, type PackageFileRole } from "./assets";
 import { digestFile, savePackage, type SaveResult, type LocalPackageFile } from "./transfer-client";
 import {sourceFormat,sourceImportFiles} from "./source-import";
@@ -13,7 +13,8 @@ function object(value: unknown): Record<string, unknown> {
 }
 function assetRef(value:unknown):AssetRef {const input=object(value);return{assetId:requireUuid(input.assetId),revisionId:requireUuid(input.revisionId)};}
 
-export function createEditorHost(options:{projectId:string;initialRef:AssetRef;signal:AbortSignal;onDirty:(dirty:boolean)=>void;onStatus:(message:string)=>void;onSaved:(result:EditorSaveResult)=>void;onImported?:()=>void;readOnly?:boolean}) {
+export function createEditorHost(options:{projectId:string;initialRef:AssetRef;signal:AbortSignal;onDirty:(dirty:boolean)=>void;onStatus:(message:string)=>void;onSaved:(result:EditorSaveResult)=>void;onImported?:()=>void;readOnly?:boolean;transport?:{fetch:ApiFetch;anonKey:string}}) {
+  const request = <T>(url:string,init?:RequestInit) => apiFetch<T>(url,{...init,signal:options.signal},options.transport?.fetch);
   let assetId=options.initialRef.assetId;
   let base=options.initialRef.revisionId;
   // Save As adds the source here, after the editor froze its dependency list.
@@ -31,23 +32,24 @@ export function createEditorHost(options:{projectId:string;initialRef:AssetRef;s
   const imports=new Map<string,{fingerprint:string;result?:{ref:AssetRef;status:"committed"}}>();
   const requests=new Map<string,{operation:string;result:Promise<unknown>;settled:boolean}>();
   async function assets(previews=false) {
-    const endpoint=previews?`/api/studio/assets?projectId=${encodeURIComponent(options.projectId)}`:`/api/studio/projects/${options.projectId}`;
-    const data=await apiFetch<{assets:AssetSummary[];nextCursor?:string|null;nextAssetCursor?:string|null}>(endpoint,{signal:options.signal});
+    const list=`/api/studio/assets?projectId=${encodeURIComponent(options.projectId)}`;
+    const endpoint=previews?list:`/api/studio/projects/${options.projectId}`;
+    const data=await request<{assets:AssetSummary[];nextCursor?:string|null;nextAssetCursor?:string|null}>(endpoint);
     const rows=new Map(data.assets.map(asset=>[asset.id,asset]));
-    let cursor=previews?data.nextCursor:data.nextAssetCursor;
+    let cursor=data.nextCursor??data.nextAssetCursor;
     const seen=new Set<string>();
     while(cursor){
       if(seen.has(cursor))throw Error("The project asset list could not finish loading. Try again.");
       seen.add(cursor);
-      const page=await apiFetch<{assets:AssetSummary[];nextCursor?:string|null}>(`/api/studio/assets?projectId=${encodeURIComponent(options.projectId)}&cursor=${encodeURIComponent(cursor)}`,{signal:options.signal});
+      const page=await request<{assets:AssetSummary[];nextCursor?:string|null}>(`${list}&cursor=${encodeURIComponent(cursor)}`);
       for(const asset of page.assets)rows.set(asset.id,asset);
       cursor=page.nextCursor;
     }
     return [...rows.values()];
   }
   async function open(ref:AssetRef) {
-    if(!(await assets()).some(asset=>asset.id===ref.assetId))throw Error("This asset is outside the open project.");
-    const pkg=await apiFetch<OpenAssetResult>(`/api/studio/revisions/${ref.revisionId}`,{signal:options.signal});
+    if(!options.transport&&!(await assets()).some(asset=>asset.id===ref.assetId))throw Error("This asset is outside the open project.");
+    const pkg=await request<OpenAssetResult>(`/api/studio/revisions/${ref.revisionId}`);
     if(pkg.ref.assetId!==ref.assetId||pkg.ref.revisionId!==ref.revisionId)throw Error("The revision does not belong to this asset.");
     return pkg;
   }
@@ -72,6 +74,7 @@ export function createEditorHost(options:{projectId:string;initialRef:AssetRef;s
         }finally{activating=false;}
       }
       case "importAsset": {
+        if(options.transport)throw Error("Import files in Studio before placing them in PhotoCraft.");
         const input=object(message.payload),creationId=requireUuid(input.creationId,"import request ID");
         const name=validatePackagePath(input.name);
         if(name.includes("/")||!(input.file instanceof Blob)||!input.file.size||input.file.size>256*1024**2)throw Error("Choose a single supported file up to 256 MiB.");
@@ -109,6 +112,7 @@ export function createEditorHost(options:{projectId:string;initialRef:AssetRef;s
         dirty=input.dirty;options.onDirty(dirty);return{received:true};
       }
       case "requestAgentEdit": {
+        if(options.transport)throw Error("Request edits from the chat composer.");
         const input=object(message.payload),ref=assetRef(input.ref);
         if(saving||dirty||activating)throw Error("Save your edits before handing this revision to an employee.");
         if(ref.assetId!==assetId||ref.revisionId!==base)throw Error("Hand off the exact saved revision open in this editor.");
@@ -154,16 +158,15 @@ export function createEditorHost(options:{projectId:string;initialRef:AssetRef;s
         if(dependencies.length>100)throw Error("A new asset can link at most 100 saved revisions, including its source.");
         saving=true;dirty=true;options.onDirty(true);
         try{
-          const projectAssets=await assets();
-          const current=projectAssets.find(asset=>asset.id===assetId);
-          if(!current||dependencies.some(ref=>!projectAssets.some(asset=>asset.id===ref.assetId)))throw Error("The save includes an asset outside this project.");
-          let targetId=assetId;
-          if(creationId){
-            const created=await apiFetch<{asset:AssetSummary}>("/api/studio/assets",{method:"POST",body:JSON.stringify({creationId,projectId:options.projectId,appId:current.app_id,name}),signal:options.signal});
+          const projectAssets=options.transport?null:await assets();
+          const current=projectAssets?.find(asset=>asset.id===assetId);
+          if(projectAssets&&(!current||dependencies.some(ref=>!projectAssets.some(asset=>asset.id===ref.assetId))))throw Error("The save includes an asset outside this project.");
+          const targetId=creationId??assetId;
+          if(creationId&&current){
+            const created=await request<{asset:AssetSummary}>("/api/studio/assets",{method:"POST",body:JSON.stringify({creationId,projectId:options.projectId,appId:current.app_id,name})});
             if(created.asset.id!==creationId)throw Error("The new asset was not confirmed.");
-            targetId=creationId;
           }
-          const result=await savePackage({assetId:targetId,expectedBaseRevisionId:creationId?null:base,files,dependencies,message:typeof input.message==="string"?input.message:"Edited in the browser",signal:options.signal,onProgress:message=>options.onStatus(message)});
+          const result=await savePackage({assetId:targetId,expectedBaseRevisionId:creationId?null:base,files,dependencies,message:typeof input.message==="string"?input.message:"Edited in the browser",signal:options.signal,onProgress:message=>options.onStatus(message)}, options.transport&&{...options.transport,requestId:message.requestId,newAsset:creationId?{name,source:{assetId,revisionId:base}}:undefined});
           if(result.status==="committed"&&mode!=="copy"){
             base=result.revisionId;assetId=result.assetId;
             bindings.set(assetId,base);

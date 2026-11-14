@@ -1,6 +1,9 @@
 import "server-only";
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
-import { CallToolRequestSchema, ListToolsRequestSchema, type CallToolResult, type Tool } from "@modelcontextprotocol/sdk/types.js";
+import { CallToolRequestSchema, ErrorCode, ListResourcesRequestSchema, ListToolsRequestSchema, McpError, ReadResourceRequestSchema, type CallToolResult, type Tool } from "@modelcontextprotocol/sdk/types.js";
+import { RESOURCE_MIME_TYPE } from "@modelcontextprotocol/ext-apps/server";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { z } from "zod";
 import { ApiError } from "@/lib/api-error";
 import { studioApps } from "@/studio/apps/registry";
@@ -9,32 +12,34 @@ import { isMailConnectionId } from "@/studio/connected-mail";
 import { isEmployeeReady } from "@/studio/manifest";
 import { dbFailure } from "@/studio/server";
 import { attachmentLimit, importAssets } from "./asset-import";
-import { scope } from "./config";
+import { mcpConfig, scope } from "./config";
 import { cancelRobynJob, getRobynJob, listRobynJobs } from "./jobs";
 import { createProject, downloadAsset, getProject, listAssets, listProjects, listRevisions, openAsset, renameAsset, searchLibrary, updateProject } from "./library";
 import { listMailcraftAccounts, readMailcraftMailbox } from "./mailboxes";
 import type { McpIdentity } from "./oauth";
 import { currentRobyn, getCraftOperation, listCraftOperations, runCraft } from "./operations";
+import { openPhotoCraft, openPhotoCraftInput, photoCraftEditorRequest, photoCraftEditorUrl, photoCraftRequest, photoCraftRequestTool, photoCraftResourceUri } from "./photocraft";
 import runtime from "./runtime-release.json";
 import { assetRef, craftRequest, pageFields, uuid } from "./schemas";
 
 type Result = Record<string, unknown>;
-type Definition = { descriptor: Tool; call: (identity: McpIdentity, input: unknown) => Promise<Result> | Result };
+type Definition = { descriptor: Tool; call: (identity: McpIdentity, input: unknown) => Promise<Result> | Result; render?: (value: Result) => CallToolResult };
 
 function tool<S extends z.ZodType>(
   name: string, title: string, description: string, input: S, readOnly: boolean,
   call: (identity: McpIdentity, args: z.output<S>) => Promise<Result> | Result,
-  options: { openWorld?: boolean; destructive?: boolean; fileParams?: string[] } = {},
+  options: { openWorld?: boolean; destructive?: boolean; fileParams?: string[]; meta?: Tool["_meta"]; outputSchema?: Tool["outputSchema"]; render?: Definition["render"] } = {},
 ): Definition {
   return {
     descriptor: {
       name, title, description,
       inputSchema: z.toJSONSchema(input, { target: "draft-07", io: "input" }) as Tool["inputSchema"],
-      outputSchema: { type: "object" },
+      outputSchema: options.outputSchema ?? { type: "object" },
       annotations: { readOnlyHint: readOnly, destructiveHint: options.destructive ?? !readOnly, idempotentHint: true, openWorldHint: options.openWorld ?? false },
       _meta: {
         securitySchemes: [{ type: "oauth2", scopes: [scope] }],
         ...(options.fileParams ? { "openai/fileParams": options.fileParams } : {}),
+        ...options.meta,
       },
     },
     call(identity, raw) {
@@ -45,6 +50,7 @@ function tool<S extends z.ZodType>(
       }
       return call(identity, parsed.data);
     },
+    render: options.render,
   };
 }
 
@@ -141,6 +147,59 @@ const catalog = [
     (identity, input) => runCraft(identity, app, input))),
 ];
 
+const photoCraftOutput = z.strictObject({
+  name: z.string(), projectId: z.uuid(), ref: z.strictObject({ assetId: z.uuid(), revisionId: z.uuid() }), studioUrl: z.url(),
+});
+const photoCraftTools = [
+  tool("open_photocraft", "Open PhotoCraft", "Open the real PhotoCraft editor on desktop for one exact saved .pcraft revision in an active project. Use search_library with appId photocraft to find the projectId, assetId and revisionId. Use this when the creator wants to edit manually in chat.",
+    openPhotoCraftInput, true, openPhotoCraft, {
+      meta: { ui: { resourceUri: photoCraftResourceUri, visibility: ["model"] } },
+      outputSchema: z.toJSONSchema(photoCraftOutput, { target: "draft-07", io: "output" }) as Tool["outputSchema"],
+      render: ({ output, session }) => {
+        const details = photoCraftOutput.parse(output);
+        return {
+          structuredContent: details,
+          content: [{ type: "text", text: `PhotoCraft: ${details.name}\nOpen the saved revision in Studio: ${details.studioUrl}` }],
+          _meta: { session },
+        };
+      },
+    }),
+  tool(photoCraftRequestTool, "PhotoCraft library access", "Read project assets and confirm changes made with PhotoCraft's own Save commands.",
+    photoCraftRequest, false, async (identity, input) => ({ payload: await photoCraftEditorRequest(identity, input) }), {
+      destructive: false,
+      meta: { ui: { visibility: ["app"] } },
+      render: ({ payload }) => ({ content: [], structuredContent: {}, _meta: { payload } }),
+    }),
+];
+const photoCraftResource = { uri: photoCraftResourceUri, name: "PhotoCraft editor", mimeType: RESOURCE_MIME_TYPE };
+let photoCraftView: Promise<string> | undefined;
+
+async function readPhotoCraftView(editorUrl: URL) {
+  photoCraftView ??= readFile(join(process.cwd(), "build/mcp/photocraft.html"), "utf8").catch(error => {
+    photoCraftView = undefined;
+    throw error;
+  });
+  const storage = new URL(process.env.NEXT_PUBLIC_SUPABASE_URL!);
+  const storageOrigin = storage.origin;
+  if (storage.hostname.endsWith(".supabase.co")) storage.hostname = storage.hostname.replace(".supabase.co", ".storage.supabase.co");
+  const config = {
+    editorUrl: editorUrl.href, studioOrigin: mcpConfig().issuer, anonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    tool: photoCraftRequestTool,
+  };
+  const scriptUrl = config.studioOrigin + "/api/studio/external-mcp/photocraft/v1.js";
+  return {
+    ...photoCraftResource,
+    text: (await photoCraftView)
+      .replace("__ROBYN_PHOTOCRAFT_VIEW_URL__", () => scriptUrl)
+      .replace("__ROBYN_PHOTOCRAFT_CONFIG_JSON__", () => JSON.stringify(config).replaceAll("<", "\\u003c")),
+    _meta: {
+      ui: { csp: { frameDomains: [editorUrl.origin], resourceDomains: [config.studioOrigin], connectDomains: [...new Set([storageOrigin, storage.origin])] } },
+      "openai/ui": { availableDisplayModes: ["inline", "fullscreen"], preferredDisplayMode: "fullscreen" },
+      "openai/widgetCSP": { redirect_domains: [config.studioOrigin] },
+    },
+  };
+}
+
 function result(value: Result): CallToolResult {
   const operation = value.result as Record<string, unknown> | undefined;
   const preview = operation?.preview as { data: string; mimeType: string } | undefined;
@@ -159,14 +218,24 @@ function result(value: Result): CallToolResult {
 }
 
 export function createMcpServer(identity: McpIdentity) {
-  const server = new Server({ name: "robyn", title: "Robyn", version: "1.0.0" }, { capabilities: { tools: {} },
+  const photoCraft = photoCraftEditorUrl();
+  const available = photoCraft ? [...catalog, ...photoCraftTools] : catalog;
+  const server = new Server({ name: "robyn", title: "Robyn", version: "1.0.0" }, { capabilities: { tools: {}, ...(photoCraft ? { resources: {} } : {}) },
     instructions: "Use exact project, asset and revision IDs from the private Studio library. Direct Craft commands use the installed application without an AI turn. For MailCraft reads, discover approved accounts with list_mailcraft_accounts and use the creator’s exact mailConnectionId. Ask which account to use if it is ambiguous. Start a Robyn job only when the creator wants delegation and the Studio allowance permits it." });
-  server.setRequestHandler(ListToolsRequestSchema, () => ({ tools: catalog.map(entry => entry.descriptor) }));
+  server.setRequestHandler(ListToolsRequestSchema, () => ({ tools: available.map(entry => entry.descriptor) }));
+  if (photoCraft) {
+    server.setRequestHandler(ListResourcesRequestSchema, () => ({ resources: [photoCraftResource] }));
+    server.setRequestHandler(ReadResourceRequestSchema, async ({ params }) => {
+      if (params.uri !== photoCraftResourceUri) throw new McpError(ErrorCode.InvalidParams, "Unknown UI resource.");
+      return { contents: [await readPhotoCraftView(photoCraft)] };
+    });
+  }
   server.setRequestHandler(CallToolRequestSchema, async ({ params }) => {
     try {
-      const entry = catalog.find(tool => tool.descriptor.name === params.name);
+      const entry = available.find(tool => tool.descriptor.name === params.name);
       if (!entry) throw new ApiError(404, "unknown_tool", "Choose a tool listed by Robyn.");
-      return result(await entry.call(identity, params.arguments));
+      const value = await entry.call(identity, params.arguments);
+      return (entry.render ?? result)(value);
     } catch (error) {
       if (!(error instanceof ApiError)) console.error("[external-mcp] tool failed", params.name);
       const details = error instanceof ApiError ? { code: error.code, message: error.message }

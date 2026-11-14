@@ -1,5 +1,7 @@
-export async function apiFetch<T>(url: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(url, {
+export type ApiFetch = (url: string, init?: RequestInit) => Promise<Response>;
+
+export async function apiFetch<T>(url: string, init?: RequestInit, fetcher: ApiFetch = fetch): Promise<T> {
+  const res = await fetcher(url, {
     ...init,
     headers: { "Content-Type": "application/json", ...(init?.headers || {}) },
   });

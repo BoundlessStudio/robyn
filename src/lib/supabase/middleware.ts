@@ -16,6 +16,7 @@ export async function updateSession(request: NextRequest) {
   if (pathname === "/api/studio/mcp") return response;
   // External MCP and OAuth machine endpoints authenticate in their handlers.
   if (pathname === "/mcp" || pathname === "/api/studio/external-mcp" || pathname === "/api/studio/mcp-runtime"
+    || pathname === "/api/studio/external-mcp/photocraft/v1.js"
     || pathname === "/.well-known/oauth-authorization-server" || pathname === "/.well-known/oauth-protected-resource"
     || pathname === "/.well-known/oauth-protected-resource/mcp"
     || /^\/api\/studio\/mcp-oauth\/(register|token|revoke)$/.test(pathname)) return response;

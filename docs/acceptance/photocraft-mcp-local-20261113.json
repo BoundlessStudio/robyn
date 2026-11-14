@@ -1,0 +1,27 @@
+{
+  "scope": "Local PhotoCraft MCP App test in Chromium with the real editor, Robyn's MCP handlers and migration ledger, and a fixture for private Storage",
+  "date": "2026-11-13",
+  "webBase": "4290fbb194c835f14ad3007aacba3e4255342ad3",
+  "runtimeBase": "4a068100a046838de1a23a14e98ca0e371455bbb",
+  "migration": "0038_photocraft_mcp_saves.sql",
+  "photoCraft": {
+    "upstream": "0.17.0",
+    "adapterCandidate": "0.3.2",
+    "executableSha256": "0a686430ae9a76a5480b94475e3a515a559ac8ef12f0bc5ebddd0a0ec66e56b7",
+    "preservedArtifactFiles": 735,
+    "nativeInputSha256": "91f3604b36febf454e94963104c1fbc144080574dcdd8e775b69ae638ebbc548",
+    "browserSavedSha256": "5e5cf9849af5d1a012f202c66b8a078c39a682b039f405838773fabec8ff51a4",
+    "nativeContinuationSha256": "5e362369a6741258ee34db4b0def466d054cbee16c18d7169b8ce9d708b76097"
+  },
+  "checks": {
+    "openedExactNativeRevision": true,
+    "browserEdit": "Added one layer using the running PhotoCraft engine",
+    "save": "PhotoCraft Ctrl+S recovered a lost begin reply and a lost commit reply",
+    "newCommittedRevisions": 1,
+    "uploadedSnapshots": 1,
+    "reopenedSavedRevision": true,
+    "nativeContinuation": "Pinned PhotoCraft CLI read the browser-created layer and wrote another layer",
+    "liveChatGPT": "pending",
+    "hostedPrivateStorage": "pending"
+  }
+}

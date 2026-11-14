@@ -2,12 +2,71 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash, randomUUID } from "node:crypto";
 import { readFile } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
 import { loadModule } from "./helpers/module.mjs";
 
 const workstationImage = JSON.parse(await readFile(new URL("../src/studio/workstation-image.json", import.meta.url), "utf8"));
 const [workstationTemplate, workstationRevision] = workstationImage.template.split("@");
+
+test("PhotoCraft is discovered as an OAuth-protected MCP App", async t => {
+  const settings = {
+    NEXT_PUBLIC_SITE_URL: "https://robyn.example",
+    NEXT_PUBLIC_SUPABASE_URL: "https://storage.example",
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: "fixture-public-key",
+    ROBYN_MCP_RUNTIME_SECRET: "s".repeat(43),
+    ROBYN_MCP_PHOTOCRAFT_URL: "https://editors.robyn.example/mcp/photocraft/v0.17.0-0.3.2/",
+  };
+  const previous = Object.keys(settings).map(key => [key, process.env[key]]);
+  Object.assign(process.env, settings);
+  t.after(() => previous.forEach(([key, value]) => { if (value === undefined) delete process.env[key]; else process.env[key] = value; }));
+  execFileSync(process.execPath, ["scripts/build-mcp-view.mjs"], { stdio: "pipe" });
+
+  const [projectId, assetId, revisionId] = Array.from({ length: 3 }, randomUUID);
+  const binding = { projectId, assetId, revisionId };
+  const identity = { workspaceId: randomUUID(), userId: randomUUID(), grantId: randomUUID() };
+  const { POST } = await loadModule("../../src/app/api/studio/external-mcp/route.ts", {
+    "server-only": "",
+    "@/lib/supabase/admin": "export const createAdminClient=()=>({rpc:()=>({data:null,error:null})});",
+    "@/studio/mcp/oauth": "export const challenge=()=>'Bearer'; export const oauthFailure=error=>{throw error}; export const mcpIdentity=auth=>auth==='Bearer fixture'?globalThis.__photoCraftIdentity:null;",
+    "./library": "export const readAssetRef=(_,p,r)=>({asset:{id:r.assetId,app_id:'photocraft',asset_kind:'native',name:'Layered image'},revision:{id:r.revisionId,state:'committed'}}); export const createProject=()=>{}; export const downloadAsset=()=>{}; export const getProject=()=>{}; export const listAssets=()=>{}; export const listProjects=()=>{}; export const listRevisions=()=>{}; export const openAsset=()=>{}; export const renameAsset=()=>{}; export const searchLibrary=()=>{}; export const updateProject=()=>{};",
+    "@/studio/server": "export const ownedProject=(_,__,id)=>({id,status:'active'}); export const ownedAsset=()=>{}; export const ownedRevision=()=>{}; export const revisionFiles=()=>{}; export const verifyStoredFiles=()=>{}; export const withAssetPreviews=()=>{}; export const dbFailure=()=>{}; export const mapInBatches=()=>{}; export const STUDIO_BUCKET='studio-assets'; export const id=x=>x; export const appFor=()=>{}; export const readMetadataBody=()=>{};",
+    "@/studio/assignment-submit": "export const submitRobynAssignment=()=>{};",
+    "./asset-import": "export const attachmentLimit=20; export const importAssets=()=>{};",
+    "./jobs": "export const cancelRobynJob=()=>{}; export const getRobynJob=()=>{}; export const listRobynJobs=()=>{};",
+    "./mailboxes": "export const listMailcraftAccounts=()=>{}; export const readMailcraftMailbox=()=>{};",
+    "./operations": "export const currentRobyn=()=>{}; export const getCraftOperation=()=>{}; export const listCraftOperations=()=>{}; export const runCraft=()=>{};",
+  });
+  globalThis.__photoCraftIdentity = identity;
+  t.after(() => { delete globalThis.__photoCraftIdentity; });
+  const url = new URL("/mcp", settings.NEXT_PUBLIC_SITE_URL);
+  assert.equal((await POST(new Request(url, { method: "POST" }))).status, 401);
+  const transport = new StreamableHTTPClientTransport(url, {
+    requestInit: { headers: { authorization: "Bearer fixture" } },
+    fetch: (input, init) => POST(new Request(input, init)),
+  });
+  const mcp = new Client({ name: "PhotoCraft fixture", version: "1.0.0" });
+  await mcp.connect(transport);
+  t.after(() => mcp.close());
+  const { tools } = await mcp.listTools();
+  const resource = tools.find(tool => tool.name === "open_photocraft")._meta.ui.resourceUri;
+  assert.deepEqual(tools.find(tool => tool.name === "photocraft_editor_request")._meta.ui.visibility, ["app"]);
+  assert.equal((await mcp.listResources()).resources[0].uri, resource);
+  const [template] = (await mcp.readResource({ uri: resource })).contents;
+  assert.equal(template.mimeType, "text/html;profile=mcp-app");
+  assert.deepEqual(template._meta.ui.csp.frameDomains, ["https://editors.robyn.example"]);
+  assert.match(template.text, /<title>PhotoCraft<\/title>/);
+  assert.match(template.text, /editors\.robyn\.example/);
+  const launch = await mcp.callTool({ name: "open_photocraft", arguments: binding });
+  assert.equal(launch.isError, undefined);
+  assert.deepEqual(launch.structuredContent.ref, { assetId, revisionId });
+  assert.match(launch._meta.session, /^[a-zA-Z0-9_-]{43}$/);
+  assert(!JSON.stringify(launch.structuredContent).includes(launch._meta.session));
+  assert(!(await mcp.callTool({ name: "photocraft_editor_request", arguments: {
+    binding, session: launch._meta.session, method: "GET", path: "/api/studio/assignments",
+  } })).structuredContent);
+});
 
 test("a Streamable HTTP client discovers Studio and Craft tools within the owner and zero-allowance boundaries", async () => {
   const issuer = "https://robyn.example";

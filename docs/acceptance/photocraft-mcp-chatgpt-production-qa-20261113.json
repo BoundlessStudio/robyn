@@ -1,0 +1,68 @@
+{
+  "date": "2026-11-13",
+  "scope": "A private PhotoCraft MCP App in desktop ChatGPT Work, using a generated native document in the production Studio QA workspace and its hosted private Storage.",
+  "webBase": "4290fbb194c835f14ad3007aacba3e4255342ad3",
+  "runtimeBase": "4a068100a046838de1a23a14e98ca0e371455bbb",
+  "migration": {
+    "file": "0038_photocraft_mcp_saves.sql",
+    "sha256": "0a265598178f91cc52ef80f582429fee17b748ea65abb218f911e4b59512643a",
+    "priorLedgerEntries": 38,
+    "priorLedgerHead": "0037_studio_names.sql",
+    "priorLedgerSha256": "71444a7103743dca770b41f7bf628164e19532abdfb0744650e5e03e5e838e11",
+    "method": "Supabase SQL Editor using the repository migration transaction and ledger lock. The prior filenames and checksums matched, and the ledger recorded the new migration."
+  },
+  "photoCraft": {
+    "upstream": "0.17.0",
+    "sourceCommit": "b8c3f3aa8e2918032cadc0e042664414a03be333",
+    "adapterCandidate": "0.3.2",
+    "executableSha256": "0a686430ae9a76a5480b94475e3a515a559ac8ef12f0bc5ebddd0a0ec66e56b7",
+    "windowsPortableSha256": "3453777af0a0b376bfea0d1ccf42bedcbe1c324e1836b50d6227b9e1d64a20ab"
+  },
+  "checks": {
+    "studioOAuth": "ChatGPT registered the client, the QA Studio owner authorized it, and ChatGPT exchanged an authorization code for a Studio access token.",
+    "liveChatGPTEditor": "The original PhotoCraft canvas opened the exact native revision beside the conversation.",
+    "storage": "Both saves used the signed resumable upload, followed by a successful Studio commit. The production Studio API returned both private files and the preserved original. The downloaded file for each revision matched the stored size and SHA-256.",
+    "windowsNativeReopen": "PhotoCraft 0.17.0 for Windows opened the exact latest .pcraft and displayed both brush strokes on the editable pixel layer.",
+    "nativeContinuation": "The pinned native CLI reopened both saved revisions and wrote a continuation with an additional layer. The painted layer retained its bounds and the downloaded source still matched the Studio hash.",
+    "previewCleanup": "The QA OAuth grant was revoked and the temporary endpoints were shut down. The committed QA revisions remain in Studio."
+  },
+  "revisions": [
+    {
+      "source": "Native PhotoCraft",
+      "revisionId": "a02c2331-6db9-4a0b-84b5-9e7efe1b3e90",
+      "state": "committed",
+      "bytes": 8617,
+      "sha256": "1d36c44321bb302c9e8f7c4e175bcc80ad85e85daab8e78caca2108ffc081624"
+    },
+    {
+      "source": "Ctrl+S",
+      "revisionId": "ad179895-1fa8-4ce6-9cb9-af97bea97b6e",
+      "baseRevisionId": "a02c2331-6db9-4a0b-84b5-9e7efe1b3e90",
+      "state": "committed",
+      "bytes": 17444,
+      "sha256": "44738823aa18e535d33d3e955cb1f6e6a7da0e0f0ae4fc9852e5ab195de8ccf7"
+    },
+    {
+      "source": "File → Save",
+      "revisionId": "6ef6c0d6-a75c-43ef-b6a2-510c7a0921f0",
+      "baseRevisionId": "ad179895-1fa8-4ce6-9cb9-af97bea97b6e",
+      "state": "committed",
+      "current": true,
+      "bytes": 27247,
+      "sha256": "a3e11cf03c0a5cfc874db25e7e4c1a9c514b57849ebe2ee98b7ef8d47a6135a7"
+    }
+  ],
+  "sha256": {
+    "nativeContinuation": "9ed8be29870992736c58d5ea6676a85d2acb145d771bb54d0a0954e104170ac0",
+    "chatGPTSaveScreenshot": "d543d5fcc87aa33f429c471266317c057f5fd28926a0359902be334a6542b847",
+    "windowsNativeScreenshot": "e37422574a97a1d697b028fb8e17eedd0866d735cc326e9050f7391e8fc40296"
+  },
+  "tests": {
+    "studioPassed": 287,
+    "runtimePassed": 177,
+    "runtimeSkipped": 1,
+    "typecheck": "passed",
+    "productionBuild": "passed"
+  },
+  "releaseStatus": "Private preview verified. Shared ChatGPT connection and public editor release are pending."
+}

@@ -1,6 +1,6 @@
 import { sha256 } from "@noble/hashes/sha2.js";
 import { Upload } from "tus-js-client";
-import { apiFetch, readApiError } from "@/lib/api";
+import { apiFetch, readApiError, type ApiFetch } from "@/lib/api";
 import { validateRevisionPackage, type AssetRef, type PackageFileRole, type RevisionPackage } from "./assets";
 
 export interface LocalPackageFile { path:string; role:PackageFileRole; file:Blob }
@@ -13,7 +13,7 @@ export async function digestFile(file:Blob,signal?:AbortSignal):Promise<string> 
   return Array.from(hash.digest(),byte=>byte.toString(16).padStart(2,"0")).join("");
 }
 
-function uploadFile(file:Blob,transfer:Transfer,endpoint:string,bucket:string,signal:AbortSignal|undefined,onProgress:(sent:number)=>void) {
+function uploadFile(file:Blob,transfer:Transfer,endpoint:string,bucket:string,anonKey:string,signal:AbortSignal|undefined,onProgress:(sent:number)=>void) {
   return new Promise<void>((resolve,reject)=>{
     signal?.throwIfAborted();
     let settled=false;
@@ -21,7 +21,7 @@ function uploadFile(file:Blob,transfer:Transfer,endpoint:string,bucket:string,si
     const upload=new Upload(file,{
       endpoint,chunkSize:6*1024*1024,uploadDataDuringCreation:true,removeFingerprintOnSuccess:true,
       retryDelays:[0,1000,3000,5000,10000],
-      headers:{"x-signature":transfer.token!,"apikey":process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,"x-upsert":"false"},
+      headers:{"x-signature":transfer.token!,"apikey":anonKey,"x-upsert":"false"},
       metadata:{bucketName:bucket,objectName:transfer.storageKey!,contentType:transfer.mimeType!,cacheControl:"3600"},
       fingerprint:async()=>`robyn:${transfer.storageKey}:${transfer.sha256}`,
       onProgress:sent=>onProgress(sent),
@@ -44,38 +44,47 @@ export async function describeLocalPackage(input:{files:LocalPackageFile[];depen
 
 /** File bytes go straight from the browser to private Storage. Local resume
  * state contains a revision ID, never a credential or a copy of the media. */
-export async function savePackage(input:{assetId:string;expectedBaseRevisionId:string|null;files:LocalPackageFile[];dependencies:AssetRef[];message:string;sourceImport?:{projectId:string;name:string};bridgeImport?:{projectId:string;name:string};blankStart?:{projectId:string;templateId:string};signal?:AbortSignal;onProgress?:(message:string,percent:number)=>void}):Promise<SaveResult> {
+export async function savePackage(input:{assetId:string;expectedBaseRevisionId:string|null;files:LocalPackageFile[];dependencies:AssetRef[];message:string;sourceImport?:{projectId:string;name:string};bridgeImport?:{projectId:string;name:string};blankStart?:{projectId:string;templateId:string};signal?:AbortSignal;onProgress?:(message:string,percent:number)=>void}, transport?:{fetch:ApiFetch;anonKey:string;requestId:string;newAsset?:{name:string;source:AssetRef}}):Promise<SaveResult> {
+  const send=transport?.fetch??fetch;
   const pkg=await describeLocalPackage(input),files=pkg.files;
-  const fingerprint=sha256(new TextEncoder().encode(JSON.stringify({base:input.expectedBaseRevisionId,pkg})));
-  const key=`robyn-save:${input.assetId}:${Array.from(fingerprint,b=>b.toString(16).padStart(2,"0")).join("")}`;
+  // MCP retries are reconciled by the grant-bound save request ID.
+  let key:string|undefined;
   let revisionId:string|null=null;
-  try{revisionId=localStorage.getItem(key);}catch{/* Private browsing may disable persistence. */}
+  if(!transport){
+    const fingerprint=sha256(new TextEncoder().encode(JSON.stringify({base:input.expectedBaseRevisionId,pkg})));
+    key=`robyn-save:${input.assetId}:${Array.from(fingerprint,b=>b.toString(16).padStart(2,"0")).join("")}`;
+    try{revisionId=localStorage.getItem(key);}catch{/* Private browsing may disable persistence. */}
+  }
   if(revisionId){
     const history=await apiFetch<{revisions:Array<{id:string;state:string}>}>(`/api/studio/assets/${input.assetId}/revisions?revisionId=${encodeURIComponent(revisionId)}`);
     const prior=history.revisions.find(row=>row.id===revisionId);
-    if(prior?.state==="committed"||prior?.state==="conflict"){try{localStorage.removeItem(key);}catch{}return{assetId:input.assetId,revisionId,status:prior.state};}
+    if(prior?.state==="committed"||prior?.state==="conflict"){if(key)try{localStorage.removeItem(key);}catch{}return{assetId:input.assetId,revisionId,status:prior.state};}
     if(!prior||prior.state!=="uploading")revisionId=null;
   }
   if(!revisionId){
     const creation=input.blankStart??input.sourceImport??input.bridgeImport;
     const endpoint=input.blankStart?"/api/studio/starters":input.sourceImport?"/api/studio/sources":input.bridgeImport?"/api/studio/imports":`/api/studio/assets/${input.assetId}/revisions`;
-    const revision=await apiFetch<{revisionId:string}>(endpoint,{method:"POST",body:JSON.stringify(creation?{...creation,creationId:input.assetId,package:pkg}:{expectedBaseRevisionId:input.expectedBaseRevisionId,package:pkg}),signal:input.signal});
-    revisionId=revision.revisionId;try{localStorage.setItem(key,revisionId);}catch{}
+    const payload=creation?{...creation,creationId:input.assetId,package:pkg}:{expectedBaseRevisionId:input.expectedBaseRevisionId,package:pkg,
+      ...(transport&&{requestId:transport.requestId,newAsset:transport.newAsset})};
+    const revision=await apiFetch<{revisionId:string;status?:string}>(endpoint,{method:"POST",body:JSON.stringify(payload),signal:input.signal},send);
+    if(revision.status==="committed"||revision.status==="conflict")return{assetId:input.assetId,revisionId:revision.revisionId,status:revision.status};
+    revisionId=revision.revisionId;
+    if(key)try{localStorage.setItem(key,revisionId);}catch{}
   }
-  const ticket=await apiFetch<{bucket:string;resumableEndpoint:string;transfers:Transfer[]}>(`/api/studio/revisions/${revisionId}/transfers`,{method:"POST",body:"{}",signal:input.signal});
+  const ticket=await apiFetch<{bucket:string;resumableEndpoint:string;transfers:Transfer[]}>(`/api/studio/revisions/${revisionId}/transfers`,{method:"POST",body:"{}",signal:input.signal},send);
   const total=files.reduce((sum,file)=>sum+file.bytes,0);let completed=0;
   for(const transfer of ticket.transfers){
     input.signal?.throwIfAborted();
     const file=input.files.find(file=>file.path===transfer.path);if(!file)throw new Error(`Select the original file for “${transfer.path}”.`);
-    if(!transfer.uploaded)await uploadFile(file.file,transfer,ticket.resumableEndpoint,ticket.bucket,input.signal,sent=>input.onProgress?.(`Uploading ${transfer.path}…`,Math.min(99,Math.round((completed+sent)/(total||1)*100))));
+    if(!transfer.uploaded)await uploadFile(file.file,transfer,ticket.resumableEndpoint,ticket.bucket,transport?.anonKey??process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,input.signal,sent=>input.onProgress?.(`Uploading ${transfer.path}…`,Math.min(99,Math.round((completed+sent)/(total||1)*100))));
     completed+=file.file.size;
   }
   input.onProgress?.("Confirming the saved revision…",99);
-  const response=await fetch(`/api/studio/revisions/${revisionId}/commit`,{method:"POST",headers:{"Content-Type":"application/json"},body:"{}",signal:input.signal});
+  const response=await send(`/api/studio/revisions/${revisionId}/commit`,{method:"POST",headers:{"Content-Type":"application/json"},body:"{}",signal:input.signal});
   if(!response.ok&&response.status!==409)throw new Error(await readApiError(response,"Could not confirm the revision"));
   const result=await response.json() as SaveResult&{error?:{message:string}};
   if(result.status!=="committed"&&result.status!=="conflict")throw new Error(result.error?.message??"The revision could not be confirmed. Resume the upload to retry.");
-  try{localStorage.removeItem(key);}catch{}
+  if(key)try{localStorage.removeItem(key);}catch{}
   input.onProgress?.(result.status==="conflict"?"Your save is preserved as a conflict.":"Revision saved.",100);
   return result;
 }
