@@ -12,13 +12,15 @@ import { isMailConnectionId } from "@/studio/connected-mail";
 import { isEmployeeReady } from "@/studio/manifest";
 import { dbFailure } from "@/studio/server";
 import { attachmentLimit, importAssets } from "./asset-import";
+import { craftResourceUri, enabledChatCrafts, type ChatCraft } from "./chat-crafts";
 import { mcpConfig, scope } from "./config";
 import { cancelRobynJob, getRobynJob, listRobynJobs } from "./jobs";
 import { createProject, downloadAsset, getProject, listAssets, listProjects, listRevisions, openAsset, renameAsset, searchLibrary, updateProject } from "./library";
 import { listMailcraftAccounts, readMailcraftMailbox } from "./mailboxes";
 import type { McpIdentity } from "./oauth";
 import { currentRobyn, getCraftOperation, listCraftOperations, runCraft } from "./operations";
-import { openPhotoCraft, openPhotoCraftInput, photoCraftEditorRequest, photoCraftEditorUrl, photoCraftRequest, photoCraftRequestTool, photoCraftResourceUri } from "./photocraft";
+import { chatCraftId, chatCraftRequest, craftRequestTool, openCraftEditor, openPhotoCraft, openPhotoCraftInput, photoCraftEditorRequest,
+  photoCraftEditorUrl, photoCraftRequest, photoCraftRequestTool, photoCraftResourceUri, requestCraftEditor } from "./photocraft";
 import runtime from "./runtime-release.json";
 import { assetRef, craftRequest, pageFields, uuid } from "./schemas";
 
@@ -150,19 +152,22 @@ const catalog = [
 const photoCraftOutput = z.strictObject({
   name: z.string(), projectId: z.uuid(), ref: z.strictObject({ assetId: z.uuid(), revisionId: z.uuid() }), studioUrl: z.url(),
 });
+const editorResource = (name: string, uri: string) => ({ uri, name: `${name} editor`, mimeType: RESOURCE_MIME_TYPE });
+const photoCraftResource = editorResource("PhotoCraft", photoCraftResourceUri);
+function renderEditor({ output, session }: Result) {
+  const details = photoCraftOutput.parse(output);
+  return {
+    structuredContent: details,
+    content: [{ type: "text" as const, text: `${details.name}\nOpen the saved revision in Studio: ${details.studioUrl}` }],
+    _meta: { session },
+  };
+}
 const photoCraftTools = [
   tool("open_photocraft", "Open PhotoCraft", "Open the real PhotoCraft editor on desktop for one exact saved .pcraft revision in an active project. Use search_library with appId photocraft to find the projectId, assetId and revisionId. Use this when the creator wants to edit manually in chat.",
     openPhotoCraftInput, true, openPhotoCraft, {
       meta: { ui: { resourceUri: photoCraftResourceUri, visibility: ["model"] } },
       outputSchema: z.toJSONSchema(photoCraftOutput, { target: "draft-07", io: "output" }) as Tool["outputSchema"],
-      render: ({ output, session }) => {
-        const details = photoCraftOutput.parse(output);
-        return {
-          structuredContent: details,
-          content: [{ type: "text", text: `PhotoCraft: ${details.name}\nOpen the saved revision in Studio: ${details.studioUrl}` }],
-          _meta: { session },
-        };
-      },
+      render: renderEditor,
     }),
   tool(photoCraftRequestTool, "PhotoCraft library access", "Read project assets and confirm changes made with PhotoCraft's own Save commands.",
     photoCraftRequest, false, async (identity, input) => ({ payload: await photoCraftEditorRequest(identity, input) }), {
@@ -171,10 +176,9 @@ const photoCraftTools = [
       render: ({ payload }) => ({ content: [], structuredContent: {}, _meta: { payload } }),
     }),
 ];
-const photoCraftResource = { uri: photoCraftResourceUri, name: "PhotoCraft editor", mimeType: RESOURCE_MIME_TYPE };
 let photoCraftView: Promise<string> | undefined;
 
-async function readPhotoCraftView(editorUrl: URL) {
+async function readEditorView(editorUrl: URL, craft?: ChatCraft) {
   photoCraftView ??= readFile(join(process.cwd(), "build/mcp/photocraft.html"), "utf8").catch(error => {
     photoCraftView = undefined;
     throw error;
@@ -184,12 +188,15 @@ async function readPhotoCraftView(editorUrl: URL) {
   if (storage.hostname.endsWith(".supabase.co")) storage.hostname = storage.hostname.replace(".supabase.co", ".storage.supabase.co");
   const config = {
     editorUrl: editorUrl.href, studioOrigin: mcpConfig().issuer, anonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-    tool: photoCraftRequestTool,
+    tool: craft ? craftRequestTool : photoCraftRequestTool,
+    ...(craft && { editorName: craft.name, appId: craft.id, readOnly: craft.readOnly }),
   };
-  const scriptUrl = config.studioOrigin + "/api/studio/external-mcp/photocraft/v1.js";
+  const scriptUrl = config.studioOrigin + "/api/studio/external-mcp/" + (craft ? "craft" : "photocraft") + "/v1.js";
+  const html = await photoCraftView;
   return {
-    ...photoCraftResource,
-    text: (await photoCraftView)
+    ...(craft ? editorResource(craft.name, craftResourceUri(craft.id)) : photoCraftResource),
+    text: (craft ? html.replace("<title>PhotoCraft</title>", `<title>${craft.name}</title>`)
+      .replace(">Opening PhotoCraft…</p>", `>Opening ${craft.name}…</p>`) : html)
       .replace("__ROBYN_PHOTOCRAFT_VIEW_URL__", () => scriptUrl)
       .replace("__ROBYN_PHOTOCRAFT_CONFIG_JSON__", () => JSON.stringify(config).replaceAll("<", "\\u003c")),
     _meta: {
@@ -198,6 +205,26 @@ async function readPhotoCraftView(editorUrl: URL) {
       "openai/widgetCSP": { redirect_domains: [config.studioOrigin] },
     },
   };
+}
+
+function editorTools(crafts: ChatCraft[]) {
+  if (!crafts.length) return [];
+  const byId = new Map(crafts.map(craft => [craft.id, craft]));
+  const open = crafts.map(craft => tool("open_" + craft.id, "Open " + craft.name,
+    `Open ${craft.name} in desktop ChatGPT for an exact saved revision. Use search_library with appId ${craft.id} to find it. `
+      + (craft.readOnly ? "This viewer displays reports without editing them." : "Use when the creator wants to edit the original document manually."),
+    openPhotoCraftInput, true, (identity, input) => openCraftEditor(identity, input, craft), {
+      meta: { ui: { resourceUri: craftResourceUri(craft.id), visibility: ["model"] } },
+      outputSchema: z.toJSONSchema(photoCraftOutput, { target: "draft-07", io: "output" }) as Tool["outputSchema"],
+      render: renderEditor,
+    }));
+  return [...open, tool(craftRequestTool, "Craft editor library access", "Read assets and confirm saves from a bound Craft editor.",
+    chatCraftRequest, false, async (identity, input) => {
+      const craft = byId.get(input.appId);
+      if (!craft) throw new ApiError(404, "not_found", "This Craft editor is unavailable.");
+      return { payload: await requestCraftEditor(identity, input, craft) };
+    }, { destructive: false, meta: { ui: { visibility: ["app"] } },
+      render: ({ payload }) => ({ content: [], structuredContent: {}, _meta: { payload } }) })];
 }
 
 function result(value: Result): CallToolResult {
@@ -219,15 +246,20 @@ function result(value: Result): CallToolResult {
 
 export function createMcpServer(identity: McpIdentity) {
   const photoCraft = photoCraftEditorUrl();
-  const available = photoCraft ? [...catalog, ...photoCraftTools] : catalog;
-  const server = new Server({ name: "robyn", title: "Robyn", version: "1.0.0" }, { capabilities: { tools: {}, ...(photoCraft ? { resources: {} } : {}) },
+  const chatCrafts = enabledChatCrafts();
+  const resources = new Map(chatCrafts.map(craft => [craftResourceUri(craft.id), { resource: editorResource(craft.name, craftResourceUri(craft.id)),
+    read: () => readEditorView(craft.editorUrl, craft) }]));
+  if (photoCraft) resources.set(photoCraftResourceUri, { resource: photoCraftResource, read: () => readEditorView(photoCraft) });
+  const available = [...catalog, ...(photoCraft ? photoCraftTools : []), ...editorTools(chatCrafts)];
+  const server = new Server({ name: "robyn", title: "Robyn", version: "1.0.0" }, { capabilities: { tools: {}, ...(resources.size ? { resources: {} } : {}) },
     instructions: "Use exact project, asset and revision IDs from the private Studio library. Direct Craft commands use the installed application without an AI turn. For MailCraft reads, discover approved accounts with list_mailcraft_accounts and use the creator’s exact mailConnectionId. Ask which account to use if it is ambiguous. Start a Robyn job only when the creator wants delegation and the Studio allowance permits it." });
   server.setRequestHandler(ListToolsRequestSchema, () => ({ tools: available.map(entry => entry.descriptor) }));
-  if (photoCraft) {
-    server.setRequestHandler(ListResourcesRequestSchema, () => ({ resources: [photoCraftResource] }));
+  if (resources.size) {
+    server.setRequestHandler(ListResourcesRequestSchema, () => ({ resources: [...resources.values()].map(item => item.resource) }));
     server.setRequestHandler(ReadResourceRequestSchema, async ({ params }) => {
-      if (params.uri !== photoCraftResourceUri) throw new McpError(ErrorCode.InvalidParams, "Unknown UI resource.");
-      return { contents: [await readPhotoCraftView(photoCraft)] };
+      const item = resources.get(params.uri);
+      if (!item) throw new McpError(ErrorCode.InvalidParams, "Unknown UI resource.");
+      return { contents: [await item.read()] };
     });
   }
   server.setRequestHandler(CallToolRequestSchema, async ({ params }) => {

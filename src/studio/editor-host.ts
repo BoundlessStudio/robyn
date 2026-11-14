@@ -74,7 +74,7 @@ export function createEditorHost(options:{projectId:string;initialRef:AssetRef;s
         }finally{activating=false;}
       }
       case "importAsset": {
-        if(options.transport)throw Error("Import files in Studio before placing them in PhotoCraft.");
+        if(options.transport)throw Error("Import files in Studio before placing them here.");
         const input=object(message.payload),creationId=requireUuid(input.creationId,"import request ID");
         const name=validatePackagePath(input.name);
         if(name.includes("/")||!(input.file instanceof Blob)||!input.file.size||input.file.size>256*1024**2)throw Error("Choose a single supported file up to 256 MiB.");

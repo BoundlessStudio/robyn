@@ -17,6 +17,8 @@ test("PhotoCraft is discovered as an OAuth-protected MCP App", async t => {
     NEXT_PUBLIC_SUPABASE_ANON_KEY: "fixture-public-key",
     ROBYN_MCP_RUNTIME_SECRET: "s".repeat(43),
     ROBYN_MCP_PHOTOCRAFT_URL: "https://editors.robyn.example/mcp/photocraft/v0.17.0-0.3.2/",
+    ROBYN_MCP_CHAT_EDITOR_ORIGIN: "https://editors.robyn.example",
+    ROBYN_MCP_CHAT_CRAFTS: "/pixelcraft/v1.0.0-0.1.0/,/dashcraft/v0.2.0-0.1.0/,/ledgercraft/v0.1.0-0.1.0/",
   };
   const previous = Object.keys(settings).map(key => [key, process.env[key]]);
   Object.assign(process.env, settings);
@@ -52,7 +54,8 @@ test("PhotoCraft is discovered as an OAuth-protected MCP App", async t => {
   const { tools } = await mcp.listTools();
   const resource = tools.find(tool => tool.name === "open_photocraft")._meta.ui.resourceUri;
   assert.deepEqual(tools.find(tool => tool.name === "photocraft_editor_request")._meta.ui.visibility, ["app"]);
-  assert.equal((await mcp.listResources()).resources[0].uri, resource);
+  const uris = (await mcp.listResources()).resources.map(item => item.uri);
+  assert(uris.includes(resource));
   const [template] = (await mcp.readResource({ uri: resource })).contents;
   assert.equal(template.mimeType, "text/html;profile=mcp-app");
   assert.deepEqual(template._meta.ui.csp.frameDomains, ["https://editors.robyn.example"]);
@@ -66,6 +69,19 @@ test("PhotoCraft is discovered as an OAuth-protected MCP App", async t => {
   assert(!(await mcp.callTool({ name: "photocraft_editor_request", arguments: {
     binding, session: launch._meta.session, method: "GET", path: "/api/studio/assignments",
   } })).structuredContent);
+  assert.equal(tools.find(tool => tool.name === "open_pixelcraft")._meta.ui.resourceUri, "ui://robyn/pixelcraft/v1.html");
+  assert.equal(tools.find(tool => tool.name === "open_dashcraft").annotations.readOnlyHint, true);
+  assert(!tools.some(tool => tool.name === "open_ledgercraft"));
+  assert(!uris.includes("ui://robyn/ledgercraft/v1.html"));
+  const [pixel] = (await mcp.readResource({ uri: "ui://robyn/pixelcraft/v1.html" })).contents;
+  assert.match(pixel.text, /<title>PixelCraft<\/title>/);
+  assert.match(pixel.text, /\/mcp\/pixelcraft\/v1\.0\.0-0\.1\.0\//);
+  const [dash] = (await mcp.readResource({ uri: "ui://robyn/dashcraft/v1.html" })).contents;
+  assert.match(dash.text, /"readOnly":true/);
+  assert.deepEqual(tools.find(tool => tool.name === "craft_editor_request")._meta.ui.visibility, ["app"]);
+  assert.equal((await mcp.callTool({ name: "craft_editor_request", arguments: {
+    appId: "pixelcraft", binding, session: launch._meta.session, method: "GET", path: `/api/studio/revisions/${revisionId}`,
+  } })).isError, true);
 });
 
 test("a Streamable HTTP client discovers Studio and Craft tools within the owner and zero-allowance boundaries", async () => {

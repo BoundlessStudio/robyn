@@ -23,11 +23,13 @@ Review or revoke access under **Settings → External MCP → Manage MCP connect
 
 [OpenAI’s custom MCP connection guide](https://developers.openai.com/plugins/deploy/connect-chatgpt)
 
-### Open PhotoCraft in chat
+### Open a Craft in chat
 
-In desktop ChatGPT, open **Settings → Plugins → Robyn** and select **Refresh tools** if **Open PhotoCraft** is missing. Start a **Work** chat with **@Robyn** and ask “Open my saved PhotoCraft document ‘Layered image’ for editing here.” Robyn finds the exact saved `.pcraft` revision in an active project and opens PhotoCraft in the conversation. Use PhotoCraft’s **File → Save** or **Ctrl+S** and wait for **Saved to your library**. Reopen the asset from its library history or ask for the latest saved revision. For a new source image, save it to the project before using **Place from studio**.
+In desktop ChatGPT, open **Settings → Plugins → Robyn** and select **Refresh tools** if an enabled editor is missing. Start a **Work** chat with **@Robyn** and ask “Open my saved PhotoCraft document ‘Layered image’ for editing here.” Robyn finds the exact saved revision in your project and opens the Craft in the conversation. Use the Craft’s **File → Save** or **Ctrl+S** and wait for its library confirmation. Reopen the asset from its library history or ask for the latest saved revision. Save source files to the same project before using **Place from studio** in Crafts that support placement.
 
-For a trial deployment, apply `0038_photocraft_mcp_saves.sql` using the checked migration ledger and serve the candidate from the [companion editor host](https://github.com/BoundlessStudio/robyn-artcraft-runtime/blob/main/deploy/cloudflare/README.md). Set `ROBYN_MCP_PHOTOCRAFT_URL` to the dedicated HTTPS origin and its `/mcp/photocraft/v0.17.0-0.3.2/` path. Confirm that the custom ChatGPT connection renders the original editor and that a saved change reopens natively before enabling the view on the shared connection.
+DashCraft opens a saved report for read-only analysis. Chat editor registration covers Creative, Drafting and Analysis.
+
+Apply `0038_photocraft_mcp_saves.sql` and `0039_craft_mcp_saves.sql` using the checked migration ledger. Serve pinned editors from the [companion editor host](https://github.com/BoundlessStudio/robyn-artcraft-runtime/blob/main/deploy/cloudflare/README.md). The existing PhotoCraft tool uses `ROBYN_MCP_PHOTOCRAFT_URL`. Additional Crafts use `ROBYN_MCP_CHAT_EDITOR_ORIGIN` and a comma-separated `ROBYN_MCP_CHAT_CRAFTS` list of exact release paths such as `/pixelcraft/v1.0.0-0.1.0/`. Verify each Craft’s private library open, editor save and native continuation before adding its release path. For DashCraft, verify exact report open and read-only computation.
 
 ## Tools
 
@@ -41,7 +43,7 @@ For a trial deployment, apply `0038_photocraft_mcp_saves.sql` using the checked 
 | `download_asset` | Get one private download link for an original file in an exact revision. Supply a path when choosing from a collection. |
 | `list_asset_revisions`, `open_asset_revision` | Inspect an exact immutable file package and dependencies. Request short-lived private download links explicitly with `includeDownloads`. |
 | `list_crafts`, `run_<craft>` | Discover the installed Craft tools and native formats. Start a direct call with `commands: [{ argv: ["--help"] }]` to see the application’s commands. |
-| `open_photocraft` | On enabled deployments, open the browser editor at an exact saved PhotoCraft revision in desktop ChatGPT. |
+| `open_<craft>` | Open an enabled Craft at an exact saved revision in desktop ChatGPT. |
 | `list_mailcraft_accounts`, `read_mailcraft` | List the active mailboxes approved for this MCP connection and read a MailCraft view from one exact account. |
 | `list_craft_operations`, `get_craft_operation` | Recover operation IDs for this connection and read native output and confirmed revision receipts. |
 | `get_robyn_allowance`, `start_robyn_job` | Read the configured AI allowance and delegate work. Job admission also checks remaining headroom and provider funding. |
