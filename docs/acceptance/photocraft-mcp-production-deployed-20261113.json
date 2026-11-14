@@ -1,0 +1,24 @@
+{
+  "localDate": "2026-11-13",
+  "scope": "Enable the verified PhotoCraft MCP App on the existing production Robyn connection.",
+  "webCommit": "849f17fea6ec33b774e5b53df22279c67eeda727",
+  "runtimeCommit": "3d3a04ea26ebaed09ea1f80dac48a4d25382b168",
+  "deployment": {
+    "url": "https://vercel.com/venatio-studios/robyn-creative-studio/44fBwhACR8nreRY8YYxxgSppaTk8",
+    "productionDomain": "https://robyn.academy",
+    "id": "dpl_44fBwhACR8nreRY8YYxxgSppaTk8",
+    "previous": "dpl_BsY7JDon7hpQ7SeaoEr89C1aoctp"
+  },
+  "editor": {
+    "url": "https://robyn-artcraft-chat-editors.robyn-artcraft-runtime.workers.dev/mcp/photocraft/v0.17.0-0.3.2/",
+    "workerVersion": "ab5e57c7-1634-4b3d-9b53-3ed4b629bdc1",
+    "sha256": "0a686430ae9a76a5480b94475e3a515a559ac8ef12f0bc5ebddd0a0ec66e56b7"
+  },
+  "migration": "0038_photocraft_mcp_saves.sql",
+  "verification": {
+    "chatGPT": "Refreshed the existing Robyn plugin with its primary OAuth account. In a desktop Work chat, open_photocraft was available and refused a nonexistent project.",
+    "productionOAuth": "OAuth discovery stayed at robyn.academy and unauthenticated MCP requests returned 401.",
+    "authenticatedSaveEvidence": "photocraft-mcp-chatgpt-production-qa-20261113.json",
+    "personalFiles": "The production connection check used nonexistent identifiers."
+  }
+}

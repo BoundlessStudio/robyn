@@ -8,7 +8,9 @@ The [November 10 studio naming release](acceptance/studio-naming-deployed-202611
 
 ## PhotoCraft in MCP chat
 
-The private ChatGPT preview connected to the live Studio QA library through OAuth. After migration **0038**, the original PhotoCraft canvas opened an exact native revision and committed two separate revisions through Ctrl+S and File → Save. Both downloads matched the stored byte counts and SHA-256 hashes. Native PhotoCraft for Windows reopened the latest revision with both brush strokes, and the pinned native CLI added a layer. The dedicated editor hostname and shared ChatGPT release are pending. [Production QA record](acceptance/photocraft-mcp-chatgpt-production-qa-20261113.json)
+PhotoCraft is live on the existing Robyn ChatGPT connection. The production build advertises **Open PhotoCraft** after refreshing the plugin tools and uses the dedicated Cloudflare editor origin. [Production rollout](acceptance/photocraft-mcp-production-deployed-20261113.json)
+
+The private ChatGPT preview connected to the live Studio QA library through OAuth. After migration **0038**, the original PhotoCraft canvas opened an exact native revision and committed two separate revisions through Ctrl+S and File → Save. Both downloads matched the stored byte counts and SHA-256 hashes. Native PhotoCraft for Windows reopened the latest revision with both brush strokes, and the pinned native CLI added a layer. [Production QA record](acceptance/photocraft-mcp-chatgpt-production-qa-20261113.json)
 
 The earlier private trial exercised the same save commands with a local library. The local Chromium test recovered interrupted begin and commit replies with one upload. [Live ChatGPT fixture trial](acceptance/photocraft-mcp-chatgpt-trial-20261113.json) · [Local acceptance](acceptance/photocraft-mcp-local-20261113.json) · [Trial setup](MCP.md#open-photocraft-in-chat)
 
