@@ -6,13 +6,15 @@ The source catalog has **34 ready Crafts** across Creative (13), Drafting (10), 
 
 The [November 10 studio naming release](acceptance/studio-naming-deployed-20261110.json) applied migration **0037** and deployed email-derived studio defaults and Agent37 label sync. All six live workstation labels matched their studios during verification. The earlier [production backfill](acceptance/studio-names-production-20261110.json) records the names updated before the web release.
 
-## PhotoCraft in MCP chat
+## Craft editors in MCP chat
+
+The existing Robyn ChatGPT plugin offers **31 Craft views** from Creative, Drafting and Analysis. The 30 editable Crafts save new revisions through their own file commands. DashCraft opens and refreshes exact saved reports in its read-only viewer. The in-chat rollout excludes the Operations group. [Production release and native continuation records](acceptance/craft-mcp-production-deployed-20261113.json) · [Open a Craft in chat](MCP.md#open-a-craft-in-chat)
 
 PhotoCraft is live on the existing Robyn ChatGPT connection. The production build advertises **Open PhotoCraft** after refreshing the plugin tools and uses the dedicated Cloudflare editor origin. [Production rollout](acceptance/photocraft-mcp-production-deployed-20261113.json)
 
 The private ChatGPT preview connected to the live Studio QA library through OAuth. After migration **0038**, the original PhotoCraft canvas opened an exact native revision and committed two separate revisions through Ctrl+S and File → Save. Both downloads matched the stored byte counts and SHA-256 hashes. Native PhotoCraft for Windows reopened the latest revision with both brush strokes, and the pinned native CLI added a layer. [Production QA record](acceptance/photocraft-mcp-chatgpt-production-qa-20261113.json)
 
-The earlier private trial exercised the same save commands with a local library. The local Chromium test recovered interrupted begin and commit replies with one upload. [Live ChatGPT fixture trial](acceptance/photocraft-mcp-chatgpt-trial-20261113.json) · [Local acceptance](acceptance/photocraft-mcp-local-20261113.json) · [Trial setup](MCP.md#open-photocraft-in-chat)
+The earlier private trial exercised the same save commands with a local library. The local Chromium test recovered interrupted begin and commit replies with one upload. [Live ChatGPT fixture trial](acceptance/photocraft-mcp-chatgpt-trial-20261113.json) · [Local acceptance](acceptance/photocraft-mcp-local-20261113.json)
 
 ## Connected mail, deployed November 10
 

@@ -1,0 +1,504 @@
+{
+  "checkedAt": "2026-11-14T01:44:16.190Z",
+  "totalTools": 87,
+  "editors": [
+    "bimcraft",
+    "cadcraft",
+    "civilcraft",
+    "dashcraft",
+    "datacraft",
+    "deckcraft",
+    "designcraft",
+    "detailcraft",
+    "effectcraft",
+    "figcraft",
+    "filmcraft",
+    "flarecraft",
+    "geocraft",
+    "gridcraft",
+    "lightcraft",
+    "markupcraft",
+    "matcraft",
+    "materialcraft",
+    "modelcraft",
+    "partcraft",
+    "pcbcraft",
+    "pdfcraft",
+    "photocraft",
+    "pixelcraft",
+    "scriptcraft",
+    "solidcraft",
+    "soundcraft",
+    "subcraft",
+    "takeoffcraft",
+    "vectorcraft",
+    "wordcraft"
+  ],
+  "editableCrafts": [
+    "bimcraft",
+    "cadcraft",
+    "civilcraft",
+    "datacraft",
+    "deckcraft",
+    "designcraft",
+    "detailcraft",
+    "effectcraft",
+    "figcraft",
+    "filmcraft",
+    "flarecraft",
+    "geocraft",
+    "gridcraft",
+    "lightcraft",
+    "markupcraft",
+    "matcraft",
+    "materialcraft",
+    "modelcraft",
+    "partcraft",
+    "pcbcraft",
+    "pdfcraft",
+    "photocraft",
+    "pixelcraft",
+    "scriptcraft",
+    "solidcraft",
+    "soundcraft",
+    "subcraft",
+    "takeoffcraft",
+    "vectorcraft",
+    "wordcraft"
+  ],
+  "readOnlyCrafts": [
+    "dashcraft"
+  ],
+  "excludedOperations": [
+    "ledgercraft",
+    "mailcraft",
+    "plancraft"
+  ],
+  "exactRevisionOpenToolsTested": 31,
+  "widgetResourcesTested": 31,
+  "issuer": "https://robyn.academy",
+  "authChallenge": 401,
+  "webCommit": "dbfb4c08c56015542c0bc1d64bf88fafb3ae8c1f",
+  "runtimeCommit": "369fc124c17545d973fad7d88f93f00084d19198",
+  "deployment": "dpl_FtMUWYvW4jD9L24Zu47SKv51EbWx",
+  "chatEditorWorker": "e0348ce3-152a-4b3b-acaf-407c0044d4d0",
+  "migration": {
+    "file": "0039_craft_mcp_saves.sql",
+    "sha256": "67bbd0a3ce725c95a4b2fa251bf2a8f5f47e6740344379288df30603e9d05d82"
+  },
+  "checks": {
+    "chatGPT": "Refreshed the existing Robyn plugin on its primary account. Desktop Work chat invoked PhotoCraft, GridCraft and SubCraft in scoped probes using nonexistent project IDs. Production OAuth found all 31 exact revision tools and returned their 31 widgets.",
+    "browser": "Real pinned Craft interfaces and save hooks connected to the live private Studio QA library. PhotoCraft ran directly in ChatGPT. Other per-editor round trips used Chromium with a test MCP Apps host. The harness changed only the outer iframe ancestor for the loopback page. PixelCraft also saved through the deployed production MCP endpoint.",
+    "ownership": "A separate designated Studio QA owner supplied every document used in a write test. Temporary test grants were revoked.",
+    "tests": {
+      "webPassed": 288,
+      "runtimePassed": 178,
+      "runtimeSkipped": 1,
+      "webBuild": "passed"
+    }
+  },
+  "crafts": {
+    "bimcraft": {
+      "artifact": {
+        "prefix": "bimcraft/v0.7.0-0.1.2/",
+        "sha256": "7ebc83da8dd110b934df4ddc69826620a4714d84c653aed03065e60c01c9746f"
+      },
+      "revision": {
+        "id": "e9ef7a86-050b-495f-94a9-8e0d6338f2ef",
+        "bytes": 9931,
+        "sha256": "b8cdb93f2540ff4392c9e00b578b6e2f9b20baf28856972991245660f861da17"
+      },
+      "continuedSha256": "38e51d988fe8c635081e9ff9ce11b0794f1b690df59d57e35a04b3220c3fd207",
+      "observation": "IFC wall count 0 → 1 → 2"
+    },
+    "cadcraft": {
+      "artifact": {
+        "prefix": "cadcraft/v0.14.0-0.3.2/",
+        "sha256": "88648e4b51cd54268bfe46669384b884912ba6183718b24caaffb9dbc9c56c19"
+      },
+      "revision": {
+        "id": "5b9ecd4a-419b-404b-8ca2-9fe1db195419",
+        "bytes": 18571,
+        "sha256": "4f739d3469639aed4ec2464e05e446cf0b6749b852c78faae35a6342dcfedec6"
+      },
+      "continuedSha256": "ef9d6a1f423d051f6be33d7f2e1a20071892359d066f60149ae8e959580a5ee9",
+      "observation": "Saved DXF text preserved while adding a native circle"
+    },
+    "civilcraft": {
+      "artifact": {
+        "prefix": "civilcraft/v0.7.0-0.1.2/",
+        "sha256": "a8a45ca46b481f7e4a1587cadd7738cd6464c7fd353b65c2d87a948973416ce4"
+      },
+      "revision": {
+        "id": "5f8d093a-6c93-4e5c-b159-0378a305f823",
+        "bytes": 940,
+        "sha256": "158de97cae2804c27cc52d5fbccbf658b6828b5c8a1ea079dc7a576301856473"
+      },
+      "continuedSha256": "b86f560d74f3b1b2f96e1f7899c42bb4510d766fc7bd6763e050ad5a9b264e18",
+      "observation": "Saved site name preserved while adding a fifth survey point"
+    },
+    "dashcraft": {
+      "artifact": {
+        "prefix": "dashcraft/v0.2.0-0.1.0/",
+        "sha256": "89f7454df16ba2c0f773961abe3d859f089190f79b0f1fbb2674f914e18b89b1"
+      },
+      "mode": "readOnly",
+      "checks": [
+        "Opened the exact saved .bim project",
+        "Refreshed the embedded QA Sales data and displayed two rows",
+        "Rejected a write attempt"
+      ]
+    },
+    "datacraft": {
+      "artifact": {
+        "prefix": "datacraft/v0.11.0-0.1.0/",
+        "sha256": "d2d80df746abd0a467ac2ebb2d7a2463f671317082b90c0419dd325f5f7481d0"
+      },
+      "revision": {
+        "id": "c71dbe74-acce-46dd-9039-f6423ea90388",
+        "bytes": 8192,
+        "sha256": "2ba43cc9e69b9f190fd69491554487a3ecc60df74de1c748448d9ba2a3971b21"
+      },
+      "continuedSha256": "be13c5d95a7e2d3f3c41a9d2c261484e37acbfe54f566e7c5c66552dbf0091ed",
+      "observation": "Browser created the SQLite row with value 46. Native DataCraft updated it to 82"
+    },
+    "deckcraft": {
+      "artifact": {
+        "prefix": "deckcraft/v0.12.0-0.4.2/",
+        "sha256": "6306fae5a55a49b440bf72d9ec1916d8c049f9f5481c0f2c16675b9b6bdd9e2f"
+      },
+      "revision": {
+        "id": "79fe2a95-47bd-48f4-ac06-2af89ca53b0d",
+        "bytes": 112806,
+        "sha256": "28e06ce720cf6ea749daec4255452af232804f8bd26288928ce3a4a18dbdce33"
+      },
+      "continuedSha256": "0c9f0893f5225ea142d46ae647a295b1649961ca71dd4067d3cfcc2922360327",
+      "observation": "Browser added a shape and native DeckCraft added a second shape"
+    },
+    "designcraft": {
+      "artifact": {
+        "prefix": "designcraft/v0.14.0-0.3.2/",
+        "sha256": "216ca8f325b9e677251139d9ebe8d214feb4fda64008d623f2521656e83be482"
+      },
+      "revision": {
+        "id": "73a190bc-fa40-4f36-9dad-d554f42bc269",
+        "bytes": 8581,
+        "sha256": "b2a2ea55844624f5644b3edfae47a697e495506ed6c90d03751f3c3cd6753349"
+      },
+      "continuedSha256": "4c08c01c5c0cc17f0a7e52ebfce5d56c4fda08155b3911f541c936a4b54071d3",
+      "observation": "Browser added a frame and native DesignCraft added another frame"
+    },
+    "detailcraft": {
+      "artifact": {
+        "prefix": "detailcraft/v0.7.0-0.1.1/",
+        "sha256": "2eb2608b9e95135db88ee254eeb7c6c626e1a296101dbcb97158846b943db9f8"
+      },
+      "revision": {
+        "id": "80caa559-b7d2-4a90-ba49-d64235643ccc",
+        "bytes": 931,
+        "sha256": "6994372b14d5566480a780ab990f28e537281b486e211d23f67c6c0fe7a8d52d"
+      },
+      "continuedSha256": "8c1bd7307d0c7d1b2d422455c28ac6081cd54523f454a8c040359d05cc5100ec",
+      "observation": "Saved model name preserved while adding a second beam natively"
+    },
+    "effectcraft": {
+      "artifact": {
+        "prefix": "effectcraft/v0.18.0-0.3.2/",
+        "sha256": "20fd0552ec63c9d9fd3be236cd828c8b7dbd01e58823ac5a1f44a2d203d5da0c"
+      },
+      "revision": {
+        "id": "6fb55a35-7de4-41cc-8fcb-efd27a92b4fc",
+        "bytes": 6912,
+        "sha256": "39d90379450e24e6cdb42b2ea0d6ff0d260b0e004b1c460aa4e4fed83ec2ee4a"
+      },
+      "continuedSha256": "0a28feb412dbffb1772df112a803f0a906d2a674cf2a29917e6edcbdbf94b3a3",
+      "observation": "Both new solid layers preserved in the editable composition"
+    },
+    "figcraft": {
+      "artifact": {
+        "prefix": "figcraft/v0.12.1-0.3.2/",
+        "sha256": "77be3f40f7c447921ee64d95d15d80200569ee88aa10a2c7542ce6fd39c16140"
+      },
+      "revision": {
+        "id": "a5519201-3c17-4407-999b-799b59284147",
+        "bytes": 3040,
+        "sha256": "5e43fa327c22598426a9770fb226c7b87ade86e3412eec6d7af5cdfae1673134"
+      },
+      "continuedSha256": "b93e73c107fc7c43ff6492c1d9db5622d512b0b0edfae9c51bfafd49d1099445",
+      "observation": "Browser ellipse reopened and native FigCraft added a rectangle"
+    },
+    "filmcraft": {
+      "artifact": {
+        "prefix": "filmcraft/v0.14.0-0.3.2/",
+        "sha256": "67b69d9a80d6db1f16a53005a896b56ea0d3389b85243f9aba6e1aa09b2822fa"
+      },
+      "revision": {
+        "id": "418b6136-8ab4-4030-b225-b75e34d82935",
+        "bytes": 3454,
+        "sha256": "d1d139469849d6b39ba185c0dbbf2b89fc4caf88d448ba51bc5f22b836a2ed0d"
+      },
+      "continuedSha256": "70dfbe45b6fb750efe547dafb61f69b5e6e1ce56ae037574707a3227a76e60c4",
+      "observation": "Browser bin reopened and native FilmCraft added a second bin"
+    },
+    "flarecraft": {
+      "artifact": {
+        "prefix": "flarecraft/v0.1.0-0.1.0/",
+        "sha256": "828d70f5b18dab304ad67b6ff12c45f853f2285ca3c828d64724a73d594c613c"
+      },
+      "revision": {
+        "id": "ab182cf5-1a70-471d-9aff-6a4175aa3db3",
+        "bytes": 4096,
+        "sha256": "828d0b8c9870be9ac1420c3b328d464a08ce4427abd407ed0f02915d51bce6f2"
+      },
+      "continuedSha256": "7f0b444a396a2f5482bc5b94f6bfe562a6ae35ed2fe4a7c466cf490405521384",
+      "observation": "Browser stage drawing reopened and native AniCraft renamed the scene"
+    },
+    "geocraft": {
+      "artifact": {
+        "prefix": "geocraft/v0.5.0-0.1.0/",
+        "sha256": "47d0383ba1078e1d45638beca2a1cf85c0aa7c0e88e33b387008a05f05ced9d0"
+      },
+      "revision": {
+        "id": "1efed273-10a8-4ba8-b4a7-2993a25b148d",
+        "bytes": 305575,
+        "sha256": "14e25f1c2e521a50663790df61bb5ec3fd0839a76b8782cf966d88d47ebc1212"
+      },
+      "continuedSha256": "e67516503ec7c4f6036c2cea40ce0debd0d3c948981172175b8ed1ff0fb93e9e",
+      "observation": "Native RustGIS renamed the browser-added Countries layer and preserved all 177 features"
+    },
+    "gridcraft": {
+      "artifact": {
+        "prefix": "gridcraft/v0.13.0-0.4.3/",
+        "sha256": "5e92bdc568adf4ac7628ed3605bebf01d5594a1c5ad1e538edfdba4097334bf4"
+      },
+      "revision": {
+        "id": "56192886-2da4-425d-b32f-ff396b63a98e",
+        "bytes": 4058,
+        "sha256": "b8fdc51841e3f163ebebee5be6119f72ee01b039786ee2626e901587628129da"
+      },
+      "continuedSha256": "1d7f17260cd1f59944195503936f56fd069516cf60e7c097afebf6087ec26378",
+      "observation": "Browser cell A2 = 46 and native cell A3 = 82"
+    },
+    "lightcraft": {
+      "artifact": {
+        "prefix": "lightcraft/v0.15.0-0.3.2/",
+        "sha256": "0b5653f00f4ba4487ee34b556646bdff68d050d23c574028c65f5d744db88f4d"
+      },
+      "revision": {
+        "id": "013871a4-2e9e-4d3a-936f-e741be27fab8",
+        "bytes": 8779,
+        "sha256": "b7b5034a38b28b2babd8ef7355dfa00fa8f94e1edb4b7b9386155e36e61173ab"
+      },
+      "continuedSha256": "d7d2b38807657002e10c607482d372a3b86155cd37e7c83b3609ae95a9540d08",
+      "observation": "Browser exposure 0.7 and native exposure 1.1. Original PNG hash preserved"
+    },
+    "markupcraft": {
+      "artifact": {
+        "prefix": "markupcraft/v0.7.0-0.1.1/",
+        "sha256": "96a22bc2dee06026428b60f77a14435c319fc6b5fa1791f1a857894d992f684e"
+      },
+      "revision": {
+        "id": "d31672d0-7cc9-46f5-ab51-c59d556df97b",
+        "bytes": 25767,
+        "sha256": "2a32cfe5986106faff363438efc9d93acc871a899505698e2ac3204a46445015"
+      },
+      "continuedSha256": "0ea03aeac42b13498cc978e54d954e4b68fc520f7ef7fe433efc7e7f59641614",
+      "observation": "One saved PDF annotation reopened and native MarkupCraft added a second"
+    },
+    "matcraft": {
+      "artifact": {
+        "prefix": "matcraft/v0.1.0-0.1.0/",
+        "sha256": "09d8dc56d36305b57801f5f948260ddc17597a5f1eed6971cb6b11c02284ed55"
+      },
+      "revision": {
+        "id": "1f9eb2fb-a64c-4fa8-84d4-3e07717f3688",
+        "bytes": 36,
+        "sha256": "78723019316433686c79e32acccedcf7c40a45e9b6c04405e90e1cfa34a001dd"
+      },
+      "continuedSha256": "259e96a192d57d48c5f8e7e86f8e10a824bee2c4d43e178c65a460d46ceb3248",
+      "observation": "Browser script produced 11. The pinned CLI continued to 42, wrote a MAT v5 workspace and reopened it"
+    },
+    "materialcraft": {
+      "artifact": {
+        "prefix": "materialcraft/v0.5.0-0.1.1/",
+        "sha256": "6a5cb4206ed4b521ad2a4377e7fe4916d0f20f195577dd2112cbb43cbe7ced2f"
+      },
+      "revision": {
+        "id": "3510c972-6ab7-456c-966e-3f9391d478b4",
+        "bytes": 1169,
+        "sha256": "77c67ec28622992d7c050495a496e919d7c731d409bc93793beab233f3e2042d"
+      },
+      "continuedSha256": "400d43e2193087cfff54ee5c401c1dcf238d7e8ea64cc0b13f105ff150e1c41d",
+      "observation": "Saved graph had one node. The native CLI added a blur and checked the two-node package"
+    },
+    "modelcraft": {
+      "artifact": {
+        "prefix": "modelcraft/v0.7.0-0.1.1/",
+        "sha256": "f127ac434b2b4bd7bc05d3c32f180615423f1982b6394a0a3ea1308bcaf9d8e6"
+      },
+      "revision": {
+        "id": "a68a79bf-002a-4e0f-bf7e-916bd115e452",
+        "bytes": 973,
+        "sha256": "411ace804b8ccec90e56e5901a4cbcc6b49d68814f5833e23cf0256b535bab6a"
+      },
+      "continuedSha256": "1bc7ec072c4ebf0e3fcd035f0a7f5312c29c5b9a6d7911c4ce1273d0ddd8a9d3",
+      "observation": "Browser geometry reopened with three faces. Native ModelCraft added a solid box"
+    },
+    "partcraft": {
+      "artifact": {
+        "prefix": "partcraft/v0.7.0-0.1.1/",
+        "sha256": "eae863232214115514e8cc9cc7b01be6b0514eeeeadee46834e5466bf42fffaa"
+      },
+      "revision": {
+        "id": "017d8b10-8d01-4f00-9376-2fc754bfde26",
+        "bytes": 151,
+        "sha256": "bece3dd2be3ae3239396d0b5564f3a11bab59de84ce49acba17d8eaa65190c1b"
+      },
+      "continuedSha256": "c91f4ca8ef1b5b8952a5f03fe0e299eb4065cd8f374ee4d2b68f4f8ed634d27f",
+      "observation": "Browser part name reopened and the native serializer applied a new name"
+    },
+    "pcbcraft": {
+      "artifact": {
+        "prefix": "pcbcraft/v0.0.0-0.1.0/",
+        "sha256": "3e631feef1afe6d798d34920d296cbc8b22c1c2eba9401757a532bd594a58c1b"
+      },
+      "revision": {
+        "id": "0f8d1f73-b9b1-456b-a4dc-db80773b9b3e",
+        "bytes": 1682,
+        "sha256": "705eeb48b6b4d520a6d314862eb0fd7c5b3c8de7054a456e683efb8dac844839"
+      },
+      "continuedSha256": "1e1b0402e20d1bc71da00b4ffbe97fee117bf2de7f97d4559d424613e66a4176",
+      "observation": "Native PCBCraft renamed the project while preserving the browser-placed GND label"
+    },
+    "pdfcraft": {
+      "artifact": {
+        "prefix": "pdfcraft/v0.15.0-0.3.2/",
+        "sha256": "ad41e4ecfb78bd6d06645f466bbc588aa11a303be75dc2cb5eb0e3dc8bfb5e51"
+      },
+      "revision": {
+        "id": "1c4494ae-05cf-41e2-bdfc-8e3353e26b3a",
+        "bytes": 952,
+        "sha256": "5f8246dab0f9ed4614e2b22a026844b684a71b84008befb2b6a2d89f0b632a1a"
+      },
+      "continuedSha256": "efb1bcd3bd8e3e0535fd61dec40b898d24bcc24bb07ef4167af29f1674f12ee6",
+      "observation": "Browser page rotation survived a native PDF metadata edit"
+    },
+    "photocraft": {
+      "artifact": {
+        "prefix": "photocraft/v0.17.0-0.3.2/",
+        "sha256": "0a686430ae9a76a5480b94475e3a515a559ac8ef12f0bc5ebddd0a0ec66e56b7"
+      },
+      "revision": {
+        "id": "6ef6c0d6-a75c-43ef-b6a2-510c7a0921f0",
+        "bytes": 27247,
+        "sha256": "a3e11cf03c0a5cfc874db25e7e4c1a9c514b57849ebe2ee98b7ef8d47a6135a7"
+      },
+      "continuedSha256": "9ed8be29870992736c58d5ea6676a85d2acb145d771bb54d0a0954e104170ac0",
+      "observation": "Both ChatGPT brush strokes reopened in native PhotoCraft. The pinned CLI added a layer"
+    },
+    "pixelcraft": {
+      "artifact": {
+        "prefix": "pixelcraft/v1.0.0-0.1.0/",
+        "sha256": "10cef86b9bb675fcef6cebc4fde9191a767a5f4412a38d297d593dd2df87305c"
+      },
+      "revision": {
+        "id": "980e43c9-8c2f-4c13-a05c-5f893c38945f",
+        "bytes": 4211,
+        "sha256": "5be8b690fda73bccd06e8ef1d6c6888e340609458b6a46b1242b2b7afaec40af"
+      },
+      "continuedSha256": "6d27bd4ee7d75f6e2a2708f54c80ae77792c34774f817e4323a1cfddb1a5e172",
+      "observation": "Studio-confirmed sprite reopened and native OxyPixel saved a new frame name"
+    },
+    "scriptcraft": {
+      "artifact": {
+        "prefix": "scriptcraft/v0.5.0-0.1.0/",
+        "sha256": "1108d2132dbf2768ff05761a570d52d674468522a08831f78857e01a76638f30"
+      },
+      "revision": {
+        "id": "64100c55-82f4-4b07-becf-ef1f845f54d2",
+        "bytes": 4201,
+        "sha256": "fa3661ac6fd5ef17635dd375836aa880ce56f02343b80964bdac3605a41aea83"
+      },
+      "continuedSha256": "b1199d58ea31e93a031f0da91935ad7ce8ed4ee823501da16867a013f53377a5",
+      "observation": "The browser scene heading reopened in the native CLI and was edited"
+    },
+    "solidcraft": {
+      "artifact": {
+        "prefix": "solidcraft/v0.27.1-0.1.4/",
+        "sha256": "660130a032fb3ee520f07b1bceb9f2f37c319f58ed6b563ace4716d8bfc9fddc"
+      },
+      "revision": {
+        "id": "fcbc47cf-5bc4-4599-87fd-013f95280721",
+        "bytes": 3014,
+        "sha256": "9ca87108a6f0ed34e4ac1c0cf9f85a6f45b85e0858f956c4d33782f0e2110c2d"
+      },
+      "continuedSha256": "66dd3c6210831ecce1227a3f56d11e956dee2c952e98b8e759371ca9d478145e",
+      "observation": "Both linked bodies reopened. The native CLI increased the browser-set length from 40 mm to 55 mm"
+    },
+    "soundcraft": {
+      "artifact": {
+        "prefix": "soundcraft/v0.14.0-0.3.2/",
+        "sha256": "1e8cbdf34fa5ebc8bc646ee99bd8d980fe37e33c7fcd42b2121985716113fcd1"
+      },
+      "revision": {
+        "id": "168b3079-351a-40ba-9f23-2e6432751193",
+        "bytes": 3065,
+        "sha256": "c8f91255bf5aad36a1fbd1c933b37ed0f8deb95c06238b4f401ce057c6fc7184"
+      },
+      "continuedSha256": "3037b163ee0958b09710ab31458d6b3be93342e035c7f912ed2e861a7acdeae7",
+      "observation": "The native CLI reopened the browser-set gain of -4 dB and saved -6 dB"
+    },
+    "subcraft": {
+      "artifact": {
+        "prefix": "subcraft/v0.1.8-0.1.0/",
+        "sha256": "39aa7d4db36eaf7c989643d87cb520df022652d7064d2ad4be17fb3e203e7814"
+      },
+      "revision": {
+        "id": "dc91a2cf-94d9-43eb-8a6b-c98aaadb45d3",
+        "bytes": 71215,
+        "sha256": "905ca5d04664e71b4f9d075d089bc1ac7152794f4f2fe81f295a4c701079ff86"
+      },
+      "continuedSha256": "fbbf443ccdfe7a74f0a0ce2e3cd5628f143a74056713ad2eeecd69b1f5884dfe",
+      "observation": "Native SubCraft reopened the brush stroke and a second stroke changed five raster entries without changing the mesh"
+    },
+    "takeoffcraft": {
+      "artifact": {
+        "prefix": "takeoffcraft/v0.7.0-0.1.1/",
+        "sha256": "9758496b5c16ee10189cec9083d57dfd8814f4d202f6eead9e7c1d1321bdf037"
+      },
+      "revision": {
+        "id": "d3cb2425-8164-4b35-bb6d-2000d312cb56",
+        "bytes": 6949,
+        "sha256": "55e934bf3c3d4802d287e343fc66f3fe937e89d143c82b32462cf3073ad36d21"
+      },
+      "continuedSha256": "7cb9c3e551681ae5abb1f60d42271f06f5ee6096c9e3dd5c8dd855094a449730",
+      "observation": "Browser 6% waste survived native continuation. The linked PDF matched its stored hash and the native CLI added one estimate item"
+    },
+    "vectorcraft": {
+      "artifact": {
+        "prefix": "vectorcraft/v0.18.0-0.3.2/",
+        "sha256": "1d7f6b563b48407bb6b1783fc31416d36f53fae2e3606fd0f7238f8998ee29cb"
+      },
+      "revision": {
+        "id": "8b5e97bd-8d6e-45c0-861e-ed0a1f1d77f2",
+        "bytes": 9873,
+        "sha256": "9a4d71ca2be5ac461c0eac67e960f460ce0769b2b5f2295956a5692fea595164"
+      },
+      "continuedSha256": "b9ee0cd110707b4c58f3fed2d68e5f17a1b4fdf8757622abcbc7930112b6b274",
+      "observation": "Browser rectangle reopened and the native CLI added an editable ellipse"
+    },
+    "wordcraft": {
+      "artifact": {
+        "prefix": "wordcraft/v0.12.0-0.4.3/",
+        "sha256": "4d087baed7d623b296a004f146b3c41693aad4a5d6d1ba3fae1df4a08d28cfe3"
+      },
+      "revision": {
+        "id": "984c244d-907a-4b17-ada8-7ccb5e8bf466",
+        "bytes": 6538,
+        "sha256": "ccbb374b51cb5b4c2ec5f31431c08b7811309495b1ede106739eb77daaf420e9"
+      },
+      "continuedSha256": "62575fa184f2f260ec0125679341b1cb0f227fed2d836116e879a6255687f9c4",
+      "observation": "Native WordCraft reopened the browser text and appended a sentence"
+    }
+  }
+}
